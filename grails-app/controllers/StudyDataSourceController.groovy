@@ -1,0 +1,4 @@
+class StudyDataSourceController {
+
+    def index = { }
+}

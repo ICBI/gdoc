@@ -1,0 +1,4 @@
+class AnalysisController {
+
+    def index = { }
+}

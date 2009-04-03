@@ -1,0 +1,5 @@
+class DataElementsController {
+
+    def index = { 
+	}
+}
