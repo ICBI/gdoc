@@ -86,6 +86,10 @@ p
 
 .welcome {
 	width: 550px;
+}
+
+.welcomeTitle {
+	width: 550px;
 	border-top:1px solid black;
 	padding-top:5px
 }
