@@ -12,21 +12,21 @@ hibernate {
 environments {
 	development {
 		dataSource {
-			url = "jdbc:oracle:thin:@10.211.55.4:1521:XE"
-			username = "common"
-			password = "common"
+			url = "jdbc:oracle:thin:@localhost:1521:orcl"
+			username = "web"
+			password = "readonly"
 			logSql = true
 			/*
-			url = "jdbc:hsqldb:file:prodDb;shutdown=true"
-			driverClassName = "org.hsqldb.jdbcDriver"
-			username = "sa"
-			password = ""
+			url = "jdbc:oracle:thin:@141.161.25.36:1521:XE"
+			username = "web"
+			password = "readonly"
+			logSql = true
 			*/
 		}
 	}
 	test {
 		dataSource {
-			url = "jdbc:oracle:thin:@10.211.55.4:1521:XE"
+			url = "jdbc:oracle:thin:@localhost:1521:orcl"
 			username = "common"
 			password = "common"
 			logSql = true
