@@ -13,8 +13,16 @@
 </g:form >
 </g:if>
 <g:else>
-<div>welcome,${session.userId}</div>
-<div><g:remoteLink action="logout" controller="login" id="1" update="success"  onLoading="showSpinner();">logout</g:remoteLink></div>
+<div style="float:left;margin-top: 20px;">
+	<g:form>
+	 <input name="terms" type="text" value="" size="25"></input>
+	<input type="submit" value="search gdoc" />
+	</g:form>
+</div>
+<div style="float:right;">
+	<div>welcome,${session.userId}</div>
+	<div><g:remoteLink action="logout" controller="login" id="1" update="success"  onLoading="showSpinner();">logout</g:remoteLink></div>
+</div>
 </g:else>
 
 </td>

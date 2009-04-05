@@ -17,7 +17,6 @@ $(document).ready(function()
         <li class="sliding-element"><g:navigationLink name="Perform Analysis" controller="analysis"/></li>
         <li class="sliding-element"><a href="#">Help</a></li>
     </ul>
-<div>hello</div>
 </div>
 
 

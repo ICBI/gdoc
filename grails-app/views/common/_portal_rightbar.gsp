@@ -1,4 +1,4 @@
-<g:panel id="myPanel" title="My GDOC" styleClass="prefs" panelColor="userLogPanelTitle">
+<g:panel id="myPanel" title="My gdoc" styleClass="prefs" panelColor="userLogPanelTitle">
 	<ul>
 		<li><a href="#">Saved Lists</a></li>
 		<li><a href="#">Saved Analysis</a></li>

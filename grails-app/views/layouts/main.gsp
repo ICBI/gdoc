@@ -34,7 +34,6 @@
             <div class="col2">
                 <!-- Column 2 start -->
                 <g:render template="/common/leftbar"/>
-				<g:render template="/common/searchBox"/>
 				<!-- Column 2 end -->
 			</div>
 			
