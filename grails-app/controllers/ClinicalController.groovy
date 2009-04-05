@@ -12,7 +12,7 @@ class ClinicalController {
 	
 	def search = {
 		def criteria = QueryBuilder.build(params, "clinical_")
-		StudyContext.setStudy("EDINFAKE")
+		StudyContext.setStudy(session.study.schemaName)
 		println criteria
 		searchResults = clinicalService.queryByCriteria(criteria)
 		def columns = []

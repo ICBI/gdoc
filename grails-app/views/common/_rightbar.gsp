@@ -5,14 +5,10 @@ $(document).ready(function(){
 });
 </script>
 <br/>
-<g:if test="${session.userId}">
-    <g:render template="/common/portal_rightbar"/>
-</g:if>
-
 <g:if test="${!feedMap}">
 </g:if>
 <g:else>
-<g:panel title="News" styleClass="news">
+<g:panel title="News" styleClass="news"  contentClass="myPanelContent">
 		<g:each in="${feedMap}" var="key,value">
 			<div><span style="font-size:9px">>> </span><a href="${value}" target="_blank">${key}</a></div>
 			</g:each>

@@ -142,7 +142,7 @@ body {
     .holygrail .col3 {
         float:left;
         float:right;   /* This overrides the float:left above */
-        width:250px;         /* Width of right column content (right column width minus left and right padding) */
+        width:200px;         /* Width of right column content (right column width minus left and right padding) */
         margin-right:45px;   /* Width of right column right-hand padding + left column left and right padding */
         position:relative;
         left:50%;
@@ -150,7 +150,7 @@ body {
     .holygrail .portalcol3 {
         float:left;
         float:right;   /* This overrides the float:left above */
-        width:175px;         /* Width of right column content (right column width minus left and right padding) */
+        width:150px;         /* Width of right column content (right column width minus left and right padding) */
         margin-right:45px;   /* Width of right column right-hand padding + left column left and right padding */
         position:relative;
         left:50%;
