@@ -3,7 +3,8 @@
 <html>
 <head>
     <title><g:layoutTitle/></title>
-    <link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'layout.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'grids.css')}"/>
     <link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css/cupertino',  file: 'jquery-ui-1.7.1.custom.css')}" />	
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'jquery.tooltip.css')}"/>
@@ -16,48 +17,34 @@
 </head>
 <body>
 <g:set var="activePage" value="${params.controller}" /> 
-<div id="header">
-    <!-- Header start -->
+<div id="doc3" class="yui-t1">
+	<div id="hd">
+		<!-- Header start -->
     <g:render template="/common/header"/>
     <!-- Header end -->
-</div>
-<div class="colmask holygrail">
-    <div class="colmid">
-        <div class="colleft">
-            <div class="col1wrap">
-                <div class="col1">
-                    <!-- Column 1 start -->
-                 		<g:layoutBody/>
-                    <!-- Column 1 end -->
-                </div>
-            </div>
-            <div class="col2">
-                <!-- Column 2 start -->
-                <g:render template="/common/leftbar"/>
-                <!-- Column 2 end -->
-            </div>
-			<g:if test="${session.userId}">
-            <div class="portalcol3">
-                <!-- Column 3 start -->
-                <g:render template="/common/portal_rightbar"/>
-                <!-- Column 3 end -->
-            </div>
-			</g:if>
-        </div>
-    </div>
-</div>
-<div id="footer">
-    <!-- Footer start -->
+	</div>
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+				<div class="yui-gc">
+					<div class="yui-u first">
+						<g:layoutBody/>
+					</div>
+					<div class="yui-u">
+						<g:render template="/common/portal_rightbar"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="navigation" class="yui-b first" style="height: 400px">
+			<g:render template="/common/leftbar"/>
+		</div>
+	</div>
+	<div id="ft">
+		<!-- Footer start -->
     <g:render template="/common/footer"/>
     <!-- Footer end -->
-</div>
-
-<!-- submenu -->
-<div id="mymenu1" class="outlinemenu">
-<ul>
-<li><a href="${createLink(controller:'clinical')}">Clinical</a></li>
-<li><a href="#" >Genomic</a></li>
-</ul>
+	</div>
 </div>
 
 <script type="text/javascript">

@@ -1,14 +1,27 @@
+body {
+	font-size:90%;
+  	font-family:Lucida Grande,Lucida Sans,Arial,sans-serif;
+}
 .tabDiv {
 	font-size: 62.5%;
 }
+#hd {
+		background-color: #334477;
+}
+#doc3 {
+	margin: 0px;
+}
+
+#navigation {
+	background: #E7EEF3;
+}
+
 ul#sliding-navigation
 {
 	color:#000000;
 	line-height:1.3;
 	list-style: none;
 	font-size: .75em;
-	margin: 0 0 0 -25px;
-	padding-left: 80px;
 }
 
 ul#sliding-navigation li.sliding-element h3,
@@ -89,7 +102,6 @@ p
 }
 
 .welcomeTitle {
-	width: 550px;
 	border-top:1px solid black;
 	padding-top:5px
 }
@@ -124,7 +136,6 @@ p
 .Menu {
 	padding: 0;		
 	/**margin-top: -28px;*/
-	margin-left: 50px;
 	width: 202px;
 	list-style: none;
 	display: none;
