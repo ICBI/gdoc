@@ -7,6 +7,8 @@
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'grids.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'superfish.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'superfish-vertical.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css/cupertino',  file: 'jquery-ui-1.7.1.custom.css')}" />	
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<g:javascript library="jquery"/>

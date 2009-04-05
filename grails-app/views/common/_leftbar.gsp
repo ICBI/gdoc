@@ -1,22 +1,38 @@
 <g:javascript>
 $(document).ready(function()
 {
-	slide('#sliding-navigation', 25, 15, 150, .8);
+	$("ul.sf-menu").superfish({ 
+		animation: {height:'show'},   // slide-down effect without fade-in 
+		delay:     1200               // 1.2 second delay on mouseout 
+	});
 });
 </g:javascript>
+<jq:plugin name="superfish"/>
+<jq:plugin name="hoverIntent"/>
 <div id="navigation-block">
-    <ul id="sliding-navigation">
-        <li class="sliding-element"><g:navigationLink name="Home" controller="home"/></li>
-        <li class="sliding-element"><a href="#">Search for Data</a>
-				<ul class="Menu">
-					<li><a href="#">Clinical</a></li>
-					<li><a href="#">Genomic</a></li>
-				</ul>
-	    </li>
-        <!--li class="sliding-element"><g:navigationLink name="Data Elements" controller="dataElements"/></li-->
-        <li class="sliding-element"><g:navigationLink name="Perform Analysis" controller="analysis"/></li>
-        <li class="sliding-element"><a href="#">Help</a></li>
-    </ul>
+	<ul id="gdocNavigation" class="sf-menu sf-vertical sf-js-enabled sf-shadow">
+		<li>
+			<g:navigationLink name="Home" controller="home"/>
+		</li>
+		<li>
+			<a class="sf-with-ul" href="#">Search for Data<span class="sf-sub-indicator"> »</span></a>
+			<ul style="display: none; visibility: hidden;">
+				<li>
+					<g:navigationLink name="Clinical" controller="clinical" class="submenu"/>
+				</li>
+				<li>
+					<g:navigationLink name="Genomic" controller="genomic" />
+				</li>				
+			</ul>
+		</li>
+		<li>
+			<g:navigationLink name="Perform Analysis" controller="analysis"/>
+		</li>	
+		<li>
+			<a href="#">Help</a>
+		</li>		
+	</ul>
+
 </div>
 
 
