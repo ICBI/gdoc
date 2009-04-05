@@ -15,14 +15,13 @@ class LoginController {
 					   	def user = loginService.login(params)//User.findByUserIdAndPassword(params.userId, params.password)
 						if (user) {
 							session.userId = user.username
-							redirect(controller:'user')
+							redirect(controller:'studyDataSource')
 						}
 						else {
 							flash['message'] = 'Please enter a valid user ID and password'
 						}
 					}
 				}
-		  
 		}
 		
 		def logout = {

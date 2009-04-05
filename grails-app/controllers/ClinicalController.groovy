@@ -7,12 +7,12 @@ class ClinicalController {
 	def searchResults
 	
     def index = { 
-		dataTypes = CdepType.findAll()
+		dataTypes = AttributeType.findAll()
 	}
 	
 	def search = {
 		def criteria = QueryBuilder.build(params, "clinical_")
-		StudyContext.setStudy("EDIN")
+		StudyContext.setStudy("EDINFAKE")
 		println criteria
 		searchResults = clinicalService.queryByCriteria(criteria)
 		def columns = []

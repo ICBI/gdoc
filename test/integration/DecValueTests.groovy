@@ -1,4 +1,4 @@
-class CdepValueTests extends GroovyTestCase {
+class DecValueTests extends GroovyTestCase {
 
     void testSomething() {
 
@@ -6,9 +6,9 @@ class CdepValueTests extends GroovyTestCase {
 
 	void testFindAll() { 
 		
-		StudyContext.setStudy("EDIN")
+		StudyContext.setStudy("EDINFAKE")
 		
-		def values = CdepValue.findAll([max:10])
+		def values = DecValue.findAll([max:10])
 		values.each {
 			assertNotNull it.value
 			assertNotNull it.type

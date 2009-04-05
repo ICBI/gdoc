@@ -12,8 +12,7 @@
 				</script>
 				<br/>
 				<div style="font-size:16px;margin-bottom:5px">Welcome to GDOC</div>
-				<div id="centerContent" class="welcome">
-					<!--g:panel id="welcomePanel" title="Welcome GDOC" styleClass="welcome"-->
+				<div id="centerContent" class="welcomeTitle">
 						<p>The Georgetown Database of Cancer is integrates multiple datatypes to present
 						a unified data view, allowing for rapid data exploration.</p>
 						
@@ -23,7 +22,6 @@
 							 treatments of tomorrow - targeted therapies that will improve both survival
 							 and quality of life.</p>
 						<br/>
-					<!--/g:panel-->
 					<br/>
 					<div class="tabDiv">
 						<div id="centerTabs" class="tabDiv">
