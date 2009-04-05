@@ -12,9 +12,7 @@
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css/cupertino',  file: 'jquery-ui-1.7.1.custom.css')}" />	
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<g:javascript library="jquery"/>
-		<g:javascript src="sliding_effect.js" />
 		<g:layoutHead/>
-		<g:javascript src="menu.js" />
 		
 </head>
 <body>
