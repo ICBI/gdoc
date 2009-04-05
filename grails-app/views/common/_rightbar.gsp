@@ -5,6 +5,10 @@ $(document).ready(function(){
 });
 </script>
 <br/>
+<g:if test="${session.userId}">
+    <g:render template="/common/portal_rightbar"/>
+</g:if>
+
 <g:if test="${!feedMap}">
 </g:if>
 <g:else>

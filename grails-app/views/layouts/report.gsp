@@ -3,7 +3,8 @@
 <html>
 <head>
     <title><g:layoutTitle/></title>
-    <link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'layout.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'grids.css')}"/>
     <link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css/cupertino',  file: 'jquery-ui-1.7.1.custom.css')}" />	
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'ui.jqgrid.css')}" />	
@@ -13,15 +14,16 @@
 		<g:layoutHead/>
 </head>
 <body>
-<div id="header">
+<div id="doc3" class="yui-t1">
+<div id="hd">
     <!-- Header start -->
     <g:render template="/common/header"/>
     <!-- Header end -->
 </div>
-<div id="content">
+<div id="bd">
 	<g:layoutBody/>
 </div>
-<div id="footer">
+<div id="ft">
     <!-- Footer start -->
     <g:render template="/common/footer"/>
     <!-- Footer end -->

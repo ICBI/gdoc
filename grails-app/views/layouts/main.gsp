@@ -4,8 +4,6 @@
 <html>
 <head>
     <title><g:layoutTitle /></title>
-    <!--<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'layout.css')}"/>
-	-->
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'grids.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
