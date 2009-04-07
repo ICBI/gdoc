@@ -21,7 +21,7 @@ $(document).ready(function()
 					<g:navigationLink name="Clinical" controller="clinical" class="submenu"/>
 				</li>
 				<li>
-					<g:navigationLink name="Genomic" controller="genomic" />
+					<g:navigationLink name="Genomic" controller="geneExpression" />
 				</li>				
 			</ul>
 		</li>

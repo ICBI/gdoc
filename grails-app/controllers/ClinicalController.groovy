@@ -7,12 +7,21 @@ class ClinicalController {
 	def searchResults
 	
     def index = { 
+		if(session.study) {
+			StudyContext.setStudy(session.study.schemaName)
+		} else {
+			StudyContext.setStudy("EDINFAKE")
+		}
 		dataTypes = AttributeType.findAll()
 	}
 	
 	def search = {
 		def criteria = QueryBuilder.build(params, "clinical_")
-		StudyContext.setStudy(session.study.schemaName)
+		if(session.study) {
+			StudyContext.setStudy(session.study.schemaName)
+		} else {
+			StudyContext.setStudy("EDINFAKE")
+		}
 		println criteria
 		searchResults = clinicalService.queryByCriteria(criteria)
 		def columns = []
