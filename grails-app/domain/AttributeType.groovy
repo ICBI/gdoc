@@ -1,6 +1,6 @@
 class AttributeType {
 	static mapping = {
-		table 'COMMON.ATTRIBUTE_TYPE'
+		table '__STUDY_SCHEMA__.USED_ATTRIBUTES'
 		version false
 		id column:'attribute_type_id'
 		vocabs column: 'attribute_type_id'
