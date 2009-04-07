@@ -23,9 +23,6 @@ ul#gdocNavigation {
 	font-size: .75em;
 	background: #E7EEF3;
 }
-ul#gdocNavigation li {
-	width: 130px;
-}
 ul#gdocNavigation li a {
 	background: #E6E6E6;
 	border: 1px solid #CCCCCC;

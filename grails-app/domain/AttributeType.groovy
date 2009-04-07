@@ -15,4 +15,6 @@ class AttributeType {
 	Boolean qualitative
 	Boolean continuous
 	Boolean vocabulary
+	Double upperRange
+	Double lowerRange
 }

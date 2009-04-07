@@ -8,20 +8,30 @@ class ClinicalService {
 	def queryString = '(select p.patient_id from edinfake.patient p, common.attribute_type c, edinfake.dec_value v ' +
 		 			  'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 					  ' and v.value = \'$value\' and c.short_name = \'$key\')'
+	def rangeQueryString = '(select p.patient_id from edinfake.patient p, common.attribute_type c, edinfake.dec_value v ' +
+		 			  	   'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
+					  	   ' and c.short_name = \'$key\' and v.value BETWEEN $value.min and $value.max )'					
 	
     boolean transactional = true
 	
 	def queryByCriteria(criteria) {
 		def engine = new SimpleTemplateEngine()
 		def queryTemplate = engine.createTemplate(queryString)
+		def rangeQueryTemplate = engine.createTemplate(rangeQueryString)
 		def selects = []
 		criteria.each { entry ->
 			def temp =[:]
 			temp.key = entry.key
 			temp.value = entry.value
-			selects << queryTemplate.make(temp)
+			if(temp.value instanceof java.util.Map) {
+				selects << rangeQueryTemplate.make(temp)
+			} else {
+				selects << queryTemplate.make(temp)
+			}
+			
 		}
 		def query = selects.join(" INTERSECT ")
+		println query
 		def ids = jdbcTemplate.queryForList(query)
 		def patientIds = ids.collect { id ->
 			return id["PATIENT_ID"]
