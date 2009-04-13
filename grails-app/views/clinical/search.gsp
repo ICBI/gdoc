@@ -34,7 +34,6 @@
 				var tags = new Array();
 				tags.push("clinical");
 				tags.push("patient");
-				alert(tags);
 				${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', params:'\'ids=\'+ s+\'&name=\'+     document.getElementById(\'list_name\').value+\'&author.username=\'+author+\'&tags=\'+tags')}
 				
 				

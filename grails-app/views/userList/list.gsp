@@ -19,17 +19,23 @@
             <div class="message">${flash.message}</div>
             </g:if>
 			
-			
+		
+			<g:if test="${userListInstanceList.size()>0}">
             <div class="list" id="test">
-               	 		 <g:if test="${userListInstanceList.size<1}">
-				            <p>Currently, you have no saved lists.</p>
-				          </g:if>
-				<g:else>
-						<g:render template="/common/userListTable" bean="${['userListInstanceList':userListInstanceList]}"/>
-					</g:else>	
-                   
-            </div>
+               	 		 
+				            
 			
+						<g:render template="/userList/userListTable" model="${['userListInstanceList':userListInstanceList]}"/>
+					
+				
+					 </div>
+					
+		          </g:if>
+		<g:else>
+			<p>Currently, you have no saved lists.</p>
+		</g:else>
+                   
+           
             <div class="paginateButtons">
                 <g:paginate total="${UserList.count()}" />
             </div>

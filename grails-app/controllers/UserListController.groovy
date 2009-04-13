@@ -20,18 +20,18 @@ class UserListController {
         else { return [ userListInstance : userListInstance ] }
     }
 
-    def delete = {
+    def deleteList = {
         def userListInstance = UserList.get( params.id )
         if(userListInstance) {
-            userListInstance.delete()
+            userListInstance.delete(flush:true)
             flash.message = "UserList ${params.id} deleted"
-		    //redirect(uri:"/userList/list")
-			render(template:"/common/userListTable",model:[ userListInstanceList: UserList.findAll() ])
+			//redirect(uri:"/userList/list")
+			render(template:"/userList/userListTable",model:[ userListInstanceList: UserList.findAll()])
             //render(view:li, model:[ userListInstanceList: UserList.findAll() ])
         }
         else {
             flash.message = "UserList not found with id ${params.id}"
-			render(template:"/common/userListTable",model:[ userListInstanceList: UserList.findAll() ])
+			render(template:"/userList/userListTable",model:[ userListInstanceList: UserList.findAll() ])
             //redirect(action:list, model:[ userListInstanceList: UserList.findAll() ])
         }
     }
@@ -45,7 +45,7 @@ class UserListController {
 			userListItemInstance.delete()	
             flash.message = "UserList item ${params.id} deleted"
 			list.save();
-			render(template:"/common/userListTable",model:[ userListInstanceList: UserList.findAll() ])
+			render(template:"/userList/userListTable",model:[ userListInstanceList: UserList.findAll() ])
             //render(view:"list",model:[ userListInstanceList: UserList.findAll() ])
         }
         else {
