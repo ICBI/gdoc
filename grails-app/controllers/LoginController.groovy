@@ -8,11 +8,11 @@ class LoginController {
 		         else {
 		            if (request.method == "GET") {
 						session.userId = null
-						def user = new User()
+						def user = new GDOCUser()
 						redirect(controller:'home')
 					}
 					else {
-					   	def user = loginService.login(params)//User.findByUserIdAndPassword(params.userId, params.password)
+						def user = loginService.login(params)//User.findByUserIdAndPassword(params.userId, params.password)
 						if (user) {
 							session.userId = user.username
 							redirect(controller:'studyDataSource')
@@ -25,7 +25,9 @@ class LoginController {
 		}
 		
 		def logout = {
+			println params
 			loginService.logout(session)
+			flash.message = "user loggd out"
 			redirect(controller:'home')
 		}
 	

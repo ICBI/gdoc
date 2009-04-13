@@ -1,4 +1,0 @@
-class UserController {
-
-    def index = { }
-}
