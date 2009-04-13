@@ -102,6 +102,9 @@ p
 	width: 350px;
 	font-size:12px;
 }
+.pageHeading{
+	font-size:14pt; 
+}
 
 .prefs {
 	width: 220px;
