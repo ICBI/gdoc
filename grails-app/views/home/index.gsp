@@ -2,6 +2,7 @@
     <head>
         <title>Welcome to GDOC</title>
 		<meta name="layout" content="main" />
+		
     </head>
     <body>
 				<jq:plugin name="ui"/>

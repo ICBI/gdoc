@@ -17,6 +17,8 @@
 		
 </head>
 <body>
+	
+	
 <g:set var="activePage" value="${params.controller}" /> 
 <div id="doc3" class="yui-t1">
 	<div id="hd">

@@ -2,7 +2,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="report" />
-        <title>Clinical Search Results</title>         
+        <title>Clinical Search Results</title>      
+<g:javascript library="jquery"/>   
     </head>
     <body>
 	<jq:plugin name="ui"/>
@@ -28,20 +29,36 @@
 			);
 			jQuery("#listAdd").click( function() { 
 				var s; 
+				var author = '${session.userId}'
 				s = jQuery("#searchResults").getGridParam('selarrrow'); 
-				alert('Added items to list: ' + s); 
+				var tags = new Array();
+				tags.push("clinical");
+				tags.push("patient");
+				alert(tags);
+				${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', params:'\'ids=\'+ s+\'&name=\'+     document.getElementById(\'list_name\').value+\'&author.username=\'+author+\'&tags=\'+tags')}
+				
+				
+			
 			}); 
+		
 		});
 	</g:javascript>
 	<br/>
 	<p style="font-size:14pt">Clinical Search Results</p>
+	<div id="message"></div>
 	<div id="centerContent">
 		<br/>
+			
 			<g:if test="${!session.results}">
 				No results found.
 			</g:if>
 			<g:else>
-				<a href="javascript:void(0)" id="listAdd">Save to List</a>
+				<g:if test="${session.userId}">
+				<div style="margin:5px 5px 5px 50px">
+				<label for="list_name">List Name:</label><g:textField name="list_name" size="15" />
+				<a href="javascript:void(0)" id="listAdd">Save items to List</a>
+				</div>
+				</g:if>
 				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0"></table>
 				<div id="pager" class="scroll" style="text-align:center;height: 45px"></div>
 			</g:else>
