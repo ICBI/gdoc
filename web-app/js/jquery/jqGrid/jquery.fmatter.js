@@ -240,6 +240,20 @@
 			$.fn.fmatter.defaultFormat(el, cellval);
 	    }
     };
+	$.fn.fmatter.genecard = function(el,cellval,opts) {
+		var op = {baseLinkUrl: opts.baseLinkUrl,showAction:opts.showAction, addParam: opts.addParam, target: opts.target },
+		target = "";
+		if(!isUndefined(opts.colModel.formatoptions)) {
+			op = $.extend({},op,opts.colModel.formatoptions);
+		}
+		if(op.target) {target = 'target=' + op.target;}
+		idUrl = op.baseLinkUrl+op.showAction + '?gene='+opts.rowId+op.addParam;
+        if(isString(cellval)) {	//add this one even if its blank string
+			$(el).html("<a "+target+" href=\"" + idUrl + "\">" + cellval + "</a>");
+        }else {
+			$.fn.fmatter.defaultFormat(el, cellval);
+	    }
+    };
 	$.fn.fmatter.integer = function(el,cellval,opts) {
 		var op = $.extend({},opts.integer);
 		if(!isUndefined(opts.colModel.formatoptions)) {
@@ -336,6 +350,7 @@
 			switch(formatType) {
 				case 'link' :
 				case 'showlink' :
+				case 'genecard' :
 				case 'email' :
 					ret= $(cellval).text();
 					break;
@@ -371,6 +386,7 @@
 	    switch (formatType) {
 	        case 'link': $.fn.fmatter.link(el, cellval, opts); break;
 			case 'showlink': $.fn.fmatter.showlink(el, cellval, opts); break;
+			case 'genecard': $.fn.fmatter.genecard(el, cellval, opts); break;
 	        case 'email': $.fn.fmatter.email(el, cellval, opts); break;
 			case 'currency': $.fn.fmatter.currency(el, cellval, opts); break;
 	        case 'date': $.fn.fmatter.date(el, cellval, opts, act); break;

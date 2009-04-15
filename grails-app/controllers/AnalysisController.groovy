@@ -27,11 +27,12 @@ class AnalysisController {
 		def taskId = params.id
 		session.results = notificationService.getNotifications(session.id)[taskId].item
 		def columns = []
+		def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
 		columns << [index: "reporterId", name: "Reporter ID", sortable: true, width: '100']
 		columns << [index: "pvalue", name: "p-value", sortable: true, width: '100']
 		columns << [index: "meanGrp1", name: "Group Average", sortable: true, width: '100']
 		columns << [index: "foldChange", name: "Fold Change", sortable: true, width: '100']
-		columns << [index: "geneSymbol", name: "Gene Symbol", sortable: false, width: '100']
+		columns << [index: "geneSymbol", name: "Gene Symbol", sortable: false, width: '100', formatter: 'genecard', formatoptions: formatOptions]
 		def colNames = ["Reporter ID", "p-value", "Group Average", "Fold Change", "Gene Symbol"]
 		session.columnJson = columns as JSON
 		session.columnNames = colNames as JSON
@@ -57,12 +58,13 @@ class AnalysisController {
 		}
 		sortedEntries.getAt(startIndex..<endIndex).each { result ->
 			def cells = []
+			def geneName = fileBasedAnnotationService.annotations[result.reporterId]
 			cells << result.reporterId
 			cells << result.pvalue
 			cells << result.meanGrp1
 			cells << result.foldChange
-			cells << fileBasedAnnotationService.annotations[result.reporterId]
-			results << [id: result.reporterId, cell: cells]
+			cells << geneName
+			results << [id: geneName, cell: cells]
 		}
 		def jsonObject = [
 			page: currPage,
