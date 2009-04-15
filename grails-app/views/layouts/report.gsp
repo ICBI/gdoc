@@ -20,7 +20,7 @@
     <g:render template="/common/header"/>
     <!-- Header end -->
 </div>
-<div id="bd">
+<div id="bd" class="reportBody">
 	<g:layoutBody/>
 </div>
 <div id="ft">

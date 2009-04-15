@@ -11,7 +11,7 @@
 	<g:javascript>
 		$(document).ready(function(){
 			jQuery("#searchResults").jqGrid({ 
-				url:'', 
+				url:'/gdoc/analysis/results', 
 				datatype: "json", 
 				colNames:${session.columnNames}, 
 				colModel:${session.columnJson}, 
@@ -20,7 +20,7 @@
 				rowList:[25,50], 
 				//imgpath: gridimgpath, 
 				pager: jQuery('#pager'), 
-				sortname: 'id', 
+				sortname: 'pvalue', 
 				viewrecords: true, 
 				sortorder: "desc", 
 				multiselect: true, 

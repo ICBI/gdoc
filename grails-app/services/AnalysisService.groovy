@@ -9,7 +9,7 @@ class AnalysisService {
 	def jmsTemplate
 	def notificationService
 	
-	def sendRequest(sessionId) {
+	def sendRequest(sessionId, queryParams) {
 
 		try {
 			println "sending message"
@@ -19,8 +19,17 @@ class AnalysisService {
 			group1.addAll(["E09137", "E09138", "E09139"])
 			def baseline = new SampleGroup()
 			baseline.addAll(["E09151", "E09192", "E09212"])
-			request.pValueThreshold = 0.1
-			request.foldChangeThreshold = 2
+			if(queryParams.pValue) {
+				request.pValueThreshold = queryParams.pValue.toDouble()
+			} else {
+				request.pValueThreshold = 0.1
+			}
+			if(queryParams.foldChange) {
+				request.foldChangeThreshold = queryParams.foldChange.toDouble()
+			} else {
+				request.foldChangeThreshold = 2
+			}
+			
 			request.group1 = group1
 			request.baselineGroup = baseline
 			jmsTemplate.send([
