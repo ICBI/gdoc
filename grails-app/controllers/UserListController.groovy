@@ -98,6 +98,13 @@ class UserListController {
 		}
 		def author = GDOCUser.findByUsername(params["author.username"])
 		params["author.id"] = author.id
+		def listDup = author.lists().find {
+			it.name == params["name"]
+		}
+		if(listDup) {
+			render "List $params.name already exists"
+			return
+		}
 		def userListInstance = new UserList(params)
 		if(params['ids']){
 			params['ids'].tokenize(",").each{
@@ -117,11 +124,11 @@ class UserListController {
 						if(StudyContext.getStudy()){
 						    userListInstance.addTag(StudyContext.getStudy());
 						}
-				render "UserList created"
+				render "$params.name created succesfully"
 				}
         }
         else {
-				render "UserList not created"
+				render "Error creating $params.name list"
         }
     }
 
