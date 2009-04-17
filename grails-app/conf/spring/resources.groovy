@@ -4,7 +4,7 @@ beans = {
 
 	jndiTemplate(org.springframework.jndi.JndiTemplate) {
 		environment = ["java.naming.factory.initial":"org.jnp.interfaces.NamingContextFactory",
-							"java.naming.provider.url":"jnp://10.206.0.58:1099",
+							"java.naming.provider.url":"jnp://141.161.25.154:1099",
 							"java.naming.factory.url.pkgs":"org.jboss.naming:org.jnp.interfaces"]
 	}
 	

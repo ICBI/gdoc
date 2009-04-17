@@ -10,4 +10,8 @@ class GdocTagLib {
 	def panel = { attrs, body ->
 		out << render(template: '/common/panel', bean: [body: body, attrs: attrs])
 	}
+	
+	def validationInput = { attrs, body ->
+		out << render(template: '/common/validation_input', bean: [body: body, attrs: attrs])
+	}
 }

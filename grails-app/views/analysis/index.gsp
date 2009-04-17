@@ -24,21 +24,17 @@
 });
 
 </g:javascript>
-<p style="font-size:14pt">Analysis</p>
+<p style="font-size:14pt">Perform Class Comparison Analysis</p>
 <br/>
 <g:form name="analysisForm" action="submit">
 <div class="clinicalSearch">
-	<div style="float: left">
-		<b>Class Comparison</b>
-	</div>
-	<br/>
 	<br/>
 	Select Groups:
 	<br/>
-	<table>
+	<table width="400px;">
 		<tr>
 			<td>
-				<g:multiselect id="left" from="${session.lists}" optionKey="id" optionValue="name" 
+				<g:multiselect id="left" from="${session.lists}" optionKey="name" optionValue="name" 
 						multiple="true" size="10" style="width: 150px"/>
 			</td>
 			<td>
@@ -56,7 +52,20 @@
 				</table>
 			</td>
 			<td>
-				<g:multiselect id="right" name="groups" multiple="true" size="10" style="width: 150px"/> 
+				<g:multiselect id="right" name="groups" multiple="true" size="10" style="width: 150px"
+					from="${flash.cmd?.groups}" class="${hasErrors(bean:flash.cmd,field:'groups','errors')}"/> 
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				&nbsp;
+			</td>
+		</tr>		
+		<tr>
+			<td colspan="3">
+				<div class="errorDetail">
+					<g:renderErrors bean="${flash.cmd?.errors}" field="groups" />
+				</div>
 			</td>
 		</tr>
 	</table>
@@ -64,12 +73,12 @@
 	<br/>
 	p-value:
 	<br/>
-	<g:textField name="pValue"  />
+	<g:validationInput name="pvalue"/>
 	<br/>
 	<br/>
 	Fold Change:
 	<br/>
-	<g:textField name="foldChange"  />
+	<g:validationInput name="foldChange"/>
 	<br/>
 	<br/>
 </div>

@@ -15,12 +15,21 @@ class AnalysisController {
 		session.lists = patientLists
 	}
 	
-	def submit = {
+	def submit = { AnalysisCommand cmd ->
+		println "Command: " + cmd.groups
 		println analysisService
-		println "groups : " + params.groups
-		println "pvalue : " + params.pValue
-		analysisService.sendRequest(session.id, params)
-		redirect(controller:'notification')
+		println "groups : " + cmd.groups
+		println "pvalue : " + cmd.pvalue
+		println "foldChange : " + cmd.foldChange
+		println cmd.errors
+		if(cmd.hasErrors()) {
+			flash['cmd'] = cmd
+			redirect(action:'index')
+		} else {
+			analysisService.sendRequest(session.id, cmd)
+			redirect(controller:'notification')
+		}
+
 	}
 	
 	def view = {

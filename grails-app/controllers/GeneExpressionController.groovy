@@ -2,10 +2,22 @@ import grails.converters.*
 
 class GeneExpressionController {
 
-    def index = { }
+    def index = { 
+		def lists = UserList.findAll()
+		def patientLists = lists.findAll { item ->
+			item.tags.contains("patient")
+		}
+		println lists[0].tags
+		session.lists = patientLists
+	}
 
-	def search = {
-		
+	def search = { GeneExpressionCommand cmd ->
+		if(cmd.hasErrors()) {
+			flash['cmd'] = cmd
+			redirect(action:'index')
+		} else {
+			//analysisService.sendRequest(session.id, cmd)
+		}
 	}
 	
 	def view = {

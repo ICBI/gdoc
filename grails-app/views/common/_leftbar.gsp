@@ -26,7 +26,16 @@ $(document).ready(function()
 			</ul>
 		</li>
 		<li>
-			<g:navigationLink name="Perform Analysis" controller="analysis"/>
+			<a class="sf-with-ul" href="#">Perform Analysis<span class="sf-sub-indicator"> »</span></a>
+			<ul style="display: none; visibility: hidden;">
+				<li>
+					<g:navigationLink name="Class Comparison" controller="analysis"/>
+				</li>
+				<li>
+					<g:navigationLink name="KM Plot" controller="km" />
+				</li>				
+			</ul>			
+			
 		</li>	
 		<li>
 			<a href="#">Help</a>

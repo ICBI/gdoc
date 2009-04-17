@@ -145,3 +145,9 @@ p
 .reportBody {
 	margin-left: 25px;
 }
+.errors {
+	border: 2px solid red;
+}
+.errorDetail {
+	color: red;
+}

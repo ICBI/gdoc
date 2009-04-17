@@ -3,7 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
 		</script>
-        <title>Search Gene Expression Data</title>         
+        <title>Create KM Plot</title>         
     </head>
     <body>
 				<jq:plugin name="flydisk" />
@@ -25,13 +25,13 @@
 			});
 
 			</g:javascript>	
-	<p style="font-size:14pt">Search Gene Expression Data</p>
+	<p style="font-size:14pt">Create KM Plot</p>
 	<div id="centerContent">
 		<br/>
 		<g:form name="searchForm" action="search">
 				<div class="clinicalSearch">
 					<br/>
-					Select Groups:
+					Select Patient Groups:
 					<br/>
 					<table width="400px;">
 						<tr>
@@ -73,7 +73,7 @@
 					</table>
 					<br/>
 					<div style="float: left">
-						Gene Name	
+						Survival Data:	
 					</div>
 					<br/>
 						<g:validationInput name="geneName"/>
@@ -83,7 +83,7 @@
 			<br/>
 			
 			<br/>
-			<g:submitButton name="submit" value="Search"/>
+			<g:submitButton name="search" value="Plot"/>
 		</g:form>
 	</div>
 	</body>
