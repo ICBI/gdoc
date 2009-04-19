@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css/cupertino',  file: 'jquery-ui-1.7.1.custom.css')}" />	
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'ui.jqgrid.css')}" />	
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'superfish.css')}"/>
 			
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<g:javascript library="jquery"/>
@@ -19,7 +20,10 @@
     <!-- Header start -->
     <g:render template="/common/header"/>
     <!-- Header end -->
+
 </div>
+<g:render template="/common/nav_top" />
+<br/>
 <div id="bd" class="reportBody">
 	<g:layoutBody/>
 </div>

@@ -59,7 +59,7 @@
 					AC_FL_RunContent(
 							"src", "/gdoc/GdocVisualization/KMPlot",
 							"width", "700px",
-							"height", "600px",
+							"height", "660px",
 							"align", "middle",
 							"id", "KMPlot",
 							"quality", "high",
