@@ -18,11 +18,20 @@ $(document).ready(function()
 			<a class="sf-with-ul" href="#">Search for Data<span class="sf-sub-indicator"> »</span></a>
 			<ul style="display: none; visibility: hidden;">
 				<li>
-					<g:navigationLink name="Clinical" controller="clinical" class="submenu"/>
+					<g:navigationLink name="Studies" controller="clinical" class="submenu"/>
 				</li>
 				<li>
-					<g:navigationLink name="Genomic" controller="geneExpression" />
-				</li>				
+					<a href="#">Patients</a>
+				</li>	
+				<li>
+					<a href="#">Samples</a>
+				</li>
+				<li>
+					<a href="#">Targets</a>
+				</li>					
+				<li>
+					<g:navigationLink name="Genes" controller="geneExpression" />
+				</li>						
 			</ul>
 		</li>
 		<li>

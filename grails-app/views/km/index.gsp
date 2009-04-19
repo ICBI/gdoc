@@ -76,7 +76,10 @@
 						Survival Data:	
 					</div>
 					<br/>
-						<g:validationInput name="geneName"/>
+						<g:select name="survivalData" 
+								noSelection="${['':'Select One...']}"
+								from="${['SURGERY_TO_RR/FU', 'SURGERY_TO_DR/FU']}">
+						</g:select>
 						<br/>
 						<br/>
 				</div>

@@ -27,7 +27,7 @@ class LoginController {
 		def logout = {
 			println params
 			loginService.logout(session)
-			flash.message = "user loggd out"
+			flash.message = "user logged out"
 			redirect(controller:'home')
 		}
 	

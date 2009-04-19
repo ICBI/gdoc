@@ -13,31 +13,47 @@ class KmController {
 	}
 	
 	def search = { KmCommand cmd ->
-		def selectedLists = session.lists.findAll { list ->
-			cmd.groups.contains(list.name)
+		if(cmd.hasErrors()) {
+			flash['cmd'] = cmd
+			redirect(action:'index')
+		} else {
+			def selectedLists = session.lists.findAll { list ->
+				cmd.groups.contains(list.name)
+			}
+			session.selectedLists = selectedLists
 		}
-		session.selectedLists = selectedLists
 	}
 
 	def view = {
+		
 		def groups = [:]
 		def samples = []
 		def temp = false
 		StudyContext.setStudy("EDINFAKE")
-		def patients = Patient.findAll([max:500])
-		patients.each { patient ->
-			if( patient.clinicalData["SURGERY_TO_DR/FU"]) {
-				def sample = [:]
-				sample["survival"] = patient.clinicalData["SURGERY_TO_DR/FU"].toDouble()
-				sample["censor"] = temp
-				temp = !temp
-				samples << sample
+		session.selectedLists.each { list ->
+			def tempList = UserList.findAllByName(list.name)
+			def ids = tempList.list_items.collectAll { listItem ->
+				listItem.value
+				
+			}.flatten()
+			println "ids: " + ids
+			ids = ids.sort()
+			def patients = Patient.getAll(ids)
+			patients.each { patient ->
+				if( patient.clinicalData["SURGERY_TO_RR/FU"]) {
+					def sample = [:]
+					sample["survival"] = patient.clinicalData["SURGERY_TO_RR/FU"].toDouble()
+					sample["censor"] = temp
+					temp = !temp
+					samples << sample
+				}
 			}
+			println samples
+
+			def points = kmService.plotCoordinates(samples)
+			groups[list.name] = points
 		}
-		println samples
-		
-		def points = kmService.plotCoordinates(samples)
-		groups["SURGERY_TO_DR/FU"] = points
+	
 		/*
 		samples = []
 		(1..100).each {

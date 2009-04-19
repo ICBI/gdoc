@@ -7,6 +7,7 @@
     </head>
     <body>
 	<p style="font-size:14pt">${session.study.shortName} Details</p>
+	<br/>
 	<div id="centerContent" class="welcome">
 		<g:panel id="studyPanel" title="Study Details" styleClass="welcome" >
 		<table class="studyTable" width="100%">

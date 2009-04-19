@@ -58,8 +58,8 @@
 					// embed the Flash Content SWF when all tests are passed
 					AC_FL_RunContent(
 							"src", "/gdoc/GdocVisualization/KMPlot",
-							"width", "671px",
-							"height", "575px",
+							"width", "700px",
+							"height", "600px",
 							"align", "middle",
 							"id", "KMPlot",
 							"quality", "high",

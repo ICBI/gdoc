@@ -14,7 +14,7 @@
 				<br/>
 				<div style="font-size:16px;margin-bottom:5px">Welcome to GDOC</div>
 				<div id="centerContent" class="welcomeTitle">
-						<p>The Georgetown Database of Cancer is integrates multiple datatypes to present
+						<p>The Georgetown Database of Cancer integrates multiple datatypes to present
 						a unified data view, allowing for rapid data exploration.</p>
 						
 						<p>Lombardi's world-renowned Research Faculty are discovering cancer

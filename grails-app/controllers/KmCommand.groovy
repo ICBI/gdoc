@@ -1,6 +1,7 @@
 class KmCommand {
 
 	List groups
+	String survivalData
 	
 	static constraints = {
 		groups(validator: { val, obj ->
