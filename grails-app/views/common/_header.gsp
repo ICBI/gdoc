@@ -8,8 +8,8 @@
 <div class="message">${flash.message}</div>
 </g:if>
 <g:form name="loginForm" url="[controller:'login',action:'login']" update="[success:'message',failure:'error']">
-       <input name="username" type="text" value="username" size="10"></input>
-       <input name="password" type="text" value="password" size="10"></input>
+       <input name="username" type="text" size="10"></input>
+       <input name="password" type="password" size="10"></input>
        <input type="submit" value="login" />
 </g:form >
 </g:if>
