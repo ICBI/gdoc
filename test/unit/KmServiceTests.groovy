@@ -6,7 +6,7 @@ class KmServiceTests extends GroovyTestCase {
 	
     protected void setUp() {
         super.setUp()
-		kmService = new KMService()
+		kmService = new KmService()
     }
 
     protected void tearDown() {

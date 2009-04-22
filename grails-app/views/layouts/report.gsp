@@ -16,15 +16,15 @@
 </head>
 <body>
 <div id="doc3" class="yui-t1">
-<div id="hd">
+<div id="hd" style="overflow:hidden;">
     <!-- Header start -->
     <g:render template="/common/header"/>
-    <!-- Header end -->
 
+    <!-- Header end -->
 </div>
-<g:render template="/common/nav_top" />
+	<g:render template="/common/nav_top" />
 <br/>
-<div id="bd" class="reportBody">
+<div id="bd" class="reportBody" style="clear: both;">		
 	<g:layoutBody/>
 </div>
 <div id="ft">
