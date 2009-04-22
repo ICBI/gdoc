@@ -14,4 +14,8 @@ class GdocTagLib {
 	def validationInput = { attrs, body ->
 		out << render(template: '/common/validation_input', bean: [body: body, attrs: attrs])
 	}
+	
+	def flex = { attrs, body ->
+		out << render(template: '/common/flex_content', bean: [body: body, attrs: attrs])
+	}
 }

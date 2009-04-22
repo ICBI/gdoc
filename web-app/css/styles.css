@@ -131,9 +131,13 @@ p
 	border: 1px solid #CCCCCC;
 	border-collapse: collapse;
 }
+.label {
+	font-weight: bold;
+}
 .studyTable th {
 	padding: 5px;
 	border: 1px solid #CCCCCC;
+	font-weight: bold;
 }
 .studyTable td {
 	padding: 5px;

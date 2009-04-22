@@ -2,7 +2,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-		</script>
         <title>Search Gene Expression Data</title>         
     </head>
     <body>

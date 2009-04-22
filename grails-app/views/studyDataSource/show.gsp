@@ -12,23 +12,23 @@
 		<g:panel id="studyPanel" title="Study Details" styleClass="welcome" >
 		<table class="studyTable" width="100%">
 			<tr>
-				<td width="20%">Study Name</td>
+				<td class="label" width="20%">Study Name</td>
 				<td>${session.study.shortName}</td>
 			</tr>
 			<tr>
-				<td>Study Abstract</td>
+				<td class="label" >Study Abstract</td>
 				<td>${session.study.abstractText}</td>
 			</tr>			
 			<tr>
-				<td>Principal Investigator</td>
+				<td class="label" >Principal Investigator</td>
 				<td>${session.study.piFirstName} ${session.study.piLastName}, ${session.study.piNameSuffix}</td>
 			</tr>
 			<tr>
-				<td>Cancer Type</td>
+				<td class="label" >Cancer Type</td>
 				<td>${session.study.cancerSite}</td>
 			</tr>			
 			<tr>
-				<td>Point of Contact</td>
+				<td class="label" >Point of Contact</td>
 				<td>${session.study.contactFirstName} ${session.study.contactLastName}</td>
 			</tr>
 		</table>
