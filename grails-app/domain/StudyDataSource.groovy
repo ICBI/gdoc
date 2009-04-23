@@ -16,4 +16,5 @@ class StudyDataSource {
 	String contactLastName
 	String contactFirstName
 	String schemaName
+	String contact_email
 }
