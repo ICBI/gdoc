@@ -49,5 +49,14 @@ class SecurityFilters {
 			}
 			}
 		}
+		studyCheck(controller: '*', action:'*') {
+			before = {
+				if(session.study) {
+					StudyContext.setStudy(session.study.schemaName)
+				} else {
+					StudyContext.setStudy("EDIN")
+				}
+			}
+		}
  	} 
 }

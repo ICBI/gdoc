@@ -7,6 +7,6 @@ class IdServiceTests extends GroovyTestCase {
 		StudyContext.setStudy("EDIN")
 		def samples = idService.sampleNamesForGdocIds([100000L, 100002L, 100004L])
 		println samples
-		assertTrue(samples.size() == 9)
+		assertTrue(samples.size() == 3)
     }
 }

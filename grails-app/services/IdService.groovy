@@ -1,18 +1,30 @@
 class IdService {
 	
+	def samplesForListName(listName) {
+		def lists = UserList.findAll()
+		def list = lists.find { item ->
+			item.name == listName
+		}
+		
+		def listValues = list.list_items.collect {item ->
+			item.value.toLong()
+		}
+		
+		return sampleNamesForGdocIds(listValues)
+	}
+	
 	def sampleNamesForGdocIds(gdocIds) {
 		def c = Patient.createCriteria()
+		println "GDOC: $gdocIds"
 		def results = c.listDistinct {
 			'in'("gdocId", gdocIds)
 		}
-		println results
 		def sampleIds = results.collect { patient ->
-			println patient
 			return patient.biospecimens.collect { specimen ->
-				println specimen
-				return specimen.name
+				if(specimen.type == "LABELED_EXTRACT")
+					return specimen.name
 			}
 		}
-		return sampleIds.flatten()
+		return sampleIds.flatten().grep { it }
 	}
 }

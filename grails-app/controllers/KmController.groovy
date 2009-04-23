@@ -29,7 +29,6 @@ class KmController {
 		def groups = [:]
 		def samples = []
 		def temp = false
-		StudyContext.setStudy("EDINFAKE")
 		session.selectedLists.each { list ->
 			def tempList = UserList.findAllByName(list.name)
 			def ids = tempList.list_items.collectAll { listItem ->

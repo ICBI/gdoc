@@ -5,10 +5,10 @@ class ClinicalService {
 	static PAGE_SIZE = 1000
 	def sessionFactory
 	def jdbcTemplate 
-	def queryString = '(select p.patient_id from edinfake.patient p, common.attribute_type c, edinfake.dec_value v ' +
+	def queryString = '(select p.patient_id from edin.patient p, common.attribute_type c, edin.dec_value v ' +
 		 			  'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 					  ' and v.value = \'$value\' and c.short_name = \'$key\')'
-	def rangeQueryString = '(select p.patient_id from edinfake.patient p, common.attribute_type c, edinfake.dec_value v ' +
+	def rangeQueryString = '(select p.patient_id from edin.patient p, common.attribute_type c, edin.dec_value v ' +
 		 			  	   'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 					  	   ' and c.short_name = \'$key\' and v.value BETWEEN $value.min and $value.max )'					
 	
@@ -38,6 +38,7 @@ class ClinicalService {
 		}
 		def patients = []
 		def index = 0;
+		println "patient ids $patientIds"
 		while(index < patientIds.size()) {
 			def patientsLeft = patientIds.size() - index
 			def tempPatients
@@ -52,6 +53,6 @@ class ClinicalService {
 			}
 		}
 		println patients.size()
-		return patients
+		return patients.grep { it }
 	}
 }

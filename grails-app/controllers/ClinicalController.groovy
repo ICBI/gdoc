@@ -7,27 +7,18 @@ class ClinicalController {
 	def searchResults
 	
     def index = { 
-		if(session.study) {
-			StudyContext.setStudy(session.study.schemaName)
-		} else {
-			StudyContext.setStudy("EDINFAKE")
-		}
+
 		dataTypes = AttributeType.findAll()
 	}
 	
 	def search = {
 		def criteria = QueryBuilder.build(params, "clinical_")
-		if(session.study) {
-			StudyContext.setStudy(session.study.schemaName)
-		} else {
-			StudyContext.setStudy("EDINFAKE")
-		}
 		println criteria
 		searchResults = clinicalService.queryByCriteria(criteria)
 		def columns = []
 		columns << [index: "id", name: "GDOC ID", sortable: true, width: '70']
 		def columnNames = []
-		
+		println searchResults
 		searchResults.each { patient ->
 			patient.clinicalData.each { key, value ->
 				if(!columnNames.contains(key)) {
@@ -112,7 +103,7 @@ class ClinicalController {
 				if(item != "GDOC ID")
 					cells << patient.clinicalData[item]
 			}
-			results << [id: patient.id, cell: cells]
+			results << [id: patient.gdocId, cell: cells]
 		}
 		def jsonObject = [
 			page: currPage,

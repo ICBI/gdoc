@@ -8,22 +8,36 @@ class AnalysisService {
 	def receiveQueue
 	def jmsTemplate
 	def notificationService
+	def idService
+	
+	def strategies = [
+		classComparison: { sess, cmd ->
+			def request = new ClassComparisonRequest(sess, "ClassComparison_" + System.currentTimeMillis())
+			request.dataFileName = "EdinPlier_22APR2009.Rda"
+			def group1 = new SampleGroup()
+			def samples = idService.samplesForListName(cmd.groups[0])
+			group1.addAll(["Edinburgh_1063_SEL", "Edinburgh_1004_SEL", "Edinburgh_1023_SEL"])
+			println "group 1: " + samples
+			def baseline = new SampleGroup()
+			def baselineSamples = idService.samplesForListName(cmd.groups[1])
+			println "baseline samples: $baselineSamples"
+			baseline.addAll(["Edinburgh_1065_SEL", "Edinburgh_1048_SEL", "Edinburgh_1021_SEL"])
+			request.pValueThreshold = cmd.pvalue.toDouble()
+			request.foldChangeThreshold = cmd.foldChange.toDouble()
+			
+			request.group1 = group1
+			request.baselineGroup = baseline
+			return request
+		}
+	
+	]
 	
 	def sendRequest(sessionId, command) {
 
 		try {
 			println "sending message"
-			def request = new ClassComparisonRequest(sessionId, "ClassComparison_" + System.currentTimeMillis())
-			request.dataFileName = "dataMatrixPublic_10JAN06.Rda"
-			def group1 = new SampleGroup()
-			group1.addAll(["E09137", "E09138", "E09139"])
-			def baseline = new SampleGroup()
-			baseline.addAll(["E09151", "E09192", "E09212"])
-			request.pValueThreshold = command.pvalue.toDouble()
-			request.foldChangeThreshold = command.foldChange.toDouble()
-			
-			request.group1 = group1
-			request.baselineGroup = baseline
+			def request = strategies['classComparison'].call(sessionId, command)
+			println request
 			jmsTemplate.send([
 				createMessage: { Object[] params ->
 					def session = params[0]
