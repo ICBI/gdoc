@@ -15,7 +15,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
     var MMdoctitle = document.title;
 
 	AC_FL_RunContent(
-		"src", "${createLinkTo(dir:'GdocVisualization',file:'playerProductInstall')}",
+		"src", "${createLinkTo(dir:'visualizations',file:'playerProductInstall')}",
 		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
 		"width", "100%",
 		"height", "100%",
@@ -32,7 +32,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 	// if we've detected an acceptable version
 	// embed the Flash Content SWF when all tests are passed
 	AC_FL_RunContent(
-			"src", "${createLinkTo(dir:'GdocVisualization',file:it.attrs.component)}",
+			"src", "${createLinkTo(dir:'visualizations',file:it.attrs.component)}",
 			"width", "${it.attrs.width}",
 			"height", "${it.attrs.height}",
 			"align", "middle",
