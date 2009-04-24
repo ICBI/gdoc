@@ -1,5 +1,7 @@
 class IdService {
 	
+	def patientService
+	
 	def samplesForListName(listName) {
 		def lists = UserList.findAll()
 		def list = lists.find { item ->
@@ -14,11 +16,7 @@ class IdService {
 	}
 	
 	def sampleNamesForGdocIds(gdocIds) {
-		def c = Patient.createCriteria()
-		println "GDOC: $gdocIds"
-		def results = c.listDistinct {
-			'in'("gdocId", gdocIds)
-		}
+		def results = patientService.patientsForGdocIds(gdocIds)
 		def sampleIds = results.collect { patient ->
 			return patient.biospecimens.collect { specimen ->
 				if(specimen.type == "LABELED_EXTRACT")

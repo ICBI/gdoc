@@ -3,6 +3,7 @@ import grails.converters.*
 class KmController {
 
 	def kmService 
+	def patientService
 	
     def index = {
 		def lists = UserList.findAll()
@@ -37,7 +38,7 @@ class KmController {
 			}.flatten()
 			println "ids: " + ids
 			ids = ids.sort()
-			def patients = Patient.getAll(ids)
+			def patients = patientService.patientsForGdocIds(ids)
 			patients.each { patient ->
 				if( patient.clinicalData["SURGERY_TO_RR/FU"]) {
 					def sample = [:]
