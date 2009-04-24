@@ -5,12 +5,12 @@ class ClinicalService {
 	static PAGE_SIZE = 1000
 	def sessionFactory
 	def jdbcTemplate 
-	def queryString = '(select p.patient_id from edin.patient p, common.attribute_type c, edin.dec_value v ' +
+	def queryString = '(select p.patient_id from ${schema}.patient p, common.attribute_type c, ${schema}.dec_value v ' +
 		 			  'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
-					  ' and v.value = \'$value\' and c.short_name = \'$key\')'
-	def rangeQueryString = '(select p.patient_id from edin.patient p, common.attribute_type c, edin.dec_value v ' +
+					  ' and v.value = \'${value}\' and c.short_name = \'${key}\')'
+	def rangeQueryString = '(select p.patient_id from ${schema}.patient p, common.attribute_type c, ${schema}.dec_value v ' +
 		 			  	   'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
-					  	   ' and c.short_name = \'$key\' and v.value BETWEEN $value.min and $value.max )'					
+					  	   ' and c.short_name = \'${key}\' and v.value BETWEEN ${value.min} and ${value.max} )'					
 	
     boolean transactional = true
 	
@@ -23,6 +23,7 @@ class ClinicalService {
 			def temp =[:]
 			temp.key = entry.key
 			temp.value = entry.value
+			temp.schema = StudyContext.getStudy()
 			if(temp.value instanceof java.util.Map) {
 				selects << rangeQueryTemplate.make(temp)
 			} else {
