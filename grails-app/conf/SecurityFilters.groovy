@@ -1,13 +1,13 @@
 class SecurityFilters {
    def filters = {
-       /**loginCheck(controller:'*', action:'*') {
+        loginCheck(controller:'*', action:'*') {
            before = {
-              if(!session.user && !actionName.equals('login')) {
-                  redirect(action:'login')
+              if(!session.userId && !controllerName.equals('home') && !controllerName.equals('login')) {
+                  redirect(controller:'home')
                   return false
                }
            }
-		}**/
+		}
 		listCheck(controller:'userList', action:'*'){
 			before = {
 				println params
