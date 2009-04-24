@@ -40,9 +40,9 @@ class KmController {
 			ids = ids.sort()
 			def patients = patientService.patientsForGdocIds(ids)
 			patients.each { patient ->
-				if( patient.clinicalData["SURGERY_TO_RR/FU"]) {
+				if( patient.clinicalData["SURGERY_TO_DEATH/FU"]) {
 					def sample = [:]
-					sample["survival"] = patient.clinicalData["SURGERY_TO_RR/FU"].toDouble()
+					sample["survival"] = patient.clinicalData["SURGERY_TO_DEATH/FU"].toDouble()
 					sample["censor"] = temp
 					temp = !temp
 					samples << sample
