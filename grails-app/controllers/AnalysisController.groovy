@@ -1,4 +1,7 @@
 import grails.converters.*
+import java.text.*
+import java.math.*
+
 
 class AnalysisController {
 
@@ -69,7 +72,8 @@ class AnalysisController {
 			def cells = []
 			def geneName = fileBasedAnnotationService.annotations[result.reporterId]
 			cells << result.reporterId
-			cells << result.pvalue
+			def formatter = new DecimalFormat("0.#####E0");
+			cells << formatter.format(result.pvalue).replace('E', ' x 10<sup>') + '</sup>'
 			cells << result.meanGrp1
 			cells << result.foldChange
 			cells << geneName
