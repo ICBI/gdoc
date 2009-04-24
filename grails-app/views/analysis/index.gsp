@@ -70,16 +70,33 @@
 		</tr>
 	</table>
 	<br/>
-	<br/>
 	p-value:
 	<br/>
 	<g:validationInput name="pvalue"/>
-	<br/>
 	<br/>
 	Fold Change:
 	<br/>
 	<g:validationInput name="foldChange"/>
 	<br/>
+	Statistical Method:
+	<br/>
+	<g:select name="statisticalMethod" 
+			noSelection="${['':'Select One...']}"
+			from="${['T-Test: Two Sample Test', 'Wilcoxin Test: Mann-Whitney Test', 'F-Test: One Way ANOVA']}" />
+	<br/>
+	<br/>
+	Multiple Comparison Adjustment:
+	<br/>
+	<g:select name="adjustment" 
+			noSelection="${['':'Select One...']}"
+			from="${['Family-Wise Error Rate(FWER): Bonferroni', 'False Discovery Rate(FDR): Benjamini-Hochberg']}"/>
+	<br/>
+	<br/>
+	Normalization Method:
+	<br/>
+	<g:select name="dataFile" 
+			from="${[[display:'Probe Logarithmic Intensity Error (PLIER)', value:'EdinPlier_22APR2009.Rda']]}"
+			optionKey="value" optionValue="display"/>
 	<br/>
 </div>
 <br/>

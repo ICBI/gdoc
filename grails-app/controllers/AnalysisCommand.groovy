@@ -3,6 +3,7 @@ class AnalysisCommand {
 	List groups
 	String pvalue
 	String foldChange
+	String dataFile
 	
 	static constraints = {
 		groups(validator: { val, obj ->

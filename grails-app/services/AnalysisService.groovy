@@ -9,11 +9,11 @@ class AnalysisService {
 	def jmsTemplate
 	def notificationService
 	def idService
-	
+	 
 	def strategies = [
 		classComparison: { sess, cmd ->
 			def request = new ClassComparisonRequest(sess, "ClassComparison_" + System.currentTimeMillis())
-			request.dataFileName = "EdinPlier_22APR2009.Rda"
+			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
 			def samples = idService.samplesForListName(cmd.groups[0])
 			group1.addAll(["Edinburgh_1063_SEL", "Edinburgh_1004_SEL", "Edinburgh_1023_SEL"])
