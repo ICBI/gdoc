@@ -24,9 +24,10 @@ class UserListController {
         def userListInstance = UserList.get( params.id )
         if(userListInstance) {
             userListInstance.delete(flush:true)
-            flash.message = "UserList ${params.id} deleted"
+            //flash.message = "UserList ${params.id} deleted"
 			//redirect(uri:"/userList/list")
-			render(template:"/userList/userListTable",model:[ userListInstanceList: UserList.findAll()])
+			render("")
+			//render(template:"/userList/userListTable",model:[ userListInstanceList: UserList.findAll()])
             //render(view:li, model:[ userListInstanceList: UserList.findAll() ])
         }
         else {
@@ -36,16 +37,16 @@ class UserListController {
         }
     }
 
-	def deleteItem = {
+	def deleteListItem = {
 		println params
         def userListItemInstance = UserListItem.findById(params["id"])
         if(userListItemInstance) {
 			def list = UserList.findById(userListItemInstance.list.id)
 			list.list_items.remove(userListItemInstance);
-			userListItemInstance.delete()	
-            flash.message = "UserList item ${params.id} deleted"
+			userListItemInstance.delete(flush:true)	
+            //flash.message = "UserList item ${params.id} deleted"
 			list.save();
-			render(template:"/userList/userListTable",model:[ userListInstanceList: UserList.findAll() ])
+			render(template:"/userList/userListDiv",model:[ userListInstance: list, list_items:list.list_items ])
             //render(view:"list",model:[ userListInstanceList: UserList.findAll() ])
         }
         else {

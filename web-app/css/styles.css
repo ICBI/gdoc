@@ -143,6 +143,16 @@ p
 	padding: 5px;
 	border: 1px solid #CCCCCC;
 }
+
+.listTable {
+	font-size: .8em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+}
+.listTable td {
+	padding: 5px;
+	border: 0px solid #CCCCCC;
+}
 .myPanelContent {
 	padding: 5px;
 }
