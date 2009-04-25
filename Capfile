@@ -1,12 +1,22 @@
 # This is the capistrano file for the GDOC application
+# Usage cap [command] SERVER=[env] 
+# server is optional, will defalut to dev
 load 'deploy'
 
 default_run_options[:pty] = true
 
 set :application, "gdoc"
 set :deploy_to, "/local"
-server "141.161.30.205", :app, :web, :db, :primary => true
 
+if ENV["SERVER"] && ENV["SERVER"] == "prod"
+  set :primary_server, "production.com"
+  set :user, "ben"
+elsif !ENV["SERVER"] || ENV["SERVER"] == "dev"
+  set :primary_server, "141.161.30.205"
+  set :user, "ben"
+end
+
+server primary_server, :app, :web, :db, :primary => true
 
 set :scm, :none
 set :deploy_via, :copy
