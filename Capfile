@@ -1,6 +1,6 @@
 # This is the capistrano file for the GDOC application
 # Usage cap [command] SERVER=[env] 
-# server is optional, will defalut to dev
+# server is optional, will defalut to demo
 load 'deploy'
 
 default_run_options[:pty] = true
@@ -9,11 +9,11 @@ set :application, "gdoc"
 set :deploy_to, "/local"
 
 if ENV["SERVER"] && ENV["SERVER"] == "prod"
-  set :primary_server, "production.com"
-  set :user, "ben"
-elsif !ENV["SERVER"] || ENV["SERVER"] == "dev"
   set :primary_server, "141.161.30.205"
-  set :user, "ben"
+  set :server_name, "prod"
+elsif !ENV["SERVER"] || ENV["SERVER"] == "demo"
+  set :primary_server, "141.161.30.205"
+  set :server_name, "demo"
 end
 
 server primary_server, :app, :web, :db, :primary => true
@@ -77,6 +77,14 @@ namespace :jboss do
 
 end
 
+namespace :grails do
+  
+  desc "Build WAR"
+  task :build do 
+    system("grails -Dgrails.env=#{server_name} war")
+  end
+end
+
 #
 # link the current/whatever.war into our webapps/whatever.war
 #
@@ -94,7 +102,8 @@ end
 # bamboo. (more on this later).
 before 'deploy:update_code' do
   unless(war.nil?)
-    puts "get war"
+    puts "Buiding WAR file"
+    grails.build
     system("cp #{war} #{deploy_from}")
     puts system("ls -l #{deploy_from}")
   end

@@ -38,6 +38,11 @@ environments {
 		jmsserver = "jnp://141.161.30.205:1099"
 		responseQueue = "AnalysisResponse"
     }
+    demo {
+        grails.serverURL = "http://www.changeme.com"
+		jmsserver = "jnp://141.161.30.205:1099"
+		responseQueue = "AnalysisResponse"
+    }
 	development {
 		jmsserver = "jnp://141.161.30.205:1099"
  		responseQueue = "AnalysisResponseAndrew"

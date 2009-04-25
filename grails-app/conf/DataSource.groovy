@@ -13,34 +13,45 @@ environments {
 	development {
 		dataSource {
 			url = "jdbc:oracle:thin:@localhost:1521:orcl"
-			username = "web"
-			password = "readonly"
+			username = "guidoc"
+			password = "cure4cancer"
 			logSql = true
 			/*
 			url = "jdbc:oracle:thin:@141.161.25.36:1521:XE"
-			username = "web"
-			password = "readonly"
+			username = "guidoc"
+			password = "cure4cancer"
 			logSql = true
 			*/
+		}
+	}
+	demo {
+		dataSource {
+			url = "jdbc:oracle:thin:@141.161.25.36:1521:XE"
+			username = "guidoc"
+			password = "cure4cancer"
+			logSql = true
 		}
 	}
 	test {
 		dataSource {
 			url = "jdbc:oracle:thin:@localhost:1521:orcl"
-			username = "common"
-			password = "common"
+			username = "guidoc"
+			password = "cure4cancer"
 			logSql = true
 			/*
 			url = "jdbc:oracle:thin:@141.161.25.36:1521:XE"
-			username = "web"
-			password = "readonly"
+			username = "guidoc"
+			password = "cure4cancer"
 			logSql = true
 			*/
 		}
 	}
 	production {
 		dataSource {
-			url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+			url = "jdbc:oracle:thin:@141.161.25.36:1521:XE"
+			username = "guidoc"
+			password = "cure4cancer"
+			logSql = true
 		}
 	}
 }
