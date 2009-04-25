@@ -16,12 +16,12 @@ class AnalysisService {
 			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
 			def samples = idService.samplesForListName(cmd.groups[0])
-			group1.addAll(["Edinburgh_1063_SEL", "Edinburgh_1004_SEL", "Edinburgh_1023_SEL"])
+			group1.addAll(samples)
 			println "group 1: " + samples
 			def baseline = new SampleGroup()
 			def baselineSamples = idService.samplesForListName(cmd.groups[1])
 			println "baseline samples: $baselineSamples"
-			baseline.addAll(["Edinburgh_1065_SEL", "Edinburgh_1048_SEL", "Edinburgh_1021_SEL"])
+			baseline.addAll(baselineSamples)
 			request.pValueThreshold = cmd.pvalue.toDouble()
 			request.foldChangeThreshold = cmd.foldChange.toDouble()
 			

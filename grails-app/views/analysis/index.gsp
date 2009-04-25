@@ -92,10 +92,10 @@
 			from="${['Family-Wise Error Rate(FWER): Bonferroni', 'False Discovery Rate(FDR): Benjamini-Hochberg']}"/>
 	<br/>
 	<br/>
-	Normalization Method:
+	Dataset:
 	<br/>
 	<g:select name="dataFile" 
-			from="${[[display:'Probe Logarithmic Intensity Error (PLIER)', value:'EdinPlier_22APR2009.Rda']]}"
+			from="${[[display:'PLIER Normalized', value:'EdinPlier_22APR2009.Rda']]}"
 			optionKey="value" optionValue="display"/>
 	<br/>
 </div>

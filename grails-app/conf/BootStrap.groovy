@@ -18,6 +18,16 @@ class BootStrap {
 		ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
 		def annotationService = ctx.getBean("fileBasedAnnotationService")
 		annotationService.annotations = annotations
+		
+		//Initialize sample ids
+		stream = servletContext.getResourceAsStream("/WEB-INF/data/SampleIds.txt")
+		def sampleIds = []
+	 	stream.eachLine { line ->
+			sampleIds = line.split('\t')
+		}
+		
+		def idService = ctx.getBean("idService")
+		idService.binaryFileIds = sampleIds.toList()
      }
      def destroy = {
      }

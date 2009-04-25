@@ -2,6 +2,8 @@ class IdService {
 	
 	def patientService
 	
+	def binaryFileIds
+	
 	def samplesForListName(listName) {
 		def lists = UserList.findAll()
 		def list = lists.find { item ->
@@ -23,6 +25,8 @@ class IdService {
 					return specimen.name
 			}
 		}
-		return sampleIds.flatten().grep { it }
+		def ids = []
+		sampleIds = sampleIds.flatten().grep { it }
+		return sampleIds.intersect(binaryFileIds)
 	}
 }
