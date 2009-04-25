@@ -1,10 +1,12 @@
 // Place your Spring DSL code here
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+
 beans = {
     eventTriggeringInterceptor(StudyContextInterceptor)
 
 	jndiTemplate(org.springframework.jndi.JndiTemplate) {
 		environment = ["java.naming.factory.initial":"org.jnp.interfaces.NamingContextFactory",
-							"java.naming.provider.url":"jnp://localhost:1099",
+							"java.naming.provider.url": CH.config.jmsserver,
 							"java.naming.factory.url.pkgs":"org.jboss.naming:org.jnp.interfaces"]
 	}
 	
@@ -21,7 +23,7 @@ beans = {
 		jndiTemplate = ref('jndiTemplate')
 	}
 	receiveQueue(org.springframework.jndi.JndiObjectFactoryBean) {
-		jndiName = "queue/AnalysisResponse"
+		jndiName = "queue/${CH.config.responseQueue}"
 		jndiTemplate = ref('jndiTemplate')
 	}
 	sendQueue(org.springframework.jndi.JndiObjectFactoryBean) {

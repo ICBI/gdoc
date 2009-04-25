@@ -1,10 +1,12 @@
 import gov.nih.nci.caintegrator.analysis.messaging.AnalysisResult
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+
 
 class AnalysisListenerService {
 	
 	static expose = ['jms']
 
-	static destination = "AnalysisResponse"
+	static destination = "${CH.config.responseQueue}"
 	
 	def notificationService
 	
