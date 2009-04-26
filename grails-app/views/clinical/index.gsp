@@ -50,7 +50,7 @@
 				<br/>
 				<br/>
 					<g:if test="${it.vocabulary}">
-						<div align="center">
+						<div align="left">
 							<g:select name="clinical_${it.shortName}" 
 									noSelection="${['':'Select One...']}"
 									from="${it.vocabs}" optionKey="term" optionValue="termMeaning">
