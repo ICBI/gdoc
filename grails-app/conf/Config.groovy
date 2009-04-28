@@ -45,7 +45,11 @@ environments {
     }
 	development {
 		jmsserver = "jnp://141.161.30.205:1099"
- 		responseQueue = "AnalysisResponseAndrew"
+ 		responseQueue = "AnalysisResponseKevin"
+	}
+	test {
+		jmsserver = "jnp://141.161.30.205:1099"
+ 		responseQueue = "AnalysisResponseKevin"
 	}
 }
 // war file setup

@@ -44,7 +44,7 @@ class SecurityFilters {
 					
 				}
 			    else{
-				println "not modifying list"
+				println ""
 				return true;
 			}
 			}

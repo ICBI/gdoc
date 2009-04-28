@@ -1,6 +1,6 @@
 class GDOCUser {
     static mapping = {
-		table 'GUIPERSIST.GDOCUSER'
+		table 'GDOCUSER'
 	}
     String username
 	static hasMany = [memberships:Membership,list_connections:UserListConnection,comments:Comments]

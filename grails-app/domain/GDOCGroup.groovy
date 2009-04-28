@@ -1,6 +1,6 @@
 class GDOCGroup {
 	static mapping = {
-		table 'GUIPERSIST.GDOCGROUP'
+		table 'GDOCGROUP'
 	}
 	String name;
 	String study;

@@ -1,11 +1,10 @@
 class UserList implements Taggable{
 	static mapping = {
-		table 'GUIPERSIST.USER_LIST'
+		table 'USER_LIST'
 	}
-	//, list_comments:Comments
 	String name
 	GDOCUser author
-	static hasMany = [list_items:UserListItem, list_connections:UserListConnection]
+	static hasMany = [list_items:UserListItem, list_connections:UserListConnection, list_comments:Comments]
 	static constraints = {
 		name(blank:false)
 		author(blank:false)

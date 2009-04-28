@@ -1,6 +1,6 @@
 class Comments {
 	static mapping = {
-		table 'GUIPERSIST.COMMENTS'
+		table 'COMMENTS'
 	}
 	static belongsTo = [GDOCUser, List]
 	GDOCUser user

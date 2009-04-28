@@ -1,6 +1,6 @@
 class Membership {
 	static mapping = {
-		table 'GUIPERSIST.MEMBERSHIP'
+		table 'MEMBERSHIP'
 	}
 	static belongsTo = [GDOCGroup, GDOCUser]
 	GDOCGroup gdocgroup
