@@ -1,6 +1,6 @@
 class Tagging {
 	static mapping = {
-		table 'GUIPERSIST.TAGGING'
+		table 'TAGGING'
 	}
 	Tag tag
 	long taggableId

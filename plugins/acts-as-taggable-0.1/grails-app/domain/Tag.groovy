@@ -1,6 +1,6 @@
 class Tag { 
 	static mapping = {
-		table 'GUIPERSIST.TAG'
+		table 'TAG'
 	}
 	String name
 }
