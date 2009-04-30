@@ -7,7 +7,11 @@ class ClinicalController {
 	def searchResults
 	
     def index = { 
-
+		if(params.id) {
+			def currStudy = StudyDataSource.get(params.id)
+			session.study = currStudy
+			StudyContext.setStudy(session.study.schemaName)
+		}
 		dataTypes = AttributeType.findAll()
 	}
 	

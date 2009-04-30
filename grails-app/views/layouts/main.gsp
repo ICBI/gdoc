@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css/cupertino',  file: 'jquery-ui-1.7.1.custom.css')}" />	
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<g:javascript library="jquery"/>
+		<g:javascript src="gdoc.js"/>
 		<g:layoutHead/>
 		
 </head>
@@ -39,7 +40,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="navigation" class="yui-b first" style="height: 400px">
+		<div id="navigation" class="yui-b first">
 			<g:render template="/common/leftbar"/>
 		</div>
 	</div>

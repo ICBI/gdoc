@@ -2,6 +2,11 @@ import grails.converters.*
 
 class GeneExpressionController {
 
+	def analysisService
+	def notificationService
+	def idService
+	def fileBasedAnnotationService
+	
     def index = { 
 		def lists = UserList.findAll()
 		def patientLists = lists.findAll { item ->
@@ -16,23 +21,40 @@ class GeneExpressionController {
 			flash['cmd'] = cmd
 			redirect(action:'index')
 		} else {
-			//analysisService.sendRequest(session.id, cmd)
+			def taskId = analysisService.sendRequest(session.id, cmd)
+			session.taskId = taskId
+			session.command = cmd
+			println taskId
 		}
 	}
 	
 	def view = {
 		def expressionValues = []
-		
-		["ALL", "No Relapse", "Distal Recurrence", "No DR but had LR or RR"].each { group ->
+		session.results = notificationService.getNotifications(session.id)[session.taskId].item
+		println session.results
+		def sampleReporter = [:]
+		session.results.dataVectors.each { data ->
+			println data.name
+			sampleReporter[data.name] = [:]
+			data.dataPoints.each { point ->
+				println point.id
+				sampleReporter[data.name][point.id] = Math.pow(2, point.x)
+				println sampleReporter[data.name]
+			}
+		}
+		println session.command.groups
+		session.command.groups.each { group ->
+			def samples = idService.samplesForListName(group)
 			def valueHash = [:]
 			valueHash["group"] = group
-			valueHash['1565483_at'] = Math.round(5000 * Math.random())
-			valueHash['1565484_x_at'] = Math.round(6000 * Math.random())
-			valueHash['201983_s_at'] = Math.round(10000 * Math.random())
-			valueHash['201984_s_at'] = Math.round(30000 * Math.random())
-			valueHash['210984_x_at'] = Math.round(7000 * Math.random())
-			valueHash['211550_at'] = Math.round(2000 * Math.random())
-			valueHash['211551_at'] = Math.round(3000 * Math.random())
+			def tempVals = []
+			sampleReporter.each { key, value ->
+				valueHash[key] = []
+				samples.each { sample ->
+					valueHash[key] << sampleReporter[key][sample]
+				}
+				valueHash[key] = valueHash[key].sum() / valueHash[key].size()
+			}
 			expressionValues.add(valueHash)
 		}
 		

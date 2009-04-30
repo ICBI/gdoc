@@ -19,6 +19,9 @@ class ClinicalService {
 		def queryTemplate = engine.createTemplate(queryString)
 		def rangeQueryTemplate = engine.createTemplate(rangeQueryString)
 		def selects = []
+		if(!criteria || criteria.size() == 0) {
+			return Patient.getAll()
+		}
 		criteria.each { entry ->
 			def temp =[:]
 			temp.key = entry.key

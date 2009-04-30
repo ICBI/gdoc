@@ -11,7 +11,7 @@ class Patient {
 	static fetchMode = [values:"eager"]
 	static transients = ['clinicalData']
 	
-	Long dataSourceInternalId
+	String dataSourceInternalId
 	Long gdocId
 	Map clinicalData
 
@@ -23,7 +23,9 @@ class Patient {
 					def vocab = value.type.vocabs.find { 
 						it.term == value.value
 					}
-					this.@clinicalData[value.type.shortName] = vocab.termMeaning
+					if(vocab) {
+						this.@clinicalData[value.type.shortName] = vocab.termMeaning
+					}
 				} else {
 					this.@clinicalData[value.type.shortName] = value.value
 				}

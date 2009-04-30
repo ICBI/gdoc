@@ -5,7 +5,9 @@ class StudyDataSourceController {
 	def clinicalElements
 	
     def index = { 
-		myStudies = StudyDataSource.findByShortName("EDINBURGH")
+		myStudies = []
+		myStudies << StudyDataSource.findByShortName("EDINBURGH")
+		myStudies << StudyDataSource.findByShortName("RCF")
 		otherStudies = StudyDataSource.findAll()
 		println myStudies
 		if(myStudies.metaClass.respondsTo(myStudies, "size")) {
@@ -13,7 +15,7 @@ class StudyDataSourceController {
 		} else {
 			otherStudies.remove(myStudies)
 		}
-
+		session.myStudies = myStudies
 	}
 	
 	def show = {

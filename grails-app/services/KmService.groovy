@@ -55,15 +55,26 @@ class KmService {
     }
     
     
-/*
 
     //compute the p-value between two sample series
-    public Double getLogRankPValue(Collection<KMSampleDTO> group1, Collection<KMSampleDTO> group2) {
+    def getLogRankPValue(group1, group2) {
         //need to
-        ArrayList<KMSampleDTO> samples = new ArrayList<KMSampleDTO>();
+        def samples = [];
         samples.addAll(group1);
         samples.addAll(group2);
-        Collections.sort(samples, new KaplanMeierSampleComparator());
+		samples = samples.sort { one, two ->
+			int val;
+            float i1 = one["survival"];
+            float i2 = two["survival"];
+            if (i1 > i2) {
+                val = 1;
+            } else if (i1 == i2) {
+                val = 0;
+            } else {
+                val = -1;
+            }
+            return val;
+		}
         float u = 0;
         float v = 0;
         float a = 0;
@@ -71,43 +82,32 @@ class KmService {
         float c = (float) group1.size();
         float d = (float) group2.size();
         float t = 0;
-        for (int i = 0; i < samples.size(); i++) {
-            KMSampleDTO event = samples.get(i);
-            if (event.getSurvivalLength() > t) {
+		samples.each { event ->
+			if (event["survival"] > t) {
                 if (a+b > 0) {
                     u += a - (a + b) * (a + c) / (a + b + c + d);
-                    v += (a + b)
-                            * (c + d)
-                            * (a + c)
-                            * (b + d)
-                            / ((a + b + c + d - 1) *
-                                    (Math.pow((a + b + c + d), 2)));
+                    v += (a + b) * (c + d) * (a + c) * (b + d)  / ((a + b + c + d - 1) * (Math.pow((a + b + c + d), 2)));
                 }
                 a = 0;
                 b = 0;
-                t = event.getSurvivalLength();
+                t = event["survival"];
             }
             if (group1.contains(event)) {
-                if (event.getCensor()) {
+                if (event["censor"]) {
                     a += 1;
                 }
                 c-=1;
             } else {
-                if (event.getCensor()) {
+                if (event["censor"]) {
                     b+=1;
                 }
                 d-=1;
-            }
-        }
+            }			
+		}
 
         if ( (a > 0 | b > 0) & (a+b+c+d-1>0) ) {
             u += a - (a + b) * (a + c) / (a + b + c + d);
-            v += (a + b)
-                    * (c + d)
-                    * (a + c)
-                    * (b + d)
-                    / ((a + b + c + d - 1) *
-                            (Math.pow((a + b + c + d), 2)));
+            v += (a + b)  * (c + d) * (a + c) * (b + d) / ((a + b + c + d - 1) * (Math.pow((a + b + c + d), 2)));
         }
 
         if (v > 0) {
@@ -116,5 +116,4 @@ class KmService {
             return new Double(-100.0);
         }
     }
-*/
 }

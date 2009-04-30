@@ -1,9 +1,13 @@
 class GdocTagLib {
 	def navigationLink = { attrs, body ->
-		if (attrs.controller == params.controller){
+		if (attrs.controller == params.controller && !attrs.id){
 			out << "<h3>${attrs.name}</h3>"
 		} else {
-			out << link([controller: attrs.controller]){attrs.name}
+			if(attrs.id) {
+				out << link([controller: attrs.controller, id: attrs.id]){attrs.name}
+			} else {
+				out << link([controller: attrs.controller]){attrs.name}
+			}
 		}
 	}
 	

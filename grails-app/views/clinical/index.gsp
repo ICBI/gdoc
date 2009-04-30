@@ -34,7 +34,7 @@
 			});
 
 		</g:javascript>
-	<p style="font-size:14pt">Search Clinical Data</p>
+	<p style="font-size:14pt">Search ${session.study.shortName} Clinical Data</p>
 	<div id="centerContent">
 		<br/>
 		<g:form name="searchForm" action="search">

@@ -45,12 +45,14 @@
 				<td>Clinical Data</td>
 				<td>${clinicalElements.size} Clinical Elements</td>
 				<td><g:link controller="clinical">Search</g:link></td>
-			</tr>			
+			</tr>		
+			<g:if test="${session.study.shortName == 'EDIN'}">	
 			<tr>
 				<td>Genomic Data</td>
 				<td>2,000 Genes</td>
 				<td><g:link controller="genomic">Search</g:link></td>
 			</tr>			
+			</g:if>
 		</table>
 		</g:panel>
 	</div>

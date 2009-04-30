@@ -4,6 +4,7 @@ class AnalysisCommand {
 	String pvalue
 	String foldChange
 	String dataFile
+	String requestType = "classComparison"
 	
 	static constraints = {
 		groups(validator: { val, obj ->

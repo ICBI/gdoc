@@ -8,7 +8,6 @@ $(document).ready(function()
 });
 </g:javascript>
 <jq:plugin name="superfish"/>
-<jq:plugin name="hoverIntent"/>
 <div id="top-navigation-block" width="100%">
 	<ul id="gdocNavigation" class="sf-menu sf-vertical sf-js-enabled sf-shadow">
 		<li>
@@ -18,7 +17,14 @@ $(document).ready(function()
 			<a class="sf-with-ul" href="#">Search for Data<span class="sf-sub-indicator"> »</span></a>
 			<ul style="display: none; visibility: hidden;">
 				<li>
-					<g:navigationLink name="Studies" controller="clinical" class="submenu"/>
+					<a class="sf-with-ul" href="#">Studies<span class="sf-sub-indicator"> »</span></a>
+					<ul style="display: none; visibility: hidden;">
+						<g:each in="${session.myStudies}">
+							<li>
+								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="clinical" />
+							</li>
+						</g:each>
+					</ul>
 				</li>
 				<li>
 					<a href="#">Patients</a>

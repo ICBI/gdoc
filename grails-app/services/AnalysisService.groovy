@@ -1,5 +1,7 @@
 import gov.nih.nci.caintegrator.analysis.messaging.ClassComparisonRequest
+import gov.nih.nci.caintegrator.analysis.messaging.ExpressionLookupRequest
 import gov.nih.nci.caintegrator.analysis.messaging.SampleGroup
+import gov.nih.nci.caintegrator.analysis.messaging.ReporterGroup
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.jms.core.MessageCreator
 
@@ -28,15 +30,25 @@ class AnalysisService {
 			request.group1 = group1
 			request.baselineGroup = baseline
 			return request
+		},
+		geneExpression: { sess, cmd ->
+			def request = new ExpressionLookupRequest(sess, "ExpressionLookup_" + System.currentTimeMillis())
+			request.dataFileName = cmd.dataFile
+			def sampleGroup = new SampleGroup()
+			sampleGroup.addAll(idService.binaryFileIds)
+			def reporterGroup = new ReporterGroup()
+			reporterGroup.addAll(["1565483_at", "1565484_x_at", "201983_s_at", "201984_s_at", "210984_x_at"])
+			request.reporters = reporterGroup
+			return request
 		}
 	
 	]
 	
 	def sendRequest(sessionId, command) {
-
+		def request
 		try {
 			println "sending message"
-			def request = strategies['classComparison'].call(sessionId, command)
+			request = strategies[command.requestType].call(sessionId, command)
 			println request
 			jmsTemplate.send([
 				createMessage: { Object[] params ->
@@ -52,5 +64,6 @@ class AnalysisService {
 		} catch (Exception e) {
 			println "Failed to send request for test" + e
 		}
+		return request.taskId
 	}
 }
