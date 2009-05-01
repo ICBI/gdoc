@@ -7,7 +7,7 @@ class StudyDataSourceController {
     def index = { 
 		myStudies = []
 		myStudies << StudyDataSource.findByShortName("EDINBURGH")
-		myStudies << StudyDataSource.findByShortName("RCF")
+		myStudies << StudyDataSource.findByShortName("FCR_DEMO")
 		otherStudies = StudyDataSource.findAll()
 		println myStudies
 		if(myStudies.metaClass.respondsTo(myStudies, "size")) {

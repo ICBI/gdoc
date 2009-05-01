@@ -10,9 +10,11 @@ class AnalysisController {
 	def fileBasedAnnotationService
 	
     def index = {
+		session.study.schemaName = "EDIN"
+		StudyContext.setStudy("EDIN")
 		def lists = UserList.findAll()
 		def patientLists = lists.findAll { item ->
-			item.tags.contains("patient")
+			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
 		println lists[0].tags
 		session.lists = patientLists

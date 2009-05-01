@@ -73,15 +73,18 @@
 					</table>
 					<br/>
 					<div style="float: left">
-						Survival Data:	
+						Endpoint:	
 					</div>
 					<br/>
-						<g:select name="survivalData" 
+						<g:select name="endpoint" 
 								noSelection="${['':'Select One...']}"
-								from="${['SURGERY_TO_RR/FU', 'SURGERY_TO_DR/FU']}">
+								from="${endpoints}">
 						</g:select>
 						<br/>
 						<br/>
+						<div class="errorDetail">
+							<g:renderErrors bean="${flash.cmd?.errors}" field="endpoint" />
+						</div>
 				</div>
 			<br/>
 			

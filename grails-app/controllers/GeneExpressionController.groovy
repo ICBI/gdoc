@@ -8,9 +8,11 @@ class GeneExpressionController {
 	def fileBasedAnnotationService
 	
     def index = { 
+		session.study.schemaName = "EDIN"
+		StudyContext.setStudy("EDIN")
 		def lists = UserList.findAll()
 		def patientLists = lists.findAll { item ->
-			item.tags.contains("patient")
+			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
 		println lists[0].tags
 		session.lists = patientLists
@@ -45,6 +47,7 @@ class GeneExpressionController {
 		println session.command.groups
 		session.command.groups.each { group ->
 			def samples = idService.samplesForListName(group)
+			println samples
 			def valueHash = [:]
 			valueHash["group"] = group
 			def tempVals = []
@@ -53,6 +56,7 @@ class GeneExpressionController {
 				samples.each { sample ->
 					valueHash[key] << sampleReporter[key][sample]
 				}
+				println valueHash[key]
 				valueHash[key] = valueHash[key].sum() / valueHash[key].size()
 			}
 			expressionValues.add(valueHash)

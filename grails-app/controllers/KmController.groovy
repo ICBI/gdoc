@@ -4,11 +4,22 @@ class KmController {
 
 	def kmService 
 	def patientService
+	def endpoints
 	
     def index = {
+		if(params.id) {
+			def currStudy = StudyDataSource.get(params.id)
+			session.study = currStudy
+			StudyContext.setStudy(session.study.schemaName)
+		}
 		def lists = UserList.findAll()
 		def patientLists = lists.findAll { item ->
-			item.tags.contains("patient")
+			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
+		}
+		if(StudyContext.getStudy() == "EDIN") {
+			endpoints = ["SURGERY_TO_DEATH/FU", "SURGERY_TO_RR/FU", "SURGERY_TO_DR/FU"]
+		} else if(StudyContext.getStudy() == "RCF") {
+			endpoints = ["AGE_AT_DEATH/FU"]
 		}
 		session.lists = patientLists
 	}
@@ -21,16 +32,19 @@ class KmController {
 			def selectedLists = session.lists.findAll { list ->
 				cmd.groups.contains(list.name)
 			}
+			session.command = cmd
 			session.selectedLists = selectedLists
 		}
 	}
 
-	def view = {
+	def view = { 
 		
 		def groups = [:]
-		def samples = []
 		def temp = false
+		def cmd = session.command
+		def sampleGroups = []
 		session.selectedLists.each { list ->
+			def samples = []
 			def tempList = UserList.findAllByName(list.name)
 			def ids = tempList.list_items.collectAll { listItem ->
 				listItem.value
@@ -40,32 +54,22 @@ class KmController {
 			ids = ids.sort()
 			def patients = patientService.patientsForGdocIds(ids)
 			patients.each { patient ->
-				if( patient.clinicalData["SURGERY_TO_DEATH/FU"]) {
+				if( patient.clinicalData[cmd.endpoint]) {
 					def sample = [:]
-					sample["survival"] = patient.clinicalData["SURGERY_TO_DEATH/FU"].toDouble()
+					sample["survival"] = patient.clinicalData[cmd.endpoint].toDouble()
 					sample["censor"] = temp
 					temp = !temp
 					samples << sample
 				}
 			}
 			println samples
-
+			sampleGroups << samples
 			def points = kmService.plotCoordinates(samples)
 			groups[list.name] = points
 		}
-	
-		/*
-		samples = []
-		(1..100).each {
-			def sample = [:]
-			sample["survival"] = 5000 * Math.random()
-			sample["censor"] = temp
-			temp = !temp
-			samples << sample
-		}
-		points = kmService.plotCoordinates(samples)
-		groups["Group 2"] = points
-		*/
+		def pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])
+		println "PVALUE $pvalue"
+		groups["pvalue"] = pvalue
 		render groups as JSON
 	}
 }

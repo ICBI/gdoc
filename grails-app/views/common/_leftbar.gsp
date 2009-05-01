@@ -47,7 +47,14 @@ $(document).ready(function()
 					<g:navigationLink name="Class Comparison" controller="analysis"/>
 				</li>
 				<li>
-					<g:navigationLink name="KM Plot" controller="km" />
+					<a class="sf-with-ul" href="#">KM Plot<span class="sf-sub-indicator"> »</span></a>
+					<ul style="display: none; visibility: hidden;">
+						<g:each in="${session.myStudies}">
+							<li>
+								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="km" />
+							</li>
+						</g:each>
+					</ul>
 				</li>				
 			</ul>			
 			
