@@ -10,7 +10,7 @@ class AnalysisController {
 	def fileBasedAnnotationService
 	
     def index = {
-		session.study.schemaName = "EDIN"
+		session.study = StudyDataSource.findByShortName("EDINBURGH")
 		StudyContext.setStudy("EDIN")
 		def lists = UserList.findAll()
 		def patientLists = lists.findAll { item ->
