@@ -40,7 +40,6 @@ class KmController {
 	def view = { 
 		
 		def groups = [:]
-		def temp = false
 		def cmd = session.command
 		def sampleGroups = []
 		session.selectedLists.each { list ->
@@ -53,12 +52,21 @@ class KmController {
 			println "ids: " + ids
 			ids = ids.sort()
 			def patients = patientService.patientsForGdocIds(ids)
+			def censorStrategy = { patient, endpoint ->
+				if(endpoint == "SURGERY_TO_DEATH/FU")
+					return (patient.clinicalData["VITAL_STATUS"] == "DEAD")
+				else if (endpoint == "SURGERY_TO_RR/FU")
+					return (patient.clinicalData["RR"] == "YES")
+				else if (endpoint == "SURGERY_TO_DR/FU")
+					return (patient.clinicalData["DR"] == "YES")
+				else if (endpoint == "AGE_AT_DEATH/FU")
+					return (patient.clinicalData["VITAL_STATUS"] == "DEAD")
+			}
 			patients.each { patient ->
 				if( patient.clinicalData[cmd.endpoint]) {
 					def sample = [:]
 					sample["survival"] = patient.clinicalData[cmd.endpoint].toDouble()
-					sample["censor"] = temp
-					temp = !temp
+					sample["censor"] = censorStrategy(patient, cmd.endpoint)
 					samples << sample
 				}
 			}

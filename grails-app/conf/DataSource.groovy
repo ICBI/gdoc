@@ -26,7 +26,7 @@ environments {
 	}
 	demo {
 		dataSource {
-			url = "jdbc:oracle:thin:@141.161.25.36:1521:XE"
+			url = "jdbc:oracle:thin:@141.161.54.205:1521:orcl"
 			username = "guidoc"
 			password = "cure4cancer"
 			logSql = true

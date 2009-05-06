@@ -66,7 +66,7 @@ namespace :jboss do
   desc "stop and start JBoss"
   task :restart do
     jboss.stop rescue nil
-    sleep 20
+    sleep 60
     jboss.start
   end
   
