@@ -12,7 +12,7 @@ class ClinicalController {
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
 		}
-		dataTypes = AttributeType.findAll()
+		dataTypes = AttributeType.findAll().sort { it.longName }
 	}
 	
 	def search = {
