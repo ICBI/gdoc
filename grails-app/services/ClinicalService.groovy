@@ -20,7 +20,8 @@ class ClinicalService {
 		def rangeQueryTemplate = engine.createTemplate(rangeQueryString)
 		def selects = []
 		if(!criteria || criteria.size() == 0) {
-			return Patient.getAll()
+			def patients = Patient.executeQuery("select p from Patient p")
+			return patients
 		}
 		criteria.each { entry ->
 			def temp =[:]
