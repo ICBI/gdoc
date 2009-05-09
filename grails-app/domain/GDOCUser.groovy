@@ -3,7 +3,7 @@ class GDOCUser {
 		table 'GDOCUSER'
 	}
     String username
-	static hasMany = [memberships:Membership,list_connections:UserListConnection,comments:Comments]
+	static hasMany = [memberships:Membership,list_connections:UserListConnection,comments:Comments, analysis:SavedAnalysis]
 	def groups() {
 			return memberships.collect{it.gdocgroup}
 	}

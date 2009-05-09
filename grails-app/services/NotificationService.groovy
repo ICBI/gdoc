@@ -1,16 +1,32 @@
+import grails.converters.*
+
 class NotificationService {
 	
 	def notifications = [:]
 	
-	def addNotification(sessionId, notification) {
-		if(!notifications[sessionId]) {
-			notifications[sessionId] = [:]
+	def addNotification(userId, notification) {
+		def user = GDOCUser.findByUsername(userId)
+		def analysis = user.analysis
+		def runningAnalysis = analysis.find {
+			it.analysis.item.taskId == notification.item.taskId
 		}
-		println "adding notification " + notification
-		notifications[sessionId][notification.item.taskId] = notification
+		if(runningAnalysis) {
+			runningAnalysis.analysis = notification
+		} else {
+		
+		def newAnalysis = new SavedAnalysis(type:AnalysisType.CLASS_COMPARISON, analysis: notification , author:user)
+		newAnalysis.save()
+		}
 	}
 	
-	def getNotifications(sessionId) {
-		return notifications[sessionId]
+	def getNotifications(userId) {
+		println userId
+		def user = GDOCUser.findByUsername(userId)
+		println "${user.analysis}"
+		def notifications = user.analysis.collect { 
+			println "${it.analysis}"
+			it.analysis 
+		}
+		return notifications
 	}
 }

@@ -1,16 +1,16 @@
 import grails.converters.*
 
+
 class SavedAnalysis implements Taggable {
 	static mapping = {
 		table 'SAVED_ANALYSIS'
-		jsonData type:'text'
-		queryParameters type:'text'
+		jsonData type: 'text'
+		type column:'analysis_type'
 	}
-	static transients = [ "analysis", "queryParams" ]
+	static transients = [ "analysis"]
 	
 	AnalysisType type
 	String jsonData
-	String queryParameters
 	GDOCUser author
 	
 	public Object getAnalysis() {
@@ -24,14 +24,4 @@ class SavedAnalysis implements Taggable {
 		this.@jsonData = data as JSON
 	}
 	
-	public Object getQueryParams() {
-		if(queryParameters)
-			return JSON.parse(queryParameters)
-		else 
-			return null
-	}
-	
-	public void setQueryParams(Object data) {
-		this.@queryParameters = data as JSON
-	}
 }

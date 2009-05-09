@@ -39,7 +39,10 @@ class AnalysisController {
 	
 	def view = {
 		def taskId = params.id
-		session.results = notificationService.getNotifications(session.id)[taskId].item
+		def notification = notificationService.getNotifications(session.userId).find { 
+			it.item.taskId == taskId 
+		}
+		session.results = notification.item
 		def columns = []
 		def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
 		columns << [index: "reporterId", name: "Reporter ID", sortable: true, width: '100']

@@ -4,6 +4,7 @@ import gov.nih.nci.caintegrator.analysis.messaging.SampleGroup
 import gov.nih.nci.caintegrator.analysis.messaging.ReporterGroup
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.jms.core.MessageCreator
+import org.springframework.web.context.request.RequestContextHolder as RCH
 
 class AnalysisService {
 
@@ -47,8 +48,9 @@ class AnalysisService {
 	def sendRequest(sessionId, command) {
 		def request
 		try {
+			def userId = RCH.currentRequestAttributes().session.userId
 			println "sending message"
-			request = strategies[command.requestType].call(sessionId, command)
+			request = strategies[command.requestType].call(userId, command)
 			println request
 			jmsTemplate.send([
 				createMessage: { Object[] params ->
@@ -59,7 +61,7 @@ class AnalysisService {
 				}
 			] as MessageCreator)
 			def item = ["status": "Running", "item": request]
-			notificationService.addNotification(sessionId, item)
+			notificationService.addNotification(userId, item)
 			println "after send"
 		} catch (Exception e) {
 			println "Failed to send request for test" + e

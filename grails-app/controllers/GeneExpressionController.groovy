@@ -32,7 +32,7 @@ class GeneExpressionController {
 	
 	def view = {
 		def expressionValues = []
-		session.results = notificationService.getNotifications(session.id)[session.taskId].item
+		session.results = notificationService.getNotifications(session.userId)
 		println session.results
 		def sampleReporter = [:]
 		session.results.dataVectors.each { data ->
