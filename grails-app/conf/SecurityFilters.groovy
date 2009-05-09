@@ -51,7 +51,6 @@ class SecurityFilters {
 		}
 		studyCheck(controller: '*', action:'*') {
 			before = {
-				println "in studycheck"
 				if(session.study) {
 					StudyContext.setStudy(session.study.schemaName)
 				} else {

@@ -50,34 +50,11 @@
     <!-- Footer end -->
 	</div>
 </div>
-<%--
-<div id="header">
-
-</div>
-<div class="colmask holygrail">
-    <div class="colmid">
-        <div class="colleft">
-            <div class="col1wrap">
-                <div class="col1">
-                 		
-                </div>
-            </div>
-            <div class="col2">
-                <g:render template="/common/leftbar"/>
-			</div>
-			
-			<div class="col3">
-                
-            </div>
-			
-		
-			
-        </div>
-    </div>
-</div>
-<div id="footer">
-
-</div>
---%>
+<g:javascript>
+// code to set height of left bar
+jQuery(document).ready(function() {
+	$('#navigation').height($('#yui-main').height());
+});
+</g:javascript>
 </body>
 </html>

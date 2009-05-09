@@ -5,6 +5,7 @@
 	<title>Notifications</title>         
 </head>
 <body>
+	<g:javascript library="jquery"/>
 	<g:javascript>
 		jQuery(document).ready(function() {
 			var refreshId = setInterval(function() {
@@ -30,6 +31,7 @@
 		  }, 2000);
 
 		});
+		
 	</g:javascript>
 	<p style="font-size:14pt">Notifications</p>
 	<br/>
