@@ -9,15 +9,21 @@ class SavedAnalysis implements Taggable {
 	}
 	static transients = [ "analysis"]
 	
+	Object analysis
 	AnalysisType type
 	String jsonData
 	GDOCUser author
 	
 	public Object getAnalysis() {
-		if(jsonData)
-			return JSON.parse(jsonData)
-		else 
+		if(this.@analysis) {
+			return this.@analysis
+		}
+		if(jsonData) {
+			this.@analysis = JSON.parse(jsonData)
+			return this.@analysis
+		} else {
 			return null
+		}
 	}
 	
 	public void setAnalysis(Object data) {

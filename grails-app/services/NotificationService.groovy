@@ -26,12 +26,10 @@ class NotificationService {
 	
 	def getNotifications(userId) {
 		def user = GDOCUser.findByUsername(userId)
-		def notifications = user.analysis.collect { 
-			it.analysis 
-		} 
+		def notifications = user.analysis
 		notifications = notifications.sort { one, two ->
-			def dateOne = new java.sql.Date(one.item.taskId.substring(one.item.taskId.indexOf('_') + 1).toLong())
-			def dateTwo = new java.sql.Date(two.item.taskId.substring(two.item.taskId.indexOf('_') + 1).toLong())
+			def dateOne = new java.sql.Date(one.analysis.item.taskId.substring(one.analysis.item.taskId.indexOf('_') + 1).toLong())
+			def dateTwo = new java.sql.Date(two.analysis.item.taskId.substring(two.analysis.item.taskId.indexOf('_') + 1).toLong())
 			return dateTwo.compareTo(dateOne)
 		}
 		return notifications
