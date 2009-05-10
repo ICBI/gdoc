@@ -16,10 +16,10 @@ class AnalysisListenerService {
 		def item
 		if(message instanceof AnalysisResult) {
 			item = ["status": "Complete", "item" : message]
-			notificationService.addNotification(message.sessionId, item)
+			notificationService.updateNotification(message.sessionId, item)
 		} else {
 			item = ["status": "Error", "item" : message.failedRequest]
-			notificationService.addNotification(message.failedRequest.sessionId, item)
+			notificationService.updateNotification(message.failedRequest.sessionId, item)
 		}
 		
 		

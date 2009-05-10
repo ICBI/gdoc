@@ -14,7 +14,7 @@ class AnalysisService {
 	def idService
 	 
 	def strategies = [
-		classComparison: { sess, cmd ->
+		(AnalysisType.CLASS_COMPARISON): { sess, cmd ->
 			def request = new ClassComparisonRequest(sess, "ClassComparison_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
@@ -32,7 +32,7 @@ class AnalysisService {
 			request.baselineGroup = baseline
 			return request
 		},
-		geneExpression: { sess, cmd ->
+		(AnalysisType.GENE_EXPRESSION): { sess, cmd ->
 			def request = new ExpressionLookupRequest(sess, "ExpressionLookup_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			def sampleGroup = new SampleGroup()
@@ -50,6 +50,9 @@ class AnalysisService {
 		try {
 			def userId = RCH.currentRequestAttributes().session.userId
 			println "sending message"
+			strategies.each { key, value ->
+				println "KEY: $key ${command.requestType}"
+			}
 			request = strategies[command.requestType].call(userId, command)
 			println request
 			jmsTemplate.send([
@@ -61,7 +64,7 @@ class AnalysisService {
 				}
 			] as MessageCreator)
 			def item = ["status": "Running", "item": request]
-			notificationService.addNotification(userId, item)
+			notificationService.addNotification(userId, item, command.requestType)
 			println "after send"
 		} catch (Exception e) {
 			println "Failed to send request for test" + e

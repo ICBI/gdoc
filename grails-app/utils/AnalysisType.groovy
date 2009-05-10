@@ -1,6 +1,7 @@
 public enum AnalysisType {
 	KM,
-	CLASS_COMPARISON;
+	CLASS_COMPARISON, 
+	GENE_EXPRESSION;
 
 	public String value() {
 		return name();

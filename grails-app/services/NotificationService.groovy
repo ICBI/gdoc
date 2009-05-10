@@ -4,15 +4,23 @@ class NotificationService {
 	
 	def notifications = [:]
 	
-	def addNotification(userId, notification) {
+	def addNotification(userId, notification, type) {
 		def user = GDOCUser.findByUsername(userId)
+		println "GOT NOTIFICATION $notification"
+		println notification.item.taskId
+		def newAnalysis = new SavedAnalysis(type: type, analysis: notification , author:user)
+		newAnalysis.save(flush:true)
+	}
+	
+	def updateNotification(userId, notification) {
 		def runningAnalysis = getNotification(userId, notification.item.taskId)
 		if(runningAnalysis) {
+			println "UPDATING ANALYSIS $notification"
+			def data = notification as AnalysisJSON
+			println "NOTIFICATION JSON $data"
 			runningAnalysis.analysis = notification
 		} else {
-		
-			def newAnalysis = new SavedAnalysis(type:AnalysisType.CLASS_COMPARISON, analysis: notification , author:user)
-			newAnalysis.save()
+			throw new Exception("No analysis to update")
 		}
 	}
 	
@@ -43,9 +51,12 @@ class NotificationService {
 	
 	def getNotification(userId, taskId) {
 		def user = GDOCUser.findByUsername(userId)
+		user.refresh()
 		def analysis = user.analysis
-		return analysis.find {
+		def item =  analysis.find {
 			it.analysis.item.taskId == taskId
 		}
+		item.refresh()
+		return item
 	}
 }

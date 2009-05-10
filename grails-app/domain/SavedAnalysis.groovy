@@ -21,7 +21,7 @@ class SavedAnalysis implements Taggable {
 	}
 	
 	public void setAnalysis(Object data) {
-		this.@jsonData = data as JSON
+		this.@jsonData = data as AnalysisJSON
 	}
 	
 }

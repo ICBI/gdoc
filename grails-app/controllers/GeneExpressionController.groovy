@@ -24,24 +24,24 @@ class GeneExpressionController {
 			redirect(action:'index')
 		} else {
 			def taskId = analysisService.sendRequest(session.id, cmd)
-			session.taskId = taskId
 			session.command = cmd
-			println taskId
+			redirect(controller:'notification')
 		}
 	}
 	
 	def view = {
 		def expressionValues = []
-		session.results = notificationService.getNotifications(session.userId)
+		session.results = notificationService.getNotification(session.userId, params.id)
 		println session.results
 		def sampleReporter = [:]
-		session.results.dataVectors.each { data ->
+		println "VECTORS: " + session.results.analysis.item
+		session.results.analysis.item.dataVectors.each { data ->
 			println data.name
 			sampleReporter[data.name] = [:]
 			data.dataPoints.each { point ->
-				println point.id
+				println "POINT: " +  point.id + " : " + point.x
 				sampleReporter[data.name][point.id] = Math.pow(2, point.x)
-				println sampleReporter[data.name]
+				println "REPORTER: " +  sampleReporter[data.name]
 			}
 		}
 		println session.command.groups
@@ -61,8 +61,11 @@ class GeneExpressionController {
 			}
 			expressionValues.add(valueHash)
 		}
+		session.expressionValues = expressionValues
+	}
+	
+	def results = {
 		
-		println expressionValues
-		render expressionValues as JSON
+		render session.expressionValues as JSON
 	}
 }

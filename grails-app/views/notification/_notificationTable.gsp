@@ -5,7 +5,12 @@
 	<g:def var="queryDate" value="${new java.sql.Date(notification.item.taskId.substring(notification.item.taskId.indexOf('_') + 1).toLong())}" />
 	<g:if test="${notification.status == 'Complete'}">
 		<div style="float: left;">
-			<g:link controller="analysis" action="view" id="${notification.item.taskId}">${notification.item.taskId.substring(0, notification.item.taskId.indexOf('_'))}</g:link> (<g:formatDate date="${queryDate}" format="h:mm M/dd/yyyy"/> ) 
+			<g:if test="${notification.type == AnalysisType.CLASS_COMPARISON}">
+				<g:link controller="analysis" action="view" id="${notification.item.taskId}">${notification.item.taskId.substring(0, notification.item.taskId.indexOf('_'))}</g:link> (<g:formatDate date="${queryDate}" format="h:mm M/dd/yyyy"/> ) 
+			</g:if>
+			<g:else>
+				<g:link controller="geneExpression" action="view" id="${notification.item.taskId}">${notification.item.taskId.substring(0, notification.item.taskId.indexOf('_'))}</g:link> (<g:formatDate date="${queryDate}" format="h:mm M/dd/yyyy"/> ) 
+			</g:else>
 			<a href="javascript:void(0)" >
 			<img alt="Share with Collaboration Group" title="Share with Collaboration Group" style="height: 18px;  vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'share.png')}" /></a>
 			<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'delete', id:notification.item.taskId, update:'notifications_content')}return false;}">

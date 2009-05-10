@@ -3,7 +3,7 @@ class GeneExpressionCommand {
 	List groups
 	String geneName
 	String dataFile = "EdinPlier_22APR2009.Rda"
-	String requestType = "geneExpression"
+	AnalysisType requestType = (AnalysisType.GENE_EXPRESSION)
 	def fileBasedAnnotationService
 	
 	static constraints = {
