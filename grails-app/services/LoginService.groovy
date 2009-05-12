@@ -30,7 +30,7 @@ class LoginService{
 			print "got user " + authorizationManager + " from csm, ready to authorize "
 			Set memberships = user.getGroups();
 			memberships.each{ membership ->
-				println membership.group.group_name
+				println membership.group.groupName
 			}
 		}catch ( CSException cse){
 			System.out.println("ERROR IN AUTHORIZATION ");
