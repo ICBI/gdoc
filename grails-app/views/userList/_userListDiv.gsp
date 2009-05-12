@@ -14,7 +14,7 @@
 		<g:if test="${flash.message}">
 		<tr><td><div class="message">${flash.message}</div></td></tr>
 		</g:if>
-		<g:each in="${list_items}" status="j" var="list_item">
+		<g:each in="${listItems}" status="j" var="list_item">
 			<tr><td>${list_item.value}</td>
 				<td><a href="javascript:void(0)" 	onclick="if(confirm('Are you sure?')){${remoteFunction(action:'deleteListItem',id:list_item.id,update:userListInstance.name+'_content')}return false;}">delete</a></td>
 			</tr>
