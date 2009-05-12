@@ -3,21 +3,22 @@ class GDOCUser {
 		table 'CSM_USER'
 		version false
 		id column:'user_id'
-		column name: "login_name", unique: true
-		 
+		loginName column: "login_name", unique: true
+		firstName column: "first_name"
+		lastName column: "last_name"
 	}
 	
-	String login_name
-	String first_name
-	String last_name
+	String loginName
+	String firstName
+	String lastName
 	String password
 	
-	static hasMany = [groups:Membership,list_connections:UserListConnection,comments:Comments]
+	static hasMany = [groups:Membership,listConnections:UserListConnection,comments:Comments, analysis:SavedAnalysis]
 	def groups() {
 			return memberships.collect{it.gdocgroup}
 	}
 	def lists() {
-			return list_connections.collect{it.list}
+			return listConnections.collect{it.list}
 	}
 	
 	

@@ -48,7 +48,7 @@
                             
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
-                                <g:each var="l" in="${userListInstance.list_comments}">
+                                <g:each var="l" in="${userListInstance.listComments}">
                                     <li><g:link controller="comment" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                                 </ul>
@@ -61,7 +61,7 @@
                             
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
-                                <g:each var="l" in="${userListInstance.list_connections}">
+                                <g:each var="l" in="${userListInstance.listConnections}">
                                     <li><g:link controller="userListConnection" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                                 </ul>
@@ -74,7 +74,7 @@
                             
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
-                                <g:each var="l" in="${userListInstance.list_items}">
+                                <g:each var="l" in="${userListInstance.listItems}">
                                     <li><g:link controller="userListItem" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                                 </ul>

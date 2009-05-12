@@ -17,8 +17,8 @@ class LoginController {
 						try{
 							def user = loginService.login(params)
 							if (user) {
-								session.userId = user.login_name
-								//println (user.login_name)
+								session.userId = user.loginName
+								//println (user.loginName)
 								redirect(controller:'studyDataSource')
 							}
 							else {

@@ -45,7 +45,7 @@ class KmController {
 		session.selectedLists.each { list ->
 			def samples = []
 			def tempList = UserList.findAllByName(list.name)
-			def ids = tempList.list_items.collectAll { listItem ->
+			def ids = tempList.listItems.collectAll { listItem ->
 				listItem.value
 				
 			}.flatten()

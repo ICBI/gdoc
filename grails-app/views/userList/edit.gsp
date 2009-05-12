@@ -50,10 +50,10 @@
                                 <td valign="top" class="name">
                                     <label for="list_comments">Listcomments:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:userListInstance,field:'list_comments','errors')}">
+                                <td valign="top" class="value ${hasErrors(bean:userListInstance,field:'listComments','errors')}">
                                     
 <ul>
-<g:each var="l" in="${userListInstance?.list_comments?}">
+<g:each var="l" in="${userListInstance?.listComments?}">
     <li><g:link controller="comment" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
 </g:each>
 </ul>
@@ -66,10 +66,10 @@
                                 <td valign="top" class="name">
                                     <label for="list_connections">Listconnections:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:userListInstance,field:'list_connections','errors')}">
+                                <td valign="top" class="value ${hasErrors(bean:userListInstance,field:'listConnections','errors')}">
                                     
 <ul>
-<g:each var="l" in="${userListInstance?.list_connections?}">
+<g:each var="l" in="${userListInstance?.listConnections?}">
     <li><g:link controller="userListConnection" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
 </g:each>
 </ul>
@@ -82,10 +82,10 @@
                                 <td valign="top" class="name">
                                     <label for="list_items">Listitems:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:userListInstance,field:'list_items','errors')}">
+                                <td valign="top" class="value ${hasErrors(bean:userListInstance,field:'listItems','errors')}">
                                     
 <ul>
-<g:each var="l" in="${userListInstance?.list_items?}">
+<g:each var="l" in="${userListInstance?.listItems?}">
     <li><g:link controller="userListItem" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
 </g:each>
 </ul>

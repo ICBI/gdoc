@@ -23,7 +23,7 @@ class SecurityFilters {
 				if(params["id"] && (params["_action_Update"] ||
 						params["_action_Edit"] || params["_action_Delete"])){
 							def list = UserList.findById(params["id"])
-							def user = GDOCUser.findByUsername(session.userId)
+							def user = GDOCUser.findByLoginName(session.userId)
 							if(user!=null && list!=null){
 								 println "user and list are in request"
 								if(user.id == list.author.id){

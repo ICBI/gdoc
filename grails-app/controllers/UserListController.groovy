@@ -42,11 +42,11 @@ class UserListController {
         def userListItemInstance = UserListItem.findById(params["id"])
         if(userListItemInstance) {
 			def list = UserList.findById(userListItemInstance.list.id)
-			list.list_items.remove(userListItemInstance);
+			list.listItems.remove(userListItemInstance);
 			userListItemInstance.delete(flush:true)	
             //flash.message = "UserList item ${params.id} deleted"
 			list.save();
-			render(template:"/userList/userListDiv",model:[ userListInstance: list, list_items:list.list_items ])
+			render(template:"/userList/userListDiv",model:[ userListInstance: list, listItems:list.listItems ])
             //render(view:"list",model:[ userListInstanceList: UserList.findAll() ])
         }
         else {
@@ -87,7 +87,7 @@ class UserListController {
 
     def create = {
         def userListInstance = new UserList()
-		def userInstance = GDOCUser.findByUsername(session.userId)
+		def userInstance = GDOCUser.findByLoginName(session.userId)
         userListInstance.properties = params
         return ['userListInstance':userListInstance,"userInstance":userInstance]
     }
@@ -97,7 +97,7 @@ class UserListController {
 		if(!params["name"]){
 			params["name"] = params["author.username"] + new Date().getTime();
 		}
-		def author = GDOCUser.findByUsername(params["author.username"])
+		def author = GDOCUser.findByLoginName(params["author.username"])
 		params["author.id"] = author.id
 		def listDup = author.lists().find {
 			it.name == params["name"]
@@ -109,7 +109,7 @@ class UserListController {
 		def userListInstance = new UserList(params)
 		if(params['ids']){
 			params['ids'].tokenize(",").each{
-				userListInstance.addToList_items(new UserListItem(value:it.trim()));
+				userListInstance.addToListItems(new UserListItem(value:it.trim()));
 			}
 		}
 		
@@ -137,7 +137,7 @@ class UserListController {
 		def userListInstance = new UserList(params)
 		if(params["ids"]){
 			params['ids'].each{
-				userListInstance.addToList_items(new UserListItem(value:it.trim()));
+				userListInstance.addToListItems(new UserListItem(value:it.trim()));
 			}
 		}
 		 if(!userListInstance.hasErrors() && userListInstance.save()) {

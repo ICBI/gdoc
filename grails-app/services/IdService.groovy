@@ -10,7 +10,7 @@ class IdService {
 			item.name == listName
 		}
 		
-		def listValues = list.list_items.collect {item ->
+		def listValues = list.listItems.collect {item ->
 			item.value.toLong()
 		}
 		

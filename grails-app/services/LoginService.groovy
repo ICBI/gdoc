@@ -7,11 +7,11 @@ import LoginException
 class LoginService{
 	
 	def login(params) throws LoginException{
-		def user = GDOCUser.findByLogin_name(params.login_name)
+		def user = GDOCUser.findByLoginName(params.loginName)
 		try{
 			AuthenticationManager authenticationManager = SecurityServiceProvider.getAuthenticationManager("gdoc");
 			//print authenticationManager.getApplicationContextName();
-			boolean loginOK = authenticationManager.login(params.login_name, params.password);
+			boolean loginOK = authenticationManager.login(params.loginName, params.password);
 			if (loginOK){
 				System.out.println("SUCESSFUL LOGIN");
 			}

@@ -4,27 +4,27 @@ class CommentsTests extends GroovyTestCase {
 	def appUser = new GDOCUser(username:'studyUser').save();
 	def appCommentUser = new GDOCUser(username:'studyCommentUser').save();
 	def intGeneList = new UserList(name:'studyGeneList',author:appUser).save();
-	intGeneList.addToList_items(new UserListItem(value:'ER2'))
-		intGeneList.addToList_items(new UserListItem(value:'bR2'))
-			intGeneList.addToList_items(new UserListItem(value:'vfrR'))
+	intGeneList.addToListItems(new UserListItem(value:'ER2'))
+		intGeneList.addToListItems(new UserListItem(value:'bR2'))
+			intGeneList.addToListItems(new UserListItem(value:'vfrR'))
 	UserList.findByAuthor(appUser).each{
 		println it.name
-		it.list_items.each{
+		it.listItems.each{
 			println it.value
 		}
 	}
 	def commentText = "Wow, that is an interesting list"
-	def comment = new Comments(user:appCommentUser, comment_text:commentText,list:intGeneList)
-	intGeneList.addToList_comments(comment);
+	def comment = new Comments(user:appCommentUser, commentText:commentText,list:intGeneList)
+	intGeneList.addToListComments(comment);
 	appCommentUser.addToComments(comment);
 	def recComment = Comments.findByUser(appCommentUser);
 	recComment.each{
-		println it.comment_text
+		println it.commentText
 		println it.user
 		println it.list	
 	}
 	def recList = UserList.find(intGeneList)
-	println recList.list_comments
+	println recList.listComments
 	def usersList = GDOCUser.find(appCommentUser)
 	println usersList.comments
     }

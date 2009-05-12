@@ -5,6 +5,6 @@ class Comments {
 	static belongsTo = [GDOCUser, List]
 	GDOCUser user
 	List list
-	String comment_text
+	String commentText
 
 }

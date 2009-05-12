@@ -31,7 +31,7 @@
 									
 								<div id="${userListInstance.name}_content" style="display:none">
 								<table>
-									<g:each in="${userListInstance.list_items}" status="j" var="list_item">
+									<g:each in="${userListInstance.listItems}" status="j" var="list_item">
 										<tr><td>${list_item.value}</td>
 											<td><a href="javascript:void(0)" 	onclick="${remoteFunction(action:'deleteItem',id:list_item.id,update:'test')}return false;">delete</a></td>
 										</tr>
@@ -75,7 +75,7 @@
 						<a href="javascript:void(0)" onclick="${remoteFunction(action:'deleteList',id:userListInstance.id,update:'test')}return false;">delete list</a></td>
 				                </span></th>
 	</tr>
-	<g:each in="${userListInstance.list_items}" status="j" var="list_item">
+	<g:each in="${userListInstance.listItems}" status="j" var="list_item">
 		<tr><td>${list_item.value}</td>
 			<td><a href="javascript:void(0)" onclick="${remoteFunction(action:'deleteItem',id:list_item.id,update:'test')}return false;">delete</a></td>
 		</tr>

@@ -5,7 +5,7 @@ class NotificationService {
 	def notifications = [:]
 	
 	def addNotification(userId, notification, command) {
-		def user = GDOCUser.findByUsername(userId)
+		def user = GDOCUser.findByLoginName(userId)
 		println "GOT NOTIFICATION $notification"
 		println notification.item.taskId
 		def params = command.properties
@@ -30,7 +30,7 @@ class NotificationService {
 	}
 	
 	def getNotifications(userId) {
-		def user = GDOCUser.findByUsername(userId)
+		def user = GDOCUser.findByLoginName(userId)
 		def notifications = user.analysis
 		notifications = notifications.sort { one, two ->
 			def dateOne = new java.sql.Date(one.analysis.item.taskId.substring(one.analysis.item.taskId.indexOf('_') + 1).toLong())
@@ -41,7 +41,7 @@ class NotificationService {
 	}
 	
 	def deleteNotification(userId, taskId) {
-		def user = GDOCUser.findByUsername(userId)
+		def user = GDOCUser.findByLoginName(userId)
 		def analysis = user.analysis
 		def toDelete = analysis.find {
 			it.analysis.item.taskId == taskId
@@ -53,7 +53,7 @@ class NotificationService {
 	}
 	
 	def getNotification(userId, taskId) {
-		def user = GDOCUser.findByUsername(userId)
+		def user = GDOCUser.findByLoginName(userId)
 		user.refresh()
 		def analysis = user.analysis
 		def item =  analysis.find {
