@@ -1,3 +1,5 @@
+import LoginException
+
 class LoginController {
 	def loginService
  	def login = {
@@ -12,13 +14,21 @@ class LoginController {
 						redirect(controller:'home')
 					}
 					else {
-						def user = loginService.login(params)//User.findByUserIdAndPassword(params.userId, params.password)
-						if (user) {
-							session.userId = user.username
-							redirect(controller:'studyDataSource')
-						}
-						else {
+						try{
+							def user = loginService.login(params)
+							if (user) {
+								session.userId = user.login_name
+								//println (user.login_name)
+								redirect(controller:'studyDataSource')
+							}
+							else {
+								flash['message'] = 'Please enter a valid user ID and password'
+								redirect(controller:'home')
+							}
+						}catch(LoginException le){
+							println "login invalid in controller"
 							flash['message'] = 'Please enter a valid user ID and password'
+							redirect(controller:'home')
 						}
 					}
 				}

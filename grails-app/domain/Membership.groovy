@@ -1,11 +1,13 @@
 class Membership {
 	static mapping = {
-		table 'MEMBERSHIP'
+			table 'CSM_USER_GROUP'
+			version false
+			id column:'USER_GROUP_ID'
 	}
 	static belongsTo = [GDOCGroup, GDOCUser]
-	GDOCGroup gdocgroup
+	GDOCGroup group
 	GDOCUser user
-	String role
+	//String role
 	
 
 }

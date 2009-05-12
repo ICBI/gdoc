@@ -31,6 +31,9 @@ grails.converters.encoding="UTF-8"
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 
+//props file
+gdoc.appPropertiesFile="/local/content/gdoc/gdocApp.properties"
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
@@ -44,6 +47,7 @@ environments {
 		responseQueue = "AnalysisResponse"
     }
 	development {
+	//	jmsserver = "jnp://141.161.30.205:1099"
 		jmsserver = "jnp://141.161.30.205:1099"
  		responseQueue = "AnalysisResponseKevin"
 	}

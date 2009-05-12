@@ -1,8 +1,10 @@
 class GDOCGroup {
 	static mapping = {
-		table 'GDOCGROUP'
+			table 'CSM_GROUP'
+			version false
+			id column:'GROUP_ID'
 	}
-	String name;
-	String study;
+	String group_name;
+	String group_desc;
 	static hasMany = [memberships:Membership]
 }
