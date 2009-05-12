@@ -7,7 +7,8 @@ class UserListController {
 
     def list = {
         if(!params.max) params.max = 10
-        [ userListInstanceList: UserList.list( params ) ]
+		def lists = GDOCUser.findByLoginName(session.userId).lists()
+        [ userListInstanceList: lists ]
     }
 
     def show = {

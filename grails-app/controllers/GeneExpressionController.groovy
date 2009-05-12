@@ -10,11 +10,10 @@ class GeneExpressionController {
     def index = { 
 		session.study = StudyDataSource.findByShortName("EDINBURGH")
 		StudyContext.setStudy("EDIN")
-		def lists = UserList.findAll()
+		def lists = GDOCUser.findByLoginName(session.userId).lists()
 		def patientLists = lists.findAll { item ->
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
-		println lists[0].tags
 		session.lists = patientLists
 	}
 

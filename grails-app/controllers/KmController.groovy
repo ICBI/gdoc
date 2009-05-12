@@ -12,7 +12,7 @@ class KmController {
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
 		}
-		def lists = UserList.findAll()
+		def lists = GDOCUser.findByLoginName(session.userId).lists()
 		def patientLists = lists.findAll { item ->
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
