@@ -24,7 +24,6 @@ class GeneExpressionController {
 			redirect(action:'index')
 		} else {
 			def taskId = analysisService.sendRequest(session.id, cmd)
-			session.command = cmd
 			redirect(controller:'notification')
 		}
 	}
@@ -44,8 +43,8 @@ class GeneExpressionController {
 				println "REPORTER: " +  sampleReporter[data.name]
 			}
 		}
-		println session.command.groups
-		session.command.groups.each { group ->
+		println session.results.query.groups
+		session.results.query.groups.each { group ->
 			def samples = idService.samplesForListName(group)
 			println samples
 			def valueHash = [:]

@@ -4,11 +4,16 @@ class NotificationService {
 	
 	def notifications = [:]
 	
-	def addNotification(userId, notification, type) {
+	def addNotification(userId, notification, command) {
 		def user = GDOCUser.findByUsername(userId)
 		println "GOT NOTIFICATION $notification"
 		println notification.item.taskId
-		def newAnalysis = new SavedAnalysis(type: type, analysis: notification , author:user)
+		def params = command.properties
+		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'fileBasedAnnotationService', 'requestType'] as Set )
+		println "PARAMS: $params"
+		def json = params as JSON
+		println "COMMAND $json" 
+		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user)
 		newAnalysis.save(flush:true)
 	}
 	

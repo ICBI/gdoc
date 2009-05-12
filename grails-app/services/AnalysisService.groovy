@@ -64,7 +64,7 @@ class AnalysisService {
 				}
 			] as MessageCreator)
 			def item = ["status": "Running", "item": request]
-			notificationService.addNotification(userId, item, command.requestType)
+			notificationService.addNotification(userId, item, command)
 			println "after send"
 		} catch (Exception e) {
 			println "Failed to send request for test" + e
