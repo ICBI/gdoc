@@ -6,7 +6,7 @@ import gov.nih.nci.security.authorization.domainobjects.ProtectionElement
 
 import LoginException
 
-class LoginService{
+class SecurityService {
 	
 	AuthenticationManager authenticationManager
 	AuthorizationManager authorizationManager
@@ -52,18 +52,37 @@ class LoginService{
 	/**
 	* Share an item with a collaboration groups
 	*/
-	def share(item, itemType, group) {
+	def share(item, group) {
 		def authManager = this.getAuthorizationManager()
 		
-		ProtectionElement pe = authManager.getProtectionElement(item.id.toString(), itemType)
+		ProtectionElement pe = authManager.getProtectionElement(item.id.toString(), item.class.name)
 		if(!pe) {
 			pe = new ProtectionElement()
-			pe.attribute = itemType
+			pe.protectionElementName = item.class.name + '_' + item.id.toString()
+			
 			pe.objectId = item.id.toString()
+			pe.attribute = item.class.name
 			authManager.createProtectionElement(pe)
 		}
 		
 		authManager.assignProtectionElement(group, item.id.toString(), itemType)
+	}
+	
+	def getSharedItemIds(loginName, itemType) {
+		def authManager = this.getAuthorizationManager()
+		def user = authManager.getUser(loginName)
+		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
+		def elements = groups.collect {
+			return authManager.getProtectionElements(it.protectionGroupId.toString())
+			
+		}
+		elements = elements.flatten()
+		def ids = []
+		elements.each {
+			if (itemType.equals(it.attribute))
+				ids << it.objectId
+		}
+		return ids
 	}
 	
 	public AuthenticationManager getAuthenticationManager() {

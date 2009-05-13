@@ -12,7 +12,7 @@
 				<g:link controller="geneExpression" action="view" id="${notification.analysis.item.taskId}">${notification.analysis.item.taskId.substring(0, notification.analysis.item.taskId.indexOf('_'))}</g:link> (<g:formatDate date="${queryDate}" format="h:mm M/dd/yyyy"/> ) 
 			</g:else>
 			<a href="javascript:void(0)" >
-			<img alt="Share with Collaboration Group" title="Share with Collaboration Group" style="height: 18px;  vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'share.png')}" /></a>
+			<img alt="Share with Collaboration Group" title="Share with Collaboration Group" style="height: 18px;  vertical-align: bottom;" onclick="${remoteFunction(action:'share', id:notification.analysis.item.taskId, update:'notifications_content')}" src="${createLinkTo(dir: 'images', file: 'share.png')}" /></a>
 			<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'delete', id:notification.analysis.item.taskId, update:'notifications_content')}return false;}">
 			<img alt="Delete Analysis" title="Delete Analysis" style="vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>		
 		</div>

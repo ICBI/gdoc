@@ -1,7 +1,7 @@
 import LoginException
 
 class LoginController {
-	def loginService
+	def securityService
  	def login = {
 	  LoginCommand cmd -> if(cmd.hasErrors()) {
 						flash['message'] = "login failed."
@@ -15,7 +15,7 @@ class LoginController {
 					}
 					else {
 						try{
-							def user = loginService.login(params)
+							def user = securityService.login(params)
 							if (user) {
 								session.userId = user.loginName
 								//println (user.loginName)
@@ -36,7 +36,7 @@ class LoginController {
 		
 		def logout = {
 			println params
-			loginService.logout(session)
+			securityService.logout(session)
 			flash.message = "user logged out"
 			redirect(controller:'home')
 		}
