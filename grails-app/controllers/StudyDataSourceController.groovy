@@ -1,13 +1,22 @@
 class StudyDataSourceController {
 
 	def myStudies
+	def myCollaborationGroups
 	def otherStudies
 	def clinicalElements
+	def securityService
 	
     def index = { 
+		def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
+		println studyNames
 		myStudies = []
-		myStudies << StudyDataSource.findByShortName("EDINBURGH")
-		myStudies << StudyDataSource.findByShortName("FCR_DEMO")
+		myCollaborationGroups = securityService.getCollaborationGroups(session.userId)
+		studyNames.each{
+			def foundStudy = StudyDataSource.findByShortName(it)
+			if(foundStudy){
+				myStudies << foundStudy
+			}
+		}
 		otherStudies = StudyDataSource.findAll()
 		println myStudies
 		if(myStudies.metaClass.respondsTo(myStudies, "size")) {
@@ -16,6 +25,7 @@ class StudyDataSourceController {
 			otherStudies.remove(myStudies)
 		}
 		session.myStudies = myStudies
+		session.myCollaborationGroups = myCollaborationGroups
 	}
 	
 	def show = {

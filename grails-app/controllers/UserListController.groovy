@@ -1,5 +1,5 @@
 class UserListController {
-    
+    def securityService
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
@@ -8,7 +8,33 @@ class UserListController {
     def list = {
         if(!params.max) params.max = 10
 		def lists = GDOCUser.findByLoginName(session.userId).lists()
-        [ userListInstanceList: lists ]
+		def listIds = []
+		def sharedListIds = securityService.getSharedItemIds(session.userId, UserList.class.name)
+		println "befre " + sharedListIds
+		if(lists.metaClass.respondsTo(lists, "size")) {
+				lists.each{
+					listIds << it.id.toString()
+				}
+		} else {
+				listIds << lists.id.toString()
+		}
+		println "before listids " + listIds
+		if(sharedListIds.metaClass.respondsTo(sharedListIds, "size")) {
+				sharedListIds.removeAll(listIds)
+		} else {
+				sharedListIds.remove(listIds)
+		}
+		print "after " + sharedListIds
+		def sharedLists = []
+		//until we modify ui, just add shared lists to 'all' lists
+		sharedListIds.each{
+			def foundList = UserList.get(it)
+			if(foundList){
+				lists << foundList
+			}
+		}
+		//lists << sharedLists	
+        [ userListInstanceList: lists, sharedListInstanceList: sharedLists ]
     }
 
     def show = {
@@ -20,6 +46,7 @@ class UserListController {
         }
         else { return [ userListInstance : userListInstance ] }
     }
+
 
     def deleteList = {
         def userListInstance = UserList.get( params.id )
@@ -88,7 +115,7 @@ class UserListController {
 
     def create = {
         def userListInstance = new UserList()
-		def userInstance = GDOCUser.findByLoginName(session.userId)
+        def userInstance = GDOCUser.findByLoginName(session.userId)
         userListInstance.properties = params
         return ['userListInstance':userListInstance,"userInstance":userInstance]
     }
