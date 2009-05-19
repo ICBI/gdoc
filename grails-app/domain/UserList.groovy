@@ -10,13 +10,5 @@ class UserList implements Taggable{
 		author(blank:false)
 	}
 	
-	public void setGroups(List groups) {
-		
-		this.@analysisData = data as AnalysisJSON
-	}
-	
-	public List getGroups() {
-		return this.@groups
-	}
 
 }
