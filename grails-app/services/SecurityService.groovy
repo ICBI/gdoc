@@ -3,6 +3,7 @@ import gov.nih.nci.security.AuthenticationManager;
 import gov.nih.nci.security.AuthorizationManager;
 import gov.nih.nci.security.exceptions.CSException
 import gov.nih.nci.security.authorization.domainobjects.ProtectionElement
+import gov.nih.nci.security.authorization.domainobjects.ProtectionGroup
 
 import LoginException
 
@@ -52,7 +53,7 @@ class SecurityService {
 	/**
 	* Share an item with a collaboration groups
 	*/
-	def share(item, group) {
+	def share(item, groups) {
 		def authManager = this.getAuthorizationManager()
 		
 		ProtectionElement pe = authManager.getProtectionElement(item.id.toString(), item.class.name)
@@ -64,8 +65,21 @@ class SecurityService {
 			pe.attribute = item.class.name
 			authManager.createProtectionElement(pe)
 		}
-		
-		authManager.assignProtectionElement(group, item.id.toString(), itemType)
+		groups.each{
+			authManager.assignProtectionElement(it, item.id.toString(), item.class.name)
+		}
+	}
+	
+	
+	def getCollaborationGroups(loginName){
+		def authManager = this.getAuthorizationManager()
+		def user = authManager.getUser(loginName)
+		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
+		def groupNames = []
+		groups.each{
+			groupNames << it.getProtectionGroupName()
+		}
+		return groupNames
 	}
 	
 	def getSharedItemIds(loginName, itemType) {
@@ -77,7 +91,7 @@ class SecurityService {
 			
 		}
 		elements = elements.flatten()
-		def ids = []
+		def ids = new HashSet()
 		elements.each {
 			if (itemType.equals(it.attribute))
 				ids << it.objectId
