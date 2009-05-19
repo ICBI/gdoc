@@ -1,4 +1,4 @@
-
+<strong>
 
 <html>
 <head>
@@ -6,12 +6,14 @@
 	<meta name="layout" content="main" />
 	<title>User Lists</title>
 	<g:javascript library="jquery"/>
+	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox-compressed.js')}"></script>
 	<script type="text/javascript">
-	function toggle(element){
-		$('#'+element+'_content').slideToggle();
-		$('.'+element+'_toggle').toggle();
-	}
-	</script>
+		function toggle(element){
+			$('#'+element+'_content').slideToggle();
+			$('.'+element+'_toggle').toggle();
+		}
+		</script>
+	
 </head>
 <body>
 	<div class="nav">
@@ -24,7 +26,6 @@
 		<g:if test="${flash.message}">
 		<div class="message">${flash.message}</div>
 	</g:if>
-
 
 
 	<g:if test="${userListInstanceList.size()>0}">
@@ -50,14 +51,25 @@
 							height="14" border="0" alt="Show/Hide" title="Show/Hide" style="display:none"/>
 						</div>
 						</div>
+						<g:if test="${session.userId.equals(userListInstance.author.loginName)}">
 						<div style="border:0px solid black;width:20%;float:right">	
 							<a href="javascript:void(0)" style="padding-right:11px">
 							<img alt="edit list" src="${createLinkTo(dir: 'images', file: 'pencil.png')}" /></a>
+							
+							
+							<g:link class="thickbox" name="Share &nbsp; ${userListInstance.name} &nbsp; with collaboration groups?" action="share" controller="share" 
+	params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" style="height: 18px;padding-right:20px" src="${createLinkTo(dir: 'images', file: 'share.png')}"/></a></g:link>
 
 							<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'deleteList',
 							id:userListInstance.id,update:userListInstance.name+'_div')}return false;}">
 							<img alt="delete list" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>
 						</div>
+						</g:if>
+						<g:else>
+						<div style="border:0px solid black;width:50%;float:right">	
+							Shared by: ${userListInstance.author.firstName}&nbsp;${userListInstance.author.lastName}&nbsp;(author)
+						</div>
+						</g:else>
 
 					
 					<div id="${userListInstance.name}_content" style="border:0px solid black;display:none;padding-bottom:5px">
@@ -89,3 +101,4 @@
 </div>
 </body>
 </html>
+</strong>

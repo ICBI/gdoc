@@ -6,6 +6,7 @@
     <title><g:layoutTitle /></title>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'grids.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'thickbox.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'jquery.tooltip.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'superfish.css')}"/>
