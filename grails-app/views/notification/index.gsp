@@ -38,7 +38,13 @@
 	<g:panel title="My Notifications" styleClass="notifications" contentClass="myPanelContent" id="notifications">
 		<g:render template="/notification/notificationTable" />
 	</g:panel>
-
+	<br/>
+	<g:panel title="My Gene Pattern Jobs" styleClass="notifications" contentClass="myPanelContent" id="jobs">
+		<form action="http://141.161.54.201:8080/gp/pages/index.jsf" method="POST" target="genepattern">
+			<input type="submit" value="Launch GenePattern"/>
+			<input type="hidden" name="workspaceId" value="${genePatternId()}" />
+		</form>
+	</g:panel>
 </body>
 
 </hmtl>

@@ -38,27 +38,32 @@ gdoc.appPropertiesFile="/local/content/gdoc/gdocApp.properties"
 environments {
     production {
         grails.serverURL = "http://www.changeme.com"
-		jmsserver = "jnp://141.161.30.205:1099"
+		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
+		genePatternUrl = "http://141.161.54.201:8080"
     }
     demo {
         grails.serverURL = "http://www.changeme.com"
-		jmsserver = "jnp://141.161.30.205:1099"
+		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
+		genePatternUrl = "http://141.161.54.201:8080"
     }
 	development {
 	//	jmsserver = "jnp://141.161.30.205:1099"
-		jmsserver = "jnp://141.161.30.205:1099"
- 		responseQueue = "AnalysisResponseKevin"
+		jmsserver = "jnp://localhost:1099"
+ 		responseQueue = "AnalysisResponseAndrew"
+		genePatternUrl = "http://141.161.54.201:8080"
 	}
 	test {
-		jmsserver = "jnp://141.161.30.205:1099"
- 		responseQueue = "AnalysisResponseKevin"
+		jmsserver = "jnp://localhost:1099"
+ 		responseQueue = "AnalysisResponseAndrew"
+		genePatternUrl = "http://141.161.54.201:8080"
 	}
 }
 // war file setup
 grails.war.destFile = "gdoc.war"
 grails.war.resources = {stagingDir ->
+	delete(file: "$stagingDir/WEB-INF/lib/jbossall-client.jar")
     delete(file: "$stagingDir/WEB-INF/lib/jbossall-client.jar")
 }
 // log4j configuration

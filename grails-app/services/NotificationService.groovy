@@ -33,10 +33,10 @@ class NotificationService {
 	def getNotifications(userId) {
 		def user = GDOCUser.findByLoginName(userId)
 		def groupAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name)
-		def groupAnalysis = SavedAnalysis.getAll(groupAnalysisIds)
+		//def groupAnalysis = SavedAnalysis.getAll(groupAnalysisIds)
 		def notifications = user.analysis
-		println "GROUP ANALYSIS: $groupAnalysis"
-		notifications.addAll(groupAnalysis)
+		//println "GROUP ANALYSIS: $groupAnalysis"
+		//notifications.addAll(groupAnalysis)
 		notifications = notifications.sort { one, two ->
 			def dateOne = new java.sql.Date(one.analysis.item.taskId.substring(one.analysis.item.taskId.indexOf('_') + 1).toLong())
 			def dateTwo = new java.sql.Date(two.analysis.item.taskId.substring(two.analysis.item.taskId.indexOf('_') + 1).toLong())

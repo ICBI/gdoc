@@ -6,18 +6,17 @@ load 'deploy'
 default_run_options[:pty] = true
 
 set :application, "gdoc"
-set :deploy_to, "/local"
+set :deploy_to, "/opt"
 
 if ENV["SERVER"] && ENV["SERVER"] == "prod"
   set :primary_server, "141.161.30.205"
   set :server_name, "prod"
 elsif !ENV["SERVER"] || ENV["SERVER"] == "demo"
-  set :primary_server, "141.161.30.205"
+  set :primary_server, "141.161.54.200"
   set :server_name, "demo"
 end
 
 server primary_server, :app, :web, :db, :primary => true
-
 set :scm, :none
 set :deploy_via, :copy
 set :repository do 
@@ -26,9 +25,9 @@ end
 
 set :war, "gdoc.war"
 # TOMCAT SERVERS
-set :jboss_home, "/local/jboss-4.2.3.GA"
-set :jboss_start, "/local/jboss-4.2.3.GA/bin/startJboss.sh"
-set :jboss_stop, "/local/jboss-4.2.3.GA/bin/stopJboss.sh"
+set :jboss_home, "/opt/jboss-4.2.3.GA"
+set :jboss_start, "#{jboss_home}/bin/startJboss.sh"
+set :jboss_stop, "#{jboss_home}/bin/shutdown.sh -S"
 
 # USER / SHELL
 set :user, "acs224" # the user to run remote commands as
@@ -45,7 +44,7 @@ end
 # you may need to create it and chown it over
 # to :user (e.g. chown -R robotuser:robotuser /u)
 set :deploy_to do 
-  "/local/#{application}"
+  "/opt/#{application}"
 end
 
 #

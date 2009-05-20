@@ -1,3 +1,5 @@
+import edu.georgetown.lombardi.gdoc.genepattern.EncryptionUtil
+
 class GdocTagLib {
 	def navigationLink = { attrs, body ->
 		if (attrs.controller == params.controller && !attrs.id){
@@ -21,5 +23,10 @@ class GdocTagLib {
 	
 	def flex = { attrs, body ->
 		out << render(template: '/common/flex_content', bean: [body: body, attrs: attrs])
+	}
+	
+	def genePatternId = { attrs ->
+		def encryptedId = EncryptionUtil.encrypt(session.userId)
+		out << encryptedId
 	}
 }
