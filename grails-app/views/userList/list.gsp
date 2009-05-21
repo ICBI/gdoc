@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="layout" content="main" />
+	<meta name="layout" content="listsMain" />
 	<title>User Lists</title>
 	<g:javascript library="jquery"/>
 	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox-compressed.js')}"></script>
@@ -29,7 +29,7 @@
 
 
 	<g:if test="${userListInstanceList.size()>0}">
-	<div class="list" id="test">
+	<div class="list" id="allLists">
 		<g:panel title="My Lists" styleClass="welcome" >
 		<table class="listTable" width="100%" cellpadding="5">
 			<tr>
@@ -96,7 +96,7 @@
 
 
 <div class="paginateButtons">
-	<g:paginate total="${UserList.count()}" />
+	<g:paginate total="${userListInstanceList.size()}" />
 </div>
 </div>
 </body>

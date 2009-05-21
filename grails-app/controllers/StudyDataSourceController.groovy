@@ -24,6 +24,9 @@ class StudyDataSourceController {
 		} else {
 			otherStudies.remove(myStudies)
 		}
+		def sharedLists = []
+		sharedLists = securityService.getSharedItemIds(session.userId, UserList.class.name)
+		session.sharedListIds = sharedLists
 		session.myStudies = myStudies
 		session.myCollaborationGroups = myCollaborationGroups
 	}

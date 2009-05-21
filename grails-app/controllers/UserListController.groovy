@@ -9,8 +9,7 @@ class UserListController {
         if(!params.max) params.max = 10
 		def lists = GDOCUser.findByLoginName(session.userId).lists()
 		def listIds = []
-		def sharedListIds = securityService.getSharedItemIds(session.userId, UserList.class.name)
-		println "befre " + sharedListIds
+		def sharedListIds = session.sharedListIds//securityService.getSharedItemIds(session.userId, UserList.class.name)
 		if(lists.metaClass.respondsTo(lists, "size")) {
 				lists.each{
 					listIds << it.id.toString()
@@ -18,13 +17,11 @@ class UserListController {
 		} else {
 				listIds << lists.id.toString()
 		}
-		println "before listids " + listIds
 		if(sharedListIds.metaClass.respondsTo(sharedListIds, "size")) {
 				sharedListIds.removeAll(listIds)
 		} else {
 				sharedListIds.remove(listIds)
-		}
-		print "after " + sharedListIds
+		}	
 		def sharedLists = []
 		//until we modify ui, just add shared lists to 'all' lists
 		sharedListIds.each{
@@ -180,4 +177,30 @@ class UserListController {
 	     }
 		
 	}
+	
+		/** move to list service **/
+	def join = { 
+		if(params["listAction"].equals('intersect')){
+			println "intersect lists:"
+			params["userListId"].each{
+				println it
+			}
+		}
+		if(params["listAction"].equals('join')){
+			println "join lists:"
+			params["userListId"].each{
+				println it
+			}
+		}
+		if(params["listAction"].equals('diff')){
+			println "diff lists:"
+			params["userListId"].each{
+				println it
+			}
+		}
+		redirect(action:list,params:params)
+	}
+	
+
+	
 }
