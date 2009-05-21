@@ -1,7 +1,8 @@
 class GenePatternCommand {
 
 	List groups
-	String dataFile
+	String dataFile = "EdinPlier_22APR2009.Rda"
+	String analysisName
 	
 	static constraints = {
 		groups(validator: { val, obj ->
@@ -16,6 +17,7 @@ class GenePatternCommand {
 			}
 			return true
 		})
+		analysisName(blank:false)
 	}
 	
 }

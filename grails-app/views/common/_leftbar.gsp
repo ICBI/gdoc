@@ -60,11 +60,9 @@ jQuery(document).ready(function()
 				<li>
 					<a class="sf-with-ul" href="#">Gene Pattern<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
-						<g:each in="${session.myStudies}">
 							<li>
-								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="genePattern" />
+								<g:navigationLink name="EDINBURGH" id="101" controller="genePattern" />
 							</li>
-						</g:each>
 					</ul>
 				</li>							
 			</ul>			

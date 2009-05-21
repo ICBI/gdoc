@@ -6,6 +6,25 @@
 </head>
 <body>
 	<g:javascript library="jquery"/>
+	<jq:plugin name="flydisk" />
+	<g:javascript>
+		$(document).ready(function() {
+
+				jQuery().flydisk({ selectedColor:"#eee",                       //BgColor of selected items(Default: white) 
+				left_disk:'left',                 //Id of left drop down list (Mandatory)
+				right_disk:'right',               //Id of right drop down list(Mandatory)
+				add_button: 'Add',                //Id of Add button            ,, 
+				remove_button: 'Remove',          //Id of Remove ,,           (Mandatory)  
+				up_button : 'Up',                 //Id of Up     ,,           (Optional)
+				down_button: 'Down',              //Id of Down   ,,    
+				move_all_button :'move_all',      //Id of Move  all button        ,,     
+				remove_all_button :'remove_all',  //Id of Remove  ,,              ,,
+				move_top_button   : 'move_top',   //Id of Move top button         ,,
+				move_bottom_button: 'move_bottom' //Id of Move bottom ,,          ,,  
+			});  
+		});
+
+	</g:javascript>
 	<p style="font-size:14pt">Submit GenePattern Analysis</p>
 	<br/>
 	<g:form name="genePatternForm" action="submit">
@@ -57,6 +76,11 @@
 		<g:select name="dataFile" 
 				from="${[[display:'PLIER Normalized', value:'EdinPlier_22APR2009.Rda']]}"
 				optionKey="value" optionValue="display"/>
+		<br/>
+		<br/>
+		Analysis Name:
+		<br/>
+		<g:validationInput name="analysisName"/>
 		<br/>
 	</div>
 	<br/>

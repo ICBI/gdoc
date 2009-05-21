@@ -41,23 +41,27 @@ environments {
 		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "http://141.161.54.201:8080"
+		tempDir = "/opt/gdoc-temp"
     }
     demo {
         grails.serverURL = "http://www.changeme.com"
 		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "http://141.161.54.201:8080"
+		tempDir = "/opt/gdoc-temp"
     }
 	development {
 	//	jmsserver = "jnp://141.161.30.205:1099"
 		jmsserver = "jnp://localhost:1099"
  		responseQueue = "AnalysisResponseAndrew"
 		genePatternUrl = "http://141.161.54.201:8080"
+		tempDir = "/local/content/gdoc"
 	}
 	test {
 		jmsserver = "jnp://localhost:1099"
  		responseQueue = "AnalysisResponseAndrew"
 		genePatternUrl = "http://141.161.54.201:8080"
+		tempDir = "/local/content/gdoc"
 	}
 }
 // war file setup
