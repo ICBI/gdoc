@@ -23,14 +23,22 @@
 						if(allStats && allStats.length == 0) {
 							clearInterval(refreshId);
 						}
+						addClickHandler();
 					},
 					error: function(data) {
 						clearInterval(refreshId);
 					}
 				});
 		  }, 2000);
-
+			addClickHandler();
 		});
+		
+		function addClickHandler() {
+			jQuery('.genePatternLink').click(function() {
+				jQuery('#gpForm').submit();
+				return false;
+			})
+		}
 		
 	</g:javascript>
 	<p style="font-size:14pt">Notifications</p>
@@ -39,12 +47,9 @@
 		<g:render template="/notification/notificationTable" />
 	</g:panel>
 	<br/>
-	<g:panel title="My Gene Pattern Jobs" styleClass="notifications" contentClass="myPanelContent" id="jobs">
-		<form action="http://141.161.54.201:8080/gp/pages/index.jsf" method="POST" target="genepattern">
-			<input type="submit" value="Launch GenePattern"/>
+		<form id="gpForm" action="http://141.161.54.201:8080/gp/pages/index.jsf" method="POST" target="genepattern">
 			<input type="hidden" name="workspaceId" value="${genePatternId()}" />
 		</form>
-	</g:panel>
 </body>
 
 </hmtl>

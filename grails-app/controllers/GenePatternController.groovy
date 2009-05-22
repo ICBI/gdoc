@@ -20,7 +20,11 @@ class GenePatternController {
 			flash['cmd'] = cmd
 			redirect(action:'index')
 		} else {
-			genePatternService.submitJob(session.userId, cmd)
+			def jobId = genePatternService.submitJob(session.userId, cmd)
+			if(!session.genePatternJobs) {
+				session.genePatternJobs = []
+			} 
+			session.genePatternJobs << [jobId: jobId, complete: false, dateCreated: new Date()]
 			redirect(controller:'notification')
 		}
 	}

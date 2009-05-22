@@ -76,6 +76,9 @@ jQuery(document).ready(function()
 								</li>
 							</g:if>
 						</g:each>
+						<li>
+							<a href="#" >GenePattern Home</a>
+						</li>
 					</ul>
 				</li>							
 			</ul>			

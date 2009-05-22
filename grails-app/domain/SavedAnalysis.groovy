@@ -16,6 +16,8 @@ class SavedAnalysis implements Taggable {
 	String analysisData
 	String queryData
 	GDOCUser author
+	Date dateCreated
+	Date lastUpdated
 	
 	public Object getAnalysis() {
 		if(this.@analysis) {

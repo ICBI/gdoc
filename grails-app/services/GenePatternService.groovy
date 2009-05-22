@@ -30,7 +30,16 @@ class GenePatternService {
 		parameters[5] = new Parameter("analysis.name", "${cmd.analysisName}");
 		parameters[6] = new Parameter("output.cls.file", "${cmd.analysisName}");
 		parameters[7] = new Parameter("output.gct.file", "${cmd.analysisName}.gct");
-	 	def preprocess = gpClient.runAnalysisNoWait("ConvertToGctAndClsFile", parameters)
+	 	return gpClient.runAnalysisNoWait("ConvertToGctAndClsFile", parameters)
+	}
+	
+	def checkJobs(userId, jobs) {
+		GPClient gpClient = new GPClient(CH.config.genePatternUrl, userId, "gp2009");
+		jobs.each { job ->
+			def jobStatus = gpClient.isComplete(job.jobId)
+			job.complete = jobStatus
+		}
+		return jobs
 	}
 	
 	/*
