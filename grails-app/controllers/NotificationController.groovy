@@ -27,8 +27,12 @@ class NotificationController {
 	
 	def buildNotifications = {
 		def notifications = []
-		notifications.addAll(savedAnalysisService.getAllSavedAnalysis(session.userId))
-		notifications.addAll(genePatternService.checkJobs(session.userId, session.genePatternJobs))
+		def savedAnalysis = savedAnalysisService.getAllSavedAnalysis(session.userId)
+		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
+		if(savedAnalysis)
+			notifications.addAll(savedAnalysis)
+		if(gpJobs)
+			notifications.addAll(gpJobs)
 		notifications = notifications.sort { one, two ->
 			def dateOne = one.dateCreated
 			def dateTwo = two.dateCreated
