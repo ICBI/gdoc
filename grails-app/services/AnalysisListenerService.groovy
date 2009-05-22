@@ -8,7 +8,7 @@ class AnalysisListenerService {
 
 	static destination = "${CH.config.responseQueue}"
 	
-	def notificationService
+	def savedAnalysisService
 	
 	def onMessage(message) {
 		
@@ -16,10 +16,10 @@ class AnalysisListenerService {
 		def item
 		if(message instanceof AnalysisResult) {
 			item = ["status": "Complete", "item" : message]
-			notificationService.updateNotification(message.sessionId, item)
+			savedAnalysisService.updateSavedAnalysis(message.sessionId, item)
 		} else {
 			item = ["status": "Error", "item" : message.failedRequest]
-			notificationService.updateNotification(message.failedRequest.sessionId, item)
+			savedAnalysisService.updateSavedAnalysis(message.failedRequest.sessionId, item)
 		}
 		
 		

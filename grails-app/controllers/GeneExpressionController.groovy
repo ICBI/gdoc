@@ -3,7 +3,7 @@ import grails.converters.*
 class GeneExpressionController {
 
 	def analysisService
-	def notificationService
+	def savedAnalysisService
 	def idService
 	def fileBasedAnnotationService
 	
@@ -29,7 +29,7 @@ class GeneExpressionController {
 	
 	def view = {
 		def expressionValues = []
-		session.results = notificationService.getNotification(session.userId, params.id)
+		session.results = savedAnalysisService.getSavedAnalysis(session.userId, params.id)
 		println session.results
 		def sampleReporter = [:]
 		println "VECTORS: " + session.results.analysis.item

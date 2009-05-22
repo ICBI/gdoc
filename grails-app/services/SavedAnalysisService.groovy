@@ -1,11 +1,10 @@
 import grails.converters.*
 
-class NotificationService {
+class SavedAnalysisService {
 	
 	def securityService
-	def notifications = [:]
 	
-	def addNotification(userId, notification, command) {
+	def addSavedAnalysis(userId, notification, command) {
 		def user = GDOCUser.findByLoginName(userId)
 		println "GOT NOTIFICATION $notification"
 		println notification.item.taskId
@@ -18,8 +17,8 @@ class NotificationService {
 		newAnalysis.save(flush:true)
 	}
 	
-	def updateNotification(userId, notification) {
-		def runningAnalysis = getNotification(userId, notification.item.taskId)
+	def updateSavedAnalysis(userId, notification) {
+		def runningAnalysis = getSavedAnalysis(userId, notification.item.taskId)
 		if(runningAnalysis) {
 			println "UPDATING ANALYSIS $notification"
 			def data = notification as AnalysisJSON
@@ -30,7 +29,7 @@ class NotificationService {
 		}
 	}
 	
-	def getNotifications(userId) {
+	def getAllSavedAnalysis(userId) {
 		def user = GDOCUser.findByLoginName(userId)
 		def groupAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name)
 		//def groupAnalysis = SavedAnalysis.getAll(groupAnalysisIds)
@@ -46,7 +45,7 @@ class NotificationService {
 		return notifications
 	}
 	
-	def deleteNotification(userId, taskId) {
+	def deleteSavedAnalysis(userId, taskId) {
 		def user = GDOCUser.findByLoginName(userId)
 		def analysis = user.analysis
 		def toDelete = analysis.find {
@@ -58,7 +57,7 @@ class NotificationService {
 		}
 	}
 	
-	def getNotification(userId, taskId) {
+	def getSavedAnalysis(userId, taskId) {
 		def user = GDOCUser.findByLoginName(userId)
 		user.refresh()
 		def analysis = user.analysis

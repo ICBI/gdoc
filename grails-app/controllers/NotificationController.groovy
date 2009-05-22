@@ -1,25 +1,25 @@
 class NotificationController {
 
-	def notificationService
+	def savedAnalysisService
 	def securityService
 	
     def index = { 
-		session.notifications = notificationService.getNotifications(session.userId)
+		session.notifications = savedAnalysisService.getAllSavedAnalysis(session.userId)
 	}
 	
 	def check = {
-		session.notifications = notificationService.getNotifications(session.userId)
+		session.notifications = savedAnalysisService.getAllSavedAnalysis(session.userId)
 		render(template:"/notification/notificationTable")
 	}
 	
 	def delete = {
-		notificationService.deleteNotification(session.userId, params.id)
-		session.notifications = notificationService.getNotifications(session.userId)
+		savedAnalysisService.deleteSavedAnalysis(session.userId, params.id)
+		session.notifications = savedAnalysisService.getAllSavedAnalysis(session.userId)
 		render(template:"/notification/notificationTable")
 	}
 	
 	def share = {
-		def notification = notificationService.getNotification(session.userId, params.id)
+		def notification = savedAnalysisService.getSavedAnalysis(session.userId, params.id)
 		securityService.share(notification, "DEVELOPERS")
 	}
 }

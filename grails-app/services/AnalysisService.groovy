@@ -10,7 +10,7 @@ class AnalysisService {
 
 	def receiveQueue
 	def jmsTemplate
-	def notificationService
+	def savedAnalysisService
 	def idService
 	 
 	def strategies = [
@@ -64,7 +64,7 @@ class AnalysisService {
 				}
 			] as MessageCreator)
 			def item = ["status": "Running", "item": request]
-			notificationService.addNotification(userId, item, command)
+			savedAnalysisService.addSavedAnalysis(userId, item, command)
 			println "after send"
 		} catch (Exception e) {
 			println "Failed to send request for test" + e

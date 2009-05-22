@@ -6,7 +6,7 @@ import java.math.*
 class AnalysisController {
 
 	def analysisService
-	def notificationService
+	def savedAnalysisService
 	def fileBasedAnnotationService
 	
     def index = {
@@ -38,7 +38,7 @@ class AnalysisController {
 	
 	def view = {
 		def taskId = params.id
-		def notification = notificationService.getNotifications(session.userId).find { 
+		def notification = savedAnalysisService.getAllSavedAnalysis(session.userId).find { 
 			it.analysis.item.taskId == taskId 
 		}
 		session.results = notification.analysis.item
