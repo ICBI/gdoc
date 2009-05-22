@@ -6,6 +6,8 @@ class StudyDataSource {
 		id column:'data_source_id'
 		abstractText column: 'abstract'
 	}
+	static transients = [ "genomicData"]
+	
 	String shortName
 	String longName
 	String abstractText
@@ -17,4 +19,17 @@ class StudyDataSource {
 	String contactFirstName
 	String schemaName
 	String contact_email
+	Boolean genomicData
+	
+	public Boolean getGenomicData() {
+		if(this.@genomicData) {
+			return this.@genomicData
+		}
+		def tempStudy = StudyContext.getStudy()
+		StudyContext.setStudy(this.schemaName)
+		def rBinaryFiles = MicroarrayFile.findByNameLike("%.Rda")
+		StudyContext.setStudy(tempStudy)
+		this.@genomicData = (rBinaryFiles) 
+		return this.@genomicData
+	}
 }
