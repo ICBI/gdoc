@@ -91,10 +91,12 @@ class SecurityService {
 			
 		}
 		elements = elements.flatten()
-		def ids = new HashSet()
+		def ids = []
 		elements.each {
 			if (itemType.equals(it.attribute))
-				ids << it.objectId
+				if(ids!=null && !ids.contains(it.objectId)){
+					ids << it.objectId
+				}
 		}
 		return ids
 	}

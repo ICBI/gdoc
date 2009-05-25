@@ -57,6 +57,14 @@ class SavedAnalysisService {
 		}
 	}
 	
+	def deleteAnalysis(analysisId) {
+		println "delete analysis: " + analysisId
+		def analysis = SavedAnalysis.get(analysisId)
+		if(analysis) {
+			analysis.delete(flush: true)
+		}
+	}
+	
 	def getSavedAnalysis(userId, taskId) {
 		def user = GDOCUser.findByLoginName(userId)
 		user.refresh()
@@ -64,7 +72,14 @@ class SavedAnalysisService {
 		def item =  analysis.find {
 			it.analysis.item.taskId == taskId
 		}
-		item.refresh()
+		if(item){
+			item.refresh()
+		}
+		return item
+	}
+	
+	def getSavedAnalysis(analysisId) {
+		def item = SavedAnalysis.get(analysisId)
 		return item
 	}
 }

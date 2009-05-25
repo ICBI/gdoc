@@ -23,6 +23,7 @@ def shareItem = {
 	
 	if(params.type.equals(Constants.SAVED_ANALYSIS)){
 		print 'share saved analysis: ' + params.itemId
+		item = SavedAnalysis.get(params.itemId)
 	}
 	if(params.type.equals(Constants.USER_LIST)){
 		print 'share user list: ' + params.itemId

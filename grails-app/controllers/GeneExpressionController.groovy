@@ -27,9 +27,18 @@ class GeneExpressionController {
 		}
 	}
 	
+	
 	def view = {
 		def expressionValues = []
+		//TODO - refactor to always use analysis ID -- 
+		//if savedId is passed, retrieve the analysis bu its id. If not
+		//use the id param, as it refers to a task id (may need to refactor)
+		if(params.savedId){
+			session.results = savedAnalysisService.getSavedAnalysis(params.savedId)
+		}
+		else{
 		session.results = savedAnalysisService.getSavedAnalysis(session.userId, params.id)
+		}
 		println session.results
 		def sampleReporter = [:]
 		println "VECTORS: " + session.results.analysis.item

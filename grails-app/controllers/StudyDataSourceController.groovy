@@ -24,9 +24,16 @@ class StudyDataSourceController {
 		} else {
 			otherStudies.remove(myStudies)
 		}
+		//TODO -- move these session based variables out into security service or util class
+		//get shared lists
 		def sharedLists = []
 		sharedLists = securityService.getSharedItemIds(session.userId, UserList.class.name)
 		session.sharedListIds = sharedLists
+		//get shared anaylysis
+		def sharedAnalysisIds = []
+		sharedAnalysisIds = securityService.getSharedItemIds(session.userId, SavedAnalysis.class.name)
+		session.sharedAnalysisIds = sharedAnalysisIds
+		
 		session.myStudies = myStudies
 		session.myCollaborationGroups = myCollaborationGroups
 	}

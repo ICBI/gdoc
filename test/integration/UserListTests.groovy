@@ -47,4 +47,18 @@ class UserListTests extends GroovyTestCase {
 		println "Difference: " + diff
 		
 	}
+	
+	void testVenn(){
+		def list= ['VEGF','EGFR','BRCA1','ER+','ER-','FCR','HGI']
+		def list2= ['VEGF','EGFR','BRCA1','SCF7', 'QSR6','HGI']
+		def tmp = list as Set
+		println "List count before: " + tmp.size()
+		list.retainAll( list2 )
+		println "List count after: " + list.size()
+		def pct = (list.size() / tmp.size())*100
+		
+		println "pct: " + pct.intValue()
+		
+		
+	}
 }

@@ -37,11 +37,20 @@ class AnalysisController {
 	}
 	
 	def view = {
-		def taskId = params.id
-		def notification = savedAnalysisService.getAllSavedAnalysis(session.userId).find { 
-			it.analysis.item.taskId == taskId 
+		//TODO - if savedId is passed, retrieve the analysis by its actual 'id'. If not,
+		//use the id param, as it refers to a task id (may need to refactor)
+		if(params.savedId){
+			def analysisResult = savedAnalysisService.getSavedAnalysis(params.savedId)
+			session.results = analysisResult.analysis.item
 		}
-		session.results = notification.analysis.item
+		else{
+		session.results = savedAnalysisService.getSavedAnalysis(session.userId, params.id)
+			def taskId = params.id
+			def notification = savedAnalysisService.getAllSavedAnalysis(session.userId).find { 
+			it.analysis.item.taskId == taskId 
+			session.results = notification.analysis.item
+			}
+		}
 		def columns = []
 		def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
 		columns << [index: "reporterId", name: "Reporter ID", sortable: true, width: '100']
