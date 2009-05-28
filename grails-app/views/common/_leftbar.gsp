@@ -6,6 +6,10 @@ jQuery(document).ready(function()
 		animation: {height:'show'},   // slide-down effect without fade-in 
 		delay:     1200               // 1.2 second delay on mouseout 
 	});
+	jQuery('.genePatternLink').click(function() {
+		jQuery('#gpForm').submit();
+		return false;
+	})
 });
 </g:javascript>
 <jq:plugin name="superfish"/>
@@ -77,7 +81,7 @@ jQuery(document).ready(function()
 							</g:if>
 						</g:each>
 						<li>
-							<a href="#" >GenePattern Home</a>
+							<a href="#" class="genePatternLink">GenePattern Home</a>
 						</li>
 					</ul>
 				</li>							
@@ -88,7 +92,9 @@ jQuery(document).ready(function()
 			<a href="#">Help</a>
 		</li>		
 	</ul>
-
+	<form id="gpForm" action="http://141.161.54.201:8080/gp/pages/index.jsf" method="POST" target="genepattern">
+		<input type="hidden" name="workspaceId" value="${genePatternId()}" />
+	</form>
 </div>
 
 
