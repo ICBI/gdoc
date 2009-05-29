@@ -4,7 +4,7 @@ class GeneExpressionCommand {
 	String geneName
 	String dataFile = "EdinPlier_22APR2009.Rda"
 	AnalysisType requestType = (AnalysisType.GENE_EXPRESSION)
-	def fileBasedAnnotationService
+	def annotationService
 	
 	static constraints = {
 		groups(validator: { val, obj ->
@@ -14,7 +14,7 @@ class GeneExpressionCommand {
 			return true
 		})
 		geneName(blank:false, validator: {val, obj ->
-			def reporters = obj.fileBasedAnnotationService.findReportersForGene(val)
+			def reporters = obj.annotationService.findReportersForGene(val)
 			if(!reporters) {
 				return "custom.gene"
 			}

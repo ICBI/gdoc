@@ -11,6 +11,7 @@ class AnalysisService {
 	def receiveQueue
 	def jmsTemplate
 	def savedAnalysisService
+	def annotationService
 	def idService
 	 
 	def strategies = [
@@ -38,7 +39,7 @@ class AnalysisService {
 			def sampleGroup = new SampleGroup()
 			sampleGroup.addAll(idService.binaryFileIds)
 			def reporterGroup = new ReporterGroup()
-			reporterGroup.addAll(["1565483_at", "1565484_x_at", "201983_s_at", "201984_s_at", "210984_x_at"])
+			reporterGroup.addAll(annotationService.findReportersForGene(cmd.geneName))
 			request.reporters = reporterGroup
 			return request
 		}

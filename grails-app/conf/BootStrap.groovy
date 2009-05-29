@@ -34,6 +34,7 @@ class BootStrap {
 	   	}
 	
 		// Initialize annotation service
+		/*
 	 	InputStream stream = servletContext.getResourceAsStream("/WEB-INF/data/Affy_U133Plus2_reporter_symbol_entrezid.tab")
 		def annotations = [:]
 		stream.eachLine { line ->
@@ -45,9 +46,10 @@ class BootStrap {
 		ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
 		def annotationService = ctx.getBean("fileBasedAnnotationService")
 		annotationService.annotations = annotations
-		
+		*/
 		//Initialize sample ids
-		stream = servletContext.getResourceAsStream("/WEB-INF/data/SampleIds.txt")
+		ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
+		InputStream stream = servletContext.getResourceAsStream("/WEB-INF/data/SampleIds.txt")
 		def sampleIds = []
 	 	stream.eachLine { line ->
 			sampleIds = line.split('\t')

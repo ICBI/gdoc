@@ -9,7 +9,7 @@ class SavedAnalysisService {
 		println "GOT NOTIFICATION $notification"
 		println notification.item.taskId
 		def params = command.properties
-		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'fileBasedAnnotationService', 'requestType'] as Set )
+		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType'] as Set )
 		println "PARAMS: $params"
 		def json = params as JSON
 		println "COMMAND $json" 
