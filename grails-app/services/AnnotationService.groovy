@@ -13,4 +13,9 @@ class AnnotationService {
 		return reporterNames
 	}
 	
+	def findGeneForReporter(reporterId) {
+		def reporter = Reporter.findByName(reporterId)
+		return reporter.geneSymbol
+	}
+	
 }

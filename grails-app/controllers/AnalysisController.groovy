@@ -7,7 +7,7 @@ class AnalysisController {
 
 	def analysisService
 	def savedAnalysisService
-	def fileBasedAnnotationService
+	def annotationService
 	
     def index = {
 		session.study = StudyDataSource.findByShortName("EDINBURGH")
@@ -44,12 +44,13 @@ class AnalysisController {
 			session.results = analysisResult.analysis.item
 		}
 		else{
-		session.results = savedAnalysisService.getSavedAnalysis(session.userId, params.id)
+			session.results = savedAnalysisService.getSavedAnalysis(session.userId, params.id)
 			def taskId = params.id
 			def notification = savedAnalysisService.getAllSavedAnalysis(session.userId).find { 
-			it.analysis.item.taskId == taskId 
-			session.results = notification.analysis.item
+				it.analysis.item.taskId == taskId 
 			}
+			session.results = notification.analysis.item
+			
 		}
 		def columns = []
 		def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
@@ -83,7 +84,7 @@ class AnalysisController {
 		}
 		sortedEntries.getAt(startIndex..<endIndex).each { result ->
 			def cells = []
-			def geneName = fileBasedAnnotationService.annotations[result.reporterId]
+			def geneName = annotationService.findGeneForReporter(result.reporterId)
 			cells << result.reporterId
 			def formatter = new DecimalFormat("0.#####E0");
 			cells << formatter.format(result.pvalue).replace('E', ' x 10<sup>') + '</sup>'
