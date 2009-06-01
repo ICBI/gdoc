@@ -17,6 +17,19 @@ class SavedAnalysisService {
 		newAnalysis.save(flush:true)
 	}
 	
+	def saveAnalysisResult(userId, result, command){
+		def user = GDOCUser.findByLoginName(userId)
+		//println ("THE RESULT:")
+		//println result
+		//println ("THE COMMAND PARAMS:")
+		def params = command.properties
+		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'requestType'] as Set )
+		println "going to send: " + command.requestType + ", " + params + ", " + result + ", " + user
+		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user)
+		newAnalysis.save(flush:true)
+	}
+	
+	
 	def updateSavedAnalysis(userId, notification) {
 		def runningAnalysis = getSavedAnalysis(userId, notification.item.taskId)
 		if(runningAnalysis) {
@@ -57,15 +70,22 @@ class SavedAnalysisService {
 	}
 	
 	def getSavedAnalysis(userId, taskId) {
+		println "TASK ID to look for:  $taskId"
 		def user = GDOCUser.findByLoginName(userId)
+		println "GOT USER:  $user"
+		def analysis=[]
+		analysis = user.analysis
+		println "ANALYSIS COUNT BEFORE REFRESH:  $analysis"
 		user.refresh()
-		def analysis = user.analysis
-		def item =  analysis.find {
-			it.analysis.item.taskId == taskId
+		def analysis2 = user.analysis
+		println "ANALYSIS COUNT AFTER REFRESH:  $analysis2"
+		def item =  analysis.find{
+			it.analysis.item!=null && it.analysis.item.taskId == taskId
 		}
 		if(item){
 			item.refresh()
 		}
+		println "GOT ITEM= $item"
 		return item
 	}
 	

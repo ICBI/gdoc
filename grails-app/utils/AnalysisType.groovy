@@ -1,5 +1,5 @@
 public enum AnalysisType {
-	KM,
+	KM_PLOT,
 	CLASS_COMPARISON, 
 	GENE_EXPRESSION;
 

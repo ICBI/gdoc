@@ -5,6 +5,7 @@ class KmController {
 	def kmService 
 	def patientService
 	def endpoints
+	def savedAnalysisService
 	
     def index = {
 		if(params.id) {
@@ -36,9 +37,24 @@ class KmController {
 			session.selectedLists = selectedLists
 		}
 	}
-
+	
+	//This method strictly repoluates a KM plot. It does not retieve live data,
+	//simply data stored at the time of persistance. For this reason,
+	//there is no need to grab the lists from database and recalc the results,
+	//as this has already been done. 
+	def repopulateKM = {
+		session.savedKM = params.savedId
+	}
+	
+	//TODO - decide if we always want to auto-save KM plots. Right now, we do not. They must implicitly call 'save'.
 	def view = { 
-		
+		if(session.savedKM){
+			def analysis = savedAnalysisService.getSavedAnalysis(session.savedKM)
+			println analysis.analysisData
+			session.savedKM = null
+			render analysis.analysisData
+		}
+		else{
 		def groups = [:]
 		def cmd = session.command
 		def sampleGroups = []
@@ -79,5 +95,6 @@ class KmController {
 		println "PVALUE $pvalue"
 		groups["pvalue"] = pvalue
 		render groups as JSON
+	}
 	}
 }

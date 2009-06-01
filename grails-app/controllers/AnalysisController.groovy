@@ -47,7 +47,7 @@ class AnalysisController {
 			session.results = savedAnalysisService.getSavedAnalysis(session.userId, params.id)
 			def taskId = params.id
 			def notification = savedAnalysisService.getAllSavedAnalysis(session.userId).find { 
-				it.analysis.item.taskId == taskId 
+				it.analysis.item!=null && it.analysis.item.taskId == taskId
 			}
 			session.results = notification.analysis.item
 			

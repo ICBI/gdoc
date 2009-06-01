@@ -2,6 +2,7 @@ class KmCommand {
 
 	List groups
 	String endpoint
+	AnalysisType requestType = (AnalysisType.KM_PLOT)
 	
 	static constraints = {
 		groups(validator: { val, obj ->

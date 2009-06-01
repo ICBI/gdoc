@@ -22,7 +22,7 @@
 </div>
 <div style="float:right;">
 	<div>welcome,${session.userId}</div>
-	<div><g:remoteLink action="logout" controller="login" id="1" update="success"  onLoading="showSpinner();">logout</g:remoteLink></div>
+	<div><g:remoteLink action="logout" controller="login" update="success"  onLoading="showSpinner();">logout</g:remoteLink></div>
 </div>
 </g:else>
 

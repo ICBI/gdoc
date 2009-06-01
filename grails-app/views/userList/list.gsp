@@ -40,9 +40,10 @@
 						<div id="${userListInstance.name}_title" style="border:0px solid black;height: 20px; cursor: pointer;"
 						onclick="toggle('${userListInstance.name}');">
 						<div style="border:0px solid black;width:30%;float:left">	
-							<b>${fieldValue(bean:userListInstance, field:'name')}</b>
+							<b>${fieldValue(bean:userListInstance, field:'name')} </b>
 						</div>
 						<div style="border:0px solid black;float:left; vertical-align: top">
+							
 							<img class="${userListInstance.name}_toggle"src="${createLinkTo(dir: 'images', file: 'expand.gif')}"
 							width="13"
 							height="14" border="0" alt="Show/Hide" title="Show/Hide" />
@@ -50,6 +51,7 @@
 							width="13"
 							height="14" border="0" alt="Show/Hide" title="Show/Hide" style="display:none"/>
 						</div>
+						<span style="float:right"><g:formatDate date="${userListInstance.dateCreated}" format="h:mm M/dd/yyyy"/></span>
 						</div>
 						<g:if test="${session.userId.equals(userListInstance.author.loginName)}">
 						<div style="border:0px solid black;width:20%;float:right">	

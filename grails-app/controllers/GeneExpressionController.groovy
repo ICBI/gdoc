@@ -71,8 +71,8 @@ class GeneExpressionController {
 		session.expressionValues = expressionValues
 	}
 	
-	def results = {
-		
+	
+	def results = {	
 		render session.expressionValues as JSON
 	}
 }

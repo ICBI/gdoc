@@ -15,7 +15,7 @@ class NotificationController {
 	}
 	
 	def delete = {
-		savedAnalysisService.deleteSavedAnalysis(session.userId, params.id)
+		savedAnalysisService.deleteAnalysis(params.id)
 		buildNotifications()
 		render(template:"/notification/notificationTable")
 	}
@@ -27,7 +27,18 @@ class NotificationController {
 	
 	def buildNotifications = {
 		def notifications = []
-		def savedAnalysis = savedAnalysisService.getAllSavedAnalysis(session.userId)
+		def savedAnalysis = []
+		savedAnalysis = savedAnalysisService.getAllSavedAnalysis(session.userId)
+		//filter out analysis that are not retrieved asynchronously
+		def removeable = []
+		/**savedAnalysis.findAll{ s -> 
+			if(s.type == AnalysisType.KM_PLOT){
+			println "add to removeable " + s
+			removeable << s
+			}
+		}
+		savedAnalysis.removeAll(removeable)**/
+		
 		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
 		if(savedAnalysis)
 			notifications.addAll(savedAnalysis)

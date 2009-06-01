@@ -30,7 +30,11 @@ class UserListController {
 				lists << foundList
 			}
 		}
-		//lists << sharedLists	
+		lists = lists.sort { one, two ->
+			def dateOne = one.dateCreated
+			def dateTwo = two.dateCreated
+			return dateTwo.compareTo(dateOne)
+		}	
         [ userListInstanceList: lists, sharedListInstanceList: sharedLists ]
     }
 
