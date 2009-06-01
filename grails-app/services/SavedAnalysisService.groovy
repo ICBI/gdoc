@@ -70,22 +70,17 @@ class SavedAnalysisService {
 	}
 	
 	def getSavedAnalysis(userId, taskId) {
-		println "TASK ID to look for:  $taskId"
 		def user = GDOCUser.findByLoginName(userId)
-		println "GOT USER:  $user"
 		def analysis=[]
 		analysis = user.analysis
-		println "ANALYSIS COUNT BEFORE REFRESH:  $analysis"
 		user.refresh()
 		def analysis2 = user.analysis
-		println "ANALYSIS COUNT AFTER REFRESH:  $analysis2"
 		def item =  analysis.find{
 			it.analysis.item!=null && it.analysis.item.taskId == taskId
 		}
 		if(item){
 			item.refresh()
 		}
-		println "GOT ITEM= $item"
 		return item
 	}
 	
