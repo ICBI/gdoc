@@ -32,9 +32,13 @@ def shareItem = {
 	if(item){
 		securityService.share(item, groups)
 	}
-	flash.message = params.name + "has been shared with: "
-	groups.each{
-		flash.message+=it + " | "
+	flash.message = params.name + " has been shared with: "
+	for(int i=0;i<groups.size();i++){
+		if((i+1)==groups.size()){
+			flash.message+=groups[i]
+		}else{
+			flash.message+=groups[i] + " , "
+		}
 	}
 	redirect(action:share,params:[success:true,groups:groups,name:params.name])
 	}
