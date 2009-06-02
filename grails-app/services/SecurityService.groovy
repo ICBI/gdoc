@@ -2,6 +2,7 @@ import gov.nih.nci.security.SecurityServiceProvider;
 import gov.nih.nci.security.AuthenticationManager;
 import gov.nih.nci.security.AuthorizationManager;
 import gov.nih.nci.security.exceptions.CSException
+import gov.nih.nci.security.exceptions.CSObjectNotFoundException
 import gov.nih.nci.security.authorization.domainobjects.ProtectionElement
 import gov.nih.nci.security.authorization.domainobjects.ProtectionGroup
 
@@ -68,6 +69,32 @@ class SecurityService {
 		groups.each{
 			authManager.assignProtectionElement(it, item.id.toString(), item.class.name)
 		}
+	}
+	
+	/**
+	Checks if the protection element has already been shared with any of the groups passed.
+	If so, returns the groups it has been shared with
+	**/
+	def groupsShared(item){
+			println "is $item already shared?"
+			def authManager = this.getAuthorizationManager()
+			def groupNames = []
+		try{
+				ProtectionElement pe = authManager.getProtectionElement(item.id.toString(), item.class.name)
+				if(pe){
+					def groups = authManager.getProtectionGroups(pe.protectionElementId.toString())
+					if(groups){
+						println "item $item hs already been shared to "
+							groups.each{
+								groupNames << it.getProtectionGroupName()
+							}
+					}
+				}
+		}catch(CSObjectNotFoundException csoe){
+			csoe.printStackTrace(System.out);
+			throw new SecurityException("object not found");
+		}
+			return groupNames
 	}
 	
 	

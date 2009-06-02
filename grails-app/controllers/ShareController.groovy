@@ -1,3 +1,5 @@
+import SecurityException
+
 class ShareController {
     def securityService
 //def index = { redirect(action:share,params:params) }
@@ -11,6 +13,7 @@ def shareItem = {
 	print params
 	def item
 	def groups = []
+	def alreadySharedGroups = []
  	print groups
 	
 	if(params.groups instanceof String[]){
@@ -30,17 +33,48 @@ def shareItem = {
 		item = UserList.get( params.itemId )
 	}
 	if(item){
-		securityService.share(item, groups)
-	}
-	flash.message = params.name + " has been shared with: "
-	for(int i=0;i<groups.size();i++){
-		if((i+1)==groups.size()){
-			flash.message+=groups[i]
-		}else{
-			flash.message+=groups[i] + " , "
+		try{
+			alreadySharedGroups = securityService.groupsShared(item)
+			if(alreadySharedGroups){
+			 alreadySharedGroups.each{
+				groups.remove(it)
+			 }
+			println "removed already shared groups: $alreadySharedGroups"
+			println "remaing groups: $groups"
+			}
+			if(!groups.isEmpty()){
+			println "sharing with groups: $groups"
+			securityService.share(item, groups)
+			}
+		}catch(SecurityException se){
+				se.printStackTrace(System.out);
+				flash['message'] = 'Sorry, there has been a problem sharing this item'
+				redirect(action:share,params:[success:false,groups:groups,name:params.name])
 		}
 	}
-	redirect(action:share,params:[success:true,groups:groups,name:params.name])
+	if(groups.isEmpty()){
+			println "no item is to be shared"
+			flash['message'] = 'This item has already been shared with the following: '
+			for(int i=0;i<alreadySharedGroups.size();i++){
+				if((i+1)==alreadySharedGroups.size()){
+					flash.message+=alreadySharedGroups[i]
+				}else{
+					flash.message+=alreadySharedGroups[i] + " , "
+				}
+			}
+			redirect(action:share,params:[failure:true,name:params.name])
+	}else{
+		println "shared to groups: $groups"
+		flash.message = params.name + " has been shared with: "
+		for(int i=0;i<groups.size();i++){
+			if((i+1)==groups.size()){
+				flash.message+=groups[i]
+			}else{
+				flash.message+=groups[i] + " , "
+			}
+		}
+		redirect(action:share,params:[success:true,groups:groups,name:params.name])
+		}
 	}
 }
 
