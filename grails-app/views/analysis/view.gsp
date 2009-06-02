@@ -44,7 +44,6 @@
 				
 			
 			}); 
-		
 		});
 		
 		
@@ -66,6 +65,8 @@
 			</g:if>
 			<g:else>
 				<g:if test="${session.userId}">
+					<g:render template="analysis_details" bean="${session.analysis}" />
+					<br/>
 					<div style="margin:5px 5px 5px 50px">
 						<label for="list_name">List Name:</label><g:textField name="list_name" size="15" />
 						<a href="javascript:void(0)" id="listAdd">Save items to List</a> | <g:navigationLink name="Saved Lists" controller="userList">Go to saved-lists page</g:navigationLink>

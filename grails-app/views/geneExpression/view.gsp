@@ -9,6 +9,9 @@
 	<p style="font-size:14pt">Gene Expression Search Results</p>
 	<div id="centerContent" height="800px">
 		<br/>
+		<g:render template="/analysis/analysis_details" bean="${session.results}" />
+		<br/>
+		<br/>
 		<g:flex component="GeneExpressionPlot" width="750px" height="550px" />
 	</div>
 	</body>
