@@ -9,9 +9,12 @@ import gov.nih.nci.security.authorization.domainobjects.ProtectionGroup
 import LoginException
 
 class SecurityService {
+	static scope = "session"
 	
 	AuthenticationManager authenticationManager
 	AuthorizationManager authorizationManager
+	
+	def sharedItems
 	
 	def login(params) throws LoginException{
 		def user = GDOCUser.findByLoginName(params.loginName)
@@ -110,22 +113,30 @@ class SecurityService {
 	}
 	
 	def getSharedItemIds(loginName, itemType) {
-		def authManager = this.getAuthorizationManager()
-		def user = authManager.getUser(loginName)
-		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
-		def elements = groups.collect {
-			return authManager.getProtectionElements(it.protectionGroupId.toString())
+		if(!sharedItems) {
+			sharedItems = [:]
+		}
+		if(sharedItems[itemType]) {
+			return sharedItems[itemType]
+		} else {
+			def authManager = this.getAuthorizationManager()
+			def user = authManager.getUser(loginName)
+			def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
+			def elements = groups.collect {
+				return authManager.getProtectionElements(it.protectionGroupId.toString())
 			
+			}
+			elements = elements.flatten()
+			def ids = []
+			elements.each {
+				if (itemType.equals(it.attribute))
+					if(ids!=null && !ids.contains(it.objectId)){
+						ids << it.objectId
+					}
+			}
+			sharedItems[itemType] = ids
+			return ids
 		}
-		elements = elements.flatten()
-		def ids = []
-		elements.each {
-			if (itemType.equals(it.attribute))
-				if(ids!=null && !ids.contains(it.objectId)){
-					ids << it.objectId
-				}
-		}
-		return ids
 	}
 	
 	public AuthenticationManager getAuthenticationManager() {
