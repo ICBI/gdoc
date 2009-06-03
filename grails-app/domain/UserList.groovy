@@ -8,6 +8,7 @@ class UserList implements Taggable{
 	Date dateCreated
 	Date lastUpdated
 	static hasMany = [listItems:UserListItem,listConnections:UserListConnection, listComments:Comments]
+	static fetchMode = [listItems: 'eager']
 	static constraints = {
 		name(blank:false)
 		author(blank:false)
