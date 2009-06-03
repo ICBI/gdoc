@@ -8,7 +8,7 @@ class Patient {
 		biospecimens column:'patient_id'
 	}
 	static hasMany = [values : DecValue, biospecimens: Biospecimen]
-	static fetchMode = [values:"eager"]
+	static fetchMode = [values:"eager", biospecimens: "eager"]
 	static transients = ['clinicalData']
 	
 	String dataSourceInternalId
