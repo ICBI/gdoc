@@ -2,6 +2,7 @@ import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
 import org.springframework.context.ApplicationContext
 import org.codehaus.groovy.grails.commons.*
 import grails.util.GrailsUtil
+import org.apache.commons.lang.StringUtils
 
 class BootStrap {
 
@@ -33,20 +34,6 @@ class BootStrap {
 	           break
 	   	}
 	
-		// Initialize annotation service
-		/*
-	 	InputStream stream = servletContext.getResourceAsStream("/WEB-INF/data/Affy_U133Plus2_reporter_symbol_entrezid.tab")
-		def annotations = [:]
-		stream.eachLine { line ->
-			if(line[0] != '#') {
-				def data = line.split('\t')
-				annotations[data[0]] = data[1]
-			}
-		}
-		ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
-		def annotationService = ctx.getBean("fileBasedAnnotationService")
-		annotationService.annotations = annotations
-		*/
 		//Initialize sample ids
 		ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
 		InputStream stream = servletContext.getResourceAsStream("/WEB-INF/data/SampleIds.txt")
@@ -57,6 +44,13 @@ class BootStrap {
 		
 		def idService = ctx.getBean("idService")
 		idService.binaryFileIds = sampleIds.toList()
+		
+		// Setup metaclass methods for string 
+		String.metaClass.decamelize = {
+			def displayValue = StringUtils.capitalize(delegate)
+			displayValue = displayValue.replaceAll(/([^A-Z])([A-Z])/, '$1 $2').trim()
+			return displayValue
+		}
      }
      def destroy = {
      }
