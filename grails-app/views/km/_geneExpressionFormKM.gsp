@@ -2,7 +2,7 @@
 
 <div id="form">
 		<div class="clinicalSearch">	
-		<g:formRemote name="reporterForm" action="findHighestMeanReporters" url="${[action:'findHighestMeanReporters']}">
+		<g:form name="reporterForm" action="findHighestMeanReporters" url="${[action:'findHighestMeanReporters']}">
 			<table border="1">
 			<tr><td colspan="3">
 					<g:select name="groups"
@@ -22,7 +22,7 @@
 			<g:submitButton name="search" value="Plot"/>
 			</td></tr>
 			</table>
-		</g:formRemote>
+		</g:form>
 		</div>
 </div>
 

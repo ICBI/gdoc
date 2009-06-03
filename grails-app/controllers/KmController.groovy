@@ -59,18 +59,22 @@ class KmController {
 					redirect(action:'index')
 				} else {
 					def taskId = analysisService.sendRequest(session.id, cmd)
-					Thread.sleep(5000)
+
 					def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, taskId)
+					println "CHECKING status ${geAnalysis.id} ${taskId}"
 					println "after 10, status is: " + geAnalysis.analysis.status
 					while(geAnalysis.analysis.status != 'Complete'){
 						Thread.sleep(5000)
-						def myAnalysis = savedAnalysisService.getSavedAnalysis(geAnalysis.id)
-						println "status of geAnalysis after checking savd is: " + myAnalysis.analysis.status
+						geAnalysis = savedAnalysisService.getSavedAnalysis(geAnalysis.id)
+						geAnalysis.reloadData()
+						println "CHECKING status ${geAnalysis.id} ${taskId}"
+						println "JSON ${geAnalysis.analysisData} DATA ${geAnalysis.analysis}"
+						println "status of geAnalysis after checking savd is: " + geAnalysis.analysis.status
 					}
 					println "analysis COMPLETE"
 					redirect(controller:'notification')
 				}
-			//render(template:"/km/geneExpressionFormKM",model:[ reporters: reporterNames ])
+			render(template:"/km/geneExpressionFormKM")
 			//redirect(action:'index', params:[ reporters: reporterNames ])
 	}
 	

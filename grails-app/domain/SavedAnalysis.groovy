@@ -51,4 +51,8 @@ class SavedAnalysis implements Taggable {
 		this.@queryData = data as AnalysisJSON
 	}
 	
+	def reloadData = {
+		this.@analysis = JSON.parse(analysisData)
+	}
+	
 }
