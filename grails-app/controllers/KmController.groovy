@@ -6,8 +6,11 @@ class KmController {
 	def patientService
 	def endpoints
 	def savedAnalysisService
+	def annotationService
+	def analysisService
 	
     def index = {
+		//clinical km setup
 		if(params.id) {
 			def currStudy = StudyDataSource.get(params.id)
 			session.study = currStudy
@@ -23,6 +26,17 @@ class KmController {
 			endpoints = ["AGE_AT_DEATH/FU"]
 		}
 		session.lists = patientLists
+		
+		//gene exp setup
+		def reporters = []
+		if(params.reporters){
+			reporters = params.reporters
+			println "got these reporters: "+reporters
+		}
+		if(reporters){
+			println "returning reporters"
+		 return [reporters:reporters]
+		}
 	}
 	
 	def search = { KmCommand cmd ->
@@ -37,6 +51,30 @@ class KmController {
 			session.selectedLists = selectedLists
 		}
 	}
+	
+	def findHighestMeanReporters= {
+			GeneExpressionCommand cmd ->
+				if(cmd.hasErrors()) {
+					flash['cmd'] = cmd
+					redirect(action:'index')
+				} else {
+					def taskId = analysisService.sendRequest(session.id, cmd)
+					Thread.sleep(5000)
+					def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, taskId)
+					println "after 10, status is: " + geAnalysis.analysis.status
+					while(geAnalysis.analysis.status != 'Complete'){
+						Thread.sleep(5000)
+						def myAnalysis = savedAnalysisService.getSavedAnalysis(geAnalysis.id)
+						println "status of geAnalysis after checking savd is: " + myAnalysis.analysis.status
+					}
+					println "analysis COMPLETE"
+					redirect(controller:'notification')
+				}
+			//render(template:"/km/geneExpressionFormKM",model:[ reporters: reporterNames ])
+			//redirect(action:'index', params:[ reporters: reporterNames ])
+	}
+	
+
 	
 	//This method strictly repoluates a KM plot. It does not retieve live data,
 	//simply data stored at the time of persistance. For this reason,

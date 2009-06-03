@@ -71,6 +71,7 @@ class SavedAnalysisService {
 	
 	def getSavedAnalysis(userId, taskId) {
 		def user = GDOCUser.findByLoginName(userId)
+		user.refresh()
 		def analysis=[]
 		analysis = user.analysis
 		def item =  analysis.find{
@@ -84,6 +85,9 @@ class SavedAnalysisService {
 	
 	def getSavedAnalysis(analysisId) {
 		def item = SavedAnalysis.get(analysisId)
+		if(item){
+			item.refresh()
+		}
 		return item
 	}
 }
