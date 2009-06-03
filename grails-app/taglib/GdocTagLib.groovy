@@ -1,4 +1,5 @@
 import edu.georgetown.lombardi.gdoc.genepattern.EncryptionUtil
+import org.apache.commons.lang.StringUtils
 
 class GdocTagLib {
 	def navigationLink = { attrs, body ->
@@ -26,7 +27,10 @@ class GdocTagLib {
 	}
 	
 	def genePatternId = { attrs ->
-		def encryptedId = EncryptionUtil.encrypt(session.userId)
-		out << encryptedId
+		if(session.userId) {
+			def encryptedId = EncryptionUtil.encrypt(session.userId)
+			out << encryptedId
+		}
 	}
+	
 }

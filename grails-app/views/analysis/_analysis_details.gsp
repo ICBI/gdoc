@@ -26,7 +26,7 @@
 	<table width="100%" >
 		<g:each in="${it.query}" var="data">
 			<tr>
-				<td class="ui-state-default ui-th-column" style="padding: 2px; border: 1px solid #CCCCCC">${data.key}</td>
+				<td class="ui-state-default ui-th-column" style="padding: 2px; border: 1px solid #CCCCCC">${data.key.decamelize()}</td>
 				<g:if test="${data.value instanceof List}">
 					<td class="ui-widget-content" style="padding: 2px;" >
 						<g:collect in="${data.value}" expr="it">
