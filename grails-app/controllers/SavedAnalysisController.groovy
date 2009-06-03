@@ -6,7 +6,7 @@ class SavedAnalysisController{
 	def index = {
         if(!params.max) params.max = 10
 		def user = GDOCUser.findByLoginName(session.userId)
-		def groupAnalysisIds = session.sharedAnalysisIds//securityService.getSharedItemIds(session.userId, SavedAnalysis.class.name)
+		def groupAnalysisIds = securityService.getSharedItemIds(session.userId, SavedAnalysis.class.name)
 		def myAnalysis = user.analysis
 		def analysisIds = []
 		
@@ -42,7 +42,7 @@ class SavedAnalysisController{
 	def delete = {
 		savedAnalysisService.deleteAnalysis(params.id)
 		def user = GDOCUser.findByLoginName(session.userId)
-		def groupAnalysisIds = session.sharedAnalysisIds//securityService.getSharedItemIds(session.userId, SavedAnalysis.class.name)
+		def groupAnalysisIds = securityService.getSharedItemIds(session.userId, SavedAnalysis.class.name)
 		def myAnalysis = user.analysis
 		def analysisIds = []
 		

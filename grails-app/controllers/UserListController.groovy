@@ -9,7 +9,7 @@ class UserListController {
         if(!params.max) params.max = 10
 		def lists = GDOCUser.findByLoginName(session.userId).lists()
 		def listIds = []
-		def sharedListIds = session.sharedListIds//securityService.getSharedItemIds(session.userId, UserList.class.name)
+		def sharedListIds = securityService.getSharedItemIds(session.userId, UserList.class.name)
 		if(lists.metaClass.respondsTo(lists, "size")) {
 				lists.each{
 					listIds << it.id.toString()
