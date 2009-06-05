@@ -9,13 +9,13 @@
 <div class="notificationContainer" style="height: 10px">
 		<div style="float: left;">
 			<g:if test="${analysis.type == AnalysisType.CLASS_COMPARISON}">
-				<g:link controller="analysis" action="view"  params="[savedId:analysis.id]">${analysis.type}</g:link>
+				<g:link controller="analysis" action="view"  id="${analysis.id}">${analysis.type}</g:link>
 			</g:if>
 			<g:elseif test="${analysis.type == AnalysisType.GENE_EXPRESSION}">
-				<g:link controller="geneExpression" action="view" params="[savedId:analysis.id]">${analysis.type}</g:link> 
+				<g:link controller="geneExpression" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>
 			<g:elseif test="${analysis.type == AnalysisType.KM_PLOT}">
-				<g:link controller="km" action="repopulateKM" params="[savedId:analysis.id]">${analysis.type}</g:link> 
+				<g:link controller="km" action="repopulateKM" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>
 				&nbsp;&nbsp;<span><g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/></span>
 			</div>

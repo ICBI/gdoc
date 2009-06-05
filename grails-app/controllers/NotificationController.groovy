@@ -20,11 +20,6 @@ class NotificationController {
 		render(template:"/notification/notificationTable")
 	}
 	
-	def share = {
-		def notification = savedAnalysisService.getSavedAnalysis(session.userId, params.id)
-		securityService.share(notification, "DEVELOPERS")
-	}
-	
 	def buildNotifications = {
 		def notifications = []
 		def savedAnalysis = []

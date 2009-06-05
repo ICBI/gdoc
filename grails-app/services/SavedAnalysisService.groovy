@@ -13,7 +13,7 @@ class SavedAnalysisService {
 		println "PARAMS: $params"
 		def json = params as JSON
 		println "COMMAND $json" 
-		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user)
+		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user, status: notification.status, taskId: notification.item.taskId)
 		newAnalysis.save(flush:true)
 	}
 	
@@ -25,7 +25,7 @@ class SavedAnalysisService {
 		def params = command.properties
 		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'requestType'] as Set )
 		println "going to send: " + command.requestType + ", " + params + ", " + result + ", " + user
-		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user)
+		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user, status: notification.status, taskId: notification.item.taskId)
 		newAnalysis.save(flush:true)
 	}
 	
@@ -34,9 +34,9 @@ class SavedAnalysisService {
 		def runningAnalysis = getSavedAnalysis(userId, notification.item.taskId)
 		if(runningAnalysis) {
 			println "UPDATING ANALYSIS $notification"
-			def data = notification as AnalysisJSON
-			println "NOTIFICATION JSON $data"
 			runningAnalysis.analysis = notification
+			runningAnalysis.status = notification.status
+			runningAnalysis.taskId = notification.item.taskId
 		} else {
 			throw new Exception("No analysis to update")
 		}
@@ -53,7 +53,7 @@ class SavedAnalysisService {
 		def user = GDOCUser.findByLoginName(userId)
 		def analysis = user.analysis
 		def toDelete = analysis.find {
-			it.analysis.item.taskId == taskId
+			it.taskId == taskId
 		}
 		if(toDelete) {
 			user.analysis.remove(toDelete)

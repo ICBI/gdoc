@@ -15,6 +15,8 @@ class SavedAnalysis implements Taggable {
 	AnalysisType type
 	String analysisData
 	String queryData
+	String status
+	String taskId
 	GDOCUser author
 	Date dateCreated
 	Date lastUpdated

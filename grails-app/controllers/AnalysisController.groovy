@@ -37,18 +37,8 @@ class AnalysisController {
 	}
 	
 	def view = {
-		//TODO - if savedId is passed, retrieve the analysis by its actual 'id'. If not,
-		//use the id param, as it refers to a task id (may need to refactor)
-		def analysisResult
-		if(params.savedId){
-			analysisResult = savedAnalysisService.getSavedAnalysis(params.savedId)
-		}
-		else{
-			def taskId = params.id
-			analysisResult = savedAnalysisService.getAllSavedAnalysis(session.userId).find { 
-				it.analysis.item!=null && it.analysis.item.taskId == taskId
-			}
-		}
+		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+
 		session.results = analysisResult.analysis.item
 		session.analysis = analysisResult
 		def columns = []
