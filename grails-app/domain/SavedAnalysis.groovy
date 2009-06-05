@@ -7,7 +7,13 @@ class SavedAnalysis implements Taggable {
 		analysisData type: 'text'
 		queryData type: 'text'
 		type column:'analysis_type'
+		
 	}
+	
+	static constraints = {
+		taskId nullable: true
+	}
+	
 	static transients = [ "analysis", "query"]
 	
 	Object analysis
