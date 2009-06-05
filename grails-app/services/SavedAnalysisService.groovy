@@ -25,7 +25,7 @@ class SavedAnalysisService {
 		def params = command.properties
 		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'requestType'] as Set )
 		println "going to send: " + command.requestType + ", " + params + ", " + result + ", " + user
-		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user, status: notification.status, taskId: notification.item.taskId)
+		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user, status: "Completed")
 		newAnalysis.save(flush:true)
 	}
 	

@@ -87,9 +87,6 @@ class SavedAnalysisController{
 					savedAttempt["result"] = "Analysis Saved"
 					render savedAttempt as JSON		
 				}
-			}else{
-					savedAttempt["result"] = "Analysis not Saved -- may have already been saved."
-					render savedAttempt as JSON
 			}
 	}
 	
