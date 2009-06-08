@@ -6,7 +6,8 @@ class SavedAnalysisController{
 	def index = {
         if(!params.max) params.max = 10
 		def user = GDOCUser.findByLoginName(session.userId)
-		def groupAnalysisIds = securityService.getSharedItemIds(session.userId, SavedAnalysis.class.name)
+		def groupAnalysisIds = []
+		groupAnalysisIds = securityService.getSharedItemIds(session.userId, SavedAnalysis.class.name)
 		def myAnalysis = user.analysis
 		def analysisIds = []
 		
@@ -17,17 +18,14 @@ class SavedAnalysisController{
 		} else {
 				analysisIds << myAnalysis.id.toString()
 		}
-		if(groupAnalysisIds.metaClass.respondsTo(groupAnalysisIds, "size")) {
-				groupAnalysisIds.removeAll(analysisIds)
-		} else {
-				groupAnalysisIds.remove(analysisIds)
-		}	
-		
+	
 		//until we modify ui, just add shared analyisis to 'all' analysis
 		groupAnalysisIds.each{
+			if(!analysisIds.contains(it)){
 			def foundAnalysis = SavedAnalysis.get(it)
 			if(foundAnalysis){
 				myAnalysis << foundAnalysis
+			}
 			}
 		}
 		myAnalysis = myAnalysis.sort { one, two ->

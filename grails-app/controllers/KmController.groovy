@@ -8,6 +8,7 @@ class KmController {
 	def savedAnalysisService
 	def annotationService
 	def analysisService
+	def sessionFactory
 	
     def index = {
 		//clinical km setup
@@ -78,14 +79,18 @@ class KmController {
 			//redirect(action:'index', params:[ reporters: reporterNames ])
 	}
 	
-
+	def submitGEPlot = {
+		def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, params.taskId)
+	
+	println "analysis COMPLETE"
+	}
 	
 	//This method strictly repoluates a KM plot. It does not retieve live data,
 	//simply data stored at the time of persistance. For this reason,
 	//there is no need to grab the lists from database and recalc the results,
 	//as this has already been done. 
 	def repopulateKM = {
-		session.savedKM = params.savedId
+		session.savedKM = params.id
 	}
 	
 	//TODO - decide if we always want to auto-save KM plots. Right now, we do not. They must implicitly call 'save'.

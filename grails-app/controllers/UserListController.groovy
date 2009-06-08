@@ -9,7 +9,8 @@ class UserListController {
         if(!params.max) params.max = 10
 		def lists = GDOCUser.findByLoginName(session.userId).lists()
 		def listIds = []
-		def sharedListIds = securityService.getSharedItemIds(session.userId, UserList.class.name)
+		def sharedListIds = []
+		sharedListIds = securityService.getSharedItemIds(session.userId, UserList.class.name)
 		if(lists.metaClass.respondsTo(lists, "size")) {
 				lists.each{
 					listIds << it.id.toString()
@@ -17,18 +18,16 @@ class UserListController {
 		} else {
 				listIds << lists.id.toString()
 		}
-		if(sharedListIds.metaClass.respondsTo(sharedListIds, "size")) {
-				sharedListIds.removeAll(listIds)
-		} else {
-				sharedListIds.remove(listIds)
-		}	
+			
 		def sharedLists = []
 		//until we modify ui, just add shared lists to 'all' lists
 		sharedListIds.each{
+			if(!listIds.contains(it)){
 			def foundList = UserList.get(it)
 			if(foundList){
 				lists << foundList
 			}
+		   }
 		}
 		lists = lists.sort { one, two ->
 			def dateOne = one.dateCreated
