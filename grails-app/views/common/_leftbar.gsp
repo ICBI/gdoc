@@ -12,6 +12,7 @@ jQuery(document).ready(function()
 	})
 });
 </g:javascript>
+<jq:plugin name="hoverIntent"/>
 <jq:plugin name="superfish"/>
 <div id="navigation-block">
 	<ul id="gdocNavigation" class="sf-menu sf-vertical sf-js-enabled sf-shadow">
