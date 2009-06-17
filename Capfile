@@ -26,7 +26,7 @@ end
 set :war, "gdoc.war"
 # TOMCAT SERVERS
 set :jboss_home, "/opt/jboss-4.2.3.GA"
-set :jboss_start, "#{jboss_home}/bin/startJboss.sh"
+set :jboss_start, "nohup #{jboss_home}/bin/startJboss.sh"
 set :jboss_stop, "#{jboss_home}/bin/shutdown.sh -S"
 
 # USER / SHELL
@@ -54,18 +54,18 @@ namespace :jboss do
 
   desc "start JBoss"
   task :start do
-    sudo "#{jboss_start}"
+    run "#{jboss_start}"
   end
 
   desc "stop JBoss"
   task :stop do
-    sudo "#{jboss_stop}"
+    run "#{jboss_stop}"
   end
 
   desc "stop and start JBoss"
   task :restart do
     jboss.stop rescue nil
-    sleep 60
+    sleep 30
     jboss.start
   end
   
