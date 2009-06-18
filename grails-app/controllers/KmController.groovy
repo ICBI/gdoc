@@ -1,4 +1,5 @@
 import grails.converters.*
+import org.json.simple.*
 
 class KmController {
 
@@ -53,7 +54,7 @@ class KmController {
 		}
 	}
 	
-	def findHighestMeanReporters= {
+	def submitGEPlot= {
 			GeneExpressionCommand cmd ->
 				if(cmd.hasErrors()) {
 					flash['cmd'] = cmd
@@ -69,21 +70,29 @@ class KmController {
 						geAnalysis = savedAnalysisService.getSavedAnalysis(geAnalysis.id)
 						geAnalysis.reloadData()
 						println "CHECKING status ${geAnalysis.id} ${taskId}"
-						println "JSON ${geAnalysis.analysisData} DATA ${geAnalysis.analysis}"
+						//println "JSON ${geAnalysis.analysisData} DATA ${geAnalysis.analysis}"
 						println "status of geAnalysis after checking savd is: " + geAnalysis.analysis.status
 					}
 					println "analysis COMPLETE"
+					println "retrieve expression values"
+					def expValues = kmService.findReportersMeanExpression(geAnalysis.id)
+					def highestMean = expValues[0].expression
+					def foldChangeGroups = kmService.calculateFoldChangeGroupings(highestMean,2,geAnalysis.id)
+					def kmCommand = new KmCommand()
+					def groups = []
+					groups.add(foldChangeGroups['greater'])
+					groups.add(foldChangeGroups['less'])
+					groups.add(foldChangeGroups['between'])
+					kmCommand.groups = groups
+					kmCommand.endpoint = "some endpoint"
+					session.command = kmCommand
+					session.selectedLists = foldChangeGroups
 					redirect(controller:'notification')
 				}
 			render(template:"/km/geneExpressionFormKM")
 			//redirect(action:'index', params:[ reporters: reporterNames ])
 	}
 	
-	def submitGEPlot = {
-		def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, params.taskId)
-	
-	println "analysis COMPLETE"
-	}
 	
 	//This method strictly repoluates a KM plot. It does not retieve live data,
 	//simply data stored at the time of persistance. For this reason,

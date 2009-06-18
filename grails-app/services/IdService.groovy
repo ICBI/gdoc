@@ -29,4 +29,19 @@ class IdService {
 		sampleIds = sampleIds.flatten().grep { it }
 		return sampleIds.intersect(binaryFileIds)
 	}
+	
+	
+	def gdocIdsForSampleNames(sampleNames){
+		def c = Biospecimen.createCriteria()
+	    def	samples = c.listDistinct {
+			'in'("name", sampleNames)
+		}
+		if(samples){
+			Set gdocIds = samples.collect{ sample ->
+				sample.patient.gdocId
+			}
+			return gdocIds.flatten()
+		}
+		return samples
+	}
 }

@@ -1,6 +1,9 @@
 import weka.core.Statistics;
+import grails.converters.*
+import org.json.simple.*
 
 class KmService {
+	def savedAnalysisService
 
     def plotCoordinates(sampleCollection) {
 	
@@ -116,4 +119,69 @@ class KmService {
             return new Double(-100.0);
         }
     }
+	
+	//return highest mean expression for an analysis. 
+	/****/
+	def findReportersMeanExpression(analysisId){
+		def geAnalysis = savedAnalysisService.getSavedAnalysis(analysisId)
+		def sortedMeanExpression = new JSONArray()
+		def comparator= [ compare:
+		  {a,b-> b.equals(a)? 0: b<a? -1: 1 }
+		] as Comparator
+		
+		
+		def reporterExpressionValues = new TreeMap(comparator)
+		geAnalysis.analysis.item.dataVectors.each { data ->
+			def values = 0
+			data.dataPoints.each { sample ->
+			values += sample.x
+			}
+			if(values){
+				println "$values / " + data.dataPoints.size()
+		  		reporterExpressionValues[values/data.dataPoints.size()] = data.name
+			}
+		}
+		
+		reporterExpressionValues.each{ exp, reporter ->
+			JSONObject values=new JSONObject();
+			values.put("reporter",reporter)
+			values.put("expression", exp)
+			sortedMeanExpression.add(values)
+		}
+		if(sortedMeanExpression){
+			sortedMeanExpression.each{
+				println it["reporter"] + ":" + it["expression"]
+			}
+		}
+		return sortedMeanExpression
+	}
+	
+	//calculate fold change groupings in an analysis for a given reporter mean expression value
+	def calculateFoldChangeGroupings(meanExpression, foldChange, analysisId){
+		def geAnalysis = savedAnalysisService.getSavedAnalysis(analysisId)
+		def groups = [:]
+		def greaterThanFold = []
+		def lessThanFold = []
+		def inBetween = []
+		geAnalysis.analysis.item.dataVectors.each { data ->
+			data.dataPoints.each { sample ->
+			def sampleFoldChange = sample.x - meanExpression
+				if(sampleFoldChange > foldChange){
+					greaterThanFold << sample.id
+				}else if(sampleFoldChange < -(foldChange)){
+						lessThanFold << sample.id
+				}else{
+					inBetween << sample.id
+				}
+			}
+		}
+		groups['greater'] = greaterThanFold
+		groups['less'] = lessThanFold
+		groups['between'] = inBetween
+		println "greater: " + groups['greater']
+		println "less: " + groups['less']
+		println "in between" + groups['between']
+		return groups
+	}
+
 }

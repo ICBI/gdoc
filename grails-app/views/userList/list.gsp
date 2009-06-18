@@ -98,7 +98,7 @@
 
 
 <div class="paginateButtons">
-	<g:paginate total="${userListInstanceList.size()}" />
+	<%--<g:paginate total="${userListInstanceList.size()}" />--%>
 </div>
 </div>
 </body>

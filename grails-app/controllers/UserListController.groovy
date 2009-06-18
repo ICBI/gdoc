@@ -6,7 +6,7 @@ class UserListController {
     def allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        if(!params.max) params.max = 10
+        //if(!params.max) params.max = 10
 		def lists = GDOCUser.findByLoginName(session.userId).lists()
 		def listIds = []
 		def sharedListIds = []
@@ -22,8 +22,8 @@ class UserListController {
 		def sharedLists = []
 		//until we modify ui, just add shared lists to 'all' lists
 		sharedListIds.each{
-			if(!listIds.contains(it)){
-			def foundList = UserList.get(it)
+			if(!(listIds.contains(it))){
+			def foundList = UserList.get(it.toString())
 			if(foundList){
 				lists << foundList
 			}
@@ -33,7 +33,8 @@ class UserListController {
 			def dateOne = one.dateCreated
 			def dateTwo = two.dateCreated
 			return dateTwo.compareTo(dateOne)
-		}	
+		}
+		println lists.size()	
         [ userListInstanceList: lists, sharedListInstanceList: sharedLists ]
     }
 

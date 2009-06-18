@@ -2,14 +2,12 @@
 
 <div id="form">
 		<div class="clinicalSearch">	
-			<g:form name="reporterForm" action="findHighestMeanReporters" url="${[action:'findHighestMeanReporters']}">
+			<g:form name="reporterForm" action="submitGEPlot" url="${[action:'submitGEPlot']}">
 			<table border="1">
 			<tr><td colspan="3">
 					<g:select name="groups"
-							  noSelection="['':'-Choose lists-']"
+							  noSelection="['':'-Choose list-']"
 							  from="${session.lists}"
-							  multiple="true"
-							  size="3"
 							optionKey="name" optionValue="name"
 							  />
 			</tr></td>
@@ -26,9 +24,3 @@
 		</div>
 </div>
 
-<div id="results">
-<g:if test="${taskId}">
-<a href="javascript:void(0)" onclick="if(true){${remoteFunction(action:'submitGEPlot',
-taskId:taskId)}return false;}">test</a>
-</g:if>
-</div>
