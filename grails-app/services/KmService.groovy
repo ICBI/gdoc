@@ -4,6 +4,7 @@ import org.json.simple.*
 
 class KmService {
 	def savedAnalysisService
+	def idService
 
     def plotCoordinates(sampleCollection) {
 	
@@ -150,7 +151,7 @@ class KmService {
 		}
 		if(sortedMeanExpression){
 			sortedMeanExpression.each{
-				println it["reporter"] + ":" + it["expression"]
+			//	println it["reporter"] + ":" + it["expression"]
 			}
 		}
 		return sortedMeanExpression
@@ -166,18 +167,19 @@ class KmService {
 		geAnalysis.analysis.item.dataVectors.each { data ->
 			data.dataPoints.each { sample ->
 			def sampleFoldChange = sample.x - meanExpression
-				if(sampleFoldChange > foldChange){
+				if(sampleFoldChange >= foldChange){
 					greaterThanFold << sample.id
-				}else if(sampleFoldChange < -(foldChange)){
-						lessThanFold << sample.id
-				}else{
-					inBetween << sample.id
+				}else if(sampleFoldChange < foldChange &&
+						sampleFoldChange > -foldChange){
+					 inBetween << sample.id
+				}else if(sampleFoldChange < -foldChange){
+					lessThanFold << sample.id
 				}
 			}
 		}
-		groups['greater'] = greaterThanFold
-		groups['less'] = lessThanFold
-		groups['between'] = inBetween
+		groups['greater'] = idService.gdocIdsForSampleNames(greaterThanFold)
+		groups['less'] = idService.gdocIdsForSampleNames(lessThanFold)
+		//groups['between'] = idService.gdocIdsForSampleNames(inBetween)
 		println "greater: " + groups['greater']
 		println "less: " + groups['less']
 		println "in between" + groups['between']

@@ -18,6 +18,24 @@ class UserListTests extends GroovyTestCase {
 	//	assertEquals( "genes egfrQuery", UserList.findByName('myNewGeneList').tags)
     }
 
+	void testCreateTempUserListsForKM(){
+		def templists = []
+		def tempIds = ['VEGF','EGFR','BRCA1','BRCA1','ER+','ER-','FCR','HGI']
+		def greater = new UserList(name:'greater')
+		greater.listItems = []
+		tempIds.each{
+			def item = new UserListItem(value:'test',list:greater)
+			greater.addToListItems(item)
+			println item.value
+		}
+	    templists << greater
+	 	templists.each{list ->
+			list.listItems.each{
+			 println it.value
+			}
+		}
+	}
+
 	void testIntersectLists(){
 		def list= ['VEGF','EGFR','BRCA1','BRCA1','ER+','ER-','FCR','HGI']
 		def list2= ['VEGF','EGFR','BRCA1','SCF7', 'QSR6','HGI']

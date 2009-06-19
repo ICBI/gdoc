@@ -54,6 +54,8 @@ class KmController {
 		}
 	}
 	
+	def searchGE = {}
+	
 	def submitGEPlot= {
 			GeneExpressionCommand cmd ->
 				if(cmd.hasErrors()) {
@@ -61,7 +63,6 @@ class KmController {
 					redirect(action:'index')
 				} else {
 					def taskId = analysisService.sendRequest(session.id, cmd)
-
 					def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, taskId)
 					println "CHECKING status ${geAnalysis.id} ${taskId}"
 					println "after 10, status is: " + geAnalysis.analysis.status
@@ -77,22 +78,41 @@ class KmController {
 					println "retrieve expression values"
 					def expValues = kmService.findReportersMeanExpression(geAnalysis.id)
 					def highestMean = expValues[0].expression
-					def foldChangeGroups = kmService.calculateFoldChangeGroupings(highestMean,2,geAnalysis.id)
+					def foldChangeGroups = []
+					foldChangeGroups = kmService.calculateFoldChangeGroupings(highestMean,2,geAnalysis.id)
 					def kmCommand = new KmCommand()
 					def groups = []
 					groups.add(foldChangeGroups['greater'])
+					println foldChangeGroups['greater'].size()
 					groups.add(foldChangeGroups['less'])
+					println foldChangeGroups['less'].size()
 					groups.add(foldChangeGroups['between'])
+					println foldChangeGroups['less'].size()
 					kmCommand.groups = groups
-					kmCommand.endpoint = "some endpoint"
+					kmCommand.endpoint = "SURGERY_TO_DEATH/FU"
 					session.command = kmCommand
-					session.selectedLists = foldChangeGroups
-					redirect(controller:'notification')
+					def tempLists = createTempUserListsForKM(foldChangeGroups)
+					session.selectedLists = tempLists
+					redirect(uri:'/km/searchGE')
 				}
-			render(template:"/km/geneExpressionFormKM")
+		//	render(template:"/km/geneExpressionFormKM")
 			//redirect(action:'index', params:[ reporters: reporterNames ])
 	}
 	
+	def createTempUserListsForKM(foldChangeGroups){
+		def templists = []
+		foldChangeGroups.each{name, ids ->
+			def tempIds = foldChangeGroups[name]
+			def userlist = new UserList(name:name)
+			userlist.listItems = []
+			tempIds.each{
+				def item = new UserListItem(value:it)
+				userlist.listItems.add(item)
+			}
+			templists << userlist
+		}
+		return templists
+	}
 	
 	//This method strictly repoluates a KM plot. It does not retieve live data,
 	//simply data stored at the time of persistance. For this reason,
@@ -114,13 +134,18 @@ class KmController {
 		def groups = [:]
 		def cmd = session.command
 		def sampleGroups = []
+		
 		session.selectedLists.each { list ->
 			def samples = []
-			def tempList = UserList.findAllByName(list.name)
+			def tempList
+			if(list instanceof UserList){
+				tempList = list
+			}else{
+			    tempList = UserList.findAllByName(list.name)
+			}
 			def ids = tempList.listItems.collectAll { listItem ->
-				listItem.value
-				
-			}.flatten()
+					listItem.value
+				}.flatten()
 			println "ids: " + ids
 			ids = ids.sort()
 			def patients = patientService.patientsForGdocIds(ids)
@@ -142,7 +167,7 @@ class KmController {
 					samples << sample
 				}
 			}
-			println samples
+			println "SAMPLES: $samples"
 			sampleGroups << samples
 			def points = kmService.plotCoordinates(samples)
 			groups[list.name] = points
