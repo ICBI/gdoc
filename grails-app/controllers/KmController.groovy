@@ -78,8 +78,9 @@ class KmController {
 					println "retrieve expression values"
 					def expValues = kmService.findReportersMeanExpression(geAnalysis.id)
 					def highestMean = expValues[0].expression
+					def reporter = expValues[0].reporter
 					def foldChangeGroups = []
-					foldChangeGroups = kmService.calculateFoldChangeGroupings(highestMean,2,geAnalysis.id)
+					foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,highestMean,2,geAnalysis.id)
 					def kmCommand = new KmCommand()
 					def groups = []
 					groups.add(foldChangeGroups['greater'])

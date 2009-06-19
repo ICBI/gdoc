@@ -158,31 +158,39 @@ class KmService {
 	}
 	
 	//calculate fold change groupings in an analysis for a given reporter mean expression value
-	def calculateFoldChangeGroupings(meanExpression, foldChange, analysisId){
+	def calculateFoldChangeGroupings(reporter, meanExpression, foldChange, analysisId){
 		def geAnalysis = savedAnalysisService.getSavedAnalysis(analysisId)
 		def groups = [:]
 		def greaterThanFold = []
 		def lessThanFold = []
 		def inBetween = []
+		
+		println "ALL VALUES:"
 		geAnalysis.analysis.item.dataVectors.each { data ->
+			if(data.name.equals(reporter)){
 			data.dataPoints.each { sample ->
+			 
+		//	println sample.id + ": " + sample.x
 			def sampleFoldChange = sample.x - meanExpression
-				if(sampleFoldChange >= foldChange){
+			    if((sampleFoldChange > (foldChange*-1)) && 
+					(sampleFoldChange < foldChange)){
+						inBetween << sample.id
+				}
+				else if(sampleFoldChange >= foldChange){
 					greaterThanFold << sample.id
-				}else if(sampleFoldChange < foldChange &&
-						sampleFoldChange > -foldChange){
-					 inBetween << sample.id
-				}else if(sampleFoldChange < -foldChange){
+				}else if(sampleFoldChange < (foldChange*-1)){
 					lessThanFold << sample.id
 				}
 			}
+			}
 		}
+		
 		groups['greater'] = idService.gdocIdsForSampleNames(greaterThanFold)
 		groups['less'] = idService.gdocIdsForSampleNames(lessThanFold)
-		//groups['between'] = idService.gdocIdsForSampleNames(inBetween)
-		println "greater: " + groups['greater']
-		println "less: " + groups['less']
-		println "in between" + groups['between']
+		groups['between'] = idService.gdocIdsForSampleNames(inBetween)
+		println "greater: " + groups['greater'].size()
+		println "less: " + groups['less'].size()
+		println "in between" + groups['between'].size()
 		return groups
 	}
 
