@@ -13,6 +13,10 @@ class GenePatternController {
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
 		session.lists = patientLists
+		def geneLists = lists.findAll { item ->
+			item.tags.contains("gene")
+		}
+		session.geneLists = geneLists
 	}
 
 	def submit = { GenePatternCommand cmd ->

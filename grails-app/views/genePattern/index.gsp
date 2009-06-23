@@ -71,6 +71,14 @@
 			</tr>
 		</table>
 		<br/>
+		Gene List:
+		<br/>
+		<g:select name="geneList" 
+				from="${session.geneLists}"
+				noSelection="${['':'Select One...']}"
+				optionKey="name" optionValue="name"/>
+		<br/>
+		<br/>
 		Dataset:
 		<br/>
 		<g:select name="dataFile" 

@@ -18,4 +18,20 @@ class AnnotationService {
 		return reporter.geneSymbol
 	}
 	
+	def findReportersForGeneList(listName) {
+		def lists = UserList.findAll()
+		def list = lists.find { item ->
+			item.name == listName
+		}
+		
+		def listValues = list.listItems.collect {item ->
+			item.value
+		}
+		def reporters = []
+		listValues.each {
+			def items = findReportersForGene(it)
+			reporters.addAll(items)
+		}
+		return reporters
+	}
 }

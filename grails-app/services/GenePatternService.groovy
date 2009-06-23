@@ -7,6 +7,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 class GenePatternService {
 	
 	def idService
+	def annotationService
 	
 	/**
 	 * Submit a Job to the GenePattern server
@@ -18,7 +19,7 @@ class GenePatternService {
 		def reporterFile = "${CH.config.tempDir}/reporters_${System.currentTimeMillis()}.txt"
 		
 		writeSampleFile(cmd.groups, patientFile)
-		writeReporterFile(null, reporterFile)
+		writeReporterFile(cmd.geneList, reporterFile)
 		
 		GPClient gpClient = new GPClient(CH.config.genePatternUrl, userId, "gp2009");
 		Parameter[] parameters = new Parameter[8];
@@ -57,10 +58,12 @@ class GenePatternService {
 		}
 	}
 	
-	def writeReporterFile(reporters, location) {
+	def writeReporterFile(geneList, location) {
 		new File(location).withWriter { out ->
-		    if(reporters) {
-		        out.writeLine("reporter=")
+		    if(geneList) {
+				def reporters = annotationService.findReportersForGeneList(geneList)
+				def listValues = reporters.join("\t")
+		        out.writeLine("reporter=${listValues}")
 		    } else {
 				out.writeLine("reporter=NONE")
 			}
