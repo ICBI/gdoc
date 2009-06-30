@@ -83,6 +83,12 @@ class SavedAnalysisService {
 		return item
 	}
 	
+	def getSharedAnalysisIds(userId){
+		def sharedAnalysisIds = []
+		sharedAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name)
+		return sharedAnalysisIds
+	}
+	
 	def getSavedAnalysis(analysisId) {
 		def item = SavedAnalysis.get(analysisId)
 		if(item){

@@ -8,11 +8,11 @@ class GenePatternController {
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
 		}
-		def lists = GDOCUser.findByLoginName(session.userId).lists()
+		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
 		def patientLists = lists.findAll { item ->
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
-		session.lists = patientLists
+		session.patientLists = patientLists
 		def geneLists = lists.findAll { item ->
 			item.tags.contains("gene")
 		}

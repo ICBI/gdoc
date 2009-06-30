@@ -34,7 +34,7 @@
 	<table width="400px;">
 		<tr>
 			<td>
-				<g:multiselect id="left" from="${session.lists}" optionKey="name" optionValue="name" 
+				<g:multiselect id="left" from="${session.patientLists}" optionKey="name" optionValue="name" 
 						multiple="true" size="10" style="width: 150px"/>
 			</td>
 			<td>

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Welcome to GDOC</title>
+        <title>Georgetown Database of Cancer</title>
 		<meta name="layout" content="main" />
 		
     </head>

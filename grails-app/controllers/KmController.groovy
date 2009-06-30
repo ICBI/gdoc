@@ -10,6 +10,7 @@ class KmController {
 	def annotationService
 	def analysisService
 	def sessionFactory
+	def userListService
 	
     def index = {
 		//clinical km setup
@@ -18,7 +19,7 @@ class KmController {
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
 		}
-		def lists = GDOCUser.findByLoginName(session.userId).lists()
+		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
 		def patientLists = lists.findAll { item ->
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
@@ -27,7 +28,7 @@ class KmController {
 		} else if(StudyContext.getStudy() == "RCF") {
 			endpoints = ["AGE_AT_DEATH/FU"]
 		}
-		session.lists = patientLists
+		session.patientLists = patientLists
 		
 		//gene exp setup
 		def reporters = []
@@ -46,7 +47,7 @@ class KmController {
 			flash['cmd'] = cmd
 			redirect(action:'index')
 		} else {
-			def selectedLists = session.lists.findAll { list ->
+			def selectedLists = session.patientLists.findAll { list ->
 				cmd.groups.contains(list.name)
 			}
 			session.command = cmd

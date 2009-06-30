@@ -5,6 +5,8 @@ class StudyDataSourceController {
 	def otherStudies
 	def clinicalElements
 	def securityService
+	def savedAnalysisService
+	def userListService
 	
     def index = { 
 		def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
@@ -25,10 +27,12 @@ class StudyDataSourceController {
 			otherStudies.remove(myStudies)
 		}
 		//TODO -- move these session based variables out into security service or util class
-		//get shared lists
-		def sharedLists = securityService.getSharedItemIds(session.userId, UserList.class.name)
-		//get shared anaylysis
-		def sharedAnalysisIds = securityService.getSharedItemIds(session.userId, SavedAnalysis.class.name)
+		//get shared lists, and places them is session scope
+		def sharedListIds = userListService.getSharedListIds(session.userId)
+		session.sharedListIds = sharedListIds
+		//get shared anaylysis and places them in session scope
+		def sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
+		session.sharedAnalysisIds = sharedAnalysisIds
 		
 		session.myStudies = myStudies
 		session.myCollaborationGroups = myCollaborationGroups

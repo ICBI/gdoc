@@ -59,7 +59,9 @@ $(document).ready(function()
 				</li>		
 			</ul>			
 			
-		</li>	
+		</li>
+		<li><g:navigationLink name="Saved Lists" controller="userList">Saved Lists</g:navigationLink></li>
+		<li><g:navigationLink name="Saved Analysis" controller="savedAnalysis">Saved Analysis</g:navigationLink></li>	
 		<li>
 			<a href="#">Help</a>
 		</li>		

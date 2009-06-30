@@ -1,41 +1,16 @@
 class UserListController {
     def securityService
+	def userListService
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
     def allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        //if(!params.max) params.max = 10
-		def lists = GDOCUser.findByLoginName(session.userId).lists()
-		def listIds = []
-		def sharedListIds = []
-		sharedListIds = securityService.getSharedItemIds(session.userId, UserList.class.name)
-		if(lists.metaClass.respondsTo(lists, "size")) {
-				lists.each{
-					listIds << it.id.toString()
-				}
-		} else {
-				listIds << lists.id.toString()
-		}
-			
-		def sharedLists = []
-		//until we modify ui, just add shared lists to 'all' lists
-		sharedListIds.each{
-			if(!(listIds.contains(it))){
-			def foundList = UserList.get(it.toString())
-			if(foundList){
-				lists << foundList
-			}
-		   }
-		}
-		lists = lists.sort { one, two ->
-			def dateOne = one.dateCreated
-			def dateTwo = two.dateCreated
-			return dateTwo.compareTo(dateOne)
-		}
+		def lists = []
+        lists = userListService.getAllLists(session.userId, session.sharedListIds)
 		println lists.size()	
-        [ userListInstanceList: lists, sharedListInstanceList: sharedLists ]
+        [ userListInstanceList: lists]
     }
 
     def show = {
@@ -68,10 +43,8 @@ class UserListController {
 			def list = UserList.findById(userListItemInstance.list.id)
 			list.listItems.remove(userListItemInstance);
 			userListItemInstance.delete(flush:true)	
-            //flash.message = "UserList item ${params.id} deleted"
-			list.save();
+            list.save();
 			render(template:"/userList/userListDiv",model:[ userListInstance: list, listItems:list.listItems ])
-            //render(view:"list",model:[ userListInstanceList: UserList.findAll() ])
         }
         else {
             flash.message = "UserList item not found with id ${params.id}"
@@ -177,40 +150,7 @@ class UserListController {
 		
 	}
 	
-		/** move to list service **/
-	def join = { 
-		if(params["listAction"].equals('intersect')){
-			println "intersect lists:"
-			params["userListId"].each{
-				println it
-			}
-		}
-		if(params["listAction"].equals('join')){
-			println "join lists:"
-			params["userListId"].each{
-				println it
-			}
-		}
-		if(params["listAction"].equals('diff')){
-			println "diff lists:"
-			params["userListId"].each{
-				println it
-			}
-		}
-		redirect(action:list,params:params)
-	}
-	
-	def calculateVenn = {
-			def list= ['VEGF','EGFR','BRCA1','BRCA1','ER+','ER-','FCR','HGI']
-			def list2= ['VEGF','EGFR','BRCA1','SCF7', 'QSR6','HGI']
-			assert list.retainAll( list2 )
-			    //remove 'b' and 'z', return true because list changed
-			assert list == ['VEGF','EGFR','BRCA1','BRCA1','HGI']
-			println list
-			def listSet = list as Set
-			println listSet
 		
-	}
 	
 
 	

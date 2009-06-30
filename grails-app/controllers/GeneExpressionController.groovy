@@ -5,16 +5,17 @@ class GeneExpressionController {
 	def analysisService
 	def savedAnalysisService
 	def idService
+	def userListService
 	def fileBasedAnnotationService
 	
     def index = { 
 		session.study = StudyDataSource.findByShortName("EDINBURGH")
 		StudyContext.setStudy("EDIN")
-		def lists = GDOCUser.findByLoginName(session.userId).lists()
+		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
 		def patientLists = lists.findAll { item ->
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
-		session.lists = patientLists
+		session.patientLists = patientLists
 	}
 
 	def search = { GeneExpressionCommand cmd ->
