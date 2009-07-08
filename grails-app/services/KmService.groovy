@@ -184,13 +184,15 @@ class KmService {
 			}
 			}
 		}
-		
+		if(greaterThanFold)
 		groups['greater'] = idService.gdocIdsForSampleNames(greaterThanFold)
+		if(lessThanFold)
 		groups['less'] = idService.gdocIdsForSampleNames(lessThanFold)
+		if(inBetween)
 		groups['between'] = idService.gdocIdsForSampleNames(inBetween)
-		println "greater: " + groups['greater'].size()
-		println "less: " + groups['less'].size()
-		println "in between" + groups['between'].size()
+		//println "greater: " + groups['greater'].size()
+		//println "less: " + groups['less'].size()
+		//println "in between" + groups['between'].size()
 		return groups
 	}
 

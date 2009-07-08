@@ -85,12 +85,16 @@ class KmController {
 					def kmCommand = new KmCommand()
 					def groups = []
 					groups.add(foldChangeGroups['greater'])
-					println foldChangeGroups['greater'].size()
+					//println foldChangeGroups['greater'].size()
 					groups.add(foldChangeGroups['less'])
-					println foldChangeGroups['less'].size()
+					//println foldChangeGroups['less'].size()
 					groups.add(foldChangeGroups['between'])
-					println foldChangeGroups['less'].size()
+					//println foldChangeGroups['less'].size()
 					kmCommand.groups = groups
+					kmCommand.reporters = expValues.collect {
+						it.reporter
+					}
+					kmCommand.foldChange = 2;
 					kmCommand.endpoint = "SURGERY_TO_DEATH/FU"
 					session.command = kmCommand
 					def tempLists = createTempUserListsForKM(foldChangeGroups)
@@ -177,6 +181,14 @@ class KmController {
 		def pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])
 		println "PVALUE $pvalue"
 		groups["pvalue"] = pvalue
+		if(cmd.reporters && cmd.foldChange){
+			def geInfo = [:]
+			geInfo["reporters"] = cmd.reporters
+			geInfo["foldChange"] = cmd.foldChange
+			groups["geneExpressionInfo"] = geInfo
+			println "GE INFO: "
+			println groups["geneExpressionInfo"]
+		}
 		render groups as JSON
 	}
 	}
