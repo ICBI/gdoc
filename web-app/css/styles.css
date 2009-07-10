@@ -126,6 +126,16 @@ p
 	-moz-border-radius-bottomleft:3px;
 }
 
+.formTable {
+	border: 1px solid #ccc;
+	padding: 5px 5px 5px 5px;
+}
+
+.formTable td{
+	border: 0px solid #ccc;
+	padding: 5px 5px 5px 5px;
+}
+
 .studyTable {
 	font-size: .8em;
 	border: 1px solid #CCCCCC;

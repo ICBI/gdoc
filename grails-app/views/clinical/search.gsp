@@ -17,7 +17,7 @@
 				colNames:${session.columnNames}, 
 				colModel:${session.columnJson}, 
 				height: 350, 
-				rowNum:50, 
+				rowNum:200, 
 				rowList:[25,50], 
 				//imgpath: gridimgpath, 
 				pager: jQuery('#pager'), 

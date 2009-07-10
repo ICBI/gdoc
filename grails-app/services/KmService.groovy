@@ -123,7 +123,7 @@ class KmService {
 	
 	//return highest mean expression for an analysis. 
 	/****/
-	def findReportersMeanExpression(analysisId){
+	def findReportersMeanExpression(analysisId, reporter){
 		def geAnalysis = savedAnalysisService.getSavedAnalysis(analysisId)
 		def sortedMeanExpression = new JSONArray()
 		def comparator= [ compare:
@@ -132,20 +132,38 @@ class KmService {
 		
 		
 		def reporterExpressionValues = new TreeMap(comparator)
-		geAnalysis.analysis.item.dataVectors.each { data ->
-			def values = 0
-			data.dataPoints.each { sample ->
-			values += sample.x
+		
+		//if only one reporter specified, only return expression values for that reporter
+		if(reporter!=null){
+			geAnalysis.analysis.item.dataVectors.each { data ->
+				if(data.name.equals(reporter)){
+					println "only find exp for one reporter:" + reporter
+					def values = 0
+					data.dataPoints.each { sample ->
+					values += sample.x
+					}
+					if(values){
+						println "$values / " + data.dataPoints.size()
+				  		reporterExpressionValues[values/data.dataPoints.size()] = data.name
+					}
+				}
 			}
-			if(values){
-				println "$values / " + data.dataPoints.size()
-		  		reporterExpressionValues[values/data.dataPoints.size()] = data.name
+		}else{
+			geAnalysis.analysis.item.dataVectors.each { data ->
+				def values = 0
+				data.dataPoints.each { sample ->
+					values += sample.x
+				}
+				if(values){
+					println "$values / " + data.dataPoints.size()
+		  			reporterExpressionValues[values/data.dataPoints.size()] = data.name
+				}
 			}
 		}
 		
-		reporterExpressionValues.each{ exp, reporter ->
+		reporterExpressionValues.each{ exp, myReporter ->
 			JSONObject values=new JSONObject();
-			values.put("reporter",reporter)
+			values.put("reporter",myReporter)
 			values.put("expression", exp)
 			sortedMeanExpression.add(values)
 		}
@@ -185,9 +203,9 @@ class KmService {
 			}
 		}
 		if(greaterThanFold)
-		groups['greater'] = idService.gdocIdsForSampleNames(greaterThanFold)
+		groups['&gt;' + foldChange] = idService.gdocIdsForSampleNames(greaterThanFold)
 		if(lessThanFold)
-		groups['less'] = idService.gdocIdsForSampleNames(lessThanFold)
+		groups['&lt;' + "-" + foldChange] = idService.gdocIdsForSampleNames(lessThanFold)
 		if(inBetween)
 		groups['between'] = idService.gdocIdsForSampleNames(inBetween)
 		//println "greater: " + groups['greater'].size()

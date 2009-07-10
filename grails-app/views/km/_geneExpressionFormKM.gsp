@@ -9,22 +9,23 @@ function showSpinner() {
 <div id="form">
 		<div class="clinicalSearch">	
 			<g:form name="reporterForm" action="submitGEPlot" url="${[action:'submitGEPlot']}">
-			<table cellpadding="2" cellspacing="2" border="1">
+			<table class="formTable" cellpadding="2" cellspacing="2">
 			<tr>
-				<td>Select a Patient Group (optional)</td>
-				<td><g:select name="groups"
-							  noSelection="['':'-All patients-']"
+				<td>Select a Patient Group</td>
+				<td colspan="2"><g:select name="groups"
 							  from="${session.patientLists}"
 							optionKey="name" optionValue="name" /></td>
 			</tr>
 			<tr>
 				<td>
 					Select Gene:</td>
-				<td><g:validationInput name="geneName"/></td>
+				<td colspan="2"><g:validationInput name="geneName"/></td>
 			</tr>
 			<tr>
-				<td>
-					<g:submitButton name="search" value="Plot" onclick="showSpinner();"/></td>
+				<td style="align:right" colspan="2">
+					<g:submitButton name="search" value="Plot" onclick="showSpinner();"/>
+				 <input type="reset" name="reset" value="reset" />
+				</td>
 				<td>
 				<span id="spinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/>...performing 				            gene expression analysis</span>
 			</td>

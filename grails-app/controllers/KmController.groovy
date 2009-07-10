@@ -57,6 +57,48 @@ class KmController {
 	
 	def searchGE = {}
 	
+	def redrawGEPlot = {
+		println params
+		if(params.reporter){
+		 def reporter = params.reporter
+		 def allReporters = []
+		 if(params.allReporters){
+				params['allReporters'].tokenize(",").each{
+					allReporters.add(it);
+				}
+		  }
+		 
+		 def fc = params.foldChange
+		 def geAnalysisId = params.geAnalysisId
+		/**move the following code into common area, as both this method and submitGEPlot use it
+		--------------------------------------------------------------------------------**/
+		//TODO - carry mean expressions to flex cmponent and back so no re-calc is necessary
+		 def expValues = kmService.findReportersMeanExpression(geAnalysisId,reporter)
+		  println "found mean expression for redrawn plot"
+		def meanExpression = expValues[0].expression
+			def foldChangeGroups = []
+			def foldChange = Integer.parseInt(fc)
+			foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,meanExpression,foldChange,geAnalysisId)
+			def kmCommand = new KmCommand()
+			def groups = []
+			groups.add(foldChangeGroups['&gt;' + foldChange])
+			groups.add(foldChangeGroups['&lt;' +"-" + foldChange])
+			groups.add(foldChangeGroups['between'])
+			
+			kmCommand.geAnalysisId = Integer.parseInt(geAnalysisId)
+			kmCommand.groups = groups
+			kmCommand.reporters = allReporters
+			kmCommand.foldChange = foldChange;
+			kmCommand.currentReporter = reporter
+			kmCommand.endpoint = "SURGERY_TO_DEATH/FU"
+			session.command = kmCommand
+			def tempLists = createTempUserListsForKM(foldChangeGroups)
+			session.selectedLists = tempLists
+		/**------------------------------------------------**/
+		}
+		redirect(action:'searchGE')
+	}
+	
 	def submitGEPlot= {
 			GeneExpressionCommand cmd ->
 				if(cmd.hasErrors()) {
@@ -77,24 +119,28 @@ class KmController {
 					}
 					println "analysis COMPLETE"
 					println "retrieve expression values"
-					def expValues = kmService.findReportersMeanExpression(geAnalysis.id)
+					def expValues = kmService.findReportersMeanExpression(geAnalysis.id,null)
 					def highestMean = expValues[0].expression
 					def reporter = expValues[0].reporter
 					def foldChangeGroups = []
-					foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,highestMean,2,geAnalysis.id)
+					def foldChange = 2
+					foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,highestMean,foldChange,geAnalysis.id)
 					def kmCommand = new KmCommand()
 					def groups = []
-					groups.add(foldChangeGroups['greater'])
+					groups.add(foldChangeGroups['&gt;' + foldChange])
 					//println foldChangeGroups['greater'].size()
-					groups.add(foldChangeGroups['less'])
+					groups.add(foldChangeGroups['&lt;' +"-" + foldChange])
 					//println foldChangeGroups['less'].size()
 					groups.add(foldChangeGroups['between'])
 					//println foldChangeGroups['less'].size()
+					
+					kmCommand.geAnalysisId = geAnalysis.id
 					kmCommand.groups = groups
 					kmCommand.reporters = expValues.collect {
 						it.reporter
 					}
 					kmCommand.foldChange = 2;
+					kmCommand.currentReporter = reporter
 					kmCommand.endpoint = "SURGERY_TO_DEATH/FU"
 					session.command = kmCommand
 					def tempLists = createTempUserListsForKM(foldChangeGroups)
@@ -177,13 +223,18 @@ class KmController {
 			sampleGroups << samples
 			def points = kmService.plotCoordinates(samples)
 			groups[list.name] = points
+			println "assigned points"
 		}
-		def pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])
+		def pvalue = null
+		if(sampleGroups[0] && sampleGroups[1])
+		pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])
 		println "PVALUE $pvalue"
 		groups["pvalue"] = pvalue
 		if(cmd.reporters && cmd.foldChange){
 			def geInfo = [:]
+			geInfo["geAnalysisId"] = cmd.geAnalysisId
 			geInfo["reporters"] = cmd.reporters
+			geInfo["currentReporter"] = cmd.currentReporter
 			geInfo["foldChange"] = cmd.foldChange
 			groups["geneExpressionInfo"] = geInfo
 			println "GE INFO: "

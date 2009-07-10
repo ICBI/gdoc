@@ -7,10 +7,10 @@
     <body>
 	<br/>
 	<p style="font-size:14pt">KM Plot Results</p>
-	<div id="centerContent" height="800px">
+	<div id="centerContent">
 		<br/>
 
-				<g:flex component="KMPlot" width="700px" height="660px" />
+				<g:flex component="KMPlot" width="700px" height="850px" />
 	</div>
 	</body>
 	

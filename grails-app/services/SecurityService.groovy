@@ -14,8 +14,6 @@ class SecurityService {
 	AuthenticationManager authenticationManager
 	AuthorizationManager authorizationManager
 	
-	def sharedItems
-	
 	def login(params) throws LoginException{
 		def user = GDOCUser.findByLoginName(params.loginName)
 		try{
@@ -113,12 +111,13 @@ class SecurityService {
 	}
 	
 	def getSharedItemIds(loginName, itemType) {
-		if(!sharedItems) {
+		def sharedItems = [:]
+		/**commented out for 'session' inconsistencies if(!sharedItems) {
 			sharedItems = [:]
 		}
 		if(sharedItems[itemType]) {
 			return sharedItems[itemType]
-		} else {
+		} else {**/
 			def authManager = this.getAuthorizationManager()
 			def user = authManager.getUser(loginName)
 			def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
@@ -136,7 +135,7 @@ class SecurityService {
 			}
 			sharedItems[itemType] = ids
 			return ids
-		}
+		//}
 	}
 	
 	public AuthenticationManager getAuthenticationManager() {
