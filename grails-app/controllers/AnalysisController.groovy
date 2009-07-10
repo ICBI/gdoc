@@ -8,6 +8,7 @@ class AnalysisController {
 	def analysisService
 	def savedAnalysisService
 	def annotationService
+	def userListService
 	
     def index = {
 		session.study = StudyDataSource.findByShortName("EDINBURGH")
