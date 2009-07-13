@@ -23,7 +23,7 @@
 				  size="3"
 				  />
 		<br /><br />
-		<input type="submit" value="submit" />
+		<input type="submit" value="Submit" />
 		<input type="button" value="Venn Diagram" id="venn" style="display:inline" onclick="javascript:void(0)"/>
 		</g:form>
 	 </div>

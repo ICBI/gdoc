@@ -152,6 +152,41 @@ class UserListController {
 	
 		
 	
-
+	def upload = {
+		
+	}
+	
+	def saveList = {
+		//TODO: Validate list
+		if(request.getFile("file").inputStream.text) {
+			def author = GDOCUser.findByLoginName(session.userId)
+			def listDup = author.lists().find {
+				it.name == params["listName"]
+			}
+			if(listDup) {
+				flash["message"] "List $params.listName already exists"
+				redirect(action:upload)
+			}
+			def userList = new UserList()
+			userList.name = params["listName"]
+			userList.author = author
+			request.getFile("file").inputStream.eachLine { value ->
+				println value
+				userList.addToListItems(new UserListItem(value:value.trim()))
+			}
+        	if(!userList.hasErrors() && userList.save()) {
+				def connection = new UserListConnection(list:userList,user:author,rating:0)
+				if(!connection.hasErrors() && connection.save()) {
+					userList.addTag(params["listType"])
+					flash["message"] = "$params.listName created succesfully"
+					redirect(action:list)
+				}
+	        } else {
+				flash["message"] =  "Error creating $params.listName list"
+				redirect(action:upload)
+	        }
+		}
+		redirect(action:upload)
+	}
 	
 }

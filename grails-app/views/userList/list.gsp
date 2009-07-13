@@ -21,13 +21,16 @@
 		<span class="menuButton"><g:link class="create" action="create">New UserList</g:link></span>--%>
 	</div>
 	<div class="body">
-		<p class="pageHeading">Manage Lists</p><br />
+		<p class="pageHeading">
+			Manage Lists
+			<br/>
+			<g:link action="upload" style="font-size: 12px;">Upload List</g:link>
+		</p><br />
 
 		<g:if test="${flash.message}">
 		<div class="message">${flash.message}</div>
 	</g:if>
-
-
+	
 	<g:if test="${userListInstanceList.size()>0}">
 	<div class="list" id="allLists">
 		<g:panel title="My Lists" styleClass="welcome" >
