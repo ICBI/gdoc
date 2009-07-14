@@ -178,12 +178,12 @@ class UserListController {
 				def connection = new UserListConnection(list:userList,user:author,rating:0)
 				if(!connection.hasErrors() && connection.save()) {
 					userList.addTag(params["listType"])
-					flash["message"] = "$params.listName created succesfully"
-					redirect(action:list)
+					flash["message"] = "$params.listName uploaded succesfully"
+					redirect(action:upload,params:[success:true])
 				}
 	        } else {
-				flash["message"] =  "Error creating $params.listName list"
-				redirect(action:upload)
+				flash["message"] =  "Error uploading $params.listName list"
+				redirect(action:upload,params:[failure:true])
 	        }
 		}
 		//redirect(action:upload)

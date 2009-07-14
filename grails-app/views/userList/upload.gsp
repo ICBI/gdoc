@@ -1,15 +1,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="layout" content="main" />
-        <title>Upload List</title>         
+        <g:javascript library="jquery"/>
+		<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox-compressed.js')}"></script>
+        <title>Upload List</title>  
+       <link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
     </head>
     <body>
+		<g:if test="${params.failure}">
+		<div class="errorMessage" style="color:red">${flash.message}</div><br />
+		</g:if>
+		<g:if test="${params.success}">
+			<div class="successMessage" style="color:#007000">${flash.message}</div><br />
+		</g:if>
         <div class="body">
 					<p class="pageHeading">
             Upload List
 					</p>
-					<br/>
 					<div class="clinicalSearch">
 						<br/>
             <g:if test="${flash.message}">

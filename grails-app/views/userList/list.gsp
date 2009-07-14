@@ -24,7 +24,8 @@
 		<p class="pageHeading">
 			Manage Lists
 			<br/>
-			<g:link action="upload" style="font-size: 12px;">Upload List</g:link>
+			<g:link class="thickbox" name="Upload custom list" action="upload" style="font-size: 12px;"
+	params="[keepThis:'true',TB_iframe:'true',height:'350',width:'400',title:'someTitle']">Upload List</g:link>
 		</p><br />
 
 		<g:if test="${flash.message}">
