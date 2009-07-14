@@ -186,7 +186,7 @@ class UserListController {
 				redirect(action:upload)
 	        }
 		}
-		redirect(action:upload)
+		//redirect(action:upload)
 	}
 	
 }

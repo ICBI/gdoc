@@ -1,6 +1,7 @@
 class GenePatternController {
 
 	def genePatternService
+	def userListService
 	
     def index = {
 		if(params.id) {
