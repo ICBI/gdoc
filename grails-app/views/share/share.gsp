@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<title>Share</title>
 	<g:javascript library="jquery"/>
-	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox-compressed.js')}"></script>
+	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox.js')}"></script>
 	<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
 	
 </head>
