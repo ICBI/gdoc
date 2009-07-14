@@ -6,10 +6,14 @@
 	<title>Share</title>
 	<g:javascript library="jquery"/>
 	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox-compressed.js')}"></script>
-	
+	<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
 	
 </head>
-<body>
+<div class="body">
+			<p class="pageHeading">
+    Share ${params.name}
+			</p>
+			<div class="clinicalSearch">
 	<g:if test="${params.failure}">
 	<div class="errorMessage" style="color:red">${flash.message}</div><br />
 	</g:if>
@@ -32,6 +36,7 @@
 
 	
 	</g:if>
-	
+	</div>
+ </div>
 </body>
 </html>
