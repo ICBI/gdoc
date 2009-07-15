@@ -5,6 +5,11 @@
 		<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox.js')}"></script>
         <title>Upload List</title>  
        <link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
+		<script type="text/javascript">
+			function refreshListPage(){
+				window.parent.location.replace(window.parent.location.pathname);
+			}
+		</script>
     </head>
     <body>
 		<g:if test="${params.failure}">
@@ -12,6 +17,7 @@
 		</g:if>
 		<g:if test="${params.success}">
 			<div class="successMessage" style="color:#007000">${flash.message}</div><br />
+			<script>refreshListPage();</script>
 		</g:if>
         <div class="body">
 					<p class="pageHeading">
