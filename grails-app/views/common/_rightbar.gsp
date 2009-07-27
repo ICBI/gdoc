@@ -1,9 +1,4 @@
 <jq:plugin name="ui"/>
-<script type="text/javascript">
-$(document).ready(function(){
-  $("#tabs").tabs();
-});
-</script>
 <br/>
 <g:if test="${session.userId}">
     <g:render template="/common/portal_rightbar"/>

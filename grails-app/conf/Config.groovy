@@ -109,4 +109,6 @@ log4j {
     additivity.StackTrace=false
 }
 
-
+// Jquery configuration
+jquery.sources="jquery" 
+jquery.version="1.3.2" 
