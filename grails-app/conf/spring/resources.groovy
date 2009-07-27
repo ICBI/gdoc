@@ -37,10 +37,5 @@ beans = {
 		targetBeanName="securityServiceProxy"
 		proxyTargetClass=true
 	} 
-	remoteService(org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean) {
-		serviceUrl="${CH.config.caTissueUrl}/catissuecore/http/remoteService"
-		serviceInterface="gov.nih.nci.system.comm.common.ApplicationServiceProxy"
-		httpInvokerRequestExecutor(org.springframework.remoting.httpinvoker.CommonsHttpInvokerRequestExecutor)
-	}
 		
 }

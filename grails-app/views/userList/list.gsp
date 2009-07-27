@@ -6,7 +6,7 @@
 	<meta name="layout" content="listsMain" />
 	<title>User Lists</title>
 	<g:javascript library="jquery"/>
-	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox.js')}"></script>
+	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox-compressed.js')}"></script>
 	<script type="text/javascript">
 		function toggle(element){
 			$('#'+element+'_content').slideToggle();

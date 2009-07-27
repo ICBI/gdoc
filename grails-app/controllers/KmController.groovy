@@ -48,7 +48,7 @@ class KmController {
 			redirect(action:'index')
 		} else {
 			def selectedLists = session.patientLists.findAll { list ->
-				cmd.groups.contains(list.name)
+				cmd.groups.toList().contains(list.name)
 			}
 			session.command = cmd
 			session.selectedLists = selectedLists
