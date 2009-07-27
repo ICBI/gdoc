@@ -1,6 +1,6 @@
 class AnalysisCommand {
 
-	List groups
+	String[] groups
 	String pvalue
 	String foldChange
 	String dataFile
@@ -8,6 +8,7 @@ class AnalysisCommand {
 	
 	static constraints = {
 		groups(validator: { val, obj ->
+			println "VALUES:  ${val}"
 			if(!val) {
 				return "custom.size"
 			}

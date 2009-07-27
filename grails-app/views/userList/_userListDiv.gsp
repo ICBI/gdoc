@@ -1,14 +1,4 @@
-<g:javascript library="jquery"/></head>
- 	<%--<div id="${userListInstance.name}_content" style="border:1px solid black;display:none">
-	<table>
-		<g:each in="${userListInstance.listItems}" status="j" var="list_item">
-			<tr><td>${list_item.value}</td>
-				<td><a href="javascript:void(0)" 	onclick="${remoteFunction(action:'deleteListItem',id:list_item.id,update:userListInstance.name+'_content')}return false;">delete</a></td>
-			</tr>
-
-		</g:each>
-	</table>
-	</div>--%>
+<g:javascript library="jquery"/>
 	<table>
 		
 		<g:if test="${flash.message}">

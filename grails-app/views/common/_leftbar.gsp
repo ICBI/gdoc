@@ -36,7 +36,12 @@ jQuery(document).ready(function()
 					<a href="#">Patients</a>
 				</li>	
 				<li>
-					<a href="#">Samples</a>
+					<a class="sf-with-ul" href="#">Samples<span class="sf-sub-indicator"> »</span></a>
+					<ul style="display: none; visibility: hidden;">
+							<li>
+								<g:navigationLink name="HTSR" id="HTSR" controller="sample" />
+							</li>
+					</ul>
 				</li>
 				<li>
 					<a href="#">Targets</a>

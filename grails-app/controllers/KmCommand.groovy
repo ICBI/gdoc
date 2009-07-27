@@ -1,6 +1,6 @@
 class KmCommand {
 
-	List groups
+	String[] groups
 	String endpoint
 	AnalysisType requestType = (AnalysisType.KM_PLOT)
 	//the following are strictly for KM based on gene expression

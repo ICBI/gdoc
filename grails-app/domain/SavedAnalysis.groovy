@@ -40,7 +40,9 @@ class SavedAnalysis implements Taggable {
 	}
 	
 	public void setAnalysis(Object data) {
-		this.@analysisData = data as AnalysisJSON
+		def temp = data as JSON
+		println "TEMP: $temp"
+		this.@analysisData = data as JSON
 	}
 	
 	public Object getQuery() {
@@ -56,7 +58,7 @@ class SavedAnalysis implements Taggable {
 	}
 	
 	public void setQuery(Object data) {
-		this.@queryData = data as AnalysisJSON
+		this.@queryData = data as JSON
 	}
 	
 	def reloadData = {

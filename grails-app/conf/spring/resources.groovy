@@ -2,7 +2,7 @@
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 beans = {
-    eventTriggeringInterceptor(StudyContextInterceptor)
+    entityInterceptor(StudyContextInterceptor)
 
 	jndiTemplate(org.springframework.jndi.JndiTemplate) {
 		environment = ["java.naming.factory.initial":"org.jnp.interfaces.NamingContextFactory",
@@ -37,5 +37,10 @@ beans = {
 		targetBeanName="securityServiceProxy"
 		proxyTargetClass=true
 	} 
-	
+	remoteService(org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean) {
+		serviceUrl="${CH.config.caTissueUrl}/catissuecore/http/remoteService"
+		serviceInterface="gov.nih.nci.system.comm.common.ApplicationServiceProxy"
+		httpInvokerRequestExecutor(org.springframework.remoting.httpinvoker.CommonsHttpInvokerRequestExecutor)
+	}
+		
 }

@@ -6,7 +6,6 @@
 		}
 	}
 </script>
-
 <g:panel id="myPanel" title="List Tools" styleClass="prefs" panelColor="userLogPanelTitle" contentClass="myPanelContent">
 	<g:if test="${userListInstanceList.size()>0}">
 		<div>

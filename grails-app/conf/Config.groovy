@@ -42,6 +42,8 @@ environments {
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/opt/gdoc-temp"
+		caTissueUrl = "https://141.161.54.206"
+		caTissueCertificate = "/Users/ashinohara/dev/georgetown/catissue_tests/chap8.keystore"
     }
     demo {
         grails.serverURL = "http://www.changeme.com"
@@ -49,6 +51,9 @@ environments {
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/opt/gdoc-temp"
+		caTissueUrl = "https://141.161.54.206"
+		caTissueCertificate = "/Users/ashinohara/dev/georgetown/catissue_tests/chap8.keystore"
+		
     }
 	development {
 	//	jmsserver = "jnp://141.161.30.205:1099"
@@ -56,12 +61,18 @@ environments {
  		responseQueue = "AnalysisResponseAndrew"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/local/content/gdoc"
+		caTissueUrl = "https://141.161.54.206"
+		caTissueCertificate = "/Users/ashinohara/dev/georgetown/catissue_tests/chap8.keystore"
+		
 	}
 	test {
 		jmsserver = "jnp://localhost:1099"
  		responseQueue = "AnalysisResponseAndrew"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/local/content/gdoc"
+		caTissueUrl = "https://141.161.54.206"
+		caTissueCertificate = "/Users/ashinohara/dev/georgetown/catissue_tests/chap8.keystore"
+		
 	}
 }
 // war file setup

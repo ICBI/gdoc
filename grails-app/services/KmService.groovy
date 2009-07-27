@@ -125,6 +125,7 @@ class KmService {
 	/****/
 	def findReportersMeanExpression(analysisId, reporter){
 		def geAnalysis = savedAnalysisService.getSavedAnalysis(analysisId)
+		println "GOT SAVED ANALYSIS ${geAnalysis.analysis.item}"
 		def sortedMeanExpression = new JSONArray()
 		def comparator= [ compare:
 		  {a,b-> b.equals(a)? 0: b<a? -1: 1 }

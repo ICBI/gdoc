@@ -37,6 +37,8 @@ class SavedAnalysisService {
 			runningAnalysis.analysis = notification
 			runningAnalysis.status = notification.status
 			runningAnalysis.taskId = notification.item.taskId
+			println "ANALYSIS: $runningAnalysis"
+			runningAnalysis.save(flush:true)
 		} else {
 			throw new Exception("No analysis to update")
 		}
@@ -70,8 +72,7 @@ class SavedAnalysisService {
 	}
 	
 	def getSavedAnalysis(userId, taskId) {
-		def user = GDOCUser.findByLoginName(userId)
-		user.refresh()
+		def user = GDOCUser.findByLoginName(userId, ['fetch':[analysis:'eager']])
 		def analysis=[]
 		analysis = user.analysis
 		def item =  analysis.find{

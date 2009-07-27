@@ -108,14 +108,14 @@ class KmController {
 					def taskId = analysisService.sendRequest(session.id, cmd)
 					def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, taskId)
 					println "CHECKING status ${geAnalysis.id} ${taskId}"
-					println "after 10, status is: " + geAnalysis.analysis.status
-					while(geAnalysis.analysis.status != 'Complete'){
+					println "after 10, status is: " + geAnalysis.status
+					while(geAnalysis.status != 'Complete'){
 						Thread.sleep(5000)
 						geAnalysis = savedAnalysisService.getSavedAnalysis(geAnalysis.id)
 						geAnalysis.reloadData()
 						println "CHECKING status ${geAnalysis.id} ${taskId}"
 						//println "JSON ${geAnalysis.analysisData} DATA ${geAnalysis.analysis}"
-						println "status of geAnalysis after checking savd is: " + geAnalysis.analysis.status
+						println "status of geAnalysis after checking savd is: " + geAnalysis.status
 					}
 					println "analysis COMPLETE"
 					println "retrieve expression values"

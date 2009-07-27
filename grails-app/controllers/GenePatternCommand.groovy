@@ -1,6 +1,6 @@
 class GenePatternCommand {
 
-	List groups
+	String[] groups
 	String dataFile = "EdinPlier_22APR2009.Rda"
 	String analysisName
 	String geneList
