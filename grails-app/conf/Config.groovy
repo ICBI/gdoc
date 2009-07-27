@@ -75,12 +75,7 @@ environments {
 		
 	}
 }
-// war file setup
-grails.war.destFile = "gdoc.war"
-grails.war.resources = {stagingDir ->
-	delete(file: "$stagingDir/WEB-INF/lib/jbossall-client.jar")
-    delete(file: "$stagingDir/WEB-INF/lib/jbossall-client.jar")
-}
+
 // log4j configuration
 log4j {
     appender.stdout = "org.apache.log4j.ConsoleAppender"
