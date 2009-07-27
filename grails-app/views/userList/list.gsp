@@ -16,10 +16,6 @@
 	
 </head>
 <body>
-	<div class="nav">
-		<%--<span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-		<span class="menuButton"><g:link class="create" action="create">New UserList</g:link></span>--%>
-	</div>
 	<div class="body">
 		<p class="pageHeading">
 			Manage Lists
@@ -92,7 +88,6 @@
 </table>
 </g:panel>
 
-
 </div>
 
 </g:if>
@@ -101,9 +96,6 @@
 </g:else>
 
 
-<div class="paginateButtons">
-	<%--<g:paginate total="${userListInstanceList.size()}" />--%>
-</div>
 </div>
 </body>
 </html>
