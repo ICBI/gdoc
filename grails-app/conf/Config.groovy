@@ -42,8 +42,7 @@ environments {
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/opt/gdoc-temp"
-		caTissueUrl = "https://141.161.54.206"
-		caTissueCertificate = "/Users/ashinohara/dev/georgetown/catissue_tests/chap8.keystore"
+		middlewareUrl = "http://localhost/gdoc-middleware"
     }
     demo {
         grails.serverURL = "http://www.changeme.com"
@@ -51,8 +50,7 @@ environments {
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/opt/gdoc-temp"
-		caTissueUrl = "https://141.161.54.206"
-		caTissueCertificate = "/Users/ashinohara/dev/georgetown/catissue_tests/chap8.keystore"
+		middlewareUrl = "http://localhost/gdoc-middleware"
 		
     }
 	development {
@@ -61,8 +59,7 @@ environments {
  		responseQueue = "AnalysisResponseAndrew"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/local/content/gdoc"
-		caTissueUrl = "https://141.161.54.206"
-		caTissueCertificate = "/Users/ashinohara/dev/georgetown/catissue_tests/chap8.keystore"
+		middlewareUrl = "http://localhost:9090/gdoc-middleware"
 		
 	}
 	test {
@@ -70,8 +67,7 @@ environments {
  		responseQueue = "AnalysisResponseAndrew"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/local/content/gdoc"
-		caTissueUrl = "https://141.161.54.206"
-		caTissueCertificate = "/Users/ashinohara/dev/georgetown/catissue_tests/chap8.keystore"
+		middlewareUrl = "http://localhost:9090/gdoc-middleware"
 		
 	}
 }

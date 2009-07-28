@@ -6,17 +6,25 @@
         <title>Sample Summary</title>         
     </head>
     <body>
-	<p style="font-size:14pt">Samples</p>
+	<p style="font-size:14pt">${params.id} Samples</p>
 	<br/>
 	<div id="centerContent" class="welcome">
-		<g:panel id="studyPanel" title="${params.id} Sample Summary" styleClass="welcome" collapse="true">
-				<table class="studyTable">
-					<tr>
-						Summary
-					</tr>
-					<tr>
-						${summary}
-					</tr>
+		<g:panel id="studyPanel" title="Sample Summary" styleClass="welcome" collapse="true">
+				<table class="studyTable" style="width: 100%">
+					<g:each in="${session.summary}" var="s">
+						<tr>
+								<th>${s.key}</th>
+							<g:each in="${s.value}" var="i">
+								<th>${i.key}</th>
+							</g:each>
+						</tr>
+						<tr>
+								<td>Sample Count</td>
+							<g:each in="${s.value}" var="i">
+								<td>${i.value}</td>
+							</g:each> 
+						</tr>	
+					</g:each>		
 				</table>
 		</g:panel>
 		<br/>
