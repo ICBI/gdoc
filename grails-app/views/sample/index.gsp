@@ -8,6 +8,8 @@
     <body>
 	<p style="font-size:14pt">${params.id} Samples</p>
 	<br/>
+	${flash.error}
+	<br/>
 	<div id="centerContent" class="welcome">
 		<g:panel id="studyPanel" title="Sample Summary" styleClass="welcome" collapse="true">
 				<table class="studyTable" style="width: 100%">
