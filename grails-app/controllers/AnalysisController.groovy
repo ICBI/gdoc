@@ -17,7 +17,7 @@ class AnalysisController {
 		def patientLists = lists.findAll { item ->
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
-		session.patientLists = patientLists
+		session.patientLists = patientLists.sort { it.name }
 	}
 	
 	def submit = { AnalysisCommand cmd ->

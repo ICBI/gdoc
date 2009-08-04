@@ -22,6 +22,13 @@
 				move_top_button   : 'move_top',   //Id of Move top button         ,,
 				move_bottom_button: 'move_bottom' //Id of Move bottom ,,          ,,  
 			});  
+			$('#genePatternForm').submit(function() {
+				$('#right :option').attr("selected", "selected");
+			});
+			$('#right :option').each(function() {
+				$("#left option[value='"+ this.value +  "']").remove();
+			});
+			$.sortOptions('#left');
 		});
 
 	</g:javascript>
