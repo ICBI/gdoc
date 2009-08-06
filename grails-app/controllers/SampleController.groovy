@@ -8,29 +8,15 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import grails.converters.JSON 
 
 class SampleController {
+	def middlewareService
     def index = { 
-		def url = "${CH.config.middlewareUrl}/SampleSummary.json?datasource=HTSR"
-		def user = GDOCUser.findByLoginName(session.userId)
-		def credentials =
-		     new UsernamePasswordCredentials(user.loginName, user.password)
-		
-		def client = new HttpClient()
-		HttpClientParams params = client.getParams()
-		params.setAuthenticationPreemptive( true )
-		HttpState state = client.getState()
-		state.setCredentials( null, null, credentials )
-		def get = new GetMethod(url)
-		def status = client.executeMethod(get)
-		println status
-		
-		if (status != HttpStatus.SC_OK) {
-		 	flash.error = "Method failed: " + get.getStatusLine()
-			return
+
+		def returnData = middlewareService.loadResource("Sample", ["datasource": params.id], session.userId)
+		if(returnData && returnData instanceof Map) {
+			session.summary = returnData
+		} else {
+			session.summary = null
+			flash.error = "Error communicating with server.  Please try again."
 		}
-		println get.getResponseBodyAsString().toString()
-		if(get.getResponseBodyAsString().toString()) 
-			session.summary = JSON.parse(get.getResponseBodyAsString().toString())
-		get.releaseConnection()
-		
 	}
 }

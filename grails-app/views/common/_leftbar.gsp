@@ -38,9 +38,13 @@ jQuery(document).ready(function()
 				<li>
 					<a class="sf-with-ul" href="#">Samples<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
-							<li>
-								<g:navigationLink name="HTSR" id="HTSR" controller="sample" />
-							</li>
+							<g:if test="${session.dataSourceMap}">
+							<g:each in="${session.dataSourceMap['Sample']}">
+								<li>
+									<g:navigationLink name="${it}" id="${it}" controller="sample" />
+								</li>
+							</g:each>							
+							</g:if>
 					</ul>
 				</li>
 				<li>

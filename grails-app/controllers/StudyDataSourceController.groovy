@@ -7,6 +7,7 @@ class StudyDataSourceController {
 	def securityService
 	def savedAnalysisService
 	def userListService
+	def middlewareService
 	
     def index = { 
 		def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
@@ -36,6 +37,9 @@ class StudyDataSourceController {
 		
 		session.myStudies = myStudies
 		session.myCollaborationGroups = myCollaborationGroups
+		
+		loadRemoteSources()
+		println session.myCollaborationGroups
 	}
 	
 	def show = {
@@ -43,5 +47,19 @@ class StudyDataSourceController {
 		session.study = currStudy
 		clinicalElements = AttributeType.findAll()
 		println clinicalElements
+	}
+	
+	def loadRemoteSources() {
+		def middlewareSources = middlewareService.loadResource("Datasource", null, session.userId)
+		def dataSourceMap = [:]
+		middlewareSources.each { key, value ->
+			value.each {
+				if(!dataSourceMap[it]) {
+					dataSourceMap[it] = []
+				}
+				dataSourceMap[it] << key
+			}
+		}
+		session.dataSourceMap = dataSourceMap
 	}
 }

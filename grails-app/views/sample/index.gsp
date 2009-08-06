@@ -11,6 +11,7 @@
 	${flash.error}
 	<br/>
 	<div id="centerContent" class="welcome">
+		<g:if test="${session.summary}">
 		<g:panel id="studyPanel" title="Sample Summary" styleClass="welcome" collapse="true">
 				<table class="studyTable" style="width: 100%">
 					<g:each in="${session.summary}" var="s">
@@ -29,6 +30,7 @@
 					</g:each>		
 				</table>
 		</g:panel>
+		</g:if>
 		<br/>
 	</div>
 	</body>
