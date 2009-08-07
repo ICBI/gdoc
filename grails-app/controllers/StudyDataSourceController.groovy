@@ -52,12 +52,14 @@ class StudyDataSourceController {
 	def loadRemoteSources() {
 		def middlewareSources = middlewareService.loadResource("Datasource", null, session.userId)
 		def dataSourceMap = [:]
-		middlewareSources.each { key, value ->
-			value.each {
-				if(!dataSourceMap[it]) {
-					dataSourceMap[it] = []
+		if(middlewareSources instanceof Map) {
+			middlewareSources.each { key, value ->
+				value.each {
+					if(!dataSourceMap[it]) {
+						dataSourceMap[it] = []
+					}
+					dataSourceMap[it] << key
 				}
-				dataSourceMap[it] << key
 			}
 		}
 		session.dataSourceMap = dataSourceMap

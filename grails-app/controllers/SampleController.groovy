@@ -9,14 +9,18 @@ import grails.converters.JSON
 
 class SampleController {
 	def middlewareService
-    def index = { 
+    def search = { 
 
-		def returnData = middlewareService.loadResource("Sample", ["datasource": params.id], session.userId)
+		def returnData = middlewareService.loadResource("Sample", params, session.userId)
 		if(returnData && returnData instanceof Map) {
 			session.summary = returnData
 		} else {
 			session.summary = null
 			flash.error = "Error communicating with server.  Please try again."
 		}
+	}
+	
+	def index = {
+		
 	}
 }

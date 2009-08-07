@@ -36,16 +36,7 @@ jQuery(document).ready(function()
 					<a href="#">Patients</a>
 				</li>	
 				<li>
-					<a class="sf-with-ul" href="#">Samples<span class="sf-sub-indicator"> »</span></a>
-					<ul style="display: none; visibility: hidden;">
-							<g:if test="${session.dataSourceMap}">
-							<g:each in="${session.dataSourceMap['Sample']}">
-								<li>
-									<g:navigationLink name="${it}" id="${it}" controller="sample" />
-								</li>
-							</g:each>							
-							</g:if>
-					</ul>
+					<g:link controller="sample" styleClass="sf-with-ul">Samples</g:link>
 				</li>
 				<li>
 					<a href="#">Targets</a>

@@ -10,6 +10,8 @@ import grails.converters.JSON
 class MiddlewareService {
 	
 	def loadResource(resource, urlParams, userName) {
+		
+		def data
 		def url = "${CH.config.middlewareUrl}/${resource}.json"
 		if(urlParams) {
 			def tempParams = urlParams.collect { key, value ->
@@ -21,23 +23,26 @@ class MiddlewareService {
 		def user = GDOCUser.findByLoginName(userName)
 		def credentials =
 		     new UsernamePasswordCredentials(user.loginName, user.password)
-
-		def client = new HttpClient()
-		HttpClientParams params = client.getParams()
-		params.setAuthenticationPreemptive( true )
-		HttpState state = client.getState()
-		state.setCredentials( null, null, credentials )
-		def get = new GetMethod(url)
-		def status = client.executeMethod(get)
-		println status
+		try {
+			def client = new HttpClient()
+			HttpClientParams params = client.getParams()
+			params.setAuthenticationPreemptive( true )
+			HttpState state = client.getState()
+			state.setCredentials( null, null, credentials )
+			def get = new GetMethod(url)
+			def status = client.executeMethod(get)
+			println status
 		
-		if (status != HttpStatus.SC_OK) {
-			return "Method failed: " + get.getStatusLine()
+			if (status != HttpStatus.SC_OK) {
+				return "Method failed: " + get.getStatusLine()
+			}
+
+			if(get.getResponseBodyAsString().toString()) 
+				data = JSON.parse(get.getResponseBodyAsString().toString())
+			get.releaseConnection()
+		} catch(Exception e) {
+			data = "Cannot connect to server, please try again."
 		}
-		def data
-		if(get.getResponseBodyAsString().toString()) 
-			data = JSON.parse(get.getResponseBodyAsString().toString())
-		get.releaseConnection()
 		return data
 	}
 }
