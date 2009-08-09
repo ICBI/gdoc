@@ -2,10 +2,11 @@
 
 <table class="listTable" width="100%" cellpadding="5">
 	
-<g:if test="${savedAnalysis.size()>0}">
+
 <g:each in="${savedAnalysis}" var="analysis">
 <tr>
 	<td style="background-color:white;">
+		<g:if test="${savedAnalysis.size()>0}">
 <div class="notificationContainer" style="height: 10px">
 		<div style="float: left;">
 			<g:if test="${analysis.type == AnalysisType.CLASS_COMPARISON}">
@@ -42,8 +43,8 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 	
 	</div>
 	<br/>
+	</g:if>
 	</td>
 	</tr>
 </g:each>
 </table>
-</g:if>

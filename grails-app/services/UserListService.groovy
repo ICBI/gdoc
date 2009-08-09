@@ -17,6 +17,7 @@ def securityService
 		} else {
 				listIds << lists.id.toString()
 		}
+		
 			
 		def sharedLists = []
 		//until we modify ui, just add shared lists to 'all' lists
@@ -37,7 +38,9 @@ def securityService
 	}
 	
 	def getUserLists(userId){
-		def lists = GDOCUser.findByLoginName(userId).lists()
+		def author = GDOCUser.findByLoginName(userId)
+		def lists = UserList.findAllByAuthor(author)
+		println lists
 		return lists
 	}
 	
@@ -48,27 +51,42 @@ def securityService
 	}
 	
 
-def join = { 
-	if(params["listAction"].equals('intersect')){
-		println "intersect lists:"
-		params["userListId"].each{
-			println it
+	def intersectLists(name,author,ids){ 
+		def items = new ArrayList<String>();
+		List<UserList> lists = new ArrayList<UserList>();
+		ids.each{
+		      UserList list = UserList.get(it);
+			  lists.add(list);
+		      if(!list.listItems.isEmpty()){
+		          list.listItems.each{ itemV ->
+				  	items << itemV.value
+				  }
+		      }
+		}
+		def intersectedList = new HashSet<String>(items);
+		
+		for(UserList ul : lists){
+					def values = []
+					ul.listItems.each{
+						values << it.value
+					}
+					//println "values " + values
+		            intersectedList.retainAll(values);
+		 }
+		 items.clear();
+		 items.addAll(intersectedList);
+		if(items.isEmpty()){
+			println "no intersection"
+			return null
+		}else{
+			def userList = new UserList(name:name,author:author);
+			items.each{
+				userList.addToListItems(new UserListItem(value:it.trim()));
+			}
+			println "Intersection list: " + intersectedList
+			return userList
 		}
 	}
-	if(params["listAction"].equals('join')){
-		println "join lists:"
-		params["userListId"].each{
-			println it
-		}
-	}
-	if(params["listAction"].equals('diff')){
-		println "diff lists:"
-		params["userListId"].each{
-			println it
-		}
-	}
-	redirect(action:list,params:params)
-}
 
 def calculateVenn = {
 		def list= ['VEGF','EGFR','BRCA1','BRCA1','ER+','ER-','FCR','HGI']

@@ -13,14 +13,12 @@ class GDOCUser {
 	String lastName
 	String password
 	
-	static hasMany = [groups:Membership,listConnections:UserListConnection,comments:Comments, analysis:SavedAnalysis]
+	static hasMany = [groups:Membership,comments:Comments, analysis:SavedAnalysis]
 	def groups() {
 			return memberships.collect{it.gdocgroup}
 	}
-	def lists() {
-			return listConnections.collect{it.list}
+	def lists(){
+		return UserList.findAllByAuthor(this)
 	}
-	
-	
     
 }

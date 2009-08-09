@@ -6,7 +6,7 @@ class UserListController {
     def list = {
 		def lists = []
         lists = userListService.getAllLists(session.userId, session.sharedListIds)
-println lists
+		println lists
 		println lists.size()	
         [ userListInstanceList: lists]
     }
@@ -21,16 +21,51 @@ println lists
         else { return [ userListInstance : userListInstance ] }
     }
 
+	def tools = {
+		if(params.listAction == 'intersect'){
+			intersectLists(params)
+		}
+	}
+	
+	def intersectLists = {
+		def ids = []
+		if (params.userListIds && params.listName){
+			params.userListIds.each{
+				ids.add(it)
+			}
+			def author = GDOCUser.findByLoginName(session.userId)
+			def userListInstance = userListService.intersectLists(params.listName,author,ids);
+			if(userListInstance){
+				if(userListInstance.save(flush:true)){
+					flash.message = "UserList ${params.listName} created"
+					def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+					println lists.size()
+					render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+				}
+				else{
+					flash.message = "UserList ${params.listName} was not created"
+					def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+					render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+				}
+			}else{
+				flash.message = "no common items between lists"
+				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+				render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+			}
+		}
+	}
 
     def deleteList = {
         def userListInstance = UserList.get( params.id )
         if(userListInstance) {
             userListInstance.delete(flush:true)
+			println "deleted " + userListInstance
            	render("")
         }
         else {
             flash.message = "UserList not found with id ${params.id}"
-			render(template:"/userList/userListTable",model:[ userListInstanceList: UserList.findAll() ])
+			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+			render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
         }
     }
 
@@ -110,8 +145,7 @@ println lists
 		
 		
         if(!userListInstance.hasErrors() && userListInstance.save()) {
-				def connection = new UserListConnection(list:userListInstance,user:userListInstance.author,rating:0);
-				if(!connection.hasErrors() && connection.save()) {
+				
 						if(params["tags"]){
 							params['tags'].tokenize(",").each{
 								userListInstance.addTag(it);
@@ -121,7 +155,7 @@ println lists
 						    userListInstance.addTag(StudyContext.getStudy());
 						}
 				render "$params.name created succesfully"
-				}
+			
         }
         else {
 				render "Error creating $params.name list"
@@ -136,11 +170,8 @@ println lists
 			}
 		}
 		 if(!userListInstance.hasErrors() && userListInstance.save()) {
-				def connection = new UserListConnection(list:userListInstance,user:userListInstance.author,rating:0);
-				if(!connection.hasErrors() && connection.save()) {
-					flash.message = "UserList ${userListInstance.id} created"
+			flash.message = "UserList ${userListInstance.id} created"
 	            	redirect(action:show,id:userListInstance.id)
-				}
 	        }
 	        else {
 				render(view:'create',model:[userListInstance:userListInstance])
@@ -173,12 +204,11 @@ println lists
 				userList.addToListItems(new UserListItem(value:value.trim()))
 			}
         	if(!userList.hasErrors() && userList.save()) {
-				def connection = new UserListConnection(list:userList,user:author,rating:0)
-				if(!connection.hasErrors() && connection.save()) {
+				
 					userList.addTag(params["listType"])
 					flash["message"] = "$params.listName uploaded succesfully"
 					redirect(action:upload,params:[success:true])
-				}
+				
 	        } else {
 				flash["message"] =  "Error uploading $params.listName list"
 				redirect(action:upload,params:[failure:true])

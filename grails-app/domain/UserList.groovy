@@ -7,7 +7,7 @@ class UserList implements Taggable{
 	GDOCUser author
 	Date dateCreated
 	Date lastUpdated
-	static hasMany = [listItems:UserListItem,listConnections:UserListConnection, listComments:Comments]
+	static hasMany = [listItems:UserListItem,listComments:Comments]
 	static fetchMode = [listItems: 'eager']
 	static constraints = {
 		name(blank:false)

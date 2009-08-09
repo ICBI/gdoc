@@ -9,8 +9,6 @@ class UserListControllerTests extends GroovyTestCase {
 	list_controller.params."author.id" = user.id
 	list_controller.save();
 	def userList = UserList.findByAuthor(user);
-	
-	assertEquals 1, UserListConnection.findByUser(user).count();
 	assertEquals "/userList/show/" + UserList.findByAuthor(user).id, 
 	        list_controller.response.redirectedUrl
 
@@ -26,8 +24,6 @@ class UserListControllerTests extends GroovyTestCase {
 	list_controller2.saveFromQuery();
 	def userList = UserList.findByAuthor(my_user);
 	
-	assertEquals 1, UserListConnection.findByUser(my_user).count();
-
 
     }
 
