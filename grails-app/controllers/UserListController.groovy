@@ -20,26 +20,41 @@ class UserListController {
         }
         else { return [ userListInstance : userListInstance ] }
     }
-
-	def tools = {
-		if(params.listAction == 'intersect'){
-			intersectLists(params)
+	
+	def checkName(name){
+		def listName
+		if(name){
+			listName = name
+		}else{
+			listName = "list_"+System.currentTimeMillis().toString()
 		}
+		return listName
 	}
 	
-	def intersectLists = {
+	def uniteLists = {
+		
+	}
+	
+	def tools = {
 		def ids = []
-		if (params.userListIds && params.listName){
+		def listName = checkName(params.listName)
+		if (params.userListIds && params.listAction){
 			params.userListIds.each{
 				ids.add(it)
 			}
 			def author = GDOCUser.findByLoginName(session.userId)
-			def userListInstance = userListService.intersectLists(params.listName,author,ids);
+			def userListInstance
+			if(params.listAction == 'intersect'){
+				userListInstance = userListService.intersectLists(listName,author,ids);
+			}else if(params.listAction == 'join'){
+				userListInstance = userListService.uniteLists(listName,author,ids);
+			}else if(params.listAction == 'diff'){
+					userListInstance = userListService.diffLists(listName,author,ids);
+			}
 			if(userListInstance){
 				if(userListInstance.save(flush:true)){
 					flash.message = "UserList ${params.listName} created"
 					def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-					println lists.size()
 					render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
 				}
 				else{
@@ -52,6 +67,11 @@ class UserListController {
 				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 				render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
 			}
+		}else{
+			println "no lists have been selected"
+			flash.message = "no lists have been selected"
+			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+			render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
 		}
 	}
 
@@ -60,7 +80,9 @@ class UserListController {
         if(userListInstance) {
             userListInstance.delete(flush:true)
 			println "deleted " + userListInstance
-           	render("")
+			flash.message = userListInstance.name + " has been deleted"
+			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+           	render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
         }
         else {
             flash.message = "UserList not found with id ${params.id}"

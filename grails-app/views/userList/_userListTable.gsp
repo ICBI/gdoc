@@ -1,8 +1,38 @@
 <g:javascript library="jquery"/>
+	<g:javascript>
+	function showToolsSpinner(show) {
+		if(show == true){
+			$("#toolSpinner").css("visibility","visible");
+			cleanup();
+		}else{
+			$("#toolSpinner").css("visibility","hidden");
+			cleanup(); 
+		}
+	}
+	function showPageSpinner(show) {
+		if(show == true){
+			$("#pageSpinner").css("display","inline");
+		}else{
+			$("#pageSpinner").css("display","none");
+		}
+	}
+	function cleanup() {
+				window.setTimeout(function() {
+				  $('#listName').val("");
+				  $("#userListIds").val(null);
+				  $('.message').remove();
+				}, 1500);
+			}	
+	function finishDelete(value){
+		$("#userListIds option[value='"+ value +  "']").remove();
+		cleanup();
+	}
+	</g:javascript>
+
 	<g:if test="${flash.message}">
 	<div class="message">${flash.message}</div>
 	</g:if>
-
+	<span id="pageSpinner" style="display:none"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 	<g:if test="${userListInstanceList.size()>0}">
  	<g:panel title="My Lists" styleClass="welcome" >
 	<table class="listTable" width="100%" cellpadding="5">
@@ -38,7 +68,7 @@
 						<g:link class="thickbox" name="Share &nbsp; ${userListInstance.name} &nbsp; with collaboration groups?" action="share" controller="share" 
 params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" style="height: 18px;padding-right:20px" src="${createLinkTo(dir: 'images', file: 'share.png')}"/></a></g:link>
 
-						<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'deleteList', id:userListInstance.id,update:userListInstance.name+'_div')}return false;}">
+						<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'deleteList',onLoading:'showPageSpinner(true)',onComplete:'showPageSpinner(false)', id:userListInstance.id,update:'allLists',onSuccess:'finishDelete(\''+userListInstance.id+'\')')}return false;}">
 						<img alt="delete list" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>
 					</div>
 					</g:if>

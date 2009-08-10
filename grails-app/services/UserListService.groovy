@@ -50,7 +50,61 @@ def securityService
 		return sharedListIds
 	}
 	
-
+	def uniteLists(name,author,ids){
+		def items = new ArrayList<String>();
+	        ids.each{
+	            UserList list = UserList.get(it);
+	            if(!list.listItems.isEmpty()){
+	                items.addAll(list.listItems.collect{it.value});
+	            }
+	        }
+	    Set<String> unitedSet = new HashSet<String>(items);
+		if(unitedSet.isEmpty()){
+			println "no values united"
+			return null
+		}else{
+			def userList = new UserList(name:name,author:author);
+			unitedSet.each{
+				userList.addToListItems(new UserListItem(value:it.trim()));
+			}
+			println "Union of lists: " + unitedSet
+			return userList
+		}
+	}
+	
+	def diffLists(name,author,ids){
+		def list1 = UserList.get(ids.toArray()[0]);
+		def items1 = []
+		list1.listItems.each{
+			print it.value + ","
+			items1 << it.value
+		}
+		def items2 = []
+		def list2 = UserList.get(ids.toArray()[1]);
+		list2.listItems.each{
+			print it.value + ","
+			items2 << it.value
+		}
+		
+		
+		def diff = (items1 as Set) + items2
+		println "so far: " + diff
+		def tmp = items1 as Set
+		tmp.retainAll(items2)
+		diff.removeAll(tmp)
+		if(diff.isEmpty()){
+			println "no difference"
+			return null
+		}else{
+			def userList = new UserList(name:name,author:author);
+			diff.each{
+				userList.addToListItems(new UserListItem(value:it.trim()));
+			}
+			println "difference of lists: " + diff
+			return userList
+		}
+	}
+	
 	def intersectLists(name,author,ids){ 
 		def items = new ArrayList<String>();
 		List<UserList> lists = new ArrayList<UserList>();

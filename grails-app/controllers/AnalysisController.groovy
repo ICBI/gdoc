@@ -22,6 +22,7 @@ class AnalysisController {
 	
 	def submit = { AnalysisCommand cmd ->
 		println "Command: " + cmd.groups
+		println "type : " + cmd.requestType
 		println analysisService
 		println "groups : " + cmd.groups
 		println "pvalue : " + cmd.pvalue

@@ -12,7 +12,7 @@
 			$('#'+element+'_content').slideToggle();
 			$('.'+element+'_toggle').toggle();
 		}
-		</script>
+	</script>
 		
 </head>
 <body>
