@@ -20,16 +20,24 @@
 				<td>${session.study.abstractText}</td>
 			</tr>			
 			<tr>
-				<td class="label" >Principal Investigator</td>
-				<td>${session.study.piFirstName} ${session.study.piLastName}, ${session.study.piNameSuffix}</td>
+				<td class="label" >Principal Investigator(s)</td>
+				<td>
+					<g:each in="${session.study.pis}" var="pi">
+						${pi.firstName} ${pi.lastName}, ${pi.suffix}<br/>
+					</g:each>
+				</td>
 			</tr>
 			<tr>
 				<td class="label" >Cancer Type</td>
 				<td>${session.study.cancerSite}</td>
 			</tr>			
 			<tr>
-				<td class="label" >Point of Contact</td>
-				<td>${session.study.contactFirstName} ${session.study.contactLastName}</td>
+				<td class="label" >Point(s) of Contact</td>
+				<td>
+					<g:each in="${session.study.pocs}" var="poc">
+						${poc.firstName} ${poc.lastName}<br/>
+					</g:each>
+				</td>
 			</tr>
 		</table>
 		</g:panel>

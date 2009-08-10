@@ -5,10 +5,10 @@ class ClinicalService {
 	static PAGE_SIZE = 1000
 	def sessionFactory
 	def jdbcTemplate 
-	def queryString = '(select p.patient_id from ${schema}.patient p, common.attribute_type c, ${schema}.dec_value v ' +
+	def queryString = '(select p.patient_id from ${schema}.patient p, common.attribute_type c, ${schema}.patient_attribute_value v ' +
 		 			  'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 					  ' and v.value = \'${value}\' and c.short_name = \'${key}\')'
-	def rangeQueryString = '(select p.patient_id from ${schema}.patient p, common.attribute_type c, ${schema}.dec_value v ' +
+	def rangeQueryString = '(select p.patient_id from ${schema}.patient p, common.attribute_type c, ${schema}.patient_attribute_value v ' +
 		 			  	   'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 					  	   ' and c.short_name = \'${key}\' and v.value BETWEEN ${value.min} and ${value.max} )'					
 	

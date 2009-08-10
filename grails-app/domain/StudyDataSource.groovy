@@ -5,20 +5,19 @@ class StudyDataSource {
 		version false
 		id column:'data_source_id'
 		abstractText column: 'abstract'
+		pis joinTable: [name:'data_source_pis', key:'data_source_id', column:'contact_id']
+		pocs joinTable: [name:'data_source_pocs', key:'data_source_id', column:'contact_id']
 	}
+	
+	static hasMany = [pis: Contact, pocs: Contact]
+	
 	static transients = [ "genomicData"]
 	
 	String shortName
 	String longName
 	String abstractText
 	String cancerSite
-	String piLastName
-	String piFirstName
-	String piNameSuffix
-	String contactLastName
-	String contactFirstName
 	String schemaName
-	String contact_email
 	Boolean genomicData
 	
 	public Boolean getGenomicData() {

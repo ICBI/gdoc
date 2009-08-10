@@ -8,7 +8,7 @@
 	    <Arg>java:/gdoc</Arg>
 	    <Arg>
 	     <New class="oracle.jdbc.pool.OracleConnectionPoolDataSource">
-	                 <Set name="URL">jdbc:oracle:thin:@localhost:1521:orcl</Set>
+	                 <Set name="URL">jdbc:oracle:thin:@localhost:1521:gdoc</Set>
 	                 <Set name="User">guidoc</Set>
 	                 <Set name="Password">cure4cancer</Set>
 

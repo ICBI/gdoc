@@ -23,10 +23,22 @@
 					<tr>
 						<td><g:link action="show" id="${study.id}">${study.shortName}</g:link></td>
 						<td>${study.abstractText}</td>
-						<td>${study.piFirstName} ${study.piLastName}, ${study.piNameSuffix}</td>
+						<td>
+							<g:each in="${study.pis}" var="pi">
+								${pi.firstName} ${pi.lastName}, ${pi.suffix}<br/><br/>
+							</g:each>
+						</td>
 						<td>${study.cancerSite}</td>
-						<td>${study.contactFirstName} ${study.contactLastName}</td>
-						<td>${study.contact_email}</td>
+						<td>
+							<g:each in="${study.pocs}" var="poc">
+								${poc.firstName} ${poc.lastName}<br/><br/>
+							</g:each>
+						</td>
+						<td>
+							<g:each in="${study.pocs}" var="poc">
+								${poc.email}<br/>
+							</g:each>	
+						</td>
 					</tr>
 					</g:each>
 				</table>
@@ -46,10 +58,22 @@
 			<tr>
 				<td>${study.shortName}</td>
 				<td>${study.abstractText}</td>
-				<td>${study.piFirstName} ${study.piLastName}, ${study.piNameSuffix}</td>
+				<td>
+					<g:each in="${study.pis}" var="pi">
+						${pi.firstName} ${pi.lastName}, ${pi.suffix}<br/><br/>
+					</g:each>
+				</td>
 				<td>${study.cancerSite}</td>
-				<td>${study.contactFirstName} ${study.contactLastName}</td>
-				<td>${study.contact_email}</td>
+				<td>
+					<g:each in="${study.pocs}" var="poc">
+						${poc.firstName} ${poc.lastName}<br/><br/>
+					</g:each>
+				</td>
+				<td>
+					<g:each in="${study.pocs}" var="poc">
+						${poc.email}<br/>
+					</g:each>	
+				</td>
 			</tr>
 			</g:each>
 		</table>
