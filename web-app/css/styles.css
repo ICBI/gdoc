@@ -175,3 +175,14 @@ p
 .errorDetail {
 	color: red;
 }
+
+.message {
+    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    border: 1px solid #b2d1ff;
+	border-collapse: collapse;
+    color: #006dba;
+	width: 50%;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px;
+	font-size:12px
+}
