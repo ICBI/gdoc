@@ -29,17 +29,14 @@
 						    <ul>
 						        <li><a href="#fragment-4"><span>Patient Metrics</span></a></li>
 						        <li><a href="#fragment-5"><span>Study Metrics</span></a></li>
-						        <li><a href="#fragment-6"><span>Other Metrics</span></a></li>
 						    </ul>
 						    <div id="fragment-4">
-						        Total number of patients across studies: 134<br />
-								Average length of study: 200 days<br /><br /><br /><br /><br /><br />
+						        Total number of patients across studies: ${session.patientSummary}<br />
+								<br /><br /><br /><br /><br /><br />
 						    </div>
 						    <div id="fragment-5">
-										GDOC Data
-						    </div>
-						    <div id="fragment-6">
-										GDOC Test
+							        Total number of studies: ${session.studySummary}<br />
+									<br /><br /><br /><br /><br /><br />
 						    </div>
 						</div>
 					</div>
