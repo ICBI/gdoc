@@ -40,8 +40,29 @@
 									<br /><br /><br /><br /><br /><br />
 						    </div>
 								<div id="fragment-6">
-							        Total number of samples: ${session.sampleSummary}<br />
-									<br /><br /><br /><br /><br /><br />
+									<table class="summaryTable">
+										<tr>
+											<th>Datasource</th>
+											<th>Sample Count</th>
+										</tr>
+										<g:each in="${session.sampleSummary}" var="item">
+											<tr>
+												<td>${item.key}</td>
+												<td style="padding: 0px;">
+													<table>
+														<g:each in="${item.value}" var="data">
+															<tr>
+																<td>${data.key.decamelize()}</td>
+																<g:each in="${data.value}" var="value">
+																	<td>${value.key} : ${value.value}</td>
+																</g:each>
+															<tr>
+														</g:each>
+													</table>
+												</td>
+											</tr>
+										</g:each>
+									</table>
 						    </div>
 						</div>
 					</div>

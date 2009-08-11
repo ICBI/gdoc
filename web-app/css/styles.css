@@ -186,3 +186,20 @@ p
     padding: 5px 5px 5px 30px;
 	font-size:12px
 }
+
+.summaryTable {
+	border: 1px solid #DDDDDD;
+	border-collapse: collapse;
+}
+.summaryTable td {
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+	
+}
+.summaryTable th {
+	font-weight: bold;
+	background: #E7EEF3;
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+	
+}
