@@ -9,9 +9,35 @@ import grails.converters.JSON
 
 class SampleController {
 	def middlewareService
+	def summaryService
+	
+	def index = {
+		def summary = summaryService.sampleSummary()
+		def datasources = []
+		def options = [:]
+		summary.each { item ->
+			println item
+			datasources << item.key
+			item.value.each { option ->
+				println option
+				if(!options[option.key]) {
+					options[option.key] = new HashSet()
+				}
+				option.value.each { 
+					options[option.key] << it.key
+				}
+			}
+		}
+		println "OPTIONS: " + options
+		session.options = options
+		session.datasources = datasources
+	}
+	
     def search = { 
-
-		def returnData = middlewareService.loadResource("Sample", params, session.userId)
+		println "PARAMS: $params"
+		params.keySet().removeAll( ['action', 'submit', 'controller'] as Set )
+		println "PARAMS2: $params"
+		def returnData = middlewareService.postResource("Sample", params, session.userId)
 		if(returnData && returnData instanceof Map) {
 			session.summary = returnData
 		} else {
@@ -20,7 +46,4 @@ class SampleController {
 		}
 	}
 	
-	def index = {
-		
-	}
 }

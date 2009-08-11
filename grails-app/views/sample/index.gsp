@@ -20,9 +20,21 @@
 						<br/>
 						<g:select name="datasource" 
 								noSelection="${['':'All']}"
-								from="${session.dataSourceMap['Sample']}" />
+								from="${session.datasources}" />
 						<br/>
 						<br/>
+						<g:each in="${session.options}" var="item">
+							<div style="float: left">
+								Select ${item.key.decamelize()}:	
+							</div>
+							<br/>
+							<br/>
+							<g:select name="${item.key}" 
+									noSelection="${['':'All']}"
+									from="${item.value}" />
+							<br/>
+							<br/>
+						</g:each>
 					</div>
 				<br/>
 

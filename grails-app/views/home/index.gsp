@@ -29,6 +29,7 @@
 						    <ul>
 						        <li><a href="#fragment-4"><span>Patient Metrics</span></a></li>
 						        <li><a href="#fragment-5"><span>Study Metrics</span></a></li>
+						 				<li><a href="#fragment-6"><span>Sample Metrics</span></a></li>
 						    </ul>
 						    <div id="fragment-4">
 						        Total number of patients across studies: ${session.patientSummary}<br />
@@ -36,6 +37,10 @@
 						    </div>
 						    <div id="fragment-5">
 							        Total number of studies: ${session.studySummary}<br />
+									<br /><br /><br /><br /><br /><br />
+						    </div>
+								<div id="fragment-6">
+							        Total number of samples: ${session.sampleSummary}<br />
 									<br /><br /><br /><br /><br /><br />
 						    </div>
 						</div>

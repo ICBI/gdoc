@@ -15,15 +15,15 @@
 		<g:panel id="studyPanel" title="Sample Summary" styleClass="welcome" collapse="true">
 				<table class="studyTable" style="width: 100%">
 						<tr>
-							<g:each in="${session.summary}" var="s">
-								<th>${s.key}</th>
-							</g:each>
+							<th>Shared Resource</th>
+							<th>Sample Count</th>
 						</tr>
-						<tr>
-							<g:each in="${session.summary}" var="i">
+						<g:each in="${session.summary}" var="i">
+							<tr>
+								<td>${i.key}</td>
 								<td>${i.value}</td>
-							</g:each> 
-						</tr>	
+							</tr>
+						</g:each> 
 				</table>
 		</g:panel>
 		</g:if>
