@@ -10,7 +10,9 @@ class HomeController {
 		}
 		session.patientSummary = summaryService.patientSummary()
 		session.studySummary = summaryService.studySummary()
-		session.sampleSummary = summaryService.sampleSummary()
+		def sampleSummary = summaryService.sampleSummary()
+		if(sampleSummary instanceof Map)
+			session.sampleSummary = sampleSummary
 	}
 	
 }

@@ -40,6 +40,7 @@
 									<br /><br /><br /><br /><br /><br />
 						    </div>
 								<div id="fragment-6" style="padding: 0px; margin: 0px;">
+									<g:if test="${session.sampleSummary}">
 									<table class="summaryTable">
 										<tr>
 											<th>Datasource</th>
@@ -65,6 +66,15 @@
 											</tr>
 										</g:each>
 									</table>
+									</g:if>
+									<g:else>
+										<br/>
+										Error communicating with sample service.  Please try again.
+										<br/>
+										<br/>
+										<br/>
+										<br/>
+									</g:else>
 						    </div>
 						</div>
 					</div>
