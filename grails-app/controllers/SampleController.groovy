@@ -24,7 +24,9 @@ class SampleController {
 					options[option.key] = new HashSet()
 				}
 				option.value.each { 
-					options[option.key] << it.key
+					it.each { value ->
+						options[option.key] << value.key
+					}
 				}
 			}
 		}

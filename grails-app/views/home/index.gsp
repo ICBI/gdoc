@@ -54,7 +54,9 @@
 															<tr>
 																<td>${data.key.decamelize()}</td>
 																<g:each in="${data.value}" var="value">
-																	<td>${value.key} : ${value.value}</td>
+																	<g:each in="${value}">
+																		<td>${it.key} : ${it.value}</td>
+																	</g:each>
 																</g:each>
 															<tr>
 														</g:each>
