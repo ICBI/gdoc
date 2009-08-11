@@ -190,6 +190,7 @@ p
 .summaryTable {
 	border: 1px solid #DDDDDD;
 	border-collapse: collapse;
+	width: 100%;
 }
 .summaryTable td {
 	border: 1px solid #DDDDDD;

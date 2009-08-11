@@ -3,7 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
 		</script>
-        <title>Sample Summary</title>         
+        <title>Sample Search Results</title>         
     </head>
     <body>
 	<p style="font-size:14pt">${params.id} Samples</p>
@@ -12,10 +12,13 @@
 	<br/>
 	<div id="centerContent" class="welcome">
 		<g:if test="${session.summary}">
-		<g:panel id="studyPanel" title="Sample Summary" styleClass="welcome" collapse="true">
+		<g:render template="/common/query_details" bean="${session.sampleQuery}" />
+		<br/>
+		<br/>
+		<g:panel id="studyPanel" title="Sample Search Results" styleClass="welcome" collapse="true">
 				<table class="studyTable" style="width: 100%">
 						<tr>
-							<th>Shared Resource</th>
+							<th>Datasource</th>
 							<th>Sample Count</th>
 						</tr>
 						<g:each in="${session.summary}" var="i">

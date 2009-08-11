@@ -14,7 +14,7 @@
 					<div class="clinicalSearch">
 						<br/>
 						<div style="float: left">
-							Select Shared Resource:	
+							Select Datasource:	
 						</div>
 						<br/>
 						<br/>

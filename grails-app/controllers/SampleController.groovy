@@ -38,6 +38,7 @@ class SampleController {
     def search = { 
 		println "PARAMS: $params"
 		params.keySet().removeAll( ['action', 'submit', 'controller'] as Set )
+		session.sampleQuery = params
 		println "PARAMS2: $params"
 		def returnData = middlewareService.postResource("Sample", params, session.userId)
 		if(returnData && returnData instanceof Map) {

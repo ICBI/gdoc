@@ -25,7 +25,7 @@
 						<br/>
 					<br/>
 					<div class="tabDiv">
-						<div id="centerTabs" class="tabDiv">
+						<div id="centerTabs" class="tabDiv" style="padding:0px;">
 						    <ul>
 						        <li><a href="#fragment-4"><span>Patient Metrics</span></a></li>
 						        <li><a href="#fragment-5"><span>Study Metrics</span></a></li>
@@ -39,7 +39,7 @@
 							        Total number of studies: ${session.studySummary}<br />
 									<br /><br /><br /><br /><br /><br />
 						    </div>
-								<div id="fragment-6">
+								<div id="fragment-6" style="padding: 0px; margin: 0px;">
 									<table class="summaryTable">
 										<tr>
 											<th>Datasource</th>
