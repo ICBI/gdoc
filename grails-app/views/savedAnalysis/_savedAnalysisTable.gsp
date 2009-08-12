@@ -15,7 +15,7 @@
 			<g:elseif test="${analysis.type == AnalysisType.GENE_EXPRESSION}">
 				<g:link controller="geneExpression" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>
-			<g:elseif test="${analysis.type == AnalysisType.KM_PLOT}">
+			<g:elseif test="${analysis.type == AnalysisType.KM_PLOT || analysis.type == AnalysisType.KM_GENE_EXPRESSION}">
 				<g:link controller="km" action="repopulateKM" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>
 				&nbsp;&nbsp;<span><g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/></span>

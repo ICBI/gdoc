@@ -41,8 +41,21 @@ class AnalysisService {
 			def reporterGroup = new ReporterGroup()
 			reporterGroup.addAll(annotationService.findReportersForGene(cmd.geneName))
 			request.reporters = reporterGroup
+			request.samples = sampleGroup
+			return request
+		},
+		(AnalysisType.KM_GENE_EXPRESSION): { sess, cmd ->
+			def request = new ExpressionLookupRequest(sess, "ExpressionLookup_" + System.currentTimeMillis())
+			request.dataFileName = cmd.dataFile
+			def sampleGroup = new SampleGroup()
+			sampleGroup.addAll(idService.binaryFileIds)
+			def reporterGroup = new ReporterGroup()
+			reporterGroup.addAll(annotationService.findReportersForGene(cmd.geneName))
+			request.reporters = reporterGroup
+			request.samples = sampleGroup
 			return request
 		}
+		
 	
 	]
 	

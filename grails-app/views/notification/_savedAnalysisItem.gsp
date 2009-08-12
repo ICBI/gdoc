@@ -1,3 +1,4 @@
+<g:if test="${notification.type != AnalysisType.KM_GENE_EXPRESSION}">
 <div class="notificationContainer" style="height: 10px">
 <g:if test="${notification.status == 'Complete'}">
 	<div style="float: left;">
@@ -18,7 +19,7 @@
 	<div class="status" style="float: right;">${notification.status}</div>
 </g:elseif>		
 <g:else>
-	<div style="float: left;">${notification.type}(<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
+	<div style="float: left;">${notification.type} (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 	</div>
 	<div class="status" style="float: right;">${notification.status} <img style="height: 12px" src="${createLinkTo(dir:'images',file:'indicator.gif')}" border="0" />
 	
@@ -28,3 +29,4 @@
 </g:else>
 </div>
 <br/>
+</g:if>

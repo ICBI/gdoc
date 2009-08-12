@@ -102,7 +102,7 @@
 								<br/>
 									<g:select name="endpoint" 
 											noSelection="${['':'Select One...']}"
-											from="${endpoints}">
+											from="${endpoints}" optionKey="attribute" optionValue="attributeDescription">
 									</g:select>
 									<br/>
 									<br/>

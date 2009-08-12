@@ -23,11 +23,7 @@ class KmController {
 		def patientLists = lists.findAll { item ->
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
-		if(StudyContext.getStudy() == "EDIN") {
-			endpoints = ["SURGERY_TO_DEATH/FU", "SURGERY_TO_RR/FU", "SURGERY_TO_DR/FU"]
-		} else if(StudyContext.getStudy() == "RCF") {
-			endpoints = ["AGE_AT_DEATH/FU"]
-		}
+		endpoints = KmAttribute.findAll()
 		session.patientLists = patientLists
 		
 		//gene exp setup
@@ -100,7 +96,7 @@ class KmController {
 	}
 	
 	def submitGEPlot= {
-			GeneExpressionCommand cmd ->
+			KmGeneExpCommand cmd ->
 				if(cmd.hasErrors()) {
 					flash['cmd'] = cmd
 					redirect(action:'index')
@@ -125,7 +121,6 @@ class KmController {
 					def foldChangeGroups = []
 					def foldChange = 2
 					foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,highestMean,foldChange,geAnalysis.id)
-					def kmCommand = new KmCommand()
 					def groups = []
 					groups.add(foldChangeGroups['&gt;' + foldChange])
 					//println foldChangeGroups['greater'].size()
@@ -134,15 +129,14 @@ class KmController {
 					groups.add(foldChangeGroups['between'])
 					//println foldChangeGroups['less'].size()
 					
-					kmCommand.geAnalysisId = geAnalysis.id
-					kmCommand.groups = groups
-					kmCommand.reporters = expValues.collect {
+					cmd.geAnalysisId = geAnalysis.id
+					cmd.groups = groups
+					cmd.reporters = expValues.collect {
 						it.reporter
 					}
-					kmCommand.foldChange = 2;
-					kmCommand.currentReporter = reporter
-					kmCommand.endpoint = "SURGERY_TO_DEATH/FU"
-					session.command = kmCommand
+					cmd.foldChange = 2;
+					cmd.currentReporter = reporter
+					session.command = cmd
 					def tempLists = createTempUserListsForKM(foldChangeGroups)
 					session.selectedLists = tempLists
 					redirect(uri:'/km/searchGE')
@@ -201,15 +195,13 @@ class KmController {
 			println "ids: " + ids
 			ids = ids.sort()
 			def patients = patientService.patientsForGdocIds(ids)
+			def attributes = KmAttribute.findAll()
 			def censorStrategy = { patient, endpoint ->
-				if(endpoint == "SURGERY_TO_DEATH/FU")
-					return (patient.clinicalData["VITAL_STATUS"] == "DEAD")
-				else if (endpoint == "SURGERY_TO_RR/FU")
-					return (patient.clinicalData["RR"] == "YES")
-				else if (endpoint == "SURGERY_TO_DR/FU")
-					return (patient.clinicalData["DR"] == "YES")
-				else if (endpoint == "AGE_AT_DEATH/FU")
-					return (patient.clinicalData["VITAL_STATUS"] == "DEAD")
+				
+				def att = attributes.find {
+					it.attribute == endpoint
+				}
+				return (patient.clinicalData[att.censorAttribute] == att.censorValue)
 			}
 			patients.each { patient ->
 				if( patient.clinicalData[cmd.endpoint]) {
