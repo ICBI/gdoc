@@ -19,16 +19,43 @@ function showSpinner() {
 			<tr>
 				<td>
 					Select Gene:</td>
-				<td colspan="2"><g:validationInput name="geneName"/></td>
+				<td colspan="2">
+					<div class="validationInput">
+						<g:if test="${flash.cmd instanceof KmGeneExpCommand}">
+							<g:textField name="geneName" value="${flash.cmd?.geneName}"  class="${hasErrors(bean:flash.cmd,field:'geneName','errors')}"/>
+						</g:if>
+						<g:else>
+							<g:textField name="geneName" />
+						</g:else>
+						<br/>
+						<div class="errorDetail">
+							<g:renderErrors bean="${flash.cmd?.errors}" field="geneName" />
+						</div>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td>
 					Select Endpoint:</td>
 				<td colspan="2">
-					<g:select name="endpoint" 
-							noSelection="${['':'Select One...']}"
-							from="${endpoints}" optionKey="attribute" optionValue="attributeDescription">
-					</g:select>
+					<g:if test="${flash.cmd instanceof KmGeneExpCommand}">
+						<g:select name="endpoint" value="${flash.cmd?.endpoint}"
+								noSelection="${['':'Select One...']}"
+								from="${endpoints}" optionKey="attribute" optionValue="attributeDescription" class="${hasErrors(bean:flash.cmd,field:'endpoint','errors')}">
+						</g:select>
+					</g:if>
+					<g:else>
+						<g:select name="endpoint" 
+								noSelection="${['':'Select One...']}"
+								from="${endpoints}" optionKey="attribute" optionValue="attributeDescription" >
+						</g:select>					
+					</g:else>
+					<br/>
+					<div class="errorDetail">
+						<g:if test="${flash.cmd instanceof KmGeneExpCommand}">
+							<g:renderErrors bean="${flash.cmd?.errors}" field="endpoint" />
+						</g:if>
+					</div>
 				</td>
 			</tr>			
 			<tr>

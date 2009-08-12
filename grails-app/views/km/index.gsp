@@ -10,6 +10,7 @@
 				<jq:plugin name="flydisk" />
 				<jq:plugin name="ui"/>
 				<script type="text/javascript">
+				var geneExpression = false;
 				$(document).ready(function(){
 				  //$("#centerTabs").tabs();
 					$('#centerTabs').tabs({ selected: 0 });
@@ -38,13 +39,21 @@
 					$("#left option[value='"+ this.value +  "']").remove();
 				});
 				$.sortOptions('#left');
+				
+				if(geneExpression) {
+					$('#centerTabs').tabs('select', 1);
+				}
 			});
 
 			</g:javascript>	
 	<p style="font-size:14pt">Create KM Plot</p>
 	<div id="centerContent">
 		<br/>
-		
+		<g:if test="${flash.cmd instanceof KmGeneExpCommand}">
+			<g:javascript>
+				geneExpression = true;
+			</g:javascript>
+		</g:if>
 		<div class="tabDiv">
 			<div id="centerTabs" class="tabDiv">
 			    <ul>
@@ -100,14 +109,24 @@
 									Endpoint:	
 								</div>
 								<br/>
+								<g:if test="${flash.cmd instanceof KmCommand}">
+									<g:select name="endpoint" value="${flash.cmd?.endpoint}"
+											noSelection="${['':'Select One...']}"
+											from="${endpoints}" optionKey="attribute" optionValue="attributeDescription" class="${hasErrors(bean:flash.cmd,field:'endpoint','errors')}">
+									</g:select>
+								</g:if>
+								<g:else>
 									<g:select name="endpoint" 
 											noSelection="${['':'Select One...']}"
-											from="${endpoints}" optionKey="attribute" optionValue="attributeDescription">
-									</g:select>
+											from="${endpoints}" optionKey="attribute" optionValue="attributeDescription" >
+									</g:select>					
+								</g:else>
 									<br/>
 									<br/>
 									<div class="errorDetail">
-										<g:renderErrors bean="${flash.cmd?.errors}" field="endpoint" />
+										<g:if test="${flash.cmd instanceof KmCommand}">
+											<g:renderErrors bean="${flash.cmd?.errors}" field="endpoint" />
+										</g:if>
 									</div>
 							</div>
 						<br/>
