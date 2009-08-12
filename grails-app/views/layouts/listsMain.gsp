@@ -37,8 +37,6 @@
 					</div>
 					<div class="yui-u">
 						<g:render template="/common/rightbar"/>
-					</div>
-					<div class="yui-u">
 						<g:render template="/userList/lists_rightbar"/>
 					</div>
 				</div>

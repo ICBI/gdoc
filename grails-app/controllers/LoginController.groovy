@@ -38,7 +38,8 @@ class LoginController {
 			println params
 			securityService.logout(session)
 			flash.message = "user logged out"
-			redirect(controller:'home')
+			println "user logged out"
+			redirect(controller:'home',action:'index')
 		}
 	
 	

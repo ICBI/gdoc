@@ -48,8 +48,9 @@
 		
 		function success() {
 			jQuery('#list_name').val("");
+			jQuery('#message').css("display","block");
 			window.setTimeout(function() {
-			  jQuery('#message').empty();
+			  jQuery('#message').remove();
 			}, 1000);
 		}
 	</g:javascript>
@@ -66,7 +67,7 @@
 				<div style="margin:5px 5px 5px 50px">
 				<label for="list_name">List Name:</label><g:textField name="list_name" size="15" />
 				<a href="javascript:void(0)" id="listAdd">Save items to List</a> | <g:navigationLink name="Saved Lists" controller="userList">Go to saved-lists page</g:navigationLink><br />
-				<span id="message" class="message"></span>
+				<span id="message" class="message" style="display:none"></span>
 				</div>
 				</g:if>
 				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0"></table>

@@ -31,10 +31,14 @@ class UserListController {
 		return listName
 	}
 	
-	def uniteLists = {
-		
+	def vennDiagram = {
+		println params
+		def author = GDOCUser.findByLoginName(params.author)
+		def vennJSON = userListService.vennDiagram(params.listName,author,params.ids);
+		println vennJSON
+		[ vennJSON: vennJSON]
 	}
-	
+
 	def tools = {
 		def ids = []
 		def listName = checkName(params.listName)
@@ -50,6 +54,8 @@ class UserListController {
 				userListInstance = userListService.uniteLists(listName,author,ids);
 			}else if(params.listAction == 'diff'){
 					userListInstance = userListService.diffLists(listName,author,ids);
+			}else if(params.listAction == 'venn'){
+					redirect(action:"vennDiagram",params:[listName:listName,author:session.userId,ids:ids])
 			}
 			if(userListInstance){
 				if(userListInstance.save(flush:true)){

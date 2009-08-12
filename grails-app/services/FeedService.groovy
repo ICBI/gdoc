@@ -5,7 +5,7 @@ def getFeed(){
 
 	      def feedMap = [:]
 		
-		//(0..< xmlFeed.channel.item.size()).each
+		///(0..< xmlFeed.channel.item.size()).each
 	      (0..< 10).each {
 
 	         def item = xmlFeed.channel.item.get(it);
