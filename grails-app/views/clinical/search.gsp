@@ -69,7 +69,7 @@
 					jQuery('#message').html("No IDs selected.")
 					jQuery('#message').css("display","block");
 					window.setTimeout(function() {
-					  jQuery('#message').remove();
+					  jQuery('#message').empty().hide();
 					}, 2500);
 				} else {
 					var tags = new Array();
@@ -91,7 +91,7 @@
 			jQuery('#list_name').val("");
 			jQuery('#message').css("display","block");
 			window.setTimeout(function() {
-			  jQuery('#message').remove();
+			  jQuery('#message').empty().hide();
 			}, 2500);
 		}
 	</g:javascript>

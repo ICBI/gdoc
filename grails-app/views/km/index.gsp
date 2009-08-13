@@ -58,7 +58,9 @@
 			<div id="centerTabs" class="tabDiv">
 			    <ul>
 			        <li><a href="#fragment-4"><span>Clinical KM</span></a></li>
-			        <li><a href="#fragment-5"><span>Gene Expression KM</span></a></li>
+							<g:if test="${session.study.hasGenomicData()}">
+			        	<li><a href="#fragment-5"><span>Gene Expression KM</span></a></li>
+							</g:if>
 			    </ul>
 			    <div id="fragment-4">
 			        <g:form name="searchForm" action="search">
@@ -135,9 +137,11 @@
 						<g:submitButton name="search" value="Plot"/>
 					</g:form>
 			    </div>
-			    <div id="fragment-5">
-					<g:render template="/km/geneExpressionFormKM"/>
-				</div>
+					<g:if test="${session.study.hasGenomicData()}">
+			    	<div id="fragment-5">
+							<g:render template="/km/geneExpressionFormKM"/>
+						</div>
+					</g:if>
 			</div>
 		</div>
 		

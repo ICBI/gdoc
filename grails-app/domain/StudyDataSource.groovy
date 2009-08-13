@@ -9,8 +9,8 @@ class StudyDataSource {
 		pocs joinTable: [name:'data_source_pocs', key:'data_source_id', column:'contact_id']
 	}
 	
-	static hasMany = [pis: Contact, pocs: Contact]
-	
+	static hasMany = [pis: Contact, pocs: Contact, content: DataSourceContent]
+	static fetchMode = [content:"eager"]
 	static transients = [ "genomicData"]
 	
 	String shortName
@@ -30,5 +30,11 @@ class StudyDataSource {
 		StudyContext.setStudy(tempStudy)
 		this.@genomicData = (rBinaryFiles) 
 		return this.@genomicData
+	}
+	
+	def hasGenomicData() {
+		return content.find {
+			it.type == "MICROARRAY"
+		}
 	}
 }
