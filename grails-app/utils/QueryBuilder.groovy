@@ -1,6 +1,6 @@
 class QueryBuilder {
 
-	static def build = { params, formKey ->
+	static def build = { params, formKey, dataTypes ->
 		def criteria = [:]
 		params.each { key, value ->
 			if(key.contains(formKey) && value) {
@@ -8,7 +8,11 @@ class QueryBuilder {
 					def minMax = [:]
 					minMax["min"] = value.split(" - ")[0].toInteger()
 					minMax["max"] = value.split(" - ")[1].toInteger()
-					if(minMax["min"] != 0 || minMax["max"] != 50) {
+					def attrName = key.substring(key.indexOf("range_") + 6)
+					def range = dataTypes.find {
+						it.shortName == attrName
+					}
+					if(minMax["min"] != range.lowerRange || minMax["max"] != range.upperRange) {
 						criteria[key.replace(formKey + "range_", "")] = minMax
 					}
 				} else {

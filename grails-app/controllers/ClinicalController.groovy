@@ -3,7 +3,6 @@ import grails.converters.*
 class ClinicalController {
 
 	def clinicalService
-	def dataTypes
 	def searchResults
 	
     def index = { 
@@ -12,11 +11,11 @@ class ClinicalController {
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
 		}
-		dataTypes = AttributeType.findAll().sort { it.longName }
+		session.dataTypes = AttributeType.findAll().sort { it.longName }
 	}
 	
 	def search = {
-		def criteria = QueryBuilder.build(params, "clinical_")
+		def criteria = QueryBuilder.build(params, "clinical_", session.dataTypes)
 		println criteria
 		searchResults = clinicalService.queryByCriteria(criteria)
 		def columns = []

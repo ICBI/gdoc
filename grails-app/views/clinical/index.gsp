@@ -15,17 +15,19 @@
 					$(this).parents('.clinicalSearch').hide('slow');
 				});
 				$('.slider-range').each(function() {
+					var upper = parseInt(jQuery(this).data("maxval"));
+					var lower = parseInt(jQuery(this).data("minval"));
 					var rangeInput = jQuery(this).parents('div').children('.rangeValue');
 					if(rangeInput.value) {
 						var values = rangeInput.value.split(' - ');
 					} else {
-						rangeInput.val(0 + ' - ' + 50);
+						rangeInput.val(lower + ' - ' + upper);
 					}
 					jQuery(this).slider({
 						range: true,
-						min: 0,
-						max: 50,
-						values: [0, 50],
+						min: lower,
+						max: upper,
+						values: [lower, upper],
 						slide: function(event, ui) {
 										rangeInput.val(ui.values[0] + ' - ' + ui.values[1]);
 						}
@@ -38,7 +40,7 @@
 	<div id="centerContent">
 		<br/>
 		<g:form name="searchForm" action="search">
-			<g:each in="${dataTypes}">
+			<g:each in="${session.dataTypes}">
 				<div class="clinicalSearch">
 					<div style="float: left">
 						${it.longName} 	
@@ -78,6 +80,11 @@
 								</tr>
 							</table>
 						</div>
+						<script type="text/javascript">
+							var item = jQuery('.slider-range').get(jQuery('.slider-range').size() - 1); 
+							jQuery(item).data("minval", "${it.lowerRange}");
+							jQuery(item).data("maxval", "${it.upperRange}");
+						</script>
 						<br/>
 					</g:elseif>
 					<g:else>
