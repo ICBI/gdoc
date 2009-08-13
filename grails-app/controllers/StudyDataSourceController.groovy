@@ -45,6 +45,7 @@ class StudyDataSourceController {
 	def show = {
 		def currStudy = StudyDataSource.get(params.id)
 		session.study = currStudy
+		StudyContext.setStudy(session.study.schemaName)
 		clinicalElements = AttributeType.findAll()
 		println clinicalElements
 	}
