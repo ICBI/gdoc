@@ -33,9 +33,10 @@
 				s = jQuery("#searchResults").getGridParam('selarrrow'); 
 				if(s.length == 0) {
 					jQuery('#message').html("No IDs selected.")
+					jQuery('#message').css("display","block");
 					window.setTimeout(function() {
-					  jQuery('#message').empty();
-					}, 1500);
+					  jQuery('#message').remove();
+					}, 2500);
 				} else {
 					var tags = new Array();
 					tags.push("clinical");
@@ -51,7 +52,7 @@
 			jQuery('#message').css("display","block");
 			window.setTimeout(function() {
 			  jQuery('#message').remove();
-			}, 1000);
+			}, 2500);
 		}
 	</g:javascript>
 	<br/>
@@ -68,6 +69,7 @@
 				<label for="list_name">List Name:</label><g:textField name="list_name" size="15" />
 				<a href="javascript:void(0)" id="listAdd">Save items to List</a> | <g:navigationLink name="Saved Lists" controller="userList">Go to saved-lists page</g:navigationLink><br />
 				<span id="message" class="message" style="display:none"></span>
+				</div>
 				</div>
 				</g:if>
 				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0"></table>

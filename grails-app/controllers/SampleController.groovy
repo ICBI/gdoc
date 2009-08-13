@@ -13,26 +13,29 @@ class SampleController {
 	
 	def index = {
 		def summary = summaryService.sampleSummary()
-		def datasources = []
-		def options = [:]
-		summary.each { item ->
-			println item
-			datasources << item.key
-			item.value.each { option ->
-				println option
-				if(!options[option.key]) {
-					options[option.key] = new HashSet()
-				}
-				option.value.each { 
-					it.each { value ->
-						options[option.key] << value.key
+		if(summary instanceof Map) {
+
+			def datasources = []
+			def options = [:]
+			summary.each { item ->
+				println item
+				datasources << item.key
+				item.value.each { option ->
+					println option
+					if(!options[option.key]) {
+						options[option.key] = new HashSet()
+					}
+					option.value.each { 
+						it.each { value ->
+							options[option.key] << value.key
+						}
 					}
 				}
 			}
+			println "OPTIONS: " + options
+			session.options = options
+			session.datasources = datasources
 		}
-		println "OPTIONS: " + options
-		session.options = options
-		session.datasources = datasources
 	}
 	
     def search = { 

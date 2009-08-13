@@ -180,7 +180,7 @@ class KmController {
 		def groups = [:]
 		def cmd = session.command
 		def sampleGroups = []
-		
+		def att
 		session.selectedLists.each { list ->
 			def samples = []
 			def tempList
@@ -196,9 +196,10 @@ class KmController {
 			ids = ids.sort()
 			def patients = patientService.patientsForGdocIds(ids)
 			def attributes = KmAttribute.findAll()
+			
 			def censorStrategy = { patient, endpoint ->
 				
-				def att = attributes.find {
+				att = attributes.find {
 					it.attribute == endpoint
 				}
 				return (patient.clinicalData[att.censorAttribute] == att.censorValue)
@@ -232,6 +233,7 @@ class KmController {
 			println "GE INFO: "
 			println groups["geneExpressionInfo"]
 		}
+		groups["endpointDesc"] = att.attributeDescription
 		render groups as JSON
 	}
 	}

@@ -10,7 +10,9 @@
 	
 	<div id="centerContent" class="welcome">
 			<br/>
+			<g:if test="${session.options}">
 			<g:form name="searchForm" action="search">
+
 					<div class="clinicalSearch">
 						<br/>
 						<div style="float: left">
@@ -36,12 +38,16 @@
 							<br/>
 						</g:each>
 					</div>
+
 				<br/>
 
 				<br/>
 				<g:submitButton name="submit" value="Search"/>
 			</g:form>
-
+			</g:if>
+			<g:else>
+				Error communicating with sample service.  Please try again.
+			</g:else>
 	</div>
 	</body>
 	
