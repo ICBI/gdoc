@@ -10,6 +10,9 @@
 	<jq:plugin name="jqgrid"/>
 
 	<g:javascript>
+		var selectedIds = [];
+		var selectAll = false;
+		var currPage = 1;
 		$(document).ready(function(){
 			jQuery("#searchResults").jqGrid({ 
 				url:'view', 
@@ -17,7 +20,7 @@
 				colNames:${session.columnNames}, 
 				colModel:${session.columnJson}, 
 				height: 350, 
-				rowNum:200, 
+				rowNum:25, 
 				rowList:[25,50], 
 				//imgpath: gridimgpath, 
 				pager: jQuery('#pager'), 
@@ -25,8 +28,39 @@
 				viewrecords: true, 
 				sortorder: "desc", 
 				multiselect: true, 
-				caption: "Patient Search Results" }
-			);
+				caption: "Patient Search Results",
+				onSelectAll: function(all, checked) {
+					selectAll = checked;
+					selectedIds = [];
+				},
+				onPaging: function(direction) {
+					if(jQuery("#searchResults").getGridParam('selarrrow')) {
+							selectedIds[currPage] = jQuery("#searchResults").getGridParam('selarrrow');
+					}
+				
+					
+				},
+				gridComplete: function() {
+					currPage = jQuery("#searchResults").getGridParam("page");
+					var ids = selectedIds[currPage];
+					if(selectAll) {
+						selectAllItems();
+					} else if(ids) {
+						for(var i = 0; i < ids.length; i++) {
+							jQuery("#searchResults").setSelection(ids[i]);
+						}
+						
+						if(ids.length == jQuery("#searchResults").getGridParam("rowNum")) {
+							jQuery("#cb_jqg").attr('checked', true);
+						}
+					}
+					
+				},
+				onSortCol: function() {
+					selectAll = false;
+					selectedIds = [];
+				}
+			});
 			jQuery("#listAdd").click( function() { 
 				var s; 
 				var author = '${session.userId}'
@@ -42,11 +76,17 @@
 					tags.push("clinical");
 					tags.push("patient");
 					var listName = jQuery('#list_name').val();
-					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags')}
+					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
 				}
 			}); 
 		});
 		
+		function selectAllItems() {
+			jQuery('#searchResults tbody tr').each(function() {
+				jQuery("#searchResults").setSelection(this.id);
+			});
+			jQuery("#cb_jqg").attr('checked', true);
+		}
 		function success() {
 			jQuery('#list_name').val("");
 			jQuery('#message').css("display","block");

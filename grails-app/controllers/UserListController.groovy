@@ -165,7 +165,13 @@ class UserListController {
 			return
 		}
 		def userListInstance = new UserList(params)
-		if(params['ids']){
+		if(params.selectAll) {
+			if(params["tags"].indexOf("patient") > -1) {
+				session.results.each {
+					userListInstance.addToListItems(new UserListItem(value:it.gdocId));
+				}
+			}
+		} else if(params['ids']){
 			params['ids'].tokenize(",").each{
 				userListInstance.addToListItems(new UserListItem(value:it.trim()));
 			}
