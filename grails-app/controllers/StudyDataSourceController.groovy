@@ -35,7 +35,8 @@ class StudyDataSourceController {
 		def sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
 		session.sharedAnalysisIds = sharedAnalysisIds
 		
-		session.myStudies = myStudies
+		session.myStudies = myStudies.sort { it.shortName }
+		otherStudies.sort { it.shortName }
 		session.myCollaborationGroups = myCollaborationGroups
 		
 		loadRemoteSources()

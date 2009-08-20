@@ -22,7 +22,7 @@
 					<g:each in="${myStudies}" var="study">
 					<tr>
 						<td><g:link action="show" id="${study.id}">${study.shortName}</g:link></td>
-						<td>${study.abstractText}</td>
+						<td>${study.longName}</td>
 						<td>
 							<g:each in="${study.pis}" var="pi">
 								${pi.firstName} ${pi.lastName}, ${pi.suffix}<br/><br/>
@@ -57,7 +57,7 @@
 			<g:each in="${otherStudies}" var="study">
 			<tr>
 				<td>${study.shortName}</td>
-				<td>${study.abstractText}</td>
+				<td>${study.longName}</td>
 				<td>
 					<g:each in="${study.pis}" var="pi">
 						${pi.firstName} ${pi.lastName}, ${pi.suffix}<br/><br/>
