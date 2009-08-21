@@ -61,15 +61,17 @@
 					</div>
 					<g:if test="${session.userId.equals(userListInstance.author.loginName)}">
 					<div style="border:0px solid black;width:20%;float:right">	
-						<a href="javascript:void(0)" style="padding-right:11px">
-						<img alt="edit list" src="${createLinkTo(dir: 'images', file: 'pencil.png')}" /></a>
+						<a href="javascript:void(0)" style="padding-right:5px">
+						<img alt="edit list" title="Edit list" src="${createLinkTo(dir: 'images', file: 'pencil.png')}" /></a>
 						
 						
 						<g:link class="thickbox" name="Share &nbsp; ${userListInstance.name} &nbsp; with collaboration groups?" action="share" controller="share" 
-params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" style="height: 18px;padding-right:20px" src="${createLinkTo(dir: 'images', file: 'share.png')}"/></a></g:link>
-
+params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" title="Share list" style="height: 18px;padding-right:5px" src="${createLinkTo(dir: 'images', file: 'share.png')}"/></a></g:link>
+						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
+							<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
+						</g:link>
 						<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'deleteList',onLoading:'showPageSpinner(true)',onComplete:'showPageSpinner(false)', id:userListInstance.id,update:'allLists',onSuccess:'finishDelete(\''+userListInstance.id+'\')')}return false;}">
-						<img alt="delete list" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>
+						<img alt="delete list" title="Delete list" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>
 					</div>
 					</g:if>
 					<g:else>

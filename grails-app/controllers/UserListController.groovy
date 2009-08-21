@@ -1,6 +1,7 @@
 class UserListController {
     def securityService
 	def userListService
+	def exportService
     def index = { redirect(action:list,params:params) }
 
     def list = {
@@ -249,6 +250,13 @@ class UserListController {
 	        }
 		}
 		//redirect(action:upload)
+	}
+	
+	def export = {
+		println "EXPORTING LIST ${params.id}"
+		response.setHeader("Content-disposition", "attachment; filename=${params.id}-export.txt")  
+		response.contentType = "text/plain"
+		exportService.exportList(response.outputStream, params.id)
 	}
 	
 }
