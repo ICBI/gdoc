@@ -13,11 +13,9 @@ class ExportService {
 		list.listItems.each {
 			items.addAll(strategy(it.value))
 		}
-		println "LIST ITEMS $items"
 		def output = ""
 		items.each {
 			if(it.metaClass.respondsTo(it, 'join')) {
-				println "IN JOIN ${it}"
 				output += it.join("\t") + "\n"
 			} else { 
 				output += it + "\n"
