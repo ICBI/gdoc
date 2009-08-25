@@ -60,7 +60,7 @@ $(document).ready(function()
 			</ul>			
 			
 		</li>
-		<li><g:navigationLink name="Saved Lists" controller="userList">Saved Lists</g:navigationLink></li>
+		<li><a href="/gdoc/userList" name="Saved Lists">Saved Lists</a></li>
 		<li><g:navigationLink name="Saved Analysis" controller="savedAnalysis">Saved Analysis</g:navigationLink></li>	
 		<li>
 			<a href="#">Help</a>

@@ -165,10 +165,19 @@ def securityService
 			def pct1and2 = calculatePctBetween2Lists(compLists1and2)
 			
 			//create valueMap and add to result
-			circle1["circle1"] =  createCircleValues(firstList,circle1Size,pct1and2,null);
+			circle1["circle1"] =  createCircleValues(firstList,circle1Size,pct1and2[1],null);
 			circle2["circle2"] =  createCircleValues(secondList,circle2Size,null,null);
+			//take care of all intersection result
+			def allIntersections = [:]
+			def allValueMap = [:]
+			allValueMap["items"] = pct1and2.toArray()[0]
+			allValueMap["circleInt"] = pct1and2.get(1)
+			println pct1and2.get(1).class
+			allIntersections["allCircles"]  = allValueMap
+			
 			vennCalculations << circle1
 			vennCalculations << circle2
+			vennCalculations << allIntersections
 			
 			return vennCalculations as JSON
 		}
@@ -215,14 +224,14 @@ def securityService
 			
 			
 			//create valueMap and add to result
-			circle1["circle1"] =  createCircleValues(firstList,circle1Size,pct1and2,pct1and3);
-			circle2["circle2"] =  createCircleValues(secondList,circle2Size,pct2and3,null);
+			circle1["circle1"] =  createCircleValues(firstList,circle1Size,pct1and2[1],pct1and3[1]);
+			circle2["circle2"] =  createCircleValues(secondList,circle2Size,pct2and3[1],null);
 			circle3["circle3"] =  createCircleValues(thirdList,circle3Size,null,null);
 			//take care of all intersection result
 			def allIntersections = [:]
 			def allValueMap = [:]
 			allValueMap["items"] = pct1and23.toArray()[0]
-			allValueMap["circleInt"] = pct1and23.toArray()[1]
+			allValueMap["circleInt"] = pct1and23.toArray()[1].intValue()
 			allIntersections["allCircles"]  = allValueMap
 			
 			vennCalculations << circle1
@@ -257,7 +266,7 @@ def securityService
 		items1.retainAll( items2 )
 		def pct1and2 = (items1.size() / tmp.size())*100
 		println "pct of 1 and 2: " + pct1and2.intValue()
-		return pct1and2
+		return [items1,pct1and2]
 		/**
 		def listComp1= lists.toArray()
 		println "list one: " + listComp1

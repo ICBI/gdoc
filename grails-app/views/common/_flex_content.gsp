@@ -24,7 +24,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 		"quality", "high",
 		"bgcolor", "#869ca7",
 		"name", "${it.attrs.component}",
-		"allowScriptAccess","sameDomain",
+		"allowScriptAccess","always",
 		"type", "application/x-shockwave-flash",
 		"pluginspage", "http://www.adobe.com/go/getflashplayer"
 	);
@@ -40,7 +40,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"quality", "high",
 			"bgcolor", "#869ca7",
 			"name", "${it.attrs.component}",
-			"allowScriptAccess","sameDomain",
+			"allowScriptAccess","always",
 			"type", "application/x-shockwave-flash",
 			"pluginspage", "http://www.adobe.com/go/getflashplayer"
 	);

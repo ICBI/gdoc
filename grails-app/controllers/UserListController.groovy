@@ -1,3 +1,5 @@
+import grails.converters.*
+
 class UserListController {
     def securityService
 	def userListService
@@ -36,8 +38,11 @@ class UserListController {
 		println params
 		def author = GDOCUser.findByLoginName(params.author)
 		def vennJSON = userListService.vennDiagram(params.listName,author,params.ids);
+		def parsedJSON = JSON.parse(vennJSON.toString());
 		println vennJSON
-		[ vennJSON: vennJSON]
+		def intersectedIds = parsedJSON
+		flash.message = null
+		[ vennJSON: vennJSON, intersectedIds: intersectedIds]
 	}
 
 	def tools = {
@@ -174,6 +179,9 @@ class UserListController {
 			}
 		} else if(params['ids']){
 			params['ids'].tokenize(",").each{
+				println "clean up ids"
+				it = it.replace('[','');
+				it = it.replace(']','');
 				userListInstance.addToListItems(new UserListItem(value:it.trim()));
 			}
 		}
@@ -190,7 +198,6 @@ class UserListController {
 						    userListInstance.addTag(StudyContext.getStudy());
 						}
 				render "$params.name created succesfully"
-			
         }
         else {
 				render "Error creating $params.name list"

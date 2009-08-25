@@ -2,10 +2,11 @@
 <g:javascript library="jquery"/>
 <g:javascript>
 	function showOption(){
-		if($("#listAction option:selected").val()=='intersect'){
-			$("#venn").css("display","inline");
-		}else{
-			$("#venn").css("display","none");
+		if($("#listAction option:selected").val()=='venn'){
+			$("#name").css("display","none");
+		}
+		else{
+			$("#name").css("display","inline");
 		}
 	}
 	function validate(){
@@ -29,16 +30,16 @@
 		<div>
  		<g:formRemote name="listToolForm" update="allLists" onLoading="showToolsSpinner(true)"
 		    onComplete="showToolsSpinner(false)" action="tools" url="${[action:'tools']}">
-		<span>List Action: <br />
+		<span style="margin-bottom:5px;">List Action: <br />
 		<g:select name="listAction" from="${['Venn Diagram','Intersect Lists','Join Lists', 'Difference']}" 
-				keys="${['venn','intersect','join','diff']}" onchange="showOption(this)" /></span><br /><br />
-		<span>List Name: <g:textField name="listName" /></span><br /><br />
-		<g:select name="userListIds"
+				keys="${['venn','intersect','join','diff']}" onchange="showOption(this)" /></span><br />
+		<span id="name" style="display:none;margin-top:5px;">List Name: <g:textField name="listName" /></span><br />
+		<g:select style="margin-top:5px;" name="userListIds"
 				  from="${userListInstanceList}"
 		          optionKey="id" 
 				  optionValue="name"
 				  multiple="true"
-				  size="3"
+				  size="5"
 				  />
 		<br /><br />
 		<g:actionSubmit value="Submit"  action="tools" onclick="return validate()"/>
