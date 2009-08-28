@@ -18,6 +18,7 @@ class AnalysisController {
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
 		}
 		session.patientLists = patientLists.sort { it.name }
+		session.files = MicroarrayFile.findByNameLike('%.Rda')
 	}
 	
 	def submit = { AnalysisCommand cmd ->
