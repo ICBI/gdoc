@@ -44,6 +44,15 @@ environments {
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "http://localhost/gdoc-middleware"
     }
+    devserver {
+        grails.serverURL = "http://www.changeme.com"
+		jmsserver = "jnp://localhost:1099"
+		responseQueue = "AnalysisResponse"
+		genePatternUrl = "http://141.161.54.201:8080"
+		tempDir = "/opt/gdoc-temp"
+		middlewareUrl = "http://localhost/gdoc-middleware"
+		
+    }
     demo {
         grails.serverURL = "http://www.changeme.com"
 		jmsserver = "jnp://localhost:1099"

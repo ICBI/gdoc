@@ -12,7 +12,7 @@ class QueryBuilder {
 					def range = dataTypes.find {
 						it.shortName == attrName
 					}
-					if(minMax["min"] != range.lowerRange || minMax["max"] != range.upperRange) {
+					if(minMax["min"] != range.lowerRange.toInteger() || minMax["max"] != range.upperRange.toInteger()) {
 						criteria[key.replace(formKey + "range_", "")] = minMax
 					}
 				} else {

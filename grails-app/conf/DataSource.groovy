@@ -18,6 +18,14 @@ environments {
 			logSql = true
 		}
 	}
+	devserver {
+		dataSource {
+			url = "jdbc:oracle:thin:@10.10.50.3:1521:gdoc"
+			username = "guidoc"
+			password = "cure4cancer"
+			logSql = true
+		}
+	}
 	demo {
 		dataSource {
 			url = "jdbc:oracle:thin:@10.10.50.3:1521:gdoc"

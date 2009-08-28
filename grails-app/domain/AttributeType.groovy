@@ -13,6 +13,7 @@ class AttributeType {
 	String longName
 	String definition
 	String value
+	String target
 	Boolean qualitative
 	Boolean continuous
 	Boolean vocabulary

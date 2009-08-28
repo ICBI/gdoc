@@ -8,12 +8,12 @@ default_run_options[:pty] = true
 set :application, "gdoc"
 set :deploy_to, "/opt"
 
-if ENV["SERVER"] && ENV["SERVER"] == "prod"
-  set :primary_server, "141.161.30.205"
-  set :server_name, "prod"
-elsif !ENV["SERVER"] || ENV["SERVER"] == "demo"
+if ENV["SERVER"] && ENV["SERVER"] == "demo"
   set :primary_server, "141.161.54.200"
   set :server_name, "demo"
+elsif !ENV["SERVER"] || ENV["SERVER"] == "dev"
+  set :primary_server, "10.168.2.10"
+  set :server_name, "devserver"
 end
 
 server primary_server, :app, :web, :db, :primary => true
