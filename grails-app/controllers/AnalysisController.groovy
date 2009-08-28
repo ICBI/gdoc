@@ -11,8 +11,8 @@ class AnalysisController {
 	def userListService
 	
     def index = {
-		session.study = StudyDataSource.findByShortName("EDINBURGH")
-		StudyContext.setStudy("EDIN")
+		session.study = StudyDataSource.get(params.id)
+		StudyContext.setStudy(session.study.shortName)
 		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
 		def patientLists = lists.findAll { item ->
 			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
