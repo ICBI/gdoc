@@ -4,6 +4,7 @@ class AnalysisCommand {
 	String pvalue
 	String foldChange
 	String dataFile
+	String study
 	AnalysisType requestType = (AnalysisType.CLASS_COMPARISON)
 	
 	static constraints = {

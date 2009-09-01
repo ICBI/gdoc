@@ -4,6 +4,7 @@ class UserListController {
     def securityService
 	def userListService
 	def exportService
+	def annotationService
     def index = { redirect(action:list,params:params) }
 
     def list = {
@@ -158,6 +159,7 @@ class UserListController {
 
 
     def saveFromQuery = {
+		println params
 		if(!params["name"]){
 			params["name"] = params["author.username"] + new Date().getTime();
 		}
@@ -171,18 +173,47 @@ class UserListController {
 			return
 		}
 		def userListInstance = new UserList(params)
-		if(params.selectAll) {
+		if(params.selectAll == "true") {
+			//if patient list, save all gdocIds straight from result
 			if(params["tags"].indexOf("patient") > -1) {
 				session.results.each {
 					userListInstance.addToListItems(new UserListItem(value:it.gdocId));
 				}
 			}
+			//if gene symbol list, look up gene symbols from reporters straight from result
+			else if(params["tags"].indexOf("Gene Symbols") > -1){
+				session.results.resultEntries.each{ ccEntry ->
+						def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
+						if(geneSymbol){
+							userListInstance.addToListItems(new UserListItem(value:geneSymbol));
+						}
+				}
+			}
+			//if reporters list, save reporters straight from result
+			else{
+				session.results.resultEntries.each{ ccEntry ->
+					userListInstance.addToListItems(new UserListItem(value:ccEntry.reporterId));
+				}
+			}
 		} else if(params['ids']){
 			params['ids'].tokenize(",").each{
-				println "clean up ids"
 				it = it.replace('[','');
 				it = it.replace(']','');
-				userListInstance.addToListItems(new UserListItem(value:it.trim()));
+				//if gene symbols list, look up gene symbols from reporters (ids)
+				if(params["tags"].indexOf("Gene Symbols") > -1){
+					session.results.resultEntries.each{ ccEntry ->
+						if(it.trim() == ccEntry.reporterId){
+							def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
+							if(geneSymbol){
+								userListInstance.addToListItems(new UserListItem(value:geneSymbol.trim()));
+							}
+						}
+					}
+				}else{
+					//or just save the value of the id itself, after it has been cleaned up
+					userListInstance.addToListItems(new UserListItem(value:it.trim()));
+				}
+				
 			}
 		}
 		
@@ -194,9 +225,7 @@ class UserListController {
 								userListInstance.addTag(it);
 							}
 						}
-						if(StudyContext.getStudy()){
-						    userListInstance.addTag(StudyContext.getStudy());
-						}
+						
 				render "$params.name created succesfully"
         }
         else {

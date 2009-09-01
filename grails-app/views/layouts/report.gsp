@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'ui.jqgrid.css')}" />	
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'superfish.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'jquery.tooltip.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styledButton.css')}"/>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<g:javascript library="jquery"/>
 		<g:layoutHead/>

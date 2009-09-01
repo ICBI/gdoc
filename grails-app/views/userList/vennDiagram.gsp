@@ -46,24 +46,30 @@
 		<br/>	
 				<g:flex component="VennDiagram" width="500px" height="300px" />
 		<br /><br />
-		<g:if test="${intersectedIds.allCircles.circleInt.get(0).intValue()>0}">
+		<g:if test="${intersectedIds.circle1.circleInt1.get(0) > 0 || !(intersectedIds.circle1.circleInt2.get(0)) ||
+			!(intersectedIds.circle2.circleInt1.get(0))}">
 		
 		<div id="message" class="message" style="display:none"></div>
 	<table style="padding:10px">
 	<tr><td valign="top">
-		<g:panel id="myVennDataPanel" title="Venn Diagram Data" styleClass="prefsData" panelColor="userLogPanelTitle" 				contentClass="myPanelContent">
-		<p><span id="intColor" style="margin-right:3px">
+		<g:panel id="myVennDataPanel" title="Venn Diagram Data" styleClass="intData" panelColor="userLogPanelTitle" 				contentClass="myPanelContent">
+		<!--span id="intColor" style="margin-right:3px">
 			<g:if test="${intersectedIds.size()==3}">
 			<img src="${createLinkTo(dir:'images',file:'int2.png')}" />
 			</g:if>
 			<g:if test="${intersectedIds.size()==4}">
 			<img src="${createLinkTo(dir:'images',file:'int3.png')}" />
 			</g:if>
-			</span>
-			intersecting items : ${intersectedIds.allCircles.items.flatten().size()} 
-			<span class="info"style="cursor:pointer;text-decoration:underline" title="${intersectedIds.allCircles.items.flatten()}" border="0" />view</span>
-			</p>
-		<p style="margin-left:20px">intersection: ${intersectedIds.allCircles.circleInt.get(0).intValue()}%</p>
+			</span
+			<span class="info"style="cursor:pointer;text-decoration:underline" title="${intersectedIds.allCircles.items.flatten()}" border="0" />view</span-->
+		<p>intersection: <br />
+			-<span class="info"style="cursor:pointer;text-decoration:underline" title="${intersectedIds.allCircles.items.flatten()}" border="0" />all lists</span>: ${intersectedIds.allCircles.circleInt.get(0).intValue()}% <br />
+			-${intersectedIds.circle1.name} intersecting ${intersectedIds.circle2.name}: 		${intersectedIds.circle1.circleInt1.get(0).intValue()}%<br />
+			<g:if test="${intersectedIds.size()==4}">
+			-${intersectedIds.circle1.name} intersecting ${intersectedIds.circle3.name}: 		${intersectedIds.circle1.circleInt2.get(0).intValue()}%<br />
+			-${intersectedIds.circle2.name} intersecting ${intersectedIds.circle3.name}: 		${intersectedIds.circle2.circleInt1.get(0).intValue()}%<br />
+			</g:if>
+		</p>
 		</g:panel>	
 	</td>
 	<td valign="top">
@@ -81,7 +87,7 @@
 	</td>
 	
 	</tr></table>
-	</g:if>		
+	</g:if>
 	</body>
 	
 </hmtl>

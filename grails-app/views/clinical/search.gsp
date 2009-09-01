@@ -8,7 +8,27 @@
     <body>
 	<jq:plugin name="ui"/>
 	<jq:plugin name="jqgrid"/>
+	<jq:plugin name="styledButton"/>
+	<g:javascript>
+	$(document).ready( function () {
+		 // this is unfortunately needed due to a race condition in safari
+		 // limit the selector to only what you know will be buttons :)
+		$("span.bla").css({
+			 'padding' : '3px 20px',
+			 'font-size' : '12px',
+		});
 
+		$("span.bla").styledButton({
+			'orientation' : 'alone', // one of {alone, left, center, right} default is alone
+			'role' : 'button', // one of {button, checkbox, select}, default is button. Checkbox/select change some other defaults
+			'defaultValue' : "foobar", // default value for select, doubles as default for checkboxValue.on if checkbox, default is empty
+			'name' : 'testButton', // name to use for hidden input field for checkbox and select so form can submit values
+			// enable a dropdown menu, default is none
+			'clear' : true // in firefox 2 the buttons have to be floated to work properly, set this to true to have them display in a new line
+		
+		});
+	} );
+	</g:javascript>
 	<g:javascript>
 		var selectedIds = [];
 		var selectAll = false;
@@ -75,6 +95,7 @@
 					var tags = new Array();
 					tags.push("clinical");
 					tags.push("patient");
+					tags.push(jQuery("#Study").text());
 					var listName = jQuery('#list_name').val();
 					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
 				}
@@ -105,9 +126,15 @@
 			</g:if>
 			<g:else>
 				<g:if test="${session.userId}">
+				<g:if test="${session.study}">
+					<span id="Study" style="display:none">${session.study.schemaName}</span>
+				</g:if>
 				<div style="margin:5px 5px 5px 50px">
-				<label for="list_name">List Name:</label><g:textField name="list_name" size="15" />
-				<a href="javascript:void(0)" id="listAdd">Save items to List</a> | <g:navigationLink name="Saved Lists" controller="userList">Go to saved-lists page</g:navigationLink><br />
+					<span style="vertical-align:5px"> <label for="list_name">List Name:</label>
+						<g:textField name="list_name" size="15"/>
+					</span>
+				<span class="bla" id="listAdd">Save Selected ⇣
+					</span><br />
 				<span id="message" class="message" style="display:none"></span>
 				</div>
 				</div>

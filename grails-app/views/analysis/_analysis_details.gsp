@@ -35,7 +35,7 @@
 					</td>
 				</g:if>
 				<g:else>
-					<td class="ui-widget-content" style="padding: 2px;" >${data.value}</td>
+					<td class="ui-widget-content" id="${data.key.decamelize()}" style="padding: 2px;" >${data.value}</td>
 				</g:else>
 			</tr>
 		</g:each>

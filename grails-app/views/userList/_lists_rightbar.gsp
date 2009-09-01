@@ -10,8 +10,8 @@
 		}
 	}
 	function validate(){
-		if($("#userListIds option:selected").size() == 0){
-			alert("Please select lists");
+		if(!($("#userListIds option:selected").size() > 1)){
+			alert("Please select at least 2 lists");
 			return false;
 		}else if($("#listAction option:selected").val()=='diff'){
 			if($("#userListIds option:selected").size() != 2){
@@ -19,7 +19,12 @@
 				return false;
 			}
 		}else if($("#listAction option:selected").val()=='venn'){
-			$("#listToolForm").submit();
+			if($("#userListIds option:selected").size() > 3){
+				alert("Please select no more than 2 lists");
+				return false;
+			}else{
+				$("#listToolForm").submit();
+			}
 		}
 	}
 

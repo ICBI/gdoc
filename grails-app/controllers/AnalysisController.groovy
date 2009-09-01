@@ -28,6 +28,7 @@ class AnalysisController {
 		println "groups : " + cmd.groups
 		println "pvalue : " + cmd.pvalue
 		println "foldChange : " + cmd.foldChange
+		println "study:" + cmd.study 
 		println cmd.errors
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
@@ -83,7 +84,7 @@ class AnalysisController {
 			cells << result.meanGrp1
 			cells << result.foldChange
 			cells << geneName
-			results << [id: geneName, cell: cells]
+			results << [id: result.reporterId, cell: cells]
 		}
 		def jsonObject = [
 			page: currPage,

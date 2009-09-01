@@ -7,8 +7,35 @@
     </head>
     <body>
 	<jq:plugin name="ui"/>
+	<jq:plugin name="styledButton"/>
+	<g:javascript>
+	$(document).ready( function () {
+		 // this is unfortunately needed due to a race condition in safari
+		 // limit the selector to only what you know will be buttons :)
+		$("span.bla").css({
+			 'padding' : '3px 20px',
+			 'font-size' : '12px',
+		});
+
+		$("span.bla").styledButton({
+			'orientation' : 'alone', // one of {alone, left, center, right} default is alone
+			'dropdown' : { 'element' : 'ul' },
+			// action can be specified as a single function to be fired on any click event
+			'role' : 'select', // one of {button, checkbox, select}, default is button. Checkbox/select change some other defaults
+			'defaultValue' : "foobar", // default value for select, doubles as default for checkboxValue.on if checkbox, default is empty
+			'name' : 'testSelect', // name to use for hidden input field for checkbox and select so form can submit values
+			// enable a dropdown menu, default is none
+			'clear' : true // in firefox 2 the buttons have to be floated to work properly, set this to true to have them display in a new line
+		
+		});
+	} );
+	</g:javascript>
 	<jq:plugin name="jqgrid"/>
 	<g:javascript>
+		var selectedIds = [];
+		var selectAll = false;
+		var currPage = 1;
+		
 		$(document).ready(function(){
 			jQuery("#searchResults").jqGrid({ 
 				url:'<%= createLink(action:"results",controller:"analysis") %>', 
@@ -23,35 +50,71 @@
 				viewrecords: true, 
 				sortorder: "desc", 
 				multiselect: true, 
-				caption: "Analysis Results" }
-			);
-			jQuery("#listAdd").click( function() { 
-								
+				caption: "Analysis Results",
+				onSelectAll: function(all, checked) {
+									selectAll = checked;
+									selectedIds = [];
+				}, 
+				onPaging: function(direction) {
+							if(jQuery("#searchResults").getGridParam('selarrrow')) {
+								selectedIds[currPage] = jQuery("#searchResults").getGridParam('selarrrow');
+							}
+				},
+				gridComplete: function() {
+									currPage = jQuery("#searchResults").getGridParam("page");
+									var ids = selectedIds[currPage];
+									if(selectAll) {
+										selectAllItems();
+									} else if(ids) {
+										for(var i = 0; i < ids.length; i++) {
+											jQuery("#searchResults").setSelection(ids[i]);
+										}
+
+										if(ids.length == jQuery("#searchResults").getGridParam("rowNum")) {
+											jQuery("#cb_jqg").attr('checked', true);
+										}
+									}
+				},
+				onSortCol: function() {
+									selectAll = false;
+									selectedIds = [];
+				}
+			});
+			jQuery("#listAdd").change( function() { 			
 				var s; 
 				var author = '${session.userId}'
 				s = jQuery("#searchResults").getGridParam('selarrrow'); 
 				if(s.length == 0) {
 					jQuery('#message').html("No IDs selected.")
+					jQuery('#message').css("display","block");
 					window.setTimeout(function() {
-					  jQuery('#message').empty();
-					}, 1000);
+					  jQuery('#message').empty().hide();
+					}, 2500);
 				} else {
 					var tags = new Array();
-					tags.push("gene");
+					tags.push("analysis");
+					tags.push(jQuery("#listAdd").val());
+					tags.push(jQuery("#Study").text());
 					var listName = jQuery('#list_name').val();
-					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message',  onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags')}
+					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
 				}
 				
 			
 			}); 
 		});
-		
+		function selectAllItems() {
+					jQuery('#searchResults tbody tr').each(function() {
+						jQuery("#searchResults").setSelection(this.id);
+					});
+					jQuery("#cb_jqg").attr('checked', true);
+		}
 		
 		function success() {
 			jQuery('#list_name').val("");
+			jQuery('#message').css("display","block");
 			window.setTimeout(function() {
-			  jQuery('#message').empty();
-			}, 1000);
+				jQuery('#message').empty().hide();
+			}, 2500);
 		}
 	</g:javascript>
 	<br/>
@@ -64,14 +127,24 @@
 				No results found.
 			</g:if>
 			<g:else>
+			
+				
 				<g:if test="${session.userId}">
 					<g:render template="analysis_details" bean="${session.analysis}" />
 					<br/>
-					<div style="margin:5px 5px 5px 50px">
-						<label for="list_name">List Name:</label><g:textField name="list_name" size="15" />
-						<a href="javascript:void(0)" id="listAdd">Save items to List</a> | <g:navigationLink name="Saved Lists" controller="userList">Go to saved-lists page</g:navigationLink>
-						<div id="message"></div>
-					</div>
+					<div style="margin:5px 5px 5px 50px;">
+						<span style="vertical-align:5px"> <label for="list_name">List Name:</label>
+							<g:textField name="list_name" size="15"/>
+						</span>
+						<span class="bla" id="listAdd">Save Selected ⇣
+								<ul>
+									<li>Reporters</li>
+									<li>Gene Symbols</li>
+								</ul>
+							</span>
+							</div>	
+						<span id="message" class="message" style="display:none"></span>
+				
 				</g:if>
 				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0"></table>
 				<div id="pager" class="scroll" style="text-align:center;height: 45px"></div>

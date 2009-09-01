@@ -100,6 +100,7 @@
 			from="${session.files}"
 			optionKey="name" optionValue="${{it.fileType.name}}"/>
 	<br/>
+	<g:hiddenField name="study" value="${session.study.schemaName}" />
 </div>
 <br/>
 <g:submitButton name="submit" value="Submit Analysis"/>

@@ -1,3 +1,4 @@
+<br /><br /><br />
 <div style="background: #f2f2f2 url(/gdoc/images/border_bottom.gif) top repeat-x;" align="center"><br />
 
 <span size="6" style="font-size: 10px; font-family: arial,helvetica,sans-serif; color: #1c2674">

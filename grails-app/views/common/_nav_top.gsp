@@ -45,7 +45,16 @@ $(document).ready(function()
 			<a class="sf-with-ul" href="#">Perform Analysis<span class="sf-sub-indicator"> »</span></a>
 			<ul style="display: none; visibility: hidden;">
 				<li>
-					<g:navigationLink name="Class Comparison" controller="analysis"/>
+					<a class="sf-with-ul" href="#">Class Comparison<span class="sf-sub-indicator"> »</span></a>
+					<ul style="display: none; visibility: hidden;">
+					<g:each in="${session.myStudies}">
+						<g:if test="${it.genomicData}">
+							<li>
+								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="analysis" />
+							</li>
+						</g:if>
+					</g:each>
+					</ul>
 				</li>
 				<li>
 					<a class="sf-with-ul" href="#">KM Plot<span class="sf-sub-indicator"> »</span></a>
