@@ -42,7 +42,16 @@ jQuery(document).ready(function()
 					<a href="#">Targets</a>
 				</li>					
 				<li>
-					<g:navigationLink name="Genes" controller="geneExpression" />
+					<a class="sf-with-ul" href="#">Genes<span class="sf-sub-indicator"> »</span></a>
+					<ul style="display: none; visibility: hidden;">
+						<g:each in="${session.myStudies}">
+							<g:if test="${it.genomicData}">
+								<li>
+									<g:navigationLink name="${it.shortName}" id="${it.id}" controller="geneExpression" />
+								</li>
+							</g:if>
+						</g:each>
+					</ul>
 				</li>						
 			</ul>
 		</li>
