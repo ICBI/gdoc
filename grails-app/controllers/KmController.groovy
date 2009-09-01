@@ -75,18 +75,18 @@ class KmController {
 			def foldChangeGroups = []
 			def foldChange = Integer.parseInt(fc)
 			foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,meanExpression,foldChange,geAnalysisId)
-			def kmCommand = new KmCommand()
+			def kmCommand = new KmGeneExpCommand()
 			def groups = []
 			groups.add(foldChangeGroups['&gt;' + foldChange])
 			groups.add(foldChangeGroups['&lt;' +"-" + foldChange])
 			groups.add(foldChangeGroups['between'])
-			
 			kmCommand.geAnalysisId = Integer.parseInt(geAnalysisId)
+			def savedAnalysis = SavedAnalysis.get(kmCommand.geAnalysisId)
 			kmCommand.groups = groups
 			kmCommand.reporters = allReporters
 			kmCommand.foldChange = foldChange;
 			kmCommand.currentReporter = reporter
-			kmCommand.endpoint = "SURGERY_TO_DEATH/FU"
+			kmCommand.endpoint = savedAnalysis.query.endpoint
 			session.command = kmCommand
 			def tempLists = createTempUserListsForKM(foldChangeGroups)
 			session.selectedLists = tempLists
@@ -101,6 +101,9 @@ class KmController {
 					flash['cmd'] = cmd
 					redirect(action:'index')
 				} else {
+					def files = MicroarrayFile.findByNameLike('%.Rda')
+						println "BEFORE"
+					cmd.dataFile = files.name
 					def taskId = analysisService.sendRequest(session.id, cmd)
 					def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, taskId)
 					println "CHECKING status ${geAnalysis.id} ${taskId}"
@@ -185,10 +188,15 @@ class KmController {
 			def samples = []
 			def tempList
 			if(list instanceof UserList){
+				println "LIST: ${list.name}"
+				
 				tempList = list
 			}else{
+				println "LIST2: ${list}"
+				
 			    tempList = UserList.findAllByName(list.name)
 			}
+			println "TEMPLIST $tempList"
 			def ids = tempList.listItems.collectAll { listItem ->
 					listItem.value
 				}.flatten()
@@ -200,6 +208,7 @@ class KmController {
 			def censorStrategy = { patient, endpoint ->
 				
 				att = attributes.find {
+					println "COMPARE: ${it.attribute} : $endpoint"
 					it.attribute == endpoint
 				}
 				return (patient.clinicalData[att.censorAttribute] == att.censorValue)

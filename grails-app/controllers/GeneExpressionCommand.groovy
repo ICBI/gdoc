@@ -2,7 +2,7 @@ class GeneExpressionCommand {
 	
 	String[] groups
 	String geneName
-	String dataFile = "EdinPlier_22APR2009.Rda"
+	String dataFile
 	AnalysisType requestType = (AnalysisType.GENE_EXPRESSION)
 	def annotationService
 	

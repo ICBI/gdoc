@@ -23,6 +23,8 @@ class GeneExpressionController {
 			flash['cmd'] = cmd
 			redirect(action:'index')
 		} else {
+			def files = MicroarrayFile.findByNameLike('%.Rda')
+			cmd.dataFile = files.name
 			def taskId = analysisService.sendRequest(session.id, cmd)
 			redirect(controller:'notification')
 		}

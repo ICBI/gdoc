@@ -8,7 +8,7 @@ class KmGeneExpCommand {
 	Integer foldChange
 	Integer geAnalysisId
 	String geneName
-	String dataFile = "EdinPlier_22APR2009.Rda"
+	String dataFile
 	def annotationService
 	
 	static constraints = {
