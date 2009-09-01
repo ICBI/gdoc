@@ -37,7 +37,7 @@ class AnalysisService {
 			def request = new ExpressionLookupRequest(sess, "ExpressionLookup_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			def sampleGroup = new SampleGroup()
-			sampleGroup.addAll(idService.binaryFileIds)
+			sampleGroup.addAll(idService.sampleIdsForFile(cmd.dataFile))
 			def reporterGroup = new ReporterGroup()
 			reporterGroup.addAll(annotationService.findReportersForGene(cmd.geneName))
 			request.reporters = reporterGroup
@@ -48,7 +48,7 @@ class AnalysisService {
 			def request = new ExpressionLookupRequest(sess, "ExpressionLookup_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			def sampleGroup = new SampleGroup()
-			sampleGroup.addAll(idService.binaryFileIds)
+			sampleGroup.addAll(idService.sampleIdsForFile(cmd.dataFile))
 			def reporterGroup = new ReporterGroup()
 			reporterGroup.addAll(annotationService.findReportersForGene(cmd.geneName))
 			request.reporters = reporterGroup
@@ -85,4 +85,5 @@ class AnalysisService {
 		}
 		return request.taskId
 	}
+	
 }

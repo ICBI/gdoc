@@ -33,17 +33,6 @@ class BootStrap {
 		  		}
 	           break
 	   	}
-		if(GrailsUtil.environment != 'test') {
-			//Initialize sample ids
-			ApplicationContext ctx = servletContext.getAttribute(GrailsApplicationAttributes.APPLICATION_CONTEXT)
-			InputStream stream = servletContext.getResourceAsStream("/WEB-INF/data/SampleIds.txt")
-			def sampleIds = []
-		 	stream.eachLine { line ->
-				sampleIds = line.split('\t')
-			}
-			def idService = ctx.getBean("idService")
-			idService.binaryFileIds = sampleIds.toList()
-		}
 		
 		// Setup metaclass methods for string 
 		String.metaClass.decamelize = {
