@@ -33,7 +33,7 @@
 			<div class="yui-b">
 				<div class="yui-gc">
 					<div class="yui-u first">
-						<g:layoutBody/>
+						<g:layoutBody/><br />
 					</div>
 					<div class="yui-u">
 						<g:render template="/common/rightbar"/>

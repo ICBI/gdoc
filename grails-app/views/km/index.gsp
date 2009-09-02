@@ -132,7 +132,7 @@
 									</div>
 							</div>
 						<br/>
-
+						<g:hiddenField name="study" value="${session.study.schemaName}" />
 						<br/>
 						<g:submitButton name="search" value="Plot"/>
 					</g:form>

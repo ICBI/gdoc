@@ -15,7 +15,9 @@ class SavedAnalysisService {
 		def json = params as JSON
 		println "COMMAND $json" 
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user, status: notification.status, taskId: notification.item.taskId)
-		newAnalysis.save(flush:true)
+		if(newAnalysis.save(flush:true)){
+			newAnalysis.addTag(command.study);
+		}
 	}
 	
 	def saveAnalysisResult(userId, result, command){
@@ -27,7 +29,10 @@ class SavedAnalysisService {
 		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'requestType', 'annotationService'] as Set )
 		println "going to send: " + command.requestType + ", " + params + ", " + result + ", " + user
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user, status: "Complete")
-		return newAnalysis.save(flush:true)
+		if(newAnalysis.save(flush:true)){
+			println "saved analysis, time to add tags"
+			newAnalysis.addTag(command.study);
+		}
 	}
 	
 	

@@ -32,7 +32,8 @@ class AnalysisController {
 		println cmd.errors
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
-			redirect(action:'index')
+			def study = StudyDataSource.findBySchemaName(cmd.study)
+			redirect(action:'index',id:study.id)
 		} else {
 			analysisService.sendRequest(session.id, cmd)
 			redirect(controller:'notification')

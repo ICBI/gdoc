@@ -39,10 +39,10 @@
 		<tr>
 			<td style="background-color:white;">
 				<g:each in="${userListInstanceList}" status="i" var="userListInstance">
-				<div id="${userListInstance.name}_div" style="collapse:true;border:0px solid red;margin-bottom:5px;padding:3px 3px 3px 3px">
+				<div id="${userListInstance.id}_div" style="collapse:true;border:0px solid red;margin-bottom:5px;padding:3px 3px 3px 3px">
 				
-					<div id="${userListInstance.name}_title" style="border:0px solid black;height: 20px; cursor: pointer;"
-					onclick="toggle('${userListInstance.name}');">
+					<div id="${userListInstance.id}_title" style="border:0px solid black;height: 20px; cursor: pointer;"
+					onclick="toggle('${userListInstance.id}');">
 					<div style="border:0px solid black;width:30%;float:left">	
 						<b>${fieldValue(bean:userListInstance, field:'name')} </b>
 						<span id="1spinner" style="display:none"><img src="${createLinkTo(dir: 'images', file: 'spinner.gif')}"/></span>
@@ -50,10 +50,10 @@
 					</div>
 					<div style="border:0px solid black;float:left; vertical-align: top">
 						
-						<img class="${userListInstance.name}_toggle"src="${createLinkTo(dir: 'images', file: 'expand.gif')}"
+						<img class="${userListInstance.id}_toggle"src="${createLinkTo(dir: 'images', file: 'expand.gif')}"
 						width="13"
 						height="14" border="0" alt="Show/Hide" title="Show/Hide" />
-						<img class="${userListInstance.name}_toggle" src="${createLinkTo(dir: 'images', file: 'collapse.gif')}" 
+						<img class="${userListInstance.id}_toggle" src="${createLinkTo(dir: 'images', file: 'collapse.gif')}" 
 						width="13"
 						height="14" border="0" alt="Show/Hide" title="Show/Hide" style="display:none"/>
 					</div>
@@ -84,7 +84,7 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 					</g:else>
 
 				
-				<div id="${userListInstance.name}_content" style="border:0px solid black;display:none;padding-bottom:5px">
+				<div id="${userListInstance.id}_content" style="border:0px solid black;display:none;padding-bottom:5px">
 					<g:render template="/userList/userListDiv" model="${['userListInstance':userListInstance,'listItems':userListInstance.listItems]}"/>
 				</div>
 				<div style="border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px">Tags:

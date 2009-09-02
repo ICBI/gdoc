@@ -41,7 +41,8 @@ class KmController {
 	def search = { KmCommand cmd ->
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
-			redirect(action:'index')
+			def study = StudyDataSource.findBySchemaName(cmd.study)
+			redirect(action:'index',id:study.id)
 		} else {
 			def selectedLists = session.patientLists.findAll { list ->
 				cmd.groups.toList().contains(list.name)
@@ -99,7 +100,8 @@ class KmController {
 			KmGeneExpCommand cmd ->
 				if(cmd.hasErrors()) {
 					flash['cmd'] = cmd
-					redirect(action:'index')
+					def study = StudyDataSource.findBySchemaName(cmd.study)
+					redirect(action:'index',id:study.id)
 				} else {
 					def files = MicroarrayFile.findByNameLike('%.Rda')
 						println "BEFORE"
@@ -174,6 +176,7 @@ class KmController {
 	//TODO - decide if we always want to auto-save KM plots. Right now, we do not. They must implicitly call 'save'.
 	def view = { 
 		if(session.savedKM){
+			println "retrieving SAVED KM"
 			def analysis = savedAnalysisService.getSavedAnalysis(session.savedKM)
 			println analysis.analysisData
 			session.savedKM = null
@@ -243,7 +246,11 @@ class KmController {
 			println groups["geneExpressionInfo"]
 		}
 		groups["endpointDesc"] = att.attributeDescription
-		render groups as JSON
+		def resultData = groups as JSON
+		if(savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd)){
+			println "return result data"
+			render resultData
+		}
 	}
 	}
 }

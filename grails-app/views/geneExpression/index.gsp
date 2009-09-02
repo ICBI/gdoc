@@ -80,7 +80,7 @@
 						<br/>
 				</div>
 			<br/>
-			
+			<g:hiddenField name="study" value="${session.study.schemaName}" />
 			<br/>
 			<g:submitButton name="submit" value="Search"/>
 		</g:form>

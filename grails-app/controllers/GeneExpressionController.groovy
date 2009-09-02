@@ -21,7 +21,8 @@ class GeneExpressionController {
 	def search = { GeneExpressionCommand cmd ->
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
-			redirect(action:'index')
+			def study = StudyDataSource.findBySchemaName(cmd.study)
+			redirect(action:'index',id:study.id)
 		} else {
 			def files = MicroarrayFile.findByNameLike('%.Rda')
 			cmd.dataFile = files.name

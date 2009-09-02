@@ -1,6 +1,6 @@
 <g:javascript library="jquery"/>
 
-<table class="listTable" width="100%" cellpadding="5">
+<table class="listTable" width="100%" cellpadding="2">
 	
 
 <g:each in="${savedAnalysis}" var="analysis">
@@ -36,11 +36,18 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 				<div style="border:0px solid black;width:50%;float:right">	
 					Shared by: ${analysis.author.firstName}&nbsp;${analysis.author.lastName}&nbsp;(author)
 				</div>
+				
 				</g:else>
-		
+				
 		</div>	
 		</div>
-	
+	</div><br />
+	<div style="display:block;text-align:left;border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px">Tags:
+		<g:if test="${analysis.tags.size()>0}">
+		${analysis.tags}
+		</g:if>
+		<g:else>
+		</g:else>
 	</div>
 	<br/>
 	</g:if>

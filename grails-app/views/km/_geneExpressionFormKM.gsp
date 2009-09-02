@@ -56,6 +56,7 @@ function showSpinner() {
 							<g:renderErrors bean="${flash.cmd?.errors}" field="endpoint" />
 						</g:if>
 					</div>
+					<g:hiddenField name="study" value="${session.study.schemaName}" />
 				</td>
 			</tr>			
 			<tr>
@@ -68,6 +69,7 @@ function showSpinner() {
 			</td>
 			</tr>
 			</table>
+			
 		</g:form>
 		</div>
 </div>

@@ -5,6 +5,7 @@ class GeneExpressionCommand {
 	String dataFile
 	AnalysisType requestType = (AnalysisType.GENE_EXPRESSION)
 	def annotationService
+	String study
 	
 	static constraints = {
 		groups(validator: { val, obj ->

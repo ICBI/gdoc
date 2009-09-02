@@ -10,6 +10,7 @@ class KmGeneExpCommand {
 	String geneName
 	String dataFile
 	def annotationService
+	String study
 	
 	static constraints = {
 		groups(validator: { val, obj ->
