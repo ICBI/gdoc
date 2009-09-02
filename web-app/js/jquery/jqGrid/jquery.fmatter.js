@@ -247,7 +247,7 @@
 			op = $.extend({},op,opts.colModel.formatoptions);
 		}
 		if(op.target) {target = 'target=' + op.target;}
-		idUrl = op.baseLinkUrl+op.showAction + '?gene='+opts.rowId+op.addParam;
+		idUrl = op.baseLinkUrl+op.showAction + '?gene='+cellval+op.addParam;
         if(isString(cellval)) {	//add this one even if its blank string
 			$(el).html("<a "+target+" href=\"" + idUrl + "\">" + cellval + "</a>");
         }else {
