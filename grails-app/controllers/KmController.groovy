@@ -232,7 +232,7 @@ class KmController {
 		pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])
 		println "PVALUE $pvalue"
 		groups["pvalue"] = pvalue
-		if(cmd.reporters && cmd.foldChange){
+		if(cmd instanceof KmGeneExpCommand){
 			def geInfo = [:]
 			geInfo["geAnalysisId"] = cmd.geAnalysisId
 			geInfo["reporters"] = cmd.reporters
