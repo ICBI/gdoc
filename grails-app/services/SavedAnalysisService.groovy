@@ -32,6 +32,7 @@ class SavedAnalysisService {
 		if(newAnalysis.save(flush:true)){
 			println "saved analysis, time to add tags"
 			newAnalysis.addTag(command.study);
+			return newAnalysis
 		}
 	}
 	

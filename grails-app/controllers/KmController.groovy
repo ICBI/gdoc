@@ -92,6 +92,7 @@ class KmController {
 			session.command = kmCommand
 			def tempLists = createTempUserListsForKM(foldChangeGroups)
 			session.selectedLists = tempLists
+			session.redrawnKM = true
 		/**------------------------------------------------**/
 		}
 		redirect(action:'searchGE')
@@ -145,6 +146,7 @@ class KmController {
 					session.command = cmd
 					def tempLists = createTempUserListsForKM(foldChangeGroups)
 					session.selectedLists = tempLists
+					session.redrawnKM = null
 					redirect(uri:'/km/searchGE')
 				}
 		//	render(template:"/km/geneExpressionFormKM")
@@ -247,17 +249,22 @@ class KmController {
 			pvalue = computeMultiplePvalues(groupHash)
 		} else {
 			if(sampleGroups[0] && sampleGroups[1]) {
-				def groups = orderGroups(sampleGroups)
-				pvalue = kmService.getLogRankPValue(groups[0], groups[1])
+				def myGroups = orderGroups(sampleGroups)
+				pvalue = kmService.getLogRankPValue(myGroups[0], myGroups[1])
 			}
 		}
 		println "PVALUE $pvalue"
 		groups["pvalue"] = pvalue
 		groups["endpointDesc"] = att.attributeDescription
 		def resultData = groups as JSON
-		if(savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd)){
-			println "return result data"
+		if(session.redrawnKM){
+			println "km has been redrawn, just return result data"
 			render resultData
+		}else{
+			if(savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd)){
+				println "saved km and now returning result data"
+				render resultData
+			}
 		}
 	}
 	}

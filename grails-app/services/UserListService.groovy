@@ -263,44 +263,25 @@ def securityService
 		def items1 = lists.toArray()[0].listItems.collect{it.value}
 		def items2 = lists.toArray()[1].listItems.collect{it.value}
 		def tmp = items1 as Set
-		items1.retainAll( items2 )
 		
+		//come back to this code...NOT being used right now
+		//----------------------------------------
+		def diffI1 = items1 as Set
+		println "size before:" + diffI1.size()
+		def diff = items1 as Set
+		diffI1.removeAll(items2)
+		println "size after:" + diffI1.size()
+		def count = diff.size() - diffI1.size()
+		println "difference:" + count
+		def pct1of2 = (count/items2.size())*100
+		println "pct of "+ lists.toArray()[1].name + " inside " + lists.toArray()[0].name + " = " + pct1of2
+		//-----------------------------------//
+		
+		items1.retainAll( items2 )
 		def pct1and2 = (items1.size() / tmp.size())*100
 		println "pct of " + lists.toArray()[0].name +" and "+ lists.toArray()[1].name+" : " + pct1and2.intValue()
 		return [items1,pct1and2]
-		/**
-		def listComp1= lists.toArray()
-		println "list one: " + listComp1
-		def listComp2 = []
-		listComp2.addAll(listComp1)
-		def list2= ['VEGF','EB','SOM1','XYZ','UTY']
-		println "list two: " + list2
-		def list3= ['VEGF','EGFR','ER+','5t5t']
-		println "list three: " + list3
-		def last = []
-		last.addAll(listComp1)
-		
-		//compare 1 and 2
-		def tmp = listComp1 as Set
-		listComp1.retainAll( list2 )
-		def pct1and2 = (listComp1.size() / tmp.size())*100
-		println "pct of 1 and 2: " + pct1and2.intValue()
-		//compare 1 and 3
-		def tmp2 = listComp2 as Set
-		listComp2.retainAll( list3 )
-		def pct1and3 = (listComp2.size() / tmp2.size())*100
-		println "pct of 1 and 3: " + pct1and3.intValue()
-		//compare 2 and 3
-		def tmp3 = list2 as Set
-		list2.retainAll( list3 )
-		println "retained list2= " + list2.size() + " untouched list2 ="+ tmp3.size()
-		def pct2and3 = (list2.size() / tmp3.size())*100
-		println "pct of 2 and 3: " + pct2and3.intValue()
-		//compare 1 and 2 and 3 30,25,20,10
-		def tmp4 = last as Set
-		last.retainAll( list2 )
-		def pct1and2and3 = (last.size() / tmp4.size())*100
-		println "pct of 1 and 2 and 3: " + pct1and2and3.intValue()**/
+		//return [items1,pct1of2]
 	}
 	
 	def createCircleValues(userList,circleSize,circleInt1,circleInt2){
