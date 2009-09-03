@@ -5,7 +5,7 @@ class KmGeneExpCommand {
 	AnalysisType requestType = (AnalysisType.KM_GENE_EXPRESSION)
 	List reporters
 	String currentReporter
-	Integer foldChange
+	Double foldChange
 	Integer geAnalysisId
 	String geneName
 	String dataFile

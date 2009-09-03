@@ -74,7 +74,7 @@ class KmController {
 		  println "found mean expression for redrawn plot"
 		def meanExpression = expValues[0].expression
 			def foldChangeGroups = []
-			def foldChange = Integer.parseInt(fc)
+			def foldChange = Double.parseDouble(fc)
 			foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,meanExpression,foldChange,geAnalysisId)
 			def kmCommand = new KmGeneExpCommand()
 			def groups = []
@@ -88,6 +88,7 @@ class KmController {
 			kmCommand.foldChange = foldChange;
 			kmCommand.currentReporter = reporter
 			kmCommand.endpoint = savedAnalysis.query.endpoint
+			kmCommand.study = StudyContext.getStudy()
 			session.command = kmCommand
 			def tempLists = createTempUserListsForKM(foldChangeGroups)
 			session.selectedLists = tempLists
