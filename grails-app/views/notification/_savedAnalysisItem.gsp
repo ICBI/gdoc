@@ -1,4 +1,4 @@
-<g:if test="${notification.type != AnalysisType.KM_GENE_EXPRESSION}">
+<g:if test="${notification.type != AnalysisType.KM_GENE_EXPRESSION && notification.type != AnalysisType.KM_PLOT}">
 <div class="notificationContainer" style="height: 10px">
 <g:if test="${notification.status == 'Complete'}">
 	<div style="float: left;">

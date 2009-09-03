@@ -264,8 +264,9 @@ def securityService
 		def items2 = lists.toArray()[1].listItems.collect{it.value}
 		def tmp = items1 as Set
 		items1.retainAll( items2 )
+		
 		def pct1and2 = (items1.size() / tmp.size())*100
-		println "pct of 1 and 2: " + pct1and2.intValue()
+		println "pct of " + lists.toArray()[0].name +" and "+ lists.toArray()[1].name+" : " + pct1and2.intValue()
 		return [items1,pct1and2]
 		/**
 		def listComp1= lists.toArray()

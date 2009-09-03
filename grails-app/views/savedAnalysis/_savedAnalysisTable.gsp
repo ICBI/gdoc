@@ -4,6 +4,9 @@
 	
 
 <g:each in="${savedAnalysis}" var="analysis">
+<g:if test="${analysis.type == AnalysisType.KM_GENE_EXPRESSION && analysis.query.geAnalysisId.toString() == 'null'}">
+</g:if>
+<g:else>
 <tr>
 	<td style="background-color:white;">
 		<g:if test="${savedAnalysis.size()>0}">
@@ -15,8 +18,11 @@
 			<g:elseif test="${analysis.type == AnalysisType.GENE_EXPRESSION}">
 				<g:link controller="geneExpression" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>
-			<g:elseif test="${analysis.type == AnalysisType.KM_PLOT || analysis.type == AnalysisType.KM_GENE_EXPRESSION}">
+			<g:elseif test="${analysis.type == AnalysisType.KM_PLOT}">
 				<g:link controller="km" action="repopulateKM" id="${analysis.id}">${analysis.type}</g:link> 
+			</g:elseif>
+			<g:elseif test="${analysis.type == AnalysisType.KM_GENE_EXPRESSION}">
+					<g:link controller="km" action="repopulateKM" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>
 				&nbsp;&nbsp;<span><g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/></span>
 			</div>
@@ -53,5 +59,6 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 	</g:if>
 	</td>
 	</tr>
+	</g:else>
 </g:each>
 </table>
