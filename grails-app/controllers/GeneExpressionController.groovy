@@ -61,7 +61,10 @@ class GeneExpressionController {
 					valueHash[key] << sampleReporter[key][sample]
 				}
 				println valueHash[key]
-				valueHash[key] = valueHash[key].sum() / valueHash[key].size()
+				if(valueHash[key])
+					valueHash[key] = valueHash[key].sum() / valueHash[key].size()
+				else 
+					valueHash[key] = 0
 			}
 			expressionValues.add(valueHash)
 		}
