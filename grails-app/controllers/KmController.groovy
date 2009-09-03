@@ -188,6 +188,7 @@ class KmController {
 		def cmd = session.command
 		def sampleGroups = []
 		def att
+		def groupHash = [:]
 		session.selectedLists.each { list ->
 			def samples = []
 			def tempList
@@ -227,15 +228,13 @@ class KmController {
 			}
 			println "SAMPLES: $samples"
 			sampleGroups << samples
+			groupHash[list.name] = samples
 			def points = kmService.plotCoordinates(samples)
 			groups[list.name] = points
 			println "assigned points"
 		}
 		def pvalue = null
-		if(sampleGroups[0] && sampleGroups[1])
-		pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])
-		println "PVALUE $pvalue"
-		groups["pvalue"] = pvalue
+	
 		if(cmd instanceof KmGeneExpCommand){
 			def geInfo = [:]
 			geInfo["geAnalysisId"] = cmd.geAnalysisId
@@ -245,7 +244,15 @@ class KmController {
 			groups["geneExpressionInfo"] = geInfo
 			println "GE INFO: "
 			println groups["geneExpressionInfo"]
+			pvalue = computeMultiplePvalues(groupHash)
+		} else {
+			if(sampleGroups[0] && sampleGroups[1]) {
+				def groups = orderGroups(sampleGroups)
+				pvalue = kmService.getLogRankPValue(groups[0], groups[1])
+			}
 		}
+		println "PVALUE $pvalue"
+		groups["pvalue"] = pvalue
 		groups["endpointDesc"] = att.attributeDescription
 		def resultData = groups as JSON
 		if(savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd)){
@@ -253,5 +260,42 @@ class KmController {
 			render resultData
 		}
 	}
+	}
+	
+	private def computeMultiplePvalues(groups) {
+		def gt
+		def lt
+		def between
+		groups.each { 
+			if(it.key.contains('&gt;')) {
+				gt = it.key
+			} else if(it.key.contains('&lt;')) {
+				lt = it.key
+			} else if(it.key.indexOf("between") > -1) {
+				between = it.key
+			}
+		}
+		def values = [:]
+		if(gt && between) {
+			def tempGroups = orderGroups([groups[between], groups[gt]])
+			values[gt + " " + between] = kmService.getLogRankPValue(tempGroups[0], tempGroups[1])
+		}
+		if(lt && between) {
+			def tempGroups = orderGroups([groups[between], groups[lt]])
+			values[lt + " " + between] = kmService.getLogRankPValue(tempGroups[0], tempGroups[1])
+			
+		}
+		println values
+		return values
+	}
+	
+	private def orderGroups(groups) {
+		def min1 = groups[0].collect { it.y }.min()
+		def min2 = groups[1].collect { it.y }.min()
+		if(min1 < min2) {
+			return groups
+		} else {
+			def newGroups = [groups[1], groups[0]]
+		}
 	}
 }
