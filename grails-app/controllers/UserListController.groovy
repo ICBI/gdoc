@@ -181,7 +181,7 @@ class UserListController {
 				}
 			}
 			//if gene symbol list, look up gene symbols from reporters straight from result
-			else if(params["tags"].indexOf("Gene Symbols") > -1){
+			else if(params["tags"].indexOf("gene") > -1){
 				session.results.resultEntries.each{ ccEntry ->
 						def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
 						if(geneSymbol){
@@ -200,7 +200,7 @@ class UserListController {
 				it = it.replace('[','');
 				it = it.replace(']','');
 				//if gene symbols list, look up gene symbols from reporters (ids)
-				if(params["tags"] && params["tags"].indexOf("Gene Symbols") > -1){
+				if(params["tags"] && params["tags"].indexOf("gene") > -1){
 					session.results.resultEntries.each{ ccEntry ->
 						if(it.trim() == ccEntry.reporterId){
 							def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
