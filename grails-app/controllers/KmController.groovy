@@ -319,6 +319,11 @@ class KmController {
 			values[lt + " " + between] = kmService.getLogRankPValue(tempGroups[0], tempGroups[1])
 			
 		}
+		if(lt && gt) {
+			def tempGroups = orderGroups([groups[gt], groups[lt]])
+			values["upAndDown"] = kmService.getLogRankPValue(tempGroups[0], tempGroups[1])
+			
+		}
 		println values
 		return values
 	}

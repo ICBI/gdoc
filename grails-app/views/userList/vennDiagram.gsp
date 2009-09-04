@@ -63,7 +63,9 @@
 			</span
 			<span class="info"style="cursor:pointer;text-decoration:underline" title="${intersectedIds.allCircles.items.flatten()}" border="0" />view</span-->
 		<p>intersection: <br />
-			-<span class="info"style="cursor:pointer;text-decoration:underline" title="${intersectedIds.allCircles.items.flatten()}" border="0" />all lists</span>: ${intersectedIds.allCircles.circleInt.get(0).intValue()}% <br />
+			-all lists: ${intersectedIds.allCircles.circleInt.get(0).intValue()}% 
+			<span class="info"style="cursor:pointer;text-decoration:underline;padding-left:5px" title="${intersectedIds.allCircles.items.flatten()}" border="0" />view...</span>
+			<br />
 			-${intersectedIds.circle1.name} intersecting ${intersectedIds.circle2.name}: 		${intersectedIds.circle1.circleInt1.get(0).intValue()}%<br />
 			<g:if test="${intersectedIds.size()==4}">
 			-${intersectedIds.circle1.name} intersecting ${intersectedIds.circle3.name}: 		${intersectedIds.circle1.circleInt2.get(0).intValue()}%<br />

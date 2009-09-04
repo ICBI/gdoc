@@ -30,7 +30,7 @@
             </g:if>
             <g:form name="uploadListForm" action="saveList" method="post" enctype="multipart/form-data">
 							List Type: <br/>
-							<g:select name="listType" from="${['Patient','gene']}" /><br /><br />
+							<g:select name="listType" from="${['patient','gene','reporter']}" /><br /><br />
 							List Name: <br/>
 							<g:textField name="listName" /><br /><br/>
 							File: <br/>

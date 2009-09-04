@@ -138,8 +138,8 @@
 						</span>
 						<span class="bla" id="listAdd">Save Selected ⇣
 								<ul>
-									<li>Reporters</li>
-									<li>Gene Symbols</li>
+									<li>reporters</li>
+									<li>gene</li>
 								</ul>
 							</span>
 							</div>	

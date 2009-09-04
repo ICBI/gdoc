@@ -20,7 +20,7 @@ class ClinicalController {
 		searchResults = clinicalService.queryByCriteria(criteria)
 		def columns = []
 		columns << [index: "id", name: "GDOC ID", sortable: true, width: '70']
-		columns << [index: "dataSourceInternalId", name: "PATIENT ID", sortable: true, width: '70']
+		//columns << [index: "dataSourceInternalId", name: "PATIENT ID", sortable: true, width: '70']
 		def columnNames = []
 		println searchResults
 		searchResults.each { patient ->
@@ -40,7 +40,7 @@ class ClinicalController {
 			columns << column
 		}
 		session.columnJson = columns as JSON
-		def sortedColumns = ["GDOC ID", "PATIENT ID"]
+		def sortedColumns = ["GDOC ID"]//, "PATIENT ID"]
 		columnNames.sort()
 		sortedColumns.addAll(columnNames)
 		session.results = searchResults
@@ -103,7 +103,7 @@ class ClinicalController {
 		sortedResults.getAt(startIndex..<endIndex).each { patient ->
 			def cells = []
 			cells << patient.gdocId
-			cells << patient.dataSourceInternalId
+			//cells << patient.dataSourceInternalId
 			columns.each { item ->
 				if(item != "GDOC ID" && item != "PATIENT ID")
 					cells << patient.clinicalData[item]
