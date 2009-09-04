@@ -10,7 +10,7 @@
 	<div id="centerContent">
 		<br/>
 
-				<g:flex component="KMPlot" width="700px" height="850px" />
+				<g:flex component="KMPlot" width="700px" height="950px" />
 	</div>
 	</body>
 	

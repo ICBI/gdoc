@@ -49,6 +49,7 @@ class KmController {
 			}
 			session.command = cmd
 			session.selectedLists = selectedLists
+			session.redrawnKM = null
 		}
 	}
 	
@@ -98,6 +99,20 @@ class KmController {
 		redirect(action:'searchGE')
 	}
 	
+	/**
+	1)run gene expression lookup report
+	2)retrieve that GE analysis and find the reporter that
+	  with the highest mean expression across all samples (by default). Hold onto
+	  that highest mean expression value as well as the reporter that holds it.
+	3) look up the expression for each sample based on that reporter. Subtract
+	   the mean expression from the actual expression value to determine the 
+	   sample's fold change. Based on the fold change parameter (either default to "2" or passed as param),
+	   group each sample into one of the 3 following classifications:
+	   - sample's fold change > fold change param
+	   - sample's fold change < negative fold change param
+	   - sample's fold change in between fold change param and negative fold change param
+	         (e.g. 2 > 0.56 > -2)
+	**/
 	def submitGEPlot= {
 			KmGeneExpCommand cmd ->
 				if(cmd.hasErrors()) {
@@ -228,9 +243,9 @@ class KmController {
 					samples << sample
 				}
 			}
-			println "SAMPLES: $samples"
 			sampleGroups << samples
 			groupHash[list.name] = samples
+			println "SAMPLES: $groupHash"
 			def points = kmService.plotCoordinates(samples)
 			groups[list.name] = points
 			println "assigned points"
@@ -243,6 +258,18 @@ class KmController {
 			geInfo["reporters"] = cmd.reporters
 			geInfo["currentReporter"] = cmd.currentReporter
 			geInfo["foldChange"] = cmd.foldChange
+			geInfo["geGroups"] = []
+			cmd.groups.each{ ids ->
+				def cleanedIds = []
+				if(ids){
+					ids.tokenize(",").each{
+						it = it.replace('[','');
+						it = it.replace(']','');
+						cleanedIds << it
+					}
+				}
+				geInfo["geGroups"] << cleanedIds		
+			}
 			groups["geneExpressionInfo"] = geInfo
 			println "GE INFO: "
 			println groups["geneExpressionInfo"]
