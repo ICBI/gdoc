@@ -34,7 +34,7 @@
 					<div class="yui-u first">
 						<br/>
 						<br/>
-						A system error has occurred.  Please try again.<br /><br/>
+						We are sorry, a system error has occurred.  Please try again.<br /><br/>
 					</div>
 					<div class="yui-u">
 						<br/>
