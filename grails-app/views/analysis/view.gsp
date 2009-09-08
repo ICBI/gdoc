@@ -93,7 +93,12 @@
 				} else {
 					var tags = new Array();
 					tags.push("analysis");
-					tags.push(jQuery("#listAdd").val());
+					var selectedItem;
+					jQuery(this).children().find("li").each(function(child, item){
+						if($(item).text() == jQuery("#listAdd").val())
+							selectedItem = item.title;
+					});
+					tags.push(selectedItem);
 					tags.push(jQuery("#Study").text());
 					var listName = jQuery('#list_name').val();
 					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
@@ -138,8 +143,8 @@
 						</span>
 						<span class="bla" id="listAdd">Save Selected ⇣
 								<ul>
-									<li>reporters</li>
-									<li>gene</li>
+									<li title="reporter">Reporters</li>
+									<li title="gene">Gene Symbols</li>
 								</ul>
 							</span>
 							</div>	
