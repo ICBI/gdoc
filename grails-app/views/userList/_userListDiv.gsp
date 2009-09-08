@@ -4,7 +4,7 @@
 		<g:each in="${listItems}" status="j" var="list_item">
 			<tr>
 				<td>
-					<g:if test="${userListInstance.tags.contains('Gene Symbols')}">
+					<g:if test="${userListInstance.tags.contains('gene')}">
 						<a href="http://www.genecards.org/cgi-bin/carddisp.pl?gene=${list_item.value}" target="_blank">${list_item.value}</a>
 					</g:if>
 					<g:else>

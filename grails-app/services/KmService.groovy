@@ -150,6 +150,9 @@ class KmService {
 				}
 			}
 		}else{
+			if(!geAnalysis.analysis.item.dataVectors) {
+				geAnalysis.reloadData()
+			}
 			geAnalysis.analysis.item.dataVectors.each { data ->
 				def values = 0
 				data.dataPoints.each { sample ->
@@ -160,6 +163,7 @@ class KmService {
 		  			reporterExpressionValues[values/data.dataPoints.size()] = data.name
 				}
 			}
+			println "AFTER ${reporterExpressionValues}"
 		}
 		
 		reporterExpressionValues.each{ exp, myReporter ->
