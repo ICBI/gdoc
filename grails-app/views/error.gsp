@@ -35,6 +35,14 @@
 						<br/>
 						<br/>
 						We are sorry, a system error has occurred.  Please try again.<br /><br/>
+						<div id="details" style="display: none;">
+							<g:if test="${exception}">
+							    <h2>Stack Trace</h2>
+							    <div class="stack">
+							      <pre><g:each in="${exception.stackTraceLines}">${it.encodeAsHTML()}<br/></g:each></pre>
+							    </div>
+							</g:if>
+						</div>
 					</div>
 					<div class="yui-u">
 						<br/>
