@@ -15,9 +15,8 @@
 		 // limit the selector to only what you know will be buttons :)
 		$("span.bla").css({
 			 'padding' : '3px 20px',
-			 'font-size' : '12px',
+			 'font-size' : '12px'
 		});
-
 		$("span.bla").styledButton({
 			'orientation' : 'alone', // one of {alone, left, center, right} default is alone
 			'role' : 'button', // one of {button, checkbox, select}, default is button. Checkbox/select change some other defaults

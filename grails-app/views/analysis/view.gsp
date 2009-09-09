@@ -14,7 +14,7 @@
 		 // limit the selector to only what you know will be buttons :)
 		$("span.bla").css({
 			 'padding' : '3px 20px',
-			 'font-size' : '12px',
+			 'font-size' : '12px'
 		});
 
 		$("span.bla").styledButton({
