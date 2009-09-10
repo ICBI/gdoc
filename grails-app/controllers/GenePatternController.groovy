@@ -18,6 +18,8 @@ class GenePatternController {
 			item.tags.contains("gene")
 		}
 		session.geneLists = geneLists
+		session.files = MicroarrayFile.findByNameLike('%.Rda')
+		
 	}
 
 	def submit = { GenePatternCommand cmd ->

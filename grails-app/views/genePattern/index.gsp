@@ -89,8 +89,8 @@
 		Dataset:
 		<br/>
 		<g:select name="dataFile" 
-				from="${[[display:'PLIER Normalized', value:'EdinPlier_22APR2009.Rda']]}"
-				optionKey="value" optionValue="display"/>
+				from="${session.files}"
+				optionKey="name" optionValue="${{it.fileType.name}}"/>
 		<br/>
 		<br/>
 		Analysis Name:
