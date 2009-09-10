@@ -9,13 +9,15 @@
 			cleanup(); 
 		}
 	}
-	function showPageSpinner(show) {
+	function showPageSpinner(show,className) {
+		var pageSpinner = className+"_pageSpinner";
 		if(show == true){
-			$("#pageSpinner").css("display","inline");
+			$("#"+pageSpinner).css("visibility","visible");
 		}else{
-			$("#pageSpinner").css("display","none");
+			$("#"+pageSpinner).css("visibility","hidden");
 		}
 	}
+	
 	function cleanup() {
 				window.setTimeout(function() {
 				  $('#listName').val("");
@@ -28,11 +30,13 @@
 		cleanup();
 	}
 	</g:javascript>
+		
+	
 
 	<g:if test="${flash.message}">
 	<div class="message">${flash.message}</div>
 	</g:if>
-	<span id="pageSpinner" style="display:none"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
+	
 	<g:if test="${userListInstanceList.size()>0}">
  	<g:panel title="My Lists" styleClass="welcome" >
 	<table class="listTable" width="100%" cellpadding="5">
@@ -45,17 +49,21 @@
 					onclick="toggle('${userListInstance.id}');">
 					<div style="border:0px solid black;width:30%;float:left">	
 						<b>${fieldValue(bean:userListInstance, field:'name')} </b>
-						<span id="1spinner" style="display:none"><img src="${createLinkTo(dir: 'images', file: 'spinner.gif')}"/></span>
+						
 							
 					</div>
-					<div style="border:0px solid black;float:left; vertical-align: top">
+					<div id="${userListInstance.id}_toggleContainer" style="border:0px solid black;float:left; vertical-align: top">
 						
 						<img class="${userListInstance.id}_toggle"src="${createLinkTo(dir: 'images', file: 'expand.gif')}"
 						width="13"
-						height="14" border="0" alt="Show/Hide" title="Show/Hide" />
-						<img class="${userListInstance.id}_toggle" src="${createLinkTo(dir: 'images', file: 'collapse.gif')}" 
+						height="14" border="0" alt="Show/Hide" title="Show/Hide" 
+		onclick="if($('#${userListInstance.id}_listItems').length == 0){var classn = this.className;
+{${remoteFunction(action:'getListItems', id:userListInstance.id,onLoading:'showPageSpinner(true,classn)',onComplete:'showPageSpinner(false,classn)', update:userListInstance.id+'_content')}return false;}}"/>
+						
+						<img class="${userListInstance.id}_toggle" src="${createLinkTo(dir: 'images', file: 'collapse.gif')}"
 						width="13"
 						height="14" border="0" alt="Show/Hide" title="Show/Hide" style="display:none"/>
+						<span id="${userListInstance.id}_toggle_pageSpinner" style="visibility:hidden;display:inline"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 					</div>
 					<span style="float:right"><g:formatDate date="${userListInstance.dateCreated}" format="h:mm M/dd/yyyy"/></span>
 					</div>
@@ -70,7 +78,7 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
 							<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
 						</g:link>
-						<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'deleteList',onLoading:'showPageSpinner(true)',onComplete:'showPageSpinner(false)', id:userListInstance.id,update:'allLists',onSuccess:'finishDelete(\''+userListInstance.id+'\')')}return false;}">
+		<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){var classn ='${userListInstance.id}_toggle';${remoteFunction(action:'deleteList',onLoading:'showPageSpinner(true,classn)',onComplete:'showPageSpinner(false,classn)', id:userListInstance.id,update:'allLists',onSuccess:'finishDelete(\''+userListInstance.id+'\')')}return false;}">
 						<img alt="delete list" title="Delete list" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>
 					</div>
 					</g:if>
@@ -85,7 +93,7 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 
 				
 				<div id="${userListInstance.id}_content" style="border:0px solid black;display:none;padding-bottom:5px">
-					<g:render template="/userList/userListDiv" model="${['userListInstance':userListInstance,'listItems':userListInstance.listItems]}"/>
+					<%--g:render template="/userList/userListDiv" model="${['userListInstance':userListInstance,'listItems':userListInstance.listItems]}"/--%>
 				</div>
 				<div style="border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px">Tags:
 					<g:if test="${userListInstance.tags.size()>0}">

@@ -120,6 +120,19 @@ class UserListController {
         }
     }
 
+	def getListItems = {
+		println params
+		def userListInstance = UserList.get( params.id )
+       	if(userListInstance) {
+			def listItems = userListInstance.listItems
+			render(template:"/userList/userListDiv",model:[ userListInstance: userListInstance, listItems:listItems ])
+        }
+        else {
+            flash.message = "UserList not found with id ${params.id}"
+            render(view:"list",model:[ userListInstanceList: UserList.list( params ) ])
+        }
+    }
+
     def edit = {
         def userListInstance = UserList.get( params.id )
 
