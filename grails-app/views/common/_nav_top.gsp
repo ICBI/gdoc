@@ -18,7 +18,7 @@ $(document).ready(function()
 			<a class="sf-with-ul" href="#">Search for Data<span class="sf-sub-indicator"> »</span></a>
 			<ul style="display: none; visibility: hidden;">
 				<li>
-					<a class="sf-with-ul" href="#">Studies<span class="sf-sub-indicator"> »</span></a>
+					<a class="sf-with-ul" href="${createLink(controller: 'studyDataSource')}">Studies<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
 						<g:each in="${session.myStudies}">
 							<li>
