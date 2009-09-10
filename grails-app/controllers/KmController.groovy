@@ -240,6 +240,7 @@ class KmController {
 					def sample = [:]
 					sample["survival"] = patient.clinicalData[cmd.endpoint].toDouble()
 					sample["censor"] = censorStrategy(patient, cmd.endpoint)
+					sample["id"] = patient.id
 					samples << sample
 				}
 			}
@@ -276,8 +277,7 @@ class KmController {
 			pvalue = computeMultiplePvalues(groupHash)
 		} else {
 			if(sampleGroups[0] && sampleGroups[1]) {
-				def myGroups = orderGroups(sampleGroups)
-				pvalue = kmService.getLogRankPValue(myGroups[0], myGroups[1])
+				pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])
 			}
 		}
 		println "PVALUE $pvalue"
@@ -311,30 +311,17 @@ class KmController {
 		}
 		def values = [:]
 		if(gt && between) {
-			def tempGroups = orderGroups([groups[between], groups[gt]])
-			values[gt + " " + between] = kmService.getLogRankPValue(tempGroups[0], tempGroups[1])
+			values[gt + " " + between] = kmService.getLogRankPValue(groups[between], groups[gt])
 		}
 		if(lt && between) {
-			def tempGroups = orderGroups([groups[between], groups[lt]])
-			values[lt + " " + between] = kmService.getLogRankPValue(tempGroups[0], tempGroups[1])
+			values[lt + " " + between] = kmService.getLogRankPValue(groups[between], groups[lt])
 			
 		}
 		if(lt && gt) {
-			def tempGroups = orderGroups([groups[gt], groups[lt]])
-			values["upAndDown"] = kmService.getLogRankPValue(tempGroups[0], tempGroups[1])
+			values["upAndDown"] = kmService.getLogRankPValue(groups[gt], groups[lt])
 			
 		}
-		println values
 		return values
 	}
 	
-	private def orderGroups(groups) {
-		def min1 = groups[0].collect { it.y }.min()
-		def min2 = groups[1].collect { it.y }.min()
-		if(min1 < min2) {
-			return groups
-		} else {
-			def newGroups = [groups[1], groups[0]]
-		}
-	}
 }
