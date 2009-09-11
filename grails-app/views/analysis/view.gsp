@@ -80,7 +80,7 @@
 									selectedIds = [];
 				}
 			});
-			jQuery("#listAdd").change( function() { 			
+			jQuery("#listAdd li").click( function() { 			
 				var s; 
 				var author = '${session.userId}'
 				s = jQuery("#searchResults").getGridParam('selarrrow'); 
@@ -93,11 +93,7 @@
 				} else {
 					var tags = new Array();
 					tags.push("analysis");
-					var selectedItem;
-					jQuery(this).children().find("li").each(function(child, item){
-						if($(item).text() == jQuery("#listAdd").val())
-							selectedItem = item.title;
-					});
+					var selectedItem = this.title;
 					tags.push(selectedItem);
 					tags.push(jQuery("#Study").text());
 					var listName = jQuery('#list_name').val();
