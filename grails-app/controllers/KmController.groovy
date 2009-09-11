@@ -188,6 +188,7 @@ class KmController {
 	//there is no need to grab the lists from database and recalc the results,
 	//as this has already been done. 
 	def repopulateKM = {
+		println "IN REPOPULATE"
 		session.savedKM = params.id
 	}
 	
@@ -284,6 +285,7 @@ class KmController {
 		groups["pvalue"] = pvalue
 		groups["endpointDesc"] = att.attributeDescription
 		def resultData = groups as JSON
+		println resultData
 		if(session.redrawnKM){
 			println "km has been redrawn, just return result data"
 			render resultData

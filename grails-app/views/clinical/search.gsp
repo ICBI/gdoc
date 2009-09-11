@@ -132,7 +132,7 @@
 					<span style="vertical-align:5px"> <label for="list_name">List Name:</label>
 						<g:textField name="list_name" size="15"/>
 					</span>
-				<span class="bla" id="listAdd">Save Selected ⇣
+				<span class="bla" id="listAdd">Save Selected
 					</span><br />
 				<span id="message" class="message" style="display:none"></span>
 				</div>

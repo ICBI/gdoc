@@ -148,10 +148,12 @@
 								</ul>
 							</span>
 							</div>	
+							<br/>
+							<br/>
 						<span id="message" class="message" style="display:none"></span>
 				
 				</g:if>
-				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0"></table>
+				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0" style="position:absolute; z-index: 1000;"></table>
 				<div id="pager" class="scroll" style="text-align:center;height: 45px"></div>
 			</g:else>
 			<br/>
