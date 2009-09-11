@@ -41,12 +41,32 @@ class SummaryService {
 					sampleSummary[ds.key].each{ attr->
 						if(attr.key == 'anatomicSource'){
 							sampleSummary[ds.key].anatomicSource.each{vv ->
+								def match = anatomicSourcesList.find{ en ->
+									en.key == vv.entrySet().toArray()[0].key
+								}
+								if(match){
+									def t = anatomicSourcesList.indexOf(match)
+									def f = anatomicSourcesList.get(t)
+									f.value = f.value +  vv.entrySet().toArray()[0].value
+								}else{
 									anatomicSourcesList.addAll(vv.entrySet())
+								}
 							}
 						}
 					}
 				}
+		}
+			
+			def totalSamples = 0
+			
+			anatomicSourcesList.each{
+				totalSamples += it.value
 			}
+			
+			def totalSampleCount=[:]
+			totalSampleCount["Total"] = totalSamples
+			anatomicSourcesList.addAll(totalSampleCount.entrySet())
+		
 			anatomicSources = anatomicSourcesList.sort{ a,b-> 
  						java.util.Map.Entry<K, V> e1 = ( java.util.Map.Entry<K, V> ) a;
 					    java.util.Map.Entry<K, V> e2 = ( java.util.Map.Entry<K, V> ) b;

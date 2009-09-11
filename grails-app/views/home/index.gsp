@@ -32,7 +32,7 @@
 					<br/>
 					<table>
 						<tr><td valign="top">
-					<table class="listTable" border="1" id="patientsTable">
+					<table class="listTable" border="1" style="font-size:.9em" id="patientsTable">
 						<th colspan="2" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Patients</th>
 						<tr style="padding:4px 4px 4px 4px">
 							<td>Total</td>
@@ -53,7 +53,7 @@
 						</tr>
 					</table> 
 					</td><td valign="top" style="padding-left:50px">
-					<table class="sourceTable" id="samplesTable">
+					<table class="sourceTable" id="samplesTable" style="font-size:.9em">
 						<thead><tr>
 						<th colspan="2" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Samples</th>
 						</tr>
