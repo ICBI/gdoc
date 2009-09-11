@@ -7,9 +7,16 @@ class HomeController {
 
 		session.patientSummary = summaryService.patientSummary()
 		session.studySummary = summaryService.studySummary()
+		
+		//get patient counts for each study
+		session.studyCounts = summaryService.patientCounts()
+		
+		//get anatomic sources
 		def sampleSummary = summaryService.sampleSummary()
-		if(sampleSummary instanceof Map)
+		if(sampleSummary instanceof Map){
 			session.sampleSummary = sampleSummary
+			session.anatomicSourceValues = summaryService.anatomicSources(sampleSummary)
+		}
 	}
 	
 }

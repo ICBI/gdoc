@@ -1,3 +1,5 @@
+import grails.converters.JSON
+
 class SummaryService {
 	def jdbcTemplate 
 	def middlewareService
@@ -13,4 +15,44 @@ class SummaryService {
 	def sampleSummary() {
 		return middlewareService.loadResource("Sample", null, null)
 	}
+	
+	def patientCounts(){
+		def studyList = StudyDataSource.findAll()
+		def studyCounts =[:]
+		studyList.each{
+			if(it.schemaName != 'PREOP'){
+					StudyContext.setStudy(it.schemaName)
+					def query = "select count(p) from Patient p"
+					def patients = Patient.executeQuery(query)
+					if(patients){
+						//println patients[0]
+						studyCounts[it.schemaName] = patients[0]
+					}
+			}
+		}
+		return studyCounts
+	}
+	
+	def anatomicSources(sampleSummary){
+		def anatomicSourcesList = [];
+		def anatomicSources = [];
+		sampleSummary.each{
+				it.each{ ds ->
+					sampleSummary[ds.key].each{ attr->
+						if(attr.key == 'anatomicSource'){
+							sampleSummary[ds.key].anatomicSource.each{vv ->
+									anatomicSourcesList.addAll(vv.entrySet())
+							}
+						}
+					}
+				}
+			}
+			anatomicSources = anatomicSourcesList.sort{ a,b-> 
+ 						java.util.Map.Entry<K, V> e1 = ( java.util.Map.Entry<K, V> ) a;
+					    java.util.Map.Entry<K, V> e2 = ( java.util.Map.Entry<K, V> ) b;
+						return  e2.getValue().equals(e1.getValue())? 0:e2.getValue()<e1.getValue()? -1: 1		
+			}
+		return anatomicSources
+	}
+	
 }

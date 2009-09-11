@@ -2,9 +2,9 @@
     <head>
         <title>Georgetown Database of Cancer</title>
 		<meta name="layout" content="main" />
-		<g:javascript src="tools.scrollable-1.0.5.js"/>
-		<script src="http://static.flowplayer.org/js/jquery.mousewheel.js"></script>
-		
+		<g:javascript library="jquery"/>
+		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
+		<g:javascript src="jquery/scrollTable/jscrolltable.js"/>
 		<!-- styling -->
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'scrollable-navig.css')}"/>
 		
@@ -12,14 +12,6 @@
     </head>
     <body>
 				<jq:plugin name="ui"/>
-				
-				<script type="text/javascript">
-				$(document).ready(function(){
-				  $("#centerTabs").tabs();
-				  $("div.scrollable").scrollable();
-				});
-				
-				</script>
 				
 				<br/>
 			
@@ -38,89 +30,64 @@
 						
 						
 					<br/>
-					<div class="tabDiv">
-						<div id="centerTabs" class="tabDiv" style="margin-bottom:20px;">
-						    <ul>
-						        <li><a href="#fragment-4"><span>Patient Metrics</span></a></li>
-						        <li><a href="#fragment-5"><span>Study Metrics</span></a></li>
-						 				<li><a href="#fragment-6"><span>Sample Metrics</span></a></li>
-						    </ul>
-						    <div id="fragment-4">
-						        Total number of patients across studies: ${session.patientSummary}<br />
-								<br /><br /><br /><br /><br /><br />
-						    </div>
-						    <div id="fragment-5">
-							        Total number of studies: ${session.studySummary}<br />
-									<br /><br /><br /><br /><br /><br />
-						    </div>
-								<div id="fragment-6" style="padding: 0px; margin: 0px;">
-									<g:if test="${session.sampleSummary}">
-									<table class="summaryTable">
-										<tr>
-											<th>Datasource</th>
-											<th>Sample Count</th>
-										</tr>
-										<g:each in="${session.sampleSummary}" var="item">
-											<tr>
+					<table>
+						<tr><td valign="top">
+					<table class="listTable" border="1" id="patientsTable">
+						<th colspan="2" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Patients</th>
+						<tr style="padding:4px 4px 4px 4px">
+							<td>Total</td>
+							<td>${session.patientSummary}</td>
+							<g:if test="${session.studyCounts}">
+							<g:each in="${session.studyCounts}" var="item">
+								<tr>
+								<td>${item.key}</td>
+								<td>${item.value}</td>
+								</tr>
+							</g:each>
+							</g:if>
+							<g:else>
+								<tr>
+									<td>Error communicating with patient service.  Please try again.</td>
+								</tr>
+							</g:else>
+						</tr>
+					</table> 
+					</td><td valign="top" style="padding-left:50px">
+					<table class="sourceTable" id="samplesTable">
+						<thead><tr>
+						<th colspan="2" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Samples</th>
+						</tr>
+						</thead>
+						
+						<tbody>
+						<g:if test="${session.anatomicSourceValues}">
+								<g:each in="${session.anatomicSourceValues}" var="item">
+									
+												<tr>
 												<td>${item.key}</td>
-												<td style="padding: 0px;">
-													<table>
-														<g:each in="${item.value}" var="data">
-															<tr>
-																<td>${data.key.decamelize()}</td>
-																
-																	<td>
-																		
-																	<g:if test="${data.value.size()>=3}">
-																			<!-- prev link --> 
-																			<a class="prev"></a> 
-																	</g:if>
-																			<!-- root element for scrollable --> 
-																			<div class="scrollable">
-																			<!-- root element for the items --> 
-																				 <div class="items">
-																			   <g:each in="${data.value}" var="value">
-																						<g:each in="${value}">
-																						<div>
-																						<table border="1"><tr><td>
-																							${it.key} :
-																						</td>
-																						<td>
-																						 ${it.value}
-																						</td>
-																						</tr>
-																						</table>
-																						</div>
-																						</g:each>
-																				</g:each>
-																				</div>	
-																			</div>
-																			<g:if test="${data.value.size()>=3}">
-																			<!-- next link -->
-																			<a class="next"></a>
-																			</g:if>
-																					
-																	</td>
-															
-															<tr>
-														</g:each>
-													</table>
-												</td>
-											</tr>
-										</g:each>
-									</table>
-									</g:if>
-									<g:else>
-										<br/>
-										Error communicating with sample service.  Please try again.
-										<br/>
-										<br/>
-										<br/>
-										<br/>
-									</g:else>
-						    </div>
-						</div>
-					</div>
+											    <td>${item.value}</td>
+												</tr>
+												
+								</g:each>
+						</g:if>
+						<g:else>
+							<tr>
+							<td>Error communicating with sample service.  Please try again.</td>
+							</tr>
+						</g:else>
+						<tbody>
+					</table>
+				</td></tr></table>
+					
+					
+					
 				</div>
+				
+				<script type="text/javascript">
+						jQuery(document).ready(function() {
+							$("#samplesTable").Scrollable(125, 250);
+						});
+				 	</script>
+				
     </body>
 </html>
