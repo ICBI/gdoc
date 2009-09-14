@@ -19,17 +19,20 @@ class SummaryService {
 	def patientCounts(){
 		def studyList = StudyDataSource.findAll()
 		def studyCounts =[:]
+		def total = 0
 		studyList.each{
-			if(it.schemaName != 'PREOP'){
+			if(it.schemaName != 'PREOP' && it.schemaName != 'EDINFAKE'){
 					StudyContext.setStudy(it.schemaName)
 					def query = "select count(p) from Patient p"
 					def patients = Patient.executeQuery(query)
 					if(patients){
 						//println patients[0]
-						studyCounts[it.schemaName] = patients[0]
+						studyCounts[it.shortName] = patients[0]
+						total += patients[0]
 					}
 			}
 		}
+		studyCounts["Total"] = total
 		return studyCounts
 	}
 	

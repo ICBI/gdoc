@@ -36,13 +36,15 @@
 						<th colspan="2" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Patients</th>
 						<tr style="padding:4px 4px 4px 4px">
 							<td>Total</td>
-							<td>${session.patientSummary}</td>
+							<td>${session.studyCounts['Total']}</td>
 							<g:if test="${session.studyCounts}">
 							<g:each in="${session.studyCounts}" var="item">
-								<tr>
-								<td>${item.key}</td>
-								<td>${item.value}</td>
-								</tr>
+								<g:if test="${item.key != 'Total'}">
+									<tr>
+									<td>${item.key}</td>
+									<td>${item.value}</td>
+									</tr>
+								</g:if>
 							</g:each>
 							</g:if>
 							<g:else>
