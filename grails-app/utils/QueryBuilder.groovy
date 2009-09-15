@@ -15,10 +15,8 @@ class QueryBuilder {
 					if(minMax["min"] != range.lowerRange.toInteger() || minMax["max"] != range.upperRange.toInteger()) {
 						criteria[key.replace(formKey + "range_", "")] = minMax
 					}
-				} else if (value.metaClass.respondsTo(value, 'size')) {
-					println "ARRAY: $value"
+				} else if (value.metaClass.respondsTo(value, 'join')) {
 					if(value[0] || value[1]) {
-						println "ARRAY HAS VALUES: $value"
 						def minMax = [:]
 						minMax["min"] = value[0]
 						minMax["max"] = value[1]
