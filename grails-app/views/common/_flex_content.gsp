@@ -19,6 +19,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
 		"width", "100%",
 		"height", "100%",
+		"wmode","transparent",
 		"align", "middle",
 		"id", "${it.attrs.component}",
 		"quality", "high",
@@ -36,6 +37,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"width", "${it.attrs.width}",
 			"height", "${it.attrs.height}",
 			"align", "middle",
+			"wmode","transparent",
 			"id", "${it.attrs.component}",
 			"quality", "high",
 			"bgcolor", "#869ca7",
@@ -60,8 +62,15 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			<param name="quality" value="high" />
 			<param name="bgcolor" value="#869ca7" />
 			<param name="allowScriptAccess" value="sameDomain" />
-			<embed src="${it.attrs.component}.swf" quality="high" bgcolor="#869ca7"
-				width="100%" height="100%" name="${it.attrs.component}" align="middle"
+			<param name="wmode" value="transparent" >
+			<embed src="${it.attrs.component}.swf" 
+				wmode="transparent"
+				quality="high" 
+				bgcolor="#869ca7"
+				width="100%" 
+				height="100%" 
+				name="${it.attrs.component}" 
+				align="middle"
 				play="true"
 				loop="false"
 				quality="high"
