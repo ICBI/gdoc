@@ -12,15 +12,30 @@ class ClinicalService {
 		 			  	   'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 					  	   ' and c.short_name = \'${key}\' and v.value BETWEEN ${value.min} and ${value.max} )'					
 	
+	def patientIdQuery = 'select b.patient_id from ${schema}.biospecimen b where b.biospecimen_id in (${ids})'
     boolean transactional = true
 	
-	def queryByCriteria(criteria) {
+	def queryByCriteria(criteria, biospecimenIds) {
 		def engine = new SimpleTemplateEngine()
 		def queryTemplate = engine.createTemplate(queryString)
 		def rangeQueryTemplate = engine.createTemplate(rangeQueryString)
 		def selects = []
+		
+		// get patient ids for biospecimens
+		def bioPatientIds
+		if(biospecimenIds && biospecimenIds.size() > 0) {
+			bioPatientIds = getPatientIdsForBiospecimenIds(biospecimenIds)
+		}
+		println "BIO PATIENT IDS $bioPatientIds"
 		if(!criteria || criteria.size() == 0) {
 			def patients = Patient.executeQuery("select p from Patient p")
+			// filter out patients that did not match biopecimens
+			if(bioPatientIds && bioPatientIds.size() > 0) {
+				patients = patients.findAll {
+					println "COMPARING ${it.id}"
+					bioPatientIds.count(it.id) > 0
+				}
+			}
 			return patients
 		}
 		criteria.each { entry ->
@@ -41,6 +56,11 @@ class ClinicalService {
 		def patientIds = ids.collect { id ->
 			return id["PATIENT_ID"]
 		}
+		
+		// filter out patients that do not match biospecimen criteria
+		if(bioPatientIds && bioPatientIds.size() > 0) {
+			patientIds = patientIds.intersect(bioPatientIds)
+		}
 		def patients = []
 		def index = 0;
 		println "patient ids $patientIds"
@@ -59,5 +79,45 @@ class ClinicalService {
 		}
 		println patients.size()
 		return patients.grep { it }
+	}
+	
+	def getPatientIdsForBiospecimenIds(biospecimenIds) { 
+		
+		def engine = new SimpleTemplateEngine()
+		def queryTemplate = engine.createTemplate(patientIdQuery)
+		def patientIds = []
+		def index = 0;
+		while(index < biospecimenIds.size()) {
+			def specimensLeft = biospecimenIds.size() - index
+			def tempSpecimens
+			if(specimensLeft > PAGE_SIZE) {
+				def ids = biospecimenIds.getAt(index..<(index + PAGE_SIZE))
+				def temp =[:]
+				temp.ids = ids.join(", ")
+				temp.schema = StudyContext.getStudy()
+				def query = queryTemplate.make(temp)
+				println "QUERY $query"
+				tempSpecimens = jdbcTemplate.queryForList(query.toString())
+				patientIds.addAll(tempSpecimens.collect { id ->
+					return id["PATIENT_ID"]
+				})
+				index += PAGE_SIZE
+			} else {
+				def ids = biospecimenIds.getAt(index..<biospecimenIds.size())
+				println "IDS $ids"
+				
+				def temp =[:]
+				temp.ids = ids.join(", ")
+				temp.schema = StudyContext.getStudy()
+				def query = queryTemplate.make(temp)
+				println "QUERY $query"
+				tempSpecimens = jdbcTemplate.queryForList(query.toString())
+				patientIds.addAll(tempSpecimens.collect { id ->
+					return id["PATIENT_ID"]
+				})
+				index += specimensLeft
+			}
+		}
+		return patientIds
 	}
 }

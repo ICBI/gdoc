@@ -41,6 +41,12 @@
 		<br/>
 		<g:form name="searchForm" action="search">
 			<g:each in="${session.dataTypes}">
+				<g:if test="${it.target == 'PATIENT'}">
+					<g:set var="type" value="clinical"/>
+				</g:if>
+				<g:else>
+					<g:set var="type" value="biospecimen" />
+				</g:else>
 				<div class="clinicalSearch">
 					<div style="float: left">
 						${it.longName} 	
@@ -53,7 +59,7 @@
 				<br/>
 					<g:if test="${it.vocabulary}">
 						<div align="left">
-							<g:select name="clinical_${it.shortName}" 
+							<g:select name="${type + '_' + it.shortName}" 
 									noSelection="${['':'Select One...']}"
 									from="${it.vocabs}" optionKey="term" optionValue="termMeaning">
 							</g:select>
@@ -61,13 +67,13 @@
 						<br/>
 					</g:if>
 					<g:elseif test="${it.qualitative}">
-						<g:textField name="clinical_${it.shortName}"  />
+						<g:textField name="${type + '_' + it.shortName}"  />
 						<br/>
 					</g:elseif>
 					<g:elseif test="${it.lowerRange != null && it.upperRange != null}">
 						<div align="center">
 							<label for="rangeValue" style="padding-left: 130px">Range:</label>
-							<g:textField name="clinical_range_${it.shortName}" class="rangeValue" style="border:0; font-weight:bold; background: #E6E6E6;"  />
+							<g:textField name="${type + '_range_' + it.shortName}" class="rangeValue" style="border:0; font-weight:bold; background: #E6E6E6;"  />
 							<br/>
 							<br/>
 							<table>
@@ -88,7 +94,7 @@
 						<br/>
 					</g:elseif>
 					<g:else>
-						Between <g:textField name="clinical_${it.shortName}"  /> and <g:textField name="clinical_${it.shortName}"  />
+						Between <g:textField name="${type + '_' + it.shortName}"  /> and <g:textField name="${type + '_' + it.shortName}"  />
 					</g:else>
 				</div>
 			</g:each>

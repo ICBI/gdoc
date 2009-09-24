@@ -3,6 +3,7 @@ import grails.converters.*
 class ClinicalController {
 
 	def clinicalService
+	def biospecimenService
 	def searchResults
 	
     def index = { 
@@ -16,8 +17,16 @@ class ClinicalController {
 	
 	def search = {
 		def criteria = QueryBuilder.build(params, "clinical_", session.dataTypes)
+		def biospecimenIds
+		if(session.dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
+			def biospecimenCriteria = QueryBuilder.build(params, "biospecimen_", session.dataTypes)
+			if(biospecimenCriteria && biospecimenCriteria.size() > 0) {
+				biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
+				println "GOT IDS ${biospecimenIds.size()}"
+			}
+		}
 		println criteria
-		searchResults = clinicalService.queryByCriteria(criteria)
+		searchResults = clinicalService.queryByCriteria(criteria, biospecimenIds)
 		def columns = []
 		columns << [index: "id", name: "GDOC ID", sortable: true, width: '70']
 		//columns << [index: "dataSourceInternalId", name: "PATIENT ID", sortable: true, width: '70']
