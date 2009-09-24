@@ -1,4 +1,4 @@
-class DecValueTests extends GroovyTestCase {
+class AttributeValueTests extends GroovyTestCase {
 
     void testSomething() {
 
@@ -8,7 +8,7 @@ class DecValueTests extends GroovyTestCase {
 		
 		StudyContext.setStudy("EDINFAKE")
 		
-		def values = DecValue.findAll([max:10])
+		def values = AttributeValue.findAll([max:10])
 		values.each {
 			assertNotNull it.value
 			assertNotNull it.type

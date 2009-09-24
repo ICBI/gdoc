@@ -47,6 +47,9 @@
 				viewrecords: true, 
 				sortorder: "desc", 
 				multiselect: true, 
+				subGrid: ${session.subgridModel != [:]},
+				subGridUrl: 'biospecimen',
+				subGridModel: ${session.subgridModel},
 				caption: "Patient Search Results",
 				onSelectAll: function(all, checked) {
 					selectAll = checked;

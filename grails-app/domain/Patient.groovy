@@ -7,7 +7,7 @@ class Patient {
 		values column:'patient_id'
 		biospecimens column:'patient_id'
 	}
-	static hasMany = [values : DecValue, biospecimens: Biospecimen]
+	static hasMany = [values : AttributeValue, biospecimens: Biospecimen]
 	static fetchMode = [values:"eager", biospecimens: "eager"]
 	static transients = ['clinicalData']
 	

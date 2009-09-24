@@ -2,9 +2,11 @@ class AnnotationService {
 	
 	
 	def findReportersForGene(gene) {
-		def criteria = Reporter.createCriteria()
-		def reporters = criteria.list{
-			eq("geneSymbol", gene.toUpperCase())
+		def reporters = searchForReportersByGene(gene)
+		if(!reporters) {
+			def aliasGene = findGeneByAlias(gene)
+			if(aliasGene)
+				reporters = searchForReportersByGene(aliasGene.symbol)
 		}
 		def reporterNames = reporters.collect {
 			it.name
@@ -31,6 +33,22 @@ class AnnotationService {
 		listValues.each {
 			def items = findReportersForGene(it)
 			reporters.addAll(items)
+		}
+		return reporters
+	}
+	
+	def findGeneByAlias(alias) {
+		def geneAlias = GeneAlias.findBySymbol(alias.toUpperCase())
+		if(geneAlias) {
+			geneAlias = GeneAlias.findByGeneIdAndOfficial(geneAlias.geneId, true)
+		}
+		return geneAlias
+	}
+	
+	def searchForReportersByGene(gene) {
+		def criteria = Reporter.createCriteria()
+		def reporters = criteria.list{
+			eq("geneSymbol", gene.toUpperCase())
 		}
 		return reporters
 	}

@@ -1,13 +1,15 @@
-class DecValue {
+class AttributeValue {
 	static mapping = {
 		table '__STUDY_SCHEMA__.patient_attribute_value'
 		version false
 		id column:'PATIENT_ATTRIBUTE_VALUE_ID'
 		patient column:'patient_id'
 		type column:'attribute_type_id'
+		timepoint column:'attribute_timepoint_id'
 	}
 
 	String value
 	Patient patient
 	AttributeType type
+	Timepoint timepoint
 }

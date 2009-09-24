@@ -46,6 +46,7 @@ class ClinicalController {
 		session.results = searchResults
 		session.columns = sortedColumns
 		session.columnNames = sortedColumns as JSON
+		setupBiospecimens()
 	}
 	
 	def view = {
@@ -117,5 +118,40 @@ class ClinicalController {
 			rows:results
 		]
 		render jsonObject as JSON
+	}
+	
+	def biospecimen = {
+		def patientId = params["id"]
+		if(!patientId)
+			return
+		def patient = Patient.findByGdocId(patientId)
+		if(!patient.biospecimens)
+			return
+
+		def specimens = [:]
+		def rows = []
+		patient.biospecimens.each { specimen ->
+			if(specimen.values) {
+				def cells = []
+				cells << specimen.name
+				specimen.values.each {
+					cells << it.value
+				}
+				rows << ["id": specimen.id, cell: cells]
+			}
+		}
+		specimens["rows"] =  rows
+		render specimens as JSON
+	}
+	
+	private void setupBiospecimens() {
+		session.subgridModel = [:]
+		def values = BiospecimenValue.findAll()
+		if(!values) 
+			return
+		def columns = ["SPECIMEN ID", "ELSTON-ELLIS_GRADE", "ER_STATUS", "NODAL_STATUS", "PGR_STATUS", "TUMOR_SIZE"]
+		def widths = [70, 70, 70, 70, 70, 70]
+		def data = [[name: columns, width: widths]]
+		session.subgridModel = data as JSON
 	}
 }
