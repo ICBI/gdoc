@@ -134,8 +134,10 @@ class ClinicalController {
 			if(specimen.values) {
 				def cells = []
 				cells << specimen.name
-				specimen.values.each {
-					cells << it.value
+				session.specimenColumns.each {
+					if(it != "SPECIMEN ID") {
+						cells << specimen.biospecimenData[it]
+					}
 				}
 				rows << ["id": specimen.id, cell: cells]
 			}
@@ -146,10 +148,15 @@ class ClinicalController {
 	
 	private void setupBiospecimens() {
 		session.subgridModel = [:]
-		def values = BiospecimenValue.findAll()
+		def values = AttributeType.findAllByTarget("BIOSPECIMEN")
 		if(!values) 
 			return
-		def columns = ["SPECIMEN ID", "ELSTON-ELLIS_GRADE", "ER_STATUS", "NODAL_STATUS", "PGR_STATUS", "TUMOR_SIZE"]
+		def columns = ["SPECIMEN ID"]
+		def headers = values.collect { it.shortName }.sort()
+		headers.each {
+			columns << it
+		}
+		session.specimenColumns = columns
 		def widths = [70, 70, 70, 70, 70, 70]
 		def data = [[name: columns, width: widths]]
 		session.subgridModel = data as JSON
