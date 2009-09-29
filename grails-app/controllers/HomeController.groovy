@@ -4,7 +4,9 @@ class HomeController {
 	def summaryService
 	
     def index = { 
-
+		//get LCCC feed
+		feedMap = feedService.getFeed()
+		
 		session.patientSummary = summaryService.patientSummary()
 		session.studySummary = summaryService.studySummary()
 		

@@ -1,20 +1,16 @@
 class FeedService{
 	
-def getFeed(){
-    def xmlFeed = new XmlParser().parse("http://www.ncbi.nlm.nih.gov/feed/rss.cgi?ChanKey=PubMedNews");
+	def getFeed(){
+	    def xmlFeed = new XmlParser().parse("https://informatics.lombardi.georgetown.edu/spaces/createrssfeed.action?types=blogpost&spaces=public&sort=modified&title=public+Recent+News+Items&maxResults=15&publicFeed=true&rssType=rss2");
+		def feedMap = [:]
+			 if(xmlFeed.channel && xmlFeed.channel.item){
+				xmlFeed.channel.item.each{
+					def newsItem = it;
+					feedMap.put(newsItem.title.text(),newsItem.link.text())
+				}
 
-	      def feedMap = [:]
-		
-		///(0..< xmlFeed.channel.item.size()).each
-	      (0..< 10).each {
-
-	         def item = xmlFeed.channel.item.get(it);
-			// RSSFeed feed = new RSSFeed( item.title.text(), item.link.text(),
-	         //    item.description.text(), item.pubDate.text() )
-	        feedMap.put(item.title.text(),item.link.text())
-	      }
-
-	      return feedMap
+			 }
+	   return feedMap
+	}
 	
-}
 }
