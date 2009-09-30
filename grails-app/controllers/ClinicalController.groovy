@@ -16,6 +16,14 @@ class ClinicalController {
 	}
 	
 	def search = {
+		def errors = validateQuery(params, session.dataTypes)
+		println "Clinical Validation: " + errors
+		if(errors && (errors != [:])) {
+			flash['errors'] = errors
+			flash['params'] = params
+			redirect(action:'index',id:session.study.id)
+			return
+		}
 		def criteria = QueryBuilder.build(params, "clinical_", session.dataTypes)
 		def biospecimenIds
 		if(session.dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
@@ -169,5 +177,31 @@ class ClinicalController {
 		def widths = [70, 70, 70, 70, 70, 70]
 		def data = [[name: columns, width: widths]]
 		session.subgridModel = data as JSON
+	}
+	
+	private Map validateQuery(params, dataTypes) {
+		def errors = [:]
+		dataTypes.each {
+			if(!it.vocabulary && !it.qualitative && it.lowerRange == null) {
+				def input = params.find { param ->
+					param.key.contains(it.shortName)
+				}
+				if(input.value[0] && !input.value[0].isDouble()) {
+					errors[input.key] = [message: "clinical.range.number", field: [it.longName]]
+				}
+				if(input.value[1] && !input.value[1].isDouble()) {
+					errors[input.key] = [message: "clinical.range.number", field: [it.longName]]
+				}
+				if(input.value[0] && input.value[1] && input.value[0].isDouble() && input.value[0].isDouble()) {
+					def min = input.value[0].toDouble()
+					def max = input.value[1].toDouble()
+					if(min >= max) {
+						errors[input.key] = [message: "clinical.range.invalid", field: [it.longName]]
+					}
+				}
+				println "VALUES: " + input.value[0] + input.value[1]
+			}
+		}
+		return errors
 	}
 }

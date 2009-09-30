@@ -17,9 +17,13 @@
 				$('.slider-range').each(function() {
 					var upper = parseInt(jQuery(this).data("maxval"));
 					var lower = parseInt(jQuery(this).data("minval"));
+					var lowerVal = lower;
+					var upperVal = upper;
 					var rangeInput = jQuery(this).parents('div').children('.rangeValue');
-					if(rangeInput.value) {
-						var values = rangeInput.value.split(' - ');
+					if(rangeInput.val()) {
+						var values = rangeInput.val().split(' - ');
+						lowerVal = values[0];
+						upperVal = values[1];
 					} else {
 						rangeInput.val(lower + ' - ' + upper);
 					}
@@ -27,7 +31,7 @@
 						range: true,
 						min: lower,
 						max: upper,
-						values: [lower, upper],
+						values: [lowerVal, upperVal],
 						slide: function(event, ui) {
 										rangeInput.val(ui.values[0] + ' - ' + ui.values[1]);
 						}
@@ -39,6 +43,18 @@
 	<p style="font-size:14pt">Search ${session.study.shortName} Clinical Data</p>
 	<div id="centerContent">
 		<br/>
+		<g:if test="${flash['errors']}">
+			<br/>
+				<div class="errorDetail">
+					<ul>
+				<g:each in="${flash['errors']}">
+					<li style="list-style-type: disc"><g:message code="${it.value['message']}" args="${it.value['field']}" /></li>
+				</g:each>
+					</ul>
+				</div>
+			<br/>
+			<br/>
+		</g:if>
 		<g:form name="searchForm" action="search">
 			<g:each in="${session.dataTypes}">
 				<g:if test="${it.target == 'PATIENT'}">
@@ -59,21 +75,39 @@
 				<br/>
 					<g:if test="${it.vocabulary}">
 						<div align="left">
-							<g:select name="${type + '_' + it.shortName}" 
-									noSelection="${['':'Select One...']}"
-									from="${it.vocabs}" optionKey="term" optionValue="termMeaning">
-							</g:select>
+							<g:if test="${flash.params}">
+								<g:select name="${type + '_' + it.shortName}" 
+										noSelection="${['':'Select One...']}" value="${flash.params[type + '_' + it.shortName]}"
+										from="${it.vocabs}" optionKey="term" optionValue="termMeaning">
+								</g:select>
+							</g:if>
+							<g:else>
+								<g:select name="${type + '_' + it.shortName}" 
+										noSelection="${['':'Select One...']}"
+										from="${it.vocabs}" optionKey="term" optionValue="termMeaning">
+								</g:select>
+							</g:else>
 						</div>
 						<br/>
 					</g:if>
 					<g:elseif test="${it.qualitative}">
-						<g:textField name="${type + '_' + it.shortName}"  />
+						<g:if test="${flash.params}">
+							<g:textField name="${type + '_' + it.shortName}"  value="${flash.params[type + '_' + it.shortName]}"/>
+						</g:if>
+						<g:else>
+							<g:textField name="${type + '_' + it.shortName}"  />
+						</g:else>
 						<br/>
 					</g:elseif>
 					<g:elseif test="${it.lowerRange != null && it.upperRange != null}">
 						<div align="center">
 							<label for="rangeValue" style="padding-left: 130px">Range:</label>
-							<g:textField name="${type + '_range_' + it.shortName}" class="rangeValue" style="border:0; font-weight:bold; background: #E6E6E6;"  />
+							<g:if test="${flash.params}">
+								<g:textField name="${type + '_range_' + it.shortName}" class="rangeValue" value="${flash.params[type + '_range_' + it.shortName]}" style="border:0; font-weight:bold; background: #E6E6E6;"  />
+							</g:if>
+							<g:else>
+								<g:textField name="${type + '_range_' + it.shortName}" class="rangeValue" style="border:0; font-weight:bold; background: #E6E6E6;"  />
+							</g:else>
 							<br/>
 							<br/>
 							<table>
@@ -94,8 +128,21 @@
 						<br/>
 					</g:elseif>
 					<g:else>
-						Between <g:textField name="${type + '_' + it.shortName}"  /> and <g:textField name="${type + '_' + it.shortName}"  />
-					</g:else>
+						Between 
+							<g:if test="${flash.errors}">
+								<g:textField name="${type + '_' + it.shortName}" class="${flash.errors[type + '_' + it.shortName] ? 'errors' : ''}" value="${flash.params[type + '_' + it.shortName][0]}" /> 
+							</g:if>
+							<g:else>
+								<g:textField name="${type + '_' + it.shortName}" /> 
+							</g:else>
+						and 
+							<g:if test="${flash.errors}">
+								<g:textField name="${type + '_' + it.shortName}" class="${flash.errors[type + '_' + it.shortName] ? 'errors' : ''}" value="${flash.params[type + '_' + it.shortName][1]}"/> 
+							</g:if>
+							<g:else>
+								<g:textField name="${type + '_' + it.shortName}" /> 
+							</g:else>
+						</g:else>
 				</div>
 			</g:each>
 			<br/>
