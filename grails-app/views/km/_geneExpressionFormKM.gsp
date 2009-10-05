@@ -14,6 +14,7 @@ function showSpinner() {
 				<td>Select a Patient Group</td>
 				<td colspan="2"><g:select name="groups"
 							  from="${session.patientLists}"
+							noSelection="${['ALL':'All Patients']}"
 							optionKey="name" optionValue="name" /></td>
 			</tr>
 			<tr>

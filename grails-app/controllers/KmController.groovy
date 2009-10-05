@@ -44,8 +44,13 @@ class KmController {
 			def study = StudyDataSource.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
-			def selectedLists = session.patientLists.findAll { list ->
-				cmd.groups.toList().contains(list.name)
+			def selectedLists
+			if(cmd.groups.toList().contains('ALL')) {
+				selectedLists = cmd.groups.toList()
+			} else {
+				selectedLists = session.patientLists.findAll { list ->
+					cmd.groups.toList().contains(list.name)
+				}
 			}
 			session.command = cmd
 			session.selectedLists = selectedLists

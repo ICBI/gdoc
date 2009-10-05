@@ -48,7 +48,14 @@ class AnalysisService {
 			def request = new ExpressionLookupRequest(sess, "ExpressionLookup_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			def sampleGroup = new SampleGroup()
-			sampleGroup.addAll(idService.sampleIdsForFile(cmd.dataFile))
+			def allIds = idService.sampleIdsForFile(cmd.dataFile)
+			if(!cmd.groups.toList().contains('ALL')) {
+				def sampleIds = idService.samplesForListName(cmd.groups[0])
+				println "SAMPLEIDS: $sampleIds"
+				allIds = allIds.intersect(sampleIds)
+				println "ALLIDS: $allIds"
+			}
+			sampleGroup.addAll(allIds)
 			def reporterGroup = new ReporterGroup()
 			reporterGroup.addAll(annotationService.findReportersForGene(cmd.geneName))
 			request.reporters = reporterGroup
