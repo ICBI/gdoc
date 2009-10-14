@@ -39,11 +39,15 @@ class UserListController {
 		println params
 		def author = GDOCUser.findByLoginName(params.author)
 		def vennJSON = userListService.vennDiagram(params.listName,author,params.ids);
+		def tags = userListService.gatherTags(params.ids)
+		def tagsString = tags.toString()
+		tagsString = tagsString.replace("[","")
+		tagsString = tagsString.replace("]","")
 		def parsedJSON = JSON.parse(vennJSON.toString());
 		println vennJSON
 		def intersectedIds = parsedJSON
 		flash.message = null
-		[ vennJSON: vennJSON, intersectedIds: intersectedIds]
+		[ vennJSON: vennJSON, intersectedIds: intersectedIds, tags: tagsString]
 	}
 
 	def tools = {
@@ -55,18 +59,31 @@ class UserListController {
 			}
 			def author = GDOCUser.findByLoginName(session.userId)
 			def userListInstance
+			def tags
 			if(params.listAction == 'intersect'){
-				userListInstance = userListService.intersectLists(listName,author,ids);
+				def userListInstanceArray = userListService.intersectLists(listName,author,ids);
+				userListInstance = userListInstanceArray[0]
+				tags = userListInstanceArray[1]
 			}else if(params.listAction == 'join'){
-				userListInstance = userListService.uniteLists(listName,author,ids);
+				def userListInstanceArray = userListService.uniteLists(listName,author,ids);
+				userListInstance = userListInstanceArray[0]
+				tags = userListInstanceArray[1]
 			}else if(params.listAction == 'diff'){
-					userListInstance = userListService.diffLists(listName,author,ids);
+					def userListInstanceArray = userListService.diffLists(listName,author,ids);
+					userListInstance = userListInstanceArray[0]
+					tags = userListInstanceArray[1]
 			}else if(params.listAction == 'venn'){
+				
 					redirect(action:"vennDiagram",params:[listName:listName,author:session.userId,ids:ids])
 			}
 			if(userListInstance){
 				if(userListInstance.save(flush:true)){
 					flash.message = "UserList ${params.listName} created"
+					if(tags){
+						tags.each{ tag ->
+							userListInstance.addTag(tag)
+						}
+					}
 					def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 					render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
 				}

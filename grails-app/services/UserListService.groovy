@@ -53,12 +53,18 @@ def securityService
 	}
 	
 	def uniteLists(name,author,ids){
+		Set<String> unitedTags = []
 		def items = new ArrayList<String>();
 	        ids.each{
 	            UserList list = UserList.get(it);
 	            if(!list.listItems.isEmpty()){
 	                items.addAll(list.listItems.collect{it.value});
 	            }
+				if(list.tags){
+					list.tags.tokenize(" ").each{ tag ->
+						unitedTags << tag
+					}
+				}
 	        }
 	    Set<String> unitedSet = new HashSet<String>(items);
 		if(unitedSet.isEmpty()){
@@ -70,16 +76,22 @@ def securityService
 				userList.addToListItems(new UserListItem(value:it.trim()));
 			}
 			println "Union of lists: " + unitedSet
-			return userList
+			return [userList,unitedTags]
 		}
 	}
 	
 	def diffLists(name,author,ids){
+		Set<String> unitedTags = []
 		def list1 = UserList.get(ids.toArray()[0]);
 		def items1 = []
 		list1.listItems.each{
 			print it.value + ","
 			items1 << it.value
+		}
+		if(list1.tags){
+			list1.tags.tokenize(" ").each{ tag ->
+				unitedTags << tag
+			}
 		}
 		def items2 = []
 		def list2 = UserList.get(ids.toArray()[1]);
@@ -87,7 +99,11 @@ def securityService
 			print it.value + ","
 			items2 << it.value
 		}
-		
+		if(list2.tags){
+			list2.tags.tokenize(" ").each{ tag ->
+				unitedTags << tag
+			}
+		}
 		
 		def diff = (items1 as Set) + items2
 		println "so far: " + diff
@@ -103,7 +119,7 @@ def securityService
 				userList.addToListItems(new UserListItem(value:it.trim()));
 			}
 			println "difference of lists: " + diff
-			return userList
+			return [userList,unitedTags]
 		}
 	}
 	
@@ -295,6 +311,7 @@ def securityService
 	}
 	
 	def intersectLists(name,author,ids){ 
+		Set<String> unitedTags = []
 		def items = new ArrayList<String>();
 		List<UserList> lists = new ArrayList<UserList>();
 		ids.each{
@@ -305,6 +322,12 @@ def securityService
 				  	items << itemV.value
 				  }
 		      }
+			if(list.tags){
+				println list.tags.class
+				list.tags.tokenize(" ").each{ tag ->
+					unitedTags << tag
+				}
+			}
 		}
 		def intersectedList = new HashSet<String>(items);
 		
@@ -327,9 +350,22 @@ def securityService
 				userList.addToListItems(new UserListItem(value:it.trim()));
 			}
 			println "Intersection list: " + intersectedList
-			return userList
+			return [userList,unitedTags]
 		}
 	}
+	
+def gatherTags(ids){
+	Set<String> unitedTags = []
+	ids.each{
+	      UserList list = UserList.get(it);
+			if(list.tags){
+				list.tags.tokenize(" ").each{ tag ->
+					unitedTags << tag
+				}
+			}
+	}
+	return unitedTags as List
+}
 
 def calculateVenn = {
 		def list= ['VEGF','EGFR','BRCA1','BRCA1','ER+','ER-','FCR','HGI']

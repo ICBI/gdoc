@@ -81,6 +81,7 @@
 	<span>List Name: <g:textField name="name" /></span><br />
 	<g:hiddenField name="author.username" value="${session.userId}" />
 	<g:hiddenField name="ids" value="${intersectedIds.allCircles.items.flatten()}" />
+	<g:hiddenField name="tags" value="${tags}" />
 	<g:actionSubmit value="create list"  action="saveFromQuery" />
 	</g:formRemote>	
 	
