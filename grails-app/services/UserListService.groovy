@@ -343,4 +343,28 @@ def calculateVenn = {
 	
 }
 
+	def createList(userName, listName, listItems, tags) {
+		def author = GDOCUser.findByLoginName(userName)
+		def listDup = author.lists().find {
+			it.name == listName
+		}
+		if(listDup) {
+			return [error: "List with name $listName already exists."]
+		}
+		def userListInstance = new UserList()
+		userListInstance.name = listName
+		userListInstance.author = author
+		listItems.each {
+			userListInstance.addToListItems(new UserListItem(value:it.trim()));
+		}
+		if(!userListInstance.hasErrors() && userListInstance.save()) {
+			tags.each {
+				userListInstance.addTag(it)
+			}
+			return [success: "UserList ${userListInstance.name} created successfully."]
+		} else {
+			return [error: "Error creating UserList ${userListInstance.name}."]
+		}
+	}
+
 }

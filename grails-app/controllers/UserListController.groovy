@@ -263,7 +263,14 @@ class UserListController {
 		
 	}
 	
-		
+	def createFromKm = {
+		def ids = request.JSON['ids']
+		def tags = request.JSON['tags']
+		tags << StudyContext.getStudy()
+		def name = request.JSON['name']
+		def returnVal = userListService.createList(session.userId, name, ids, tags)
+		render returnVal as JSON
+	}	
 	
 	def upload = {
 		
