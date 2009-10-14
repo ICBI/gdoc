@@ -13,6 +13,7 @@ class ClinicalService {
 					  	   ' and c.short_name = \'${key}\' and v.value BETWEEN ${value.min} and ${value.max} )'					
 	
 	def patientIdQuery = 'select b.patient_id from ${schema}.biospecimen b where b.biospecimen_id in (${ids})'
+	def gdocIdQuery = 'select p.patient_id from ${schema}.patients p where p.gdoc_id in (${ids})'
     boolean transactional = true
 	
 	def queryByCriteria(criteria, biospecimenIds) {
@@ -61,24 +62,7 @@ class ClinicalService {
 		if(bioPatientIds && bioPatientIds.size() > 0) {
 			patientIds = patientIds.intersect(bioPatientIds)
 		}
-		def patients = []
-		def index = 0;
-		println "patient ids $patientIds"
-		while(index < patientIds.size()) {
-			def patientsLeft = patientIds.size() - index
-			def tempPatients
-			if(patientsLeft > PAGE_SIZE) {
-				tempPatients = Patient.getAll(patientIds.getAt(index..<(index + PAGE_SIZE)))
-				patients.addAll(tempPatients)
-				index += PAGE_SIZE
-			} else {
-				tempPatients = Patient.getAll(patientIds.getAt(index..<patientIds.size()))
-				patients.addAll(tempPatients)
-				index += patientsLeft
-			}
-		}
-		println patients.size()
-		return patients.grep { it }
+		return getPatientsForIds(patientIds)
 	}
 	
 	def getPatientIdsForBiospecimenIds(biospecimenIds) { 
@@ -119,5 +103,41 @@ class ClinicalService {
 			}
 		}
 		return patientIds
+	}
+	
+	def getPatientsForGdocIds(gdocIds) {
+		def engine = new SimpleTemplateEngine()
+		def queryTemplate = engine.createTemplate(gdocIdQuery)
+		def temp =[:]
+		temp.ids = gdocIds.join(", ")
+		temp.schema = StudyContext.getStudy()
+		def query = queryTemplate.make(temp)
+		def patientIds = []
+		def tempSpecimens = jdbcTemplate.queryForList(query.toString())
+		patientIds.addAll(tempSpecimens.collect { id ->
+			return id["PATIENT_ID"]
+		})
+		return getPatientsForIds(patientIds)
+	}
+	
+	def getPatientsForIds(patientIds) {
+		def patients = []
+		def index = 0;
+		println "patient ids $patientIds"
+		while(index < patientIds.size()) {
+			def patientsLeft = patientIds.size() - index
+			def tempPatients
+			if(patientsLeft > PAGE_SIZE) {
+				tempPatients = Patient.getAll(patientIds.getAt(index..<(index + PAGE_SIZE)))
+				patients.addAll(tempPatients)
+				index += PAGE_SIZE
+			} else {
+				tempPatients = Patient.getAll(patientIds.getAt(index..<patientIds.size()))
+				patients.addAll(tempPatients)
+				index += patientsLeft
+			}
+		}
+		println patients.size()
+		return patients.grep { it }
 	}
 }

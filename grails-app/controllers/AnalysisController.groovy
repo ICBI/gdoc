@@ -80,10 +80,11 @@ class AnalysisController {
 			def cells = []
 			def geneName = annotationService.findGeneForReporter(result.reporterId)
 			cells << result.reporterId
-			def formatter = new DecimalFormat("0.#####E0");
-			cells << formatter.format(result.pvalue).replace('E', ' x 10<sup>') + '</sup>'
-			cells << result.meanGrp1
-			cells << result.foldChange
+			def sciFormatter = new DecimalFormat("0.000E0")
+			def formatter = new DecimalFormat("0.000")
+			cells << sciFormatter.format(result.pvalue).replace('E', ' x 10<sup>') + '</sup>'
+			cells << formatter.format(result.meanGrp1)
+			cells << formatter.format(result.foldChange)
 			cells << geneName
 			results << [id: result.reporterId, cell: cells]
 		}

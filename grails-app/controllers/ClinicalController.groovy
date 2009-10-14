@@ -35,35 +35,11 @@ class ClinicalController {
 		}
 		println criteria
 		searchResults = clinicalService.queryByCriteria(criteria, biospecimenIds)
-		def columns = []
-		columns << [index: "id", name: "GDOC ID", sortable: true, width: '70']
-		//columns << [index: "dataSourceInternalId", name: "PATIENT ID", sortable: true, width: '70']
-		def columnNames = []
-		println searchResults
-		searchResults.each { patient ->
-			patient.clinicalData.each { key, value ->
-				if(!columnNames.contains(key)) {
-					columnNames << key
-				}
-			}
-		}
-		columnNames.sort()
-		columnNames.each {
-			def column = [:]
-			column["index"] = it
-			column["name"] = it
-			column["width"] = '70'
-			column["sortable"] = true
-			columns << column
-		}
-		session.columnJson = columns as JSON
-		def sortedColumns = ["GDOC ID"]//, "PATIENT ID"]
-		columnNames.sort()
-		sortedColumns.addAll(columnNames)
-		session.results = searchResults
-		session.columns = sortedColumns
-		session.columnNames = sortedColumns as JSON
-		setupBiospecimens()
+		processResults(searchResults)
+	}
+	
+	def viewPatientReport = {
+		render(view:"search")
 	}
 	
 	def view = {
@@ -163,6 +139,26 @@ class ClinicalController {
 		render specimens as JSON
 	}
 	
+	def patientReport = {
+		def returnVal = [:]
+		println "GOT REQUEST: " + request.JSON
+		println "GOT PARAMS: " + params
+		def patientIds = request.JSON['ids']
+		println "PATIENT IDS: $patientIds"
+		def cleanedIds = patientIds.collect {
+			def temp = it.replace("\"", "")
+			temp.trim()
+			return temp
+		}
+		println "CLEANED : $cleanedIds"
+		def results = clinicalService.getPatientsForGdocIds(cleanedIds)
+		println "RESULTS: $results"
+		processResults(results)
+		returnVal['url'] = '/gdoc/clinical/viewPatientReport'
+		render returnVal as JSON
+		
+	}
+	
 	private void setupBiospecimens() {
 		session.subgridModel = [:]
 		def values = AttributeType.findAllByTarget("BIOSPECIMEN")
@@ -177,6 +173,38 @@ class ClinicalController {
 		def widths = [70, 70, 70, 70, 70, 70]
 		def data = [[name: columns, width: widths]]
 		session.subgridModel = data as JSON
+	}
+	
+	private processResults(searchResults) {
+		def columns = []
+		columns << [index: "id", name: "GDOC ID", sortable: true, width: '70']
+		//columns << [index: "dataSourceInternalId", name: "PATIENT ID", sortable: true, width: '70']
+		def columnNames = []
+		println searchResults
+		searchResults.each { patient ->
+			patient.clinicalData.each { key, value ->
+				if(!columnNames.contains(key)) {
+					columnNames << key
+				}
+			}
+		}
+		columnNames.sort()
+		columnNames.each {
+			def column = [:]
+			column["index"] = it
+			column["name"] = it
+			column["width"] = '70'
+			column["sortable"] = true
+			columns << column
+		}
+		session.columnJson = columns as JSON
+		def sortedColumns = ["GDOC ID"]//, "PATIENT ID"]
+		columnNames.sort()
+		sortedColumns.addAll(columnNames)
+		session.results = searchResults
+		session.columns = sortedColumns
+		session.columnNames = sortedColumns as JSON
+		setupBiospecimens()
 	}
 	
 	private Map validateQuery(params, dataTypes) {
