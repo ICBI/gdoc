@@ -1,5 +1,8 @@
 // Place your Spring DSL code here
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+import grails.util.GrailsUtil
+import org.codehaus.groovy.grails.commons.GrailsApplication
+import org.apache.commons.dbcp.BasicDataSource
 
 beans = {
     entityInterceptor(StudyContextInterceptor)
@@ -37,5 +40,15 @@ beans = {
 		targetBeanName="securityServiceProxy"
 		proxyTargetClass=true
 	} 
-		
+	switch(GrailsUtil.environment) { 
+		case GrailsApplication.ENV_TEST: 
+			testDataSource(BasicDataSource) { 
+				driverClassName = "oracle.jdbc.pool.OracleConnectionPoolDataSource" 
+				url = "jdbc:oracle:thin:@localhost:1521:gdoc" 
+				username = "guidoc" 
+				password = "cure4cancer" 
+			} 
+			break
+
+	}	
 }

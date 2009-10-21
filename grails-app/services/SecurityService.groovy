@@ -10,6 +10,8 @@ import LoginException
 
 class SecurityService {
 	static scope = "session"
+	public static String GROUP_MANAGER = 'COLLABORATION_GROUP_MANAGER'
+	def jdbcTemplate
 	
 	AuthenticationManager authenticationManager
 	AuthorizationManager authorizationManager
@@ -98,6 +100,68 @@ class SecurityService {
 			return groupNames
 	}
 	
+	/**
+	* Creates a new collaboration group
+	**/
+	def createCollaborationGroup(loginName, groupName) {
+		groupName = groupName.toUpperCase()
+		def authManager = this.getAuthorizationManager()
+		def groups = authManager.getProtectionGroups()
+		def currentProtectionGroup = findProtectionGroup(groupName)
+		if(currentProtectionGroup != null)
+			throw new DuplicateCollaborationGroupException()
+		def pg = new ProtectionGroup()
+		pg.protectionGroupName = groupName
+		pg.protectionGroupDescription = "Protection group created by $loginName"
+		authManager.createProtectionGroup(pg)
+		String[] roles = new String[1]
+		roles[0] = getRoleIdForName(GROUP_MANAGER).toString()
+		def user = authManager.getUser(loginName)
+		authManager.addUserRoleToProtectionGroup(user.userId.toString(), roles, pg.protectionGroupId.toString())
+		return pg
+	}
+	
+	/**
+	* Adds a user to a collaboration group (including a study group)
+	**/
+	def addUserToCollaborationGroup(loginName, targetUser, groupName) {
+	//	this.getAuthorizationManager().addUserRoleToProtectionGroup()
+	}
+	
+	def removeUserFromCollaborationGroup(loginName, targetUser, groupName) {
+	//	this.getAuthorizationManager().removeUserFromProtectionGroup()
+	}
+	
+	def deleteCollaborationGroup(loginName, groupName) {
+		groupName = groupName.toUpperCase()
+		def pg = findProtectionGroup(groupName)
+		def authManager = this.getAuthorizationManager()
+		def user = authManager.getUser(loginName)
+		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString())
+		def toDelete = groups.find {
+			it.protectionGroup.protectionGroupName == groupName
+		}
+		if(!toDelete)
+			throw new Exception("User does not have permission to delete this group")
+		def isCollaborationManager = false
+		toDelete.roles.each {
+			if(it.name == GROUP_MANAGER)
+				isCollaborationManager = true
+		}
+		if(isCollaborationManager)
+			authManager.removeProtectionGroup(pg.protectionGroupId.toString())
+		else
+			throw new Exception("User does not have permission to delete this group")
+	}
+	
+	private findProtectionGroup(groupName) {
+		def authManager = this.getAuthorizationManager()
+		def groups = authManager.getProtectionGroups()
+		def currentProtectionGroup = groups.find {
+			it.protectionGroupName == groupName
+		}
+		return currentProtectionGroup
+	}
 	
 	def getCollaborationGroups(loginName){
 		def authManager = this.getAuthorizationManager()
@@ -136,6 +200,10 @@ class SecurityService {
 			sharedItems[itemType] = ids
 			return ids
 		//}
+	}
+	
+	private getRoleIdForName(roleName) {
+		return jdbcTemplate.queryForLong("select ROLE_ID from CSM.CSM_ROLE where ROLE_NAME = '$roleName'")
 	}
 	
 	public AuthenticationManager getAuthenticationManager() {
