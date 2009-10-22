@@ -15,9 +15,18 @@ class SecurityServiceTests extends GroovyTestCase {
 	}
 	
 	void testCreateAndDeleteCollaborationGroup() {
-		def protectionGroup = securityService.createCollaborationGroup("acs224", "test group")
-		assertTrue(protectionGroup.protectionGroupId != null)
-		securityService.deleteCollaborationGroup("acs224", "test group")
+		def testFailed = false
+		try {
+			def protectionGroup = securityService.createCollaborationGroup("acs224", "test group")
+			assertTrue(protectionGroup.protectionGroupId != null)
+		} catch(Exception e) {
+			e.printStackTrace()
+			testFailed = true
+		} finally {
+			securityService.deleteCollaborationGroup("acs224", "test group")
+		}
+		if(testFailed)
+			fail("Exception during group create")
 	}
 	
 	void testFailDeleteCollaborationGroup() {
@@ -28,4 +37,35 @@ class SecurityServiceTests extends GroovyTestCase {
 			assertTrue("exception caught", true)
 		}
 	}
+	
+	void testAddAndRemoveUserToCollaborationGroup() {
+		def testFailed = false
+		try {
+			def protectionGroup = securityService.createCollaborationGroup("acs224", "user add group")
+			assertTrue(protectionGroup.protectionGroupId != null)
+			securityService.addUserToCollaborationGroup("acs224", "kmr75", "user add group")
+			def groups = securityService.getCollaborationGroups("kmr75")
+			println groups
+			assertTrue(groups.contains("user add group".toUpperCase()))
+			
+		} catch(Exception e) {
+			e.printStackTrace()
+			testFailed = true
+		} finally {
+			try {
+				securityService.removeUserFromCollaborationGroup("acs224", "kmr75", "user add group")
+				def groups = securityService.getCollaborationGroups("kmr75")
+				assertFalse(groups.contains("user add group".toUpperCase()))
+			} catch(Exception e) {
+				e.printStackTrace()
+				testFailed = true
+			} finally {
+				securityService.deleteCollaborationGroup("acs224", "user add group")
+			}
+		}
+		if(testFailed)
+			fail("Exception during group create")		
+	}
+	
+	
 }
