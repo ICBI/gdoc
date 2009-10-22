@@ -1,6 +1,20 @@
 import grails.converters.*
 
 class SavedAnalysisTests extends GroovyTestCase {
+	def securityService
+	
+	void testGetAllSavedAnalysis(){
+		def user = GDOCUser.findByLoginName("kmr75")
+		//def groupAnalysisIds = securityService.getSharedItemIds("kmr75", SavedAnalysis.class.name)
+		def notifications = []
+		notifications = user.analysis
+		def today = new Date()
+		notifications.each{ n ->
+			//println today.minus(n.dateCreated)
+		}
+		println "All notifications:" + notifications.size()
+		
+	}
 	
 	void testSaveAnalysis() {
 		def user = GDOCUser.findByLoginName("gdocUser");

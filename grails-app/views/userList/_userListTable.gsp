@@ -15,6 +15,7 @@
 			$("#"+pageSpinner).css("visibility","visible");
 		}else{
 			$("#"+pageSpinner).css("visibility","hidden");
+
 		}
 	}
 	
@@ -62,10 +63,13 @@
 						
 						<img class="${userListInstance.id}_toggle" src="${createLinkTo(dir: 'images', file: 'collapse.gif')}"
 						width="13"
-						height="14" border="0" alt="Show/Hide" title="Show/Hide" style="display:none"/>
+						height="14" border="0" alt="Show/Hide" title="Show/Hide" style="display:none" />
 						<span id="${userListInstance.id}_toggle_pageSpinner" style="visibility:hidden;display:inline"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 					</div>
-					<span style="float:right"><g:formatDate date="${userListInstance.dateCreated}" format="h:mm M/dd/yyyy"/></span>
+					<span style="float:right">
+						
+						<g:formatDate date="${userListInstance.dateCreated}" format="h:mm M/dd/yyyy"/>
+					</span>
 					</div>
 					<g:if test="${session.userId.equals(userListInstance.author.loginName)}">
 					<div style="border:0px solid black;width:20%;float:right">	
@@ -110,5 +114,11 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 </g:panel>
 </g:if>
 <g:else>
-<p>Currently, you have no saved lists.</p>
+<p>Currently, you have no saved lists during the time period of 
+	<g:if test="${session.listFilter}">
+		<span>${session.listFilter} day(s).</span><br />
+		Try expanding the time period by selected the "Filter By Date" button above.
+	</g:if>
+	
+	</p>
 </g:else>

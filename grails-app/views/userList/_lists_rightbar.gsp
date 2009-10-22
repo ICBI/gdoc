@@ -40,7 +40,7 @@
 				keys="${['venn','intersect','join','diff']}" onchange="showOption(this)" /></span><br />
 		<span id="name" style="display:none;margin-top:5px;">List Name: <g:textField name="listName" /></span><br />
 		<g:select style="margin-top:5px;" name="userListIds"
-				  from="${userListInstanceList}"
+				  from="${allLists}"
 		          optionKey="id" 
 				  optionValue="name"
 				  multiple="true"

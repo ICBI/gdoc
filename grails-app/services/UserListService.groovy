@@ -39,6 +39,23 @@ def securityService
 		return lists
 	}
 	
+	def filterLists(timePeriod, allLists){
+		if(timePeriod == "all"){
+			return allLists
+		}
+		else{
+		def tp = Integer.parseInt(timePeriod)
+		def filteredLists = []
+		def today = new Date()
+		allLists.each{ list ->
+			if(today.minus(list.dateCreated) <= tp){
+				filteredLists << list
+			}
+		}
+		return filteredLists
+		}
+	}
+	
 	def getUserLists(userId){
 		def author = GDOCUser.findByLoginName(userId)
 		def lists = UserList.findAllByAuthor(author)

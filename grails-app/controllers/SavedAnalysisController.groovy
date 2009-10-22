@@ -4,9 +4,11 @@ class SavedAnalysisController{
 	def securityService
 	def savedAnalysisService
 	def index = {
-        if(!params.max) params.max = 10
+        //if(!params.max) params.max = 10
 		def user = GDOCUser.findByLoginName(session.userId)
+		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",all:"show all"]
 		def groupAnalysisIds = []
+		def filteredAnalysis = []
 		if(!session.sharedAnalysisIds){
 			groupAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
 		}else{
@@ -37,7 +39,28 @@ class SavedAnalysisController{
 			def dateTwo = two.dateCreated
 			return dateTwo.compareTo(dateOne)
 		}
-        [ savedAnalysis: myAnalysis ]
+		
+		if(params.analysisFilter){
+			if(params.analysisFilter == 'all'){
+				session.analysisFilter = "all"
+				filteredAnalysis = myAnalysis
+				return [ savedAnalysis: filteredAnalysis, timePeriods: timePeriods]
+			}
+			else{
+				session.analysisFilter = params.analysisFilter
+				filteredAnalysis = savedAnalysisService.filterAnalysis(params.analysisFilter,myAnalysis)
+				//println params.analysisFilter
+				//println filteredAnalysis.size()
+			}
+		}
+		else if(session.analysisFilter){
+			filteredAnalysis = savedAnalysisService.filterAnalysis(session.analysisFilter,myAnalysis)
+		}
+		else{
+			session.analysisFilter = "30"
+			filteredAnalysis = savedAnalysisService.filterAnalysis(session.analysisFilter,myAnalysis)
+		}
+        [ savedAnalysis: filteredAnalysis, timePeriods: timePeriods]
     }
 
 	//TODO refactor to re-use the code in this
@@ -78,7 +101,11 @@ class SavedAnalysisController{
 			def dateTwo = two.dateCreated
 			return dateTwo.compareTo(dateOne)
 		}
-		render(template:"/savedAnalysis/savedAnalysisTable",model:[ savedAnalysis: myAnalysis ])
+		def filteredAnalysis = []
+		if(session.analysisFilter){
+			filteredAnalysis = savedAnalysisService.filterAnalysis(session.analysisFilter,myAnalysis)
+		}
+		render(template:"/savedAnalysis/savedAnalysisTable",model:[ savedAnalysis: filteredAnalysis ])
 	}
 	
 	//TODO - decide if we always want to auto-save KM plots. Right now, we do not. They must implicitly call 'save'.

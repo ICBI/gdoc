@@ -8,12 +8,36 @@ class UserListController {
     def index = { redirect(action:list,params:params) }
 
     def list = {
+		println params
 		def lists = []
+		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",all:"show all"]
+		def filteredLists = []
         lists = userListService.getAllLists(session.userId, session.sharedListIds)
 		println lists
-		println lists.size()	
-        [ userListInstanceList: lists]
+		if(params.listFilter){
+			if(params.listFilter == 'all'){
+				session.listFilter = "all"
+				filteredLists = lists
+				return [ userListInstanceList: filteredLists, allLists: lists, timePeriods: timePeriods]
+			}
+			else{
+				session.listFilter = params.listFilter
+				filteredLists = userListService.filterLists(params.listFilter,lists)
+				//println params.listFilter
+				//println filteredLists.size()
+			}
+		}
+		else if(session.listFilter){
+			filteredLists = userListService.filterLists(session.listFilter,lists)
+		}
+		else{
+			session.listFilter = "30"
+			filteredLists = userListService.filterLists(session.listFilter,lists)
+		}
+		
+       [ userListInstanceList: filteredLists, allLists: lists, timePeriods: timePeriods]
     }
+
 
     def show = {
         def userListInstance = UserList.get( params.id )
@@ -78,30 +102,46 @@ class UserListController {
 			}
 			if(userListInstance){
 				if(userListInstance.save(flush:true)){
-					flash.message = "UserList ${params.listName} created"
+					flash.message = "UserList ${listName} created"
 					if(tags){
 						tags.each{ tag ->
 							userListInstance.addTag(tag)
 						}
 					}
 					def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-					render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+					def filteredLists = []
+					if(session.listFilter){
+						filteredLists = userListService.filterLists(session.listFilter,lists)
+					}
+					render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 				}
 				else{
-					flash.message = "UserList ${params.listName} was not created"
+					flash.message = "UserList ${listName} was not created"
 					def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-					render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+					def filteredLists = []
+					if(session.listFilter){
+						filteredLists = userListService.filterLists(session.listFilter,lists)
+					}
+					render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 				}
 			}else{
 				flash.message = "no common items between lists"
 				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-				render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+				def filteredLists = []
+				if(session.listFilter){
+					filteredLists = userListService.filterLists(session.listFilter,lists)
+				}
+				render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 			}
 		}else{
 			println "no lists have been selected"
 			flash.message = "no lists have been selected"
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-			render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+			def filteredLists = []
+			if(session.listFilter){
+				filteredLists = userListService.filterLists(session.listFilter,lists)
+			}
+			render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 		}
 	}
 
@@ -112,12 +152,20 @@ class UserListController {
 			println "deleted " + userListInstance
 			flash.message = userListInstance.name + " has been deleted"
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-           	render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+			def filteredLists = []
+			if(session.listFilter){
+				filteredLists = userListService.filterLists(session.listFilter,lists)
+			}
+           	render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
         }
         else {
             flash.message = "UserList not found with id ${params.id}"
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-			render(template:"/userList/userListTable",model:[ userListInstanceList: lists ])
+			def filteredLists = []
+			if(session.listFilter){
+				filteredLists = userListService.filterLists(session.listFilter,lists)
+			}
+			render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
         }
     }
 
@@ -133,7 +181,12 @@ class UserListController {
         }
         else {
             flash.message = "UserList item not found with id ${params.id}"
-            render(view:"list",model:[ userListInstanceList: UserList.list( params ) ])
+			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+			def filteredLists = []
+			if(session.listFilter){
+				filteredLists = userListService.filterLists(session.listFilter,lists)
+			}
+            render(view:"list",model:[ userListInstanceList: filteredLists ])
         }
     }
 
@@ -146,7 +199,12 @@ class UserListController {
         }
         else {
             flash.message = "UserList not found with id ${params.id}"
-            render(view:"list",model:[ userListInstanceList: UserList.list( params ) ])
+			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+			def filteredLists = []
+			if(session.listFilter){
+				filteredLists = userListService.filterLists(session.listFilter,lists)
+			}
+            render(view:"list",model:[ userListInstanceList: filteredLists ])
         }
     }
 

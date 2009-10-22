@@ -24,21 +24,25 @@ class NotificationController {
 		def notifications = []
 		def savedAnalysis = []
 		savedAnalysis = savedAnalysisService.getAllSavedAnalysis(session.userId)
-		//filter out analysis that are not retrieved asynchronously
-		def removeable = []
-		/**savedAnalysis.findAll{ s -> 
-			if(s.type == AnalysisType.KM_PLOT){
-			println "add to removeable " + s
-			removeable << s
-			}
-		}
-		savedAnalysis.removeAll(removeable)**/
 		
 		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
 		if(savedAnalysis)
 			notifications.addAll(savedAnalysis)
 		if(gpJobs)
 			notifications.addAll(gpJobs)
+		
+		//remove analysis that are more than 2 days old
+		def today = new Date()
+		def removeable = []
+		notifications.each{ n ->
+			//println today.minus(n.dateCreated)
+			if(today.minus(n.dateCreated) > 2){
+				//println "remove " + n
+				removeable << n
+			}
+		}
+		notifications.removeAll(removeable)
+		
 		notifications = notifications.sort { one, two ->
 			def dateOne = one.dateCreated
 			def dateTwo = two.dateCreated

@@ -53,7 +53,7 @@ class SavedAnalysisService {
 	
 	def getAllSavedAnalysis(userId) {
 		def user = GDOCUser.findByLoginName(userId)
-		def groupAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name)
+		//def groupAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name)
 		def notifications = user.analysis
 		return notifications
 	}
@@ -74,7 +74,33 @@ class SavedAnalysisService {
 		println "delete analysis: " + analysisId
 		def analysis = SavedAnalysis.get(analysisId)
 		if(analysis) {
-			analysis.delete(flush: true)
+			if(analysis.type == AnalysisType.KM_GENE_EXPRESSION){
+				if(analysis.query.geAnalysisId.toString() != null){
+					println "deleted the related analysis: " + analysis.query.geAnalysisId
+					def relatedAnalysis = SavedAnalysis.get(analysis.query.geAnalysisId)
+					relatedAnalysis.delete(flush: true)
+				}
+				analysis.delete(flush: true)
+			}else{
+				analysis.delete(flush: true)
+			}
+		}
+	}
+	
+	def filterAnalysis(timePeriod, allAnalysis){
+		if(timePeriod == "all"){
+			return allAnalysis
+		}
+		else{
+		def tp = Integer.parseInt(timePeriod)
+		def filteredAnalysis = []
+		def today = new Date()
+		allAnalysis.each{ analysis ->
+			if(today.minus(analysis.dateCreated) <= tp){
+				filteredAnalysis << analysis
+			}
+		}
+		return filteredAnalysis
 		}
 	}
 	
