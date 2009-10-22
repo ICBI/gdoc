@@ -36,18 +36,6 @@ class SecurityService {
 				throw new LoginException("error in authentication");
 		}
 		
-		try {
-			print "got user " + this.getAuthorizationManager() + " from csm, ready to authorize "
-			Set memberships = user.getGroups();
-			memberships.each{ membership ->
-				println membership.group.groupName
-			}
-		}catch ( CSException cse){
-			System.out.println("ERROR IN AUTHORIZATION ");
-			cse.printStackTrace(System.out);
-			throw new LoginException("error in authorization");
-		}
-		
 		return user
 		
 	}
