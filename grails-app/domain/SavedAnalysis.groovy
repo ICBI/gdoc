@@ -7,13 +7,15 @@ class SavedAnalysis implements Taggable {
 		analysisData type: 'text'
 		queryData type: 'text'
 		type column:'analysis_type'
+		studies joinTable: [name: 'ANALYSIS_STUDY', column: 'STUDY_ID', key: 'ANALYSIS_ID']
 		
 	}
 	
 	static constraints = {
 		taskId nullable: true
 	}
-	
+	static hasMany = [studies:StudyDataSource]
+	static fetchMode = [studies: 'eager']
 	static transients = [ "analysis", "query"]
 	
 	Object analysis

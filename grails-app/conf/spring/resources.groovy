@@ -17,11 +17,11 @@ beans = {
         dataSource = ref('dataSource')
     }
 	jmsTemplate(org.springframework.jms.core.JmsTemplate) {
-		connectionFactory = ref('connectionFactory')
+		connectionFactory = ref('jmsConnectionFactory')
 		defaultDestination = ref('sendQueue')
 		receiveTimeout = 30000
 	}
-	connectionFactory(org.springframework.jndi.JndiObjectFactoryBean) {
+	jmsConnectionFactory(org.springframework.jndi.JndiObjectFactoryBean) {
 		jndiName = "ConnectionFactory"
 		jndiTemplate = ref('jndiTemplate')
 	}

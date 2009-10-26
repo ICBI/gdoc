@@ -99,12 +99,14 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 				<div id="${userListInstance.id}_content" style="border:0px solid black;display:none;padding-bottom:5px">
 					<%--g:render template="/userList/userListDiv" model="${['userListInstance':userListInstance,'listItems':userListInstance.listItems]}"/--%>
 				</div>
-				<div style="border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px">Tags:
+				<div style="border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px">
+					<g:if test="${userListInstance.studies.size()>0}">
+						Studies: ${userListInstance.studyNames()}<br/>
+					</g:if>
+					Tags:
 					<g:if test="${userListInstance.tags.size()>0}">
 					${userListInstance.tags}
 					</g:if>
-					<g:else>
-					</g:else>
 				</div>
 		</div>
 	</g:each>

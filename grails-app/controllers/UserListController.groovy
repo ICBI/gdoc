@@ -81,51 +81,28 @@ class UserListController {
 			params.userListIds.each{
 				ids.add(it)
 			}
-			def author = GDOCUser.findByLoginName(session.userId)
 			def userListInstance
 			def tags
 			if(params.listAction == 'intersect'){
-				def userListInstanceArray = userListService.intersectLists(listName,author,ids);
-				userListInstance = userListInstanceArray[0]
-				tags = userListInstanceArray[1]
+				userListInstance = userListService.intersectLists(listName,session.userId,ids);
 			}else if(params.listAction == 'join'){
-				def userListInstanceArray = userListService.uniteLists(listName,author,ids);
-				userListInstance = userListInstanceArray[0]
-				tags = userListInstanceArray[1]
+				userListInstance = userListService.uniteLists(listName,session.userId,ids);
 			}else if(params.listAction == 'diff'){
-					def userListInstanceArray = userListService.diffLists(listName,author,ids);
-					userListInstance = userListInstanceArray[0]
-					tags = userListInstanceArray[1]
+				userListInstance = userListService.diffLists(listName,session.userId,ids);
 			}else if(params.listAction == 'venn'){
 				
 					redirect(action:"vennDiagram",params:[listName:listName,author:session.userId,ids:ids])
 			}
 			if(userListInstance){
-				if(userListInstance.save(flush:true)){
-					flash.message = "UserList ${listName} created"
-					if(tags){
-						tags.each{ tag ->
-							userListInstance.addTag(tag)
-						}
-					}
-					def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-					def filteredLists = []
-					if(session.listFilter){
-						filteredLists = userListService.filterLists(session.listFilter,lists)
-					}
-					render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
+				flash.message = "UserList ${listName} created"
+				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
+				def filteredLists = []
+				if(session.listFilter){
+					filteredLists = userListService.filterLists(session.listFilter,lists)
 				}
-				else{
-					flash.message = "UserList ${listName} was not created"
-					def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-					def filteredLists = []
-					if(session.listFilter){
-						filteredLists = userListService.filterLists(session.listFilter,lists)
-					}
-					render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
-				}
+				render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 			}else{
-				flash.message = "no common items between lists"
+				flash.message = "no items present in resulting list"
 				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 				def filteredLists = []
 				if(session.listFilter){
@@ -260,12 +237,12 @@ class UserListController {
 			render "List $params.name already exists"
 			return
 		}
-		def userListInstance = new UserList(params)
+		def ids = []
 		if(params.selectAll == "true") {
 			//if patient list, save all gdocIds straight from result
 			if(params["tags"].indexOf("patient") > -1) {
 				session.results.each {
-					userListInstance.addToListItems(new UserListItem(value:it.gdocId));
+					ids << it.gdocId
 				}
 			}
 			//if gene symbol list, look up gene symbols from reporters straight from result
@@ -273,14 +250,14 @@ class UserListController {
 				session.results.resultEntries.each{ ccEntry ->
 						def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
 						if(geneSymbol){
-							userListInstance.addToListItems(new UserListItem(value:geneSymbol));
+							ids << geneSymbol
 						}
 				}
 			}
 			//if reporters list, save reporters straight from result
 			else{
 				session.results.resultEntries.each{ ccEntry ->
-					userListInstance.addToListItems(new UserListItem(value:ccEntry.reporterId));
+					ids << ccEntry.reporterId
 				}
 			}
 		} else if(params['ids']){
@@ -293,43 +270,41 @@ class UserListController {
 						if(it.trim() == ccEntry.reporterId){
 							def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
 							if(geneSymbol){
-								userListInstance.addToListItems(new UserListItem(value:geneSymbol.trim()));
+								ids << geneSymbol.trim()
 							}
 						}
 					}
 				}else{
 					//or just save the value of the id itself, after it has been cleaned up
-					userListInstance.addToListItems(new UserListItem(value:it.trim()));
+					ids << it.trim()
 				}
 				
 			}
 		}
-		
-		
-        if(!userListInstance.hasErrors() && userListInstance.save()) {
-				
-						if(params["tags"]){
-							params['tags'].tokenize(",").each{
-								userListInstance.addTag(it);
-							}
-						}
-						
+		def tags = []
+		if(params["tags"]){
+			params['tags'].tokenize(",").each{
+				tags << it
+			}
+		}
+		def userListInstance = userListService.createList(session.userId, params.name, ids, [StudyContext.getStudy()], tags)
+        if(userListInstance) {
 				render "$params.name created succesfully"
-        }
-        else {
+        } else {
 				render "Error creating $params.name list"
         }
     }
 
 	def save = {
-		def userListInstance = new UserList(params)
+		def ids = []
 		if(params["ids"]){
 			params['ids'].each{
-				userListInstance.addToListItems(new UserListItem(value:it.trim()));
+				ids << it.trim()
 			}
 		}
-		 if(!userListInstance.hasErrors() && userListInstance.save()) {
-			flash.message = "UserList ${userListInstance.id} created"
+		def userListInstance = userListService.createList(session.userId, params.name, ids, [StudyContext.getStudy()], [])
+		 if(userListInstance) {
+			flash.message = "UserList ${userListInstance.name} created"
 	            	redirect(action:show,id:userListInstance.id)
 	        }
 	        else {
@@ -341,9 +316,10 @@ class UserListController {
 	def createFromKm = {
 		def ids = request.JSON['ids']
 		def tags = request.JSON['tags']
-		tags << StudyContext.getStudy()
+		def studies = []
+		studies << StudyContext.getStudy()
 		def name = request.JSON['name']
-		def returnVal = userListService.createList(session.userId, name, ids, tags)
+		def returnVal = userListService.createList(session.userId, name, ids, studies, tags)
 		render returnVal as JSON
 	}	
 	

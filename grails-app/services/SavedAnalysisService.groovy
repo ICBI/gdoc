@@ -15,9 +15,9 @@ class SavedAnalysisService {
 		def json = params as JSON
 		println "COMMAND $json" 
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user, status: notification.status, taskId: notification.item.taskId)
-		if(newAnalysis.save(flush:true)){
-			newAnalysis.addTag(command.study);
-		}
+		def study = StudyDataSource.findBySchemaName(command.study)
+		newAnalysis.addToStudies(study)
+		newAnalysis.save(flush:true)
 	}
 	
 	def saveAnalysisResult(userId, result, command){
@@ -29,11 +29,10 @@ class SavedAnalysisService {
 		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'requestType', 'annotationService'] as Set )
 		println "going to send: " + command.requestType + ", " + params + ", " + result + ", " + user
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user, status: "Complete")
-		if(newAnalysis.save(flush:true)){
-			println "saved analysis, time to add tags"
-			newAnalysis.addTag(command.study);
-			return newAnalysis
-		}
+		def study = StudyDataSource.findBySchemaName(command.study)
+		newAnalysis.addToStudies(study)
+		newAnalysis.save(flush:true)
+		return newAnalysis
 	}
 	
 	
@@ -113,6 +112,7 @@ class SavedAnalysisService {
 		}
 		if(item){
 			item.refresh()
+			item.studies
 		}
 		return item
 	}

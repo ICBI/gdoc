@@ -95,7 +95,6 @@
 					tags.push("analysis");
 					var selectedItem = this.title;
 					tags.push(selectedItem);
-					tags.push(jQuery("#Study").text());
 					var listName = jQuery('#list_name').val();
 					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
 				}
