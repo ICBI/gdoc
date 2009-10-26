@@ -38,35 +38,73 @@
 				    </ul>
 					
 					 <div id="fragment-4">
-							Managed Groups:
+							<g:if test="${managedGroups}">
+							<span style="font-size:1.2em">Managed Groups</span>
+							<table class="studyTable" style="font-size:1.05em;width:400px">
+								<tr><th>Group Name</th>
+									<th>Members</th>
+								</tr>							
 							<g:each in="${managedGroups}" var="mgroup">
-								<div>
-								<p>${mgroup}</p>
-<a href="#" id="${mgroup}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${mgroup}_usersDiv','${mgroup}_showHide');return false;">Show users</a>
-									<div id="${mgroup}_usersDiv" style="display:none">
-										users go here
-									</div>
-								</div>
-							</g:each>
-							
-							Member Groups:
-					        <g:each in="${memberGroups}" var="cgroup">
-								<div>
-								<p>${cgroup.protectionGroup.name}</p>
-<a href="#" id="${cgroup.protectionGroup.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${cgroup.protectionGroup.id}_usersDiv','${cgroup.protectionGroup.id}_showHide');return false;">Show users</a>
-									<div id="${cgroup.protectionGroup.id}_usersDiv" style="display:none">
-										<g:if test="${membership.protectionGroup.users}">
-											<g:each in="${membership.protectionGroup.users}" var="user">
-												<g:checkbox name="${cgroup.protectionGroup.id}_user" />
-													${user.firstName}&nbsp; ${user.lastName}
+								
+								<tr>
+								<td valign="top">${mgroup.protectionGroup.name}</td>
+								<td style="width:75%">
+<a href="#" id="${mgroup.protectionGroup.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${mgroup.protectionGroup.id}_usersDiv','${mgroup.protectionGroup.id}_showHide');return false;">Show users</a></p>
+									<div id="${mgroup.protectionGroup.id}_usersDiv" style="display:none">
+										<g:if test="${mgroup.protectionGroup.users}">
+										<ul>
+											<g:each in="${mgroup.protectionGroup.users}" var="user">
+													<g:if test="${user.loginName != session.userId}">
+														<li style="padding:3px 3px 3px 3px">
+															<g:checkBox name="userToDelete" value="${user.loginName}" checked="false" />
+															&nbsp;${user.firstName}&nbsp;${user.lastName}
+														</li>
+													</g:if>
 											</g:each>
+										</ul>
 										</g:if>
 										<g:else>
 											no users in this group
-										<g:else>
+										</g:else>
 									</div>
-								</div>
+								</td>
+								</tr>
 							</g:each>
+							</table>
+							</g:if>
+							<br />
+							<g:if test="${memberGroups}">
+							<span style="font-size:1.2em">Member Groups</span>
+							<table class="studyTable" style="font-size:1.05em;width:400px">
+								<tr><th>Group Name</th>
+									<th>Members</th>
+								</tr>							
+							<g:each in="${memberGroups}" var="cgroup">
+								
+								<tr>
+								<td valign="top">${cgroup.protectionGroup.name}</td>
+								<td style="width:75%">
+<a href="#" id="${cgroup.protectionGroup.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${cgroup.protectionGroup.id}_usersDiv','${cgroup.protectionGroup.id}_showHide');return false;">Show users</a></p>
+									<div id="${cgroup.protectionGroup.id}_usersDiv" style="display:none">
+										<g:if test="${cgroup.protectionGroup.users}">
+										<ul>
+											<g:each in="${cgroup.protectionGroup.users}" var="user">
+												<g:if test="${user.loginName != session.userId}">
+													<li style="padding:3px 3px 3px 3px">${user.firstName}&nbsp;${user.lastName}</li>
+												</g:if>
+											</g:each>
+										</ul>
+										</g:if>
+										<g:else>
+											no users in this group
+										</g:else>
+									</div>
+								</td>
+								</tr>
+							</g:each>
+							</table>
+							</g:if>
+							
 					</div>
 					
 					<div id="fragment-5">
