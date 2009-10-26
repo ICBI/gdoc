@@ -169,6 +169,16 @@ class SecurityService {
 		return isCollaborationManager
 	}
 	
+	private isUserCollaborationManager(membership){
+		if(membership.role){
+			if(membership.role.name == GROUP_MANAGER){
+				return true
+			}
+			else return false
+		}
+		return false
+	}
+	
 	private findProtectionGroup(groupName) {
 		def authManager = this.getAuthorizationManager()
 		def groups = authManager.getProtectionGroups()
@@ -217,8 +227,29 @@ class SecurityService {
 		//}
 	}
 	
+	private getProtectionGroupsForUser(loginName){
+		def authManager = this.getAuthorizationManager()
+		def user = authManager.getUser(loginName)
+		def groups = []
+		groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
+		return groups
+	}
+	
 	private getRoleIdForName(roleName) {
 		return jdbcTemplate.queryForLong("select ROLE_ID from CSM.CSM_ROLE where ROLE_NAME = '$roleName'")
+	}
+	
+	
+	private getUsersForProtectionGroup(protectionGroup){
+		def pgId = protectionGroup.getProtectionGroupId()
+		def userIds = []
+		def users = jdbcTemplate.queryForList("select USER_ID from CSM.CSM_USER_GROUP_ROLE_PG where PROTECTION_GROUP_ID = '$pgId'")
+		users.each{
+			userIds << it.get("USER_ID")
+		}
+		def protGroupUsers = []
+		protGroupUsers = GDOCUser.getAll(userIds)
+		return protGroupUsers
 	}
 	
 	public AuthenticationManager getAuthenticationManager() {

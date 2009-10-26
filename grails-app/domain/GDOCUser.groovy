@@ -14,9 +14,7 @@ class GDOCUser {
 	String password
 	
 	static hasMany = [groups:Membership,comments:Comments, analysis:SavedAnalysis]
-	def groups() {
-			return memberships.collect{it.gdocgroup}
-	}
+	
 	def lists(){
 		return UserList.findAllByAuthor(this)
 	}

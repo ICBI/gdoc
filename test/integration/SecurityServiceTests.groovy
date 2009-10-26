@@ -14,6 +14,23 @@ class SecurityServiceTests extends GroovyTestCase {
 		securityService.jdbcTemplate = jdbcTemplate
 	}
 	
+	void testGetUsersForProtectionGroup(){
+		def groups = []
+		//get all groups for a user
+		groups = securityService.getProtectionGroupsForUser("kmr75")
+		//get all users in that group
+		groups.each{ group ->
+			def users = []
+			users = securityService.getUsersForProtectionGroup(group)
+			if(users){
+				println "users for $group: "
+				users.each{ u ->
+					println u.firstName + " " + u.lastName
+				}
+			}
+		}
+	}
+	
 	void testCreateAndDeleteCollaborationGroup() {
 		def testFailed = false
 		try {

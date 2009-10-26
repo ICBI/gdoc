@@ -1,22 +1,19 @@
 class MembershipTests extends GroovyTestCase {
 
     void testMembership() {
-		def gd = new GDOCGroup(name:'fcrGroup',study:'FCR');
-		gd.save();
-		def groups =GDOCGroup.findAll();	
-		groups.each{
-			println it.name
+		def user = GDOCUser.get(10)
+		def memberships = user.groups
+		memberships.each{ membership ->
+			println "MY USER: " + membership.user.loginName
+			println "GROUP: " + membership.protectionGroup.name
+			if(membership.protectionGroup.users){
+				println "GROUP: " + membership.protectionGroup.name + "has the following users: "
+				membership.protectionGroup.users.each{ u ->
+					println u.firstName + " " + u.lastName
+				}
+			}
+			println "ROLE:" + membership.role.name
+			println "<----------------------------->"
 		}
-		def user = new GDOCUser(username:'Kevin');
-		user.save();
-		def mm = new Membership(user:user, gdocgroup:gd, role:'owner');
-		user.addToMemberships(mm);
-		user.save();
-		assertTrue Membership.findAll().size() == 1;
-		user.memberships.each{
-			println it.gdocgroup.name;
-			println it.role;
-		}
-		
     }
 }
