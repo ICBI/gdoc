@@ -9,6 +9,7 @@ class CollaborationGroup {
 	
 	String name
 	static transients = ['users']
+	static hasMany = [invitations:Invitation]
 	
 	public Object getUsers() {
 		if(this.@id) {

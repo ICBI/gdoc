@@ -151,7 +151,7 @@ class SecurityService {
 		
 	}
 	
-	private isUserGroupManager(loginName, groupName) {
+	def isUserGroupManager(loginName, groupName) {
 		def pg = findProtectionGroup(groupName)
 		if(!pg)
 			throw new Exception("Collaboration group does not exist.")
