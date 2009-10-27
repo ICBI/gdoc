@@ -11,7 +11,7 @@ class GenePatternController {
 		}
 		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
 		def patientLists = lists.findAll { item ->
-			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
+			(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 		}
 		session.patientLists = patientLists.sort { it.name }
 		def geneLists = lists.findAll { item ->

@@ -17,7 +17,11 @@ class UserList implements Taggable{
 	}
 	
 	def studyNames = {
-		return studies.collect {it.shortName}.join(", ")
+		return studies.collect {it.shortName}
 	}
-
+	
+	def schemaNames = {
+		return studies.collect {it.schemaName}
+	}
+	
 }

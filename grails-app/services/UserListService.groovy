@@ -342,7 +342,7 @@ def calculateVenn = {
 		userListInstance.author = author
 		listItems.each {
 			if(it)
-				userListInstance.addToListItems(new UserListItem(value:it.trim()));
+				userListInstance.addToListItems(new UserListItem(value:it));
 		}
 		studies.each {
 			def ds = StudyDataSource.findBySchemaName(it)
