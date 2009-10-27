@@ -34,7 +34,8 @@ beans = {
 		jndiTemplate = ref('jndiTemplate')
 	}	
 	securityServiceProxy(SecurityService) {bean ->
-	  bean.scope = 'session'
+	  	bean.scope = 'session'
+		jdbcTemplate = ref('jdbcTemplate')
 	}
 	securityService(org.springframework.aop.scope.ScopedProxyFactoryBean){
 		targetBeanName="securityServiceProxy"
