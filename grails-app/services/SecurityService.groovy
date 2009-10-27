@@ -14,6 +14,7 @@ class SecurityService {
 	public static String USER = 'USER'
 	
 	def jdbcTemplate
+	List studies
 	
 	AuthenticationManager authenticationManager
 	AuthorizationManager authorizationManager
@@ -201,30 +202,56 @@ class SecurityService {
 	
 	def getSharedItemIds(loginName, itemType) {
 		def sharedItems = [:]
-		/**commented out for 'session' inconsistencies if(!sharedItems) {
-			sharedItems = [:]
+		if(itemType == 'StudyDataSource' && studies) {
+			return studies
 		}
-		if(sharedItems[itemType]) {
-			return sharedItems[itemType]
-		} else {**/
-			def authManager = this.getAuthorizationManager()
-			def user = authManager.getUser(loginName)
-			def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
-			def elements = groups.collect {
-				return authManager.getProtectionElements(it.protectionGroupId.toString())
-			
-			}
-			elements = elements.flatten()
-			def ids = []
-			elements.each {
-				if (itemType.equals(it.attribute))
-					if(ids!=null && !ids.contains(it.objectId)){
+		def authManager = this.getAuthorizationManager()
+		def user = authManager.getUser(loginName)
+		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
+		def elements = groups.collect {
+			return authManager.getProtectionElements(it.protectionGroupId.toString())
+		
+		}
+		elements = elements.flatten()
+		def ids = []
+		elements.each {
+			if (itemType.equals(it.attribute)) {
+				if(ids!=null && !ids.contains(it.objectId)){
+					// check to make sure user has access to study
+					if(isStudy(it) || userCanAccess(user, it.objectId, itemType)) {
 						ids << it.objectId
 					}
+				}
 			}
-			sharedItems[itemType] = ids
-			return ids
-		//}
+		}
+		sharedItems[itemType] = ids
+		if(itemType == 'StudyDataSource' && !studies) {
+			println "CACHING STUDIES $ids"
+			studies = ids
+		}
+		
+		return ids
+	}
+	
+	/**
+	* This uses reflection to instantiate the object type and then check if the
+	* user has access to the associated studies.
+	*/
+	private userCanAccess(user, objectId, type) {
+		def studyNames = this.getSharedItemIds(user.loginName, StudyDataSource.class.name)
+		def klazz = Thread.currentThread().contextClassLoader.loadClass(type)
+		println "LOOKING UP $objectId for $type"
+		def item = klazz.get(objectId)
+		if(!item)
+			return false
+		def access = item.studies.collectAll {
+			studyNames.contains(it.shortName)
+		}
+		println "ACCESS FOR $objectId is $access $studyNames"
+		return !access.contains(false)
+	}
+	private isStudy(pe) {
+		return pe.attribute == 'StudyDataSource'
 	}
 	
 	private getProtectionGroupsForUser(loginName){

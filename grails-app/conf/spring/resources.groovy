@@ -33,8 +33,8 @@ beans = {
 		jndiName = "queue/SharedAnalysisRequest"
 		jndiTemplate = ref('jndiTemplate')
 	}	
-	securityServiceProxy(SecurityService) {
-		
+	securityServiceProxy(SecurityService) {bean ->
+	  bean.scope = 'session'
 	}
 	securityService(org.springframework.aop.scope.ScopedProxyFactoryBean){
 		targetBeanName="securityServiceProxy"
