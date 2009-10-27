@@ -3,11 +3,11 @@ class Membership {
 			table 'CSM_USER_GROUP_ROLE_PG'
 			version false
 			id column:'USER_GROUP_ROLE_PG_ID'
-			gdocGroup column: 'PROTECTION_GROUP_ID'
+			collaborationGroup column: 'PROTECTION_GROUP_ID'
 	}
 	static belongsTo = [GDOCUser]
 	Role role
-	GDOCGroup gdocGroup
+	CollaborationGroup collaborationGroup
 	GDOCUser user
 	
 	

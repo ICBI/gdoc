@@ -2,31 +2,31 @@ class CollaborationGroupsController {
 	def securityService
 	
 	def index = {
-		def collaborationGroups = []
-		def managedGroups =  []
-		def memberGroups =  []
+		def allMemberships = []
+		def managedMemberships =  []
+		def otherMemberships =  []
 		def user = GDOCUser.findByLoginName(session.userId)
-		collaborationGroups = user.groups
-		collaborationGroups.each{ cg ->
+		allMemberships = user.memberships
+		allMemberships.each{ cg ->
 			if(securityService.isUserCollaborationManager(cg)){
-				managedGroups << cg
+				managedMemberships << cg
 			}else{
-				memberGroups << cg
+				otherMemberships << cg
 			}
 		}
 		def toDelete = []
-		memberGroups.each{ memGroup ->
-			def isAlreadyListed = managedGroups.find {
-				it.gdocGroup.name == memGroup.gdocGroup.name
+		otherMemberships.each{ memGroup ->
+			def isAlreadyListed = managedMemberships.find {
+				it.collaborationGroup.name == memGroup.collaborationGroup.name
 			}
 			if(isAlreadyListed){
 				toDelete << memGroup
 			}
 		}
 		
-		memberGroups.removeAll(toDelete)
+		otherMemberships.removeAll(toDelete)
 		
-		[managedGroups:managedGroups,memberGroups:memberGroups]
+		[managedMemberships:managedMemberships,otherMemberships:otherMemberships]
 	}
 	
 	

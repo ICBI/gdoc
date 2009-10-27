@@ -1,4 +1,4 @@
-class GDOCGroup {
+class CollaborationGroup {
 	def jdbcTemplate
 	static mapping = {
 			table 'CSM_PROTECTION_GROUP'

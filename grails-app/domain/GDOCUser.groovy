@@ -13,7 +13,7 @@ class GDOCUser {
 	String lastName
 	String password
 	
-	static hasMany = [groups:Membership,comments:Comments, analysis:SavedAnalysis]
+	static hasMany = [memberships:Membership,comments:Comments, analysis:SavedAnalysis]
 	
 	def lists(){
 		return UserList.findAllByAuthor(this)
