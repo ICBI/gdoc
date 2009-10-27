@@ -17,7 +17,7 @@ class CollaborationGroupsController {
 		def toDelete = []
 		memberGroups.each{ memGroup ->
 			def isAlreadyListed = managedGroups.find {
-				it.protectionGroup.name == memGroup.protectionGroup.name
+				it.gdocGroup.name == memGroup.gdocGroup.name
 			}
 			if(isAlreadyListed){
 				toDelete << memGroup

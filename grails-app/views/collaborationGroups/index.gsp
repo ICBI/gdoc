@@ -47,13 +47,13 @@
 							<g:each in="${managedGroups}" var="mgroup">
 								
 								<tr>
-								<td valign="top">${mgroup.protectionGroup.name}</td>
+								<td valign="top">${mgroup.gdocGroup.name}</td>
 								<td style="width:75%">
-<a href="#" id="${mgroup.protectionGroup.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${mgroup.protectionGroup.id}_usersDiv','${mgroup.protectionGroup.id}_showHide');return false;">Show users</a></p>
-									<div id="${mgroup.protectionGroup.id}_usersDiv" style="display:none">
-										<g:if test="${mgroup.protectionGroup.users}">
+<a href="#" id="${mgroup.gdocGroup.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${mgroup.gdocGroup.id}_usersDiv','${mgroup.gdocGroup.id}_showHide');return false;">Show users</a></p>
+									<div id="${mgroup.gdocGroup.id}_usersDiv" style="display:none">
+										<g:if test="${mgroup.gdocGroup.users}">
 										<ul>
-											<g:each in="${mgroup.protectionGroup.users}" var="user">
+											<g:each in="${mgroup.gdocGroup.users}" var="user">
 													<g:if test="${user.loginName != session.userId}">
 														<li style="padding:3px 3px 3px 3px">
 															<g:checkBox name="userToDelete" value="${user.loginName}" checked="false" />
@@ -82,13 +82,13 @@
 							<g:each in="${memberGroups}" var="cgroup">
 								
 								<tr>
-								<td valign="top">${cgroup.protectionGroup.name}</td>
+								<td valign="top">${cgroup.gdocGroup.name}</td>
 								<td style="width:75%">
-<a href="#" id="${cgroup.protectionGroup.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${cgroup.protectionGroup.id}_usersDiv','${cgroup.protectionGroup.id}_showHide');return false;">Show users</a></p>
-									<div id="${cgroup.protectionGroup.id}_usersDiv" style="display:none">
-										<g:if test="${cgroup.protectionGroup.users}">
+<a href="#" id="${cgroup.gdocGroup.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${cgroup.gdocGroup.id}_usersDiv','${cgroup.gdocGroup.id}_showHide');return false;">Show users</a></p>
+									<div id="${cgroup.gdocGroup.id}_usersDiv" style="display:none">
+										<g:if test="${cgroup.gdocGroup.users}">
 										<ul>
-											<g:each in="${cgroup.protectionGroup.users}" var="user">
+											<g:each in="${cgroup.gdocGroup.users}" var="user">
 												<g:if test="${user.loginName != session.userId}">
 													<li style="padding:3px 3px 3px 3px">${user.firstName}&nbsp;${user.lastName}</li>
 												</g:if>

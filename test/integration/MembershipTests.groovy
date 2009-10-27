@@ -5,10 +5,10 @@ class MembershipTests extends GroovyTestCase {
 		def memberships = user.groups
 		memberships.each{ membership ->
 			println "MY USER: " + membership.user.loginName
-			println "GROUP: " + membership.protectionGroup.name
-			if(membership.protectionGroup.users){
-				println "GROUP: " + membership.protectionGroup.name + "has the following users: "
-				membership.protectionGroup.users.each{ u ->
+			println "GDOC GROUP: " + membership.gdocGroup.name
+			if(membership.gdocGroup.users){
+				println "GROUP: " + membership.gdocGroup.name + "has the following users: "
+				membership.gdocGroup.users.each{ u ->
 					println u.firstName + " " + u.lastName
 				}
 			}
