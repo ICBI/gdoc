@@ -94,7 +94,7 @@ class SecurityService {
 	/**
 	* Creates a new collaboration group
 	**/
-	def createCollaborationGroup(loginName, groupName) {
+	def createCollaborationGroup(loginName, groupName, description) throws DuplicateCollaborationGroupException{
 		groupName = groupName.toUpperCase()
 		def authManager = this.getAuthorizationManager()
 		def groups = authManager.getProtectionGroups()
@@ -103,7 +103,11 @@ class SecurityService {
 			throw new DuplicateCollaborationGroupException()
 		def pg = new ProtectionGroup()
 		pg.protectionGroupName = groupName
-		pg.protectionGroupDescription = "Protection group created by $loginName"
+		if(description){
+			pg.protectionGroupDescription = description
+		}else{
+			pg.protectionGroupDescription = "Protection group created by $loginName"
+		}
 		authManager.createProtectionGroup(pg)
 		addUserRoleToProtectionGroup(loginName, pg, GROUP_MANAGER)
 		return pg

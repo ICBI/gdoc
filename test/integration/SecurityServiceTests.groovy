@@ -22,7 +22,7 @@ class SecurityServiceTests extends BaseSecurityTest {
 	void testCreateAndDeleteCollaborationGroup() {
 		def testFailed = false
 		try {
-			def protectionGroup = securityService.createCollaborationGroup("acs224", "test group")
+			def protectionGroup = securityService.createCollaborationGroup("acs224", "test group", "some description")
 			assertTrue(protectionGroup.protectionGroupId != null)
 		} catch(Exception e) {
 			e.printStackTrace()
@@ -46,7 +46,7 @@ class SecurityServiceTests extends BaseSecurityTest {
 	void testAddAndRemoveUserToCollaborationGroup() {
 		def testFailed = false
 		try {
-			def protectionGroup = securityService.createCollaborationGroup("acs224", "user add group")
+			def protectionGroup = securityService.createCollaborationGroup("acs224", "user add group", "some description")
 			assertTrue(protectionGroup.protectionGroupId != null)
 			securityService.addUserToCollaborationGroup("acs224", "kmr75", "user add group")
 			def groups = securityService.getCollaborationGroups("kmr75")

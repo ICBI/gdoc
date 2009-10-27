@@ -5,11 +5,14 @@ class CollaborationGroup {
 			version false
 			id column:'PROTECTION_GROUP_ID'
 			name column:'PROTECTION_GROUP_NAME'
+			description column: 'PROTECTION_GROUP_DESCRIPTION'
 	}
 	
 	String name
+	String description
 	static transients = ['users']
 	static hasMany = [invitations:Invitation]
+	
 	
 	public Object getUsers() {
 		if(this.@id) {
