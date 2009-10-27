@@ -44,4 +44,20 @@ class CollaborationGroupsController {
 			}
 		}
 	}
+	
+	
+	def deleteUsersFromGroup = {DeleteCollabUserCommand cmd ->
+		if(cmd.hasErrors()) {
+			flash['cmd'] = cmd
+			redirect(action:'index')
+		} else{
+			flash['cmd'] = cmd
+			cmd.users.each{ user ->
+				securityService.removeUserFromCollaborationGroup(session.userId, user, cmd.collaborationGroupName)
+				println "deleted user $user from " + cmd.collaborationGroupName 
+			}
+			flash.message = "users deleted"
+			redirect(action:'index')
+		}
+	}
 }
