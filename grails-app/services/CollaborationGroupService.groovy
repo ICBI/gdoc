@@ -1,5 +1,6 @@
 class CollaborationGroupService{
 	def securityService
+	def invitationService
 	
 	//gets all user memberships, sends back array. First list is managed memberships,
 	//second is all others.
@@ -19,5 +20,19 @@ class CollaborationGroupService{
 		return [managedMemberships,otherMemberships]
 	}
 	
+	
+	def getExistingUsers(loginNames, groupName){
+		def names = []
+		def existingUsers = []
+		loginNames.each{
+			names << it
+		}
+		names.each{ name ->
+			if(invitationService.userAlreadyInGroup(name, groupName)){
+				existingUsers << name
+			}
+		}
+		return existingUsers
+	}
 	
 }

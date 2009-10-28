@@ -12,5 +12,5 @@
 </g:each>
 </g:if>
 <g:else>
-No notifications at this time.
+No running analysis at this time.
 </g:else>

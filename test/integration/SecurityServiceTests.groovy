@@ -19,6 +19,16 @@ class SecurityServiceTests extends BaseSecurityTest {
 		}
 	}
 	
+	void testFindCollaborationManager(){
+		def groupName = "DEVELOPERS"
+		def manager = securityService.findCollaborationManager(groupName)
+		if(manager){
+			assertTrue(manager.loginName == "kmr75")
+		}else{
+			println "manager not found for group $groupName"
+		}
+	}
+	
 	void testCreateAndDeleteCollaborationGroup() {
 		def testFailed = false
 		try {

@@ -174,6 +174,21 @@ class SecurityService {
 		return isCollaborationManager
 	}
 	
+	def findCollaborationManager(groupName){
+		def collabGroup = CollaborationGroup.findByName(groupName)
+		def memberships = []
+		memberships = Membership.findAllByCollaborationGroup(collabGroup)
+		if(!memberships)
+			throw new Exception("Collaboration group does not exist.")
+		def managerMem = memberships.find{ m ->
+			m.role.name == GROUP_MANAGER
+		}
+		if(managerMem){
+			return managerMem.user
+		}
+		
+	}
+	
 	private isUserCollaborationManager(membership){
 		if(membership.role){
 			if(membership.role.name == GROUP_MANAGER){

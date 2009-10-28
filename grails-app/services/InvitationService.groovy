@@ -9,8 +9,14 @@ class InvitationService {
 		def userRequested = GDOCUser.findByLoginName(requestor)
 		def userInvited = GDOCUser.findByLoginName(invitee)
 		def collabGroup = CollaborationGroup.findByName(groupName)
-		def invite = new Invitation(invitee:userInvited, requestor:userRequested, group:collabGroup, status: InviteStatus.PENDING)
-		invite.save()
+		def invite = findRequest(invitee,groupName)
+		if(invite){
+			invite.status = InviteStatus.PENDING
+			invite.save()
+		}else{
+			invite = new Invitation(invitee:userInvited, requestor:userRequested, group:collabGroup, status: InviteStatus.PENDING)
+			invite.save()
+		}
 		return invite
 	}
 	
@@ -56,6 +62,58 @@ class InvitationService {
 			request.status = InviteStatus.WITHDRAWN
 			request.save()
 		}
+	}
+	
+	def rejectAccess(invitationId){
+		def invitation = Invitation.get(invitationId)
+		if(invitation) {
+			invitation.status = InviteStatus.REJECTED
+			invitation.save()
+		}
+		return invitation
+	}
+	
+	
+	def userAlreadyInGroup(loginName, groupName){
+		def collabGroup = CollaborationGroup.findByName(groupName)
+		def memberships = []
+		memberships = Membership.findAllByCollaborationGroup(collabGroup)
+		def userExists = memberships.find{
+			it.user.loginName == loginName
+		}
+		return userExists
+	}
+	
+	/**
+	 retrieves all invitation pertaining to user and organizes based on possible roles in each invite
+	**/
+	def findAllInvitationsForUser(loginName){
+		def user = GDOCUser.findByLoginName(loginName)
+		def invitations = [:]
+		invitations["req"] = []
+		invitations["reqAndMan"] = []
+		invitations["inv"] = []
+		invitations["invNotMan"] = []
+		invitations["inv"] = Invitation.findAllByInvitee(user)
+		invitations["req"] = Invitation.findAllByRequestor(user)
+		//def allInvitations = []
+		invitations["req"].each { invite ->
+			if(securityService.findCollaborationManager(invite.group.name).loginName == loginName){
+				invitations["reqAndMan"] << invite
+			}
+		}
+		if(invitations["reqAndMan"]){
+			invitations["req"].removeAll(invitations["reqAndMan"])
+		}
+		invitations["inv"].each { invite ->
+			if(securityService.findCollaborationManager(invite.group.name).loginName != loginName){
+				invitations["invNotMan"] << invite
+			}
+		}
+		if(invitations["invNotMan"]){
+			invitations["inv"].removeAll(invitations["invNotMan"])
+		}
+		return invitations
 	}
 	
 	/**

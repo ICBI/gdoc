@@ -2,10 +2,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="layout" content="main" />
+	<g:javascript library="jquery"/>
 	<title>Notifications</title>         
 </head>
 <body>
-	<g:javascript library="jquery"/>
 	<g:javascript>
 		jQuery(document).ready(function() {
 			var refreshId = setInterval(function() {
@@ -43,8 +43,11 @@
 	</g:javascript>
 	<p style="font-size:14pt">Notifications</p>
 	<br/>
-	<g:panel title="My Notifications" styleClass="notifications" contentClass="myPanelContent" id="notifications">
+	<g:panel title="My Running Analysis" styleClass="notifications" contentClass="myPanelContent" id="notifications">
 		<g:render template="/notification/notificationTable" />
+	</g:panel>
+	<g:panel title="Invitations" styleClass="invitations" contentClass="myPanelContent" id="invitations">
+		<g:render template="/notification/invitationTable" />
 	</g:panel>
 	<br/>
 		<form id="gpForm" action="http://141.161.54.201:8080/gp/pages/index.jsf" method="POST" target="genepattern">

@@ -17,6 +17,9 @@
 			if(page == "create") {
 				$('#centerTabs').tabs('select', 1);
 			}
+			if(page == "invite") {
+				$('#centerTabs').tabs('select', 2);
+			}
 		});
 		
 		function toggleUsers(criteria,showHide) {
@@ -33,6 +36,11 @@
 		<g:if test="${flash.cmd instanceof CreateCollabCommand}">
 			<g:javascript>
 				var page = "create"
+			</g:javascript>
+		</g:if>
+		<g:if test="${flash.cmd instanceof InviteCollabCommand}">
+			<g:javascript>
+				var page = "invite"
 			</g:javascript>
 		</g:if>
 		
@@ -56,11 +64,11 @@
 					</div>
 				
 					<div id="fragment-5">
-						<g:render template="/collaborationGroups/createTable" />	
+						<g:render template="/collaborationGroups/createGroupForm" />	
 					</div>
 					
 					<div id="fragment-6">
-						invite users
+						<g:render template="/collaborationGroups/inviteUsersForm" />
 					</div>
 					
 					<div id="fragment-7">

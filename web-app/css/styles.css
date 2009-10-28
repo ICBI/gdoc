@@ -103,6 +103,15 @@ p
 	font-size:12px;
 }
 
+.invitations {
+	width: 620px;
+	font-size:12px;
+}
+.inviteDiv {
+	padding:4px 4px 4px 4px;
+}
+
+
 .user {
 	width: 350px;
 	font-size:12px;

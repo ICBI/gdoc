@@ -3,10 +3,12 @@ class NotificationController {
 	def savedAnalysisService
 	def securityService
 	def genePatternService
+	def invitationService
 	
     def index = { 
 		buildNotifications()
 		println session.notifications
+		println session.invitations
 	}
 	
 	def check = {
@@ -23,7 +25,10 @@ class NotificationController {
 	def buildNotifications = {
 		def notifications = []
 		def savedAnalysis = []
+		def invitations = []
 		savedAnalysis = savedAnalysisService.getAllSavedAnalysis(session.userId)
+		invitations = invitationService.findAllInvitationsForUser(session.userId)
+		session.invitations = invitations
 		
 		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
 		if(savedAnalysis)
