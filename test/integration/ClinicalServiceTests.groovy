@@ -8,7 +8,7 @@ class ClinicalServiceTests extends GroovyTestCase {
 
 	void testQueryByCriteria() {
 		StudyContext.setStudy("EDINFAKE")
-		def patients = clinicalService.queryByCriteria(['DR':'YES', 'VITAL_STATUS':'ALIVE', 'LR':'YES'])
+		def patients = clinicalService.queryByCriteria(['DR':'YES', 'VITAL_STATUS':'ALIVE', 'LR':'YES'], [])
 		patients.each { patient -> 
 			assertTrue (patient.clinicalData["DR"] == "YES")
 			assertTrue (patient.clinicalData["LR"] == "YES")
@@ -20,7 +20,7 @@ class ClinicalServiceTests extends GroovyTestCase {
 	void testQueryByMultipleCriteria() {
 		StudyContext.setStudy("EDINFAKE")
 		
-		def patients = clinicalService.queryByCriteria(['DR':'YES', 'VITAL_STATUS':'ALIVE'])
+		def patients = clinicalService.queryByCriteria(['DR':'YES', 'VITAL_STATUS':'ALIVE'], [])
 		patients.each { patient -> 
 			assertTrue (patient.clinicalData["DR"] == "YES")
 			assertTrue (patient.clinicalData["VITAL_STATUS"] == "ALIVE")
@@ -30,7 +30,7 @@ class ClinicalServiceTests extends GroovyTestCase {
 	void testNoResults() {
 		StudyContext.setStudy("EDINFAKE")
 		
-		def patients = clinicalService.queryByCriteria(['no type':'test value'])
+		def patients = clinicalService.queryByCriteria(['no type':'test value'], [])
 		assertTrue patients.size() == 0	
 	}
 }

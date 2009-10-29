@@ -1,8 +1,15 @@
 class UserListControllerTests extends GroovyTestCase {
 	
+	def userListService
+	def list_controller
+	
+	void setUp() {
+		list_controller = new UserListController();
+		list_controller.userListService = userListService
+	}
+	
     void testSave() {
 	
-	def list_controller = new UserListController();
 	def user = GDOCUser.findByLoginName("gdocUser");
 	
 	list_controller.params.name = "test"
@@ -16,12 +23,11 @@ class UserListControllerTests extends GroovyTestCase {
 
 	void testSaveFromQuery() {
 	
-	def list_controller2 = new UserListController();
 	def my_user = GDOCUser.findByLoginName("gdocUser");
 	
 	//list_controller2.params.name = "testFromQuery"
-	list_controller2.params."author.username" = my_user.loginName
-	list_controller2.saveFromQuery();
+	list_controller.params."author.username" = my_user.loginName
+	list_controller.saveFromQuery();
 	def userList = UserList.findByAuthor(my_user);
 	
 
