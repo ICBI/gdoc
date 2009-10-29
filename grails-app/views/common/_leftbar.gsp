@@ -81,6 +81,16 @@ jQuery(document).ready(function()
 					</ul>
 				</li>	
 				<li>
+					<a class="sf-with-ul" href="#">Random Forest<span class="sf-sub-indicator"> »</span></a>
+					<ul style="display: none; visibility: hidden;">
+						<g:each in="${session.myStudies}">
+							<li>
+								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="randomForest" />
+							</li>
+						</g:each>
+					</ul>
+				</li>
+				<li>
 					<a class="sf-with-ul" href="#">Gene Pattern<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
 						<g:each in="${session.myStudies}">
