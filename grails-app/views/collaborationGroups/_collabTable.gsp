@@ -1,14 +1,16 @@
 <g:javascript library="jquery"/>
-
-<g:if test="${managedMemberships}">
 <g:if test="${flash.cmd instanceof DeleteCollabUserCommand}">
 	<p><g:renderErrors bean="${flash.cmd?.errors}" field="users" /></p>
 </g:if>
-<span style="font-size:1.2em">Managed Groups</span>
-<table class="studyTable" style="font-size:1.05em;width:400px">
-	<tr><th>Group Name</th>
-		<th>Members</th>
-	</tr>							
+
+<table>
+	<tr><td style="padding-right:15px;padding-bottom:15px" valign="top">
+		<table class="studyTable" style="font-size:1.05em;width:375px">
+			<tr><th colspan="2">Managed Groups</th></tr>
+			<tr><th>Group Name</th>
+				<th>Members</th>
+			</tr>
+<g:if test="${managedMemberships}">			
 <g:each in="${managedMemberships}" var="manMembership">
 	
 	<tr>
@@ -38,15 +40,31 @@
 	</td>
 	</tr>
 </g:each>
-</table>
 </g:if>
-<br />
-<g:if test="${otherMemberships}">
-<span style="font-size:1.2em">Member Groups</span>
-<table class="studyTable" style="font-size:1.05em;width:400px">
-	<tr><th>Group Name</th>
-		<th>Members</th>
-	</tr>							
+<g:else>
+<tr><td colspan="2">
+You do not manage any groups
+</td></tr>
+</g:else>
+</table>
+</td>
+
+<td style="padding-left:10px" valign="top">
+<table class="studyTable" style="font-size:1.05em;width:275px">
+	<tr><th>Invitations and Messages</th></tr>
+	<tr><td>
+		<g:render template="/notification/invitationTable" />
+	</td></tr>
+</table>
+</td></tr>
+
+<tr><td colspan="2" style="padding-right:15px">
+	<table class="studyTable" style="font-size:1.05em;width:375px">
+		<tr><th colspan="2">Member Groups</th></tr>
+		<tr><th>Group Name</th>
+			<th>Members</th>
+		</tr>
+<g:if test="${otherMemberships}">						
 <g:each in="${otherMemberships}" var="otherMembership">
 	
 	<tr>
@@ -72,5 +90,12 @@
 	</td>
 	</tr>
 </g:each>
-</table>
 </g:if>
+<g:else>
+<tr><td colspan="2">
+You are not serving as a member in any other groups
+</td></tr>
+</g:else>
+</table>
+</td><td>&nbsp;</td></tr>
+</table>

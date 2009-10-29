@@ -29,7 +29,7 @@ class InvitationService {
 		if(!invitation)
 			throw new RuntimeException("Invitation does not exist")
 		def requestedGroup = invitation.group
-		securityService.addUserToCollaborationGroup(groupManager, invitation.invitee.loginName, requestedGroup.name)
+		securityService.addUserToCollaborationGroup(groupManager, invitation.requestor.loginName, requestedGroup.name)
 		invitation.status = InviteStatus.ACCEPTED
 		invitation.save()
 		return invitation
@@ -98,6 +98,7 @@ class InvitationService {
 		invitations["req"] = Invitation.findAllByRequestor(user)
 		//def allInvitations = []
 		invitations["req"].each { invite ->
+			println securityService.findCollaborationManager(invite.group.name).loginName + " is? " + loginName
 			if(securityService.findCollaborationManager(invite.group.name).loginName == loginName){
 				invitations["reqAndMan"] << invite
 			}

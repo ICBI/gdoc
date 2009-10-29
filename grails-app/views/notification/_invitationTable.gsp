@@ -1,15 +1,15 @@
 <g:javascript library="jquery"/>
 
 <g:set var="availableInvites" value="false" />
-
+<g:if test="${session.invitations}">
 <g:if test="${session.invitations['inv'] || session.invitations['req'] || session.invitations['reqAndMan'] || session.invitations['invNotMan']}">
-	<g:if test="${session.invitations['invitee']}">
+	<g:if test="${session.invitations['inv']}">
 		<g:each in="${session.invitations['inv']}" var="inInvite">
 		<g:if test="${inInvite.status == InviteStatus.PENDING}">
 		<g:set var="availableInvites" value="true" />
 		<div class="inviteDiv">${inInvite.requestor.firstName} ${inInvite.requestor.lastName} has requested access to the ${inInvite.group.name} group
 			&nbsp;&nbsp;&nbsp; 
-			<g:link action="addUser" controller="collaborationGroups" id="${inInvite.id}" params="[user:inInvite.requestor.loginName,group:inInvite.group.name]">grant access</g:link>
+			<g:link action="grantAccess" controller="collaborationGroups" id="${inInvite.id}" params="[user:inInvite.requestor.loginName,group:inInvite.group.name]">grant access</g:link>
 			&nbsp;&nbsp;&nbsp;
 			<g:link action="rejectInvite" controller="collaborationGroups" id="${inInvite.id}" params="[user:inInvite.requestor.loginName,group:inInvite.group.name]">reject</g:link>
 			</div>
@@ -42,7 +42,7 @@
 		</g:each>
 	</g:if>
 </g:if>
-
+</g:if>
 <g:if test="${availableInvites=='false'}">
-No invitations at this time
+No pending invitations or messages at this time
 </g:if>

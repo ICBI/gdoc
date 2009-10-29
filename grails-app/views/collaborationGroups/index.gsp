@@ -56,7 +56,7 @@
 				        <li><a href="#fragment-4"><span>My Collaboration Groups</span></a></li>
 				        <li><a href="#fragment-5"><span>Create Group</span></a></li>
 						<li><a href="#fragment-6"><span>Invite Users</span></a></li>
-						<li><a href="#fragment-7"><span>View All Groups</span></a></li>
+						<li><a href="#fragment-7"><span>View Other Groups</span></a></li>
 				    </ul>
 					
 					 <div id="fragment-4">
@@ -72,7 +72,7 @@
 					</div>
 					
 					<div id="fragment-7">
-						view other groups
+						<g:render template="/collaborationGroups/allCollabTable" model="${['allMemberships':allMemberships]}"/>
 					</div>
 					
 				</div>

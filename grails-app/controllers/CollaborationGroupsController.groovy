@@ -4,12 +4,14 @@ class CollaborationGroupsController {
 	def invitationService
 	
 	def index = {
-		def allMemberships = []
+		def memberships = []
 		def managedMemberships =  []
 		def otherMemberships =  []
-		allMemberships = collaborationGroupService.getUserMemberships(session.userId)
-		managedMemberships = allMemberships[0]
-		otherMemberships = allMemberships[1]
+		def allMemberships = []
+		memberships = collaborationGroupService.getUserMemberships(session.userId)
+		managedMemberships = memberships[0]
+		otherMemberships = memberships[1]
+		allMemberships = memberships[2]
 		def toDelete = []
 		otherMemberships.each{ memGroup ->
 			def isAlreadyListed = managedMemberships.find {
@@ -21,8 +23,10 @@ class CollaborationGroupsController {
 		}
 		
 		otherMemberships.removeAll(toDelete)
-		
-		[managedMemberships:managedMemberships,otherMemberships:otherMemberships]
+		def invitations = []
+		invitations = invitationService.findAllInvitationsForUser(session.userId)
+		session.invitations = invitations
+		[managedMemberships:managedMemberships,otherMemberships:otherMemberships,allMemberships:allMemberships]
 	}
 	
 	def createCollaborationGroup = {CreateCollabCommand cmd ->
@@ -82,6 +86,21 @@ class CollaborationGroupsController {
 		}
 	}
 	
+	/**requests access to a collaboration group**/
+	def requestAccess = {
+		if(params.collaborationGroupName){
+			def manager = securityService.findCollaborationManager(params.collaborationGroupName)
+			if(invitationService.requestAccess(session.userId,manager.loginName,params.collaborationGroupName)){
+				println session.userId + " is requesting access to " + params.collaborationGroupName 
+				flash.message = "An access request has been sent to join the " + params.collaborationGroupName + " collaboration group."
+				redirect(action:"index")
+			}
+		}else{
+			flash.message = "No collaboration group specified. Try again."
+			redirect(action:"index")
+		}
+	}
+	
 	/*
 	deletes a user or users from a collaboration group
 	*/
@@ -92,7 +111,7 @@ class CollaborationGroupsController {
 		} else{
 			flash['cmd'] = cmd
 			cmd.users.each{ user ->
-				securityService.removeUserFromCollaborationGroup(session.userId, user, cmd.collaborationGroupName)
+				invitationService.revokeAccess(session.userId, user, cmd.collaborationGroupName)
 				println "deleted user $user from " + cmd.collaborationGroupName 
 			}
 			flash.message = "users deleted"
@@ -100,7 +119,18 @@ class CollaborationGroupsController {
 		}
 	}
 	
-	//either grants some user access to a group, or accepts an invitation to join a group
+	//grants some user access to a group
+	def grantAccess = { 
+		if(params.id && params.user && params.group){
+			if(invitationService.confirmAccess(session.userId, params.id))
+				flash.message = "$params.user user has been added to the $params.group"
+			else
+				flash.message = "$params.user user has NOT been added to the $params.group"
+		}
+		redirect(action:index)
+	}
+	
+	//accepts an invitation to join a group
 	def addUser = {
 		println params.id
 		if(params.user && params.id && params.group){
