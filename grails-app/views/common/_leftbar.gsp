@@ -45,7 +45,7 @@ jQuery(document).ready(function()
 					<a class="sf-with-ul" href="#">Genes<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
 						<g:each in="${session.myStudies}">
-							<g:if test="${it.genomicData}">
+							<g:if test="${it.hasGenomicData()}">
 								<li>
 									<g:navigationLink name="${it.shortName}" id="${it.id}" controller="geneExpression" />
 								</li>
@@ -62,7 +62,7 @@ jQuery(document).ready(function()
 					<a class="sf-with-ul" href="#">Class Comparison<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
 						<g:each in="${session.myStudies}">
-							<g:if test="${it.genomicData}">
+							<g:if test="${it.hasGenomicData()}">
 								<li>
 									<g:navigationLink name="${it.shortName}" id="${it.id}" controller="analysis" />
 								</li>
@@ -94,7 +94,7 @@ jQuery(document).ready(function()
 					<a class="sf-with-ul" href="#">Gene Pattern<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
 						<g:each in="${session.myStudies}">
-							<g:if test="${it.genomicData}">
+							<g:if test="${it.hasGenomicData()}">
 								<li>
 									<g:navigationLink name="${it.shortName}" id="${it.id}" controller="genePattern" />
 								</li>

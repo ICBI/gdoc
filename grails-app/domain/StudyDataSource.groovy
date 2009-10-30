@@ -24,11 +24,13 @@ class StudyDataSource {
 		if(this.@genomicData) {
 			return this.@genomicData
 		}
-		def tempStudy = StudyContext.getStudy()
-		StudyContext.setStudy(this.schemaName)
-		def rBinaryFiles = MicroarrayFile.findByNameLike("%.Rda")
-		StudyContext.setStudy(tempStudy)
-		this.@genomicData = (rBinaryFiles) 
+		if(hasGenomicData()) {
+			def tempStudy = StudyContext.getStudy()
+			StudyContext.setStudy(this.schemaName)
+			def rBinaryFiles = MicroarrayFile.findByNameLike("%.Rda")
+			StudyContext.setStudy(tempStudy)
+			this.@genomicData = (rBinaryFiles) 
+		}
 		return this.@genomicData
 	}
 	

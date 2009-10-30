@@ -10,7 +10,7 @@
 	<div id="centerContent" height="800px">
 		<br/>
 		<br/>
-		<g:flex component="BoxPlot" width="750px" height="550px" />
+		<g:flex component="BoxPlot" width="770px" height="610px" />
 	</div>
 	<br/>
 	</body>
