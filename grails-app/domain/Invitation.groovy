@@ -4,6 +4,8 @@ class Invitation {
 		table 'INVITATION'
 	}
 	
+	Date dateCreated
+	Date lastUpdated
 	GDOCUser invitee
 	GDOCUser requestor
 	InviteStatus status
