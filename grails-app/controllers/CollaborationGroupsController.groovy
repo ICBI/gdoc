@@ -110,14 +110,18 @@ class CollaborationGroupsController {
 			redirect(action:'index')
 		} else{
 			flash['cmd'] = cmd
+			def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
+			def delString = ""
 			cmd.users.each{ user ->
-				invitationService.revokeAccess(session.userId, user, cmd.collaborationGroupName)
-				println "deleted user $user from " + cmd.collaborationGroupName 
+				invitationService.revokeAccess(manager.loginName, user, cmd.collaborationGroupName)
+				println "$user has been removed from " + cmd.collaborationGroupName 
+				delString += user + ", "
 			}
-			flash.message = "users deleted"
+			flash.message = delString + " removed from " + cmd.collaborationGroupName 
 			redirect(action:'index')
 		}
 	}
+	
 	
 	//grants some user access to a group
 	def grantAccess = { 
@@ -153,4 +157,5 @@ class CollaborationGroupsController {
 		}
 		redirect(action:index)
 	}
+	
 }

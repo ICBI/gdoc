@@ -47,6 +47,7 @@
 		<g:render template="/notification/notificationTable" />
 	</g:panel>
 	<g:panel title="Invitations and Messages" styleClass="invitations" contentClass="myPanelContent" id="invitations">
+		(<span style='font-style:italic'>last 30 days</span>)
 		<g:render template="/notification/invitationTable" />
 	</g:panel>
 	<br/>

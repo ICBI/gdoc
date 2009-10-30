@@ -34,15 +34,15 @@ class InvitationServiceTests extends BaseSecurityTest {
 	
 	void testCheckStatus() {
 		def invitation = invitationService.requestAccess("acs224", "acs224", "TEST_GROUP")
-		def status = invitationService.checkStatus("acs224", "TEST_GROUP")
+		def status = invitationService.checkStatus("acs224", "acs224", "TEST_GROUP")
 		assertEquals(status, InviteStatus.PENDING)
 	}
 	
 	void testRevokeAccess() {
-		def invitation = invitationService.requestAccess("acs224", "gdocUser2", "TEST_GROUP")
+		def invitation = invitationService.requestAccess("gdocUser2","acs224", "TEST_GROUP")
 		def acceptedInvite = invitationService.confirmAccess("acs224", invitation.id)
 		invitationService.revokeAccess("acs224", "gdocUser2", "TEST_GROUP")
-		def status = invitationService.checkStatus("gdocUser2", "TEST_GROUP")
+		def status = invitationService.checkStatus("gdocUser2" , "acs224" , "TEST_GROUP")
 		assertEquals(status, InviteStatus.WITHDRAWN)
 	}
 }

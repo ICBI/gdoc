@@ -9,7 +9,7 @@ class InvitationService {
 		def userRequested = GDOCUser.findByLoginName(requestor)
 		def userInvited = GDOCUser.findByLoginName(invitee)
 		def collabGroup = CollaborationGroup.findByName(groupName)
-		def invite = findRequest(invitee,groupName)
+		def invite = findRequest(requestor,invitee,groupName)
 		if(invite){
 			invite.status = InviteStatus.PENDING
 			invite.save()
@@ -55,9 +55,9 @@ class InvitationService {
 	 * This allows either the user to leave a group, or a collaboration 
 	 * group manager to remove a user.
 	 */
-	def revokeAccess(requestor, requestee, groupName) {
-		securityService.removeUserFromCollaborationGroup(requestor, requestee, groupName)
-		def request = findRequest(requestee, groupName)
+	def revokeAccess(loginName, targetUser, groupName) {
+		securityService.removeUserFromCollaborationGroup(loginName, targetUser, groupName)
+		def request = findRequest(targetUser,loginName, groupName)
 		if(request) {
 			request.status = InviteStatus.WITHDRAWN
 			request.save()
@@ -98,13 +98,16 @@ class InvitationService {
 		invitations["req"] = Invitation.findAllByRequestor(user)
 		//def allInvitations = []
 		invitations["req"].each { invite ->
-			println securityService.findCollaborationManager(invite.group.name).loginName + " is? " + loginName
 			if(securityService.findCollaborationManager(invite.group.name).loginName == loginName){
 				invitations["reqAndMan"] << invite
 			}
 		}
 		if(invitations["reqAndMan"]){
 			invitations["req"].removeAll(invitations["reqAndMan"])
+			invitations["reqAndMan"] = sortAndFilterInvites(invitations["reqAndMan"])
+		}
+		if(invitations["req"]){
+			invitations["req"] = sortAndFilterInvites(invitations["req"])
 		}
 		invitations["inv"].each { invite ->
 			if(securityService.findCollaborationManager(invite.group.name).loginName != loginName){
@@ -113,6 +116,30 @@ class InvitationService {
 		}
 		if(invitations["invNotMan"]){
 			invitations["inv"].removeAll(invitations["invNotMan"])
+			invitations["invNotMan"] = sortAndFilterInvites(invitations["invNotMan"])
+		}
+		if(invitations["inv"]){
+			invitations["inv"] = sortAndFilterInvites(invitations["inv"])
+		}
+		return invitations
+	}
+	
+	/**sorts invitations by date and removes invites(not deleted) that are older than 30 days old**/
+	def sortAndFilterInvites(invitations){
+		def today = new Date()
+		def removeable = []
+		invitations.each{ i ->
+			if(today.minus(i.dateCreated) > 30){
+				//println "remove " + n
+				removeable << i
+			}
+		}
+		invitations.removeAll(removeable)
+		
+		invitations = invitations.sort { one, two ->
+			def dateOne = one.dateCreated
+			def dateTwo = two.dateCreated
+			return dateTwo.compareTo(dateOne)
 		}
 		return invitations
 	}
@@ -120,14 +147,17 @@ class InvitationService {
 	/**
 	 * Checks the status of an invite for a user and a group.
 	 */
-	def checkStatus(inviteeName, groupName) {
-		return findRequest(inviteeName, groupName).status
+	def checkStatus(requestorName, inviteeName, groupName) {
+		return findRequest(requestorName, inviteeName, groupName).status
 	}
 	
-	def findRequest(inviteeName, groupName) {
+	def findRequest(requestorName, inviteeName, groupName) {
 		def c = Invitation.createCriteria()
 		def results = c {
 			and {
+				requestor {
+					eq("loginName", requestorName)
+				}
 				invitee {
 					eq("loginName", inviteeName)
 				}
@@ -138,4 +168,5 @@ class InvitationService {
 		}
 		return (results.size() > 0) ? results[0] : null
 	}
+	
 }
