@@ -1,7 +1,7 @@
 <g:javascript library="jquery"/>
 <g:form action="inviteUsers">
 <g:if test="${flash.cmd instanceof InviteCollabCommand}">
-	<g:renderErrors bean="${flash.cmd?.errors}" as="list" />
+	<div class="errorDetail"><g:renderErrors bean="${flash.cmd?.errors}" as="list" /></div>
 </g:if>
 <table class="studyTable" style="font-size:1.05em;width:400px">
 	<tr>
@@ -28,7 +28,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2"><g:submitButton name="inviteButton" value="Send Invite" /></td>
+		<td colspan="2"><g:submitButton class="actionButton" style="float:right" name="inviteButton" value="Send Invite" /></td>
 	</tr>
 </table>
 </g:form>

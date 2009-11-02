@@ -230,5 +230,12 @@ p
 	background: #E7EEF3;
 	border: 1px solid #DDDDDD;
 	padding: 5px;
-	
 }
+	
+.actionButton
+	{
+		padding: 3px 10px;
+		width:100px;
+		border: 1px solid #a0a0a0;
+		margin: 10px 3px 1px 3px;
+	}

@@ -10,7 +10,7 @@
 
 <tr>
 <td valign="top">${allMembership.name}<br />
-<span style="padding-bottom:8px"><g:link action="requestAccess" controller="collaborationGroups" params="[collaborationGroupName:allMembership.name]">request access?</g:link></span>
+<span style="padding-bottom:8px"><g:link action="requestAccess" controller="collaborationGroups" onclick="return confirm('Are you sure?');" params="[collaborationGroupName:allMembership.name]">request access?</g:link></span>
 </td>
 <td style="width:55%" valign="top">
 	<g:if test="${allMembership.users}">
