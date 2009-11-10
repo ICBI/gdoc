@@ -67,4 +67,8 @@ class SavedAnalysis implements Taggable {
 		this.@analysis = JSON.parse(analysisData)
 	}
 	
+	def studyNames = {
+		return studies.collect {it.shortName}
+	}
+	
 }

@@ -7,6 +7,7 @@
 	<g:javascript library="jquery"/>
 	<jq:plugin name="ui"/>
 	<jq:plugin name="styledButton"/>
+	<jq:plugin name="tagbox"/>
 	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox-compressed.js')}"></script>
 	<script type="text/javascript">
 		function toggle(element){
@@ -35,7 +36,7 @@
 			<span style="font-size:12px">&nbsp;&nbsp; |time period: ${session.analysisFilter} day(s)|</span>
 		</g:if>
 		</p>
-
+		<span style="display:none" class="ajaxController">savedAnalysis</span>	
 		<g:if test="${flash.message}">
 		<div class="message">${flash.message}</div>
 		</g:if>

@@ -3,9 +3,12 @@ import grails.converters.*
 class SavedAnalysisController{
 	def securityService
 	def savedAnalysisService
+	def tagService
+	
 	def index = {
         //if(!params.max) params.max = 10
 		def user = GDOCUser.findByLoginName(session.userId)
+		user.refresh()
 		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",all:"show all"]
 		def groupAnalysisIds = []
 		def filteredAnalysis = []
@@ -130,6 +133,32 @@ class SavedAnalysisController{
 					println savedAttempt
 					render savedAttempt as JSON
 			}
+	}
+	
+	def addTag = {
+		println params
+		if(params.id && params.tag){
+			def list = tagService.addTag(SavedAnalysis.class.name,params.id,params.tag.trim())
+			if(list){
+				render list.tags
+			}
+			else{
+				render ""
+			}
+		}
+	}
+	
+	def removeTag = {
+		println params
+		if(params.id && params.tag){
+			def analysis = tagService.removeTag(SavedAnalysis.class.name,params.id,params.tag.trim())
+			if(analysis){
+				render analysis.tags
+			}
+			else{
+				render ""
+			}
+		}
 	}
 	
 }

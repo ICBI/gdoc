@@ -1,5 +1,41 @@
 <g:javascript library="jquery"/>
-
+<g:javascript>
+$(document).ready( function () {
+		  $("[class*='_tags']").each(function(index){
+			$(this).tagbox({
+							grouping: '"',
+							separator:/[,]/ ,
+							autocomplete:true
+						});
+			
+		  });
+		  
+		$("[class='tag']").each(function(index){
+			var span = $(this).find('label').find('span');
+			if(span.html() == 'clinicalM' || 
+				span.html() == 'patientM' ||
+					span.html() == 'ReportersM'){
+				var newStr = $(this).find('label').find('span').html();
+				var tag = newStr.substring(0, newStr.length-1);
+				$(this).find('label').find('abbr').remove();
+				$(this).find('label').find('input').remove();
+				$(this).find('label').find('span').remove();
+				$(this).find('label').append("<div style='margin: 3px;margin-left:15px;display:inline-block';padding-top:5px>" + tag + "</div>");
+			}
+			//console.log($(this).find('label'));
+			//console.log(span.html());
+			//console.log(abbr);
+		});
+		
+		
+} );
+</g:javascript>
+<g:javascript>
+function taggify(element,className){
+	$(element).attr('class',className);
+	$(element).tagbox();
+}
+</g:javascript>
 
 <table class="listTable" width="100%" cellpadding="2">
 	
@@ -49,12 +85,19 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 		</div>	
 		</div>
 	</div><br />
-	<div style="display:block;text-align:left;border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px">Tags:
-		<g:if test="${analysis.tags.size()>0}">
-		${analysis.tags}
+	<div style="display:block;text-align:left;border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px">
+		Studies: 
+		<g:if test="${analysis.studies.size()>0}">
+		${analysis.studyNames().join(", ")}<br/>
 		</g:if>
-		<g:else>
-		</g:else>
+		Tags:
+		<g:if test="${analysis.tags.size()>0}">
+		<input type="text" name="${analysis.id}_tags_name" class="${analysis.id}_tags tags clearfix" value="${analysis.tags.replace(' ',',')}" />
+		</g:if>
+		<g:if test="${analysis.tags.size()==0}">
+		<input type="text" name="${analysis.id}_tags_name"  class="${analysis.id}_tags tag_box tags clearfix" />
+		</g:if>
+		
 	</div>
 	<br/>
 	</g:if>
@@ -63,3 +106,34 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 	</g:else>
 </g:each>
 </table>
+<g:javascript library="jquery"/>
+<jq:plugin name="tagbox"/>
+<g:javascript>
+
+ $("[class*='_tags']").each(function(index){
+	$(this).tagbox({
+					grouping: '"',
+					separator:/[,]/ ,
+					autocomplete:true
+				});
+	
+  });
+  
+$("[class='tag']").each(function(index){
+	var span = $(this).find('label').find('span');
+	if(span.html() == 'clinicalM' || 
+		span.html() == 'patientM' ||
+			span.html() == 'ReportersM'){
+		var newStr = $(this).find('label').find('span').html();
+		var tag = newStr.substring(0, newStr.length-1);
+		$(this).find('label').find('abbr').remove();
+		$(this).find('label').find('input').remove();
+		$(this).find('label').find('span').remove();
+		$(this).find('label').append("<div style='margin: 3px;margin-left:15px;display:inline-block';padding-top:5px>" + tag + "</div>");
+	}
+	//console.log($(this).find('label'));
+	//console.log(span.html());
+	//console.log(abbr);
+});
+
+</g:javascript>

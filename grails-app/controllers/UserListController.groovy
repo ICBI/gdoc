@@ -5,6 +5,7 @@ class UserListController {
 	def userListService
 	def exportService
 	def annotationService
+	def tagService
     def index = { redirect(action:list,params:params) }
 
     def list = {
@@ -13,7 +14,7 @@ class UserListController {
 		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",all:"show all"]
 		def filteredLists = []
         lists = userListService.getAllLists(session.userId, session.sharedListIds)
-		println lists
+		//println lists
 		if(params.listFilter){
 			if(params.listFilter == 'all'){
 				session.listFilter = "all"
@@ -57,6 +58,32 @@ class UserListController {
 			listName = "list_"+System.currentTimeMillis().toString()
 		}
 		return listName
+	}
+	
+	def addTag = {
+		println params
+		if(params.id && params.tag){
+			def list = tagService.addTag(UserList.class.name,params.id,params.tag.trim())
+			if(list){
+				render list.tags
+			}
+			else{
+				render ""
+			}
+		}
+	}
+	
+	def removeTag = {
+		println params
+		if(params.id && params.tag){
+			def list = tagService.removeTag(UserList.class.name,params.id,params.tag.trim())
+			if(list){
+				render list.tags
+			}
+			else{
+				render ""
+			}
+		}
 	}
 	
 	def vennDiagram = {

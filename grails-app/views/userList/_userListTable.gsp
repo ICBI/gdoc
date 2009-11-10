@@ -31,12 +31,43 @@
 		cleanup();
 	}
 	</g:javascript>
-		
+	<g:javascript>
+	$(document).ready( function () {
+			  $("[class*='_tags']").each(function(index){
+				$(this).tagbox({
+								grouping: '"',
+								separator:/[,]/ ,
+								autocomplete:true
+							});
+				
+			  });
+			  
+			$("[class='tag']").each(function(index){
+				var span = $(this).find('label').find('span');
+				if(span.html() == 'clinicalM' || 
+					span.html() == 'patientM' ||
+						span.html() == 'ReportersM'){
+					var newStr = $(this).find('label').find('span').html();
+			        var tag = newStr.substring(0, newStr.length-1);
+					$(this).find('label').find('abbr').remove();
+					$(this).find('label').find('input').remove();
+					$(this).find('label').find('span').remove();
+					$(this).find('label').append("<div style='margin: 3px;margin-left:15px;display:inline-block';padding-top:5px>" + tag + "</div>");
+				}
+				//console.log($(this).find('label'));
+				//console.log(span.html());
+				//console.log(abbr);
+			});
+			
+			
+	} );
 	
-
+	</g:javascript>
+	
 	<g:if test="${flash.message}">
 	<div class="message">${flash.message}</div>
 	</g:if>
+	
 	
 	<g:if test="${userListInstanceList.size()>0}">
  	<g:panel title="My Lists" styleClass="welcome" >
@@ -99,14 +130,20 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 				<div id="${userListInstance.id}_content" style="border:0px solid black;display:none;padding-bottom:5px">
 					<%--g:render template="/userList/userListDiv" model="${['userListInstance':userListInstance,'listItems':userListInstance.listItems]}"/--%>
 				</div>
-				<div style="border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px">
+				<div style="border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px;">
+					Studies: 
 					<g:if test="${userListInstance.studies.size()>0}">
-						Studies: ${userListInstance.studyNames().join(", ")}<br/>
+						${userListInstance.studyNames().join(", ")}<br/>
 					</g:if>
 					Tags:
 					<g:if test="${userListInstance.tags.size()>0}">
-					${userListInstance.tags}
+					<input type="text" name="${userListInstance.id}_tags_name" class="${userListInstance.id}_tags tags clearfix" value="${userListInstance.tags.replace(' ',',')}">
+					</input>
 					</g:if>
+					<g:if test="${userListInstance.tags.size()==0}">
+					<input type="text" name="${userListInstance.id}_tags_name"  class="${userListInstance.id}_tags tag_box tags clearfix" />
+					</g:if>
+					
 				</div>
 		</div>
 	</g:each>
@@ -114,6 +151,37 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 </tr>
 </table>
 </g:panel>
+<g:javascript library="jquery"/>
+<jq:plugin name="tagbox"/>
+<g:javascript>
+
+ $("[class*='_tags']").each(function(index){
+	$(this).tagbox({
+					grouping: '"',
+					separator:/[,]/ ,
+					autocomplete:true
+				});
+	
+  });
+  
+$("[class='tag']").each(function(index){
+	var span = $(this).find('label').find('span');
+	if(span.html() == 'clinicalM' || 
+		span.html() == 'patientM' ||
+			span.html() == 'ReportersM'){
+		var newStr = $(this).find('label').find('span').html();
+		var tag = newStr.substring(0, newStr.length-1);
+		$(this).find('label').find('abbr').remove();
+		$(this).find('label').find('input').remove();
+		$(this).find('label').find('span').remove();
+		$(this).find('label').append("<div style='margin: 3px;margin-left:15px;display:inline-block';padding-top:5px>" + tag + "</div>");
+	}
+	//console.log($(this).find('label'));
+	//console.log(span.html());
+	//console.log(abbr);
+});
+
+</g:javascript>
 </g:if>
 <g:else>
 <p>Currently, you have no saved lists during the time period of 

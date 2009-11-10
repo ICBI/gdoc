@@ -5,7 +5,9 @@ class UserListService{
 def securityService
 
 	def getAllLists(userId,sharedIds){
-		def lists = getUserLists(userId)
+		def user = GDOCUser.findByLoginName(userId)
+		user.refresh()
+		def lists = getUserLists(user.loginName)
 		def listIds = []
 		def sharedListIds = []
 		sharedListIds = sharedIds
@@ -59,7 +61,7 @@ def securityService
 	def getUserLists(userId){
 		def author = GDOCUser.findByLoginName(userId)
 		def lists = UserList.findAllByAuthor(author)
-		//println lists
+		println "size=" + lists.size()
 		return lists
 	}
 	
@@ -357,5 +359,9 @@ def calculateVenn = {
 			return [error: "Error creating UserList ${userListInstance.name}."]
 		}
 	}
+	
+	
+	
+	
 
 }
