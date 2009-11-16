@@ -30,7 +30,7 @@ set :jboss_start, "nohup #{jboss_home}/bin/startJboss.sh"
 set :jboss_stop, "#{jboss_home}/bin/shutdown.sh -S"
 
 # USER / SHELL
-set :user, "acs224" # the user to run remote commands as
+set :user, "jboss" # the user to run remote commands as
 set :use_sudo, false
 
 set :deploy_from do 
