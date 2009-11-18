@@ -26,7 +26,17 @@ class CollaborationGroupsController {
 		def invitations = []
 		invitations = invitationService.findAllInvitationsForUser(session.userId)
 		session.invitations = invitations
-		[managedMemberships:managedMemberships,otherMemberships:otherMemberships,allMemberships:allMemberships]
+		def manMem = managedMemberships.collect{it.collaborationGroup}
+		if(manMem)
+			manMem = manMem as Set
+		def otherMem = otherMemberships.collect{it.collaborationGroup}
+		if(otherMem)
+			otherMem = otherMem as Set
+		def allMem = allMemberships.collect{it.collaborationGroup}
+		if(allMem)
+			allMem = allMem as Set
+		println manMem
+		[managedMemberships:manMem,otherMemberships:otherMem,allMemberships:allMem]
 	}
 	
 	def createCollaborationGroup = {CreateCollabCommand cmd ->

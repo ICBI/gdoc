@@ -11,8 +11,7 @@
 				<th>Members</th>
 			</tr>
 <g:if test="${managedMemberships}">			
-<g:each in="${managedMemberships.collaborationGroup as Set}" var="manMembership">
-	
+<g:each in="${managedMemberships}" var="manMembership">
 	<tr>
 	<td valign="top">${manMembership.name}</td>
 	<td style="width:75%">
@@ -65,7 +64,7 @@ You do not manage any groups
 			<th>Members</th>
 		</tr>
 <g:if test="${otherMemberships}">						
-<g:each in="${otherMemberships.collaborationGroup as Set}" var="otherMembership">
+<g:each in="${otherMemberships}" var="otherMembership">
 	
 	<tr>
 	<td valign="top">${otherMembership.name}<br /><br />
@@ -82,7 +81,7 @@ You do not manage any groups
 		<div id="${otherMembership.id}_usersDiv" style="display:none">
 			<g:if test="${otherMembership.users}">
 			<ul>
-				<g:each in="${otherMembership.users as Set}" var="user">
+				<g:each in="${otherMembership.users}" var="user">
 					<g:if test="${user.loginName != session.userId}">
 						<li style="padding:3px 3px 3px 3px">${user.firstName}&nbsp;${user.lastName}</li>
 					</g:if>

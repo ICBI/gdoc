@@ -28,6 +28,13 @@
 			<g:link action="rejectInvite" controller="collaborationGroups" id="${inInvite.id}" params="[user:session.userId,group:inInvite.group.name]">reject</g:link>
 			</div>
 		</g:if>
+		<g:if test="${inInvite.status == InviteStatus.WITHDRAWN}">
+		<g:set var="availableInvites" value="true" />
+		<div class="inviteDiv">you have been removed from ${inInvite.group.name}
+			&nbsp;&nbsp;&nbsp; <br />
+			received:<g:formatDate format="EEE MMM d, yyyy" date="${inInvite.dateCreated}"/><br />
+			</div>
+		</g:if>
 		</g:each>
 	</g:if>
    	<g:if test="${session.invitations['req']}">

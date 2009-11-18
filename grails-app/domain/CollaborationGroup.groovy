@@ -25,7 +25,7 @@ class CollaborationGroup {
 			}
 			def protGroupUsers = []
 			protGroupUsers = GDOCUser.getAll(userIds)
-			return protGroupUsers
+			return protGroupUsers as Set
 		}
 	}
 	

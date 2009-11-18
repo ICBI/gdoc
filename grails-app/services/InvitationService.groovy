@@ -57,10 +57,11 @@ class InvitationService {
 	 */
 	def revokeAccess(loginName, targetUser, groupName) {
 		securityService.removeUserFromCollaborationGroup(loginName, targetUser, groupName)
-		def request = findRequest(targetUser,loginName, groupName)
+		def request = findRequest(loginName, targetUser, groupName)
 		if(request) {
+			println "found original invite, now withdraw"
 			request.status = InviteStatus.WITHDRAWN
-			request.save()
+			request.save(flush:true)
 		}
 	}
 	
@@ -68,7 +69,7 @@ class InvitationService {
 		def invitation = Invitation.get(invitationId)
 		if(invitation) {
 			invitation.status = InviteStatus.REJECTED
-			invitation.save()
+			invitation.save(flush:true)
 		}
 		return invitation
 	}

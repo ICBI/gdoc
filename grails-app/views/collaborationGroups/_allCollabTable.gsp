@@ -6,7 +6,7 @@
 		<th>Members</th>
 	</tr>
 <g:if test="${allMemberships}">						
-<g:each in="${allMemberships.collaborationGroup as Set}" var="allMembership">
+<g:each in="${allMemberships}" var="allMembership">
 
 <tr>
 <td valign="top">${allMembership.name}<br />
@@ -19,7 +19,7 @@
 	<div id="${allMembership.id}_usersDiv" style="display:none">
 		<g:if test="${allMembership.users}">
 		<ul>
-			<g:each in="${allMembership.users as Set}" var="user">
+			<g:each in="${allMembership.users}" var="user">
 				<li id='${user.id}${allMembership.name}' style='padding:3px 3px 3px 3px'>${user.firstName}&nbsp;${user.lastName}</li>
 			</g:each>
 		</ul>

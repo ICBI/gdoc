@@ -20,7 +20,7 @@
 		<td>Group:</td>
 		<td>
 			<g:if test="${managedMemberships}">
-			<g:select name="collaborationGroupName" from="${managedMemberships.collaborationGroup}"
+			<g:select name="collaborationGroupName" from="${managedMemberships}"
 		          noSelection="['':'-Choose group-']"
 				  optionValue="name"
 				  optionKey="name" />
