@@ -8,8 +8,46 @@ import org.apache.commons.httpclient.methods.PostMethod
 import org.apache.commons.httpclient.methods.StringRequestEntity
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import grails.converters.JSON
+import java.net.URLEncoder
 
 class MiddlewareService {
+	
+	def sparqlQuery() {
+		def url = "${CH.config.middlewareUrl}/sparql/?query="
+		def data
+		try {
+			def client = new HttpClient()
+			HttpClientParams params = client.getParams()
+			params.setAuthenticationPreemptive( true )
+			HttpState state = client.getState()
+			def user = GDOCUser.findByLoginName("gdocUser")
+			def credentials =
+		     	new UsernamePasswordCredentials(user.loginName, user.password)
+			state.setCredentials( null, null, credentials )
+			def queryString = 
+			    		"PREFIX nci: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#>" +
+			    		"PREFIX gdoc: <https://demo.gdoc.georgetown.edu/gdoc/GDOCOntology.owl#>" +
+			"PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>" +
+			"PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
+			"PREFIX owl:<http://www.w3.org/2002/07/owl#>" +
+			"SELECT ?id ?type ?value  WHERE { ?patient rdf:type gdoc:GDOCSubject . ?patient gdoc:Has_Clinical_Attribute ?attribute . ?attribute gdoc:Clinical_Value ?value . ?attribute rdf:type ?type . ?patient gdoc:GDOC_ID ?id ." +
+			" FILTER ( ?type = nci:AGE && ?value > \"70\" && ?value < \"80\" ) }"
+			def get = new GetMethod(url + URLEncoder.encode(queryString, "UTF-8"))
+			def status = client.executeMethod(get)
+			println status
+		
+			if (status != HttpStatus.SC_OK) {
+				return "Method failed: " + get.getStatusLine()
+			}
+
+			if(get.getResponseBodyAsString().toString()) 
+				data = JSON.parse(get.getResponseBodyAsString().toString())
+			get.releaseConnection()
+		} catch(Exception e) {
+			data = "Cannot connect to server, please try again."
+		}
+		return data
+	}
 	
 	def loadResource(resource, urlParams, userName) {
 		
