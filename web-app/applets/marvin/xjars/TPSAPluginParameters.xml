@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <Precision Key="precision" Label="Decimal places"/>
+    <Boolean Key="microspecies" Label="Take major microspecies" Value="false"/>
+    <Number Key="pH" Label="at pH" Range="[0.0,14.0]" Value="7.4">
+	<Dependencies>
+	    <Item Key="microspecies" Range="true"/>
+	</Dependencies>
+    </Number>
+</ParameterPanel>

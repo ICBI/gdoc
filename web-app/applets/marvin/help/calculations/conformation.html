@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+<title>Conformation</title>
+<link rel=stylesheet type="text/css" href="../marvinmanuals.css">
+</head>
+<body>
+<h1>Conformation</h1>
+
+
+<h2><a class="anchor" NAME="conformer">Conformer Plugin</a></h2>
+<p>Conformational isomerism is a form of isomerism that describes the phenomenon of molecules with the same structural formula having different shapes due to rotations about one or more bonds. Different conformations might have different energies, can usually interconvert, and are very rarely isolatable. <br>Conformer plugin generates selected number of conformers or
+the lowest energy conformer of a molecule. For conformer calculation
+Dreiding force field is used. </p>
+<p>Different calculation parameters can be set in the <b CLASS="buttonName">Conformers Options</b> panel:</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/conform_panel.png" width="278" height="353"></td>
+	</tr>
+</table>
+</p>
+<ul>
+<li>
+    <b>Display options</b>
+    <ul><li><p><b>Display conformers:</b> conformers are displayed in a MarivnView window.</p></li> 
+      <li><p><b>Store conformer information in property field:</b> the conformer data are
+        calculated and stored with the structures. This option provides the calculations needed 
+      to select a specific conformer when using 3D cleaning ˙(menu item Structure 
+      > Clean 3D > Display Stored Conformers). The conformers will only be stored if you 
+      select one result and click on "Select".</li>
+    </ul> 
+  </li>
+  <li<p><b>Energy unit:</b> giving results in kcal/mol or kJ/mol.</p></li>
+<li>
+	<p><b>Optimization limit:</b> set the optimization to loose, normal, strict very strict (in this order increasing calculation times and precisity).</p></li>
+<li>
+	<p><b>Calculate lowest energy conformer:</b> calculates and displays only the lowest energy conformer structure. When checking this option, max. number if conformers and diversity limit are disabled.</p></li>
+<li>
+	<p><b>Maximum numbers of conformers:</b> limiting the number of calculated structures. </p></li>
+<li>
+	<p><b>Diversity limit:</b> conformers within diversity limit will be considered the same and doubles removed.</p></li>
+<li>
+	<p><b>Timelimit (s):</b> no conformers will be displayed if the calculation is stopped at the time limit set (e.g. there are too many conformers to calculate, the operation is cancelled after the given time had elapsed).</p></li>
+
+<li>
+	<p><b>Prehydrogenize:</b> if checked, converts all implicit hydrogens to explicit hydrogens without removing them after the calculation. If unchecked, no explicit hydrogens will be added.</p></li>
+<li>
+	<p><b>Hyperfine:</b> inserts more itineration steps in the calculations, gives more precision in results but the needed time becomes longer.</p></li>
+<li>
+	<p><b>Visualize H bonds</b>: marks intramolecular hydrogen bonds in the conformer where it is likely to occur.</p></li>
+</ul>
+<p>The results appear in a new window, containing all calculated conformers with their energy indicated:
+</p>
+<p>
+<table cellpadding="4">
+	<tr>
+		<td><img src="images/conformers.png" width="931" height="504"></td>
+	</tr>
+</table>
+</p>
+
+<h2><a class="anchor" NAME="moldyn">Molecular Dynamics Plugin</a></h2>
+
+<p>The molecular dynamics plugin calculates the configurations of
+the system by integrating Newton's laws of motion.</p>
+
+<p>The calculation and the display options can be set in the <b>Molecular Dynamics 
+Options</b> panel:</p>
+
+<p>
+<table>
+	<tr>
+		<td><img src="images/mddialog.png" width="247" height="313"></td>
+		<td></td>
+	</tr>
+</table>
+</p>
+
+
+<ul>
+	<li>
+	<p><b>Display</b>: display mode
+	<ul>
+		<li><p><b>Frames</b>: trajectory frames are displayed individually
+		(see above).</p></li>
+		<li><p><b>Animation</b>: trajectory is displayed as an <a
+			href="images/mdanim.gif">animation</a>.</p></li>
+	</ul></p>
+	<li>
+	<p><b>Force field:</b> force field used for calculation.</p></li>
+	<li>
+	<p><b>Integrator:</b> integrator type used for solving Newton's
+	laws of motion.</p></li>
+	<li>
+	<p><b>Simulation steps:</b> number of simulation steps.</p></li>
+	<li>
+	<p><b>Step time (fs):</b> time between simulation steps in femtoseconds.</p></li>
+	<li>
+	<p><b>Initial temperature (K):</b> initial temperature of the system
+	in kelvin.</p></li>
+	<li>
+	<p><b>Start time of display (fs):</b> the time of the first simulation
+	frame to be displayed in femtoseconds.</p></li>
+	<li>
+	<p><b>Frame interval (fs):</b> time between displayed simulation
+	frames in femtoseconds.</p></li>
+</ul>
+
+<p>The result is shown in a new window:</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/md.png" width="929" height="504"></td>
+		<td></td>
+	</tr>
+</table>
+</p>
+<p>The window is a MarvinView window, with all its funcionalities to reach.</p>
+
+
+<h2><a class="anchor" name="align">3D Alignment Plugin</a></h2>
+<p>
+<p> 3D Alignment tries to maximize the overlap of atoms of the same type of different
+molecules. Extended atom types are assigned to each atom to enable chemically
+more relevant atom pairing. For instance, aromatic nitrogen atom is not matched
+against a tertiary amine. Types differentiate atomic number, hybridization state and aromaticity, eg.
+ethene and benzene cannot be aligned. (These extended atom types correspond to the
+ones used in Dreiding force field.)
+<p>
+If you first define atom pairings between molecules using the reaction
+arrow (<a href="../sketch/sketch-basic.html#howto-map.reactions">Mapping atoms</a>),
+they will be considered during alignment and they can facilitate the alignment,
+or can be used exclusively, without AutoAlign.
+
+<p>
+If you have molecules in separate files, you have to merge them into a file. Use
+<code>molconvert</code> to create this file. The command
+<pre>molconvert mrv m1.mol -R m2.mol -o m_all.mrv</pre>
+ merges files m1.mol and m2.mol into m_all. mrv containing all structures as fragments
+ of one molecule.
+
+<p>Following options can be set in the <b>3D Alignment
+Options</b> panel:</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/alignment_panel.png" width="252" height="187"></td>
+	</tr>
+</table>
+</p>
+
+<ul>
+    <li><b>User defined atom pairs only:</b> only manually mapped atoms are the basis of the alignment</li>
+    <li><b>Faster but less precise:</b> if ticked, the number of overlapping process steps is halved</li>
+    <li><b>Accuracy:</b> level of accuracy with which the structure overlaps are searched</li>
+    <li><b>Treat rings flexible above size:</b> above the given ring size, all rings will be considered
+    as flexible, and their conformation also fitted </li>
+    <li><b>Display in MarvinSpace:</b> the result window is a MarvinSpace
+    3D viewer. Molecules are visualized in different colors for better distinction of
+    structures.</li>
+    </ul>
+<!--ha a faster be van kapcsolva, 2x próbálkozik egymásra rakni a molekulát, ha nincs, akkor 4x.
+az accuraxy azt mondja meg, hgy milyen alaposággal állítgassa be a molekulát a fedések megkeresésére-->
+
+</body>
+</html>

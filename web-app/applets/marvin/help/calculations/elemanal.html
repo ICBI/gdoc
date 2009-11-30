@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+<title>Elemental Analysis</title>
+<link rel=stylesheet type="text/css" href="../marvinmanuals.css">
+</head>
+
+<body>
+<h1>Elemental Analysis Plugin</h1>
+
+<p>Basic molecular values related to the elemental composition of
+the molecule are calculated by the Elemental Analysis plugin. <br>In the <b CLASS="buttonName">Elemental Analysis Options</b> panel you can check different properties:</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/elemanal_panel.png" width="251" height="291"></td>
+	</tr>
+</table>
+</p>
+<ul>	<li><b>Type</b>
+<ul>
+	<li><p>
+	<b>Mass:</b> average molecular mass calculated from the standard atomic weights <sup><a href="#ref1">1</a></sup>.</p></li>
+	<li><p>
+	<b>Exact mass:</b> monoisotopic mass calculated
+	from the weights <sup><a href="#ref2">2</a></sup> of the most abundant natural isotopes of the elements.</p></li>
+	<li><p>
+	<b>Formula:</b> chemical formula of the
+	molecule according to the Hill system <sup><a href="#ref3">3</a></sup>: the number of carbon atoms is indicated first, the number of hydrogen atoms next (including deuterium and tritium when using D and T symbols), and then the number of all other chemical elements subsequently, in alphabetical order. When the formula contains no carbon, all the elements, including hydrogen, are listed alphabetically.</p></li>
+	<li><p>
+	<b>Isotope formula:</b> chemical formula of
+	the molecule listing isotopes separately according to the Hill system.</p></li>
+	<li><p>
+	<b>Dot-disconnected formula:</b> chemical
+	formula of the molecule(s) separating fragment formulas by dots (e.g. salts, counterions, solvent molecules etc. are present).</p></li>
+	<li><p>
+	<b>Dot-disconnected isotope formula:</b> chemical
+	formula of the molecule separating fragment formulas by dots and listing 
+	isotopes separately.</p></li>
+	<li><p>
+	<b>Composition:</b> elemental composition given in weight percentage
+	(w/w %) calculated from the atomic masses.</p></li>
+	<li><p>
+	<b>Isotope composition:</b> elemental
+	composition listing isotopes separately (w/w %).</p></li>
+	<li><p>
+	<b>Atom count:</b> number of all atoms in the
+	molecule.</p></p></li>
+</ul></li>
+<li>
+	<p><b>Use D/T symbols for deuterium/Tritium:</b> if unchecked (default), isotopes of hydrogen are displayed in formulas as 2H and 3H, if checked, D and T symbols are used.</p></li>
+<li>
+	<p><b>Single fragment mode:</b> if unchecked (default), the calculation handles unlinked molecules together (e.g. salt molecules), summing up the masses of each component, if checked, the results are displayed in a scroll window.</p></li>
+</ul>
+
+<p>The results are shown in a new window:</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/elemanal.png" width="558" height="565"></td>
+	</tr>
+</table>
+</p>
+
+<p>The contents of the text field can be copied to the clipboard by Ctrl+C, the structure field offers a context menu from MarvinView.
+</p>
+<br>
+<h2>References</h2>
+<ul>
+	<li> 
+<a name="ref1"></a>Atom weights: M. E. Wieser, "Atomic weights of the elements 2005 (IUPAC Technical Report)"  Pure Appl. Chem., Vol. 78, No. 11, pp. 2051-2066, 2006; <a href="http://dx.doi.org/10.1351/pac200678112051">doi</a>
+	</li>
+	<li><a name="ref2"></a>Isotope weights: G.Audi and A.H.Wapstra, "The 1995 update to the atomic mass evaluation"  Nuclear Physics A595 vol. 4, pp. 409-480, 1995; <a href="http://dx.doi.org/10.1016/0375-9474(95)00445-9">doi</a>
+	</li>
+<li><a name="ref3"></a>
+The Hill system: E. A. Hill, "On A System Of Indexing Chemical Literature; Adopted By The Classification Division Of The U. S. Patent Office". J. Am. Chem. Soc., 22(8), pp. 478-494, 1900; <a href="http://dx.doi.org/10.1021/ja02046a005">doi</a>	
+	</li>
+</ul>
+
+</body>
+</html>

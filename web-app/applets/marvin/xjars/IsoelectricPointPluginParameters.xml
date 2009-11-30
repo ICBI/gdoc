@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <Precision Key="precision" Label="Decimal places"/>
+    <Boolean Key="chargedistr" Label="Show charge distribution" Value="true"/>
+    <Number Key="step" Label="pH step size" Range="[0.0,0.5]" Value="0.5">
+	<Dependencies>
+	    <Item Key="chargedistr" Range="true"/>
+	</Dependencies>
+    </Number>
+</ParameterPanel>

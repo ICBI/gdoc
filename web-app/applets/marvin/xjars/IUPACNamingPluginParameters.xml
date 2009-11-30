@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+
+    <Group Title="Generate">
+    	<RadioButtonGroup Key="type">
+    		<Choice Value="preferred" Text="Preferred IUPAC Name" Selected="true" />
+    		<Choice Value="traditional" Text="Traditional Name" />
+    	</RadioButtonGroup>
+    </Group>
+
+    <Boolean Key="single" Label="Single fragment mode" Value="false" />
+
+</ParameterPanel>

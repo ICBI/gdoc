@@ -1,0 +1,63 @@
+<!-- 
+    Document   : iupac-doc
+    Created on : Jul 24, 2008, 4:08:10 PM
+    Author     : Annamaria Jakab
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+ <head>
+   <meta NAME="description" CONTENT="IUPAC file format in Marvin">
+<meta NAME="keywords" CONTENT="IUPAC name, file format, Java, Marvin">
+<link REL ="stylesheet" TYPE="text/css" HREF="../marvinmanuals.css" TITLE="Style">
+<title>IUPAC names in Marvin</title>
+</head>
+<body>
+
+<h1>IUPAC name</h1>
+<p>
+Codename: <strong>name</strong>
+</p>
+  <h2><a class="anchor" name="iupac">IUPAC name format</a></h2>
+  
+  The IUPAC names are saved in a text file following this rules:
+  <ul><li>one name per line</li>
+  <li>additional fields can be added, separated by tabs</li>
+</ul>
+  
+  <h2><a class="anchor" name="import">Import</a></h2>
+
+  <p>Importing IUPAC names is available from Marvin version 5.1. 
+ 
+ <h3>Marvin applications</h3>
+  You can import IUPAC names to Marvin applications in various ways:
+  <ol>
+    <li>Select the name in the text of any page and drag&drop or copy&amp;paste it to MarvinSketch.</li>
+    <li>Select the Enter IUPAC name from the Edit menu, and paste the name into the text field.</li>
+    <li>Open a text file (.name) containing IUPAC names (one per row). MarvinView will open 
+    all structures, MarvinSketch will ask you to select one structure (by its index number).</li>
+  </ol>
+  
+  <h3>Command line</h3>
+  <p>You can use IUPAC name import through <a href="../applications/molconvert.html">MolConverter</a>.
+  
+  <h2><a class="anchor" name="export">Export</a></h2>
+  <h3>Marvin applications</h3>
+  <p>The names can be exported in MarvinSketch and MarvinView by saving the file 
+  in the .name format.
+  
+  <h3>Command line</h3>
+  <p>You can use IUPAC name export through MolConverter.
+  
+  <h2>Current limitations</h2>
+
+<ul>
+<li>Molecules containing multiple radicals (e.g. <code>ethane-1,2-diyl</code>) are not supported yet.
+<li>Stereo descriptors (r) and (s) are not supported (as in the whole of marvin).
+<li>Amino-acids and peptides are supported only when the amino-acids are represented as groups.
+<li>Isotopes are not supported</li>
+<li>Some aspects of nomenclature are only partially implemented, in particular complex cases of fused
+systems and multiplicative nomenclature. In those cases, a less straightforward but chemically correct
+name will be generated.
+</ul>
+  </body>
+</html>

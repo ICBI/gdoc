@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <Precision Key="precision" Label="Decimal places"/>
+    <SingleSelection Key="type" Label="Type">
+	<Choice Value="total" Text="Total" Selected="true"/>
+	<Choice Value="sigma" Text="Sigma"/>
+	<Choice Value="pi" Text="Pi"/>
+    </SingleSelection>
+    <Boolean Key="implh" Label="Charges of implicit hydrogens" Value="true">
+	<Dependencies>
+	    <Item Key="type" Range="sigma,total"/>
+	</Dependencies>
+    </Boolean>
+    <Boolean Key="resonance" Label="Take resonant structures" Value="true"/>
+    <Boolean Key="microspecies" Label="Take major microspecies" Value="false"/>
+    <Number Key="pH" Label="at pH" Range="[0.0,14.0]" Value="7.4">
+	<Dependencies>
+	    <Item Key="microspecies" Range="true"/>
+	</Dependencies>
+    </Number>
+    <Boolean Key="mspace" Label="Display in MarvinSpace" Value="true"/>
+</ParameterPanel>

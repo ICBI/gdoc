@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+<TITLE>Dialogs of MarvinSketch</TITLE>
+<link rel=stylesheet type="text/css" href="../../marvinmanuals.css">
+</head>
+<body>
+<h1>Dialogs of MarvinSketch</h1>
+
+<h3>Contents</h3>
+<ul>
+    <li><a href="#preferences">Preferences</a></li>
+    <li><a href="#source">Edit Source</a></li>
+    <li><a href="#format">Format</a></li>
+    <li><a href="#periodic">Periodic System</a></li>
+    <li><a href="#group">Create Group</a></li>
+    <li><a href="#template_library">Template Library</a></li>
+    <li><a href="#document_settings">Document Settings</a></li>
+</ul>
+
+<h2><a class="anchor" name="preferences">Preferences</a></h2>
+<p>The Preferences dialog window is located at the <b>Edit</b> menu.
+It allows you to change many of the MarvinSketch display settings, including look & feel, error highlighting, and object visibility.<br>
+All settings are saved and used when the application is restarted.
+</p>
+
+<h4>Display</h4>
+    <img src="gui-files/dialogs/preferences1.png" width="508" height="333"><br>
+<ul>
+    <li><b>Atom & Bond labels</b> are used as the default font type and size to labels
+        such as C/T label of bonds, atom query property labels of atoms, etc.</li>
+    <li><b>Double bond spacing</b> is a gap between two lines/sticks representing a double or triple bond measured in Angstroms.</li>
+    <li><b>Wireframe bond thickness</b> is the width of bonds in wireframe mode. It is measured in Angstroms.</li>
+    <li><b>Stick diameter</b> is the width of bonds in stick mode in Angstroms.</li>
+    <li><b>Ball radius</b> is the size of atom spheres in Ball draw type, measured in Angstroms.</li>
+    <li><b>Look & Feel</b> allows changing the visual appearance of GUI components.
+        The available options are: Java Metal, Motif, JGoodies Plastic, JGoodies Plastic XP,
+        and the native Look & Feels (Windows, Aqua) based on the underlying operating system.</li>
+    <li><b>Show Bond in Hand</b> when checked bond types are shown under the mouse cursor like template structures.</li>
+    <li><b>Carbon Labels</b> options determine the condition of displaying C labels on Carbon atoms.
+        <table>
+            <tr><td><img src="gui-files/dialogs/carbon1.png" alt="Always"></td>
+                <td><img src="gui-files/dialogs/carbon2.png" alt="Never"></td>
+                <td><img src="gui-files/dialogs/carbon3.png" alt="Optional"></td>
+            </tr>
+            <tr align="center"><td>Always</td><td>Never</td><td>At straight angles<br> and implicit H atoms</td></tr>
+        </table>
+    </li>
+</ul>
+<h4>Bonds</h4>
+    <img src="gui-files/dialogs/preferences2.png" width="477" height="304"><br>
+    <ul>
+        <li><b>Down Wedge Orientation</b> allows changing the wedge bond display convention.
+        Down wedge points downward in MDL's convention, upward (at the chiral center) in Daylight's.</li>
+        <li><b>Any Bond Line Style</b> offers three different modes to display bonds of unkown types: Automatic, Dashed and Solid.
+        This option can be separately set to be used in MarvinSketch and MarvinView.</li>
+    </ul>
+<h4>Warnings</h4>
+    <img src="gui-files/dialogs/preferences3.png" width="477" height="304"><br>
+    <ul>
+        <li><b>Highlighting Valence Errors</b> highlights atoms having wrong valences with red underline when it is checked.</li>
+    </ul>
+<h4>Save/Load</h4>
+    <img src="gui-files/dialogs/preferences4.png" width="477" height="304"><br>
+    <ul>
+        <li><b>Default location:</b> the folder from which to load or to save molecules may be set by the user.
+        <ul><li>Startup directory: the folder where the command to start the application was given.</li>
+            <li>Last location: the last folder used for opening or saving a structure.</li>
+            <li>Custom working directory: a user-defined folder. If
+            a molecule is loaded from another folder, then the file's location will be offered for saving.</li></ul>
+        </li>
+        <li><b>Default file format</b> determines which type is offered by default when structures are saved to file.</li>
+        <li><b>Save/Load settings</b>
+            <ul><li><b>Save/Load GUI settings (.MRV format)</b> allows storing and loading
+            parameters like background color, font type, etc. beside the structures.
+            This option can only be used with the
+            <a href="../../formats/mrv-doc.html">MRV format</a>.</li>
+            <li><b>Save/Load zoom factor (.MRV format)</b> stores and loads the
+            zooming scale of the structures.
+        This option can only be used with the <a href="../../formats/mrv-doc.html">MRV format</a>.</li></ul>
+        </li>
+        <li><b>Recent file entries</b> defines the number of files in the Recent files list in the File menu,
+        with values between 1 and 10.</li>
+    </ul>
+<h4>Copy</h4>
+    <img src="gui-files/dialogs/preferences5.png" width="477" height="304"><br>
+    <ul>
+    <li><b>Copy molecule as</b><br>
+    This panel offers additional formats in which structure data can be put to clipboard.
+    This can be useful for example when you wish to insert the image of the molecule to
+    an image editor application, which would not recognize the input data without enabling image formats.<br>
+    Please visit <a href="../../datatransfer.html">Cut/Copy/Paste and Drag & Drop Functionality</a> for more details.
+    </li>
+    </ul>
+<h4>OLEServer</h4>
+    <img src="gui-files/dialogs/preferences6.png" width="477" height="304"><br>
+    <ul>
+    <li><b>Re(re)gister and Unregister</b><br>
+    Enables or disables the OLE functionality. This option is only available on 
+    desktop and integrated applications in Windows environment. <a href="../../marvinoleserver.html">
+      Read more</a> about this feature.
+    </li>
+    </ul>
+    
+<h2><a class="anchor" name="source">Edit Source</a></h2>
+<P>You can alter a molecule by directly editing its source in the Edit Source dialog window.<br>
+The dialog window provides standard clipboard operations and it is also possible to send the source text to the console.<br>
+You can view and edit the source in any of the supported file formats.
+You can also convert it to Java String which allows easy integration of the structure to a custom Java application code.<br>
+To change the format of the source, simply select the desired one from the <B class="buttonName">View</B>
+Menu. After editing the source text, you can send the structure back to the
+MarvinSketch canvas by invoking <B class="buttonName">File &gt;
+Import As</B>, and pressing <b>Import</b> on the appearing dialog window. This will close the Edit Source dialog window.
+</P>
+<img src="gui-files/dialogs/edit_source.png" width="419" height="369">
+
+<h2><a class="anchor" name="format">Format</a></h2>
+<h4>Atoms and Bonds</h4>
+<p>
+On this panel there are many options to change the drawing properties of atoms and bonds.
+</p>
+<img src="gui-files/dialogs/format1.png" width="499" height="390">
+<p>For more information about using structure drawing styles, please
+    visit <a href="../sketch-basic.html#styles">this link</a>.
+</p>
+
+<h4>Graphics Objects</h4>
+<p>
+The drawing properties of graphics objects (text boxes, brackets, lines, etc.) can be changed on this panel.
+</p>
+<img src="gui-files/dialogs/format2.png" width="499" height="453"><br>
+
+<h2><a class="anchor" name="periodic">Periodic System</a></h2>
+<h4>Periodic Table</h4>
+
+    <img src="gui-files/dialogs/periodic1.png" width="576" height="492"><br>
+<p>Chemical elements are available as buttons on the Periodic Table panel of MarvinSketch.<br>
+Atom buttons are arranged acoording to the standard periodic table layout.<br>
+When the mouse cursor is over a specific atom button, the information panel displays
+the name of the atom, the atomic number, mass, electronegativity and the oxidation states.<br>
+When one of the atom buttons is pressed, the corresponding atom can be placed on the canvas.
+The atom symbol appears under the mouse cursor, while the button is highlighted in this case.</p>
+<p>
+The <b>Atom List</b> and <b>NOT List</b> buttons can be used to create special atom lists that can be used in queries.
+When one of these buttons is pressed, atoms can be added to the list by pressing atom buttons one after the other.
+The lists are not cleared when the list buttons become unselected.
+The atoms of the list are also shown under the mouse cursor above the canvas.
+See <a href="http://www.chemaxon.com/jchem/doc/user/Query.html#atlist">Query Guide</a>
+    for more details about <i>atom lists</i> and <i>not lists</i>.
+</p>
+
+<p>Four different <b>coloring schemas</b> can be chosen:
+<ol>
+    <li>CPK: colors the atoms according to the Corey-Pauling-Kultun coloring scheme</li>
+    <li>Standard state: colors according to the standard state of the element (gas, liquid, solid)</li>
+    <li>Blocks: colors elements according to the highest-energy electron's orbital (s-, p-, d- or f-block)</li>
+    <li>Metals/Nonmetals: colors according to the metallic character of the elements
+    (alkali, alkaline earth, metalloid, transition metal, other metal, nonmetal)</li>
+</ol>
+
+
+<h4>Query</h4>
+<img src="gui-files/dialogs/periodic2.png" width="574" height="488"><br>
+<p>
+For the meanings of the buttons on the Query tab please refer to the <a href="http://www.chemaxon.com/jchem/doc/user/Query.html">Query Guide</a>.<br>
+When the mouse cursor is over a button, a short description appears on the information panel.
+</p>
+<ul>
+    <li>Generic query atoms: any atom, any hetero atom, any metal, any halogen</li>
+    <li>Atom query properties
+        <ul>
+            <li>H&lt;n>: Total number of hydrogen substituents</li>
+            <li>v&lt;n>: Valence - total bond orders</li>
+            <li>X&lt;n>: Number of connections</li>
+            <li>R&lt;n>: Ring count</li>
+            <li>r&lt;n>: Smallest ring size</li>
+            <li>rb&lt;n>: Ring bond count</li>
+            <li>s&lt;n>: Substitution count</li>
+            <li>h&lt;n>: Number of implicit hydrogens</li>
+            <li>D&lt;n>: Number of explicit connections</li>
+            <li>u: Unsaturated atom</li>
+            <li>a/A: Aromatic/Aliphatic atom</li>
+        </ul>
+    </li>
+    <li>Periodic Table Groups</li>
+    <li>Special nodes</li>
+    <li>R-groups</li>
+    <li>Custom Property</li>
+</ul>
+
+<h2><a class="anchor" name="group">Create Group</a></h2>
+<img src="gui-files/dialogs/group.png" width="471" height="139">
+
+<h2><a class="anchor" name="template_library">Template Library</a></h2>
+<img src="gui-files/dialogs/template_library.png" width="485" height="390">
+
+<h2><a class="anchor" name="document_settings">Document Settings</a></h2>
+<img src="gui-files/dialogs/document_settings.png" width="231" height="355"><br>
+You can set the number of horizontal and vertical pages in the Document Grid part,
+and you can also define the title, the page size and the margins in the corresponding
+sections of this dialog window.
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+<Group>
+    <Precision Key="precision" Label="Decimal places"/>
+    <MultipleSelection Key="type" Label="Type">
+	<Choice Value="donor" Text="Donor" Selected="true"/>
+	<Choice Value="acceptor" Text="Acceptor" Selected="true"/>
+    </MultipleSelection>
+    <Boolean Key="mscalc" Label="Show microspecies data by pH" Value="true"/>
+</Group>
+<Group Title="Microspecies">
+    <Number Key="lower" Label="pH lower limit" Value="0" Range="[0.0, 14.0]" Type="real">
+	<Dependencies>
+	    <Item Key="mscalc" Range="true"/>
+	</Dependencies>
+    </Number>
+    <Number Key="upper" Label="pH upper limit" Value="14" Range="[0.0, 14.0]" Type="real">
+	<Dependencies>
+	    <Item Key="mscalc" Range="true"/>
+	</Dependencies>
+    </Number>
+    <Number Key="step" Label="pH step size" Value="0.5" Type="real">
+	<Dependencies>
+	    <Item Key="mscalc" Range="true"/>
+	</Dependencies>
+    </Number>
+</Group>
+<Group>
+    <Boolean Key="microspecies" Label="Display major microspecies" Value="false"/>
+    <Number Key="pH" Label="at pH" Range="[0.0,14.0]" Value="7.4">
+	<Dependencies>
+	    <Item Key="microspecies" Range="true"/>
+	</Dependencies>
+    </Number>
+</Group>
+</ParameterPanel>

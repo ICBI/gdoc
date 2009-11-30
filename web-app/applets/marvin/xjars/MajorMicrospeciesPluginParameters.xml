@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <Number Key="pH" Label="at pH" Range="[0.0,14.0]" Value="7.4"/>
+    <Boolean Key="majortautomer" Label="Take major tautomeric form" Value="false"/>
+</ParameterPanel>

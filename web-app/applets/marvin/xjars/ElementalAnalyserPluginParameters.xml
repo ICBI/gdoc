@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <MultipleSelection Key="type" Label="Type">
+	<Choice Value="mass" Text="Mass" Selected="true"/>
+	<Choice Value="exactmass" Text="Exact mass" Selected="true"/>
+	<Choice Value="formula" Text="Formula" Selected="true"/>
+	<Choice Value="isotopeformula" Text="Isotope formula" Selected="true"/>
+    <Choice Value="dotdisconnectedformula" Text="Dot-disconnected formula" Selected="true"/>
+    <Choice Value="dotdisconnectedisotopeformula" Text="Dot-disconnected isotope formula" Selected="true"/>
+	<Choice Value="composition" Text="Composition" Selected="true"/>
+	<Choice Value="isotopecomposition" Text="Isotope composition" Selected="true"/>
+	<Choice Value="atomcount" Text="Atom count" Selected="true"/>
+    </MultipleSelection>
+    <Boolean Key="symbolD" Label="Use D / T symbols for Deuterium / Tritium" Value="true"/>
+    <Boolean Key="single" Label="Single fragment mode" Value="false"/>
+</ParameterPanel>

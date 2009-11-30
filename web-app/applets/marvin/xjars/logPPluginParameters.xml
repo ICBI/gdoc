@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <Group Title="Method">
+	    <RadioButtonGroup Key="method">
+			<Choice Value="vg" Text="VG"/>
+			<Choice Value="klop" Text="KLOP"/>
+			<Choice Value="phys" Text="PHYS"/>
+			<Choice Value="user" Text="User defined"/>
+			<Choice Value="weighted" Text="Weighted" Selected="true"/>
+	    </RadioButtonGroup>
+    </Group>
+    <Group Title="Method weights">
+    	<Number Key="wvg" Label="VG" Range="[0.0,1000]" Value="1">
+		<Dependencies>
+	    		<Item Key="method" Range="weighted"/>
+			</Dependencies>
+        </Number>
+        <Number Key="wklop" Label="KLOP" Range="[0.0,1000]" Value="1">
+			<Dependencies>
+	    		<Item Key="method" Range="weighted"/>
+			</Dependencies>
+        </Number>
+        <Number Key="wphys" Label="PHYS" Range="[0.0,1000]" Value="1">
+			<Dependencies>
+	    		<Item Key="method" Range="weighted"/>
+			</Dependencies>
+        </Number>
+        <Number Key="wuser" Label="User defined" Range="[0.0,1000]" Value="0">
+			<Dependencies>
+	    		<Item Key="method" Range="weighted"/>
+			</Dependencies>
+        </Number>
+    </Group>
+    <Precision Key="precision" Label="Decimal places"/>
+    <Number Key="anion" Label="&lt;html&gt;Cl&lt;sup&gt;-&lt;/sup&gt; concentration (mol/dm&lt;sup&gt;3&lt;/sup&gt;)&lt;/html&gt;" Range="[0.0,0.25]" Value="0.1"/>
+    <Number Key="kation" Label="&lt;html&gt;Na&lt;sup&gt;+&lt;/sup&gt; K&lt;sup&gt;+&lt;/sup&gt; concentration (mol/dm&lt;sup&gt;3&lt;/sup&gt;)&lt;/html&gt;" Range="[0.0,0.25]" Value="0.1"/>
+    <MultipleSelection Key="type" Label="Type">
+		<Choice Value="increments" Text="Increments" Selected="true"/>
+		<Choice Value="logP" Text="logP" Selected="true"/>
+    </MultipleSelection>
+    <Boolean Key="inch" Label="Increments of hydrogens" Value="true">
+	<Dependencies>
+	    <Item Key="type" Range="increments"/>
+	</Dependencies>
+    </Boolean>
+    <Boolean Key="majortautomer" Label="Take major tautomeric form" Value="false"/>
+    <Boolean Key="mspace" Label="Display in MarvinSpace" Value="true"/>
+</ParameterPanel>

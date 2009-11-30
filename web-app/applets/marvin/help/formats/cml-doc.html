@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta NAME="description" CONTENT="CML format in Marvin">
+<meta NAME="keywords" CONTENT="CML, Java, Marvin">
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../marvinmanuals.css" TITLE="Style">
+<title>CML format in Marvin</title>
+</head>
+<body>
+
+<h1>CML</h1>
+<p>
+Codename: <strong>cml</strong>
+</p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#cml">CML format</a></li>
+<li><a href="#export">Export options</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<p>
+<h2><a class="anchor" name="cml">CML format</a></h2>
+Marvin is capable of importing and exporting files in the Chemical Markup
+Language. Special atom types are lost during export.
+<p>
+<em>Import.</em> The following CML2 standard tags are recognized:
+<ul>
+<li><b>&lt;cml&gt;</b><br>
+    Children:
+    <ul>
+    <li><a href="#molecule"><b>&lt;molecule&gt;</b></a></li>
+    <li><a href="#reaction"><b>&lt;reaction&gt;</b></a></li>
+    </ul>
+    </li>
+<li><a class="text" name="molecule"><b>&lt;molecule&gt;</b></a><br>
+    Attributes:
+    <ul>
+    <li><i>title</i></li>
+    </ul>
+    Children:
+    <ul>
+    <li><a class="text" NAME="propertyList"><b>&lt;propertyList&gt;</b></a>
+	<ul>
+	<li><a class="text" NAME="property"><b>&lt;property</b></a>
+	    dictRef=&quot;<i>name</i>&quot; title=&quot;<i>name</i>&quot;<b>&gt;</b>
+	    - A property.<br>
+	    <ul>
+	    <li><b>&lt;scalar</b> [dataType=&quot;<i>dataType</i>&quot;]<b>&gt;</b>
+		<i>value</i><b>&lt;/scalar&gt;</b> -
+		Supported data types: &quot;string&quot; (default),
+		&quot;boolean&quot;, &quot;integer&quot;, &quot;double&quot;,
+		&quot;ENTITY&quot; (for special property classes).
+		</li>
+	    <li><b>&lt;array</b> dataType=&quot;<i>dataType</i>&quot;
+		[delimiter=&quot;<i>delimiter</i>&quot;]<b>&gt;</b><i>list of
+		values</i><b>&lt;/array&gt;</b> -
+		Currently, only the &quot;integer&quot; data type is supported.
+		The default delimiter is the space character.
+		</li>
+	    </ul>
+	    </li>
+	</ul>
+	</li>
+    <li><a HREF="#property"><b>&lt;property&gt;</b></a></li>
+    <li><b>&lt;atomArray&gt;</b><br>
+	Attributes:
+	<ul>
+	<li><i>atomID</i>, <i>elementType</i>,
+	    <i>x2</i>, <i>y2</i>,
+	    <i>x3</i>, <i>y3</i>, <i>z3</i>,
+	    <i>formalCharge</i>, <i>hydrogenCount</i>, <i>isotope</i></li>
+	</ul>
+	Children:
+	<ul>
+	<li><b>&lt;atom&gt;</b><br>
+	    Attributes:
+	    <ul>
+	    <li><i>id</i>, <i>elementType</i>,
+		<i>x2</i>, <i>y2</i>,
+		<i>x3</i>, <i>y3</i>, <i>z3</i>,
+		<i>formalCharge</i>, <i>hydrogenCount</i>, <i>isotope</i></li>
+	    </ul>
+	</ul>
+	</li>
+    <li><b>&lt;bondArray&gt;</b><br>
+        Attributes:
+	<ul>
+	<li><i>atomRefs1</i>, <i>atomRefs2</i>,
+	    <i>order</i>
+	</ul>
+	Children:
+	<ul>
+	<li><b>&lt;bond</b> atomRefs2=&quot;<i>a1</i> <i>a2</i>&quot; order=&quot;<i>order</i>&quot; <b>&gt;</b><br>
+	    The atom references <i>a1</i> and <i>a2</i> must be valid atom ids.
+	    The <i>order</i> value can be &quot;1&quot;, &quot;S&quot;
+	    (single), &quot;2&quot;, &quot;D&quot; (double), &quot;3&quot;,
+	    &quot;T&quot; (triple) or &quot;A&quot; (aromatic).<br>
+	    Children:
+	    <ul>
+	    <li><b>&lt;bondStereo</b>&gt;<i>value</i><b>&lt;/bondStereo&gt;</b><br>
+		- Value can be &quot;W&quot; (wedge - up),
+		&quot;H&quot; (hatch - down),
+		&quot;C&quot; (cis) or &quot;T&quot; (trans)</li>
+	    <li><b>&lt;bondStereo</b> convention=&quot;<i>convention</i>&quot; conventionValue=&quot;<i>value</i>&quot; <b>/&gt;</b><br>
+		<table BORDER=0 cellspacing="0" cellpadding="5" id="grid">
+		<tr><th>convention</th><th>conventionValue</th><th>meaning</th></tr>
+		<tr><td>MDL</td><td>1</td><td>up</td></tr>
+		<tr><td>MDL</td><td>6</td><td>down</td></tr>
+		<tr><td>MDL</td><td>4</td><td>either</td></tr>
+		<tr><td>MDL</td><td>3</td><td>cis or trans</td></tr>
+		<tr><td>ChemAxon</td><td>CTUnspec</td><td>cis/trans or unspecified</td></tr>
+		</table>
+	    </ul>
+	    A &lt;bond&gt; tag is recognized at import even if the bondArray
+	    container is not present.<br>
+	    </li>
+	</ul>
+	</li>
+    </ul>
+    </li>
+<li><a class="text" name="reaction"><b>&lt;reaction&gt;</b></a><br>
+    Attributes:
+    <ul>
+    <li><i>title</i></li>
+    </ul>
+
+    Children:
+    <ul>
+    <li><b>&lt;reactantList&gt;</b>
+	<ul>
+	<li><b>&lt;molecule&gt;</b>
+	</ul>
+	</li>
+    <li><b>&lt;productList&gt;</b>
+	<ul>
+	<li><b>&lt;molecule&gt;</b>
+	</ul>
+	</li>
+    <li><a HREF="#propertyList"><b>&lt;propertyList&gt;</b></a>
+	- Reaction properties
+	</li>
+    </ul>
+    </li>
+</ul>
+
+<h2><a class="anchor" name="export">Export options</a></h2>
+
+The argument of MolConverter and the <code>getMol</code>/<code>getM</code> functions
+(of the applets and beans) is the format string. The format specification
+(&quot;cml&quot;) and the option(s) are separated by a colon in the format
+string. CML export currently only has one special option which affects the
+compactness of the storage.
+<p>
+<table CELLSPACING=0 CELLPADDING=0>
+<tr VALIGN=TOP>
+    <td NOWRAP>cml:...</td>
+    <td><a HREF="basic-export-opts.html">Basic options for aromatization
+	and H atom adding/removal.</a></td></tr>
+<tr VALIGN=TOP>
+    <td NOWRAP>cml:A
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td>Atom attributes are stored in arrays.
+	For 2D molecules, only the x, y coordinates are stored.
+	This is a more compact form of storage than the default (using
+	<code>&lt;atom&gt;</code> tags).
+	</td></tr>
+</table>
+<p>
+Example CML file exported without options:
+<blockquote>
+<pre>
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;cml&gt;
+&lt;molecule title="Ethane" id="m1"&gt;
+  &lt;atomArray&gt;
+    &lt;atom id="a1" elementType="C"
+          x2="0.0" y2="0.0" /&gt;
+    &lt;atom id="a2" elementType="C"
+          x2="0.0" y2="1.54" /&gt;
+  &lt;/atomArray&gt;
+  &lt;bondArray&gt;
+    &lt;bond atomRefs2="a1 a2" order="1" /&gt;
+  &lt;/bondArray&gt;
+&lt;/molecule&gt;
+&lt;/cml&gt;
+</pre>
+</blockquote>
+<p>
+<h4><a class="anchor" name="others">CML in other programs:</a></h4>
+<ul>
+<li><em>JChemPaint</em> (last version tested: 1.9.8) and Marvin imports each
+    other's CML files.
+    </li>
+<li><em>Jmol</em> 8 imports CML files exported by Marvin that contain 3D
+    structures.
+    Jmol is a 3D viewer that does not import bonds but calculates them from
+    atomic distances. This means that bonds are not imported correctly if
+    the molecule is 2D.</li>
+</ul>
+<p>
+
+<p>
+<h2><a class="anchor" name="references">References</a></h2>
+<ul>
+<li><a HREF="http://cml.sourceforge.net" TARGET="_top">cml.sourceforge.net &mdash; OpenSource Site for CML</a></li>
+<li><a HREF="http://cml.sourceforge.net/schema/">cml.sourceforge.net/schema/ &mdash; Schemas and documentation</a></li>
+</ul>
+
+</body>
+</html>

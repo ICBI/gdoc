@@ -33,6 +33,10 @@ jQuery(document).ready(function()
 					</ul>
 				</li>
 				<li>
+					<a class="sf-with-ul" href="${createLink(controller: 'crossStudy')}">Across Studies</a>
+				</li>
+				<li>
+				<li>
 					<a href="#">Patients</a>
 				</li>	
 				<li>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+<Group Title="Generate">
+    <RadioButtonGroup Key="stereoisomerism">
+	<Choice Value="tetrahedral" Text="tetrahedral stereo isomers" Selected="true"/>
+	<Choice Value="doublebond" Text="double bond stereo isomers"/>
+	<Choice Value="both" Text="both"/>
+    </RadioButtonGroup>
+</Group>
+
+    <Boolean Key="generateall" Label="Generate all stereoisomers" Value="false"/>
+    <Number Key="maxstereoisomers" Label="Generate maximum" Range="[1,1000000000]" Value="1000">
+	<Dependencies>
+	    <Item Key="generateall" Range="false"/>
+	</Dependencies>
+    </Number>
+    
+    <Boolean Key="protecttetrahedralstereo" Label="Protect tetrahedral stereo centers" Value="false"/>
+    <Boolean Key="protectdoublebondstereo" Label="Protect double bond stereo" Value="false"/>
+
+    <Boolean Key="verify3d" Label="Filter invalid 3D structures" Value="false"/>
+    <Boolean Key="in3d" Label="Display in 3D" Value="false">
+	<Dependencies>
+	    <Item Key="verify3d" Range="true"/>
+	</Dependencies>
+	</Boolean>
+
+</ParameterPanel>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <Number Key="max" Label="Max. number of structures" Range="[1,]" Value="1000" Type="int">
+	<Dependencies>
+	    <Item Key="canonical" Range="false"/>
+	</Dependencies>
+    </Number>
+    <Boolean Key="canonical" Label="Take canonical form" Value="false">
+    <Dependencies>
+	    <Item Key="mcontrib" Range="false"/>
+	</Dependencies>
+    </Boolean>
+    <Boolean Key="mcontrib" Label="Take major contributors" Value="true">
+	<Dependencies>
+	    <Item Key="canonical" Range="false"/>
+	</Dependencies>
+    </Boolean>
+    <Boolean Key="single" Label="Single fragment mode" Value="true"/>
+</ParameterPanel>

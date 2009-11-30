@@ -46,7 +46,8 @@
 				var span = $(this).find('label').find('span');
 				if(span.html() == 'clinicalM' || 
 					span.html() == 'patientM' ||
-						span.html() == 'ReportersM'){
+						span.html() == 'ReportersM' ||
+						span.html() == 'geneM'){
 					var newStr = $(this).find('label').find('span').html();
 			        var tag = newStr.substring(0, newStr.length-1);
 					$(this).find('label').find('abbr').remove();

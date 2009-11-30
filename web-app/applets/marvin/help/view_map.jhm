@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+  <!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN" "http://java.sun.com/products/javahelp/map_1_0.dtd">
+  <map version="1.0">
+    <mapID target="View" url="view/view-index.html"/>
+    <mapID target="View.Install" url="applications/install.html"/>
+    <mapID target="View.Launch" url="applications/mview.html"/>
+    <mapID target="View.License" url="licensedoc/index.html"/>
+    <mapID target="View.Quick" url="view/view.html"/>
+    <mapID target="View.Formats" url="formats/formats.html"/>
+    <mapID target="View.DataTransfer" url="datatransfer.html"/>
+    <mapID target="View.Gui" url="view/view-gui.html"/>
+        <mapID target="View.Gui.Intro" url="view/view-gui.html#introduction"/>
+        <mapID target="View.Gui.Canvas" url="view/view-gui.html#canvas"/>
+        <mapID target="View.Gui.Manubar" url="view/view-gui.html#mneubar"/>
+        <mapID target="View.Gui.Popup" url="view/view-gui.html#popup-menu"/>
+        <mapID target="Gui.Dialogs.Preferences" url="view/gui/dialogs.html#preferences"/>
+
+    <mapID target="View.Basic" url="view/view-basic.html"/>
+	  <mapID target="View.Basic.Load" url="view/view-basic.html#loading"/>
+          <mapID target="View.Basic.Save" url="view/view-basic.html#save"/>
+          <mapID target="View.Basic.Print" url="view/view-basic.html#print"/>
+          <mapID target="View.Basic.Edit" url="view/view-basic.html#edit"/>
+          <mapID target="View.Basic.DisplayOptions" url="view/view-basic.html#display-structure"/>
+          <mapID target="View.Basic.Work" url="view/view-basic.html#howto-manipulate"/>
+
+    <mapID target="Plugins" url="calculations/calculator-plugins.html"/>
+        <mapID target="Plugins.elemanal" url="calculations/elemanal.html"/>
+        <mapID target="Plugins.iupacnaming" url="calculations/iupacnaming.html"/>
+        <mapID target="Plugins.protonation" url="calculations/protonation.html"/>
+            <mapID target="Plugins.protonation.pka" url="calculations/protonation.html#pka"/>
+            <mapID target="Plugins.protonation.ms" url="calculations/protonation.html#ms"/>
+            <mapID target="Plugins.protonation.isopoint" url="calculations/protonation.html#isopoint"/>
+
+        <mapID target="Plugins.partitioning" url="calculations/partitioning.html"/>
+            <mapID target="Plugins.partitioning.logp" url="calculations/partitioning.html#logp"/>
+            <mapID target="Plugins.partitioning.logd" url="calculations/partitioning.html#logd"/>
+
+        <mapID target="Plugins.chargegroup" url="calculations/chargegroup.html"/>
+            <mapID target="Plugins.chargegroup.charge" url="calculations/chargegroup.html#charge"/>
+            <mapID target="Plugins.chargegroup.polarizability" url="calculations/chargegroup.html#polarizability"/>
+            <mapID target="Plugins.chargegroup.oen" url="calculations/chargegroup.html#oen"/>
+
+        <mapID target="Plugins.isomers" url="calculations/isomers.html"/>
+            <mapID target="Plugins.isomers.tautomer" url="calculations/isomers.html#tautomer"/>
+            <mapID target="Plugins.isomers.resonance" url="calculations/isomers.html#resonance"/>
+            <mapID target="Plugins.isomers.stereoisomer" url="calculations/isomers.html#stereoisomer"/>
+
+        <mapID target="Plugins.conformation" url="calculations/conformation.html"/>
+            <mapID target="Plugins.conformation.conformer" url="calculations/conformation.html#conformer"/>
+            <mapID target="Plugins.conformation.moldyn" url="calculations/conformation.html#moldyn"/>
+
+        <mapID target="Plugins.geometrygroup" url="calculations/geometrygroup.html"/>
+            <mapID target="Plugins.geometrygroup.topolanal" url="calculations/geometrygroup.html#topolanal"/>
+            <mapID target="Plugins.geometrygroup.geometry" url="calculations/geometrygroup.html#geometry"/>
+            <mapID target="Plugins.geometrygroup.TPSA" url="calculations/geometrygroup.html#TPSA"/>
+            <mapID target="Plugins.geometrygroup." url="calculations/geometrygroup.html#MSA"/>
+
+        <mapID target="Plugins.other" url="calculations/other.html"/>
+            <mapID target="Plugins.other.HBDA" url="calculations/other.html#HBDA"/>
+            <mapID target="Plugins.other.huckel" url="calculations/other.html#huckel"/>
+            <mapID target="Plugins.other.refractivity" url="calculations/other.html#refractivity"/>
+
+        <mapID target="Plugins.markushenum" url="calculations/markush.html"/>
+        <mapID target="Plugins.validations" url="calculations/Validations.html"/>
+        <mapID target="Plugins.references" url="calculations/references.html"/>
+
+    <mapID target="Acknowledgements" url="acknowledgements.html"/>
+
+  </map>

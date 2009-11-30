@@ -12,8 +12,10 @@ import java.net.URLEncoder
 
 class MiddlewareService {
 	
-	def sparqlQuery() {
+	
+	def sparqlQuery(selectClause) {
 		def url = "${CH.config.middlewareUrl}/sparql/?query="
+		println url
 		def data
 		try {
 			def client = new HttpClient()
@@ -30,8 +32,7 @@ class MiddlewareService {
 			"PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>" +
 			"PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
 			"PREFIX owl:<http://www.w3.org/2002/07/owl#>" +
-			"SELECT ?id ?type ?value  WHERE { ?patient rdf:type gdoc:GDOCSubject . ?patient gdoc:Has_Clinical_Attribute ?attribute . ?attribute gdoc:Clinical_Value ?value . ?attribute rdf:type ?type . ?patient gdoc:GDOC_ID ?id ." +
-			" FILTER ( ?type = nci:AGE && ?value > \"70\" && ?value < \"80\" ) }"
+			selectClause
 			def get = new GetMethod(url + URLEncoder.encode(queryString, "UTF-8"))
 			def status = client.executeMethod(get)
 			println status
@@ -76,8 +77,9 @@ class MiddlewareService {
 		     	new UsernamePasswordCredentials(user.loginName, user.password)
 			state.setCredentials( null, null, credentials )
 			def get = new GetMethod(url)
+			println "URL is: $url"
 			def status = client.executeMethod(get)
-			println status
+			println "Status is: $status"
 		
 			if (status != HttpStatus.SC_OK) {
 				return "Method failed: " + get.getStatusLine()
@@ -87,6 +89,7 @@ class MiddlewareService {
 				data = JSON.parse(get.getResponseBodyAsString().toString())
 			get.releaseConnection()
 		} catch(Exception e) {
+			println e
 			data = "Cannot connect to server, please try again."
 		}
 		return data

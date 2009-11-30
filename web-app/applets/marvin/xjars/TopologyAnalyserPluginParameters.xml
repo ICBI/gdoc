@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+<Tab Title="Simple">
+    <MultipleSelection Key="type1" Label="Type" Verify="false">
+	<Choice Value="atomCount" Text="Atom count" Selected="true"/>
+	<Choice Value="bondCount" Text="Bond count" Selected="true"/>
+	<Choice Value="fragmentCount" Text="Fragment count" Selected="true"/>
+	<Choice Value="cyclomaticNumber" Text="Cyclomatic number" Selected="true"/>
+    </MultipleSelection>
+</Tab>
+<Tab Title="Ring">
+    <MultipleSelection Key="type2" Label="Type" Verify="false">
+	<Choice Value="ringCount" Text="Ring count" Selected="true"/>
+	<Choice Value="chainAtomCount" Text="Chain atom count" Selected="true"/>
+	<Choice Value="chainBondCount" Text="Chain bond count" Selected="true"/>
+	<Choice Value="ringAtomCount" Text="Ring atom count" Selected="true"/>
+	<Choice Value="ringBondCount" Text="Ring bond count" Selected="true"/>
+	<Choice Value="aliphaticRingCount" Text="Aliphatic ring count" Selected="true"/>
+	<Choice Value="aromaticRingCount" Text="Aromatic ring count" Selected="true"/>
+	<Choice Value="aliphaticAtomCount" Text="Aliphatic atom count" Selected="true"/>
+	<Choice Value="aliphaticBondCount" Text="Aliphatic bond count" Selected="true"/>
+	<Choice Value="aromaticAtomCount" Text="Aromatic atom count" Selected="true"/>
+	<Choice Value="aromaticBondCount" Text="Aromatic bond count" Selected="true"/>
+	<Choice Value="carboRingCount" Text="Carbo ring count" Selected="true"/>
+	<Choice Value="carboaromaticRingCount" Text="Carboaromatic ring count" Selected="true"/>
+	<Choice Value="fusedAliphaticRingCount" Text="Fused aliphatic ring count" Selected="true"/>
+	<Choice Value="fusedAromaticRingCount" Text="Fused aromatic ring count" Selected="true"/>
+	<Choice Value="fusedRingCount" Text="Fused ring count" Selected="true"/>
+	<Choice Value="heteroaromaticRingCount" Text="Heteroaromatic ring count" Selected="true"/>
+	<Choice Value="heteroRingCount" Text="Hetero ring count" Selected="true"/>
+	<Choice Value="smallestRingSize" Text="Smallest ring size" Selected="true"/>
+	<Choice Value="largestRingSize" Text="Largest ring size" Selected="true"/>
+	<Choice Value="ringSystemCount" Text="Ring system count" Selected="true"/>
+	<Choice Value="smallestRingSystemSize" Text="Smallest ring system size" Selected="true"/>
+	<Choice Value="largestRingSystemSize" Text="Largest ring system size" Selected="true"/>
+    </MultipleSelection>
+</Tab>
+<!--
+<Tab Title="Walk based">
+</Tab>
+-->
+<Tab Title="Path based">
+    <MultipleSelection Key="type3" Label="Type" Verify="false">
+	<Choice Value="plattIndex" Text="Platt index" Selected="true"/>
+	<Choice Value="randicIndex" Text="Randic index" Selected="true"/>
+    </MultipleSelection>
+</Tab>
+<Tab Title="Distance based">
+    <MultipleSelection Key="type4" Label="Type" Verify="false">
+	<Choice Value="balabanIndex" Text="Balaban index" Selected="true"/>
+	<Choice Value="distanceDegree" Text="Distance degree" Selected="true"/>
+	<Choice Value="eccentricity" Text="Eccentricity" Selected="true"/>
+	<Choice Value="hararyIndex" Text="Harary index" Selected="true"/>
+	<Choice Value="hyperWienerIndex" Text="Hyper Wiener index" Selected="true"/>
+	<Choice Value="szegedIndex" Text="Szeged index" Selected="true"/>
+	<Choice Value="wienerIndex" Text="Wiener index" Selected="true"/>
+	<Choice Value="wienerPolarity" Text="Wiener polarity" Selected="true"/>
+    </MultipleSelection>
+</Tab>
+<!--
+<Tab Title="Hybride">
+</Tab>
+-->
+<Tab Title="Other">
+    <MultipleSelection Key="type5" Label="Type" Verify="false">
+	<Choice Value="asymmetricAtomCount" Text="Asymmetric atom count" Selected="true"/>
+	<Choice Value="chiralCenterCount" Text="Chiral center count" Selected="true"/>
+	<Choice Value="stereoDoubleBondCount" Text="Stereo double bond count" Selected="true"/>
+	<Choice Value="rotatableBondCount" Text="Rotatable bond count" Selected="true"/>
+	<Choice Value="stericEffectIndex" Text="Steric effect index" Selected="true"/>
+    </MultipleSelection>
+</Tab>
+    <Precision Key="precision" Label="Decimal places"/>
+    <Boolean Key="single" Label="Single fragment mode" Value="false"/>
+</ParameterPanel>

@@ -232,6 +232,25 @@ p
 	padding: 5px;
 }
 	
+.viewerTable {
+	border: 1px solid #DDDDDD;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 15px;
+}
+.viewerTable td {
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+	
+}
+.viewerTable th {
+	font-weight: bold;
+	background: #E7EEF3;
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+}
+
+	
 .actionButton
 	{
 		padding: 3px 10px;

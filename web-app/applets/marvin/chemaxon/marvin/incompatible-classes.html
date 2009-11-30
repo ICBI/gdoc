@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>Marvin loaded an incompatible class</title>
+<link REL ="stylesheet" TYPE="text/css" HREF="../../marvinmanuals.css" TITLE="Style">
+</head>
+<body>
+<font COLOR="red">
+<blink>Error:</blink> Marvin loaded an incompatible class file
+</font>
+
+<p>This error might occur if the Marvin class library interferes with the
+applet's classes.<br>
+Please remove <tt>MarvinBeans.jar</tt> and <tt>jchem.jar</tt>
+from your <tt>CLASSPATH</tt>!
+
+<p>An additional class library like Marvin should only be specified in a
+<i>local</i> <tt>CLASSPATH</tt> inside a script or makefile, but not in the
+<i>global</i> one that is also seen by your web browser.
+
+</body>
+</html>

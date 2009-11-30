@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <Precision Key="precision" Label="Decimal places"/>
+    <MultipleSelection Key="type" Label="Type">
+	<Choice Value="molecular" Text="Molecular" Selected="true"/>
+	<Choice Value="atomic" Text="Atomic" Selected="true"/>
+	<Dependencies>
+	    <Item Key="geom3D" Range="false"/>
+	</Dependencies>
+    </MultipleSelection>
+    <Boolean Key="geom3D" Label="Take 3D geometry (Thole)" Value="false"/>
+    <Boolean Key="microspecies" Label="Take major microspecies" Value="false"/>
+    <Number Key="pH" Label="at pH" Range="[0.0,14.0]" Value="7.4">
+	<Dependencies>
+	    <Item Key="microspecies" Range="true"/>
+	</Dependencies>
+    </Number>
+    <Boolean Key="mspace" Label="Display in MarvinSpace" Value="true"/>
+</ParameterPanel>

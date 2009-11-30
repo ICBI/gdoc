@@ -1,0 +1,13 @@
+
+
+BODY { background-color : #ffffff; color: black; font-size: medium; font-family: 'Times', serif;}
+H1 {color: maroon; font-size: x-large; font-family: 'Times', serif;}
+.title {color: maroon; font-size: x-large; font-weight: bold; text-decoration: underline; text-align: center;}
+H2 {color: maroon; font-size: large; font-weight: bold}
+H3 {font-size: medium; }
+H4 {font-size: medium; font-style: oblique}
+
+
+B.buttonName {color: #333399; font-weight: bold; font-size: medium; font-family: 'Times New Roman', Times, serif}
+
+.code{color: black; font-size: medium; font-family: 'courier new', courier, monospace}

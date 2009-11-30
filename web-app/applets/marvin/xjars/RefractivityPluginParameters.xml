@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+    <Precision Key="precision" Label="Decimal places"/>
+    <MultipleSelection Key="type" Label="Type">
+	<Choice Value="increments" Text="Increments" Selected="true"/>
+	<Choice Value="refractivity" Text="Refractivity" Selected="true"/>
+    </MultipleSelection>
+    <Boolean Key="inch" Label="Increments of hydrogens" Value="true">
+	<Dependencies>
+	    <Item Key="type" Range="increments"/>
+	</Dependencies>
+    </Boolean>
+    <Boolean Key="mspace" Label="Display in MarvinSpace" Value="true"/>
+</ParameterPanel>

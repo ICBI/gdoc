@@ -1,0 +1,1036 @@
+<html>
+<head>
+<meta NAME="description" CONTENT="MarvinSketch: parameters and events">
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../marvinmanuals.css" TITLE="Style">
+<title>MarvinSketch: parameters and events</title>
+</head>
+<body>
+
+<h1>MarvinSketch: parameters and events</h1>
+<h3 align=center>Version @MARVINVERSION@</h3>
+
+<h2>Contents</h2>
+
+<ol>
+
+<li><a HREF="#parameters">Parameters</a>
+ 	<ol>
+    <li><a HREF="#appletandbeans">Applet and JavaBeans parameters</a></li>
+	<ol>
+	<li><a HREF="#displayparameters">Display parameters</a></li>
+	<li><a HREF="#structuredisplayparameters">Structure display parameters</a></li>
+	<li><a HREF="#structureparameters">Structure parameters</a></li>
+	<li><a HREF="#otherparameters">Other parameters</a></li>
+	</ol>    
+<!--APPLETONLY_BEGIN-->
+    <li><a HREF="#appletonly">Applet only parameters</a></li>
+<!--APPLETONLY_END-->
+	</ol>
+</li>
+<!--BEANSONLY_BEGIN-->
+<li><a HREF="#events">Events fired by the JavaBean</a>
+    <ol>
+    <li><a HREF="#actions">Action events</a></li>
+    <li><a HREF="#propchanges">Property change events</a></li>
+    </ol>
+    </li>
+<!--BEANSONLY_END-->
+</ol>
+
+<center><div class="lenia">&nbsp;</div></center>
+<h2><a class="anchor" name="parameters">1 &nbsp; Parameters</a></h2>
+<h3><a class="anchor" name="appletandbeans">1.1 &nbsp; Applet and JavaBeans parameters</a></h3>
+Parameters of the <em>MSketch</em> and <em>JMSketch</em> applets can be set using
+the <code>&lt;param&gt;</code> HTML tag.
+<!--BEANSONLY_BEGIN-->
+Parameters of the <em>MSketchPane</em>
+JavaBean can be set using the
+<a HREF="beans/api/chemaxon/marvin/beans/MarvinPane.html#setParams(java.lang.String)"><code>setParams</code></a> method.<br>
+For parameter constants please visit the
+<a HREF="beans/api/chemaxon/marvin/common/ParameterConstants.html"><code>ParameterConstants</code></a> and
+<a HREF="beans/api/chemaxon/marvin/sketch/SketchParameterConstants.html#setParams(java.lang.String)"><code>SketchParameterConstants</code></a> API.
+<!--BEANSONLY_END-->
+<p>
+<h4><a class="anchor" name="displayparameters">1.1.1 &nbsp; Display parameters</a></h4>
+
+<blockquote>
+<table BORDER=0 cellpadding="4" cellspacing="0" class="colored-grid" width="800">
+<tr align="CENTER"><th width="20%">Parameter</th><th>Meaning</th><th width="10%">Default</th></tr>
+
+<tr valign="TOP"><td><a class="text" name="parameters.addRemoveHatomsEnabled"><code>addRemoveHatomsEnabled</code></a></td>
+    <td><b>Add/Remove Explicit Hydrogens</b> is enabled or disabled
+    in the <b>Structure</b> menu. It will be disabled if this parameter is
+    false.</td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.atomStrings"><code>atomStrings</code></a></td>
+    <td>Comma-separated list of string type
+	atom properties to be enabled.
+	<ul>
+	<li><code>alias</code> - atom aliases</li>
+	<li><code>pseudo</code> - pseudoatoms</li>
+	<li><code>smarts</code> - SMARTS query atom string</li>
+        <li><code>value</code> - atom values</li>
+        </ul>
+	Example: <code>&quot;smarts&quot;</code>.
+	</td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.autoscale"><code>autoscale</code></a></td>
+    <td>How to display a loaded molecule:
+	<ul>
+	<li><code>&quot;true&quot;</code> - fit to the applet's window</li>
+	<li><code>&quot;false&quot;</code> - use default scaling</li>
+	</ul>
+	</td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.background"><code><strike>background</strike></code></a></td>
+    <td>Deprecated.</td>
+    <td>&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.bondDraggedAlong"><code>bondDraggedAlong</code></a></td>
+    <td>Bond in hand is visible
+	(<code>true</code>) or not (<code>false</code>).
+	This option can also be set on the
+	<strong>Edit</strong>/<strong>Preferences</strong>/<strong>MarvinSketch</strong> panel.
+	</td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr VALIGN=TOP><td><a class="text" name="parameters.customizationEnabled"><code>customizationEnabled</code></a></td>
+    <td>Specifies whether an end-user can customize the user interface.
+    Setting this parameter to <code>false</code> disables the View/Customize dialog
+    and the View/Configurations menu.
+    </td>
+    <td ALIGN=CENTER><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.dispQuality"><code>dispQuality</code></a></td>
+    <td>Display quality.
+	<ul>
+	<li><code>0</code> - low quality, faster rendering</li>
+	<li><code>1</code> - high quality (antialiasing), slower rendering</li>
+	</ul>
+	</td>
+    <td align="CENTER"><code>1</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.elements"><code>elements</code></a></td>
+    <td>Comma-separated list of allowed
+	elements (<code>H</code>, <code>He</code>, <code>Li</code>, ...).
+	All elements in an atomic number interval can be
+	specified with the short <code>X-Y</code> notation.<br>
+	Example: <code>&quot;B-F,P-Cl&quot;</code>.
+	Here <code>B-F</code> is equivalent to <code>B,C,N,O,F</code>.<br>
+	</td>
+    <td align="CENTER"><code>H-Ha</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.extraBonds"><code>extraBonds</code></a></td>
+    <td>Comma-separated list of extra bond
+	types.
+	<ul>
+	<li><code>arom</code> - Aromatic bond</li>
+	<li><code>any</code> - Any bond</li>
+	<li><code>1or2</code> - &quot;Single or Double&quot; query bond</li>
+	<li><code>aromany</code> - &quot;Single or Aromatic&quot; and
+		&quot;Double or Aromatic&quot; query bond types</li>
+	<li><code>topology</code> - &quot;Chain&quot; and &quot;Ring&quot; bonds
+	    (in molfiles)</li>
+	<li><code>wedge</code> - Up and Down stereo wedge bonds</li>
+	<li><code>either</code> - &quot;Up or Down&quot; and
+	    &quot;Cis or Trans&quot;</li>
+	<li><code>ctu</code> - &quot;Cis or Unspecified&quot; and
+	    &quot;Trans or Unspecified&quot;</li>
+        <li><code>coordinate</code> - Coordinate bond</li>
+        </ul>
+	Example: <code>&quot;arom,wedge&quot;</code>.<br>
+	See also: <a HREF="queryprops.html">Query properties in file formats.</a>
+	</td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.molbg"><code>molbg</code></a></td>
+    <td>Molecule background color in hexadecimal value.
+    Sets the background color of the molecule canvas.</td>
+    <td>#ffffff</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.moreEnabled"><code>moreEnabled</code></a></td>
+    <td>Enable/disable the Periodic System also called <strong>More</strong>
+	button.</td>
+    <td align="CENTER"><code>true</code></td></tr>
+    <tr valign="TOP"><td><a class="text" name="parameters.queryAtoms"><code>queryAtoms</code></a></td>
+    <td>Comma-separated list of query atoms
+	and properties.
+	<ul>
+	<li><code>any</code> - any atom
+	    (&quot;A&quot; in molfile, &quot;*&quot; in SMARTS),</li>
+	<li><code>arom</code> - aliphatic and aromatic, (&quot;a&quot; and &quot;A&quot; in SMARTS),</li>
+	<li><code>conn</code> - total number of connections, (&quot;X&quot; in SMARTS),</li>
+	<li><code>H</code> - total number of hydrogens, (&quot;H&quot; in SMARTS),</li>
+	<li><code>hetero</code> - heteroatom
+	    (&quot;Q&quot; in molfile, &quot;[!C!H]&quot; in SMARTS),</li>
+	<li><code>list</code> - atom list,</li>
+	<li><code>notlist</code> - atom 'NOT' list,</li>
+	<li><code>Rgroup</code> - Rgroups,</li>
+	<li><code>rings</code> - &quot;R&quot; in SMARTS,</li>
+	<li><code>srs</code> - smallest ring size, &quot;r&quot; in SMARTS,</li>
+	<li><code>val</code> - valence, &quot;v&quot; in SMARTS,</li>
+	</ul>
+	Example: <code>&quot;list,notlist&quot;</code>.<br>
+	See also: <a HREF="queryprops.html">Query properties in file formats.</a>
+	</td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.reactionSupport"><code>reactionSupport</code></a></td>
+    <td>Enables/disables reaction arrow drawing.
+	</td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.simpView"
+    ><a class="text" name="simpView"><code>simpView</code></a></a></td>
+    <td>Visibility of the currently used bond at the mouse cursor.</td>
+    <td>&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.sketchArrowHeadLength"
+    ><a class="text" name="sketchArrowHeadLength"><code>sketchArrowHeadLength</code></a></a></td>
+    <td>Length of the displayed arrow head in Angstroms. It only affects graphical arrows.</td>
+    <td><code>0.8</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.sketchArrowHeadWidth"
+    ><a class="text" name="sketchArrowHeadWidth"><code>sketchArrowHeadWidth</code></a></a></td>
+    <td>Width of the displayed arrow head in Angstroms. It only affects graphical arrows.</td>
+    <td><code>0.5</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.sketchArrowTailLength"
+    ><a class="text" name="sketchArrowTailLength"><code>sketchArrowTailLength</code></a></a></td>
+    <td>Length of the displayed arrow tail in Angstroms. It only affects graphical arrows.</td>
+    <td><code>0.8</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.sketchArrowTailWidth"
+    ><a class="text" name="sketchArrowTailWidth"><code>sketchArrowTailWidth</code></a></a></td>
+    <td>Width of the displayed arrow tail in Angstroms. It only affects graphical arrows.</td>
+    <td><code>0.5</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.statusBar"><code>statusBar</code></a></td>
+    <td>Enable the status bar.</td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.tmpls"><code>tmpls0</code></a><br><code>tmpls1</code><br><code>tmpls2</code><br>...
+	</td>
+    <td>The format of this parameter is
+	:<i>name</i>:<i>file</i>, where
+	<i>name</i> is the template set name, <i>file</i> is the
+	sdf or cssdf file containing the template structures.
+        <br>
+	The file can be optionally compressed with GZIP (Java &gt;= 1.1).
+	A template molecule is automatically converted to 2D if the
+	<i>mol2dcmd</i> field contains one of the following values:
+	<ul>
+	<li><code>z=0</code> - for trivial conversion,</li>
+	<li><code>clean</code> - for sophisticated 2D cleaning.</li>
+	</ul>
+	For automatic 3D conversion, the value of the <i>mol3dcmd</i> field
+	must be
+	<ul>
+	<li><code>clean</code> - for sophisticated 3D cleaning.</li>
+	</ul>
+	Template buttons may have a title if the <i>abbreviation</i> fields
+	are specified. A button is rotatable if the <i>rotation.unit</i> field
+	is specified (the unit rotation angle in degrees).
+
+	</td>
+    <td align="CENTER">
+	<a HREF="templates.html#default"><em>click here</em></a>
+	</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.ttmpls"><code>ttmpls0</code></a><br><code>ttmpls1</code><br><code>ttmpls2</code><br>...
+	</td>
+    <td>Templates to be displayed on the template toolbar.
+	Same as <a HREF="#parameters.tmpls">tmpls</a> but these template
+	groups will also appear on the template toolbar by default.</td>
+    <td align="CENTER">
+	<a HREF="templates.html#default"><em>click here</em></a>
+	</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.templateToolbarCustomizable"><code>templateToolbarCustomizable</code></a>
+	</td>
+    <td>Enables (true) or disables (false) to change the visible template groups
+        on the <a href="../sketch/gui/toolbars.html#templates">Advanced Templates Toolbar</a>.<br>
+        When enabled, a right mouse click on any template button offers a list, from which the
+        visibility of all template groups can be altered.</td>
+    <td align="CENTER">
+	true
+	</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.transferButtonIcon"><code>transferButtonIcon</code></a></td>
+    <td>Sets the location of a custom icon for the Transfer action.</td>
+    <td>&nbsp</td>
+</tr>
+<tr valign="TOP"><td><a class="text" name="parameters.transferButtonText"><code>transferButtonText</code></a></td>
+    <td>Sets custom text for the Transfer action.</td>
+    <td>&nbsp</td>
+</tr>
+<tr valign="TOP"><td><a class="text" name="parameters.transferButtonVisible"><code>transferButtonVisible</code></a></td>
+    <td>Makes the Transfer button visible on the General Toolbar.</td>
+    <td align="center"><code>false</code></td>
+</tr>
+<tr valign="TOP"><td><a class="text" name="parameters.viewonly"><code>viewonly</code></a></td>
+    <td>Visualization mode:
+	hide editing buttons;
+	<code>&quot;true&quot;</code> or <code>&quot;false&quot;</code>.
+	</td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.verticalbar"><code><strike>verticalbar</strike></code></a></td>
+    <td>Deprecated.</td>
+    <td align="CENTER"><code>&nbsp;</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.xtmpls"><code>xtmpls</code></a></td>
+    <td>File containing extra templates.
+	Extra templates are placed beside the normal templates and they appear on
+        the template toolbar by default.
+        (see <a HREF="#parameters.tmpls">tmpls</a>).
+	</td>
+    <td align="LEFT">&nbsp;</td>
+    </tr>
+<tr valign="TOP"><td><a class="text" name="parameters.2dviewerEnabled"><code>2dviewerEnabled</code></a></td>
+    <td>Enable (true) or disable(false) 2D viewer
+    </td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.3dviewerEnabled"><code>3dviewerEnabled</code></a></td>
+    <td>Enable (true) or disable(false) 3D viewer
+    </td>
+    <td align="CENTER"><code>true</code></td></tr>
+</table>
+</blockquote>
+
+<h4><a class="anchor" name="structuredisplayparameters">1.1.2 &nbsp; Structure display parameters</a></h4>
+<blockquote>
+<table BORDER=0 cellpadding="4" cellspacing="0" class="colored-grid" width="800">
+<tr align="CENTER"><th width="20%">Parameter</th><th>Meaning</th><th width="10%">Default</th></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.absLabel"
+    ><a class="text" name="absLabel"><code>absLabel</code></a></a></td>
+    <td>Show (true) or hide (false) "Absolute" label</td>
+    <td>&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.atomFont"><code>atomFont</code></a></td>
+    <td>Atom symbol/label font:
+	<code>Serif</code>, <code>SansSerif</code> or <code>Monospaced</code>
+	</td>
+    <td align="CENTER"><code>SansSerif</code></td></tr>
+<!--<tr valign="TOP"><td><a class="text" name="parameters.labels"><code>labels</code></a></td>
+    <td>Show (true) or hide (false) atom labels
+	</td>
+    <td align="CENTER"><code>true</code></td></tr>-->
+<tr valign="TOP"><td><a class="text" name="parameters.atomMappingVisible"><code>atomMappingVisible</code></a></td>
+    <td>Show (true) or hide (false) atom mapping
+	</td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.atomNumbersVisible"><code>atomNumbersVisible</code></a></td>
+    <td>Show (true) or hide (false) atom numbers
+	</td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.atomsize"><code>atomsize</code></a></td>
+    <td>Atom symbol font size
+	in C-C bond length units:<br>
+	<center>
+	<em>atomsize</em>*1.54 &Aring; = <em>atomsize</em>*<em>scale</em> points
+	</center>
+	</td>
+    <td align="CENTER"><code>0.4</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.atomSymbolsVisible"><code>atomSymbolsVisible</code></a></td>
+    <td>Show (true) or hide (false) atom symbols
+	</td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="3d.ballRadius"><code>ballRadius</code></a></td>
+    <td>Ball radius for
+	&quot;ballstick&quot; <a HREF="#3d.rendering">rendering mode</a>,
+	in units of covalent radius.</td>
+    <td align="CENTER"><code>0.5</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.bondLengthVisible"><code>bondLengthVisible</code></a></td>
+    <td>Show (true) or hide (false) bond length labels
+	</td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.bondSpacing"><code>bondSpacing</code></a></td>
+    <td>Double bond spacing
+	in C-C bond length units:<br>
+	<center>
+	<em>spacing</em>*1.54 &Aring; = <em>spacing</em>*<em>scale</em> pixels
+	</center>
+	</td>
+    <td align="CENTER"><code>0.18</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.chiralitySupport"><code>chiralitySupport</code></a></td>
+    <td>When to show atom chirality (R/S).
+	<ul>
+	<li><code>off</code> - never</li>
+	<li><code>selected</code> - if chiral flag is set for the molecule
+	or the atom's enhanced stereo type is absolute
+	</li>
+	<li><code>all</code> - always</li>
+	</ul>
+	</td>
+    <td align="CENTER"><code>off</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.colorScheme"><code>colorScheme</code></a></td>
+    <td>Color scheme.
+	<ul>
+	<li><code>mono</code> - monochrome</li>
+	<li><code>cpk</code> - Corey-Pauling-Kultun</li>
+	<li><code>shapely</code> -
+	    <a HREF="shapely-scheme.html">shapely</a> (residue types)</li>
+	<li><code>group</code> - residue sequence numbers</li>
+	</ul>
+	</td>
+    <td align="CENTER"><code>cpk</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.downWedge"><code>downWedge</code></a></td>
+    <td>Wedge bond display convention.
+	Down wedge points downward in MDL's convention (<code>mdl</code>),
+	upward (at the chiral center) in Daylight's (<code>daylight</code>).
+	</td>
+    <td align="CENTER"><code>mdl</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.explicitH"><code>explicitH</code></a></td>
+    <td>Show (true) or hide (false) explicit hydrogens
+	</td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.ezVisible"><code>ezVisible</code></a></td>
+    <td>Show (true) or hide (false) E/Z labels
+	</td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.grinvVisible"><code>grinvVisible</code></a></td>
+    <td>Show (true) or hide (false) graph invariants (canonical labels)
+	</td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.implicitH"><code>implicitH</code></a></td>
+    <td>How to display H labels.
+	<ul>
+	<li><code>off</code></li>
+	<li><code>hetero</code> - on heteroatoms</li>
+	<li><code>heteroterm</code> - on hetero or terminal atoms</li>
+	<li><code>all</code> - all atoms</li>
+	</ul>
+	</td>
+    <td align="CENTER"><code>heteroterm</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.lonePairsVisible"><code>lonePairsVisible</code></a></td>
+    <td>Show (true) or hide (false) lone pairs
+	</td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.lonePairsAutoCalc"><code>lonePairsAutoCalc</code></a></td>
+    <td>Switch on (true) or off (false) automatic calculation of lone pairs.
+        The <a href="#parameters.lonePairsVisible">lonePairsVisible</a> parameter should
+        be set to true to display the result of the automatic calculation.
+        </td>
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.maxscale"><code>maxscale</code></a></td>
+    <td>Maximizes the magnification for autoscale to prevent overscaling of small molecules.
+	It is usually set to 28, which is the <a href="#parameters.scale">scale</a> factor for 100% magnification.</td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.reactionErrorVisible"><code><strike>reactionErrorVisible</strike></code></a></td>
+    <td>Deprecated.
+    <td align="CENTER"><code>false</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="3d.rendering"><code>rendering</code></a></td>
+    <td>Rendering style.
+	<ul>
+	<li><code>wireframe</code> - wireframe</li>
+	<li><code>wireknobs</code> - wireframe with knobs</li>
+	<li><code>sticks</code> - 3D sticks</li>
+	<li><code>ballstick</code> - ball &amp; stick</li>
+	<li><code>spacefill</code> - balls</li>
+	</ul>
+	</td>
+    <td align="CENTER"><code>wireframe</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.rgroupsVisible"><code>rgroupsVisible</code></a></td>
+    <td>Show (true) or hide (false) R-group definitions.
+    </td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.scale"><code>scale</code></a></td>
+    <td>Magnification.
+	A 1.54 &Aring; long C-C bond is magnified to <em>scale</em> pixels.</td>
+    <td align="CENTER"><code>28</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.sketchAnyBond"><code>sketchAnyBond</code></a></td>
+    <td>Display type of the Any bond in the sketcher:
+    <ul>
+        <li><code>auto</code> - displayed as dashed line in most cases, solid line only when
+        all bonds are generated from atom coordinates (e.g. XYZ and PDB files).</li>
+        <li><code>dashed</code> - displayed as dashed line</li>
+        <li><code>solid</code> - displayed as solid line</li>
+    </ul>
+    </td>
+    <td align="CENTER"><code>auto</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.stickdst"><code>stickdst</code></a></td>
+    <td>Stick distance of atoms in C-C bond length units.</td>
+    <td align="CENTER"><code>0.3</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.showSets"><code>showSets</code></a></td>
+    <td>Show the specified atom sets only.
+    Comma separated list of set sequence numbers (0, ..., 63).</td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.showSketchCarbon"><code>sketchCarbonVisibility</code></a></td>
+    <td>Display the label of carbon atoms in structures.
+    <ul>
+	<li><code>on</code> - Always show the atom labels of carbon atoms.</li>
+	<li><code>off</code> - Never show the atom labels of carbon atoms.</li>
+	<li><code>inChain</code> - Show the atom labels of carbon atoms at
+	 straight angles and at implicit Hydrogens.</li>
+	</ul>
+    <td align="CENTER"><code>inChain</code></td></tr>      
+<tr valign="TOP"><td><a class="text" name="3d.stickThickness"><code>stickThickness</code></a></td>
+    <td>3D stick diameter for
+	&quot;sticks&quot; and &quot;ballstick&quot;
+	<a HREF="#3d.rendering">rendering modes</a>,
+	in Angstroms.</td>
+    <td align="CENTER"><code>0.1</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.valenceErrorVisible"><code>valenceErrorVisible</code></a></td>
+    <td>Highlight (by underlining) the labels of
+    those atoms with valence errors.
+    This option can also be set on the
+    <strong>Edit</strong>/<strong>Preferences</strong>/<strong>MarvinSketch</strong>
+    panel.
+	<ul>
+	<li><code>true</code> - display errors</li>
+	<li><code>false</code> - do not display errors</li>
+	</ul>
+	</td>
+    <td align="CENTER"><code>true</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.viewAnyBond"><code>viewAnyBond</code></a></td>
+    <td>Display type of the Any bond in the viewer:
+    <ul>
+    <li><code>auto</code> - displayed as dashed line in most cases, solid line only when
+    all bonds are generated from atom coordinates (e.g. XYZ and PDB files).</li>
+    <li><code>dashed</code> - displayed as dashed line</li>
+    <li><code>solid</code> - displayed as solid line</li>
+    </ul>
+    </td>
+    <td align="CENTER"><code>auto</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="3d.wireThickness"><code>wireThickness</code></a></td>
+    <td>Line thickness for
+	&quot;wireframe&quot; and &quot;wireknobs&quot;
+	<a HREF="#3d.rendering">rendering modes</a>,
+	in Angstroms.</td>
+    <td align="CENTER"><code>0.064</code></td></tr>
+</table>
+</blockquote>
+
+<h4><a class="anchor" name="structureparameters">1.1.3 &nbsp; Structure parameters</a></h4>
+<blockquote>
+<table BORDER=0 cellpadding="4" cellspacing="0" class="colored-grid" width="800">
+<tr align="CENTER"><th width="20%">Parameter</th><th>Meaning</th><th width="10%">Default</th></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.atomSetColor"><code>atomSetColor0<br>atomSetColor1<br>...<br>atomSetColor63</code></a></td>
+    <td>Atom set color as hexadecimal value.</td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.bondSetColor"><code>bondSetColor1<br>...<br>bondSetColor63</code></a></td>
+    <td>Bond set color as hexadecimal value.</td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.importConv"><code>importConv</code></a></td>
+    <td>Conversion(s) after molecule
+	loading. Currently the following options are implemented:
+	<table CELLSPACING=0 CELLPADDING=3 border="0" id="no-grid">
+	<tr><td NOWRAP>&quot;a&quot; or &quot;+a&quot;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	    <td><a href="../sci/aromatization-doc.html#daylight_arom">General</a> aromatization </td></tr>
+    	<tr><td NOWRAP>&quot;a_bas&quot; or &quot;+a_bas&quot;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	    <td><a href="../sci/aromatization-doc.html#basic">Basic</a> aromatization </td></tr>
+	<tr><td NOWRAP>&quot;-a&quot;</td>
+	    <td>dearomatization</td></tr>
+	<tr valign="TOP"><td NOWRAP>&quot;H&quot; or &quot;+H&quot;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	    <td>add explicit H atoms</td></tr>
+	<tr valign="TOP"><td NOWRAP>&quot;-H&quot;</td>
+	    <td>remove explicit H atoms</td></tr>
+	 <tr valign="TOP"><td NOWRAP>&quot;c&quot;</td>
+	    <td>automatic cleaning</td></tr>
+	</table></td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.cleanDim"><code>cleanDim</code></a></td>
+    <td>Number of space dimensions for cleaning.
+	<ul>
+	<li><code>2</code> - two-dimensional cleaning</li>
+	<li><code>3</code> - three-dimensional cleaning</li>
+	</ul>
+	See also: <a href="#parameters.cleanOpts">cleanOpts</a>,
+		  <a href="#parameters.importConv">importConv</a>.</td>
+    <td align="CENTER"><code>2</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.cleanOpts"><code>cleanOpts</code></a></td>
+    <td>Options for 2D or 3D cleaning.<br>
+        <code>cleanOpts</code> accepts the same parameter values as
+        <a href="#parameters.clean2dOpts">clean2dOpts</a> or
+        <a href="#parameters.clean3dOpts">clean3dOpts</a>
+	depending on the cleaning dimension
+        (<a HREF="#parameters.cleanDim">cleanDim</a>).
+        </td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.clean2dOpts"><code>clean2dOpts</code></a></td>
+    <td>Options for 2D cleaning (0D-&gt;2D)
+	See <a href="../sci/cleanoptions.html#base.2d">base 2D cleaning
+        options</a>
+	</td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.clean3dOpts"><code>clean3dOpts</code></a></td>
+    <td>Options for 3D cleaning (0D-&gt;3D)
+	See <a href="../sci/cleanoptions.html#base.3d">base 3D cleaning
+        options</a>
+	</td>
+<td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.setColoringEnabled"><code>setColoringEnabled</code></a></td>
+    <td>Atom/bond set coloring.</td>
+    <td align="CENTER"><code>true</code></td></tr>
+</table>
+</blockquote>
+
+<h4><a class="anchor" name="otherparameters">1.1.4 &nbsp; Other parameters</a></h4>
+<blockquote>
+<table BORDER=0 cellpadding="4" cellspacing="0" class="colored-grid" width="800">
+<tr align="CENTER"><th width="20%">Parameter</th><th>Meaning</th><th width="10%">Default</th></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.escapeChar"><code>escapeChar</code></a></td>
+    <td>Escape character to use for parsing the value of the
+	<a href="#parameters.mol">mol</a> parameter.</td>
+    <td align="center">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.abbrevgroups"><code>abbrevgroups</code></a></td>
+    <td>Location of the file containing
+	the abbreviated groups.</td>
+    <td align="LEFT"><code>chemaxon/marvin<br>
+			 /templates<br>
+			 /default.abbrevgroup</code></td>
+    </tr>
+<tr valign="TOP"><td><a class="text" name="parameters.copyAsFormat"><code>copyAsFormat</code></a></td>
+    <td>Default clipboard format by Copy As action.</td>
+    <td align="center">platform dependent</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.copyOpts"><code>copyOpts</code></a></td>
+    <td>Output formats for the copy command.
+    To specify more formats, enumerate them in a comma separated list.
+    <ul>
+    <li><code>text</code> - Copy As Text</li>
+    <li><code>bitmap</code> - Copy As Bitmap Image</li>
+    <li><code>emf</code> - Copy As Vector Graphical Image (EMF)</li>
+    </ul>
+    </td>
+    <td align="CENTER">platform dependent</td></tr>
+<tr VALIGN=TOP><td><a class="text" name="parameters.defaultSaveFormat"><code>defaultSaveFormat</code></a></td>
+    <td>Sets the default chemical file format in the Save As dialog.
+    </td>
+    <td ALIGN=CENTER><code>mrv</code></td></tr>
+<tr valign="TOP"><td><code>debug</code></td>
+    <td>Debug mode. Possible values: 0, 1, 2.</td>
+    <td align="CENTER"><code>0</code></td></tr>
+<tr VALIGN=TOP><td><a class="text" name="parameters.menuconfig"><code>menuconfig</code></a></td>
+    <td>Specifies an alternative menu customization file location instead of the default
+    <code>.chemaxon/{MarvinSketch_version}/customization.xml</code> (Unix) or
+    <code>chemaxon/{MarvinSketch_version}/customziation.xml</code> (Windows) file under the user's home.
+    Please note that if this parameter is used, the <a HREF="#parameters.customizationEnabled">customizationEnabled</a>
+    parameter is automatically set to false.
+    </td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.mergedst"><code>mergedst</code></a></td>
+    <td>Merge distance of atoms in C-C bond length units.</td>
+    <td align="CENTER"><code>0.1</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.molFormat"><code>molFormat</code></a></td>
+    <td>Default file format:
+	<code>mol</code>, <code>csmol</code>,
+	<code>smiles</code>, <code>cxsmiles</code>,
+	<code>cml</code>, <code>pdb</code>, <code>pov</code>, <code>sybyl</code>,
+	or <code>xyz</code>.</td>
+    <td align="CENTER"><code>mol</code></td></tr>
+<tr VALIGN=TOP><td><a class="text" name="parameters.shortcuts"><code>shortcuts</code></a></td>
+    <td>Specifies an alternative shortcut customization file location instead of the default
+    <code>.chemaxon/{MarvinSketch_version}/shortcuts.xml</code> (Unix) or
+    <code>chemaxon/{MarvinSketch_version}/shortcuts.xml</code> (Windows) file under the user's home.
+    Please note that if this parameter is used, the <a HREF="#parameters.customizationEnabled">customizationEnabled</a>
+    parameter is defaults to false.
+    </td>
+    <td align="CENTER">&nbsp;</td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.sketchHelp"><a class="text" name="sketchHelp"><code>sketchHelp</code></a></a></td>
+    <td>MarvinSketch help contents.</td>
+    <td align="LEFT"><code>chemaxon/marvin/help<br>
+		/sketch-index.html</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.sketchQuickHelp"><a class="text" name="sketchQuickHelp"><code>sketchQuickHelp</code></a></a></td>
+    <td>MarvinSketch quick help.</td>
+    <td align="LEFT"><code>chemaxon/marvin/help<br>
+		/sketch.html</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.undo"><code>undo</code></a></td>
+    <td>Maximum number of undo operations.</td>
+    <td align="CENTER"><code>50</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.viewHelp"><a class="text" name="viewHelp"><code>viewHelp</code></a></a></td>
+    <td>MarvinView help contents.</td>
+    <td align="LEFT"><code>chemaxon/marvin/help<br>
+		/view-index.html</code></td></tr>
+<tr valign="TOP"><td><a class="text" name="parameters.viewQuickHelp"><a class="text" name="viewQuickHelp"><code>viewQuickHelp</code></a></a></td>
+    <td>MarvinView quick help.</td>
+    <td align="LEFT"><code>chemaxon/marvin/help<br>
+		/view.html</code></td></tr>
+</table>
+</blockquote>
+
+
+<p><!--APPLETONLY_BEGIN-->
+Applet example:
+<blockquote><pre>
+&lt;applet CODE=MSketch WIDTH=480 HEIGHT=400&gt;
+&lt;param NAME=&quot;background&quot; VALUE=&quot;#cccccc&gt;
+&lt;param NAME=&quot;molbg&quot; VALUE=&quot;#ffffff&quot;&gt;
+&lt;param NAME=&quot;implicitH&quot; VALUE=&quot;hetero&quot;&gt;
+&lt;/applet&gt;
+</pre></blockquote>
+<!--APPLETONLY_END-->
+<!--BEANSONLY_BEGIN-->
+Bean example:
+<blockquote><pre>
+MSketchPane sketchPane = new MSketchPane();
+sketchPane.<a HREF="beans/api/chemaxon/marvin/beans/MarvinPane.html#setParams(java.lang.String)">setParams</a>(
+    &quot;background=#cccccc\n&quot;+
+    &quot;molbg=#ffffff\n&quot;+
+    &quot;implicitH=hetero\n&quot;);
+</pre></blockquote>
+<!--BEANSONLY_END-->
+<!--APPLETONLY_BEGIN-->
+<h3><a class="anchor" name="appletonly">1.1 &nbsp; Applet only parameters</a></h3>
+
+The following parameters are meaningful only for the applets (MSketch,
+JMSketch) and not for the JavaBean (MSketchPane).
+<p>
+
+<blockquote>
+<table BORDER=0 cellpadding="4" cellspacing="0" class="colored-grid">
+<tr align="CENTER"><th>Parameter</th><th>Meaning</th><th>Default</th></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.menubar"><code>menubar</code></a></td>
+    <td>Enable the embedded menubar.</td>
+    <td align="CENTER"><code>true</code></td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.buttonmenubar"><code>buttonmenubar</code></a></td>
+    <td>Enable menubar in button (/hide) mode if
+    the <a href="#parameters.menubar">menubar</a> parameter is <code>true</code>.
+    Combine it with the <a href="#parameters.detach">detach</a> parameter to
+    set the button mode.<br>
+    <code>True</code>, to allow, <code>false</code> to deny menu bar on the big sketcher
+    button.</td>
+    <td align="CENTER"><code>true</code></td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.detach"><code>detach</code></a></td>
+    <td>Detachment behavior.
+    	The value consists of some optional arguments: <code>show/hide</code>
+	<code>size</code>, and <code>maxscale</code>. If more arguments are included, they must
+	be separated by a comma.<BR>
+	To detach the sketcher from the web page and display it in a separate window,
+	set <code>&quot;show&quot;</code>.<BR>
+	To detach the sketcher without displaying the separate window,
+	set <code>&quot;hide&quot;</code>.<BR>
+	Both settings make the applet on the web page look like a molecule
+	viewer.<br><BR>
+	The initial size of the sketcher window can be specified with
+	&quot;<code>size=</code><em>width</em><code>x</code><em>height</em>&quot;
+	<BR>Examples: &quot;<code>show</code>&quot;,
+	&quot;<code>size=500x500</code>&quot;,
+	&quot;<code>hide,size=500x500</code>&quot;.<br>
+        In case the <code>maxscale</code> argument is set, it can prevent small molecules
+        to be overscaled on the button.<br>
+        Example for maximum 100% magnification: &quot;<code>hide,maxscale=28</code>&quot;<br>
+        Live applet example: <a href="../../examples/applets/sketch/detach.html">MarvinSketch Example - Pure visualization mode</a>
+        </td>
+    <td align="CENTER"><code>size=444x350</code></td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.undetachByX"><code>undetachByX</code></a></td>
+    <td>Sketcher window close (x)
+	behavior.<br>
+	<code>false</code>: always hide sketcher<br>
+	<code>true</code>: replace viewer component by sketcher in web
+	browser window if the applet is large enough (&gt;= 400x300)
+	</td>
+    <td align="CENTER"><code>true</code></td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.mol"><code>mol</code></a></td>
+    <td>The molecule file to be loaded at startup,
+    	as either a URL
+	or the file itself (inline) in MDL mol, compressed mol, SMILES,
+	SMARTS, etc format.<br>
+	Newlines occurring in the string must be replaced or preceded by "\n"
+	and backslashes are recommended to be escaped as "\\".<br>
+	The file format and/or import options can be specified if one
+	of the following forms is used:<br>
+	&quot;file{options}&quot;,<br>
+	&quot;file{MULTISET,options}&quot;,<br>
+	&quot;file{format:}&quot;,<br>
+	&quot;file{format:options}&quot;, or<br>
+	&quot;file{format:MULTISET,options}&quot;.<br>
+	If the MULTISET option is specified, then a multi-molecule file is
+	read into one molecule object containing multiple atom sets.<br>
+	Examples: "foo.xyz{f1.4C4}",
+	"foo.xyz.gz{gzip:xyz:MULTISET,f1.4C4}"
+	</td>
+    <td>&nbsp;</td></tr>
+  <tr valign="TOP"><td><code><strike>preload</strike></code></td>
+    <td>Deprecated
+	</td>
+    <td align="CENTER">&nbsp;</td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.cacheMols"><code>cacheMols</code></a></td>
+    <td>Store loaded molecules in an internal
+	cache (<code>true</code> or <code>false</code>).
+	</td>
+    <td align="CENTER"><code>false</code></td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.loadMols"><code>loadMols</code></a></td>
+    <td>Comma-separated list of molfiles to
+	preload.
+	Useful for caching molecules in JavaScript &quot;slideshows&quot;.
+	</td>
+    <td align="CENTER">&nbsp;</td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.usedJars"><code>usedJars</code></a></td>
+    <td>Comma-separated list of additional
+	jar files that can be used by the applet. The additional
+	files have to be defined with their paths relative to the applet's base.
+	</td>
+    <td align="CENTER">&nbsp;</td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.imageSaveURL"><code>imageSaveURL</code></a></td>
+    <td>The URL of the cgi, jsp or asp
+	file use to save the image posted by the applet to the server.<br>
+	The cgi has to read the image from the standard input into a byte
+	array, save it to a temporary file and send back the absolute path
+	of the file to the applet.<br>
+	A jsp example: <a href="../../sketch/saveimage_jsp.txt"><code>saveimage.jsp
+	</code></a>
+        </td>
+    <td>&nbsp;</td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.imageSaveFormat"><code>imageSaveFormat</code></a></td>
+    <td>The default file format for
+	image saving.
+        </td>
+    <td align="CENTER"><code>png</code></td></tr>
+  <tr valign="TOP"><td><a class="text" name="parameters.imageShowURL"><code>imageShowURL</code></a></td>
+    <td>The URL of the cgi, jsp or asp
+	file that either saves the data into a file generated by the applet
+	or shows the generated image that  was saved to a temporary file by
+	<code>imageSaveURL</code>.<br>
+	The posted parameters:
+	<blockquote>
+	<table BORDER=0 cellpadding="4" cellspacing="0" id="no-grid">
+	<tr><th>name</th><th>description</th>
+	    </tr>
+ 	<tr><td><code>filename</code></td>
+	    <td>If the applet generated an image, it was saved into a temporary
+		file on the server. In this case this parameter contains the
+		absolute path of the temporary file.</td></tr>
+ 	<tr><td><code>type</code></td>
+	    <td>Sets the type of the file and its extension. <br>
+		 It can be:<code> "mol", "csmol", "pdb", "sybyl", "xyz", "jpeg",
+		"png", "pov", "svg"</code>.</td></tr>
+	<tr><td><code>where</code></td>
+	    <td>Sets the location in which the image will be "shown"<br>
+		Possible values:<code> "file", "browser", null</code>. <br>
+		<ul>
+			<li>"file" - the generated data will be saved into a file.
+			<li>"browser" - the data will be displayed in a browser window.
+		</ul>
+		</td></tr>
+	<tr><td><code>data</code></td>
+	    <td>If the applet generated a kind of molecule format file (see:
+		<a href="../formats/formats.html">formats</a>), it is posted by this
+                parameter. In this case the text file have to be saved as a
+                file.</td></tr>
+	</table>
+	</blockquote>
+	A jsp example: <a href="../../sketch/showimage_jsp.txt"><code>showimage.jsp
+	</code></a></td>
+    <td>&nbsp;</td></tr>
+    <tr valign="TOP"><td><a class="text" name="parameters.molLoaderFinishedEvent"><code>molLoaderFinishedEvent</code></a></td>
+    <td>Evaluates a JavaScript code after
+     the loading of the molecule into the editor is finished.
+     This <i>"event"</i> is invoked if molecule is loaded-in into the applet
+     in any of the following cases:
+     <ul>
+        <li>Automaticaly, at applet starting: (using the
+            <a href="#parameters.mol">mol</a> applet parameter)</li>
+        <li>Calling <i>(J)MSketch.setMol(...)</i> from JavaScript.</li>
+     </ul>
+     Note: If the MAYSCRIPT option is not specified, JavaScript can not be evaluated from the applet.
+     E.g.:<pre>
+     msketch_mayscript=true;
+     msketch_begin("marvin",400,300);
+     msketch_param("mol","caffeine.mol");
+     msketch_param("molLoaderFinishedEvent","js:alert('Molecule is loaded-in.')");
+     msketch_end();
+     </pre>
+    </td>
+    <td>&nbsp;</td></tr>
+    <tr valign="TOP"><td><a class="text" name="parameters.listenpropertychange"><code>listenpropertychange</code></a></td>
+    <td>Switch on/off property
+    change event listener to the applet. If listener is active, the applet will
+    call <strong>propertyChange(prop)</strong> JavaScript method.
+    If you would like to handle property change events in JavaScript, implement
+    this method in your html source.
+     Note: If the MAYSCRIPT option is not specified, JavaScript can not be evaluated from the applet.
+     E.g.:<pre>
+     function propertyChange(prop) {
+        if(document.textform != null) {
+            var s = document.textform.txt.value;
+            document.textform.txt.value = s + "\n" + prop;
+        }
+     }
+
+     msketch_mayscript=true;
+     msketch_begin("marvin",400,300);
+     msketch_param("listenpropertychange","true");
+     msketch_end();
+     </pre>
+     If you also specify the "appletid" parameter, its value will appear in 
+     the name of the property as prefix (e.g.: "firstapplet.mol").
+    </td>
+    <td><code>false</code></td></tr>
+<tr valign="TOP"><td><code><a NAME="parameters.appletid" 
+        class="text">appletid</a></code></td>
+    <td>Identify applet in property change event notifications to JavaScript.
+    Use this parameter with <a href="#parameters.listenpropertychange">listenpropertychange</a>
+    when more than one applet are located on the same web page. It helps
+    to identify which applet sent the notification.</td><td></td></tr>
+    <tr valign="TOP"><td><a class="text" name="parameters.skin"><a class="text" name="skin"><code>skin</code></a></a></td>
+    <td>Change the component's Look & Feel (only in SWING applet).
+    	If you do not specify this parameter,
+	Marvin will use the default LookAndFeel style.
+	<BR>This parameter value is the name of the new LookAndFeel class.
+	</td>
+    <td align="LEFT"><code>javax.swing.plaf<br>
+		    .metal<br>
+		    .MetalLookAndFeel</code></td></tr>
+	<tr VALIGN=TOP><td><a NAME="parameters.splashScreenImage" class="text"><a class="text" name="splashScreenImage"><code>splashScreenImage</code></a></a></td>
+    <td>Change the component's splash screen displayed at startup.
+    	If you do not specify this parameter, Marvin will use its default splash screen.
+	<BR>This parameter value is the relative path of the image, specify relatively to the CODEBASE<br>
+	<font style="font-size: 10px;">Note: Animated gif files can be displayed badly (flashing, or too fast animation)</font>
+	</td>
+    <td ALIGN=LEFT><code>null</code></td></tr>
+
+    <tr VALIGN=TOP><td><a NAME="parameters.license" class="text"><a class="text" name="license"><code>license</code></a></a></td>
+    <td>Sets the contents of a pre-read license file to the license manager to read and validate licenses from.
+    </td>
+    <td>&nbsp;</td></tr>
+    <tr VALIGN=TOP><td><a NAME="parameters.licenseFile" class="text"><a class="text" name="licenseFile"><code>licenseFile</code></a></a></td>
+    <td>Sets the license file location to the license manager to read and validate licenses from.
+    </td>
+    <td>&nbsp;</td></tr>
+    <tr VALIGN=TOP><td><a NAME="parameters.legacy_lifecycle" class="text"><a class="text" name="legacy_lifecycle"><code>legacy_lifecycle</code></a></a></td>
+    <td>The "legacy_lifecycle" is a general Java applet parameter. If its value
+    is true, it
+    helps avoid destroying the applet when you leaves the applet page.
+    If you use "marvin.js", it sets its value to true automatically unless you specify its value explicitly. By the way, the default value of this parameter in Java
+    is false.
+    See the discussion about it on the 
+    <a href="http://www.chemaxon.com/forum/ftopic4945.html">forum</a>.</td>
+    <td>&nbsp;</td></tr>
+</table>
+</blockquote>
+<!--APPLETONLY_END-->
+<p>
+<!--BEANSONLY_BEGIN-->
+
+
+<h2><a class="anchor" name="events">2 &nbsp; Events fired by the JavaBean</a></h2>
+
+<h3><a class="anchor" name="actions">2.1 &nbsp; Action events</a></h3>
+
+To handle the action events of <code>MSketchPane</code>,
+the <code>java.awt.event.ActionListener</code> interface must be implemented.
+<p>
+
+<blockquote>
+<table BORDER=0 cellpadding="4" cellspacing="0" class="colored-grid">
+<tr align="CENTER">
+    <th>Source name</th><th>Source component type</th><th>Meaning</th></tr>
+<tr valign="TOP"><td><code>&quot;close&quot;</code></td>
+    <td align="CENTER"><code>javax.swing.JMenuItem</code></td>
+    <td>File/Close has been chosen, sketcher window should be closed.</td></tr>
+</table>
+</blockquote>
+<p>
+
+Example:
+<blockquote><pre>
+sketchPane.<a HREF="beans/api/chemaxon/marvin/beans/MarvinPane.html#addActionListener(java.awt.event.ActionListener)">addActionListener</a>(this);
+    ...
+
+public void actionPerformed(ActionEvent ev) {
+    if(ev.getSource() instanceof JComponent) {
+	String name = ((JComponent)ev.getSource()).getName();
+	if(name.equals("close")) {
+	    dispose();
+	}
+    }
+}
+</pre></blockquote>
+
+<h3><a class="anchor" name="propchanges">2.2 &nbsp; Property change events</a></h3>
+
+To handle the property change events of <code>MSketchPane</code>,
+the <code>java.beans.PropertyChangeListener</code> interface must be implemented.
+<p>
+
+<blockquote>
+<table BORDER=0 cellpadding="4" cellspacing="0" class="colored-grid">
+<tr align="CENTER"><th>Property name</th><th>Type</th><th>Meaning</th></tr>
+<tr valign="TOP"><td><a class="text" name="propchanges.mol"><code>&quot;mol&quot;</code></a></td>
+    <td align="CENTER"><code>Molecule</code></td>
+    <td>The molecule is replaced or altered.</td></tr>
+<tr valign="TOP"><td><code>&quot;file&quot;</code></td>
+    <td align="CENTER"><code>java.io.File</code></td>
+    <td>Molecule file changed from File/Open or File/Save As.</td></tr>
+<tr valign="TOP"><td><code>&quot;implicitH&quot;</code></td>
+    <td align="CENTER"><code>String</code></td>
+    <td><a HREF="sketchman.html#parameters.implicitH">Implicit Hydrogen display
+	style</a> changed.</td></tr>
+<tr valign="TOP"><td><code>&quot;explicitH&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td>Explicit Hydrogen display style changed.<br>
+	<code>true</code>: show explicit H atoms<br>
+	<code>false</code>: hide explicit H atoms<br>
+	</td></tr>
+<!-- <tr valign="TOP"><td><code>&quot;labels&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td>Atom labels displayed/not displayed.
+	</td></tr> -->
+<tr valign="TOP"><td><code>&quot;colorScheme&quot;</code></td>
+    <td align="CENTER"><code>String</code></td>
+    <td><a HREF="#parameters.colorScheme">Color scheme</a> changed.<br>
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;autoscale&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td><a HREF="#parameters.autoscale">Autoscale</a> changed.<br>
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;rendering&quot;</code></td>
+    <td align="CENTER"><code>String</code></td>
+    <td><a HREF="#3d.rendering">Rendering style</a> changed.
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;wireThickness&quot;</code></td>
+    <td align="CENTER"><code>Double</code></td>
+    <td><a HREF="#3d.wireThickness">Wire thickness</a> changed.<br>
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;stickThickness&quot;</code></td>
+    <td align="CENTER"><code>Double</code></td>
+    <td><a HREF="#3d.stickThickness">Sticks diameter</a> changed.<br>
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;ballRadius&quot;</code></td>
+    <td align="CENTER"><code>Double</code></td>
+    <td><a HREF="#3d.ballRadius">Ball radius</a> changed.<br>
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;grinvVisible&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td><a href="#parameters.grinvVisible">Graph invariants</a>
+	displayed/not displayed.
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;downWedge&quot;</code></td>
+    <td align="CENTER"><code>String</code></td>
+    <td><a HREF="#parameters.downWedge">Down wedge bond orientation</a>
+	changed.
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;objectAtPointer&quot;</code></td>
+    <td align="CENTER"><code>Object</code></td>
+    <td>The MolAtom or MolBond object at the mouse pointer.
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;invisibleSets&quot;</code></td>
+    <td align="CENTER"><code>Long</code></td>
+    <td><a HREF="#parameters.showSets">Visibility of atom sets</a>
+	changed.</td></tr>
+<tr valign="TOP"><td><code>&quot;atomNumbersVisible&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td><a HREF="#parameters.atomNumbersVisible">Visibility of atom numbers</a>
+	changed.</td></tr>
+<tr valign="TOP"><td><code>&quot;atomMappingVisible&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td><a href="#parameters.atomMappingVisible">Visibility of
+    atom mapping</a> changed.
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;popupMenusEnabled&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td>Popup menus are enabled/disabled.
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;valenceErrorVisible&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td><a href="#parameters.valenceErrorVisible">Visibility of
+    valence errors</a> changed.
+	</td></tr>
+<tr valign="TOP"><td><code>&quot;reactionErrorVisible&quot;</code></td>
+    <td align="CENTER"><code>Boolean</code></td>
+    <td><a href="#parameters.reactionErrorVisible">Visibility of
+    reaction errors</a> changed.
+	</td></tr>
+</table>
+</blockquote>
+
+<p>
+
+Example:
+<blockquote><pre>
+    sketchPane.addPropertyChangeListener(this);
+    ...
+
+public void propertyChange(PropertyChangeEvent ev) {
+    String name = ev.getPropertyName();
+    if(name.equals("file")) {
+	File f = (File)ev.getNewValue();
+	if(f != null)
+	    setTitle("MarvinSketch: "+f.getName());
+    }
+}
+</pre></blockquote>
+<!--BEANSONLY_END-->
+</body>
+</html>

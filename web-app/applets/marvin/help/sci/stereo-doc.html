@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta NAME="description" CONTENT="Stereo specification in Marvin">
+<meta NAME="keywords" CONTENT="stereo, parity, Cist-Trans, Java, Marvin">
+<meta NAME="author" CONTENT="Andras Volford">
+<link REL ="stylesheet" TYPE="text/css" HREF="../marvinmanuals.css" TITLE="Style">
+<title>Stereo specification in Marvin</title>
+</head>
+<body>
+
+<h1>Stereo Specification</h1>
+
+<h2> Basic stereo specification </h2>
+<ul>
+<li> <b>Chirality </b> 
+    <p> The relative position of ligands on a chiral atom is marked 
+    with wedge bonds: <i>up (solid)</i>, <i>down (hatched)</i>, 
+    <i>up or down (wiggly)</i>.
+    Having wedge bonds at chiral atoms with the <i>chiral flag</i> on 
+    the entire structure implies that a single isomer is present. 
+    The absolute configuration (R or S) is known for 
+    all chiral centers that are marked with wedge bonds.</p>  
+    
+
+    <p> Non-stereo bond to atom at stereogenic centers 
+    implies that no information is known about the configuration 
+    of a stereogenic center. It could be either of two stereoisomers, 
+    or a mixture of the two.</p>
+
+    <p>The existence of wedge bonds at chiral atoms <i>without chiral flag</i>
+	on the entire structure has two meanings depending on the file format
+	used.<br>
+    <a HREF="../formats/mol-csmol-doc.html#mol">MDL file types (mol, sdf ...)</a>:
+    The structure is a racemic mixture of the two enantiomers.<br>
+    <a HREF="../formats/smiles-doc.html">Daylight file types (smiles, smarts)</a>:
+    Wedges mean absolute stereo configuration, the structure represents a
+	single enantiomer. 
+    
+    </li>
+
+<li> <b>Cis-Trans isomerism</b>
+    <p> The positions of the double bond ligands already define 
+    the stereo configuration of the double bond (<i>cis</i> or <i>trans</i>). 
+    Special query double bond types allow us to specify 
+    <i>cis or trans</i>, <i>not trans</i> or <i>not cis</i> isomers.
+    
+    </li>
+</ul>
+
+
+<h2><a class="anchor" name="enhanced">Enhanced stereo specification</a></h2>
+<p> Works in MDL molecule formats: mol, rgf, sdf, rxn etc... 
+and in ChemAxon Extended SMILES format: cxsmiles.
+<p> Enhanced stereochemical representation introduces three types of 
+identifiers that can be attached to a stereogenic center. 
+A stereochemical group label is composed from an identifier and a group number.
+Each stereogenic center marked with wedge bonds belongs to one (and only one) 
+stereochemical group. Grouping allows us to specify relative relationships 
+among stereogenic centers. </p>
+
+<blockquote>
+<h3>Stereochemical group types:</h3>
+<ul>
+    <li> ABS <br>
+    Stereogenic center where the absolute configuration is known.
+	</li>
+    <li> OR <br>
+    Stereogenic center where the relative configuration is known, 
+    but the absolute configuration is not known. The structure 
+    represents one stereoisomer that is either 
+    the structure as drawn (R,S) OR the epimer in which the 
+    stereogenic centers have the opposite configuration (S,R).
+	</li>
+    <li> AND <br>
+    Mixture of stereoisomers. It can be a pair of enantiomers 
+    or all the diastereomers. 
+	</li>
+</ul>
+
+</blockquote>
+
+
+<p>
+<h2>References</h2>
+<table CELLSPACING=0 CELLPADDING=5 border="0">
+<tr VALIGN=TOP>
+<td>[1]</td>
+<td><a HREF="http://www.mdl.com/downloads/public/ctfile/ctfile.pdf" TARGET="_top">http://www.mdl.com/downloads/public/ctfile/ctfile.pdf</a></td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -33,7 +33,7 @@ class ClinicalController {
 				println "GOT IDS ${biospecimenIds.size()}"
 			}
 		}
-		println criteria
+		//println criteria
 		searchResults = clinicalService.queryByCriteria(criteria, biospecimenIds)
 		processResults(searchResults)
 	}
@@ -104,6 +104,7 @@ class ClinicalController {
 			}
 			results << [id: patient.gdocId, cell: cells]
 		}
+		//println "results rows:" + results
 		def jsonObject = [
 			page: currPage,
 			total: Math.ceil(searchResults.size() / rows),
@@ -176,6 +177,7 @@ class ClinicalController {
 	}
 	
 	private processResults(searchResults) {
+		//println searchResults
 		def columns = []
 		columns << [index: "id", name: "GDOC ID", sortable: true, width: '70']
 		//columns << [index: "dataSourceInternalId", name: "PATIENT ID", sortable: true, width: '70']
@@ -232,4 +234,6 @@ class ClinicalController {
 		}
 		return errors
 	}
+	
+	
 }

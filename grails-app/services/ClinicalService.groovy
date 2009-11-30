@@ -5,6 +5,7 @@ class ClinicalService {
 	static PAGE_SIZE = 1000
 	def sessionFactory
 	def jdbcTemplate 
+	def middlewareService
 	def queryString = '(select p.patient_id from ${schema}.patient p, common.attribute_type c, ${schema}.patient_attribute_value v ' +
 		 			  'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 					  ' and v.value = \'${value}\' and c.short_name = \'${key}\')'
@@ -139,5 +140,50 @@ class ClinicalService {
 		}
 		println patients.size()
 		return patients.grep { it }
+	}
+	
+	/**
+	Sends SPARQL query to  middle-tier service (hitting triplestore), then
+	parses and formats the results in a structure more suitable (Map of Maps) for reporting
+	**/
+	def queryAcrossStudies(sparql){
+		def results = middlewareService.sparqlQuery(sparql)
+		def processedResults = [:]
+		results.each{key,value ->
+			println key
+			if(key=='results'){
+				results.results.bindings.each{ binding ->
+						 def patient = binding.gid.value
+						 def attribute = binding.t.value.split('#')[1].toString()
+						 def att_value = binding.v.value
+						 def study = binding.study.value.split('Study#')[1].toString()
+						 //println "study is $study"
+						 //println "patient id: $patient"
+						 //println "attribute: $attribute"
+						 //println "value: $att_value"
+						if(processedResults.containsKey(patient)){
+							def att_map = [:]
+							att_map[attribute] = att_value
+							processedResults[patient] << att_map
+						}else{
+							processedResults[patient] = []
+							def att_map = [:]
+							att_map[attribute] = att_value
+							def study_map = [:]
+							study_map["Study"] = study
+							processedResults[patient] << study_map
+							processedResults[patient] << att_map
+						}
+				}
+			}
+		}
+		//println processedResults
+		return processedResults
+	}
+	
+	def retrieveSearchableAttributes(){
+		def attributesQuery = QueryBuilder.getAllAttributesSparql()
+		def results = middlewareService.sparqlQuery(attributesQuery)
+		return results;
 	}
 }

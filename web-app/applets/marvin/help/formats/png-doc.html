@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../marvinmanuals.css" TITLE="Style">
+<title>PNG image export in Marvin</title>
+</head>
+<body>
+
+<h1>Portable Network Graphics</h1>
+
+<p>
+Codename: <strong>png</strong>
+
+<p>
+Marvin is able to export PNG
+<a HREF="images-doc.html">image files</a>.
+The PngExport module recognizes
+the <a HREF="images-doc.html#options">common image export options</a>, and the
+following special options:
+<blockquote>
+<table CELLSPACING="0" CELLPADDING="5" border="0">
+<tr><td><code>b...</code></td>
+    <td>Bits/pixel, 24 (RGB) or 32 (ARGB). Default: 24</td></tr>
+<tr><td><code>Z...</code></td>
+    <td>Compression level (0-9). Default: 9</td></tr>
+</table>
+</blockquote>
+Examples:
+<blockquote>
+<table CELLSPACING="0" CELLPADDING="5" border="0">
+<tr VALIGN=TOP><td><code>png</code></td>
+    <td>Default settings: 200x200 pixels,
+	white background (or black in 3D), maximum compression.</td></tr>
+<tr VALIGN=TOP><td><code>png:w100,b32,#ffffff00</code></td>
+    <td>100x100 PNG with yellow background, alpha channel is encoded.</td></tr>
+</table>
+</blockquote>
+<p>
+
+<h2>Reference</h2>
+<ul>
+<li><a HREF="http://www.libpng.org/pub/png/" TARGET="_top">PNG Home Site (http://www.libpng.org/pub/png/)</a></li>
+</ul>
+
+<p ALIGN=LEFT>
+<small>PngExport uses <em>PNG encoder</em> by J. David Eisenberg.
+You can freely modify and recompile the
+<a HREF="PngEncoder.java.txt">source</a> of this module, then
+replace the binary class file in Marvin with your own version,
+according to the requirements of the
+<a HREF="../license/PngEncoder.LGPL.txt">GNU Lesser General Public License</a>.
+</small>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+<title>Calculator Plugins</title>
+<link rel=stylesheet type="text/css" href="../marvinmanuals.css">
+</head>
+<body>
+<h1>Calculator Plugins</h1>
+
+<h2><a name="geometrygroup"></a>Geometry</h2>
+
+<h3><a NAME="topolanal"></a>Topology Analysis Plugin</h3>
+<p>The Topology Analysis plugin provides characteristic values
+related to the topological structure of a molecule.</p>
+
+<p><i>Simple</i>
+<ul>
+	<li><b>Atom count</b>: number of atoms in the molecule including
+	hydrogens.</li>
+	<li><b>Bond count</b>: number of bonds in the molecule including
+	hydrogens.</li>
+	<li><b>Cyclomatic number</b>: the smallest number of bonds which
+	must be removed such that no circuit remains. Also known as circuit
+	rank.</li>
+</ul>
+</p>
+
+<p><i>Ring</i>
+<ul>
+	<li><b>Ring count</b>: number of rings in the molecule. This
+	calculation is based on SSSR (Smallest Set of Smallest Rings).</li>
+	<li><b>Ring atom count</b>: number of ring atoms.</li>
+	<li><b>Ring bond count</b>: number of ring bonds.</li>
+	<li><b>Chain atom count</b>: number of chain atoms (non-ring atoms
+	excluding hydrogens).</li>
+	<li><b>Chain bond count</b>: number of chain bonds (non-ring bonds
+	excluding bonds of hydrogen atoms).</li>
+	<li><b>Aliphatic ring count</b>: number of those rings in the
+	molecule, which have non-aromatic bonds (SSSR based).</li>
+	<li><b>Aromatic ring count</b>: number of aromatic rings in the
+	molecule. This number is calculated from the smallest set of smallest
+	aromatic rings (SSSAR), which might contain rings which are not part of
+	the standard SSSR ring set. As a consequence, the sum of the aliphatic
+	ring count and the aromatic ring count can sometimes be greater the the
+	ring count value. The difference is the sign of a macroaromatic ring
+	system.</li>
+	<li><b>Aliphatic atom count</b>: number of atoms in the molecule
+	having no aromatic bond (excluding hydrogens).</li>
+	<li><b>Aliphatic bond count</b>: number of non-aromatic bonds in
+	the molecule (excluding bonds of hydrogen atoms).</li>
+	<li><b>Aromatic atom count</b>: number of atoms in the molecule
+	having aromatic bonds.</li>
+	<li><b>Aromatic bond count</b>: number of aromatic bonds in the
+	molecule.</li>
+	<li><b>Carbo ring count</b>: number of those rings in the
+	molecule, which contain carbon atoms only.</li>
+	<li><b>Hetero ring count</b>: number of those rings in the
+	molecule, which contain hetero atoms.</li>
+	<li><b>Heteroaromatic ring count</b>: number of aromatic
+	heterocycles in the molecule.</li>
+	<li><b>Carbooaromatic ring count</b>: number of heterocycles in
+	the molecule containing carbon atoms only (SSSAR based).</li>
+	<li><b>Fused ring count</b>: number of fused rings in the molecule
+	(having common bonds).</li>
+	<li><b>Fused aliphatic ring count</b>: number of aliphatic rings
+	having common bonds with other rings.</li>
+	<li><b>Fused aromatic ring count</b>: number of aromatic rings
+	having common bonds with other rings.</li>
+	<li><b>Largest ring size</b>: size of the largest ring in the
+	molecule.</li>
+	<li><b>Smallest ring size</b>: size of the smallest ring in the
+	molecule.</li>
+</ul>
+</p>
+
+<p><i>Path based</i>
+<ul>
+	<li><b>Platt index</b>: sum of the edge degrees of a molecular
+	graph.</li>
+	<li><b>Randic index</b>: harmonic sum of the geometric means of
+	the node degrees for each edge.</li>
+</ul>
+</p>
+
+<p><i>Distance based</i>
+<ul>
+	<li><b>Balaban index</b>: the Balaban distance connectivity of the
+	molecule, which is the average distance sum connectivity.</li>
+	<li><b>Distance degree</b>: the sum of the corresponding row
+	values in the distance matrix for each atom.</li>
+	<li><b>Eccentricity</b>: the greatest value in the corresponding
+	row of the distance matrix for each atom.</li>
+	<li><b>Harary index</b>: half-sum of the off-diagonal elements of
+	the reciprocal molecular distance matrix of the molecule.</li>
+	<li><b>Hyper Wiener index</b>: a variant of the Wiener index.</li>
+	<li><b>Szeged index</b>: The Szeged index extends the Wiener index
+	for cyclic graphs by counting the number of atoms on both sides of each
+	bond (those atoms only which are nearer to the given side of the bond
+	than to the other), and sum these counts.</li>
+	<li><b>Wiener index</b>: the average topological atom distance
+	(half of the sumof all atom distances) in the molecule.</li>
+	<li><b>Wiener polarity</b>: the number of 3 bond length distances
+	in the molecule.</li>
+</ul>
+</p>
+
+<p><i>Other</i>
+<ul>
+	<li><b>Asymmetric atom count</b>: the number of asymmetric atoms
+	(having four different ligands).</li>
+	<li><b>Chiral center count</b>: the number of tetrahedral
+	stereogenic centers. This function identifies two chiral centers in
+	1,4-dimethylcyclohexane, which does not contain asymmetric atoms.</li>
+	<li><b>Rotatable bond count</b>: number of rotatable bonds in the
+	molecule. Unsaturated bonds, and single bonds connected to hydrogens or
+	terminal atoms, single bonds of amides, sulphonamides and those
+	connecting two hindered aromatic rings (having at least three ortho
+	substituents) are considered non-rotatable.</li>
+	<li><b>Steric effect index</b>: topological steric effect index
+	(TSEI) of an atom calculated from the covalent radii values and
+	topological distances. The stericEffectIndex is related to the steric
+	hindrance of the given atom.</li>
+</ul>
+</p>
+
+<p>
+<table>
+	<tr>
+		<td><img src="images/topolanal.png" width="606" height="575"></td>
+	</tr>
+</table>
+</p>
+
+<h3><a NAME="geometry"></a>Geometry Plugin</h3>
+<p>The Geometry plugin provides characteristic values related to the
+geometrical structure of a molecule. It can calculate interatomic
+distances, bond angles, dihedral angles, steric hindrance and Dreiding 
+energy. The calculation can predict and use the lowest energy conformer 
+of the input structure.</p>
+<p>
+<p><i>Calculations</i>
+<ul>
+	<li><b>Dreiding energy</b>: energy related to the stability of the
+	actual 3D structure (conformation) of the molecule.</li>
+	<li><b>Steric hindrance</b>: steric hindrance of an atom calculated from
+	the covalent radii values and geometrical distances.</li>
+	<li><b>Distance</b>: distance between two atoms.</li>
+	<li><b>Bond angle</b>: the angle that is formed between two adjacent 
+	bonds on the same atom.</li>
+	<li><b>Dihedral angle</b>: dihedral angle of four atoms.</li>
+</ul>
+</p>
+
+<table cellpadding="4">
+	<tr>
+		<td><img src="images/geometry.png" width="817" height="450"></td>
+	</tr>
+</table>
+</p>
+
+<h3><a name="TPSA"></a>Polar Surface Area Plugin (2D)</h3>
+<p>Polar surface area (PSA) is formed by polar atoms of a molecule.
+It is a descriptor that shows good correlation with passive molecular
+transport through membranes, and so allows estimation of transport
+properties of drugs. Estimation of topoligical polar surface area (TPSA)
+is based on the method given in <a HREF="#ref4">Ref.4.</a>. The
+method provides results which are practically identical with the 3D PSA,
+while calculation time of TPSA is approximately 100-times faster. This
+method is more suitable for fast bioavailability screening of large
+virtual libraries. The TPSA value can be calculated both for the neutral form and 
+the major microspecies.</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/tpsa1.png" width="388" height="445"></td>
+		<td><img src="images/tpsa2.png" width="388" height="445"></td>
+	</tr>
+</table>
+</p>
+
+<h3><a name="MSA"></a>Molecular Surface Area Plugin (3D)</h3>
+<p>There are two types of available molecular surface area
+calculations: Van der Waals and solvent accessible. Calculation method
+is based on the publication of Ferrara et al. (<a HREF="#ref4">Ref.6.</a>).</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/msa1.png" width="387" height="526"></td>
+		<td><img src="images/msa2.png" width="387" height="525"></td>
+	</tr>
+</table>
+</p>

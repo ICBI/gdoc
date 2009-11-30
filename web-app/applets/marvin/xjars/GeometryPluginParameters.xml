@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ParameterPanel>
+	<Group>
+	    <MultipleSelection Key="type" Label="Type">
+		<Choice Value="dreidingenergy" Text="Dreiding energy" Selected="true"/>
+<!--	<Choice Value="hbondcount" Text="Intramolecular H bond count" Selected="false"/>	-->
+		<Choice Value="hindrance" Text="Steric hindrance (atomic)" Selected="true"/>
+		<Choice Value="minimalprojectionarea" Text="&lt;html&gt;Minimal projection area (&Aring;&lt;sup&gt;2&lt;/sup&gt;)&lt;/html&gt;" Selected="true"/>
+		<Choice Value="maximalprojectionarea" Text="&lt;html&gt;Maximal projection area (&Aring;&lt;sup&gt;2&lt;/sup&gt;)&lt;/html&gt;" Selected="true"/>
+		<Choice Value="minimalprojectionradius" Text="&lt;html&gt;Minimal projection radius (&Aring;)&lt;/html&gt;" Selected="true"/>
+		<Choice Value="maximalprojectionradius" Text="&lt;html&gt;Maximal projection radius (&Aring;)&lt;/html&gt;" Selected="true"/>
+	    </MultipleSelection>
+	    <SingleSelection Key="energyunit" Label="Energy unit">
+	    	<Choice Value="kcal/mol" Text="kcal/mol" Selected="true" />
+	    	<Choice Value="kJ/mol" Text="kJ/mol" />
+	    </SingleSelection>
+	    <Dependencies>
+		    <Item Key="type" Range="dreidingenergy"/>
+		</Dependencies>
+	    <Precision Key="precision" Label="Decimal places"/>	   
+	    <Number Key="radiusscalefactor" Label="Radius scale factor" Range="[0.001,1000|" Value="1.0">
+		<Dependencies>
+		    <Item Key="type" Range="minimalprojectionarea,maximalprojectionarea,minimalprojectionradius,maximalprojectionradius"/>
+		</Dependencies>
+        </Number>
+	</Group>
+	
+	<Group Title="Calculate for lowest energy conformer">
+	    <RadioButtonGroup Key="calcforleconformer">
+		<Choice Value="if2D" Text="If molecule is in 2D" Selected="true"/>
+		<Choice Value="never" Text="Never"/>
+		<Choice Value="always" Text="Always"/>
+	    </RadioButtonGroup>
+	</Group>
+
+    <SingleSelection Key="optimization" Label="Optimization limit">
+		<Choice Value="0" Text="Very loose"/>
+		<Choice Value="1" Text="Normal" Selected="true"/>
+		<Choice Value="2" Text="Strict"/>
+		<Choice Value="3" Text="Very strict"/>
+    </SingleSelection>
+    <Dependencies>
+	    <Item Key="calcforleconformer" Range="if2D,always"/>
+	</Dependencies>
+</ParameterPanel>
