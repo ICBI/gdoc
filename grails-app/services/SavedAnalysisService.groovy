@@ -45,9 +45,7 @@ class SavedAnalysisService {
 			runningAnalysis.taskId = notification.item.taskId
 			println "ANALYSIS: $runningAnalysis"
 			runningAnalysis.save(flush:true)
-		} else {
-			throw new Exception("No analysis to update")
-		}
+		} 
 	}
 	
 	def getAllSavedAnalysis(userId) {
