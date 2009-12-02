@@ -20,7 +20,7 @@ class GenePatternService {
 		
 		writeSampleFile(cmd.groups, patientFile)
 		writeReporterFile(cmd.geneList, reporterFile)
-		
+		System.setProperty("javax.net.ssl.trustStore", "/Users/acs224/.keystore")
 		GPClient gpClient = new GPClient(CH.config.genePatternUrl, userId, "gp2009");
 		Parameter[] parameters = new Parameter[8];
 		parameters[0] = new Parameter("input.filename1", patientFile);

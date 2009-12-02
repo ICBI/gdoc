@@ -95,6 +95,18 @@ jQuery(document).ready(function()
 					</ul>
 				</li>
 				<li>
+					<a class="sf-with-ul" href="#">PCA<span class="sf-sub-indicator"> »</span></a>
+					<ul style="display: none; visibility: hidden;">
+						<g:each in="${session.myStudies}">
+							<g:if test="${it.hasGenomicData()}">
+								<li>
+									<g:navigationLink name="${it.shortName}" id="${it.id}" controller="pca" />
+								</li>
+							</g:if>
+						</g:each>
+					</ul>
+				</li>
+				<li>
 					<a class="sf-with-ul" href="#">Gene Pattern<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
 						<g:each in="${session.myStudies}">
@@ -113,13 +125,13 @@ jQuery(document).ready(function()
 			
 		</li>	
 		<li>
-			<a href="https://141.161.54.206/catissuecore" target="_blank">caTissue</a>
+			<a href="https://demotisu.gdoc.georgetown.edu/catissuecore" target="_blank">caTissue</a>
 		</li>
 		<li>
 			<a href="#">Help</a>
 		</li>		
 	</ul>
-	<form id="gpForm" action="http://141.161.54.201:8080/gp/pages/index.jsf" method="POST" target="genepattern">
+	<form id="gpForm" action="https://democomp.gdoc.georgetown.edu/gp/pages/index.jsf" method="POST" target="genepattern">
 		<input type="hidden" name="workspaceId" value="${genePatternId()}" />
 	</form>
 </div>

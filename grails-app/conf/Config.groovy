@@ -40,7 +40,7 @@ environments {
         grails.serverURL = "http://www.changeme.com"
 		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
-		genePatternUrl = "http://141.161.54.201:8080"
+		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "http://localhost/gdoc-middleware"
     }
@@ -48,16 +48,16 @@ environments {
         grails.serverURL = "http://www.changeme.com"
 		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
-		genePatternUrl = "http://141.161.54.201:8080"
+		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
-		middlewareUrl = "http://localhost/gdoc-middleware"
+		middlewareUrl = "https://dev.gdoc.georgetown.edu/gdoc-middleware"
 		
     }
     demo {
         grails.serverURL = "http://www.changeme.com"
 		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
-		genePatternUrl = "http://141.161.54.201:8080"
+		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "http://localhost/gdoc-middleware"
 		
@@ -66,7 +66,7 @@ environments {
 	//	jmsserver = "jnp://141.161.30.205:1099"
 		jmsserver = "jnp://localhost:1099"
  		responseQueue = "AnalysisResponseAndrew"
-		genePatternUrl = "http://141.161.54.201:8080"
+		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/local/content/gdoc"
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
 		

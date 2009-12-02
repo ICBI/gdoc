@@ -15,6 +15,7 @@ class SecurityService {
 	
 	def jdbcTemplate
 	List studies
+	def sharedItems
 	
 	AuthenticationManager authenticationManager
 	AuthorizationManager authorizationManager
@@ -220,7 +221,10 @@ class SecurityService {
 	}
 	
 	def getSharedItemIds(loginName, itemType) {
-		def sharedItems = [:]
+		if(sharedItems) {
+			return sharedItems[itemType]
+		}
+		sharedItems = [:]
 		if(itemType == 'StudyDataSource' && studies) {
 			return studies
 		}

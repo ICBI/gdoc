@@ -1,5 +1,6 @@
 import gov.nih.nci.caintegrator.analysis.messaging.ClassComparisonRequest
 import gov.nih.nci.caintegrator.analysis.messaging.ExpressionLookupRequest
+import gov.nih.nci.caintegrator.analysis.messaging.PrincipalComponentAnalysisRequest
 import gov.nih.nci.caintegrator.analysis.messaging.SampleGroup
 import gov.nih.nci.caintegrator.analysis.messaging.ReporterGroup
 import org.springframework.jms.core.JmsTemplate
@@ -61,9 +62,21 @@ class AnalysisService {
 			request.reporters = reporterGroup
 			request.samples = sampleGroup
 			return request
+		},
+		(AnalysisType.PCA): { sess, cmd ->
+			def request = new PrincipalComponentAnalysisRequest(sess, "PCA_" + System.currentTimeMillis())
+			request.dataFileName = cmd.dataFile
+			def group1 = new SampleGroup()
+			def samples = idService.samplesForListName(cmd.groups[0])
+			group1.addAll(samples)
+			println "group 1: " + samples
+			if(cmd.variance)
+				request.varianceFilterValue = cmd.variance.toDouble()
+			if(cmd.foldChange)
+				request.foldChangeFilterValue = cmd.foldChange.toDouble()
+			request.sampleGroup = group1
+			return request
 		}
-		
-	
 	]
 	
 	def sendRequest(sessionId, command) {
