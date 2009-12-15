@@ -33,9 +33,6 @@ jQuery(document).ready(function()
 					</ul>
 				</li>
 				<li>
-					<a class="sf-with-ul" href="${createLink(controller: 'crossStudy')}">Across Studies</a>
-				</li>
-				<li>
 				<li>
 					<a href="#">Patients</a>
 				</li>	
@@ -131,7 +128,7 @@ jQuery(document).ready(function()
 			<a href="#">Help</a>
 		</li>		
 	</ul>
-	<form id="gpForm" action="https://democomp.gdoc.georgetown.edu/gp/pages/index.jsf" method="POST" target="genepattern">
+	<form id="gpForm" action="${grailsApplication.config.genePatternUrl}/gp/pages/index.jsf" method="POST" target="genepattern">
 		<input type="hidden" name="workspaceId" value="${genePatternId()}" />
 	</form>
 </div>

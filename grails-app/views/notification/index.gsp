@@ -51,7 +51,7 @@
 		<g:render template="/notification/invitationTable" />
 	</g:panel>
 	<br/>
-		<form id="gpForm" action="http://141.161.54.201:8080/gp/pages/index.jsf" method="POST" target="genepattern">
+		<form id="gpForm" action="${grailsApplication.config.genePatternUrl}/gp/pages/index.jsf" method="POST" target="genepattern">
 			<input type="hidden" name="workspaceId" value="${genePatternId()}" />
 		</form>
 	<br /><br />
