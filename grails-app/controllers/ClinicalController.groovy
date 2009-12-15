@@ -5,6 +5,7 @@ class ClinicalController {
 	def clinicalService
 	def biospecimenService
 	def searchResults
+	def middlewareService
 	
     def index = { 
 		if(params.id) {
@@ -13,6 +14,11 @@ class ClinicalController {
 			StudyContext.setStudy(session.study.schemaName)
 		}
 		session.dataTypes = AttributeType.findAll().sort { it.longName }
+	}
+	
+	def test = {
+		def results = middlewareService.sparqlQuery()
+		println results
 	}
 	
 	def search = {

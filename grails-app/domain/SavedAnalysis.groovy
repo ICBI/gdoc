@@ -71,4 +71,8 @@ class SavedAnalysis implements Taggable {
 		return studies.collect {it.shortName}
 	}
 	
+	def studySchemas = {
+		return studies.collect {it.schemaName}
+	}
+	
 }

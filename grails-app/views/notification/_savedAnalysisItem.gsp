@@ -5,6 +5,9 @@
 		<g:if test="${notification.type == AnalysisType.CLASS_COMPARISON}">
 			<g:link controller="analysis" action="view" id="${notification.id}">${notification.type}</g:link> (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 		</g:if>
+		<g:elseif test="${notification.type == AnalysisType.PCA}">
+			<g:link controller="pca" action="view" id="${notification.id}">${notification.type}</g:link> (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
+		</g:elseif>		
 		<g:else>
 			<g:link controller="geneExpression" action="view" id="${notification.id}">${notification.type}</g:link> (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 		</g:else>

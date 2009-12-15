@@ -33,4 +33,16 @@ class PatientService {
 		return patients
 		
     }
+
+	def patientsForSampleIds(sampleIds) {
+		def queryClosure = { tempIds -> 
+			def c = Patient.createCriteria()
+			return c.listDistinct {
+				biospecimens {
+					'in'("name", tempIds)
+				}
+			}
+		}
+		return QueryUtils.paginateResults(sampleIds, queryClosure)
+	}
 }

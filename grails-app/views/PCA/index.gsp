@@ -8,7 +8,11 @@
 	<jq:plugin name="flydisk" />
 	<g:javascript>
 	$(document).ready(function() {
+		setupBoxes("input[name='reporterCriteria']");
+		$("input[name='reporterCriteria']").change(function() {
 
+			setupBoxes("input[name='reporterCriteria']");
+		});
 		jQuery().flydisk({ selectedColor:"#eee",                       //BgColor of selected items(Default: white) 
 		left_disk:'left',                 //Id of left drop down list (Mandatory)
 		right_disk:'right',               //Id of right drop down list(Mandatory)
@@ -24,14 +28,27 @@
 	});
 	$.sortOptions('#left');
 });
+	function setupBoxes(selector) {
+		$(selector).each(function() {
+			if(this.checked) {
+				$(this).next('div').children('.validationInput').show('fast');
+			} else {
+				$(this).next('div').children('.validationInput').hide('fast');
+			}
+		});
+	}
 
 </g:javascript>
 <p style="font-size:14pt">Perform Class Comparison Analysis</p>
 <br/>
 <g:form name="analysisForm" action="submit">
 <div class="clinicalSearch">
+	<b>Patient Criteria</b>
 	<br/>
-	Select Groups:
+	<br/>
+	<g:radio name="patientCriteria" checked="true"/> All Patients <br/>
+	<g:radio name="patientCriteria" disabled="true"/> Select Groups:
+	<div id="patientListCriteria" style="display:none;">
 	<br/>
 	<table width="400px;">
 		<tr>
@@ -71,13 +88,25 @@
 			</td>
 		</tr>
 	</table>
+	</div>
+</div>
+<div class="clinicalSearch">
+	<b>Reporter Criteria</b>
 	<br/>
-	Constrain reporters by fold change:	
+	<br/>
+	<g:radio name="reporterCriteria" checked="true"/> Constrain reporters by fold change:
+	<div id="reporterFold"  style="height:10px;">	
 	<g:validationInput name="foldChange"/> 
+	</div>
 	<br/>
-	Constrain reporters by variance (Gene Vector) percentile:  ≥	
-	<g:validationInput name="variance"/> 
+	<g:radio name="reporterCriteria" disabled="true"/> Constrain reporters by variance (Gene Vector) percentile:  ≥	
+	<div id="reporterVariance" style="height:10px;">
+		<g:validationInput name="variance"/> 
+	</div>
 	<br/>
+</div>
+<div class="clinicalSearch">
+		<%--
 	Use Gene List:
 	<br/>
 	<g:select name="geneList" 
@@ -85,13 +114,16 @@
 			from="${['T-Test: Two Sample Test', 'Wilcoxin Test: Mann-Whitney Test', 'F-Test: One Way ANOVA']}" />
 	<br/>
 	<br/>
+
 	Use Reporter List:
 	<br/>
-	<g:select name="reporterList" 
-			noSelection="${['':'Select One...']}"
-			from="${['T-Test: Two Sample Test', 'Wilcoxin Test: Mann-Whitney Test', 'F-Test: One Way ANOVA']}" />
+	<g:select name="reporterList"
+				noSelection="${['':'Select One...']}"
+				  from="${session.reporterLists}"
+				optionKey="name" optionValue="name" />
 	<br/>
 	<br/>
+	--%>
 	Dataset:
 	<br/>
 	<g:select name="dataFile" 
@@ -103,7 +135,8 @@
 <br/>
 <g:submitButton name="submit" value="Submit Analysis"/>
 </g:form>
-
+<br/>
+<br/>
 
 </body>
 

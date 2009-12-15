@@ -67,14 +67,18 @@ class AnalysisService {
 			def request = new PrincipalComponentAnalysisRequest(sess, "PCA_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
-			def samples = idService.samplesForListName(cmd.groups[0])
-			group1.addAll(samples)
-			println "group 1: " + samples
+			def allIds = idService.sampleIdsForFile(cmd.dataFile)
+			group1.addAll(allIds)
+			println "group 1: " + allIds
 			if(cmd.variance)
 				request.varianceFilterValue = cmd.variance.toDouble()
-			if(cmd.foldChange)
+			else if(cmd.foldChange)
 				request.foldChangeFilterValue = cmd.foldChange.toDouble()
 			request.sampleGroup = group1
+/*			def reporterGroup = new ReporterGroup()
+			reporterGroup.addAll(annotationService.findReportersByPlatform('U133 Plus 2.0'))
+			println "REPORTERS: $reporterGroup"
+			request.reporterGroup = reporterGroup*/
 			return request
 		}
 	]

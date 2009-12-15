@@ -5,6 +5,7 @@ class ArrayDesign {
 		id column:'marray_design_id'
 		reporters joinTable:[name:'MARRAY_REPORTER_LIST', key:'marray_design_id', column:'marray_reporter_id']
 	}
+	static fetchMode = [reporters:'eager']
 	static hasMany = [reporters:Reporter]
 
 	String platform

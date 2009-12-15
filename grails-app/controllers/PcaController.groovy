@@ -9,15 +9,26 @@ class PcaController {
 	def savedAnalysisService
 	def annotationService
 	def userListService
+	def patientService
 	
     def index = {
 		session.study = StudyDataSource.get(params.id)
 		StudyContext.setStudy(session.study.schemaName)
 		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-		def patientLists = lists.findAll { item ->
-			(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
+		def geneLists = []
+		def patientLists = []
+		def reporterLists = []
+		lists.each { item ->
+			if((item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy())))
+				patientLists << item
+			if((item.tags.contains("reporter") && item.schemaNames().contains(StudyContext.getStudy())))
+				reporterLists << item
+			if((item.tags.contains("reporter") && item.schemaNames().contains(StudyContext.getStudy())))
+				geneLists << item
 		}
 		session.patientLists = patientLists.sort { it.name }
+		session.reporterLists = reporterLists
+		session.geneLists = geneLists
 		session.files = MicroarrayFile.findByNameLike('%.Rda')
 	}
 	
@@ -34,10 +45,14 @@ class PcaController {
 	}
 	
 	def view = {
-		//def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+		def results = analysisResult.analysis.item
+		
+		session.results = results
+		session.analysis = analysisResult
 		def attributes = []
-		//analysisResult.studyNames.each { study ->
-		["LOI"].each { study ->
+		analysisResult.studySchemas().each { study ->
+			println "STUDY $study"
 			StudyContext.setStudy(study)
 			attributes.addAll(AttributeType.findAll())
 		}
@@ -45,31 +60,36 @@ class PcaController {
 	}
 	
 	def results = {
-		view()
+		def results = session.results
+		def resultEntries = results.resultEntries
 		def pcaResults = [:]
-		def samples = [:]
-		def sampleGroup1 = []
-		def sampleGroup2 = []
-		def sampleGroup3 = []
-		def test = true
-		(1..100).each {
-			def dr = 'YES'
-			if(test)
-				dr = 'YES'
-			else 
-				dr = 'NO'
-			test = !test
-			def sample = [sampleId : it, pc1: it, pc2: it, pc3: it, DR: dr, AGE: it, 'SURGERY_TO_RECUR/FU': (it / 2), 'SURGERY_TO_DR/FU_DAYS': (it * 100)]
-			if((it % 3) == 0)
-				sampleGroup3 << sample
-			else if((it % 3) == 1)
-				sampleGroup2 << sample
-			else 
-				sampleGroup1 << sample
+		def samples = []
+		def sampleHash = [:]
+		def sampleIds = []
+		resultEntries.each {
+			def sample = [sampleId : it.sampleId, pc1: it.pc1, pc2: it.pc2, pc3: it.pc3]
+			samples << sample
+			sampleHash[it.sampleId] = sample
+			sampleIds << it.sampleId
 		}
-		samples["pc1pc2"] = sampleGroup1
-		samples["pc1pc3"] = sampleGroup2
-		samples["pc2pc3"] = sampleGroup3
+		
+		def patients = patientService.patientsForSampleIds(sampleIds)
+		def patientDataHash = [:]
+		patients.each { patient ->
+			def patientSamples = patient.biospecimens.collect {
+				it.name
+			}
+			patientSamples.each {
+				patientDataHash[it] = patient
+			}
+		}
+		
+		samples.each {
+			def patient = patientDataHash[it.sampleId]
+			patient.clinicalData.each {key, value ->
+				it[key] = value
+			}
+		}
 		
 		def clinicalTypes = []
 		session.dataTypes.each {

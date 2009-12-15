@@ -37,12 +37,36 @@ class AnnotationService {
 		return reporters
 	}
 	
+	def findReportersForReporterList(listName) {
+		def lists = UserList.findAll()
+		def list = lists.find { item ->
+			item.name == listName
+		}
+		def listValues = list.listItems.collect {item ->
+			item.value
+		}
+		return listValues
+	}
+	
 	def findGeneByAlias(alias) {
 		def geneAlias = GeneAlias.findBySymbol(alias.toUpperCase())
 		if(geneAlias) {
 			geneAlias = GeneAlias.findByGeneIdAndOfficial(geneAlias.geneId, true)
 		}
 		return geneAlias
+	}
+	
+	def findReportersByPlatform(platformName) {
+		def criteria = Reporter.createCriteria()
+		def reporters = criteria {
+			projections {
+				property('name')
+			}
+			arrayDesigns {
+				eq("platform", platformName)
+			}
+		}
+		return reporters
 	}
 	
 	def searchForReportersByGene(gene) {
