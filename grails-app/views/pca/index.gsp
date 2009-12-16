@@ -8,6 +8,9 @@
 	<jq:plugin name="flydisk" />
 	<g:javascript>
 	$(document).ready(function() {
+		if($("input[name='reporterCriteria']:checked").size() < 1) {
+			$("input[name='reporterCriteria']")[0].checked = true;
+		}
 		setupBoxes("input[name='reporterCriteria']");
 		$("input[name='reporterCriteria']").change(function() {
 
@@ -94,13 +97,13 @@
 	<b>Reporter Criteria</b>
 	<br/>
 	<br/>
-	<g:radio name="reporterCriteria" checked="true"/> Constrain reporters by fold change:
-	<div id="reporterFold"  style="height:10px;">	
+	<g:radio name="reporterCriteria" value="foldChange"/> Constrain reporters by fold change:
+	<div id="reporterFold"  >	
 	<g:validationInput name="foldChange"/> 
 	</div>
 	<br/>
-	<g:radio name="reporterCriteria" disabled="true"/> Constrain reporters by variance (Gene Vector) percentile:  ≥	
-	<div id="reporterVariance" style="height:10px;">
+	<g:radio name="reporterCriteria" value="variance" checked="${flash.cmd?.reporterCriteria == 'variance'}"/> Constrain reporters by variance (Gene Vector) percentile:  ≥	
+	<div id="reporterVariance" >
 		<g:validationInput name="variance"/> 
 	</div>
 	<br/>
