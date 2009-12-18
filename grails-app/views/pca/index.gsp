@@ -42,7 +42,7 @@
 	}
 
 </g:javascript>
-<p style="font-size:14pt">Perform Class Comparison Analysis</p>
+<p style="font-size:14pt">Perform Principal Component Analysis</p>
 <br/>
 <g:form name="analysisForm" action="submit">
 <div class="clinicalSearch">

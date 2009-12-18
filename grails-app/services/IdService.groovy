@@ -19,8 +19,7 @@ class IdService {
 		def results = patientService.patientsForGdocIds(gdocIds)
 		def sampleIds = results.collect { patient ->
 			return patient.biospecimens.collect { specimen ->
-				if(specimen.type == "LABELED_EXTRACT")
-					return specimen.name
+				return specimen.name
 			}
 		}
 		def ids = []

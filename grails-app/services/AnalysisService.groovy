@@ -21,10 +21,13 @@ class AnalysisService {
 			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
 			def samples = idService.samplesForListName(cmd.groups[0])
+			def allIds = idService.sampleIdsForFile(cmd.dataFile)
+			samples = allIds.intersect(samples)
 			group1.addAll(samples)
 			println "group 1: " + samples
 			def baseline = new SampleGroup()
 			def baselineSamples = idService.samplesForListName(cmd.groups[1])
+			baselineSamples = allIds.intersect(baselineSamples)
 			println "baseline samples: $baselineSamples"
 			baseline.addAll(baselineSamples)
 			request.pValueThreshold = cmd.pvalue.toDouble()
