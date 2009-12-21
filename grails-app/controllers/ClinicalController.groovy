@@ -22,26 +22,36 @@ class ClinicalController {
 	}
 	
 	def search = {
-		def errors = validateQuery(params, session.dataTypes)
-		println "Clinical Validation: " + errors
-		if(errors && (errors != [:])) {
-			flash['errors'] = errors
-			flash['params'] = params
-			redirect(action:'index',id:session.study.id)
-			return
-		}
-		def criteria = QueryBuilder.build(params, "clinical_", session.dataTypes)
-		def biospecimenIds
-		if(session.dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
-			def biospecimenCriteria = QueryBuilder.build(params, "biospecimen_", session.dataTypes)
-			if(biospecimenCriteria && biospecimenCriteria.size() > 0) {
-				biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
-				println "GOT IDS ${biospecimenIds.size()}"
+		//check to see if search is new, or if we already have ids (e.g : coming from an analysis )
+		if(!params.fromAnalysis){
+			def errors = validateQuery(params, session.dataTypes)
+			println "Clinical Validation: " + errors
+			if(errors && (errors != [:])) {
+				flash['errors'] = errors
+				flash['params'] = params
+				redirect(action:'index',id:session.study.id)
+				return
 			}
+			def criteria = QueryBuilder.build(params, "clinical_", session.dataTypes)
+			def biospecimenIds
+			if(session.dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
+				def biospecimenCriteria = QueryBuilder.build(params, "biospecimen_", session.dataTypes)
+				if(biospecimenCriteria && biospecimenCriteria.size() > 0) {
+					biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
+					println "GOT IDS ${biospecimenIds.size()}"
+				}
+			}
+			//println criteria
+			searchResults = clinicalService.queryByCriteria(criteria, biospecimenIds)
+			processResults(searchResults)
+		}else{
+			searchResults = clinicalService.getPatientsForIds(params.ids)
+			processResults(searchResults)
 		}
-		//println criteria
-		searchResults = clinicalService.queryByCriteria(criteria, biospecimenIds)
-		processResults(searchResults)
+	}
+	
+	def searchFromAnalysis = {
+		
 	}
 	
 	def viewPatientReport = {

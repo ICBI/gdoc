@@ -113,6 +113,7 @@ class ClinicalService {
 		temp.ids = gdocIds.join(", ")
 		temp.schema = StudyContext.getStudy()
 		def query = queryTemplate.make(temp)
+		println query
 		def patientIds = []
 		def tempSpecimens = jdbcTemplate.queryForList(query.toString())
 		patientIds.addAll(tempSpecimens.collect { id ->
@@ -122,18 +123,27 @@ class ClinicalService {
 	}
 	
 	def getPatientsForIds(patientIds) {
+		def pids = []
+		if(patientIds.metaClass.respondsTo(patientIds, "replace")) {
+			println " ids are coming from string"
+			patientIds.tokenize(",").each{
+				pids.add(it)	
+			}
+		}else{
+			pids = patientIds
+		}
 		def patients = []
 		def index = 0;
-		println "patient ids $patientIds"
-		while(index < patientIds.size()) {
-			def patientsLeft = patientIds.size() - index
+		println "patient ids $pids"
+		while(index < pids.size()) {
+			def patientsLeft = pids.size() - index
 			def tempPatients
 			if(patientsLeft > PAGE_SIZE) {
-				tempPatients = Patient.getAll(patientIds.getAt(index..<(index + PAGE_SIZE)))
+				tempPatients = Patient.getAll(pids.getAt(index..<(index + PAGE_SIZE)))
 				patients.addAll(tempPatients)
 				index += PAGE_SIZE
 			} else {
-				tempPatients = Patient.getAll(patientIds.getAt(index..<patientIds.size()))
+				tempPatients = Patient.getAll(pids.getAt(index..<pids.size()))
 				patients.addAll(tempPatients)
 				index += patientsLeft
 			}
