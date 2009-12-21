@@ -54,6 +54,8 @@ class PcaController {
 		analysisResult.studySchemas().each { study ->
 			println "STUDY $study"
 			StudyContext.setStudy(study)
+			def sds = StudyDataSource.findBySchemaName(study)
+			session.study = sds
 			attributes.addAll(AttributeType.findAll())
 		}
 		session.dataTypes = attributes
@@ -72,8 +74,8 @@ class PcaController {
 			sampleHash[it.sampleId] = sample
 			sampleIds << it.sampleId
 		}
-		
 		def patients = patientService.patientsForSampleIds(sampleIds)
+		
 		def patientDataHash = [:]
 		patients.each { patient ->
 			def patientSamples = patient.biospecimens.collect {
@@ -89,6 +91,7 @@ class PcaController {
 			patient.clinicalData.each {key, value ->
 				it[key] = value
 			}
+			it["patientId"] = patient.id
 		}
 		
 		def clinicalTypes = []
@@ -110,6 +113,7 @@ class PcaController {
 		}
 		pcaResults["clinicalTypes"] = clinicalTypes
 		pcaResults["samples"] = samples
+		println pcaResults as JSON
 		render pcaResults as JSON
 	}
 }

@@ -252,10 +252,11 @@ class UserListController {
 
     def saveFromQuery = {
 		println params
+		def author = GDOCUser.findByLoginName(session.userId)
 		if(!params["name"]){
-			params["name"] = params["author.username"] + new Date().getTime();
+			params["name"] = author.loginName + new Date().getTime();
 		}
-		def author = GDOCUser.findByLoginName(params["author.username"])
+		
 		params["author.id"] = author.id
 		def listDup = author.lists().find {
 			it.name == params["name"]

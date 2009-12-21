@@ -54,7 +54,7 @@ class SecurityFilters {
 				if(session.study) {
 					StudyContext.setStudy(session.study.schemaName)
 				} else {
-					StudyContext.setStudy("EDIN")
+					//StudyContext.setStudy("EDIN")
 				}
 			}
 		}

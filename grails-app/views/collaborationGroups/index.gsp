@@ -23,7 +23,6 @@
 		});
 		
 		function toggleUsers(criteria,showHide) {
-			console.log('#'+criteria);
 			$('#'+criteria).slideToggle();
 				if($('#'+showHide).html() == "Show users"){
 						$('#'+showHide).html("Hide users");
