@@ -47,7 +47,7 @@ class SecurityService {
 	}
 	
 	/**
-	* Share an item with a collaboration groups
+	* Share an item with collaboration group(s)
 	*/
 	def share(item, groups) {
 		def authManager = this.getAuthorizationManager()
@@ -221,10 +221,6 @@ class SecurityService {
 	}
 	
 	def getSharedItemIds(loginName, itemType) {
-		if(sharedItems) {
-			return sharedItems[itemType]
-		}
-		sharedItems = [:]
 		if(itemType == 'StudyDataSource' && studies) {
 			return studies
 		}
@@ -247,7 +243,6 @@ class SecurityService {
 				}
 			}
 		}
-		sharedItems[itemType] = ids
 		if(itemType == 'StudyDataSource' && !studies) {
 			println "CACHING STUDIES $ids"
 			studies = ids

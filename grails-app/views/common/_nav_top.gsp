@@ -29,9 +29,6 @@ $(document).ready(function()
 					</ul>
 				</li>
 				<li>
-						<a class="sf-with-ul" href="${createLink(controller: 'crossStudy')}">Across Studies</a>
-				</li>
-				<li>
 					<a href="#">Patients</a>
 				</li>	
 				<li>
@@ -67,6 +64,18 @@ $(document).ready(function()
 							<li>
 								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="km" />
 							</li>
+						</g:each>
+					</ul>
+				</li>
+				<li>
+					<a class="sf-with-ul" href="#">PCA<span class="sf-sub-indicator"> »</span></a>
+					<ul style="display: none; visibility: hidden;">
+						<g:each in="${session.myStudies}">
+							<g:if test="${it.hasGenomicData()}">
+								<li>
+									<g:navigationLink name="${it.shortName}" id="${it.id}" controller="pca" />
+								</li>
+							</g:if>
 						</g:each>
 					</ul>
 				</li>		

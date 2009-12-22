@@ -4,6 +4,45 @@ class SavedAnalysisService {
 	
 	def securityService
 	
+	def getAllSavedAnalysis(userId,sharedIds){
+		def user = GDOCUser.findByLoginName(userId)
+		user.refresh()
+		def analyses = user.analysis
+		def analysisIds = []
+		def sharedAnalysisIds = []
+		sharedAnalysisIds = sharedIds
+		
+		if(!sharedAnalysisIds){
+			sharedAnalysisIds = getSharedAnalysisIds(userId)
+		}
+		if(analyses){
+			if(analyses.metaClass.respondsTo(analyses, "size")) {
+				analyses.each{
+					analysisIds << it.id.toString()
+				}
+			} else {
+				analysisIds << analyses.id.toString()
+			}
+		}
+			
+		def sharedAnalyses = []
+		//until we modify ui, just add shared lists to 'all' lists
+		sharedAnalysisIds.each{
+			if(!(analysisIds.contains(it))){
+				def foundAnalysis = SavedAnalysis.get(it.toString())
+				if(foundAnalysis){
+					analyses << foundAnalysis
+				}
+		   	}
+		}
+		analyses = analyses.sort { one, two ->
+			def dateOne = one.dateCreated
+			def dateTwo = two.dateCreated
+			return dateTwo.compareTo(dateOne)
+		}
+		return analyses
+	}
+	
 	def addSavedAnalysis(userId, notification, command) {
 		def user = GDOCUser.findByLoginName(userId)
 		println "GOT NOTIFICATION $notification"
