@@ -14,7 +14,7 @@
 		--%>
 		<br/>
 		<br/>
-		<g:flex component="PCAPlot" width="560px" height="540px" />
+		<g:flex component="PCAPlot" width="620px" height="540px" />
 	</div>
 	<br/>
 	<br/>

@@ -79,18 +79,22 @@ class SavedAnalysisController{
 		def myAnalysis = user.analysis
 		def analysisIds = []
 		
-		if(myAnalysis.metaClass.respondsTo(myAnalysis, "size")) {
-				myAnalysis.each{
-					analysisIds << it.id.toString()
-				}
-		} else {
+		if(myAnalysis){
+			if(myAnalysis.metaClass.respondsTo(myAnalysis, "size")) {
+					myAnalysis.each{
+						analysisIds << it.id.toString()
+					}
+			} else {
 				analysisIds << myAnalysis.id.toString()
+			}
 		}
-		if(groupAnalysisIds.metaClass.respondsTo(groupAnalysisIds, "size")) {
-				groupAnalysisIds.removeAll(analysisIds)
-		} else {
-				groupAnalysisIds.remove(analysisIds)
-		}	
+		if(groupAnalysisIds){
+			if(groupAnalysisIds.metaClass.respondsTo(groupAnalysisIds, "size")) {
+					groupAnalysisIds.removeAll(analysisIds)
+			} else {
+						groupAnalysisIds.remove(analysisIds)
+			}	
+		}
 		
 		//until we modify ui, just add shared analyisis to 'all' analysis
 		groupAnalysisIds.each{
