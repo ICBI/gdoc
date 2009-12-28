@@ -51,7 +51,7 @@ environments {
 		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://dev.gdoc.georgetown.edu/gdoc-middleware"
-		
+		structuresPath = "/opt/gdoc-data/"
     }
     demo {
         grails.serverURL = "http://www.changeme.com"
@@ -60,24 +60,24 @@ environments {
 		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "http://localhost/gdoc-middleware"
-		
+		structuresPath = "/opt/gdoc-data/"
     }
 	development {
 	//	jmsserver = "jnp://141.161.30.205:1099"
 		jmsserver = "jnp://localhost:1099"
- 		responseQueue = "AnalysisResponseAndrew"
+ 		responseQueue = "AnalysisResponseKevin"
 		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/local/content/gdoc"
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
-		
+		structuresPath = "/opt/gdoc-data/"
 	}
 	test {
 		jmsserver = "jnp://localhost:1099"
- 		responseQueue = "AnalysisResponseAndrew"
+ 		responseQueue = "AnalysisResponseKevin"
 		genePatternUrl = "http://141.161.54.201:8080"
 		tempDir = "/local/content/gdoc"
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
-		
+		structuresPath = "/opt/gdoc-data/"
 	}
 }
 

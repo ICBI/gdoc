@@ -21,7 +21,7 @@ class SummaryService {
 		def studyCounts =[:]
 		def total = 0
 		studyList.each{
-			if(it.schemaName != 'PREOP' && it.schemaName != 'EDINFAKE'){
+			if(it.schemaName != 'PREOP' && it.schemaName != 'EDINFAKE' && it.schemaName != 'DRUG'){
 					StudyContext.setStudy(it.schemaName)
 					def query = "select count(p) from Patient p"
 					def patients = Patient.executeQuery(query)

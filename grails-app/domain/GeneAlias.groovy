@@ -8,4 +8,7 @@ class GeneAlias {
 	String symbol
 	Long geneId
 	Boolean official
+	
+	static hasMany = [proteins: Protein]
+	static fetchMode = [proteins:'eager']
 }
