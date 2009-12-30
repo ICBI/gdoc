@@ -3,6 +3,7 @@ class StudyContext {
     private static final ThreadLocal studyContext = new ThreadLocal()
 
     static void setStudy(String study) {
+		//println "setting StudyContext to study: $study"
         studyContext.set(study);
     }
 

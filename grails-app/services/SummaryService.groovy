@@ -33,6 +33,7 @@ class SummaryService {
 			}
 		}
 		studyCounts["Total"] = total
+		StudyContext.setStudy(null)
 		return studyCounts
 	}
 	
