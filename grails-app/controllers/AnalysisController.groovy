@@ -9,6 +9,7 @@ class AnalysisController {
 	def savedAnalysisService
 	def annotationService
 	def userListService
+	def drugDiscoveryService
 	
     def index = {
 		session.study = StudyDataSource.get(params.id)
@@ -53,7 +54,8 @@ class AnalysisController {
 		columns << [index: "meanGrp1", name: "Group Average", sortable: true, width: '100']
 		columns << [index: "foldChange", name: "Fold Change", sortable: true, width: '100']
 		columns << [index: "geneSymbol", name: "Gene Symbol", sortable: false, width: '100', formatter: 'genecard', formatoptions: formatOptions]
-		def colNames = ["Reporter ID", "p-value", "Group Average", "Fold Change", "Gene Symbol"]
+		columns << [index: "target", name: "Target Data?", sortable: true, width: '100']
+		def colNames = ["Reporter ID", "p-value", "Group Average", "Fold Change", "Gene Symbol", "Target Data"]
 		session.columnJson = columns as JSON
 		session.columnNames = colNames as JSON
 	}
@@ -79,6 +81,12 @@ class AnalysisController {
 		sortedEntries.getAt(startIndex..<endIndex).each { result ->
 			def cells = []
 			def geneName = annotationService.findGeneForReporter(result.reporterId)
+			def targetData = ""
+			if(geneName){
+				targetData = drugDiscoveryService.findProteinsFromAlias(geneName)
+				if(!targetData)
+				targetData = ""
+			}
 			cells << result.reporterId
 			def sciFormatter = new DecimalFormat("0.000E0")
 			def formatter = new DecimalFormat("0.000")
@@ -86,6 +94,16 @@ class AnalysisController {
 			cells << formatter.format(result.meanGrp1)
 			cells << formatter.format(result.foldChange)
 			cells << geneName
+			def targetLinks = []
+			if(!targetData.equals("")){
+				targetData.each{ target ->
+					def link = "<a href='/gdoc/moleculeTarget?target="+target+"'>"+target+"</a>"
+					targetLinks << link
+				}
+			}
+			if(targetLinks)
+				cells << targetLinks.toString()
+			else cells << targetData
 			results << [id: result.reporterId, cell: cells]
 		}
 		def jsonObject = [

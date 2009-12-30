@@ -51,7 +51,7 @@ class AnnotationService {
 	def findGeneByAlias(alias) {
 		def geneAlias = GeneAlias.findBySymbol(alias.toUpperCase())
 		if(geneAlias) {
-			geneAlias = GeneAlias.findByGeneIdAndOfficial(geneAlias.geneId, true)
+			geneAlias = GeneAlias.findByGeneAndOfficial(geneAlias.gene, true)
 		}
 		return geneAlias
 	}

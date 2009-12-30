@@ -319,17 +319,6 @@ def gatherTags(ids){
 	return unitedTags as List
 }
 
-def calculateVenn = {
-		def list= ['VEGF','EGFR','BRCA1','BRCA1','ER+','ER-','FCR','HGI']
-		def list2= ['VEGF','EGFR','BRCA1','SCF7', 'QSR6','HGI']
-		assert list.retainAll( list2 )
-		    //remove 'b' and 'z', return true because list changed
-		assert list == ['VEGF','EGFR','BRCA1','BRCA1','HGI']
-		println list
-		def listSet = list as Set
-		println listSet
-	
-}
 
 	def createList(userName, listName, listItems, studies, tags) {
 		def author = GDOCUser.findByLoginName(userName)

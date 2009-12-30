@@ -3,12 +3,13 @@ class GeneAlias {
 		table 'GENE_SYMBOL'
 		version false
 		id column:'GENE_SYMBOL_ID'
-		geneId column: 'GENE_ID'
 	}
+	
+	static belongsTo = Gene
+	
 	String symbol
-	Long geneId
+	Gene gene
 	Boolean official
 	
-	static hasMany = [proteins: Protein]
-	static fetchMode = [proteins:'eager']
+	
 }

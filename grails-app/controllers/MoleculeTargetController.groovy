@@ -1,5 +1,5 @@
 class MoleculeTargetController {
-	def clinicalService
+	def drugDiscoveryService
 	
 	def index = {
 			println params
