@@ -3,6 +3,7 @@ import grails.converters.*
 class UserListService{
 
 def securityService
+def drugDiscoveryService
 
 	def getAllLists(userId,sharedIds){
 		def user = GDOCUser.findByLoginName(userId)
@@ -320,7 +321,7 @@ def gatherTags(ids){
 }
 
 
-	def createList(userName, listName, listItems, studies, tags) {
+def createList(userName, listName, listItems, studies, tags) {
 		def author = GDOCUser.findByLoginName(userName)
 		def listDup = author.lists().find {
 			it.name == listName
@@ -349,7 +350,23 @@ def gatherTags(ids){
 		}
 	}
 	
-	
+	/**util method that finds metadata about list items for display purposes**/
+def decorateListItems(userList){
+	def metadata = [:]
+	//if this is a gene list, find of there are any targets associated with it's transcribed proteins
+	if(userList.tags.contains('gene')){
+		userList.listItems.each{ item ->
+			def targetData = []
+			targetData = drugDiscoveryService.findProteinsFromAlias(item.value)
+			metadata[item.id] = [:]
+			if(targetData){
+				metadata[item.id]["targetData"] = targetData
+			}
+		}
+		
+	}
+	return metadata
+}
 	
 	
 

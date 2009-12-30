@@ -6,6 +6,14 @@
 				<td>
 					<g:if test="${userListInstance.tags.contains('gene')}">
 						<a href="http://www.genecards.org/cgi-bin/carddisp.pl?gene=${list_item.value}" target="_blank">${list_item.value}</a>
+						&nbsp;&nbsp;&nbsp;
+						<g:if test="${metadata}">
+							<g:if test="${metadata[list_item.id]}">
+								<g:each in="${metadata[list_item.id]}" var="itemMetaData">
+									${itemMetaData}
+								</g:each>
+							</g:if>
+						</g:if>
 					</g:if>
 					<g:else>
 						${list_item.value}

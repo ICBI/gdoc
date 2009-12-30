@@ -197,9 +197,10 @@ class UserListController {
 	def getListItems = {
 		println params
 		def userListInstance = UserList.get( params.id )
+		def metadata = userListService.decorateListItems(userListInstance)
        	if(userListInstance) {
 			def listItems = userListInstance.listItems
-			render(template:"/userList/userListDiv",model:[ userListInstance: userListInstance, listItems:listItems ])
+			render(template:"/userList/userListDiv",model:[ userListInstance: userListInstance, listItems:listItems, metadata:metadata])
         }
         else {
             flash.message = "UserList not found with id ${params.id}"
