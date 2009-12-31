@@ -356,11 +356,17 @@ def decorateListItems(userList){
 	//if this is a gene list, find of there are any targets associated with it's transcribed proteins
 	if(userList.tags.contains('gene')){
 		userList.listItems.each{ item ->
+			//add target links if available
 			def targetData = []
+			def targetLinks = []
 			targetData = drugDiscoveryService.findProteinsFromAlias(item.value)
 			metadata[item.id] = [:]
 			if(targetData){
-				metadata[item.id]["targetData"] = targetData
+				targetData.each{ target ->
+					def link = "<a href='/gdoc/moleculeTarget?target="+target+"'>"+target+"</a>"
+					targetLinks << link
+				}
+				metadata[item.id]["Target Data (proteins)"] = targetLinks
 			}
 		}
 		

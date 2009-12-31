@@ -81,8 +81,6 @@ class AnalysisController {
 		sortedEntries.getAt(startIndex..<endIndex).each { result ->
 			def cells = []
 			def geneName = annotationService.findGeneForReporter(result.reporterId)
-			if(geneName == "LIFR")
-				geneName = "EGFR"
 			def targetData = ""
 			if(geneName){
 				targetData = drugDiscoveryService.findProteinsFromAlias(geneName)

@@ -9,8 +9,9 @@
 						&nbsp;&nbsp;&nbsp;
 						<g:if test="${metadata}">
 							<g:if test="${metadata[list_item.id]}">
+								<span style="color:red;font-size:1.1em">*</span>
 								<g:each in="${metadata[list_item.id]}" var="itemMetaData">
-									${itemMetaData}
+									${itemMetaData.key} found: ${itemMetaData.value}
 								</g:each>
 							</g:if>
 						</g:if>
