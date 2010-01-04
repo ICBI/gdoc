@@ -84,7 +84,9 @@ class SavedAnalysisService {
 			runningAnalysis.taskId = notification.item.taskId
 			println "ANALYSIS: $runningAnalysis"
 			runningAnalysis.save(flush:true)
-		} 
+		} else {
+			println "ERROR!  Analysis ${notification.item.taskId} not found"
+		}
 	}
 	
 	def getAllSavedAnalysis(userId) {

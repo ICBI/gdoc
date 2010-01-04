@@ -12,7 +12,7 @@ class AnalysisListenerService {
 	
 	def onMessage(message) {
 		println "GOT MESSAGE: $message"
-		
+		println "MES: $message.resultEntries"
 		def item
 		if(message instanceof AnalysisResult) {
 			item = ["status": "Complete", "item" : message]

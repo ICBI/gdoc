@@ -96,6 +96,8 @@ class AnalysisService {
 			}
 			request = strategies[command.requestType].call(userId, command)
 			println request
+			def item = ["status": "Running", "item": request]
+			savedAnalysisService.addSavedAnalysis(userId, item, command)
 			jmsTemplate.send([
 				createMessage: { Object[] params ->
 					def session = params[0]
@@ -104,8 +106,6 @@ class AnalysisService {
 					return message
 				}
 			] as MessageCreator)
-			def item = ["status": "Running", "item": request]
-			savedAnalysisService.addSavedAnalysis(userId, item, command)
 			println "after send"
 		} catch (Exception e) {
 			println "Failed to send request for test" + e

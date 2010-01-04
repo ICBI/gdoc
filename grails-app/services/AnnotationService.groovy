@@ -17,7 +17,10 @@ class AnnotationService {
 	
 	def findGeneForReporter(reporterId) {
 		def reporter = Reporter.findByName(reporterId)
-		return reporter.geneSymbol
+		if(reporter)
+			return reporter.geneSymbol
+		else 
+			return null
 	}
 	
 	def findReportersForGeneList(listName) {

@@ -20,4 +20,16 @@ class IdServiceTests extends GroovyTestCase {
 			}
 		}
 	}
+	
+	void testSampleNamesForGdocIdsInduvimed() {
+		StudyContext.setStudy("INDIVDEMO")
+		def gdocIds = idService.sampleNamesForGdocIds([113764L, 113776L, 113772L, 113760L, 113770L])
+		if(gdocIds){
+			println "got all gdocIds:"
+			gdocIds.each{
+				println it
+			}
+		}
+		
+	}
 }
