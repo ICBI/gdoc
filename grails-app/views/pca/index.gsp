@@ -97,12 +97,17 @@
 	<b>Reporter Criteria</b>
 	<br/>
 	<br/>
+	<%--
 	<g:radio name="reporterCriteria" value="foldChange"/> Constrain reporters by fold change:
 	<div id="reporterFold"  >	
 	<g:validationInput name="foldChange"/> 
 	</div>
 	<br/>
-	<g:radio name="reporterCriteria" value="variance" checked="${flash.cmd?.reporterCriteria == 'variance'}"/> Constrain reporters by variance (Gene Vector) percentile:  ≥	
+	
+	<g:radio name="reporterCriteria" value="variance" checked="${flash.cmd?.reporterCriteria == 'variance'}"/> 
+	--%>
+	<g:hiddenField name="reporterCriteria" value="variance"/>
+	Constrain reporters by variance (Gene Vector) percentile:  ≥	
 	<div id="reporterVariance" >
 		<g:validationInput name="variance"/> 
 	</div>
@@ -117,7 +122,7 @@
 			from="${['T-Test: Two Sample Test', 'Wilcoxin Test: Mann-Whitney Test', 'F-Test: One Way ANOVA']}" />
 	<br/>
 	<br/>
-
+	--%>
 	Use Reporter List:
 	<br/>
 	<g:select name="reporterList"
@@ -126,7 +131,7 @@
 				optionKey="name" optionValue="name" />
 	<br/>
 	<br/>
-	--%>
+
 	Dataset:
 	<br/>
 	<g:select name="dataFile" 

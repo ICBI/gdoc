@@ -21,9 +21,9 @@ class PcaController {
 		lists.each { item ->
 			if((item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy())))
 				patientLists << item
-			if((item.tags.contains("reporter") && item.schemaNames().contains(StudyContext.getStudy())))
+			if((item.tags.contains("reporter") && (item.schemaNames().contains(StudyContext.getStudy())) || item.schemaNames().isEmpty()))
 				reporterLists << item
-			if((item.tags.contains("reporter") && item.schemaNames().contains(StudyContext.getStudy())))
+			if((item.tags.contains("gene") && item.schemaNames().contains(StudyContext.getStudy())))
 				geneLists << item
 		}
 		session.patientLists = patientLists.sort { it.name }

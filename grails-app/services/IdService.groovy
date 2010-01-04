@@ -15,6 +15,18 @@ class IdService {
 		return sampleNamesForGdocIds(listValues)
 	}
 	
+	def reportersForListName(listName) {
+		def lists = UserList.findAll()
+		def list = lists.find { item ->
+			item.name == listName
+		}
+		
+		def listValues = list.listItems.collect {item ->
+			item.value
+		}
+		return listValues
+	}
+	
 	def sampleNamesForGdocIds(gdocIds) {
 		def results = patientService.patientsForGdocIds(gdocIds)
 		def sampleIds = results.collect { patient ->
