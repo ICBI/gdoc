@@ -23,7 +23,7 @@
 			
 			<td valign="top" rowspan="5">
 				<g:javascript>
-					  jmolInitialize("applets/jmol","JmolAppletSigned0.jar");
+					  jmolInitialize("applets/jmol","JmolApplet.jar");
 				      jmolApplet([400,400], "load ${moleculeTargetPath};spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
 				</g:javascript>
 				<br />
@@ -45,7 +45,7 @@
 		</tr>
 		<tr>
 			<td>
-				<g:set var="moleculePath" value="${grailsApplication.config.structuresPath + molStructure.structureFile.relativePath}" />
+				<%--g:set var="moleculePath" value="${grailsApplication.config.structuresPath + molStructure.structureFile.relativePath}" />
 				<g:javascript>
 				// marvin_jvm = "builtin"; // "builtin" or "plugin"
 				mview_begin("applets/marvin/", 200, 200); //arguments: codebase, width, height
@@ -57,7 +57,7 @@
 				mview_param("rendering", "wireframe");
 				//mview_param("animFPS", "20");
 				mview_end();
-				</g:javascript><br />
+				</g:javascript--%><br />
 			</td>
 		</tr>
 		<tr>
