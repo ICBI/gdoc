@@ -6,7 +6,7 @@
     <session-factory>
         <!-- properties  -->
         <property name="connection.datasource">java:/gdoc</property>
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
         <property name="dialect">org.hibernate.dialect.OracleDialect</property>	
         <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 		<!--property name="transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property-->
