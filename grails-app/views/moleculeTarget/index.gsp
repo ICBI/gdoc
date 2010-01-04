@@ -137,9 +137,9 @@
 		</g:each>
 		</g:each>
 		</g:if>
-		
-		
-		
+		<g:else><br /><br />
+		No bindings found
+		</g:else>
 		</body>
 		
 </html>

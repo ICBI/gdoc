@@ -6,13 +6,10 @@ class MoleculeTargetController {
 			def protein
 			def molecule
 			def moleculeTarget
-			if(params.target == 'EGFR'){
-				protein = Protein.findByName('EGFR')
-			}else if(params.target == 'p38'){
-				protein = Protein.findByName('p38')
+			if(params.target){
+				protein = Protein.findByName(params.target)
 			}
-			
-
-			[bindings:protein.bindings]
+			if(protein)
+				[bindings:protein.bindings]
 		}
 }
