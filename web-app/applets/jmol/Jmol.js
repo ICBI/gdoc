@@ -70,7 +70,7 @@ try{if(typeof(_jmol)!="undefined")exit()
 // ah & bh 6/2009 -- New jmolResizeApplet() more flexible, similar to jmolApplet() size syntax
 
 var defaultdir = "."
-var defaultjar = "JmolAppletSigned.jar"
+var defaultjar = "JmolAppletSigned0.jar"
 
 
 // Note added 12:41 PM 9/21/2008 by Bob Hanson, hansonr@stolaf.edu:

@@ -20,6 +20,9 @@
 			if(page == "invite") {
 				$('#centerTabs').tabs('select', 2);
 			}
+			if(page == "all") {
+				$('#centerTabs').tabs('select', 3);
+			}
 		});
 		
 		function toggleUsers(criteria,showHide) {
@@ -40,6 +43,11 @@
 		<g:if test="${flash.cmd instanceof InviteCollabCommand}">
 			<g:javascript>
 				var page = "invite"
+			</g:javascript>
+		</g:if>
+		<g:if test="${params.unauthorizedGroup}">
+			<g:javascript>
+				var page = "all"
 			</g:javascript>
 		</g:if>
 		

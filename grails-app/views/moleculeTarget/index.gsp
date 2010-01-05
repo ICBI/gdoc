@@ -16,15 +16,15 @@
 	
 		<g:each in="${bindings}" var="x">
 		<g:each in="${x.structures}" var="structure">
-		<g:set var="moleculeTargetPath" value="${grailsApplication.config.structuresPath + structure.structureFile.relativePath}" />
+		<g:set var="moleculeTargetPath" value="${structure.structureFile.relativePath}" />
 		<table class="viewerTable">
 		<tr>
 			<td><b>Protein</b>: ${x.protein.name}</td>
 			
 			<td valign="top" rowspan="5">
 				<g:javascript>
-					  jmolInitialize("applets/jmol","JmolApplet.jar");
-				      jmolApplet([400,400], "load ${moleculeTargetPath};spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
+					  jmolInitialize("applets/jmol","JmolAppletSigned0.jar");
+				      jmolApplet([400,400], "load moleculeTarget/display?inputFile=${moleculeTargetPath};spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
 				</g:javascript>
 				<br />
 				<b>View Options</b><br />
@@ -45,19 +45,19 @@
 		</tr>
 		<tr>
 			<td>
-				<%--g:set var="moleculePath" value="${grailsApplication.config.structuresPath + molStructure.structureFile.relativePath}" />
+				<g:set var="moleculePath" value="${molStructure.structureFile.relativePath}" />
 				<g:javascript>
 				// marvin_jvm = "builtin"; // "builtin" or "plugin"
 				mview_begin("applets/marvin/", 200, 200); //arguments: codebase, width, height
 				// you could also use the mview_begin("../../..", 200, 200, true ); function call to load the applet without splash screen.
-				mview_param("mol", "${moleculePath}");
+				mview_param("mol", "moleculeTarget/display?inputFile=${moleculePath}");
 				mview_param("background", "#ffffff");
 				mview_param("molbg", "#ffffff");
 				//mview_param("navmode", "rot3d");
 				mview_param("rendering", "wireframe");
 				//mview_param("animFPS", "20");
 				mview_end();
-				</g:javascript--%><br />
+				</g:javascript><br />
 			</td>
 		</tr>
 		<tr>

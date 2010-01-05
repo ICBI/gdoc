@@ -1,4 +1,6 @@
 class SecurityFilters {
+   def securityService
+	
    def filters = {
         loginCheck(controller:'*', action:'*') {
            before = {
@@ -55,6 +57,20 @@ class SecurityFilters {
 					StudyContext.setStudy(session.study.schemaName)
 				} else {
 					//StudyContext.setStudy("EDIN")
+				}
+			}
+		}
+		structureRetriever(controller:'moleculeTarget', action:'*') {
+			before = {
+				if(session.myCollaborationGroups.contains("DDG_COLLAB")){
+					println "allow user $session.userId to Drug Discovery Group information"
+					return true
+				}
+				else{
+					println "user $session.userId not in Drug Discovery Group"
+					flash.message = "You must be a member of the DDG_COLLAB group to view the requested content. Request access below."
+					redirect(controller:'collaborationGroups',params:["unauthorizedGroup":"DDG_COLLAB"])
+					return false
 				}
 			}
 		}
