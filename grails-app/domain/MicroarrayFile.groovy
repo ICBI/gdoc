@@ -6,6 +6,7 @@ class MicroarrayFile {
 		fileType column: 'file_type_id'
 	}
 	String name
+	String description
 	FileType fileType
 	
 }

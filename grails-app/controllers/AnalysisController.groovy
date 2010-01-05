@@ -19,7 +19,7 @@ class AnalysisController {
 			(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 		}
 		session.patientLists = patientLists.sort { it.name }
-		session.files = MicroarrayFile.findByNameLike('%.Rda')
+		session.files = MicroarrayFile.findAllByNameLike('%.Rda')
 	}
 	
 	def submit = { AnalysisCommand cmd ->

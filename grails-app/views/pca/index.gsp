@@ -136,7 +136,7 @@
 	<br/>
 	<g:select name="dataFile" 
 			from="${session.files}"
-			optionKey="name" optionValue="${{it.fileType.name}}"/>
+			optionKey="name" optionValue="${{it.description}}"/>
 	<br/>
 	<g:hiddenField name="study" value="${session.study.schemaName}" />
 </div>

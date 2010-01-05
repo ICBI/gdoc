@@ -29,7 +29,7 @@ class PcaController {
 		session.patientLists = patientLists.sort { it.name }
 		session.reporterLists = reporterLists
 		session.geneLists = geneLists
-		session.files = MicroarrayFile.findByNameLike('%.Rda')
+		session.files = MicroarrayFile.findAllByNameLike('%.Rda')
 	}
 	
 	def submit = { PcaCommand cmd ->
