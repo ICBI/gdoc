@@ -11,7 +11,7 @@ class PcaCommand {
 	AnalysisType requestType = (AnalysisType.PCA)
 	
 	static constraints = {
-		foldChange(validator: {val, obj ->
+/*		foldChange(validator: {val, obj ->
 			if(obj.reporterCriteria == 'foldChange') {
 				if(!val)
 					return "blank"
@@ -30,7 +30,7 @@ class PcaCommand {
 					return "custom.range"
 			}
 			return true
-		})
+		})*/
 	}
 	
 }

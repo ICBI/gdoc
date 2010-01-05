@@ -93,11 +93,12 @@
 	</table>
 	</div>
 </div>
+	<%--
 <div class="clinicalSearch">
 	<b>Reporter Criteria</b>
 	<br/>
 	<br/>
-	<%--
+
 	<g:radio name="reporterCriteria" value="foldChange"/> Constrain reporters by fold change:
 	<div id="reporterFold"  >	
 	<g:validationInput name="foldChange"/> 
@@ -105,7 +106,7 @@
 	<br/>
 	
 	<g:radio name="reporterCriteria" value="variance" checked="${flash.cmd?.reporterCriteria == 'variance'}"/> 
-	--%>
+
 	<g:hiddenField name="reporterCriteria" value="variance"/>
 	Constrain reporters by variance (Gene Vector) percentile:  ≥	
 	<div id="reporterVariance" >
@@ -113,6 +114,7 @@
 	</div>
 	<br/>
 </div>
+	--%>
 <div class="clinicalSearch">
 		<%--
 	Use Gene List:

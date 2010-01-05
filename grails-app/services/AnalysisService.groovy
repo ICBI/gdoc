@@ -73,10 +73,10 @@ class AnalysisService {
 			def allIds = idService.sampleIdsForFile(cmd.dataFile)
 			group1.addAll(allIds)
 			println "group 1: " + allIds
-			if(cmd.reporterCriteria == 'variance' && cmd.variance)
+/*			if(cmd.reporterCriteria == 'variance' && cmd.variance)
 				request.varianceFilterValue = cmd.variance.toDouble() / 100.0
 			else if(cmd.reporterCriteria == 'foldChange' && cmd.foldChange)
-				request.foldChangeFilterValue = cmd.foldChange.toDouble()
+				request.foldChangeFilterValue = cmd.foldChange.toDouble()*/
 			request.sampleGroup = group1
 			if(cmd.reporterList) {
 				def reporterGroup = new ReporterGroup()
