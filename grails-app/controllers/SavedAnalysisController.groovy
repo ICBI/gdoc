@@ -46,6 +46,32 @@ class SavedAnalysisController{
 		render(template:"/savedAnalysis/savedAnalysisTable",model:[ savedAnalysis: filteredAnalysis ])
 	}
 	
+	def deleteMultipleAnalyses ={
+		if(params.deleteAnalyses){
+			println "Requesting deletion of: $params.deleteAnalyses"
+			if(params.deleteAnalyses.metaClass.respondsTo(params.deleteAnalyses, "max")){
+				params.deleteAnalyses.each{ analysisIdToBeRemoved ->
+					print analysisIdToBeRemoved + " "
+					def analysis = SavedAnalysis.get(analysisIdToBeRemoved)
+			        if(analysis) {
+			            analysis.delete(flush:true)
+						println "deleted " + analysis
+					}
+				}
+			}else{
+				def analysis = SavedAnalysis.get(params.deleteAnalyses)
+		        if(analysis) {
+		            analysis.delete(flush:true)
+					println "deleted " + analysis
+				}
+			}
+			flash.message = "analysis $params.deleteAnalyses deleted"
+		}else{
+			flash.message = "No analyses have been selected for deletion"
+		}
+		redirect(action:index)
+	}
+	
 	//TODO - decide if we always want to auto-save KM plots. Right now, we do not. They must implicitly call 'save'.
 	def save = {
 			println ("THE RESULT:")

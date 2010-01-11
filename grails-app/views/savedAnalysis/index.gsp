@@ -40,24 +40,33 @@
 		<g:if test="${flash.message}">
 		<div class="message">${flash.message}</div>
 		</g:if>
-		<div style="margin:5px 5px 5px 5px;position:relative;left:400px">
+		<table style="margin:5px 5px 5px 5px;border:1px solid gray;background-color:#f2f2f2;"><tr>
+			
+
+		<td style="padding:5px 5px 5px 15px;">
 			<span>
 			<g:form name="filterForm" action="index">
-			<g:select name="analysisFilter" 
+			Filter:&nbsp;<g:select name="analysisFilter" 
 				noSelection="${['':'Filter By Days...']}"
 				value="${session.analysisFilter?:'value'}"
 				from="${timePeriods}"
 				optionKey="key" optionValue="value">
 			</g:select>
 			</g:form>
-			</span>
-		</div
+			</span></td>
+
+		<td><g:form name="delAnalysisForm" action="deleteMultipleAnalyses">
+		<span class="controlBarUpload" id="controlBarDelete">
+		<g:submitButton name="del" value="Delete Analyses" style="font-size: 12px;color:black;text-decoration:none;padding: 3px 8px;background-color:#E6E6E6;border: 1px solid #a0a0a0;margin: 5px 3px 3px 5px;" onclick="return confirm('Are you sure?');" /></span></td>
+		</tr>
+		</table>
+		
 <g:panel title="My Saved Analysis" styleClass="welcome" contentClass="myPanelContent" id="savedAnalysis">
 	<div id="analysisContainer">
 	<g:render template="/savedAnalysis/savedAnalysisTable" />
 	</div>
 </g:panel>
-
+	</g:form>
 	</div>
 
 </body>

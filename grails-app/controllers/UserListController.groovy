@@ -127,7 +127,8 @@ class UserListController {
 				if(session.listFilter){
 					filteredLists = userListService.filterLists(session.listFilter,lists)
 				}
-				render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
+				redirect(action:list)
+				//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 			}else{
 				flash.message = "no items present in resulting list"
 				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
@@ -135,7 +136,8 @@ class UserListController {
 				if(session.listFilter){
 					filteredLists = userListService.filterLists(session.listFilter,lists)
 				}
-				render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
+				redirect(action:list)
+				//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 			}
 		}else{
 			println "no lists have been selected"
@@ -145,7 +147,8 @@ class UserListController {
 			if(session.listFilter){
 				filteredLists = userListService.filterLists(session.listFilter,lists)
 			}
-			render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
+			redirect(action:list)
+			//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 		}
 	}
 
@@ -172,6 +175,34 @@ class UserListController {
 			render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
         }
     }
+
+	
+
+	def deleteMultipleLists ={
+		if(params.deleteList){
+			println "Requesting deletion of: $params.deleteList"
+			if(params.deleteList.metaClass.respondsTo(params.deleteList, "max")){
+				params.deleteList.each{ listIdToBeRemoved ->
+					print listIdToBeRemoved + " "
+					def userListInstance = UserList.get(listIdToBeRemoved)
+			        if(userListInstance) {
+			            userListInstance.delete(flush:true)
+						println "deleted " + userListInstance
+					}
+				}
+			}else{
+				def userListInstance = UserList.get(params.deleteList)
+		        if(userListInstance) {
+		            userListInstance.delete(flush:true)
+					println "deleted " + userListInstance
+				}
+			}
+			flash.message = "user list(s) $params.deleteList have been deleted"
+		}else{
+			flash.message = "No user list(s) have been selected for deletion"
+		}
+		redirect(action:list)
+	}
 
 	def deleteListItem = {
 		println params
@@ -356,6 +387,29 @@ class UserListController {
 		
 	}
 	
+	def renameList = {
+		println params
+		def message = ""
+		if(params.newNameValue && params.id){
+			def author = GDOCUser.findByLoginName(session.userId)
+			def listDup = author.lists().find {
+				it.name == params.newNameValue.trim()
+			}
+			if(listDup) {
+				println "List $params.newNameValue already exists"
+				message = "List $params.newNameValue already exists"
+				render(message)
+			}else{
+				def userListInstance = UserList.get( params.id )
+				userListInstance.name = params.newNameValue
+				if(userListInstance.save()){
+					message = "updated list $params.id to $params.newNameValue"
+					render(message)
+				}
+			}
+		}
+	}
+	
 	def saveList = {
 		//TODO: Validate list
 		if(request.getFile("file").inputStream.text) {
@@ -364,26 +418,28 @@ class UserListController {
 				it.name == params["listName"]
 			}
 			if(listDup) {
-				flash["message"] "List $params.listName already exists"
-				redirect(action:upload)
-			}
-			def userList = new UserList()
-			userList.name = params["listName"]
-			userList.author = author
-			request.getFile("file").inputStream.eachLine { value ->
-				println value
-				userList.addToListItems(new UserListItem(value:value.trim()))
-			}
-        	if(!userList.hasErrors() && userList.save()) {
-				
-					userList.addTag(params["listType"])
-					flash["message"] = "$params.listName uploaded succesfully"
-					redirect(action:upload,params:[success:true])
-				
-	        } else {
-				flash["message"] =  "Error uploading $params.listName list"
+				println "List $params.listName already exists"
+				flash["message"]= "List $params.listName already exists"
 				redirect(action:upload,params:[failure:true])
-	        }
+			}else{
+				def userList = new UserList()
+				userList.name = params["listName"]
+				userList.author = author
+				request.getFile("file").inputStream.eachLine { value ->
+					println value
+					userList.addToListItems(new UserListItem(value:value.trim()))
+				}
+	        	if(!userList.hasErrors() && userList.save()) {
+
+						userList.addTag(params["listType"])
+						flash["message"] = "$params.listName uploaded succesfully"
+						redirect(action:upload,params:[success:true])
+
+		        } else {
+					flash["message"] =  "Error uploading $params.listName list"
+					redirect(action:upload,params:[failure:true])
+		        }
+			}
 		}
 		//redirect(action:upload)
 	}

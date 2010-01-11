@@ -33,7 +33,7 @@
 <g:panel id="myPanel" title="List Tools" styleClass="prefs" panelColor="userLogPanelTitle" contentClass="myPanelContent">
 	<g:if test="${userListInstanceList.size()>0}">
 		<div>
- 		<g:formRemote name="listToolForm" update="allLists" onLoading="showToolsSpinner(true)"
+ 		<g:form name="listToolForm" update="allLists" onLoading="showToolsSpinner(true)"
 		    onComplete="showToolsSpinner(false)" action="tools" url="${[action:'tools']}">
 		<span style="margin-bottom:5px;">List Action: <br />
 		<g:select name="listAction" from="${['Venn Diagram','Intersect Lists','Join Lists', 'Difference']}" 
@@ -49,7 +49,7 @@
 		<br /><br />
 		<g:actionSubmit value="Submit"  action="tools" onclick="return validate()"/>
 
-		</g:formRemote>
+		</g:form>
 		<span id="toolSpinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 	 </div>
 	</g:if>
