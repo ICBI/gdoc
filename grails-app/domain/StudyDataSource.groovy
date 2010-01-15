@@ -39,4 +39,10 @@ class StudyDataSource {
 			it.type == "MICROARRAY"
 		}
 	}
+	
+	def hasClinicalData() {
+		return content.find {
+			it.type == "CLINIC"
+		}
+	}
 }

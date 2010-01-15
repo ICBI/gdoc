@@ -96,8 +96,8 @@ class UserListController {
 		tagsString = tagsString.replace("]","")
 		def parsedJSON = JSON.parse(vennJSON.toString());
 		println vennJSON
-		def intersectedIds = parsedJSON
 		flash.message = null
+		def intersectedIds = parsedJSON
 		[ vennJSON: vennJSON, intersectedIds: intersectedIds, tags: tagsString]
 	}
 
@@ -117,8 +117,8 @@ class UserListController {
 			}else if(params.listAction == 'diff'){
 				userListInstance = userListService.diffLists(listName,session.userId,ids);
 			}else if(params.listAction == 'venn'){
-				
 					redirect(action:"vennDiagram",params:[listName:listName,author:session.userId,ids:ids])
+					return
 			}
 			if(userListInstance){
 				flash.message = "UserList ${listName} created"
@@ -307,17 +307,21 @@ class UserListController {
 			}
 			//if gene symbol list, look up gene symbols from reporters straight from result
 			else if(params["tags"].indexOf("gene") > -1){
-				session.results.resultEntries.each{ ccEntry ->
-						def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
-						if(geneSymbol){
-							ids << geneSymbol
+				if(session.results){
+						session.results.resultEntries.each{ ccEntry ->
+							def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
+							if(geneSymbol){
+								ids << geneSymbol
+							}
 						}
 				}
 			}
 			//if reporters list, save reporters straight from result
 			else{
-				session.results.resultEntries.each{ ccEntry ->
-					ids << ccEntry.reporterId
+				if(session.results){
+					session.results.resultEntries.each{ ccEntry ->
+						ids << ccEntry.reporterId
+					}
 				}
 			}
 		} else if(params['ids']){
@@ -326,13 +330,17 @@ class UserListController {
 				it = it.replace(']','');
 				//if gene symbols list, look up gene symbols from reporters (ids)
 				if(params["tags"] && params["tags"].indexOf("gene") > -1){
-					session.results.resultEntries.each{ ccEntry ->
-						if(it.trim() == ccEntry.reporterId){
-							def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
-							if(geneSymbol){
-								ids << geneSymbol.trim()
+					if(session.results && session.results.resultEntries){
+						session.results.resultEntries.each{ ccEntry ->
+							if(it.trim() == ccEntry.reporterId){
+								def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
+								if(geneSymbol){
+									ids << geneSymbol.trim()
+								}
 							}
 						}
+					}else{
+						ids << it.trim()
 					}
 				}else{
 					//or just save the value of the id itself, after it has been cleaned up
@@ -354,6 +362,44 @@ class UserListController {
 				render "Error creating $params.name list"
         }
     }
+
+	def saveListFromExistingLists = {
+		println params
+		def author = GDOCUser.findByLoginName(session.userId)
+		if(!params["name"]){
+			params["name"] = author.loginName + new Date().getTime();
+		}
+		
+		params["author.id"] = author.id
+		def listDup = author.lists().find {
+			it.name == params["name"]
+		}
+		if(listDup) {
+			render "List $params.name already exists"
+			return
+		}
+		def ids = []
+		if(params['ids']){
+			params['ids'].tokenize(",").each{
+				it = it.replace('[','');
+				it = it.replace(']','');
+				// just save the value of the id itself, after it has been cleaned up
+					ids << it.trim()
+			}
+		}
+		def tags = []
+		if(params["tags"]){
+			params['tags'].tokenize(",").each{
+				tags << it
+			}
+		}
+		def userListInstance = userListService.createList(session.userId, params.name, ids, [StudyContext.getStudy()], tags)
+        if(userListInstance) {
+				render "$params.name created succesfully"
+        } else {
+				render "Error creating $params.name list"
+        }
+	}
 
 	def save = {
 		def ids = []

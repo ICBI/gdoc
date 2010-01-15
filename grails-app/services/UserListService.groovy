@@ -14,6 +14,8 @@ def drugDiscoveryService
 		sharedListIds = sharedIds
 		if(!sharedListIds){
 			sharedListIds = getSharedListIds(userId)
+		}else{
+			println "use shared lists ids previously retrieved"
 		}
 		if(lists.metaClass.respondsTo(lists, "size")) {
 				lists.each{
@@ -190,11 +192,11 @@ def drugDiscoveryService
 			vennCalculations << circle1
 			vennCalculations << circle2
 			vennCalculations << allIntersections
-			
+			println "return venn Calculations"
 			return vennCalculations as JSON
 		}
 		//if 3 lists
-		if(sortedListsBySize.size() == 3){
+		else if(sortedListsBySize.size() == 3){
 			println "venn diagram of 3 lists"
 			def firstList = sortedListsBySize.toArray()[0];
 			def secondList = sortedListsBySize.toArray()[1];
@@ -333,12 +335,15 @@ def createList(userName, listName, listItems, studies, tags) {
 		userListInstance.name = listName
 		userListInstance.author = author
 		listItems.each {
-			if(it)
+			if(it){
 				userListInstance.addToListItems(new UserListItem(value:it));
+			}
 		}
 		studies.each {
-			def ds = StudyDataSource.findBySchemaName(it)
-			userListInstance.addToStudies(ds)
+			if(it){
+				def ds = StudyDataSource.findBySchemaName(it)
+				userListInstance.addToStudies(ds)
+			}
 		}
 		if(!userListInstance.hasErrors() && userListInstance.save()) {
 			tags.each {

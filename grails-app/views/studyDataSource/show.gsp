@@ -51,8 +51,15 @@
 			</tr>
 			<tr>
 				<td>Clinical Data</td>
-				<td>${clinicalElements.size} Clinical Elements</td>
-				<td><g:link controller="clinical">Search</g:link></td>
+				<g:if test="${clinicalElements}">
+					<td>${clinicalElements.size} Clinical Elements</td>
+					<td><g:link controller="clinical">Search</g:link></td>
+				</g:if>
+				<g:else>
+					<td>This Study DataSource currently has no Clinical Elements</td>
+					<td>No Clinical Search available at this time</td>
+				</g:else>
+				
 			</tr>		
 		</table>
 		</g:panel>

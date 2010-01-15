@@ -36,6 +36,7 @@
 	<g:javascript>
 	
 	function getVenn(){
+		console.log('${vennJSON}');
 		return '${vennJSON}';
 	}
 	
@@ -77,7 +78,7 @@
 	<td valign="top">
 	<g:panel id="myVennPanel" title="Save intersection as list?" styleClass="prefs" panelColor="userLogPanelTitle" contentClass="myPanelContent">
 	<g:formRemote name="vennIntersectForm" update="message" onLoading="showToolsSpinner(true)"
-	    onComplete="showToolsSpinner(false)" action="saveFromQuery" url="${[action:'saveFromQuery']}">
+	    onComplete="showToolsSpinner(false)" action="saveFromQuery" url="${[action:'saveListFromExistingLists']}">
 	<span>List Name: <g:textField name="name" /></span><br />
 	<g:hiddenField name="author.username" value="${session.userId}" />
 	<g:hiddenField name="ids" value="${intersectedIds.allCircles.items.flatten()}" />

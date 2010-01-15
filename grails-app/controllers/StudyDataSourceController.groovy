@@ -47,7 +47,9 @@ class StudyDataSourceController {
 		def currStudy = StudyDataSource.get(params.id)
 		session.study = currStudy
 		StudyContext.setStudy(session.study.schemaName)
-		clinicalElements = AttributeType.findAll()
+		if(currStudy.hasClinicalData()){
+			clinicalElements = AttributeType.findAll()
+		}
 		println clinicalElements
 	}
 	

@@ -51,7 +51,7 @@
 				var span = $(this).find('label').find('span');
 				if(span.html() == 'clinicalM' || 
 					span.html() == 'patientM' ||
-						span.html() == 'ReportersM' ||
+						span.html() == 'reporterM' ||
 						span.html() == 'geneM'){
 					var newStr = $(this).find('label').find('span').html();
 			        var tag = newStr.substring(0, newStr.length-1);
@@ -188,7 +188,7 @@ $("[class='tag']").each(function(index){
 	var span = $(this).find('label').find('span');
 	if(span.html() == 'clinicalM' || 
 		span.html() == 'patientM' ||
-			span.html() == 'ReportersM'){
+			span.html() == 'reporterM'){
 		var newStr = $(this).find('label').find('span').html();
 		var tag = newStr.substring(0, newStr.length-1);
 		$(this).find('label').find('abbr').remove();

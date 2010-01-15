@@ -22,9 +22,11 @@ $(document).ready(function()
 					<a class="sf-with-ul" href="${createLink(controller: 'studyDataSource')}">Studies<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
 						<g:each in="${session.myStudies}">
+							<g:if test="${it.hasClinicalData()}">
 							<li>
 								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="clinical" />
 							</li>
+							</g:if>
 						</g:each>
 					</ul>
 				</li>
