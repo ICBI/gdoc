@@ -127,6 +127,9 @@ jQuery(document).ready(function()
 			<a href="https://demotisu.gdoc.georgetown.edu/catissuecore" target="_blank">caTissue</a>
 		</li>
 		<li>
+			<g:navigationLink name="Register Now" id="register" controller="registration" />
+		</li>
+		<li>
 			<a href="#">Help</a>
 		</li>		
 	</ul>

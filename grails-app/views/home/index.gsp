@@ -16,6 +16,11 @@
 				<br/>
 			
 				<div style="font-size:16px;margin-bottom:5px">Welcome to GDOC</div>
+				
+				<g:if test="${flash.message}">
+					<div class="message" style="width:75%">${flash.message}</div>
+				</g:if>
+				
 				<div id="centerContent" class="welcomeTitle">
 						<p>The Georgetown Database of Cancer integrates multiple datatypes to present
 						a unified data view, allowing for rapid data exploration.</p>

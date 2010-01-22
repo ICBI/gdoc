@@ -4,10 +4,12 @@ class LoginController {
 	def securityService
  	def login = {
 	  LoginCommand cmd -> if(cmd.hasErrors()) {
+						flash['cmd'] = cmd
 						flash['message'] = "login failed."
 		                redirect(controller:'home',action:'index')
 		         }
 		         else {
+					flash['cmd'] = cmd
 		            if (request.method == "GET") {
 						session.userId = null
 						def user = new GDOCUser()

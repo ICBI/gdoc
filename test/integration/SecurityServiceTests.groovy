@@ -1,4 +1,13 @@
 import org.springframework.mock.jndi.SimpleNamingContextBuilder
+import javax.security.auth.login.Configuration
+import javax.security.auth.login.AppConfigurationEntry
+import javax.naming.*
+import javax.naming.directory.*
+import javax.naming.ldap.*
+import javax.net.ssl.*
+import org.springframework.jndi.*
+import javax.naming.spi.*
+import gov.nih.nci.security.authorization.domainobjects.User
 
 class SecurityServiceTests extends BaseSecurityTest {
 	
@@ -80,6 +89,20 @@ class SecurityServiceTests extends BaseSecurityTest {
 		}
 		if(testFailed)
 			fail("Exception during group create")		
+	}
+	
+	void testCreateDeleteUser(){
+		def user = new User()
+		user.setLoginName("test75")
+		user.setFirstName("fn")
+		user.setLastName("ln")
+		user.setEmailId("test75@georgetown.edu")
+		user.setDepartment("LOMBARDI COMPREHENSIVE CANCER CENTER")
+		assertTrue(securityService.createUser(user))
+		def newUser = GDOCUser.findByLoginName("test75")
+		assertNotNull(newUser)
+		println "attempt to delete gdoc user " + newUser.id
+		assertTrue(securityService.removeUser(newUser.id.toString()))
 	}
 	
 	

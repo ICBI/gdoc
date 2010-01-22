@@ -6,7 +6,7 @@
 
 
 <g:if test="${!session.userId}">
-<g:if test="${flash.message}">
+<g:if test="${flash.cmd instanceof LoginCommand && flash.message}">
 <div align="right" id="success" style="color:white">${flash.message}</div>
 </g:if>
 <g:form name="loginForm" url="[controller:'login',action:'login']" update="[success:'message',failure:'error']">

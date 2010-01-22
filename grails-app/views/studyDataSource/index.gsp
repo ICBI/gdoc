@@ -8,6 +8,7 @@
     <body>
 	<p style="font-size:14pt">Study Data Sources</p>
 	<br/>
+	
 	<div id="centerContent" class="welcome">
 		<g:panel id="studyPanel" title="My Studies" styleClass="welcome" collapse="true">
 				<table class="studyTable">

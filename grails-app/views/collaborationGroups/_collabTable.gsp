@@ -49,7 +49,7 @@ You do not manage any groups
 </td>
 
 <td style="padding-left:10px" valign="top" rowspan="2">
-<table class="studyTable" style="font-size:1.05em;width:350px">
+<table class="studyTable" style="font-size:1.05em;width:100%">
 	<tr><th style="background-color:#FFFFCC">Invitations and Messages (<span style="font-style:italic">last 30 days</span>)</th></tr>
 	<tr><td>
 		<g:render template="/notification/invitationTable" />

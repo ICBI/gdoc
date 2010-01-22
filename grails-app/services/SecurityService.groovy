@@ -2,9 +2,17 @@ import gov.nih.nci.security.SecurityServiceProvider;
 import gov.nih.nci.security.AuthenticationManager;
 import gov.nih.nci.security.AuthorizationManager;
 import gov.nih.nci.security.exceptions.CSException
+import gov.nih.nci.security.exceptions.CSTransactionException
 import gov.nih.nci.security.exceptions.CSObjectNotFoundException
 import gov.nih.nci.security.authorization.domainobjects.ProtectionElement
 import gov.nih.nci.security.authorization.domainobjects.ProtectionGroup
+import gov.nih.nci.security.authorization.domainobjects.User
+import javax.security.auth.login.Configuration
+import javax.security.auth.login.AppConfigurationEntry
+import javax.naming.*
+import javax.naming.directory.*
+import javax.naming.ldap.*
+import javax.net.ssl.*
 
 import LoginException
 
@@ -21,6 +29,7 @@ class SecurityService {
 	AuthorizationManager authorizationManager
 	
 	def login(params) throws LoginException{
+		
 		def user = GDOCUser.findByLoginName(params.loginName)
 		try{
 			//print authenticationManager.getApplicationContextName();
@@ -44,6 +53,97 @@ class SecurityService {
 	
 	def logout(session){
 		session.invalidate()
+	}
+	
+	
+	def validateNetId(netId, department){
+		Configuration config = Configuration.getConfiguration();
+	    AppConfigurationEntry[] entries = config.getAppConfigurationEntry("gdoc");
+		println entries
+	    AppConfigurationEntry entry = entries[0];
+		def options = entry.getOptions();
+		options.each {
+		    println it.getKey() + " " + it.getValue()
+		 }
+		Hashtable env = new Hashtable();
+		env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
+		env.put(Context.SECURITY_PROTOCOL, "ssl");
+		env.put(Context.PROVIDER_URL, options.get("ldapHost"));
+		env.put(Context.SECURITY_AUTHENTICATION,"simple");
+		env.put("java.naming.ldap.factory.socket",SSLSocketFactory.class.getName());
+		env.put(Context.SECURITY_PRINCIPAL,options.get("ldapAdminUserName")); 
+		env.put(Context.SECURITY_CREDENTIALS,options.get("ldapAdminPassword")); 
+		DirContext ctx = new InitialDirContext(env);
+		SearchControls ctls = new SearchControls();
+		ctls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+		String filter = "(&(uid="+netId+"))";
+		NamingEnumeration list = ctx.search(options.get("ldapSearchableBase"), filter, ctls);
+		if(list){
+			println "$netId user found, retrieve needed attributes"
+			BasicAttributes attr =  ctx.getAttributes("uid="+netId+","+options.get("ldapSearchableBase"))
+				if(attr){
+					def user = new User()
+					if(attr.get("uid")){
+						println "found user id " + attr.get("uid").get()
+						user.setLoginName(attr.get("uid").get())
+					}
+					if(attr.get("givenname")){
+						println "found givenname " + attr.get("givenname").get()
+						user.setFirstName(attr.get("givenname").get())
+					}
+					if(attr.get("sn")){
+						println "found sn " + attr.get("sn").get()
+						user.setLastName(attr.get("sn").get())
+					}
+					if(attr.get("ou")){
+						println "found ou " + attr.get("ou").get()
+						user.setOrganization(attr.get("ou").get())
+					}
+					if(attr.get("mail")){
+						println "found mail " + attr.get("mail").get()
+						user.setEmailId(attr.get("mail").get())
+					}
+					if(department){
+						user.setDepartment(department)
+					}
+					return user
+				}
+				else{
+					println "no attributes found for $netId"
+					return null
+				}
+		}
+		else{
+			println "no user found for that id"
+			return null
+		}
+		
+	}
+	
+	def createUser(user){
+		def authManager = this.getAuthorizationManager()
+		try{
+			authManager.createUser(user)
+		}catch(CSTransactionException cste){
+			println cste
+			return false
+		}
+		println "added user " + user.getLoginName()
+		return true
+	}
+	
+	/**if deleting a user from using the UPT web app, remember to delete 
+	any invitations associated with this user**/
+	def removeUser(userId){
+		def authManager = this.getAuthorizationManager()
+		try{
+			authManager.removeUser(userId)
+		}catch(CSTransactionException cste){
+			println cste
+			return false
+		}
+		println "deleted user " + userId
+		return true
 	}
 	
 	/**
