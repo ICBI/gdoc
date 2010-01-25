@@ -21,7 +21,9 @@
 		</g:if>
         <div class="body">
 					<p class="pageHeading">
-            Upload List
+            Upload List 
+					</p>
+					<p>(*requires .txt format & will be read as line-delimited)
 					</p>
 					<div class="clinicalSearch">
 						<br/>

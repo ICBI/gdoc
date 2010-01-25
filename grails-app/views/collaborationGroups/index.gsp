@@ -45,7 +45,7 @@
 				var page = "invite"
 			</g:javascript>
 		</g:if>
-		<g:if test="${params.unauthorizedGroup}">
+		<g:if test="${params.unauthorizedGroup || params.requestGroupAccess}">
 			<g:javascript>
 				var page = "all"
 			</g:javascript>

@@ -463,16 +463,25 @@ class UserListController {
 			def listDup = author.lists().find {
 				it.name == params["listName"]
 			}
+			if(request.getFile("file").getOriginalFilename().lastIndexOf(".txt") == -1){
+				println "List $params.listName needs to be formatted as plain-text .txt file"
+				flash["message"]= "List $params.listName needs to be formatted as plain-text .txt file"
+				redirect(action:upload,params:[failure:true])
+				return
+			}
+			
+			
 			if(listDup) {
 				println "List $params.listName already exists"
 				flash["message"]= "List $params.listName already exists"
 				redirect(action:upload,params:[failure:true])
+				return
 			}else{
 				def userList = new UserList()
 				userList.name = params["listName"]
-				userList.author = author
+				userList.author = author 
 				request.getFile("file").inputStream.eachLine { value ->
-					println value
+					//println value
 					userList.addToListItems(new UserListItem(value:value.trim()))
 				}
 	        	if(!userList.hasErrors() && userList.save()) {
@@ -480,10 +489,12 @@ class UserListController {
 						userList.addTag(params["listType"])
 						flash["message"] = "$params.listName uploaded succesfully"
 						redirect(action:upload,params:[success:true])
+						return
 
 		        } else {
 					flash["message"] =  "Error uploading $params.listName list"
 					redirect(action:upload,params:[failure:true])
+					return
 		        }
 			}
 		}

@@ -7,7 +7,7 @@ class MoleculeTargetController {
 			def molecule
 			def moleculeTarget
 			if(params.target){
-				protein = Protein.findByName(params.target)
+				protein = Protein.findByNameIlike(params.target)
 			}
 			if(protein)
 				[bindings:protein.bindings]
