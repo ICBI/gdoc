@@ -59,7 +59,7 @@ environments {
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
-		middlewareUrl = "http://localhost/gdoc-middleware"
+		middlewareUrl = "https://demo.gdoc.georgetown.edu/gdoc-middleware"
 		structuresPath = "/opt/gdoc-data/"
     }
 	development {
@@ -82,7 +82,14 @@ environments {
 }
 
 // log4j configuration
-log4j {
+
+log4j = {
+	root {
+	    error 'stdout'
+	    additivity = true
+	}
+	
+	/*
     appender.stdout = "org.apache.log4j.ConsoleAppender"
     appender.'stdout.layout'="org.apache.log4j.PatternLayout"
     appender.'stdout.layout.ConversionPattern'='[%r] %c{2} %m%n'
@@ -90,7 +97,7 @@ log4j {
     appender.'stacktraceLog.layout'="org.apache.log4j.PatternLayout"
     appender.'stacktraceLog.layout.ConversionPattern'='[%r] %c{2} %m%n'
     appender.'stacktraceLog.File'="stacktrace.log"
-    rootLogger="error,stdout"
+    rootLogger="DEBUG,stdout"
     logger {
         grails="error"
         StackTrace="error,stacktraceLog"
@@ -107,7 +114,10 @@ log4j {
         }
     }
     additivity.StackTrace=false
+*/
 }
+
+
 
 // Jquery configuration
 jquery.sources="jquery" 
