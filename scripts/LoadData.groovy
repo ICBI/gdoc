@@ -1,3 +1,5 @@
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+
 grailsHome = Ant.antProject.properties."env.GRAILS_HOME"
 includeTargets << grailsScript("Bootstrap")
 includeTargets << grailsScript("Init")
@@ -22,13 +24,27 @@ target(main: "Load data into the DB") {
 		println "Project with name: $projectName already exists.  Unable to overwrite data in this schema."
 		return
 	}
+	println "Cleaning up schema...."
 	executeScript("sql/study_cleanup_template.sql", projectName, true)
-	
+	println "Creating tablespace ${projectName}...."
 	executeScript("sql/01_create_tablespace_template.sql", projectName)
+	println "Creating user ${projectName}...."
 	executeScript("sql/02_study_setup_template.sql", projectName)
+	println "Creating schema for project ${projectName}...."
 	executeScript("sql/03_study_schema_template.sql", projectName)
-	executeScript("sql/04_study_grants_template.sql", projectName)
+
+	def sql = groovy.sql.Sql.newInstance(CH.config.dataSource.url, projectName,
+	                     "change_me", CH.config.dataSource.driverClassName)
 	
+	def engine = new groovy.text.SimpleTemplateEngine() 
+	def template = engine.createTemplate(new File("sql/04_study_grants_template.sql").text) 
+	
+	Writable writable = template.make([projectName: projectName])
+	writable.toString().eachLine {
+		if(it)
+			sql.execute(it.replace(';', ''))
+	}
+	loadData(projectName)
 }
 
 def executeScript(script, projectName, continueError = false) {
@@ -41,6 +57,10 @@ def executeScript(script, projectName, continueError = false) {
 	
 	def resource = new org.springframework.core.io.ByteArrayResource(writable.toString().getBytes())
 	org.springframework.test.jdbc.SimpleJdbcTestUtils.executeSqlScript(new org.springframework.jdbc.core.simple.SimpleJdbcTemplate(dataSource), resource, continueError)
+	
+}
+
+def loadData(projectName) {
 	
 }
 

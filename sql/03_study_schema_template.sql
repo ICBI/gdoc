@@ -27,11 +27,10 @@ CREATE TABLE ${projectName}.BIOSPECIMEN
 	diseased               NUMBER(1) NOT NULL,    --  1=derived from diseased or cancerous material 0=not derived from diseased or cancerous material. 
 	insert_user            VARCHAR(20) NOT NULL,
 	insert_date            DATE NOT NULL,
-	insert_method          VARCHAR2(20) NOT NULL
+	insert_method          VARCHAR2(20) NOT NULL,
+	attribute_timepoint_id number(10) default 0 NOT NULL,
+	age_at_event 		   number(3,1)
 );
-ALTER TABLE ${projectName}.biospecimen add (attribute_timepoint_id number(10) default 0 NOT NULL);
-ALTER TABLE ${projectName}.biospecimen add (age_at_event number(3,1));
-
 
 COMMENT ON COLUMN ${projectName}.BIOSPECIMEN.class                  IS 'SAMPLE,EXTRACT,LABELED_EXTRACT';
 COMMENT ON COLUMN ${projectName}.BIOSPECIMEN.name                   IS 'a unique name, within the datasource, for the biospecimen';

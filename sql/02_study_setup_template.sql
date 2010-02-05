@@ -11,7 +11,6 @@ CREATE ROLE create_${projectName};
 GRANT CREATE MATERIALIZED VIEW TO create_${projectName};
 GRANT CREATE PROCEDURE TO create_${projectName};
 GRANT CREATE PUBLIC SYNONYM TO create_${projectName};
-GRANT DROP PUBLIC SYNONYM TO create_${projectName};
 GRANT CREATE SEQUENCE TO create_${projectName};
 GRANT CREATE SESSION TO create_${projectName};
 GRANT CREATE SYNONYM TO create_${projectName};
@@ -35,6 +34,8 @@ CREATE USER ${projectName}
   QUOTA UNLIMITED ON ${projectName};
 GRANT CREATE SESSION TO ${projectName};
 GRANT create_${projectName} to ${projectName};
+GRANT create_${projectName} to mcgdoc;
+
 GRANT read_common to ${projectName};
 -- cannot do the following grants to a role:
 GRANT REFERENCES ON COMMON.PROTOCOL to ${projectName}; 
@@ -46,10 +47,25 @@ GRANT REFERENCES ON COMMON.FILE_FORMAT to ${projectName};
 GRANT REFERENCES ON COMMON.FILE_TYPE to ${projectName};
 GRANT REFERENCES ON COMMON.mARRAY_REPORTER to ${projectName};
 GRANT REFERENCES ON COMMON.mARRAY_DESIGN to ${projectName};
-GRANT SELECT ON COMMON.patient_data_source to ${projectName} with grant option;
-GRANT SELECT ON COMMON.attribute_type to ${projectName} with grant option;
-GRANT SELECT ON COMMON.attribute_vocabulary to ${projectName} with grant option;
-GRANT read_${projectName} to guidoc;
-GRANT create_${projectName} to guidoc;
+GRANT ALL ON COMMON.patient_data_source to ${projectName} with grant option;
+GRANT ALL ON COMMON.attribute_type to ${projectName} with grant option;
+GRANT ALL ON COMMON.attribute_vocabulary to ${projectName} with grant option;
+GRANT SELECT ON COMMON.ATTRIBUTE_VOCAB_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.ATTRIBUTE_TYPE_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.ATTRIBUTE_TIMEPOINT_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.PATIENT_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.DATA_SOURCE_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.CONTACT_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.ARRAY_DESIGN_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.MARRAY_REPORTER_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.REPORTER_LIST_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.BIOSPECIMEN_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.DATA_FILE_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.MARRAY_RUN_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.PROTOCOL_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.FILE_TYPE_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.FILE_FORMAT_SEQUENCE to ${projectName} with grant option;
+GRANT SELECT ON COMMON.MARRAY_RUN_BIOSPEC_SEQUENCE to ${projectName} with grant option;
+
 -- not sure why i need this here....would it not be covered by read_common
 grant select on common.attribute_type to ${projectName};
