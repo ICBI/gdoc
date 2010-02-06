@@ -5,6 +5,11 @@ class GeneAlias {
 		id column:'GENE_SYMBOL_ID'
 	}
 	
+	static searchable = {
+	    gene reference: true
+		official index: 'no'
+	}
+	
 	static belongsTo = Gene
 	
 	String symbol

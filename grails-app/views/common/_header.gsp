@@ -1,4 +1,40 @@
 
+<jq:plugin name="autocomplete"/>
+<g:javascript>
+
+
+
+  $(document).ready(function(){
+   	$("#q").autocomplete("/gdoc/search/relevantTerms",{
+			max: 130,
+			scroll: true,
+			multiple:false,
+			matchContains: true,
+			dataType:'json',
+			parse: function(data){
+				var array = jQuery.makeArray(data);
+				for(var i=0;i<data.length;i++) {
+ 					var tempValue = data[i];
+					var tempResult = data[i];
+					array[i] = { data:data[i], value: tempValue, result: tempResult};
+			    }
+				return array;
+			},
+            formatItem: function(data, i, max) {
+						return data;
+					},
+			
+			formatResult: function(data) {
+						return data;
+					}
+	});
+	
+	
+  });
+
+
+</g:javascript>
+
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
 <img src="${createLinkTo(dir:'images',file:'gdocLogo.png')}" border="0" />
@@ -17,10 +53,13 @@
 </g:if>
 <g:else>
 <div style="float:left;margin-top: 20px;">
-	<g:form>
-	 <input name="terms" type="text" value="" size="25"></input>
+	<g:form autocomplete="off" controller="search" action="index">
+	
+	 <input name="q" id="q" type="text" value="" size="25"></input>
+	
 	<input type="submit" value="search gdoc" />
 	</g:form>
+	
 </div>
 <div style="float:right;">
 	<div>welcome,${session.userId}</div>

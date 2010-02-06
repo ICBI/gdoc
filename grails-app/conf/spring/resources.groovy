@@ -16,6 +16,7 @@ beans = {
  	jdbcTemplate(org.springframework.jdbc.core.JdbcTemplate) {
         dataSource = ref('dataSource')
     }
+	
 	jmsTemplate(org.springframework.jms.core.JmsTemplate) {
 		connectionFactory = ref('jmsConnectionFactory')
 		defaultDestination = ref('sendQueue')

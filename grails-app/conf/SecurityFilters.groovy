@@ -4,10 +4,30 @@ class SecurityFilters {
    def filters = {
         loginCheck(controller:'*', action:'*') {
            before = {
-              if(!session.userId && !controllerName.equals('home') && !controllerName.equals('login')) {
+			  if(params.token) {
+						String token = new String(params.token.getBytes(), "UTF-8");
+						String decryptedToken = EncryptionUtil.decrypt(token);
+						String[] info = decryptedToken.split("\\|\\|");
+						String username = info[0];
+						Long timeRequested = Long.parseLong(info[1]);
+						Long currentTime = System.currentTimeMillis();
+						Long diff = currentTime - timeRequested;
+						Long hours = diff / (60 * 60 * 1000);
+						if(hours > 24L) {
+							redirect(controller:'home')
+			                return false
+						}
+						def user = GDOCUser.findByLoginName(username)
+						if(!user) {
+							redirect(controller:'home')
+			                return false
+						}
+						println "user token authenticated"
+			  } 
+              else if(!session.userId && !controllerName.equals('home') && !controllerName.equals('login') && !controllerName.equals('registration')) {
                   redirect(controller:'home')
                   return false
-               }
+              }
            }
 		}
 		listCheck(controller:'userList', action:'*'){

@@ -4,6 +4,12 @@ class Gene {
 		version false
 		id column:'GENE_ID'
 	}
+	
+	static searchable = {
+	    geneAliases reference: true
+		proteins component: true
+	}
+	
 	String mapLocation
 	String title
 	String geneType

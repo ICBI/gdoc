@@ -6,6 +6,7 @@ class AttributeType {
 		vocabs column: 'attribute_type_id'
 		value column: 'class'
 	}
+	
 	static fetchMode = [vocabs:"eager"]
 	static hasMany = [vocabs : AttributeVocabulary]
 	

@@ -2,6 +2,16 @@ class StructureFile{
 	static mapping = {
 		table 'DRUG.STRUCTURE_FILE'
 	}
+	
+	static searchable = {
+	    fileType component: true
+		fileFormat component: true
+		dateCreated index: 'no'
+		lastUpdated index: 'no'
+		relativePath index: 'no'
+		fileSize index: 'no'
+	}
+	
 	String name
 	String relativePath
 	Long fileSize

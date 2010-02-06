@@ -9,6 +9,12 @@ class StudyDataSource {
 		pocs joinTable: [name:'data_source_pocs', key:'data_source_id', column:'contact_id']
 	}
 	
+	static searchable = {
+	        abstractText index: 'analyzed'
+			schemaName index: 'no'
+	}
+
+	
 	static hasMany = [pis: Contact, pocs: Contact, content: DataSourceContent]
 	static fetchMode = [content:"eager"]
 	static transients = [ "genomicData"]
