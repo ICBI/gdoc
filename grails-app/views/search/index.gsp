@@ -83,10 +83,10 @@
   <body onload="focusQueryInput();">
 	
   <div id="header">
-    <h1><a href="http://grails.org/Searchable+Plugin" target="_blank">Grails <span>Searchable</span> Plugin</a></h1>
+    <%--h1><a href="http://grails.org/Searchable+Plugin" target="_blank">Grails <span>Searchable</span> Plugin</a></h1>
     <g:form url='[controller: "search", action: "index"]' id="searchableForm" name="searchableForm" method="get">
         <g:textField name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
-    </g:form>
+    </g:form--%>
     <div style="clear: both; display: none;" class="hint">See <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html">Lucene query syntax</a> for advanced queries</div>
   </div>
   <div id="main">
@@ -107,20 +107,14 @@
     <g:if test="${haveQuery && !haveResults && !parseException}">
       <p>Nothing matched your query - <strong>${params.q}</strong></p>
       <g:if test="${!searchResult?.suggestedQuery}">
-        <p>Suggestions:</p>
-        <ul>
-          <li>Try a suggested query: <g:link controller="search" action="index" params="[q: params.q, suggestQuery: true]">Search again with the <strong>suggestQuery</strong> option</g:link><br />
-            <em>Note: Suggestions are only available when classes are mapped with <strong>spellCheck</strong> options, either at the class or property level.<br />
-		The simplest way to do this is add <strong>spellCheck "include"</strong> to the domain class searchable mapping closure.<br />
-                See the plugin/Compass documentation Mapping sections for details.</em>
-          </li>
-        </ul>
+        <g:if test="${suggs}">
+		  <p>Suggestions:</p>
+	      <p>Did you mean <g:link controller="search" action="index" params="[q: suggs]">${suggs[0]}</g:link>?</p>
+	    </g:if>
       </g:if>
     </g:if>
 
-    <g:if test="${searchResult?.suggestedQuery}">
-      <p>Did you mean <g:link controller="search" action="index" params="[q: searchResult.suggestedQuery]">${StringQueryUtils.highlightTermDiffs(params.q.trim(), searchResult.suggestedQuery)}</g:link>?</p>
-    </g:if>
+    
 
     <g:if test="${parseException}">
       <p>Your query - <strong>${params.q}</strong> - is not valid.</p>
@@ -144,9 +138,39 @@
         <g:each var="result" in="${searchResult.results}" status="index">
           <div class="result">
             <g:set var="className" value="${ClassUtils.getShortName(result.getClass())}" />
-            	<g:set var="desc" value="${result.toString()}" />
-	            <g:if test="${desc.size() > 120}"><g:set var="desc" value="${desc[0..120] + '...'}" /></g:if>
-	            <div class="desc">${desc.encodeAsHTML()}</div>
+				<g:if test="${className == 'StudyDataSource'}">
+					<div>
+						<g:link style="color:blue;font-size:1.2em" action="show" controller="studyDataSource" id="${result.id}">
+							${result.shortName}
+						</g:link> (StudyDataSource)
+						<g:if test="${result.abstractText}">
+							<g:set var="desc" value="${result.abstractText}" />
+				            	<g:if test="${desc.size() > 120}">
+									<g:set var="desc" value="${desc[0..120] + '...'}" />
+								</g:if>
+				            <div class="desc">${desc.encodeAsHTML()}</div>
+						</g:if>
+						<span style="color:green">cancer site: ${result.cancerSite},PI:${result.pocs.lastName}</span>
+					</div>
+				</g:if>
+            	<g:if test="${className == 'MoleculeTarget'}">
+					<div>
+						<a style="color:blue;font-size:1.2em" href="/gdoc/moleculeTarget?target=${result.protein.name}">
+							${result.molecule.name}
+						</a> (Target Molecule)
+						<g:if test="${result.molecule.formula}">
+							<g:set var="desc" value="${result.molecule.formula}" />
+				            	<g:if test="${desc.size() > 120}">
+									<g:set var="desc" value="${desc[0..120] + '...'}" />
+								</g:if>
+				            <div class="desc">${desc.encodeAsHTML()}</div>
+						</g:if>
+						<g:else>
+						No binding data available
+						</g:else>
+						<span style="color:green">target: ${result.protein.name}</span>
+					</div>
+				</g:if>
             
           </div>
         </g:each>

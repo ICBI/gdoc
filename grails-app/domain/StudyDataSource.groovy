@@ -10,8 +10,13 @@ class StudyDataSource {
 	}
 	
 	static searchable = {
-	        abstractText index: 'analyzed'
-			schemaName index: 'no'
+			mapping {
+			        abstractText index: 'analyzed'
+					schemaName index: 'no'
+					pis component: true
+					pocs component: true
+			        spellCheck "include"
+			}
 	}
 
 	
