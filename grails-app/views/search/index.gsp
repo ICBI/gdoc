@@ -11,7 +11,7 @@
 
 		<script type="text/javascript" src="/gdoc/js/jquery/jquery.ui.js"></script>
 	
-    <title><g:if test="${params.q && params.q?.trim() != ''}">${params.q} - </g:if>Grails Searchable Plugin</title>
+    <title><g:if test="${params.q && params.q?.trim() != ''}">${params.q} - </g:if>G-DOC Search</title>
     <style type="text/css">
       
 
@@ -109,7 +109,11 @@
       <g:if test="${!searchResult?.suggestedQuery}">
         <g:if test="${suggs}">
 		  <p>Suggestions:</p>
-	      <p>Did you mean <g:link controller="search" action="index" params="[q: suggs]">${suggs[0]}</g:link>?</p>
+	      <p>Did you mean any of the following?<br />
+			<g:each in="${suggs}" var="suggestion" status="i">
+				<g:link controller="search" action="index" params="[q: suggs[i]]">${suggs[i]}</g:link><br />
+			</g:each>
+		  </p>
 	    </g:if>
       </g:if>
     </g:if>
@@ -148,7 +152,7 @@
 				            	<g:if test="${desc.size() > 120}">
 									<g:set var="desc" value="${desc[0..120] + '...'}" />
 								</g:if>
-				            <div class="desc">${desc.encodeAsHTML()}</div>
+				            <div class="desc">${result.longName}:${desc.encodeAsHTML()}</div>
 						</g:if>
 						<span style="color:green">cancer site: ${result.cancerSite},PI:${result.pocs.lastName}</span>
 					</div>
