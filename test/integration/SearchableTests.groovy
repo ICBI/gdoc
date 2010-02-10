@@ -16,6 +16,7 @@ import org.apache.lucene.document.Document
 
 class SearchableTests extends GroovyTestCase {
 	def searchableService
+	def annotationService
 
 	void testSearchStemming(){
 		//println "begin indexing..."
@@ -38,8 +39,9 @@ class SearchableTests extends GroovyTestCase {
 			}
 		}
 	}
+	
 
-	void testSearchIndex(){
+  void testSearchIndex(){
 		try { 
 			def terms = []
 			terms << searchableService.termFreqs("longName")
@@ -81,23 +83,77 @@ class SearchableTests extends GroovyTestCase {
 			hits.each{
 				println "this hit:" + it.getResource().getProperties()
 			}
-			/**def searchResult = searchableService.search(result: 'every',{queryString("c*")})//LuceneUtils.termsForQueryString('bre*',analyzer) //
-			println searchResult.class
-			if(searchResult){
-				searchResult.each{ result ->
-					println result.class
-					//def className = ClassUtils.getShortName(result.getClass())
-					//def fooDomain = new DefaultGrailsDomainClass( StudyDataSource.class )
-					//def obj = SearchableUtils.getSearchablePropertyValue(fooDomain)
-					//println obj.class
-					//println "$result found"
-				}
+			
 			}**/
+			
 		 } catch (SearchEngineQueryParseException ex) { 
 		 	println ex
 		 }
 	}
 	
+		
+		void testSearchTargetIndex(){
+			try { 
+				def gaterms = []
+				gaterms << GeneAlias.termFreqs("symbol",size:50)
+				def pterms = []
+				pterms << Protein.termFreqs("name")
+				def mterms = []
+				mterms << Molecule.termFreqs("name")
 
+				gaterms.flatten().each{
+					//println "$it.term of $it.propertyName was referenced $it.freq times"
+				}
+				pterms.flatten().each{
+					//println "$it.term of $it.propertyName was referenced $it.freq times"
+				}
+				mterms.flatten().each{
+					//println "$it.term of $it.propertyName was referenced $it.freq times"
+				}
+			}catch (SearchEngineQueryParseException ex) { 
+				 	println ex
+			}
+		}
+		
+		void testLigandSearch(){
+			try { 
+			def searchTerm = "EGFR"
+			def targets = []
+				//is it a gene symbol?
+				def alias = annotationService.findGeneByAlias(searchTerm)
+				if(alias){
+					println "its a gene symbol"
+					def proteinNames = []
+					def queryStringToCall = ""
+					def proteins = alias.gene.proteins
+					proteinNames = proteins.collect{it.name}
+					if(proteinNames){
+						proteinNames.each{ pname ->
+							queryStringToCall += "$pname OR "
+						}
+						searchTerm = queryStringToCall.substring(0,queryStringToCall.lastIndexOf('OR'))
+						println searchTerm
+						targets = Molecule.search{
+							queryString("EGFR")
+							must(between("weight",430.00,435.00,true))
+						}
+					}
+					else{
+						println "no proteins found"
+					}
+				}
+				else{
+				//it must be a protein name or molecule name
+				println "it must be a protein name or molecule name -- search with string"
+				targets = Molecule.search{
+					queryString(searchTerm)
+				}
+					
+				}
+			println targets
+			}catch (SearchEngineQueryParseException ex) { 
+				 	println ex
+			}
+		}
 
 }

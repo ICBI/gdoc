@@ -4,142 +4,122 @@
         <meta name="layout" content="main" />
 
 	<g:javascript library="jquery"/>
-	<script type="text/javascript" src="applets/jmol/Jmol.js"></script>
-	<script type="text/javascript" src="applets/marvin/marvin.js"></script>
 	<jq:plugin name="ui"/>
-        <title>Molecule Target</title>         
+        <title>Molecule Target - Search</title>         
     </head>
     <body>
-	<p style="font-size:14pt">Molecule-Target Viewer (*beta*)</p>
+	<p style="font-size:14pt">Search for Targets (*beta*)</p><br />
+<div id="centerContent">
+<div class="clinicalSearch" style="width:61%">
+
+
+<g:form url='[controller: "moleculeTarget", action: "searchLigands"]' id="searchableForm" name="searchableForm" method="get">
+    <table class="formTable">
+	<tr><td>Enter name for a gene, protein or molecule:	</td><td><g:textField name="entity" value="${params.entity}" size="10"/> </td></tr>
+	<tr><td>Ligand Affinity: </td><td><g:textField disabled="true" name="ligandAffinity" value="${params.ligandAffinity}" size="10"/> </td></tr>
+	<tr><td colspan="2">
+		<div class="errorDetail">
+			<g:renderErrors bean="${flash.cmd?.errors}" field="molWeightLow" />
+		</div>
+		<g:textField name="molWeightLow" value="${params.molWeightLow}" size="6"/>&nbsp;&lt;&nbsp;molecular weight&nbsp;&lt;&nbsp;<g:textField name="molWeightHigh" value="${params.molWeightHigh}" size="6"/></td></tr>
+	<tr><td colspan="2" style="text-align:right"><input type="reset" value="Reset" /> | <input type="submit" value="Search" />
+	</table>
 	
-		<g:if test="${bindings}">
-	
-		<g:each in="${bindings}" var="x">
-		<g:each in="${x.structures}" var="structure">
-		<g:set var="moleculeTargetPath" value="${structure.structureFile.relativePath}" />
-		<table class="viewerTable">
-		<tr>
-			<td><b>Protein</b>: ${x.protein.name}</td>
-			
-			<td valign="top" rowspan="5">
-				<g:javascript>
-					  jmolInitialize("applets/jmol","JmolAppletSigned0.jar");
-				      jmolApplet([400,400], "load moleculeTarget/display?inputFile=${moleculeTargetPath};spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
-				</g:javascript>
-				<br />
-				<b>View Options</b><br />
-					<g:form>
-					<g:radio value="view" checked="true"/> Protein-Ligand Complex<br />
-					<g:radio value="view" /> Binding Pocket-Ligand Complex<br />
-					<g:radio value="view" /> Protein Only<br />
-					<g:radio value="view" /> Binding Pocket Only<br />
-					</g:form>
-			</td>
-		</tr>
-		<g:each in="${x.molecule.structures}" var="molStructure">
-		<tr>
-			<td><b>Source</b>: .pdb</td>
-		</tr>
-		<tr>
-			<td><b>Ligand</b>: ${x.molecule.name}</td>
-		</tr>
-		<tr>
-			<td>
-				<g:set var="moleculePath" value="${molStructure.structureFile.relativePath}" />
-				<g:javascript>
-				// marvin_jvm = "builtin"; // "builtin" or "plugin"
-				mview_begin("applets/marvin/", 200, 200); //arguments: codebase, width, height
-				// you could also use the mview_begin("../../..", 200, 200, true ); function call to load the applet without splash screen.
-				mview_param("mol", "moleculeTarget/display?inputFile=${moleculePath}");
-				mview_param("background", "#ffffff");
-				mview_param("molbg", "#ffffff");
-				//mview_param("navmode", "rot3d");
-				mview_param("rendering", "wireframe");
-				//mview_param("animFPS", "20");
-				mview_end();
-				</g:javascript><br />
-			</td>
-		</tr>
-		<tr>
-			<td><b>Physico-Chemical Properties</b>: <br />
-				<table style="font-size:.8em">
-					<tr>
+</g:form>
+</div>
+
+</div>
+<span>
+    <g:if test="${ligands?.results}"><br />
+     <span style="padding:15px"> Showing <strong>${ligands.offset + 1}</strong> - <strong>${ligands.results.size() + ligands.offset}</strong> of <strong>${ligands.total}</strong></span>
+    </g:if>
+    <g:else>
+    &nbsp;
+    </g:else>
+  </span>
+<div style="width:100%">
+<g:if test="${ligands?.results}">
+	<table class="resultTable" style="width:100%">
+	<g:each in="${ligands.results}" var="molecule">
+	<tr><td style="border-bottom:1px solid orange"><div style="font-size:1em;width:100%"><strong>${molecule.name}</strong></div></td></tr>
+	<tr>
+		<g:set var="ligandImg" value="${molecule.name + '.png'}" />
+		<td valign="top" style="width:40%;padding-left:20px">
+			<table class="studyTable" style="width:100%">
+				<tr>
+					<th>Property</th>
+					<th>Value</th>
+				</tr>
+				<tr>
+					<td>Formula</td>
+					<td>${molecule.formula}</td>
+				</tr>
+				<tr>
+					<td>Molecular Weight</td>
+					<td>${molecule.weight}</td>
+				</tr>
+				<tr>
+					<td>Refractivity</td>
+					<td>${molecule.refractivity}</td>
+				</tr>
+				<tr>
+					<td>Solubility</td>
+					<td>${molecule.solubility}</td>
+				</tr>
+				<tr>
+					<td>PH</td>
+					<td>${molecule.ph}</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" style="width:40%;padding-left:20px">
+			<table class="studyTable" style="width:100%">
+				<tr>
 						<th>Property</th>
 						<th>Value</th>
-					</tr>
-					<g:if test="${x.molecule.formula}">
-					<tr>
-						<td>Formula</td>
-						<td>${x.molecule.formula}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.weight}">
-					<tr>
-						<td>Molecular Weight</td>
-						<td>${x.molecule.weight}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.refractivity}">
-					<tr>
-						<td>Refractivity</td>
-						<td>${x.molecule.refractivity}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.solubility}">
-					<tr>
-						<td>Solubility</td>
-						<td>${x.molecule.solubility}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.ph}">
-					<tr>
-						<td>PH</td>
-						<td>${x.molecule.ph}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.donorAtoms}">
-					<tr>
-						<td>Donor Atoms</td>
-						<td>${x.molecule.donorAtoms}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.acceptorAtoms}">
-					<tr>
-						<td>Acceptor Atoms</td>
-						<td>${x.molecule.acceptorAtoms}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.clogP}">
-					<tr>
-						<td>ClogP</td>
-						<td>${x.molecule.clogP}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.rotatableBonds}">
-					<tr>
-						<td>Rotatable Bonds</td>
-						<td>${x.molecule.rotatableBonds}</td>
-					</tr>
-					</g:if>
-					<g:if test="${x.molecule.chiral}">
-					<tr>
-						<td>Chiral</td>
-						<td>${x.molecule.chiral}</td>
-					</tr>
-					</g:if>
-				</table>
+				</tr>
+				<tr>
+					<td>Donor Atoms</td>
+					<td>${molecule.donorAtoms}</td>
+				</tr>
+				<tr>
+					<td>Acceptor Atoms</td>
+					<td>${molecule.acceptorAtoms}</td>
+				</tr>
+				<tr>
+					<td>ClogP</td>
+					<td>${molecule.clogP}</td>
+				</tr>
+				<tr>
+					<td>Rotatable Bonds</td>
+					<td>${molecule.rotatableBonds}</td>
+				</tr>
+				<tr>
+					<td>Chiral</td>
+					<td>${molecule.chiral}</td>
+				</tr>
+			</table><br />
+			<div style="float:left;border:1px solid black;padding:10px">Targets:
+				<g:each in="${molecule.bindings}" var="target">
+					<g:link action="show" id="${target.id}">${target.protein.name}</g:link>
+				</g:each>
+			</div>
 		</td>
-		</tr>
+		<td style="text-align:right"><img src="${createLinkTo(dir:'images/molecules',file:ligandImg)}" border="0" /></td>
 		
-		</g:each>
-		
-		</table>
-		</g:each>
-		</g:each>
-		</g:if>
-		<g:else><br /><br />
-		No bindings found
-		</g:else>
-		</body>
-		
-</html>
+	</tr>
+	
+	</g:each>
+	</table>
+</g:if> 
+<div>
+    <div class="paging">
+      <g:if test="${ligands?.results}">
+          Page:
+          <g:set var="totalPages" value="${Math.ceil(ligands.total / ligands.max)}" />
+          <g:if test="${totalPages == 1}"><span class="currentStep">1</span></g:if>
+          <g:else><g:paginate controller="moleculeTarget" action="index" total="${ligands.total}" prev="&lt; previous" next="next &gt;"/></g:else>
+      </g:if>
+    </div>
+  </div>
+</div>

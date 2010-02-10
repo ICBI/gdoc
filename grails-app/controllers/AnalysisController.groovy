@@ -97,7 +97,7 @@ class AnalysisController {
 			def targetLinks = []
 			if(!targetData.equals("")){
 				targetData.each{ target ->
-					def link = "<a href='/gdoc/moleculeTarget?target="+target+"'>"+target+"</a>"
+					def link = "<a href='/gdoc/moleculeTarget/show?target="+target+"'>"+target+"</a>"
 					targetLinks << link
 				}
 			}

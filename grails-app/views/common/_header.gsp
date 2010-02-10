@@ -37,7 +37,7 @@
 
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
-<img src="${createLinkTo(dir:'images',file:'gdocLogo.png')}" border="0" />
+<a href="/gdoc"><img src="${createLinkTo(dir:'images',file:'gdocLogo.png')}" border="0" /></a>
 </td><td valign="bottom" style="text-align:right;padding:7px">
 
 
@@ -55,7 +55,7 @@
 <div style="float:left;margin-top: 20px;">
 	<g:form autocomplete="off" controller="search" action="index">
 	
-	 <input name="q" id="q" type="text" value="" size="25"></input>
+	 <input name="q" id="q" type="text" value="" size="15"></input>
 	
 	<input type="submit" value="search gdoc" />
 	</g:form>

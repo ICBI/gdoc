@@ -171,6 +171,20 @@ p
 	padding: 5px;
 	border: 1px solid #CCCCCC;
 }
+.resultTable {
+	font-size: 1em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+}
+.resultTable th {
+	padding: 5px;
+	border-bottom: 1px solid #CCCCCC;
+	font-weight: bold;
+}
+.resultTable td {
+	padding: 5px;
+	border-bottom: 1px solid #CCCCCC;
+}
 
 .listTable {
 	font-size: .8em;

@@ -42,7 +42,7 @@ jQuery(document).ready(function()
 					<g:link controller="sample" styleClass="sf-with-ul">Samples</g:link>
 				</li>
 				<li>
-					<a href="#">Targets</a>
+					<g:navigationLink name="Targets" controller="moleculeTarget" action="index" />
 				</li>					
 				<li>
 					<a class="sf-with-ul" href="#">Genes<span class="sf-sub-indicator"> »</span></a>
