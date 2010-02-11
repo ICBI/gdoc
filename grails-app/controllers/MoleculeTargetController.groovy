@@ -1,8 +1,10 @@
 import org.compass.core.engine.SearchEngineQueryParseException
+import grails.converters.*
 
 class MoleculeTargetController {
 	def drugDiscoveryService
 	def annotationService
+	def searchableService
 	
 	def index = {
 		println params
@@ -97,15 +99,52 @@ class MoleculeTargetController {
 		}
 	}
 	
+	def loadSimilar = {
+		if(params.moleculeSelector){
+			redirect(action:show, id:params.moleculeSelector)
+			return
+		}
+	}
+	
+	def relevantTerms = {
+		def searchResult = []
+		if (!params.q?.trim()) { 
+			render ""
+		}else{
+			try { 
+				def terms = []
+				terms << searchableService.termFreqs("name")
+				terms << searchableService.termFreqs("symbol")
+				terms.flatten().each{
+					if(it.term.contains(params.q.trim()))
+						searchResult << it.term
+				}
+				render searchResult as JSON
+			 } catch (SearchEngineQueryParseException ex) { 
+				println ex
+				return []
+			 }
+		}
+	}
+	
 	def show = {
 			println params
 			def moleculeTarget
+			def similarTargets = []
+			def molTarId 
 			if(params.id){
 				moleculeTarget = MoleculeTarget.get(params.id)
+				molTarId = moleculeTarget.id
 			}
-			if(moleculeTarget)
-				[bindings:moleculeTarget]
-				
+			if(moleculeTarget){
+				similarTargets = MoleculeTarget.findAllByProtein(moleculeTarget.protein)
+				println similarTargets
+				def desiredTarget = similarTargets.find{
+					it.id == molTarId
+				}
+				println desiredTarget
+				[moleculeTarget:desiredTarget,similarTargets:similarTargets]
+			}	
 		}
 		
 	def display = {

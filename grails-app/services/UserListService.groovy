@@ -364,11 +364,11 @@ def decorateListItems(userList){
 			//add target links if available
 			def targetData = []
 			def targetLinks = []
-			targetData = drugDiscoveryService.findProteinsFromAlias(item.value)
+			targetData = drugDiscoveryService.findTargetsFromAlias(item.value)
 			metadata[item.id] = [:]
 			if(targetData){
 				targetData.each{ target ->
-					def link = "<a href='/gdoc/moleculeTarget/show?target="+target+"'>"+target+"</a>"
+					def link = "<a href='/gdoc/moleculeTarget/show/"+target.id+"'>"+target+"</a>"
 					targetLinks << link
 				}
 				metadata[item.id]["Target Data (proteins)"] = targetLinks

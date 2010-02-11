@@ -2,9 +2,10 @@ class DrugDiscoveryService {
 	def annotationService
 	
 	/**
-	Currently finds all proteins for a gene alias
+	Currently finds all molecule targets for a gene alias
 	**/
-	def findProteinsFromAlias(alias) {
+	def findTargetsFromAlias(alias) {
+		def bindings = []
 		def geneAlias = annotationService.findGeneByAlias(alias)
 		if(geneAlias){
 			def gene = geneAlias.gene
@@ -15,12 +16,16 @@ class DrugDiscoveryService {
 				if(proteins && proteins.bindings){
 					println "Gene $gene.title transcribes proteins"
 					println "bindings were found from $geneAlias"
-					return proteins.collect{it.name}
+					proteins.each{
+						bindings.addAll(it.bindings)
+					}
+					return bindings
 				}else return false
 			}else return false
 		}else return false
 		
     }
+
 	
 	
 }

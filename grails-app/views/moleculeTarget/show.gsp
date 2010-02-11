@@ -6,6 +6,20 @@
 	<g:javascript library="jquery"/>
 	<script type="text/javascript" src="/gdoc/applets/jmol/Jmol.js"></script>
 	<script type="text/javascript" src="/gdoc/applets/marvin/marvin.js"></script>
+	<g:javascript>
+	$(document).ready( function () {
+				$('#moleculeSelector').change(function() {
+					if($('#moleculeSelector').val()) {
+						$('#selectorForm').submit();
+					}
+		 		});
+			
+	} );
+	
+		
+	
+	
+	</g:javascript>
 	<jq:plugin name="ui"/>
         <title>Molecule Target</title>         
     </head>
@@ -13,18 +27,24 @@
 		<%
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() +  request.getContextPath();
 		%>
-	<p style="font-size:14pt">Molecule-Target Viewer (*beta*)
+	<p style="font-size:14pt">Molecule-Target Viewer | <g:link action="index">target search</g:link>
 		<span style="float:right;font-size:.7em;padding:5px">
-			<g:link action="index">back to target search</g:link></span></p>
+			<g:form name="selectorForm" action="loadSimilar">
+			Other Molecules for this target:&nbsp;
+			<g:select name="moleculeSelector" 
+				noSelection="${['':'Choose targeting-molecule...']}"
+				from="${similarTargets}"
+				optionKey="id">
+			</g:select>
+			</g:form>
+		</span></p>
 	
-		<g:if test="${bindings}">
-	
-		<g:each in="${bindings}" var="x">
-		<g:each in="${x.structures}" var="structure">
+		<g:if test="${moleculeTarget}">
+		<g:each in="${moleculeTarget.structures}" var="structure">
 		<g:set var="moleculeTargetPath" value="${structure.structureFile.relativePath}" />
 		<table class="viewerTable">
 		<tr>
-			<td><b>Protein</b>: ${x.protein.name}</td>
+			<td><b>Protein</b>: ${moleculeTarget.protein.name}</td>
 			
 			<td valign="top" rowspan="5">
 				<g:javascript>
@@ -41,12 +61,12 @@
 					</g:form>
 			</td>
 		</tr>
-		<g:each in="${x.molecule.structures}" var="molStructure">
+		<g:each in="${moleculeTarget.molecule.structures}" var="molStructure">
 		<tr>
 			<td><b>Source</b>: .pdb</td>
 		</tr>
 		<tr>
-			<td><b>Ligand</b>: ${x.molecule.name}</td>
+			<td><b>Ligand</b>: ${moleculeTarget.molecule.name}</td>
 		</tr>
 		<tr>
 			<td>
@@ -72,64 +92,64 @@
 						<th>Property</th>
 						<th>Value</th>
 					</tr>
-					<g:if test="${x.molecule.formula}">
+					<g:if test="${moleculeTarget.molecule.formula}">
 					<tr>
 						<td>Formula</td>
-						<td>${x.molecule.formula}</td>
+						<td>${moleculeTarget.molecule.formula}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.weight}">
+					<g:if test="${moleculeTarget.molecule.weight}">
 					<tr>
 						<td>Molecular Weight</td>
-						<td>${x.molecule.weight}</td>
+						<td>${moleculeTarget.molecule.weight}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.refractivity}">
+					<g:if test="${moleculeTarget.molecule.refractivity}">
 					<tr>
 						<td>Refractivity</td>
-						<td>${x.molecule.refractivity}</td>
+						<td>${moleculeTarget.molecule.refractivity}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.solubility}">
+					<g:if test="${moleculeTarget.molecule.solubility}">
 					<tr>
 						<td>Solubility</td>
-						<td>${x.molecule.solubility}</td>
+						<td>${moleculeTarget.molecule.solubility}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.ph}">
+					<g:if test="${moleculeTarget.molecule.ph}">
 					<tr>
 						<td>PH</td>
-						<td>${x.molecule.ph}</td>
+						<td>${moleculeTarget.molecule.ph}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.donorAtoms}">
+					<g:if test="${moleculeTarget.molecule.donorAtoms}">
 					<tr>
 						<td>Donor Atoms</td>
-						<td>${x.molecule.donorAtoms}</td>
+						<td>${moleculeTarget.molecule.donorAtoms}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.acceptorAtoms}">
+					<g:if test="${moleculeTarget.molecule.acceptorAtoms}">
 					<tr>
 						<td>Acceptor Atoms</td>
-						<td>${x.molecule.acceptorAtoms}</td>
+						<td>${moleculeTarget.molecule.acceptorAtoms}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.clogP}">
+					<g:if test="${moleculeTarget.molecule.clogP}">
 					<tr>
 						<td>ClogP</td>
-						<td>${x.molecule.clogP}</td>
+						<td>${moleculeTarget.molecule.clogP}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.rotatableBonds}">
+					<g:if test="${moleculeTarget.molecule.rotatableBonds}">
 					<tr>
 						<td>Rotatable Bonds</td>
-						<td>${x.molecule.rotatableBonds}</td>
+						<td>${moleculeTarget.molecule.rotatableBonds}</td>
 					</tr>
 					</g:if>
-					<g:if test="${x.molecule.chiral}">
+					<g:if test="${moleculeTarget.molecule.chiral}">
 					<tr>
 						<td>Chiral</td>
-						<td>${x.molecule.chiral}</td>
+						<td>${moleculeTarget.molecule.chiral}</td>
 					</tr>
 					</g:if>
 				</table>
@@ -140,7 +160,7 @@
 		
 		</table>
 		</g:each>
-		</g:each>
+	
 		</g:if>
 		<g:else><br /><br />
 		No bindings found

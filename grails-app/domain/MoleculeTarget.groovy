@@ -24,5 +24,10 @@ class MoleculeTarget{
 		protein(nullable:false)
 	}
 	
+	public String toString() {
+		if(this.@protein && this.@molecule) {
+			return this.@molecule.name + "-" + this.@protein.name
+		}
+	}
 	
 }

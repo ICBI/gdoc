@@ -83,7 +83,7 @@ class AnalysisController {
 			def geneName = annotationService.findGeneForReporter(result.reporterId)
 			def targetData = ""
 			if(geneName){
-				targetData = drugDiscoveryService.findProteinsFromAlias(geneName)
+				targetData = drugDiscoveryService.findTargetsFromAlias(geneName)
 				if(!targetData)
 				targetData = ""
 			}
@@ -97,7 +97,7 @@ class AnalysisController {
 			def targetLinks = []
 			if(!targetData.equals("")){
 				targetData.each{ target ->
-					def link = "<a href='/gdoc/moleculeTarget/show?target="+target+"'>"+target+"</a>"
+					def link = "<a href='/gdoc/moleculeTarget/show/"+target.id+"'>"+target+"</a>"
 					targetLinks << link
 				}
 			}

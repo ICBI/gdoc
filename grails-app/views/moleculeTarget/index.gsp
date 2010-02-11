@@ -5,17 +5,51 @@
 
 	<g:javascript library="jquery"/>
 	<jq:plugin name="ui"/>
+	<jq:plugin name="autocomplete"/>
+	<g:javascript>
+	  $(document).ready(function(){
+	   	$("#entity").autocomplete("/gdoc/moleculeTarget/relevantTerms",{
+				max: 130,
+				scroll: true,
+				multiple:false,
+				matchContains: true,
+				dataType:'json',
+				parse: function(data){
+					var array = jQuery.makeArray(data);
+					for(var i=0;i<data.length;i++) {
+	 					var tempValue = data[i];
+						var tempResult = data[i];
+						array[i] = { data:data[i], value: tempValue, result: tempResult};
+				    }
+					return array;
+				},
+	            formatItem: function(data, i, max) {
+							return data;
+						},
+
+				formatResult: function(data) {
+							return data;
+						}
+		});
+
+
+	  });
+	</g:javascript>
         <title>Molecule Target - Search</title>         
     </head>
     <body>
-	<p style="font-size:14pt">Search for Targets (*beta*)</p><br />
+	<p style="font-size:14pt">Search for Targets</p><br />
+	<g:if test="${flash.message}">
+	<span class="message">${flash.message}</span>
+	</g:if>
 <div id="centerContent">
+	
+	
 <div class="clinicalSearch" style="width:61%">
-
 
 <g:form url='[controller: "moleculeTarget", action: "searchLigands"]' id="searchableForm" name="searchableForm" method="get">
     <table class="formTable">
-	<tr><td>Enter name for a gene, protein or molecule:	</td><td><g:textField name="entity" value="${params.entity}" size="10"/> </td></tr>
+	<tr><td>Enter name for a gene, protein or molecule:	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
 	<tr><td>Ligand Affinity: </td><td><g:textField disabled="true" name="ligandAffinity" value="${params.ligandAffinity}" size="10"/> </td></tr>
 	<tr><td colspan="2">
 		<div class="errorDetail">
@@ -99,7 +133,9 @@
 					<td>${molecule.chiral}</td>
 				</tr>
 			</table><br />
-			<div style="float:left;border:1px solid black;padding:10px">Targets:
+			<div style="float:left;padding:10px">
+				<img src="${createLinkTo(dir:'images',file:'target.png')}" border="0" />
+				Targets:
 				<g:each in="${molecule.bindings}" var="target">
 					<g:link action="show" id="${target.id}">${target.protein.name}</g:link>
 				</g:each>

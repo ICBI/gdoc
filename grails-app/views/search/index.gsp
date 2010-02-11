@@ -159,9 +159,7 @@
 				</g:if>
             	<g:if test="${className == 'MoleculeTarget'}">
 					<div>
-						<a style="color:blue;font-size:1.2em" href="/gdoc/moleculeTarget/show?target=${result.protein.name}">
-							${result.molecule.name}
-						</a> (Target Molecule)
+						<g:link action="show" id="${result.id}">${result}</g:link> (Target Molecule)
 						<g:if test="${result.molecule.formula}">
 							<g:set var="desc" value="${result.molecule.formula}" />
 				            	<g:if test="${desc.size() > 120}">
