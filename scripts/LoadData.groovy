@@ -13,7 +13,7 @@ target(main: "Load data into the DB") {
 	// Load up grails contexts to be able to use GORM
 	loadApp()
 	configureApp()
-	
+
 	println "Please specify a project name:"
 	def projectName = new InputStreamReader(System.in).readLine().toUpperCase()
 	def studyFile = new File("dataImport/${projectName}/${projectName}_study_table.txt")
@@ -64,90 +64,71 @@ def executeScript(script, projectName, continueError = false) {
 }
 
 def loadData(projectName) {
-	def dataSourceClass = classLoader.loadClass('StudyDataSource')
-	def contentClass = classLoader.loadClass('DataSourceContent')
 	
 	def studyFile = new File("dataImport/${projectName}/${projectName}_study_table.txt")
+	def studyDataSourceService = appCtx.getBean("studyDataSourceService")
 	def sessionFactory = appCtx.getBean("sessionFactory")
+
 	def session = sessionFactory.getCurrentSession()
 	def trans = session.beginTransaction()
 	try {
 		studyFile.eachLine { line, number ->
 			if(number != 1) {
 				def data = line.split('\t')
-				def dataSource = dataSourceClass.newInstance()
-				dataSource.shortName = data[0]
-				dataSource.schemaName = data[7]
-				dataSource.longName = data[0]
-				dataSource.abstractText = data[2]
-				dataSource.cancerSite = "MULTIPLE"
-				dataSource.patientIdName = data[4]
-				dataSource.integrated = data[5]
-				dataSource.overallAccess = data[6]
-				dataSource.useInGui = data[8]
-				dataSource.insertUser = "acs224"
-				dataSource.insertDate = new Date()
-				dataSource.insertMethod = "load-data"
-				println "Saving $dataSource"
-
+				def params = [:]
+				params.shortName = data[0]
+				params.schemaName = data[7]
+				params.longName = data[0]
+				params.abstractText = data[2]
+				params.cancerSite = "MULTIPLE"
+				params.patientIdName = data[4]
+				params.integrated = data[5]
+				params.overallAccess = data[6]
+				params.useInGui = data[8]
+				params.insertUser = "acs224"
+				params.insertDate = new Date()
+				params.insertMethod = "load-data"
 				// Setup data source content
+				def contents = []
 				def contentTypes = data[9].split(',')
 				def showContent = data[10].split(',')
 				contentTypes.eachWithIndex { item, index ->
-					def content = contentClass.newInstance()
+					def content = [:]
 					content.type = item.trim()
 					content.showInGui = showContent[index].trim().toInteger()
-					dataSource.addToContent(content)
+					contents << content
 				}
-				if (!dataSource.save(flush: true)) 
-					println dataSource.errors
-					
-				def pi = createPi(projectName)
-				dataSource.addToPis(pi)
-				def poc = createPoc(projectName)
-				dataSource.addToPocs(poc)
-				dataSource.merge()
+				def dataSource = studyDataSourceService.createWithContent(params, contents)
+				def contactFile = new File("dataImport/${projectName}/${projectName}_contact_table.txt")
+				def contactParams = [:]
+				contactFile.eachLine { lineData, contactLineNumber ->
+					if(contactLineNumber != 1) {
+						def contactData = lineData.split('\t')
+						contactParams.netid = contactData[0]
+						contactParams.lastName = contactData[1]
+						contactParams.firstName = contactData[2]
+						contactParams.suffix = contactData[3]
+						contactParams.email = contactData[4]
+						contactParams.notes = contactData[5]
+						contactParams.insertUser = "acs224"
+						contactParams.insertDate = new Date()
+						contactParams.insertMethod = "load-data"
+						if(contactData[6] == 'PI') {
+							studyDataSourceService.addPi(dataSource.id, contactParams)
+						} else if(contactData[6] == 'POINT_OF_CONTACT') {
+							studyDataSourceService.addPoc(dataSource.id, contactParams)
+						}
+					}
+				}
+				
 			}
 		}
+		trans.commit()
 	} catch (Exception e) {
-		e.printStackTrace()
 		trans.rollback()
+		e.printStackTrace()
 	}
-	trans.commit()
 }
 
-def createPi(projectName) {
-	return createContact(projectName, 'PI')
-}
-
-def createPoc(projectName) {
-	return createContact(projectName, 'POINT_OF_CONTACT')
-}
-
-def createContact(projectName, contactType) {
-	def contactFile = new File("dataImport/${projectName}/${projectName}_contact_table.txt")
-	def contactClass = classLoader.loadClass('Contact')
-	def contact
-	contactFile.eachLine {
-		def data = it.split('\t')
-		if(data[6] == contactType) {
-			contact = contactClass.findByLastNameAndFirstName(data[1], data[2])
-			if(!contact) {
-				contact = contactClass.newInstance()
-				contact.netid = data[0]
-				contact.lastName = data[1]
-				contact.firstName = data[2]
-				contact.suffix = data[3]
-				contact.email = data[4]
-				contact.notes = data[5]
-				contact.insertUser = "acs224"
-				contact.insertDate = new Date()
-				contact.insertMethod = "load-data"
-				contact.save(flush:true)
-			}
-		}
-	}
-	return contact
-}
 
 setDefaultTarget(main)

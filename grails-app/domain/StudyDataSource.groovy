@@ -21,7 +21,7 @@ class StudyDataSource {
 
 	
 	static hasMany = [pis: Contact, pocs: Contact, content: DataSourceContent]
-	static fetchMode = [content:"eager"]
+	static fetchMode = [content:"eager", pis: "eager", pocs: "eager"]
 	static transients = [ "genomicData"]
 	
 	String shortName

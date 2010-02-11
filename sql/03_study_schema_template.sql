@@ -264,7 +264,8 @@ VALUES (0, 0, 0,
 		reporter_list_as_platform  NUMBER(1) NULL,    --  convenience.  is the reporter list for this tuple the same as what is expected from the array design 
 		insert_user                VARCHAR(20) NOT NULL,
 		insert_date                DATE NOT NULL,
-		insert_method              VARCHAR2(20) NOT NULL
+		insert_method              VARCHAR2(20) NOT NULL,
+		description 			   varchar2(100)
 	);
 
 	COMMENT ON COLUMN ${projectName}.mARRAY_FILE.name                       IS 'Unique name of the file within the data source.  No path information.';
