@@ -27,7 +27,7 @@ target(main: "Load data into the DB") {
 		println "Project with name: $projectName already exists.  Unable to overwrite data in this schema."
 		return
 	}
-	println "Cleaning up schema...."
+/*	println "Cleaning up schema...."
 	executeScript("sql/study_cleanup_template.sql", projectName, true)
 	println "Creating tablespace ${projectName}...."
 	executeScript("sql/01_create_tablespace_template.sql", projectName)
@@ -46,8 +46,9 @@ target(main: "Load data into the DB") {
 	writable.toString().eachLine {
 		if(it)
 			sql.execute(it.replace(';', ''))
-	}
-	loadData(projectName)
+	}*/
+	//loadStudyData(projectName)
+	loadClinicalData(projectName)
 }
 
 def executeScript(script, projectName, continueError = false) {
@@ -63,7 +64,7 @@ def executeScript(script, projectName, continueError = false) {
 	
 }
 
-def loadData(projectName) {
+def loadStudyData(projectName) {
 	
 	def studyFile = new File("dataImport/${projectName}/${projectName}_study_table.txt")
 	def studyDataSourceService = appCtx.getBean("studyDataSourceService")
@@ -103,7 +104,7 @@ def loadData(projectName) {
 				def contactParams = [:]
 				contactFile.eachLine { lineData, contactLineNumber ->
 					if(contactLineNumber != 1) {
-						def contactData = lineData.split('\t')
+						def contactData = lineData.split('\t', -1)
 						contactParams.netid = contactData[0]
 						contactParams.lastName = contactData[1]
 						contactParams.firstName = contactData[2]
@@ -127,6 +128,70 @@ def loadData(projectName) {
 	} catch (Exception e) {
 		trans.rollback()
 		e.printStackTrace()
+	}
+}
+
+def loadClinicalData(projectName) {
+	def clinicalTypes = new File("dataImport/${projectName}/${projectName}_clinical_type.txt")
+	def clinicalVocabs = new File("dataImport/${projectName}/${projectName}_clinical_vocab.txt")
+	
+	def sessionFactory = appCtx.getBean("sessionFactory")
+	def attributeService = appCtx.getBean("attributeService")
+
+	def session = sessionFactory.getCurrentSession()
+	def trans = session.beginTransaction()
+	try {
+		def attributes = []
+		clinicalTypes.eachLine { line, number ->
+			if(number != 1) {
+				def data = line.split("\t", -1)
+				def params = [:]
+				params.shortName = data[2]
+				params.longName = data[3]
+				params.definition = data[4]
+				params.value = data[5]
+				params.semanticGroup = data[6]
+				params.gdocPreferred = data[7]
+				params.cadsrId = data[8]
+				params.evsId = data[9]
+				params.qualitative = data[10]
+				params.continuous = data[11]
+				params.vocabulary = data[12]
+				params.oracleDatatype = data[13]
+				params.unit = data[14]
+				params.lowerRange = data[15]
+				params.upperRange = data[16]
+				params.insertUser = "acs224"
+				params.insertDate = new Date()
+				params.insertMethod = "load-data"
+				attributes << params
+			}
+		}
+		attributeService.createAll(attributes)
+		
+		
+		clinicalVocabs.eachLine { line, number ->
+			if(number != 1) {
+				def types = []
+				def data = line.split("\t", -1)
+				def shortName = data[0]
+				def params = [:]
+				params.term = data[1]
+				params.termMeaning = data[2]
+				params.evsId = data[3]
+				params.definition = data[4]
+				params.insertUser = "acs224"
+				params.insertDate = new Date()
+				params.insertMethod = "load-data"
+				types << params
+				attributeService.addVocabsToAttribute(shortName, types)
+			}
+		}
+		
+		trans.commit()
+	} catch (Exception e) {
+		e.printStackTrace()
+		trans.rollback()
 	}
 }
 
