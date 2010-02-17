@@ -20,7 +20,7 @@ class StudyDataSource {
 	}
 
 	
-	static hasMany = [pis: Contact, pocs: Contact, content: DataSourceContent]
+	static hasMany = [pis: Contact, pocs: Contact, content: DataSourceContent, patients: CommonPatient]
 	static fetchMode = [content:"eager", pis: "eager", pocs: "eager"]
 	static transients = [ "genomicData"]
 	

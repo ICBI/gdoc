@@ -27,7 +27,7 @@ target(main: "Load data into the DB") {
 		println "Project with name: $projectName already exists.  Unable to overwrite data in this schema."
 		return
 	}
-/*	println "Cleaning up schema...."
+	println "Cleaning up schema...."
 	executeScript("sql/study_cleanup_template.sql", projectName, true)
 	println "Creating tablespace ${projectName}...."
 	executeScript("sql/01_create_tablespace_template.sql", projectName)
@@ -46,9 +46,12 @@ target(main: "Load data into the DB") {
 	writable.toString().eachLine {
 		if(it)
 			sql.execute(it.replace(';', ''))
-	}*/
-	//loadStudyData(projectName)
+	}
+	//sql.commit()
+	loadStudyData(projectName)
 	loadClinicalData(projectName)
+	loadPatientData(projectName)
+	loadClinicalDataValues(projectName)
 }
 
 def executeScript(script, projectName, continueError = false) {
@@ -195,5 +198,97 @@ def loadClinicalData(projectName) {
 	}
 }
 
+def loadPatientData(projectName) {
+	def patientData = new File("dataImport/${projectName}/${projectName}_clinical_table.txt")
+	
+	def sessionFactory = appCtx.getBean("sessionFactory")
+	def patientService = appCtx.getBean("patientService")
+	def entityInterceptor = appCtx.getBean("entityInterceptor")
+	def session = sessionFactory.openSession(entityInterceptor)
+	def trans = session.beginTransaction()
+	TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(session))
+	try {
+		def patients = []
+		def attributeHash = [:]
+		def patientAndData = [:]
+		patientData.eachLine { line, number ->
+			def data = line.split("\t", -1)
+			if(number != 1) {
+				def patient = [:]
+				patient.dataSourceInternalId = data[0]
+				patient.insertUser = "acs224"
+				patient.insertDate = new Date()
+				patient.insertMethod = "load-data"
+				patients << patient
+				def patientDataHash = [:]
+				attributeHash.each { key, value ->
+					patientDataHash[value] = data[key]
+				}
+				patientAndData[data[0]] = patientDataHash
+				
+			} else {
+				data.eachWithIndex { value, index ->
+					if(index != 0) {
+						attributeHash[index] = value
+					}
+				}
+			}
+		}
+		patientService.createPatientsForStudy(projectName, patients, patientAndData)
+		trans.commit()
+	} catch (Exception e) {
+		e.printStackTrace()
+		trans.rollback()
+	}
+	TransactionSynchronizationManager.unbindResource(sessionFactory)
+}
+
+def loadClinicalDataValues(projectName) {
+	def patientData = new File("dataImport/${projectName}/${projectName}_clinical_table.txt")
+	
+	def sessionFactory = appCtx.getBean("sessionFactory")
+	def patientService = appCtx.getBean("patientService")
+	def entityInterceptor = appCtx.getBean("entityInterceptor")
+	def session = sessionFactory.openSession(entityInterceptor)
+	def trans = session.beginTransaction()
+	TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(session))
+	try {
+		def patients = []
+		def attributeHash = [:]
+		def patientAndData = [:]
+		patientData.eachLine { line, number ->
+			def data = line.split("\t", -1)
+			if(number != 1) {
+				def patient = [:]
+				patient.dataSourceInternalId = data[0]
+				patient.insertUser = "acs224"
+				patient.insertDate = new Date()
+				patient.insertMethod = "load-data"
+				patients << patient
+				def patientDataHash = [:]
+				attributeHash.each { key, value ->
+					patientDataHash[value] = data[key]
+				}
+				patientAndData[data[0]] = patientDataHash
+				
+			} else {
+				data.eachWithIndex { value, index ->
+					if(index != 0) {
+						attributeHash[index] = value
+					}
+				}
+			}
+		}
+		def auditInfo = [insertUser: 'acs224', insertMethod: 'load-data', insertDate: new Date()]
+		patientAndData.each { originalDataSourceId, values ->
+			patientService.addClinicalValuesToPatient(projectName, originalDataSourceId, values, auditInfo)
+		}
+		trans.commit()
+	} catch (Exception e) {
+		e.printStackTrace()
+		trans.rollback()
+	}
+	TransactionSynchronizationManager.unbindResource(sessionFactory)
+}
 
 setDefaultTarget(main)

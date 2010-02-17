@@ -35,6 +35,8 @@ CREATE USER ${projectName}
 GRANT CREATE SESSION TO ${projectName};
 GRANT create_${projectName} to ${projectName};
 GRANT create_${projectName} to mcgdoc;
+GRANT edit_${projectName} to mcgdoc;
+GRANT insert_${projectName} to mcgdoc;
 
 GRANT read_common to ${projectName};
 -- cannot do the following grants to a role:

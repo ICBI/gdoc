@@ -1,3 +1,5 @@
+import org.hibernate.FetchMode as FM
+
 class StudyDataSourceService {
 
     boolean transactional = true
@@ -22,7 +24,11 @@ class StudyDataSourceService {
 	}
 	
 	def addPi(dataSourceId, contactData) {
-		def dataSource = StudyDataSource.get(dataSourceId)
+		def criteria = StudyDataSource.createCriteria()
+		def dataSource = criteria.list{
+			eq("id", dataSourceId)
+		    fetchMode('patients', FM.EAGER)
+		}.get(0)
 		def contact = addContact('PI', contactData)
 		dataSource.addToPis(contact)
 		dataSource.merge()
@@ -30,7 +36,11 @@ class StudyDataSourceService {
 	}
 	
 	def addPoc(dataSourceId, contactData) {
-		def dataSource = StudyDataSource.get(dataSourceId)
+		def criteria = StudyDataSource.createCriteria()
+		def dataSource = criteria.list{
+			eq("id", dataSourceId)
+		    fetchMode('patients', FM.EAGER)
+		}.get(0)
 		def contact = addContact('POINT_OF_CONTACT', contactData)
 		dataSource.addToPocs(contact)
 		dataSource.merge()

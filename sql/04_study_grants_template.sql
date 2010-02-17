@@ -82,3 +82,4 @@ GRANT SELECT ON ${projectName}.BIOSPECIMEN_VALUE_SEQUENCE TO edit_${projectName}
 GRANT SELECT ON ${projectName}.MARRAY_FILE_COLUMN_SEQUENCE TO edit_${projectName};
 GRANT SELECT ON ${projectName}.MARRAY_FILE_ROW_SEQUENCE TO edit_${projectName};
 
+GRANT SELECT ON ${projectName}.PATIENT_ATTRIB_VAL_SEQUENCE TO mcgdoc;

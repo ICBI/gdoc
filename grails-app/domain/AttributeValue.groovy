@@ -2,14 +2,25 @@ class AttributeValue {
 	static mapping = {
 		table '__STUDY_SCHEMA__.patient_attribute_value'
 		version false
-		id column:'PATIENT_ATTRIBUTE_VALUE_ID'
-		patient column:'patient_id'
-		type column:'attribute_type_id'
+		id column:'PATIENT_ATTRIBUTE_VALUE_ID', generator: 'sequence', params: [sequence: '__STUDY_SCHEMA__.PATIENT_ATTRIB_VAL_SEQUENCE']
+		patient column:'patient_id', insertable: false, updateable: false
+		studyPatient column: 'patient_id'
+		type column:'attribute_type_id', insertable: false, updateable: false
+		commonType column:'attribute_type_id'
 		timepoint column:'attribute_timepoint_id'
 	}
 
+	static constraints = {
+		timepoint nullable: true
+	}
+	
 	String value
 	Patient patient
+	StudyPatient studyPatient
 	AttributeType type
+	CommonAttributeType commonType
 	Timepoint timepoint
+	String insertUser
+	String insertMethod
+	Date insertDate
 }
