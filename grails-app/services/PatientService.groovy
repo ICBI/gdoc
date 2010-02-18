@@ -61,7 +61,6 @@ class PatientService {
 			patient.patient = studyPatient
 			if(!patient.save(flush: true)) 
 				println patient.errors
-			//createClinicalValues(studyPatient, values[it.dataSourceInternalId], it)
 		}
 	}
 	
@@ -92,23 +91,4 @@ class PatientService {
 		patient.merge()
 	}
 	
-	private def createClinicalValues(patient, values, auditInfo) {
-		values.each { name, value ->
-			def type = CommonAttributeType.findByShortName(name)
-			println "NAME: $name  TYPE: $type"
-			if(!type)
-				return
-			def attValue = new AttributeValue()
-			attValue.commonType = type
-			attValue.value = value
-			attValue.insertUser = auditInfo.insertUser
-			attValue.insertMethod = auditInfo.insertMethod
-			attValue.insertDate = auditInfo.insertDate
-			attValue.studyPatient = patient
-			patient.addToValues(attValue)
-			if(!attValue.save(flush:true))
-				println attValue.errors
-		}
-		patient.merge()
-	}
 }

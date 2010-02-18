@@ -47,11 +47,14 @@ target(main: "Load data into the DB") {
 		if(it)
 			sql.execute(it.replace(';', ''))
 	}
-	//sql.commit()
+	println "Loading study information for $projectName...."
 	loadStudyData(projectName)
+	println "Loading clinical attributes for $projectName...."
 	loadClinicalData(projectName)
+	println "Loading patient data for $projectName...."
 	loadPatientData(projectName)
 	loadClinicalDataValues(projectName)
+	println "Data loading for $projectName was successful"
 }
 
 def executeScript(script, projectName, continueError = false) {
