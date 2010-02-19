@@ -4,6 +4,7 @@ class MoleculeTarget{
 	}
 	
 	static searchable = {
+		alias "targets"
 	    molecule component: true
 		protein component: true
 		structures component: true

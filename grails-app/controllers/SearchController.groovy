@@ -18,12 +18,16 @@ class SearchController {
 			println "search string = $params.q" + "*" 
 			def searchResult = searchableService.search(result:'searchResult',max:150){
 					queryString(params.q+"*")
+					polyAlias(params.q)
 			}
 			
 			if(searchResult){
 				searchResult.results.each{
 					def resultClass = ClassUtils.getShortName(it.getClass())
-					if(resultClass != "MoleculeTarget" && resultClass != "StudyDataSource"){ 
+					//println resultClass
+					if(resultClass != "MoleculeTarget" && 
+							resultClass != "StudyDataSource" &&
+								resultClass != "Finding"){ 
 						//println "$resultClass is not a MoleculeTarget or StudyDataSource"
 						tbdResults << it
 					}
@@ -77,6 +81,7 @@ class SearchController {
 			terms << searchableService.termFreqs("name")
 			terms << searchableService.termFreqs("symbol")
 			terms << searchableService.termFreqs("lastName")
+			terms << searchableService.termFreqs("title")
 			terms.flatten().each{
 				if(it.term.contains(query.trim()))
 					searchResult << it.term

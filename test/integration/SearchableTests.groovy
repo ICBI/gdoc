@@ -20,15 +20,17 @@ class SearchableTests extends GroovyTestCase {
 
 	void testSearchStemming(){
 		//println "begin indexing..."
-		//searchableService.reindex()
+		searchableService.reindex()
 		//println "finished indexing."
 		def searchResult = []
-		searchResult = StudyDataSource.search{
-				queryString("b*")
+		searchResult = searchableService.search{
+			queryString("LRP2")
+			//polyAlias("target")
 		}
 		if(searchResult.results){
 			searchResult.results.each{
 				def resultClass = ClassUtils.getShortName(it.getClass())
+				println resultClass
 				if(resultClass == "MoleculeTarget"){ 
 					println "$it.molecule.name is a target of: $it.protein.name"
 					
@@ -37,19 +39,21 @@ class SearchableTests extends GroovyTestCase {
 					println "$it.longName was found with id $it.id"
 				}
 			}
-		}
+		}else
+			println "no results"
 	}
 	
 
   void testSearchIndex(){
 		try { 
 			def terms = []
-			terms << searchableService.termFreqs("longName")
-			terms << searchableService.termFreqs("shortName")
-			terms << searchableService.termFreqs("cancerSite")
-			terms << searchableService.termFreqs("abstractText")
-			terms << searchableService.termFreqs("name")
-			terms << searchableService.termFreqs("symbol",size:50)
+			//terms << searchableService.termFreqs("longName")
+			//terms << searchableService.termFreqs("shortName")
+			//terms << searchableService.termFreqs("cancerSite")
+			terms << Finding.termFreqs("title")
+			terms << StudyDataSource.termFreqs("abstractText")
+			//terms << searchableService.termFreqs("name")
+			//terms << searchableService.termFreqs("symbol",size:50)
 			terms.flatten().each{
 				println "$it.term of $it.propertyName was referenced $it.freq times"
 			}
@@ -92,7 +96,7 @@ class SearchableTests extends GroovyTestCase {
 	}
 	
 		
-		void testSearchTargetIndex(){
+		/**void testSearchTargetIndex(){
 			try { 
 				def gaterms = []
 				gaterms << GeneAlias.termFreqs("symbol",size:50)
@@ -154,6 +158,6 @@ class SearchableTests extends GroovyTestCase {
 			}catch (SearchEngineQueryParseException ex) { 
 				 	println ex
 			}
-		}
+		}**/
 
 }

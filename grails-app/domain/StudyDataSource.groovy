@@ -11,7 +11,9 @@ class StudyDataSource {
 	
 	static searchable = {
 			mapping {
-			        abstractText index: 'analyzed'
+					alias "studies"
+			        abstractText index: 'not analyzed'
+					abstractText index: 'analyzed'
 					schemaName index: 'no'
 					pis component: true
 					pocs component: true

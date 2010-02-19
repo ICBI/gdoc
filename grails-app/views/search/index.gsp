@@ -108,12 +108,12 @@
       <p>Nothing matched your query - <strong>${params.q}</strong></p>
       <g:if test="${!searchResult?.suggestedQuery}">
         <g:if test="${suggs}">
-		  <p>Suggestions:</p>
+		  <%--p>Suggestions:</p>
 	      <p>Did you mean any of the following?<br />
 			<g:each in="${suggs}" var="suggestion" status="i">
 				<g:link controller="search" action="index" params="[q: suggs[i]]">${suggs[i]}</g:link><br />
 			</g:each>
-		  </p>
+		  </p--%>
 	    </g:if>
       </g:if>
     </g:if>
@@ -159,7 +159,7 @@
 				</g:if>
             	<g:if test="${className == 'MoleculeTarget'}">
 					<div>
-						<g:link action="show" id="${result.id}">${result}</g:link> (Target Molecule)
+						<g:link action="show" id="${result.id}" controller="moleculeTarget">${result}</g:link> (Target Molecule)
 						<g:if test="${result.molecule.formula}">
 							<g:set var="desc" value="${result.molecule.formula}" />
 				            	<g:if test="${desc.size() > 120}">
@@ -171,6 +171,22 @@
 						No binding data available
 						</g:else>
 						<span style="color:green">target: ${result.protein.name}</span>
+					</div>
+				</g:if>
+				<g:if test="${className == 'Finding'}">
+					<div>
+						<g:link action="show" id="${result.id}" controller="finding">${result}</g:link> (Finding)
+						<g:if test="${result.title}">
+							<g:set var="desc" value="${result.title}" />
+				            	<g:if test="${desc.size() > 120}">
+									<g:set var="desc" value="${desc[0..120] + '...'}" />
+								</g:if>
+				            <div class="desc">${desc.encodeAsHTML()}</div>
+						</g:if>
+						<g:else>
+						No title available
+						</g:else>
+						
 					</div>
 				</g:if>
             

@@ -9,6 +9,10 @@ class UserList implements Taggable{
 	Date dateCreated
 	Date lastUpdated
 	
+	static searchable = {
+	    listItems component: true
+	}
+	
 	static hasMany = [listItems:UserListItem,listComments:Comments, studies:StudyDataSource]
 	static fetchMode = [listItems: 'eager',tags:'eager', studies: 'eager']
 	static constraints = {

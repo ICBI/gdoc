@@ -14,6 +14,9 @@ class SavedAnalysis implements Taggable {
 	static constraints = {
 		taskId nullable: true
 	}
+	
+	static searchable = true
+	
 	static hasMany = [studies:StudyDataSource]
 	static fetchMode = [studies: 'eager']
 	static transients = [ "analysis", "query"]

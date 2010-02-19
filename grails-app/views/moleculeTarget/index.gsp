@@ -4,10 +4,33 @@
         <meta name="layout" content="main" />
 
 	<g:javascript library="jquery"/>
+	<script type="text/javascript" src="/gdoc/applets/marvin/marvin.js"></script>
 	<jq:plugin name="ui"/>
 	<jq:plugin name="autocomplete"/>
 	<g:javascript>
+	
+	function exportMol() {
+		var ffmt = "smiles:";
+		var s = document.MSketch.getMol(ffmt);
+		s = unix2local(s);
+		if(s != "") {
+			//document.MolForm.smilesfile.value = s; 
+			alert(s);
+		} else {
+			alert("The drawing pallet is empty:\n"+
+				"Click on the drawing pallet to add a molecular structure.\n");
+		}
+	}
+	
+		var page = "index"
 	  $(document).ready(function(){
+			
+			$('#centerTabs').tabs({ selected: 0 });
+			
+			if(page == "sketch") {
+				$('#centerTabs').tabs('select', 1);
+			}
+		
 	   	$("#entity").autocomplete("/gdoc/moleculeTarget/relevantTerms",{
 				max: 130,
 				scroll: true,
@@ -32,7 +55,6 @@
 						}
 		});
 
-
 	  });
 	</g:javascript>
         <title>Molecule Target - Search</title>         
@@ -42,27 +64,56 @@
 	<g:if test="${flash.message}">
 	<span class="message">${flash.message}</span>
 	</g:if>
-<div id="centerContent">
+	<g:if test="${params.page == 'sketch'}">
+		<g:javascript>
+			var page = "sketch"
+		</g:javascript>
+	</g:if>
+<div id="centerContent" style="border:0px solid black">
 	
-	
-<div class="clinicalSearch" style="width:61%">
+	<div class="tabDiv">
+		<div id="centerTabs" class="tabDiv">
+		    <ul>
+		        <li><a href="#fragment-4"><span>Input Search</span></a></li>
+		        <li><a href="#fragment-5"><span>Sketch Search (beta)</span></a></li>
+		    </ul>
+			
+			 <div id="fragment-4">
 
-<g:form url='[controller: "moleculeTarget", action: "searchLigands"]' id="searchableForm" name="searchableForm" method="get">
-    <table class="formTable">
-	<tr><td>Enter name for a gene, protein or molecule:	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
-	<tr><td>Ligand Affinity: </td><td><g:textField disabled="true" name="ligandAffinity" value="${params.ligandAffinity}" size="10"/> </td></tr>
-	<tr><td colspan="2">
-		<div class="errorDetail">
-			<g:renderErrors bean="${flash.cmd?.errors}" field="molWeightLow" />
+			<g:form url='[controller: "moleculeTarget", action: "searchLigands"]' id="searchableForm" name="searchableForm" method="get">
+			    <table class="formTable">
+				<tr><td>Enter name for a gene, protein or molecule:	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
+				<tr><td>Ligand Affinity: </td><td><g:textField disabled="true" name="ligandAffinity" value="${params.ligandAffinity}" size="10"/> </td></tr>
+				<tr><td colspan="2">
+					<div class="errorDetail">
+						<g:renderErrors bean="${flash.cmd?.errors}" field="molWeightLow" />
+					</div>
+					<g:textField name="molWeightLow" value="${params.molWeightLow}" size="6"/>&nbsp;&lt;&nbsp;molecular weight&nbsp;&lt;&nbsp;<g:textField name="molWeightHigh" value="${params.molWeightHigh}" size="6"/></td>
+
+					</tr>
+				<tr><td colspan="2" style="text-align:right"><input type="reset" value="Reset" /> | <input type="submit" value="Search" />
+				</table>
+
+			</g:form>
+
+			</div>
+		
+			<div id="fragment-5">
+				<script LANGUAGE="JavaScript1.1">
+				msketch_name = "MSketch";
+				msketch_begin("/gdoc/applets/marvin/", 540, 400);
+				msketch_param("molbg", "#ffffff");
+				msketch_end();
+
+				</script>
+				<g:form url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
+				<input value="Write SMILES String" onclick="exportMol()" type="button">
+				</g:form>
+			</div>	
 		</div>
-		<g:textField name="molWeightLow" value="${params.molWeightLow}" size="6"/>&nbsp;&lt;&nbsp;molecular weight&nbsp;&lt;&nbsp;<g:textField name="molWeightHigh" value="${params.molWeightHigh}" size="6"/></td></tr>
-	<tr><td colspan="2" style="text-align:right"><input type="reset" value="Reset" /> | <input type="submit" value="Search" />
-	</table>
-	
-</g:form>
+	</div>
 </div>
 
-</div>
 <span>
     <g:if test="${ligands?.results}"><br />
      <span style="padding:15px"> Showing <strong>${ligands.offset + 1}</strong> - <strong>${ligands.results.size() + ligands.offset}</strong> of <strong>${ligands.total}</strong></span>
