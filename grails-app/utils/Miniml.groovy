@@ -93,6 +93,34 @@ class MinimlParser {
 		}
 	}
 	
+	def writeClinicalAttributeFile(dataMap, filename) {
+		new File(filename).withWriter { out ->
+			def headers = ["ORIGINAL_NAME", "CONVERSION_NOTE", "SHORT_NAME", "LONG_NAME", 
+						   "DEFINITION", "CDEP", "SEMANTIC_GROUP", "GDOC_PREFERRED", "CADSR_ID", 
+						   "EVS_ID", "QUALITATIVE", "CONTINUOUS", "VOCABULARY", "ORACLE_DATATYPE", 
+						   "UNIT", "LOWER_RANGE", "UPPER_RANGE"]
+			out.writeLine("\t" + headers.join("\t"))
+			def attributes = dataMap.collect { key, value ->
+				return value.keySet().collect {
+					return it.toUpperCase()
+				}
+			}.flatten() as Set
+			out.writeLine("\t" + attributes.join("\t"))
+		}
+	}
+	
+	def writeClinicalVocabFile(dataMap, filename) {
+		new File(filename).withWriter { out ->
+			def headers = ["TYPE", "TERM", "TERM_MEANING", "EVS_ID", "DEFINITION"]
+			out.writeLine("\t" + headers.join("\t"))
+			def attributes = dataMap.collect { key, value ->
+				return value.keySet().collect {
+					return it.toUpperCase()
+				}
+			}.flatten() as Set
+		}
+	}
+	
 }
 
 class MinimlHelpers {

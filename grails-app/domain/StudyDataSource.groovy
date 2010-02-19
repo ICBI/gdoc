@@ -40,20 +40,6 @@ class StudyDataSource {
 	String insertMethod
 	Boolean genomicData
 	
-	public Boolean getGenomicData() {
-		if(this.@genomicData) {
-			return this.@genomicData
-		}
-		if(hasGenomicData()) {
-			def tempStudy = StudyContext.getStudy()
-			StudyContext.setStudy(this.schemaName)
-			def rBinaryFiles = MicroarrayFile.findByNameLike("%.Rda")
-			StudyContext.setStudy(tempStudy)
-			this.@genomicData = (rBinaryFiles) 
-		}
-		return this.@genomicData
-	}
-	
 	def hasGenomicData() {
 		return content.find {
 			it.type == "MICROARRAY"
