@@ -4,12 +4,12 @@ class AttributeVocabulary {
 		version false
 		id column:'attribute_vocabulary_id', generator: 'sequence', params: [sequence: 'ATTRIBUTE_VOCAB_SEQUENCE']
 		type column:'attribute_type_id', insertable: false, updateable: false
-		//commonType column:'attribute_type_id'
+		commonType column:'attribute_type_id'
 		
 	}
 	
 	AttributeType type
-	//CommonAttributeType commonType
+	CommonAttributeType commonType
 	String term
 	String termMeaning
 	String evsId

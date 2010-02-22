@@ -4,9 +4,9 @@ class AttributeValue {
 		version false
 		id column:'PATIENT_ATTRIBUTE_VALUE_ID', generator: 'sequence', params: [sequence: '__STUDY_SCHEMA__.PATIENT_ATTRIB_VAL_SEQUENCE']
 		patient column:'patient_id', insertable: false, updateable: false
-		//studyPatient column: 'patient_id'
+		studyPatient column: 'patient_id'
 		type column:'attribute_type_id', insertable: false, updateable: false
-		//commonType column:'attribute_type_id'
+		commonType column:'attribute_type_id'
 		timepoint column:'attribute_timepoint_id'
 	}
 
@@ -16,9 +16,9 @@ class AttributeValue {
 	
 	String value
 	Patient patient
-	//StudyPatient studyPatient
+	StudyPatient studyPatient
 	AttributeType type
-	//CommonAttributeType commonType
+	CommonAttributeType commonType
 	Timepoint timepoint
 	String insertUser
 	String insertMethod
