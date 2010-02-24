@@ -23,6 +23,10 @@ class Structure{
 	Date lastUpdated
 	static constraints = {
 		structureFile(nullable:false)
+		structureDb(nullable:true)
+		molecule(nullable:true)
+		protein(nullable:true)
+		moleculeTarget(nullable:true)
 	}
 	
 }

@@ -149,9 +149,16 @@ class MoleculeTargetController {
 		
 	def display = {
 		try{
-			def file = new File(grailsApplication.config.structuresPath + params.inputFile)
-			byte[] fileBytes = file.readBytes()
+			if(params.dimension){
+				def file
+				if(params.dimension=='3D'){
+					file = new File(grailsApplication.config.molecule3DstructuresPath + params.inputFile)
+				}else{
+					file = new File(grailsApplication.config.molecule2DstructuresPath + params.inputFile)
+				}
+				byte[] fileBytes = file.readBytes()
 				response.outputStream << fileBytes
+			}
 		}catch(java.io.FileNotFoundException fnf){
 			println fnf.toString()
 			render "File ($params.inputFile) was not found...is the file name correct?"

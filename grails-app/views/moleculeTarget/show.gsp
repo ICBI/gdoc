@@ -49,7 +49,7 @@
 			<td valign="top" rowspan="5">
 				<g:javascript>
 					  jmolInitialize("/gdoc/applets/jmol","JmolAppletSigned0.jar");
-				      jmolApplet([400,400], "load ${basePath}/moleculeTarget/display?inputFile=${moleculeTargetPath};spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
+				      jmolApplet([400,400], "load ${basePath}/moleculeTarget/display?inputFile=${moleculeTargetPath}&dimension=3D;spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
 				</g:javascript>
 				<br />
 				<b>View Options</b><br />
@@ -61,7 +61,6 @@
 					</g:form>
 			</td>
 		</tr>
-		<g:each in="${moleculeTarget.molecule.structures}" var="molStructure">
 		<tr>
 			<td><b>Source</b>: .pdb</td>
 		</tr>
@@ -70,8 +69,10 @@
 		</tr>
 		<tr>
 			<td>
-				<g:set var="moleculePath" value="${molStructure.structureFile.relativePath}" />
-				<g:javascript>
+				
+			<g:set var="moleculePath" value="${moleculeTarget.molecule.structures?.toArray()[0]?.structureFile.relativePath}" />
+				<img src="/gdoc/moleculeTarget/display?inputFile=${moleculePath}&dimension=2D" />
+				<%--g:javascript>
 				// marvin_jvm = "builtin"; // "builtin" or "plugin"
 				mview_begin("/gdoc/applets/marvin/", 200, 200); //arguments: codebase, width, height
 				// you could also use the mview_begin("../../..", 200, 200, true ); function call to load the applet without splash screen.
@@ -82,7 +83,7 @@
 				mview_param("rendering", "wireframe");
 				//mview_param("animFPS", "20");
 				mview_end();
-				</g:javascript><br />
+				</g:javascript--%><br />
 			</td>
 		</tr>
 		<tr>
@@ -156,7 +157,7 @@
 		</td>
 		</tr>
 		
-		</g:each>
+		
 		
 		</table>
 		</g:each>

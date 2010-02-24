@@ -69,7 +69,8 @@ environments {
 		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/local/content/gdoc"
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
-		structuresPath = "/opt/gdoc-data/"
+		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
+		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
 	}
 	test {
 		jmsserver = "jnp://localhost:1099"

@@ -17,7 +17,8 @@ import org.apache.lucene.document.Document
 class SearchableTests extends GroovyTestCase {
 	def searchableService
 	def annotationService
-
+	
+	
 	void testSearchStemming(){
 		//println "begin indexing..."
 		searchableService.reindex()
@@ -43,7 +44,7 @@ class SearchableTests extends GroovyTestCase {
 			println "no results"
 	}
 	
-
+	/**
   void testSearchIndex(){
 		try { 
 			def terms = []
@@ -88,7 +89,7 @@ class SearchableTests extends GroovyTestCase {
 				println "this hit:" + it.getResource().getProperties()
 			}
 			
-			}**/
+			}
 			
 		 } catch (SearchEngineQueryParseException ex) { 
 		 	println ex

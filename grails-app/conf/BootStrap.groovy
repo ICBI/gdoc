@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils
 class BootStrap {
 
      def init = { servletContext ->
-	
+		
 		switch (GrailsUtil.environment) {
 	       case "development":
 				//load the properties file and put props into system properties

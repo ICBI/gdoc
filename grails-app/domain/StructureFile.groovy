@@ -15,6 +15,8 @@ class StructureFile{
 	String name
 	String relativePath
 	Long fileSize
+	static belongsTo = [Structure]
+	Structure structure
 	FileType fileType
 	FileFormat fileFormat
 	Date dateCreated
@@ -22,6 +24,10 @@ class StructureFile{
 	static constraints = {
 		name(nullable:false)
 		relativePath(nullable:false)
+		structure(nullable:true)
+		fileSize(nullable:true)
+		fileType(nullable:true)
+		fileFormat(nullable:true)
 	}
 	
 
