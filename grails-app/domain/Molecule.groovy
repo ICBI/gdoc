@@ -78,7 +78,6 @@ class Molecule {
 	}
 	
 	static searchable = {
-		name boost:2
 	    bindings component: true
 		structures component: true
 		dateCreated index: 'no'

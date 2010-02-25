@@ -126,9 +126,12 @@
 <g:if test="${ligands?.results}">
 	<table class="resultTable" style="width:100%">
 	<g:each in="${ligands.results}" var="molecule">
+	<g:set var="moleculePaths" value="${molecule.structures?.toArray().collect{it.structureFile.relativePath}}" />
+		
+		<g:set var="ligandImg" value="${moleculePaths.find{it.contains('.png')}}" />
 	<tr><td style="border-bottom:1px solid orange"><div style="font-size:1em;width:100%"><strong>${molecule.name}</strong></div></td></tr>
 	<tr>
-		<g:set var="ligandImg" value="${molecule.structures?.toArray()[0]?.structureFile.relativePath}" />
+	
 		<td valign="top" style="width:40%;padding-left:20px">
 			<table class="studyTable" style="width:100%">
 				<tr>
@@ -194,7 +197,6 @@
 		</td>
 		<td style="text-align:right">
 			<img src="/gdoc/moleculeTarget/display?inputFile=${ligandImg}&dimension=2D" />
-			<%--img src="${createLinkTo(dir:'images/molecules',file:ligandImg)}" border="0" /--%>
 			</td>
 		
 	</tr>

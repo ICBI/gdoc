@@ -11,7 +11,7 @@ class MoleculeTargetController {
 		def ligands
 		if(chainModel){
 			ligands = chainModel["ligands"]
-			println ligands.class
+			ligands.results = Molecule.getAll(ligands.results.collect{it.id})
 		}
 		[ligands:ligands]
 	}

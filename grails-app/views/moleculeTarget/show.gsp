@@ -45,8 +45,7 @@
 		<table class="viewerTable">
 		<tr>
 			<td><b>Protein</b>: ${moleculeTarget.protein.name}</td>
-			
-			<td valign="top" rowspan="5">
+			<td valign="top" rowspan="4">
 				<g:javascript>
 					  jmolInitialize("/gdoc/applets/jmol","JmolAppletSigned0.jar");
 				      jmolApplet([400,400], "load ${basePath}/moleculeTarget/display?inputFile=${moleculeTargetPath}&dimension=3D;spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
@@ -62,15 +61,14 @@
 			</td>
 		</tr>
 		<tr>
-			<td><b>Source</b>: .pdb</td>
+			<td><b>Ligand</b>: ${moleculeTarget.molecule.name} (below)</td>
 		</tr>
-		<tr>
-			<td><b>Ligand</b>: ${moleculeTarget.molecule.name}</td>
-		</tr>
+		
 		<tr>
 			<td>
-				
-			<g:set var="moleculePath" value="${moleculeTarget.molecule.structures?.toArray()[0]?.structureFile.relativePath}" />
+	<g:set var="moleculePaths" value="${moleculeTarget.molecule.structures?.toArray().collect{it.structureFile.relativePath}}" />
+	<g:set var="moleculePath" value="${moleculePaths.find{it.contains('.png')}}" />	
+				${moleculePaths}
 				<img src="/gdoc/moleculeTarget/display?inputFile=${moleculePath}&dimension=2D" />
 				<%--g:javascript>
 				// marvin_jvm = "builtin"; // "builtin" or "plugin"
@@ -86,6 +84,9 @@
 				</g:javascript--%><br />
 			</td>
 		</tr>
+		<%--tr>
+			<td><b>Source</b>: .pdb</td>
+		</tr--%>
 		<tr>
 			<td><b>Physico-Chemical Properties</b>: <br />
 				<table style="font-size:.8em">
