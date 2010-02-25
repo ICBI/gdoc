@@ -51,7 +51,8 @@ environments {
 		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://dev.gdoc.georgetown.edu/gdoc-middleware"
-		structuresPath = "/opt/gdoc-data/"
+		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
+		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
     }
     demo {
         grails.serverURL = "http://www.changeme.com"
@@ -60,7 +61,8 @@ environments {
 		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://demo.gdoc.georgetown.edu/gdoc-middleware"
-		structuresPath = "/opt/gdoc-data/"
+		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
+		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
     }
 	development {
 	//	jmsserver = "jnp://141.161.30.205:1099"
