@@ -12,68 +12,8 @@
 		<script type="text/javascript" src="/gdoc/js/jquery/jquery.ui.js"></script>
 	
     <title><g:if test="${params.q && params.q?.trim() != ''}">${params.q} - </g:if>G-DOC Search</title>
-    <style type="text/css">
-      
+    
 
-
-      #header form input {
-        padding: .1em;
-      }
-
-      #header .hint {
-        color: gray;
-      }
-
-      #header h1 a {
-        text-decoration: none;
-        
-          color: dimgray;
-      }
-
-      #header h1 {
-          
-          float: left;
-      }
-
-      #header h1 span {
-          
-          color: #424242;
-      }
-
-      #header form {
-          margin-left: 22em;
-          padding-top: .1em;
-      }
-
-      .title {
-        margin: 1em 0;
-        padding: .3em .5em;
-        text-align: right;
-        background-color: seashell;
-        border-top: 1px solid lightblue;
-      }
-
-      .result {
-        margin-bottom: 1em;
-      }
-
-      .result .displayLink {
-        color: green;
-      }
-
-      .result .name {
-        font-size: larger;
-      }
-
-      .paging a.step {
-        padding: 0 .3em;
-      }
-
-      .paging span.currentStep {
-          font-weight: bold;
-      }
-
-    </style>
     <script type="text/javascript">
         var focusQueryInput = function() {
             document.getElementById("q").focus();
@@ -196,12 +136,17 @@
 
       <div>
         <div class="paging">
-          <g:if test="${haveResults}">
-              Page:
-              <g:set var="totalPages" value="${Math.ceil(searchResult.total / searchResult.max)}" />
-              <g:if test="${totalPages == 1}"><span class="currentStep">1</span></g:if>
-              <g:else><g:paginate controller="searchable" action="index" params="[q: params.q]" total="${searchResult.total}" prev="&lt; previous" next="next &gt;"/></g:else>
-          </g:if>
+          	<g:if test="${haveResults}"> <!-- or you could use test="${searchResult?.results}" -->
+			    Page:
+			    <g:set var="totalPages" value="${Math.ceil(searchResult.total / searchResult.max)}" />
+			    <g:if test="${totalPages == 1}">
+			        <span class="currentStep">1</span>
+			    </g:if>
+			    <g:else>
+			        <g:paginate controller="search" action="index" params="[q: params.q]" 
+			                    total="${searchResult.total}" prev="&lt; previous" next="next &gt;"/>
+			    </g:else>
+			</g:if>
         </div>
       </div>
     </g:if>

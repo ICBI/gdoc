@@ -7,13 +7,13 @@ class Molecule {
 	String name
 	String formula
 	String smiles
-	Long weight
+	Float weight
 	String idnumber
 	Long mCluster
 	Long clSize
 	Float clVar
 	Long available
-	Long clogP
+	Float clogP
 	Long donorAtoms
 	Long acceptorAtoms
 	Long rotatableBonds
@@ -91,6 +91,24 @@ class Molecule {
 		rotatableBonds index: 'no'
 		chiral index: 'no'
 		chemicalName index: 'no'
+		mCluster index: 'no'
+		clSize index: 'no'
+		clVar index: 'no'
+		available index: 'no'
+		n_o index: 'no'
+		condrings index: 'no'
+		fosb index: 'no'
+		purity index: 'no'
+		tpsa index: 'no'
+		new_A index: 'no'
+		logsw index: 'no'
+		cns index: 'no'
+		caco2 index: 'no'
+		logbb index: 'no'
+		fa index: 'no'
+		sw index: 'no'
+		pka index: 'no'
+		saltdata index: 'no'
 	}
 	
 	

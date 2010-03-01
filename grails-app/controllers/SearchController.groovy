@@ -16,25 +16,40 @@ class SearchController {
 			def tbdResults = []
 			def suggs = []
 			println "search string = $params.q" + "*" 
-			def searchResult = searchableService.search(result:'searchResult',max:150){
-					queryString(params.q+"*")
-					polyAlias(params.q)
+			def searchResult
+			/** TODO - this search returns a motley group of results, which we filter. We need to search based
+			on object type, or describe this filter in our query builder...otehrwise, pagination
+			becomes a problem. the max is set to 150, this is totally misleading and is needed in the case that
+			our result might not ever 'get to' our desired, filtered objects. 
+			see here:http://www.grails.org/Searchable+Plugin+-+Methods+-+search
+			-KR
+			**/
+			if(!params.offset){
+				searchResult = searchableService.search([result:'searchResult',offset:0,max:150,order: "asc"],{
+						queryString(params.q+"*")
+						polyAlias(params.q)
+				})
+			}else{
+				searchResult = searchableService.search(params,{
+						queryString(params.q+"*")
+						polyAlias(params.q)
+				})
 			}
 			
 			if(searchResult){
 				searchResult.results.each{
 					def resultClass = ClassUtils.getShortName(it.getClass())
-					//println resultClass
+					println resultClass
 					if(resultClass != "MoleculeTarget" && 
 							resultClass != "StudyDataSource" &&
 								resultClass != "Finding"){ 
-						//println "$resultClass is not a MoleculeTarget or StudyDataSource"
+						println "$resultClass is not a MoleculeTarget or StudyDataSource"
 						tbdResults << it
 					}
 				}
 				println "now remove all results that aren't our desired domain objects"
 				searchResult.results.removeAll(tbdResults)
-				searchResult.total = searchResult.results.size()
+				//searchResult.total = searchResult.results.size()
 			}
 			
 			println searchResult
@@ -78,7 +93,7 @@ class SearchController {
 			terms << searchableService.termFreqs("shortName")
 			terms << searchableService.termFreqs("cancerSite")
 			terms << searchableService.termFreqs("abstractText")
-			terms << searchableService.termFreqs("name")
+			terms << Protein.termFreqs("name")
 			terms << searchableService.termFreqs("symbol")
 			terms << searchableService.termFreqs("lastName")
 			terms << searchableService.termFreqs("title")

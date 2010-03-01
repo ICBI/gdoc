@@ -273,3 +273,55 @@ p
 		margin: 10px 3px 1px 3px;
 		background-color:#f2f2f2;
 	}
+	<style type="text/css">
+      
+
+
+      #header form input {
+        padding: .1em;
+      }
+
+      #header .hint {
+        color: gray;
+      }
+
+      #header h1 a {
+        text-decoration: none;
+        
+          color: dimgray;
+      }
+
+      #header h1 {
+          
+          float: left;
+      }
+
+      
+
+      .title {
+        margin: 1em 0;
+        padding: .3em .5em;
+        text-align: right;
+        background-color: seashell;
+        border-top: 1px solid lightblue;
+      }
+
+      .result {
+        margin-bottom: 1em;
+      }
+
+      .result .displayLink {
+        color: green;
+      }
+
+      .result .name {
+        font-size: larger;
+      }
+
+      .paging a.step {
+        padding: 0 .3em;
+      }
+
+      .paging span.currentStep {
+          font-weight: bold;
+      }

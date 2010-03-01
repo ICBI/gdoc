@@ -13,7 +13,36 @@ class MoleculeTargetController {
 			ligands = chainModel["ligands"]
 			ligands.results = Molecule.getAll(ligands.results.collect{it.id})
 		}
-		[ligands:ligands]
+		[ligands:ligands,params:[params.page]]
+	
+	}
+	
+	def page = {
+		def targets = []
+		if(session.molCommand && params.offset){
+			/**def ent = session.molCommand.entity
+				if(params.offset && params.max){
+					println "sent params"
+					targets = Molecule.search([max:params.max,offset:params.offset],{
+						queryString(ent)
+					})
+				}else{
+					println "didnt send params"
+					targets = Molecule.search([max:10,offset:0],{
+						queryString(ent)
+					})
+				}**/
+			handleMoleculeSearch(session.molCommand,params)
+		}
+		//chain(action:index,model:[ligands:targets])
+	}
+	
+	def searchLigandsFromSketch = {
+		println params.smiles
+		def targets = Molecule.search(params.smiles, properties: ["smiles"])
+		println targets
+		chain(action:index,model:[ligands:targets],params:[page:'sketch'])
+		return
 	}
 	
 	def searchLigands = { MoleculeTargetCommand cmd ->
@@ -24,78 +53,84 @@ class MoleculeTargetController {
 			redirect(action:'index',params:params)
 			return
 		}else{
-			def targets = []
-			if(cmd.entity || cmd.molWeightLow || cmd.molWeightHigh || cmd.affinity){
-				
-				if(!cmd.entity && (cmd.molWeightLow || cmd.molWeightHigh)){
+			session.molCommand = cmd
+			handleMoleculeSearch(cmd,[offset:0,max:10])
+		}
+	}
+	
+	def handleMoleculeSearch(cmd, params){
+		def targets = []
+		if(cmd.entity || cmd.molWeightLow || cmd.molWeightHigh || cmd.affinity){
+			
+			if(!cmd.entity && (cmd.molWeightLow || cmd.molWeightHigh)){
+				if(!cmd.molWeightLow){
+					cmd.molWeightLow = 0
+				}
+				if(!cmd.molWeightHigh){
+					cmd.molWeightHigh = 99999
+				}
+				targets = Molecule.search(params,{
+					must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
+				})
+				chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity])
+				return
+			}
+			try { 
+			def searchTerm = cmd.entity
+				//is it a gene symbol? if so, build the search term
+				def alias = annotationService.findGeneByAlias(searchTerm)
+				if(alias){
+					println "its a gene symbol"
+					def proteinNames = []
+					def queryStringToCall = ""
+					def proteins = alias.gene.proteins
+					proteinNames = proteins.collect{it.name}
+					if(proteinNames){
+						proteinNames.each{ pname ->
+							queryStringToCall += "$pname OR "
+						}
+						searchTerm = queryStringToCall.substring(0,queryStringToCall.lastIndexOf('OR'))
+						println searchTerm
+						
+					}
+					else{
+						println "no proteins found"
+					}
+				}
+				//if weight is specified , add to search
+				if(cmd.molWeightLow || cmd.molWeightHigh){
+					println "constrain by molecular weight"
 					if(!cmd.molWeightLow){
-						cmd.molWeightLow = 0
+						cmd.molWeightLow = 0.0
 					}
 					if(!cmd.molWeightHigh){
-						cmd.molWeightHigh = 99999
+						cmd.molWeightHigh = 99999.0
 					}
-					targets = Molecule.search(){
+					targets = Molecule.search(params,{
+						queryString(searchTerm)
 						must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
-					}
+					})
+					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity])
+					return
+				}else{
+					targets = Molecule.search(params,{
+						queryString(searchTerm)
+					})
+					println targets
 					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity])
 					return
 				}
-				try { 
-				def searchTerm = cmd.entity
-					//is it a gene symbol? if so, build the search term
-					def alias = annotationService.findGeneByAlias(searchTerm)
-					if(alias){
-						println "its a gene symbol"
-						def proteinNames = []
-						def queryStringToCall = ""
-						def proteins = alias.gene.proteins
-						proteinNames = proteins.collect{it.name}
-						if(proteinNames){
-							proteinNames.each{ pname ->
-								queryStringToCall += "$pname OR "
-							}
-							searchTerm = queryStringToCall.substring(0,queryStringToCall.lastIndexOf('OR'))
-							println searchTerm
-							
-						}
-						else{
-							println "no proteins found"
-						}
-					}
-					//if weight is specified , add to search
-					if(cmd.molWeightLow || cmd.molWeightHigh){
-						println "constrain by molecular weight"
-						if(!cmd.molWeightLow){
-							cmd.molWeightLow = 0.0
-						}
-						if(!cmd.molWeightHigh){
-							cmd.molWeightHigh = 99999.0
-						}
-						targets = Molecule.search{
-							queryString(searchTerm)
-							must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
-						}
-						chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity])
-						return
-					}else{
-						targets = Molecule.search{
-							queryString(searchTerm)
-						}
-						chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity])
-						return
-					}
-				}catch (SearchEngineQueryParseException ex) { 
-					 	println ex
-						flash.message = "Error ocurred during search"
-						redirect(action:index)
-						return 
-				}
-				
-			}else{
-				flash.message = "Please select some search parameters"
-				redirect(action:index)
-				return
+			}catch (SearchEngineQueryParseException ex) { 
+				 	println ex
+					flash.message = "Error ocurred during search"
+					redirect(action:index)
+					return 
 			}
+			
+		}else{
+			flash.message = "Please select some search parameters"
+			redirect(action:index)
+			return
 		}
 	}
 	
@@ -113,7 +148,7 @@ class MoleculeTargetController {
 		}else{
 			try { 
 				def terms = []
-				terms << searchableService.termFreqs("name")
+				terms << Protein.termFreqs("name")
 				terms << searchableService.termFreqs("symbol")
 				terms.flatten().each{
 					if(it.term.contains(params.q.trim()))

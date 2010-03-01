@@ -7,7 +7,7 @@ class Structure{
 	    molecule component: true
 		protein component: true
 		moleculeTarget component: true
-		structureFile component: true
+		structureFile reference: true
 		dateCreated index: 'no'
 		lastUpdated index: 'no'
 		structureDb index: 'no'

@@ -14,8 +14,8 @@
 		var s = document.MSketch.getMol(ffmt);
 		s = unix2local(s);
 		if(s != "") {
-			//document.MolForm.smilesfile.value = s; 
-			alert(s);
+			document.MolForm.smiles.value = s; 
+			document.MolForm.submit();
 		} else {
 			alert("The drawing pallet is empty:\n"+
 				"Click on the drawing pallet to add a molecular structure.\n");
@@ -106,8 +106,10 @@
 				msketch_end();
 
 				</script>
-				<g:form url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
-				<input value="Write SMILES String" onclick="exportMol()" type="button">
+				<g:form name="MolForm" url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
+				<input value="Write SMILES String" onclick="exportMol()" type="button" style="display:none">
+				<g:textField value="COC1=CC2=C(NC=C2CCC(O)=O)C=C1" name="smiles" style="display:none"/>
+				<g:submitButton name="search_molecules" value="search molecules" />
 				</g:form>
 			</div>	
 		</div>
@@ -116,7 +118,9 @@
 
 <span>
     <g:if test="${ligands?.results}"><br />
+	<div class="title"
      <span style="padding:15px"> Showing <strong>${ligands.offset + 1}</strong> - <strong>${ligands.results.size() + ligands.offset}</strong> of <strong>${ligands.total}</strong></span>
+	</div>
     </g:if>
     <g:else>
     &nbsp;
@@ -210,7 +214,7 @@
           Page:
           <g:set var="totalPages" value="${Math.ceil(ligands.total / ligands.max)}" />
           <g:if test="${totalPages == 1}"><span class="currentStep">1</span></g:if>
-          <g:else><g:paginate controller="moleculeTarget" action="index" total="${ligands.total}" prev="&lt; previous" next="next &gt;"/></g:else>
+          <g:else><g:paginate controller="moleculeTarget" action="page" total="${ligands.total}" prev="&lt; previous" next="next &gt;"/></g:else>
       </g:if>
     </div>
   </div>

@@ -3,11 +3,6 @@ import org.springframework.orm.hibernate3.SessionFactoryUtils
 import org.springframework.orm.hibernate3.SessionHolder
 import org.springframework.transaction.support.TransactionSynchronizationManager
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook
-import org.apache.poi.hssf.usermodel.HSSFSheet
-import org.apache.poi.hssf.usermodel.HSSFRow
-import org.apache.poi.hssf.usermodel.HSSFCell
-import org.apache.poi.hssf.usermodel.HSSFDateUtil
 
 grailsHome = Ant.antProject.properties."env.GRAILS_HOME"
 includeTargets << grailsScript("Bootstrap")
@@ -19,8 +14,8 @@ target(main: "Load data into the DB from Excel file") {
 	// Load up grails contexts to be able to use GORM
 	loadApp()
 	configureApp()
-	
 	load()
+	//manipulateSDF("test")
 	
 }
 
@@ -29,16 +24,9 @@ def load(){
 	def session = sessionFactory.getCurrentSession()
 	def trans = session.beginTransaction()
 	def moleculeService = appCtx.getBean("moleculeService")
-	
 	try {
 		println "load data: $trans"
-		def map = [name:"testMol2",smiles:"12341234"]
-
-		if(moleculeService.createMolecule(map)){
-			println "saved molecule"
-		}else{
-			println "didnt save"
-		}
+		moleculeService.createMolecules("/Users/kmr75/Documents/gu/gdocRelated/DDG-Schema/DDGData_Clean.xls")
 		trans.commit()
 	} catch (Exception e) {
 		trans.rollback()
@@ -50,8 +38,8 @@ def load(){
 
 def manipulateSDF(projectName) {
 	println "read from sdf file:"
-	//def sdfFile= new File('/Users/kmr75/Desktop/Sample-Compounds.sdf')
-	//def nameSdfFile= new FileWriter('/Users/kmr75/Desktop/Sample-Compounds-Names.sdf')
+	def sdfFile= new File('/Users/kmr75/Documents/gu/gdocRelated/DDG-Schema/Sample-Compounds-Clean.sdf')
+	def nameSdfFile= new FileWriter('/Users/kmr75/Documents/gu/gdocRelated/DDG-Schema/Sample-Compounds-WithNames.sdf')
 	
 	def newCompound = false
 	def numberOfCopmounds = 0

@@ -4,9 +4,9 @@ class StructureFile{
 	}
 	
 	static searchable = {
-		structure component: true
-	    fileType component: true
-		fileFormat component: true
+		structure reference: true
+	    fileType reference: true
+		fileFormat reference: true
 		dateCreated index: 'no'
 		lastUpdated index: 'no'
 		relativePath index: 'no'
