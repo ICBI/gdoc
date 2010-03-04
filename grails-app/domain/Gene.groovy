@@ -6,6 +6,7 @@ class Gene {
 	}
 	
 	static searchable = {
+		alias "gene"
 	    geneAliases reference: true
 		proteins component: true
 	}

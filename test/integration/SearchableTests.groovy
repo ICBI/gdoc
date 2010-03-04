@@ -21,13 +21,22 @@ class SearchableTests extends GroovyTestCase {
 	
 	void testSearchStemming(){
 		//println "begin indexing..."
-		searchableService.reindex()
+		//searchableService.reindex()
 		//println "finished indexing."
+		def searchString = "egfr"
 		def searchResult = []
-		searchResult = searchableService.search{
-			queryString("LRP2")
-			//polyAlias("target")
-		}
+		searchResult = searchableService.search([defaultOperator:"and"],{
+			must({
+				queryString(searchString+"*")
+				polyAlias(searchString)
+				})
+			must({                                  
+					alias("findings") 
+			        alias("targets")
+					alias("studies")
+			   })
+		})
+		println searchResult.total
 		if(searchResult.results){
 			searchResult.results.each{
 				def resultClass = ClassUtils.getShortName(it.getClass())

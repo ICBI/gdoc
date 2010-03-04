@@ -25,31 +25,29 @@ class SearchController {
 			-KR
 			**/
 			if(!params.offset){
-				searchResult = searchableService.search([result:'searchResult',offset:0,max:150,order: "asc"],{
-						queryString(params.q+"*")
-						polyAlias(params.q)
+				searchResult = searchableService.search([result:'searchResult',defaultOperator:"and",offset:0,max:10,order: "asc"],{
+							must({
+								queryString(params.q+"*")
+								polyAlias(params.q)
+								})
+							must({                                  
+									alias("findings") 
+							        alias("targets")
+									alias("studies")
+							   })
 				})
 			}else{
 				searchResult = searchableService.search(params,{
-						queryString(params.q+"*")
-						polyAlias(params.q)
+						must({
+							queryString(params.q+"*")
+							polyAlias(params.q)
+							})
+						must({                                  
+								alias("findings") 
+						        alias("targets")
+								alias("studies")
+						   })
 				})
-			}
-			
-			if(searchResult){
-				searchResult.results.each{
-					def resultClass = ClassUtils.getShortName(it.getClass())
-					println resultClass
-					if(resultClass != "MoleculeTarget" && 
-							resultClass != "StudyDataSource" &&
-								resultClass != "Finding"){ 
-						println "$resultClass is not a MoleculeTarget or StudyDataSource"
-						tbdResults << it
-					}
-				}
-				println "now remove all results that aren't our desired domain objects"
-				searchResult.results.removeAll(tbdResults)
-				//searchResult.total = searchResult.results.size()
 			}
 			
 			println searchResult

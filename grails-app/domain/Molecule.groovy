@@ -78,6 +78,7 @@ class Molecule {
 	}
 	
 	static searchable = {
+		alias "molecule"
 	    bindings component: true
 		structures component: true
 		dateCreated index: 'no'

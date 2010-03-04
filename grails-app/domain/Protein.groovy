@@ -1,6 +1,7 @@
 class Protein {
 	
 	static searchable = {
+		alias "protein"
 	    bindings component: true
 		structures component: true
 		gene component: true

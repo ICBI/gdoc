@@ -4,6 +4,7 @@ class Structure{
 	}
 	
 	static searchable = {
+		alias "structure"
 	    molecule component: true
 		protein component: true
 		moleculeTarget component: true

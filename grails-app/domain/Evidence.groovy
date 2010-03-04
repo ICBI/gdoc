@@ -6,6 +6,7 @@ class Evidence {
 	}
 	
 	static searchable = {
+		alias "evidence"
 	    finding component: true
 		userList component: true
 		savedAnalysis component: true

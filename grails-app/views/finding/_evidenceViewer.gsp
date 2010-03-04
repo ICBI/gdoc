@@ -10,7 +10,7 @@
 <g:if test="${evidence.userList}">
 	<div>
 	<span> 
-	<g:if test="${(session.sharedListIds.contains(evidence.userList.id)) || evidence.userList.author.loginName == session.userId}">
+	<%--g:if test="${(session.sharedListIds.contains(evidence.userList.id)) || evidence.userList.author.loginName == session.userId}"--%>
 		<g:set var="listItems" value="${evidence.userList.listItems.collect{it.value}}" />
 		<div style="float:middle"><b>User List:</b>
 		<a href="#" onclick="toggle('${uiId}');return false;" style="cursor: pointer;">${evidence.userList.name}
@@ -28,10 +28,8 @@
 		</div>
 		
 		</span>
-	</g:if>
-	<g:else>
-	<b>User List:</b> ${evidence.userList.name}</span>
-	</g:else>
+	<%--/g:if--%>
+	
 	
 	<span><i>*${evidence.description}</i></span>
 	</div>
@@ -39,7 +37,7 @@
 <g:if test="${evidence.savedAnalysis}">
 	<div>
 		<span><b>Saved Analysis</b>: 
-		<g:if test="${(session.sharedAnalysisIds.contains(evidence.savedAnalysis.id)) || evidence.savedAnalysis.author.loginName == session.userId}">
+		<%--g:if test="${(session.sharedAnalysisIds.contains(evidence.savedAnalysis.id)) || evidence.savedAnalysis.author.loginName == session.userId}"--%>
 		<g:if test="${evidence.savedAnalysis.type == AnalysisType.CLASS_COMPARISON}">
 			<g:link controller="analysis" action="view"  id="${evidence.savedAnalysis.id}">${evidence.savedAnalysis.type}</g:link>
 		</g:if>
@@ -55,10 +53,8 @@
 		<g:elseif test="${evidence.savedAnalysis.type == AnalysisType.PCA}">
 				<g:link controller="pca" action="view" id="${evidence.savedAnalysis.id}">${evidence.savedAnalysis.type}</g:link> 
 		</g:elseif>
-		</g:if>
-		<g:else>
-			${evidence.savedAnalysis.type}</span>
-		</g:else>
+		<%--/g:if--%>
+		
 	<br /><span><i>*${evidence.description}</i></span>
 	</div>
 </g:if>

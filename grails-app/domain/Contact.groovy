@@ -12,6 +12,7 @@ class Contact {
 	
 	static searchable = {
 		mapping {
+				alias "contacts"
 		        firstName index: 'no'
 				suffix index: 'no'
 				email index: 'no'

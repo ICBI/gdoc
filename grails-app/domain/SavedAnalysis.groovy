@@ -14,7 +14,9 @@ class SavedAnalysis implements Taggable {
 		taskId nullable: true
 	}
 	
-	static searchable = true
+	static searchable = {
+		alias "savedAnalysis"
+	}
 	
 	static hasMany = [studies:StudyDataSource]
 	static fetchMode = [studies: 'eager']
