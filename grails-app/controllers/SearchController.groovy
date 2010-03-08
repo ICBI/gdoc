@@ -17,13 +17,6 @@ class SearchController {
 			def suggs = []
 			println "search string = $params.q" + "*" 
 			def searchResult
-			/** TODO - this search returns a motley group of results, which we filter. We need to search based
-			on object type, or describe this filter in our query builder...otehrwise, pagination
-			becomes a problem. the max is set to 150, this is totally misleading and is needed in the case that
-			our result might not ever 'get to' our desired, filtered objects. 
-			see here:http://www.grails.org/Searchable+Plugin+-+Methods+-+search
-			-KR
-			**/
 			if(!params.offset){
 				searchResult = searchableService.search([result:'searchResult',defaultOperator:"and",offset:0,max:10,order: "asc"],{
 							must({

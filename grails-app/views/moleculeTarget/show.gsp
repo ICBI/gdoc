@@ -67,6 +67,7 @@
 		<tr>
 			<td>
 	<g:set var="moleculePaths" value="${moleculeTarget.molecule.structures?.toArray().collect{it.structureFile.relativePath}}" />
+	
 	<g:set var="moleculePath" value="${moleculePaths.find{it.contains('.png')}}" />	
 				<img src="/gdoc/moleculeTarget/display?inputFile=${moleculePath}&dimension=2D" />
 				<%--g:javascript>

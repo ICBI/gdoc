@@ -37,7 +37,7 @@ $(document).ready(function()
 					<a href="#">Samples</a>
 				</li>
 				<li>
-					<a href="#">Targets</a>
+					<g:navigationLink name="Targets" controller="moleculeTarget" action="index" />
 				</li>					
 				<li>
 					<g:navigationLink name="Genes" controller="geneExpression" />

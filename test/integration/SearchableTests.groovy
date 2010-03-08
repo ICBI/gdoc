@@ -20,9 +20,6 @@ class SearchableTests extends GroovyTestCase {
 	
 	
 	void testSearchStemming(){
-		//println "begin indexing..."
-		//searchableService.reindex()
-		//println "finished indexing."
 		def searchString = "egfr"
 		def searchResult = []
 		searchResult = searchableService.search([defaultOperator:"and"],{

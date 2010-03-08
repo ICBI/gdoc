@@ -36,7 +36,7 @@
 	<g:javascript>
 	
 	function getVenn(){
-		console.log('${vennJSON}');
+		//console.log('${vennJSON}');
 		return '${vennJSON}';
 	}
 	

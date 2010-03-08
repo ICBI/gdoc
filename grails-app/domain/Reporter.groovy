@@ -1,9 +1,9 @@
 class Reporter {
 	static mapping = {
-		table 'MARRAY_REPORTER'
+		table 'HTARRAY_REPORTER'
 		version false
-		id column:'marray_reporter_id'
-		arrayDesigns column:'MARRAY_REPORTER_ID',joinTable:'MARRAY_REPORTER_LIST'
+		id column:'HTARRAY_REPORTER_ID'
+		arrayDesigns column:'HTARRAY_REPORTER',joinTable:'HTARRAY_REPORTER_LIST'
 	}
 	static belongsTo = ArrayDesign
 	static hasMany = [arrayDesigns:ArrayDesign]

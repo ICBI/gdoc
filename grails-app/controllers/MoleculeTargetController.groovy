@@ -11,7 +11,10 @@ class MoleculeTargetController {
 		def ligands
 		if(chainModel){
 			ligands = chainModel["ligands"]
-			ligands.results = Molecule.getAll(ligands.results.collect{it.id})
+			if(ligands.results){
+				println "results found"
+				ligands.results = Molecule.getAll(ligands.results.collect{it.id})
+			}
 		}
 		[ligands:ligands,params:[params.page]]
 	

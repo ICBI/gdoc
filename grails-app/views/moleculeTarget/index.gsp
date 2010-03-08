@@ -208,6 +208,7 @@
 	</g:each>
 	</table>
 </g:if> 
+
 <div>
     <div class="paging">
       <g:if test="${ligands?.results}">

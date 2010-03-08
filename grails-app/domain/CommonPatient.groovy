@@ -8,6 +8,7 @@ class CommonPatient {
 		patient column: 'patient_id'
 	}
 	
+	
 	Long id
 	StudyPatient patient
 	StudyDataSource studyDataSource

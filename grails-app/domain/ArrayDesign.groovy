@@ -1,9 +1,9 @@
 class ArrayDesign {
 	static mapping = {
-		table 'MARRAY_DESIGN'
+		table 'HTARRAY_DESIGN'
 		version false
-		id column:'marray_design_id'
-		reporters joinTable:[name:'MARRAY_REPORTER_LIST', key:'marray_design_id', column:'marray_reporter_id']
+		id column:'HTARRAY_DESIGN_ID'
+		reporters joinTable:[name:'HTARRAY_REPORTER_LIST', key:'HTARRAY_DESIGN_ID', column:'HTARRAY_REPORTER_ID']
 	}
 	static fetchMode = [reporters:'eager']
 	static hasMany = [reporters:Reporter]
