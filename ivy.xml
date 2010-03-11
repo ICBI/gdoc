@@ -7,7 +7,7 @@
         <conf name="runtime" extends="compile"/>
     </configurations>
     <dependencies>
-		<dependency org="org.tmatesoft.svnkit" name="svnkit" rev="1.2.3.5521" />
+		<dependency org="org.tmatesoft.svnkit" name="svnkit" rev="1.2.3.5521" conf="default" />
         <dependency org="org.grails" name="grails-bootstrap" rev="1.1.1" conf="build"/>
         <dependency org="org.grails" name="grails-scripts" rev="1.1.1" conf="build"/>
         <dependency org="org.grails" name="grails-gorm" rev="1.1.1" conf="compile"/>
