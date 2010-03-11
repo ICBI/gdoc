@@ -44,7 +44,7 @@ environments {
 	}
 	test {
 		dataSource {
-			url = "jdbc:oracle:thin:@10.10.50.3:1521:gdoc"
+			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
 			username = "guidoc"
 			password = "cure4cancer"
 			logSql = true
