@@ -147,7 +147,7 @@ environments {
     development {
         searchable {
             // development is default; inherits from above
-			bulkIndexOnStartup = "fork"
+			bulkIndexOnStartup = false
         }
     }
 	
@@ -166,7 +166,7 @@ environments {
     test {
         searchable {
             // disable bulk index on startup
-            bulkIndexOnStartup = true
+            bulkIndexOnStartup = false
 
             // use faster in-memory index
             //compassConnection = "ram://test-index"
