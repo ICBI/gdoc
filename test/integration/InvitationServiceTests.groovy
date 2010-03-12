@@ -31,11 +31,11 @@ class InvitationServiceTests extends BaseSecurityTest {
 		assertEquals(status, InviteStatus.PENDING)
 	}
 	
-	void testRevokeAccess() {
-		def invitation = invitationService.requestAccess("gdocUser2","acs224", "DEVELOPERS")
+/*	void testRevokeAccess() {
+		def invitation = invitationService.requestAccess("acs224","acs224", "DEVELOPERS")
 		def acceptedInvite = invitationService.confirmAccess("acs224", invitation.id)
 		invitationService.revokeAccess("acs224", "kmr75", "DEVELOPERS")
 		def status = invitationService.checkStatus("kmr75" , "acs224" , "DEVELOPERS")
 		assertEquals(status, InviteStatus.WITHDRAWN)
-	}
+	}*/
 }
