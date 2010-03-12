@@ -1,12 +1,13 @@
 import org.springframework.mock.jndi.SimpleNamingContextBuilder
 
-class BaseSecurityTest extends GroovyTestCase {
+class BaseSecurityTest extends BaseIntegrationTest {
 	
 	def securityService
 	def jdbcTemplate
 	def testDataSource
 	
 	void setUp() {
+		super.setUp()
 		SimpleNamingContextBuilder builder =
 			SimpleNamingContextBuilder.emptyActivatedContextBuilder()
 
