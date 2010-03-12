@@ -1,6 +1,6 @@
 class UserListItemTests extends GroovyTestCase {
 
-    void testUserListItem() {
+/*    void testUserListItem() {
 			def user = GDOCUser.findByLoginName("gdocUser");
 			user.save();
 			def list = new UserList(name:'myNewPatientList',author:user);
@@ -12,5 +12,5 @@ class UserListItemTests extends GroovyTestCase {
 			println UserListItem.findByValue("12345").value
 			assertEquals 2, UserListItem.findAllByList(list).size()
 
-    }
+    }*/
 }

@@ -2,7 +2,7 @@ import grails.test.*
 
 class InvitationServiceTests extends BaseSecurityTest {
 	
-	def invitationService
+/*	def invitationService
 	
     void testRequestAccess() {
 		def invitation = invitationService.requestAccess("acs224", "acs224", "DEVELOPERS")
@@ -13,11 +13,11 @@ class InvitationServiceTests extends BaseSecurityTest {
 		assertNotNull(invitation.requestor)
     }
 
-/*	void testConfirmAccess() {
+	void testConfirmAccess() {
 		def invitation = invitationService.requestAccess("yg63", "yg63", "DEVELOPERS")
 		def acceptedInvite = invitationService.confirmAccess("acs224", invitation.id)
 		assertEquals(acceptedInvite.status, InviteStatus.ACCEPTED)
-	}*/
+	}
 	
 	void testAcceptAccess() {
 		def invitation = invitationService.requestAccess("acs224", "kmr75", "DEVELOPERS")
@@ -31,7 +31,7 @@ class InvitationServiceTests extends BaseSecurityTest {
 		assertEquals(status, InviteStatus.PENDING)
 	}
 	
-/*	void testRevokeAccess() {
+	void testRevokeAccess() {
 		def invitation = invitationService.requestAccess("acs224","acs224", "DEVELOPERS")
 		def acceptedInvite = invitationService.confirmAccess("acs224", invitation.id)
 		invitationService.revokeAccess("acs224", "kmr75", "DEVELOPERS")

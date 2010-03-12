@@ -11,7 +11,7 @@ import gov.nih.nci.security.authorization.domainobjects.User
 
 class SecurityServiceTests extends BaseSecurityTest {
 	
-	void testGetUsersForProtectionGroup(){
+/*	void testGetUsersForProtectionGroup(){
 		def groups = []
 		//get all groups for a user
 		groups = securityService.getProtectionGroupsForUser("kmr75")
@@ -103,7 +103,7 @@ class SecurityServiceTests extends BaseSecurityTest {
 		assertNotNull(newUser)
 		println "attempt to delete gdoc user " + newUser.id
 		assertTrue(securityService.removeUser(newUser.id.toString()))
-	}
+	}*/
 	
 	
 }

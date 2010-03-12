@@ -2,7 +2,7 @@
 
 class UserListTests extends GroovyTestCase {
 	
-
+/*
 	void testCreateTempUserListsForKM(){
 		def templists = []
 		def tempIds = ['VEGF','EGFR','BRCA1','BRCA1','ER+','ER-','FCR','HGI']
@@ -139,5 +139,5 @@ class UserListTests extends GroovyTestCase {
 		last.retainAll( list2 )
 		def pct1and2and3 = (last.size() / tmp4.size())*100
 		println "pct of 1 and 2 and 3: " + pct1and2and3.intValue()
-	}
+	}*/
 }

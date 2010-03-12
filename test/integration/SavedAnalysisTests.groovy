@@ -1,7 +1,7 @@
 import grails.converters.*
 
 class SavedAnalysisTests extends GroovyTestCase {
-	def securityService
+/*	def securityService
 	
 	void testGetAllSavedAnalysis(){
 		def user = GDOCUser.findByLoginName("kmr75")
@@ -69,5 +69,5 @@ class SavedAnalysisTests extends GroovyTestCase {
 		assertNotNull(shared.analysis)
 		assertNotNull(shared.query)
 		assertEquals(5, shared.analysis["demo_dr_yes"].size())
-	}
+	}*/
 }
