@@ -13,7 +13,7 @@ class UserList implements Taggable{
 	    listItems component: true
 	}
 	
-	static hasMany = [listItems:UserListItem,listComments:Comments, studies:StudyDataSource]
+	static hasMany = [listItems:UserListItem,listComments:Comments, studies:StudyDataSource, evidence:Evidence]
 	static fetchMode = [listItems: 'eager',tags:'eager', studies: 'eager']
 	static constraints = {
 		name(blank:false)

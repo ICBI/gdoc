@@ -193,6 +193,11 @@ class UserListController {
 			}else{
 				def userListInstance = UserList.get(params.deleteList)
 		        if(userListInstance) {
+					if(userListInstance.evidence){
+						println "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
+						flash.message = "user list(s) $params.deleteList could not be deleted because it represents a piece of evidence in a G-DOC finding"
+						redirect(action:list)
+					}
 		            userListInstance.delete(flush:true)
 					println "deleted " + userListInstance
 				}
@@ -506,6 +511,13 @@ class UserListController {
 		response.setHeader("Content-disposition", "attachment; filename=${params.id}-export.txt")  
 		response.contentType = "text/plain"
 		exportService.exportList(response.outputStream, params.id)
+	}
+	
+	def exportToCytoscape = {
+		println "BUILDING AND EXPORTING TO CYTOSCAPE ${params.id}"
+		def cytoscapeFiles = exportService.buildCytoscapeFiles(params.id)
+		redirect(controller:"cytoscape",action:"index",params:[sifFile:cytoscapeFiles['sifFile'],edgeAttributeFile:cytoscapeFiles['edgeAttributeFile'],nodeAttributeFile:cytoscapeFiles['nodeAttributeFile']])
+		return
 	}
 	
 }

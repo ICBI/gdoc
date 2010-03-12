@@ -132,6 +132,12 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
 							<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
 						</g:link>
+						
+						<g:if test="${userListInstance.tags.contains('gene')}">
+						<g:link action="exportToCytoscape" style="padding-right:5px;" id="${userListInstance.id}">
+							<img alt="View Cancer-Gene Index network" title="View Cancer-Gene Index network" src="${createLinkTo(dir: 'images', file: 'chart_line.png')}" />
+						</g:link>
+						</g:if>
 		<%--a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){var classn ='${userListInstance.id}_toggle';${remoteFunction(action:'deleteList',onLoading:'showPageSpinner(true,classn)',onComplete:'showPageSpinner(false,classn)', id:userListInstance.id,update:'allLists',onSuccess:'finishDelete(\''+userListInstance.id+'\')')}return false;}">
 						<img alt="delete list" title="Delete list" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a--%>
 					</div>
@@ -140,8 +146,13 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 					<div style="border:0px solid black;width:50%;float:right">	
 						Shared by: ${userListInstance.author.firstName}&nbsp;${userListInstance.author.lastName}&nbsp;(author)
 						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
-							<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
+						<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
 						</g:link>
+						<g:if test="${userListInstance.tags.contains('gene')}">
+						<g:link action="exportToCytoscape" style="padding-right:5px;" id="${userListInstance.id}">
+							<img alt="View Cancer-Gene Index network" title="View Cancer-Gene Index network" src="${createLinkTo(dir: 'images', file: 'chart_line.png')}" />
+						</g:link>
+						</g:if>
 					</div>
 					</g:else>
 

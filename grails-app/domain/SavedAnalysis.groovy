@@ -18,7 +18,7 @@ class SavedAnalysis implements Taggable {
 		alias "savedAnalysis"
 	}
 	
-	static hasMany = [studies:StudyDataSource]
+	static hasMany = [studies:StudyDataSource,evidence:Evidence]
 	static fetchMode = [studies: 'eager']
 	static transients = [ "analysis", "query"]
 	

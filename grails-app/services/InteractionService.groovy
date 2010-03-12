@@ -2,14 +2,26 @@ class InteractionService {
 	
 	def getInteractions(geneSymbol) {
 		def relationships = GeneRelationship.findAllByGeneSymbol(geneSymbol)
-		def items = []
+		def sifItems = []
+		def edgeItems = []
+		def nodeItems = []
 		relationships.each { rel ->
-			def relationshipIds = rel.evidence.collect { it.evidenceId }.join(', ')
-			println relationshipIds
-			def temp = [geneSymbol, rel.conceptName, relationshipIds, rel.evidence.size()]
-			items << temp
+			if(rel.evidence.size() >= 1){
+				def concept = rel.conceptName.replaceAll(" ","_")
+				def temp = [geneSymbol, "pubmed-relationship", concept]
+				sifItems << temp
+				
+				def relationshipIds = rel.evidence.collect { it.evidenceId }.join(',')
+				println relationshipIds
+				def pubMedUrl = "http://www.ncbi.nlm.nih.gov/pubmed/${relationshipIds}"
+				def temp2 = [geneSymbol, "(pubmed-relationship)", concept, "=", pubMedUrl]
+				edgeItems << temp2
+				
+				nodeItems << [geneSymbol,"=","Gene"]
+				nodeItems << [concept,"=","Concept"]
+			}
 		}
-		return items
+		return ["sifItems":sifItems,"edgeItems":edgeItems,"nodeItems":nodeItems]
 	}
 	
 }
