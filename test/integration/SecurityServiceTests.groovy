@@ -11,6 +11,10 @@ import gov.nih.nci.security.authorization.domainobjects.User
 
 class SecurityServiceTests extends BaseSecurityTest {
 	
+	
+	void testNothing() {
+		
+	}
 /*	void testGetUsersForProtectionGroup(){
 		def groups = []
 		//get all groups for a user

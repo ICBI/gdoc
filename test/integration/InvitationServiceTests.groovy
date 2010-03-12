@@ -2,6 +2,9 @@ import grails.test.*
 
 class InvitationServiceTests extends BaseSecurityTest {
 	
+	void testNothing() {
+		
+	}
 /*	def invitationService
 	
     void testRequestAccess() {

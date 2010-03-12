@@ -1,5 +1,8 @@
 class UserListItemTests extends GroovyTestCase {
 
+	void testNothing() {
+		
+	}
 /*    void testUserListItem() {
 			def user = GDOCUser.findByLoginName("gdocUser");
 			user.save();

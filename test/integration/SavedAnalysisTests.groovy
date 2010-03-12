@@ -1,6 +1,10 @@
 import grails.converters.*
 
 class SavedAnalysisTests extends GroovyTestCase {
+	
+	void testNothing() {
+		
+	}
 /*	def securityService
 	
 	void testGetAllSavedAnalysis(){

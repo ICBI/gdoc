@@ -2,6 +2,9 @@
 
 class UserListTests extends GroovyTestCase {
 	
+	void testNothing() {
+		
+	}
 /*
 	void testCreateTempUserListsForKM(){
 		def templists = []
