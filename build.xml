@@ -48,7 +48,7 @@
         <attribute name="script"/>
         <attribute name="args" default="" />
         <sequential>
-            <grailsTask script="@{script}" args="@{args}" classpathref="grails.classpath">
+            <grailsTask script="@{script}" args="-Dserver.port=9090 @{args}" classpathref="grails.classpath">
                 <compileClasspath refid="compile.classpath"/>
                 <testClasspath refid="test.classpath"/>
                 <runtimeClasspath refid="app.classpath"/>
