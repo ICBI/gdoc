@@ -11,6 +11,5 @@ selenium {
 	screenshots = "fail"						// one of no, yes, fail
 	screenshotDir = "./target/screenshots"		// directory where screenshots are placed relative to project root
 */
-	port = 4445
-	browser = "*firefox"
+	port = 4447
 }
