@@ -516,7 +516,7 @@ class UserListController {
 	def exportToCytoscape = {
 		println "BUILDING AND EXPORTING TO CYTOSCAPE ${params.id}"
 		def cytoscapeFiles = exportService.buildCytoscapeFiles(params.id)
-		redirect(controller:"cytoscape",action:"index",params:[sifFile:cytoscapeFiles['sifFile'],edgeAttributeFile:cytoscapeFiles['edgeAttributeFile'],nodeAttributeFile:cytoscapeFiles['nodeAttributeFile']])
+		redirect(controller:"cytoscape",action:"index",params:[sifFile:cytoscapeFiles['sifFile'],edgeAttributeFile:cytoscapeFiles['edgeAttributeFile'],nodeAttributeFile:cytoscapeFiles['nodeAttributeFile'],geneAttributeFile:cytoscapeFiles['geneAttributeFile']])
 		return
 	}
 	

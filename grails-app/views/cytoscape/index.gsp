@@ -141,6 +141,8 @@
 	<argument>${sifUrl}</argument>
 	<argument>-n</argument>
 	<argument>${nodeUrl}</argument>
+	<argument>-n</argument>
+	<argument>${geneUrl}</argument>
 	<argument>-e</argument>
 	<argument>${edgeUrl}</argument>
   </application-desc>

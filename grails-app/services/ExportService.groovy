@@ -3,16 +3,16 @@ class ExportService {
 	
 	def exportList(out, listId) {
 		def list = UserList.get(listId)
-		def items = []
-		def strategy = { return [it] }
+		def items = list.listItems
 		def output = ""
-		list.listItems.each {
-			if(it.metaClass.respondsTo(it, 'join')) {
-				output += it.join("\t") + "\n"
-			} else { 
-				output += it + "\n"
+		if(items.metaClass.respondsTo(items,'join')){
+			items.each{ item ->
+				output += item.value + "\n"
 			}
+		}else { 
+				output += item.value + "\n"
 		}
+		
 		out << output
 	}
 	
@@ -23,11 +23,13 @@ class ExportService {
 		def sifName = "${listId}-network.sif"
 		def edgeAttributeFileName = "${listId}-edgeAttr.EA"
 		def nodeAttributeFileName = "${listId}-nodeAttr.NA"
+		def geneAttributeFileName = "${listId}-geneNodeAttr.NA"
 		//create files
 		println  "all files going to " + System.getProperty("java.io.tmpdir")
 		def sifFile = new File(System.getProperty("java.io.tmpdir")+"/"+sifName)
 		def edgeAttributeFile = new File(System.getProperty("java.io.tmpdir")+"/"+edgeAttributeFileName)
 		def nodeAttributeFile = new File(System.getProperty("java.io.tmpdir")+"/"+nodeAttributeFileName)
+		def geneAttributeFile = new File(System.getProperty("java.io.tmpdir")+"/"+geneAttributeFileName)
 		def items = []
 		def strategy = { return [it] }
 		if(list.tags.contains("gene")) {
@@ -44,7 +46,8 @@ class ExportService {
 		}
 		def output = ""
 		edgeAttributeFile.write("PubMedLink (class=java.lang.String)"+"\n")
-		nodeAttributeFile.write("Description (class=java.lang.String)"+"\n")
+		nodeAttributeFile.write("Type (class=java.lang.String)"+"\n")
+		geneAttributeFile.write("Annotation (class=java.lang.String)"+"\n")
 		println "wote edge header"
 		items.each { item ->
 			println "process $item.key"
@@ -72,14 +75,17 @@ class ExportService {
 			else if (item.key == 'nodeItems'){
 				println "node $output"
 				nodeAttributeFile.append(output)
+			}else if(item.key == 'geneItems'){
+				println "gene $output"
+				geneAttributeFile.append(output)
 			}
 			output = ""
 		}
 		
 		cytoscapeFiles["sifFile"] = sifName
 		cytoscapeFiles["edgeAttributeFile"] = edgeAttributeFileName
-		println "edge file written"
 		cytoscapeFiles["nodeAttributeFile"] = nodeAttributeFileName
+		cytoscapeFiles["geneAttributeFile"] = geneAttributeFileName
 		return cytoscapeFiles
 	}
 	

@@ -5,6 +5,7 @@ class InteractionService {
 		def sifItems = []
 		def edgeItems = []
 		def nodeItems = []
+		def geneItems = []
 		relationships.each { rel ->
 			if(rel.evidence.size() >= 1){
 				def concept = rel.conceptName.replaceAll(" ","_")
@@ -18,10 +19,17 @@ class InteractionService {
 				edgeItems << temp2
 				
 				nodeItems << [geneSymbol,"=","Gene"]
-				nodeItems << [concept,"=","Concept"]
+				geneItems << [geneSymbol,"=","http://www.genecards.org/cgi-bin/carddisp.pl?gene="+geneSymbol]
+				if(rel.conceptType=='COMPOUND'){
+					nodeItems << [concept,"=","COMPOUND"]
+				}else if (rel.conceptType=='DISEASE'){
+					nodeItems << [concept,"=","DISEASE"]
+				}else {
+					nodeItems << [concept,"=","Concept"]
+				}
 			}
 		}
-		return ["sifItems":sifItems,"edgeItems":edgeItems,"nodeItems":nodeItems]
+		return ["sifItems":sifItems,"edgeItems":edgeItems,"nodeItems":nodeItems,"geneItems":geneItems]
 	}
 	
 }

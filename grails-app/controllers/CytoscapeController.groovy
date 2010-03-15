@@ -10,10 +10,11 @@ class CytoscapeController {
 			def sifUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.sifFile
 			def edgeUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.edgeAttributeFile
 			def nodeUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.nodeAttributeFile
+			def geneUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.geneAttributeFile
 			println "look for sifFile $sifUrl"
 			println "look for edgeFile $edgeUrl"
-			println "look for node file $nodeUrl"
-			[sifUrl:sifUrl,edgeUrl:edgeUrl,nodeUrl:nodeUrl]
+			println "look for node file $geneUrl"
+			[sifUrl:sifUrl,edgeUrl:edgeUrl,nodeUrl:nodeUrl,geneUrl:geneUrl]
 		}
 		
 		def display = {
