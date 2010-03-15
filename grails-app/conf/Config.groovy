@@ -77,7 +77,7 @@ environments {
 	test {
 		jmsserver = "jnp://localhost:1099"
  		responseQueue = "AnalysisResponseKevin"
-		genePatternUrl = "http://141.161.54.201:8080"
+		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/local/content/gdoc"
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
 		structuresPath = "/opt/gdoc-data/"
