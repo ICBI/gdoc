@@ -47,6 +47,7 @@ class SavedAnalysisController{
 	}
 	
 	def deleteMultipleAnalyses ={
+		def message = ""
 		if(params.deleteAnalyses){
 			println "Requesting deletion of: $params.deleteAnalyses"
 			if(params.deleteAnalyses.metaClass.respondsTo(params.deleteAnalyses, "max")){
@@ -54,22 +55,36 @@ class SavedAnalysisController{
 					print analysisIdToBeRemoved + " "
 					def analysis = SavedAnalysis.get(analysisIdToBeRemoved)
 			        if(analysis) {
-			            analysis.delete(flush:true)
-						println "deleted " + analysis
+			            if(analysis.evidence){
+							println "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
+							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
+						}else{
+			            	analysis.delete(flush:true)
+							println "deleted " + analysis
+							message += "analysis $analysis.id has been deleted."
+						}
 					}
 				}
 			}else{
 				def analysis = SavedAnalysis.get(params.deleteAnalyses)
 		        if(analysis) {
-		            analysis.delete(flush:true)
-					println "deleted " + analysis
+		             if(analysis.evidence){
+							println "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
+							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
+						}else{
+			            	analysis.delete(flush:true)
+							message += "analysis $analysis.id has been deleted."
+						}
 				}
 			}
-			flash.message = "analysis $params.deleteAnalyses deleted"
+			flash.message = message
+			redirect(action:index)
+			return
 		}else{
 			flash.message = "No analyses have been selected for deletion"
+			redirect(action:index)
+			return
 		}
-		redirect(action:index)
 	}
 	
 	//TODO - decide if we always want to auto-save KM plots. Right now, we do not. They must implicitly call 'save'.

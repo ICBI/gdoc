@@ -1,6 +1,6 @@
 class Evidence {
 	static mapping = {
-		table 'COMMON.EVIDENCE'
+		table 'COMMON.FINDING_EVIDENCE'
 		version false
 		id column:'EVIDENCE_ID'
 	}
@@ -18,8 +18,7 @@ class Evidence {
 	UserList userList
 	SavedAnalysis savedAnalysis
 	Finding relatedFinding
-	
-	static belongsTo = [userList:UserList,finding:Finding,savedAnalysis:SavedAnalysis,relatedFinding:Finding]
+	String url
 	
 	String description
 	Date dateCreated

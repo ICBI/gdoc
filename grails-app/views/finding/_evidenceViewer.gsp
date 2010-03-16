@@ -7,6 +7,12 @@
 	<g:set var="uiId" value="${evidence.id}" />
 </g:else>
 
+<g:if test="${evidence.url}">
+ 	<div style="float:middle"><b>Literature/Article:</b>
+	<span><a href="${evidence.url}" target="_blank">${evidence.url}</a></span>
+	</div>
+</g:if>
+
 <g:if test="${evidence.userList}">
 	<div>
 	<span> 

@@ -179,15 +179,22 @@ class UserListController {
 	
 
 	def deleteMultipleLists ={
+		def message = ""
 		if(params.deleteList){
 			println "Requesting deletion of: $params.deleteList"
 			if(params.deleteList.metaClass.respondsTo(params.deleteList, "max")){
-				params.deleteList.each{ listIdToBeRemoved ->
+				for(String listIdToBeRemoved : params.deleteList){
 					print listIdToBeRemoved + " "
 					def userListInstance = UserList.get(listIdToBeRemoved)
 			        if(userListInstance) {
-			            userListInstance.delete(flush:true)
-						println "deleted " + userListInstance
+			            if(userListInstance.evidence){
+							println "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
+							message += " $userListInstance.name could not be deleted because it represents a piece of evidence in a G-DOC finding."
+						}else{
+			            	userListInstance.delete(flush:true)
+							println "deleted " + userListInstance
+							message += " $userListInstance.name has been deleted."
+						}
 					}
 				}
 			}else{
@@ -195,18 +202,23 @@ class UserListController {
 		        if(userListInstance) {
 					if(userListInstance.evidence){
 						println "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
-						flash.message = "user list(s) $params.deleteList could not be deleted because it represents a piece of evidence in a G-DOC finding"
-						redirect(action:list)
+						message = "$userListInstance.name could not be deleted because it represents a piece of evidence in a G-DOC finding."
+					}else{
+		            	userListInstance.delete(flush:true)
+						println "deleted " + userListInstance
+						message = "$userListInstance.name has been deleted."
 					}
-		            userListInstance.delete(flush:true)
-					println "deleted " + userListInstance
 				}
 			}
-			flash.message = "user list(s) $params.deleteList have been deleted"
+			flash.message = message
+			redirect(action:list)
+			return
 		}else{
 			flash.message = "No user list(s) have been selected for deletion"
+			redirect(action:list)
+			return
 		}
-		redirect(action:list)
+		
 	}
 
 	def deleteListItem = {
