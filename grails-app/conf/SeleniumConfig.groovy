@@ -12,5 +12,5 @@ selenium {
 	screenshotDir = "./target/screenshots"		// directory where screenshots are placed relative to project root
 */
 	port = 4447
-	browser = "*firefox /home/jboss/firefox"
+	browser = "*chrome /home/jboss/firefox"
 }
