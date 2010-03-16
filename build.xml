@@ -129,6 +129,14 @@
         <grails script="TestApp" args="${args}"/>
     </target>
 
+
+    <!-- =================================
+          target: test CI
+         ================================= -->
+    <target name="test-ci" depends="-init-grails" description="--> Run a Grails applications unit and integration tests">
+        <grails script="TestApp" args="-unit -integration"/>
+    </target>
+
     <!-- =================================
           target: run
          ================================= -->
