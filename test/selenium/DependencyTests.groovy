@@ -4,7 +4,6 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder
 @Mixin(SeleniumTest) 
 class DependencyTests extends GroovyTestCase { 
 	void testGdocDev() { 
-		println "${ConfigurationHolder.config}"
 		
 		selenium.open "https://dev.gdoc.georgetown.edu/gdoc/" 
 		assertTrue selenium.isTextPresent("Welcome to GDOC")
