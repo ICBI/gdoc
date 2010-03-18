@@ -17,6 +17,7 @@
     <homepage href="http://cytoscape.org" />
     <offline-allowed />
   </information>
+  <property name="java.security.policy" value="${basepath}/gdoc/cytoscapeJnlp/java.policy" />
   <resources>
     <j2se version="1.5+" max-heap-size="1024M" />
     <!--All lib jars that cytoscape requires to run should be in this list-->

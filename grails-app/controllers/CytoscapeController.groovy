@@ -11,9 +11,6 @@ class CytoscapeController {
 			def edgeUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.edgeAttributeFile
 			def nodeUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.nodeAttributeFile
 			def geneUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.geneAttributeFile
-			println "look for sifFile $sifUrl"
-			println "look for edgeFile $edgeUrl"
-			println "look for node file $geneUrl"
 			[sifUrl:sifUrl,edgeUrl:edgeUrl,nodeUrl:nodeUrl,geneUrl:geneUrl]
 		}
 		
@@ -27,5 +24,9 @@ class CytoscapeController {
 				println fnf.toString()
 				render "File ($params.inputFile) was not found...is the file name correct?"
 			}
+		}
+		
+		def javaPolicy = {
+			
 		}
 }

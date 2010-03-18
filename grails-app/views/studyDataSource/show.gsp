@@ -44,22 +44,40 @@
 		<br/>
 		<g:panel id="studyPanel" title="Data Type Details" styleClass="welcome" >
 		<table class="studyTable" width="100%">
+			<g:if test="${session.study.content}">
+				<tr>
+					<td>
+						<g:each in="${session.study.content}" var="content">
+							&nbsp;|&nbsp;${content.type}
+						</g:each>
+					</td>
+				</tr>
+			</g:if>
 			<tr>
 				<th>Data Type</th>
 				<th>Number of Elements</th>
 				<th>Search</th>
 			</tr>
 			<tr>
-				<td>Clinical Data</td>
 				<g:if test="${clinicalElements}">
+					<td>Clinical Data</td>
 					<td>${clinicalElements.size} Clinical Elements</td>
 					<td><g:link controller="clinical">Search</g:link></td>
 				</g:if>
 				<g:else>
-					<td>This Study DataSource currently has no Clinical Elements</td>
+					<td colspan="2">This Study DataSource currently has no Clinical Elements</td>
 					<td>No Clinical Search available at this time</td>
 				</g:else>
-				
+			</tr>
+			<tr>
+				<g:if test="${session.study.hasGenomicData()}">
+					<td colspan="2">Genomic Data</td>
+					<td>Select 'perform analysis' from menu</td>
+				</g:if>
+				<g:else>
+					<td>This Study DataSource currently has no Genomic Data</td>
+					<td>No Analysis available at this time</td>
+				</g:else>
 			</tr>		
 		</table>
 		</g:panel>

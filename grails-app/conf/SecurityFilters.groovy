@@ -9,16 +9,19 @@ class SecurityFilters {
 						String decryptedToken = EncryptionUtil.decrypt(token);
 						String[] info = decryptedToken.split("\\|\\|");
 						String username = info[0];
+						println "$username accessing gdoc" 
 						Long timeRequested = Long.parseLong(info[1]);
 						Long currentTime = System.currentTimeMillis();
 						Long diff = currentTime - timeRequested;
 						Long hours = diff / (60 * 60 * 1000);
 						if(hours > 24L) {
+							println "time has expired" 
 							redirect(controller:'home')
 			                return false
 						}
 						def user = GDOCUser.findByLoginName(username)
 						if(!user) {
+							println "no valid user" 
 							redirect(controller:'home')
 			                return false
 						}

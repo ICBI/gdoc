@@ -86,7 +86,7 @@
 					<div>
 						<g:link style="color:blue;font-size:1.2em" action="show" controller="studyDataSource" id="${result.id}">
 							${result.shortName}
-						</g:link> (StudyDataSource)
+						</g:link> (Study)
 						<g:if test="${result.abstractText}">
 							<g:set var="desc" value="${result.abstractText}" />
 				            	<g:if test="${desc.size() > 120}">
@@ -99,7 +99,7 @@
 				</g:if>
             	<g:if test="${className == 'MoleculeTarget'}">
 					<div>
-						<g:link action="show" id="${result.id}" controller="moleculeTarget">${result}</g:link> (Target Molecule)
+						<g:link action="show" id="${result.id}" controller="moleculeTarget">${result}</g:link> (Target Drug Molecule)
 						<g:if test="${result.molecule.formula}">
 							<g:set var="desc" value="${result.molecule.formula}" />
 				            	<g:if test="${desc.size() > 120}">

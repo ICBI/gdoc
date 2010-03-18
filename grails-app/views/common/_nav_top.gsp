@@ -35,10 +35,7 @@ $(document).ready(function()
 				</li>	
 				<li>
 					<a href="#">Samples</a>
-				</li>
-				<li>
-					<g:navigationLink name="Targets" controller="moleculeTarget" action="index" />
-				</li>					
+				</li>				
 				<li>
 					<g:navigationLink name="Genes" controller="geneExpression" />
 				</li>						
@@ -51,7 +48,7 @@ $(document).ready(function()
 					<a class="sf-with-ul" href="#">Class Comparison<span class="sf-sub-indicator"> »</span></a>
 					<ul style="display: none; visibility: hidden;">
 					<g:each in="${session.myStudies}">
-						<g:if test="${it.genomicData}">
+						<g:if test="${it.hasGenomicData()}">
 							<li>
 								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="analysis" />
 							</li>
@@ -85,7 +82,10 @@ $(document).ready(function()
 			
 		</li>
 		<li><a href="/gdoc/userList" name="Saved Lists">Saved Lists</a></li>
-		<li><g:navigationLink name="Saved Analysis" controller="savedAnalysis">Saved Analysis</g:navigationLink></li>	
+		<li><g:navigationLink name="Saved Analysis" controller="savedAnalysis">Saved Analysis</g:navigationLink></li>
+		<li>
+			<g:navigationLink name="Drug Discovery" controller="moleculeTarget" action="index" />
+		</li>	
 		<li>
 			<a href="#">Help</a>
 		</li>		

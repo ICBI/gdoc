@@ -147,19 +147,19 @@ environments {
     development {
         searchable {
             // development is default; inherits from above
-			bulkIndexOnStartup = false
+			bulkIndexOnStartup = true
         }
     }
 	
 	devserver {
 		searchable {
-			bulkIndexOnStartup = "fork"
+			bulkIndexOnStartup = true
 		}
 	}
 
 	demo {
 		searchable {
-			bulkIndexOnStartup = "fork"
+			bulkIndexOnStartup = true
 		}
 	}
 	

@@ -36,13 +36,7 @@ jQuery(document).ready(function()
 				</li>
 				<li>
 				<li>
-					<a href="#">Patients</a>
-				</li>	
-				<li>
 					<g:link controller="sample" styleClass="sf-with-ul">Samples</g:link>
-				</li>
-				<li>
-					<g:navigationLink name="Targets" controller="moleculeTarget" action="index" />
 				</li>					
 				<li>
 					<a class="sf-with-ul" href="#">Genes<span class="sf-sub-indicator"> »</span></a>
@@ -122,9 +116,12 @@ jQuery(document).ready(function()
 				</li>							
 			</ul>			
 			
+		</li>
+		<li>
+			<g:navigationLink name="Drug Discovery" controller="moleculeTarget" action="index" />
 		</li>	
 		<li>
-			<a href="https://demotisu.gdoc.georgetown.edu/catissuecore" target="_blank">caTissue</a>
+			<a href="https://demotisu.gdoc.georgetown.edu/catissuecore" target="_blank">Tissue Banking (caTissue)</a>
 		</li>
 		<li>
 			<g:navigationLink name="Register Now" id="register" controller="registration" />
