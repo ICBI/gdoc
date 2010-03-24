@@ -16,36 +16,36 @@ class MoleculeTargetController {
 				ligands.results = Molecule.getAll(ligands.results.collect{it.id})
 			}
 		}
-		[ligands:ligands,params:[params.page]]
+		if(params.offset){
+			println "offset was passed"
+		}
+		[ligands:ligands,params:[params.page,params.offset]]
 	
 	}
 	
 	def page = {
 		def targets = []
 		if(session.molCommand && params.offset){
-			/**def ent = session.molCommand.entity
-				if(params.offset && params.max){
-					println "sent params"
-					targets = Molecule.search([max:params.max,offset:params.offset],{
-						queryString(ent)
-					})
-				}else{
-					println "didnt send params"
-					targets = Molecule.search([max:10,offset:0],{
-						queryString(ent)
-					})
-				}**/
 			handleMoleculeSearch(session.molCommand,params)
+		}else{
+			handleMoleculeSearch(null,params.offset)
 		}
 		//chain(action:index,model:[ligands:targets])
 	}
 	
 	def searchLigandsFromSketch = {
-		println params.smiles
-		def targets = Molecule.search(params.smiles, properties: ["smiles"])
+		session.molCommand = null
+		session.smiles = params.smiles
+		def targets = Molecule.search(params.smiles,params)
 		println targets
-		chain(action:index,model:[ligands:targets],params:[page:'sketch'])
-		return
+		if(!params.offset){
+			chain(action:index,model:[ligands:targets],params:[page:'sketch',smiles:params.smiles])
+			return
+		}
+		else{
+			chain(action:index,model:[ligands:targets],params:[page:'sketch',smiles:params.smiles,offset:params.offset])
+			return
+		}
 	}
 	
 	def searchLigands = { MoleculeTargetCommand cmd ->
@@ -62,6 +62,11 @@ class MoleculeTargetController {
 	}
 	
 	def handleMoleculeSearch(cmd, params){
+		if(!session.molCommand && session.smiles){
+			println "this needs to be redirected to sketch, offset $params"
+			chain(action:searchLigandsFromSketch,params:[page:'sketch',smiles:session.smiles,offset:params])
+			return
+		}
 		def targets = []
 		if(cmd.entity || cmd.molWeightLow || cmd.molWeightHigh || cmd.affinity){
 			
@@ -75,31 +80,11 @@ class MoleculeTargetController {
 				targets = Molecule.search(params,{
 					must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
 				})
-				chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity])
+				chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity,offset:params.offset])
 				return
 			}
 			try { 
 			def searchTerm = cmd.entity
-				//is it a gene symbol? if so, build the search term
-				def alias = annotationService.findGeneByAlias(searchTerm)
-				if(alias){
-					println "its a gene symbol"
-					def proteinNames = []
-					def queryStringToCall = ""
-					def proteins = alias.gene.proteins
-					proteinNames = proteins.collect{it.name}
-					if(proteinNames){
-						proteinNames.each{ pname ->
-							queryStringToCall += "$pname OR "
-						}
-						searchTerm = queryStringToCall.substring(0,queryStringToCall.lastIndexOf('OR'))
-						println searchTerm
-						
-					}
-					else{
-						println "no proteins found"
-					}
-				}
 				//if weight is specified , add to search
 				if(cmd.molWeightLow || cmd.molWeightHigh){
 					println "constrain by molecular weight"
@@ -110,17 +95,17 @@ class MoleculeTargetController {
 						cmd.molWeightHigh = 99999.0
 					}
 					targets = Molecule.search(params,{
-						queryString(searchTerm)
+						must(queryString(searchTerm))
 						must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
 					})
-					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity])
+					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity,offset:params.offset])
 					return
 				}else{
 					targets = Molecule.search(params,{
 						queryString(searchTerm)
 					})
 					println targets
-					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity])
+					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity,offset:params.offset])
 					return
 				}
 			}catch (SearchEngineQueryParseException ex) { 
@@ -151,8 +136,8 @@ class MoleculeTargetController {
 		}else{
 			try { 
 				def terms = []
-				terms << Protein.termFreqs("name")
-				terms << searchableService.termFreqs("symbol")
+				terms << Protein.termFreqs("accession")
+				terms << GeneAlias.termFreqs("symbol",size:30000)
 				terms.flatten().each{
 					if(it.term.contains(params.q.trim()))
 						searchResult << it.term

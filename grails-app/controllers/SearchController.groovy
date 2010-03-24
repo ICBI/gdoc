@@ -84,14 +84,14 @@ class SearchController {
 			terms << searchableService.termFreqs("shortName")
 			terms << searchableService.termFreqs("cancerSite")
 			terms << searchableService.termFreqs("abstractText")
-			terms << Protein.termFreqs("name")
-			terms << searchableService.termFreqs("symbol")
+			terms << GeneAlias.termFreqs("symbol",size:30000)
 			terms << searchableService.termFreqs("lastName")
 			terms << searchableService.termFreqs("title")
 			terms.flatten().each{
 				if(it.term.contains(query.trim()))
 					searchResult << it.term
 			}
+			println searchResult
 			return searchResult
 		 } catch (SearchEngineQueryParseException ex) { 
 			println ex

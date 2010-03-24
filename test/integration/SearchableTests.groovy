@@ -20,7 +20,7 @@ class SearchableTests extends GroovyTestCase {
 	
 	
 	void testSearchStemming(){
-		def searchString = "egfr"
+		def searchString = "EGFR"
 		def searchResult = []
 		searchResult = searchableService.search([defaultOperator:"and"],{
 			must({
@@ -31,40 +31,44 @@ class SearchableTests extends GroovyTestCase {
 					alias("findings") 
 			        alias("targets")
 					alias("studies")
+					//alias("targetRelationships")
 			   })
 		})
-		println searchResult.total
+		println searchResult
 		if(searchResult.results){
 			searchResult.results.each{
 				def resultClass = ClassUtils.getShortName(it.getClass())
 				println resultClass
 				if(resultClass == "MoleculeTarget"){ 
-					println "$it.molecule.name is a target of: $it.protein.name"
+					println "$it.molecule.name is a target of: $it.protein.accession"
 					
 				}
 				if(resultClass == "StudyDataSource"){
 					println "$it.longName was found with id $it.id"
 				}
+				
 			}
 		}else
 			println "no results"
 	}
 	
-	/**
+/**
   void testSearchIndex(){
 		try { 
 			def terms = []
+			
 			//terms << searchableService.termFreqs("longName")
 			//terms << searchableService.termFreqs("shortName")
 			//terms << searchableService.termFreqs("cancerSite")
-			terms << Finding.termFreqs("title")
-			terms << StudyDataSource.termFreqs("abstractText")
+			//terms << Finding.termFreqs("title")
+			//terms << StudyDataSource.termFreqs("abstractText")
 			//terms << searchableService.termFreqs("name")
-			//terms << searchableService.termFreqs("symbol",size:50)
+			terms << searchableService.termFreqs("symbol",size:30000)
 			terms.flatten().each{
-				println "$it.term of $it.propertyName was referenced $it.freq times"
+				if(it.term.contains('egfr')){
+					println "$it.term of $it.propertyName was referenced $it.freq times"
+				}
 			}
-			
 			
 			/**def comp = searchableService.compass
 			def lastResult =""
@@ -100,7 +104,7 @@ class SearchableTests extends GroovyTestCase {
 		 } catch (SearchEngineQueryParseException ex) { 
 		 	println ex
 		 }
-	}
+	}**/
 	
 		
 		/**void testSearchTargetIndex(){

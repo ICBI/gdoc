@@ -110,7 +110,7 @@
 						<g:else>
 						No binding data available
 						</g:else>
-						<span style="color:green">target: ${result.protein.name}</span>
+						<span style="color:green">target: ${result.protein.accession}</span>
 					</div>
 				</g:if>
 				<g:if test="${className == 'Finding'}">

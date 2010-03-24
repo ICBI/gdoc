@@ -44,7 +44,7 @@
 		<g:set var="moleculeTargetPath" value="${structure.structureFile.relativePath}" />
 		<table class="viewerTable">
 		<tr>
-			<td><b>Protein</b>: ${moleculeTarget.protein.name}</td>
+			<td><b>Protein</b>: ${moleculeTarget.protein.accession}</td>
 			<td valign="top" rowspan="4">
 				<g:javascript>
 					  jmolInitialize("/gdoc/applets/jmol","JmolAppletSigned0.jar");

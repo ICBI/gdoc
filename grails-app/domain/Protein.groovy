@@ -1,20 +1,25 @@
 class Protein {
+	static mapping = {
+		table 'COMMON.PROTEIN'
+		version false
+		id column:'PROTEIN_ID'
+	}
 	
 	static searchable = {
 		alias "protein"
 	    bindings component: true
 		structures component: true
 		gene component: true
-		dateCreated index: 'no'
-		lastUpdated index: 'no'
-		labName index: 'no'
 	}
 	
 	String name
-	String labName
-	static hasMany = [bindings: MoleculeTarget,structures: Structure]
-	Date dateCreated
-	Date lastUpdated
 	static belongsTo = Gene
 	Gene gene
+	static hasMany = [bindings: MoleculeTarget,structures: Structure]
+	String accession
+	String accessionVer
+	//String labName
+	//Date dateCreated
+	//Date lastUpdated
+	
 }

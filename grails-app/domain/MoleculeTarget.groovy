@@ -8,6 +8,7 @@ class MoleculeTarget{
 	    molecule component: true
 		protein component: true
 		structures component: true
+		targetRelationships component: true
 		dateCreated index: 'no'
 		lastUpdated index: 'no'
 	}
@@ -15,7 +16,7 @@ class MoleculeTarget{
 	String bindingData
 	static belongsTo = [Molecule, Protein]
 	
-	static hasMany = [structures: Structure]
+	static hasMany = [structures: Structure, targetRelationships:TargetRelationships]
 	Molecule molecule
 	Protein protein
 	Date dateCreated
@@ -27,7 +28,7 @@ class MoleculeTarget{
 	
 	public String toString() {
 		if(this.@protein && this.@molecule) {
-			return this.@molecule.name + "-" + this.@protein.name
+			return this.@molecule.name + "-" + this.@protein.accession
 		}
 	}
 	

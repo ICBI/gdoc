@@ -17,9 +17,11 @@
 			document.MolForm.smiles.value = s; 
 			document.MolForm.submit();
 		} else {
-			alert("The drawing pallet is empty:\n"+
+			alert("The drawing pallet is currently empty:\n"+
 				"Click on the drawing pallet to add a molecular structure.\n");
+			return false;
 		}
+		
 	}
 	
 		var page = "index"
@@ -60,7 +62,7 @@
         <title>Molecule Target - Search</title>         
     </head>
     <body>
-	<p style="font-size:14pt">Search for Targets</p><br />
+	<p style="font-size:14pt">Search for Compounds</p><br />
 	<g:if test="${flash.message}">
 	<span class="message">${flash.message}</span>
 	</g:if>
@@ -108,8 +110,8 @@
 				</script>
 				<g:form name="MolForm" url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
 				<input value="Write SMILES String" onclick="exportMol()" type="button" style="display:none">
-				<g:textField value="COC1=CC2=C(NC=C2CCC(O)=O)C=C1" name="smiles" style="display:none"/>
-				<g:submitButton name="search_molecules" value="search molecules" />
+				<g:textField name="smiles" style="display:none"/>
+				<g:submitButton name="search_molecules" value="search molecules" onclick="exportMol();return false;"/>
 				</g:form>
 			</div>	
 		</div>
@@ -194,9 +196,14 @@
 			<div style="float:left;padding:10px">
 				<img src="${createLinkTo(dir:'images',file:'target.png')}" border="0" />
 				Targets:
-				<g:each in="${molecule.bindings}" var="target">
-					<g:link action="show" id="${target.id}">${target.protein.name}</g:link>
-				</g:each>
+				<g:if test="${molecule.bindings}">
+					<g:each in="${molecule.bindings}" var="target">
+						<g:link action="show" id="${target.id}">${target.protein.accession}</g:link>
+					</g:each>
+				</g:if>
+				<g:else>
+					No targets currently found for this compound
+				</g:else>
 			</div>
 		</td>
 		<td style="text-align:right">
@@ -215,7 +222,9 @@
           Page:
           <g:set var="totalPages" value="${Math.ceil(ligands.total / ligands.max)}" />
           <g:if test="${totalPages == 1}"><span class="currentStep">1</span></g:if>
-          <g:else><g:paginate controller="moleculeTarget" action="page" total="${ligands.total}" prev="&lt; previous" next="next &gt;"/></g:else>
+          <g:else>
+			<g:paginate controller="moleculeTarget" action="page" total="${ligands.total}" prev="&lt; previous" next="next &gt;"/>
+		  </g:else>
       </g:if>
     </div>
   </div>
