@@ -110,7 +110,10 @@
 						<g:else>
 						No binding data available
 						</g:else>
-						<span style="color:green">target: ${result.protein.accession}</span>
+						<span style="color:green">target: 
+						<g:set var="target" value="${result.protein.gene?.geneAliases?.toArray().collect{it.symbol}}" />
+							${target.join(",")}
+						</span>
 					</div>
 				</g:if>
 				<g:if test="${className == 'Finding'}">

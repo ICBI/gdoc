@@ -44,7 +44,11 @@
 		<g:set var="moleculeTargetPath" value="${structure.structureFile.relativePath}" />
 		<table class="viewerTable">
 		<tr>
-			<td><b>Protein</b>: ${moleculeTarget.protein.accession}</td>
+			<td><b>Protein: </b>encoded by Entrez GeneId (${moleculeTarget.protein.gene?.id})
+				<br>
+				<g:set var="target" value="${moleculeTarget.protein.gene?.geneAliases?.toArray().collect{it.symbol}}" />
+					${target.join(",")}
+		</td>
 			<td valign="top" rowspan="4">
 				<g:javascript>
 					  jmolInitialize("/gdoc/applets/jmol","JmolAppletSigned0.jar");

@@ -198,7 +198,10 @@
 				Targets:
 				<g:if test="${molecule.bindings}">
 					<g:each in="${molecule.bindings}" var="target">
-						<g:link action="show" id="${target.id}">${target.protein.accession}</g:link>
+						<g:link action="show" id="${target.id}">
+							<g:set var="targetProt" value="${target.protein.gene?.geneAliases?.toArray().collect{it.symbol}}" />
+								${targetProt.join(",")}
+						</g:link>
 					</g:each>
 				</g:if>
 				<g:else>

@@ -28,7 +28,7 @@ class MoleculeTarget{
 	
 	public String toString() {
 		if(this.@protein && this.@molecule) {
-			return this.@molecule.name + "-" + this.@protein.accession
+			return this.@id + "-" + this.@protein.gene.id
 		}
 	}
 	
