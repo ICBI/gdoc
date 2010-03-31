@@ -69,6 +69,8 @@ GRANT SELECT ON COMMON.PROTOCOL_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.FILE_TYPE_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.FILE_FORMAT_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.ALL_DESIGNS to ${projectName} with grant option;
+GRANT SELECT ON COMMON.DSC_SEQUENCE to ${projectName} with grant option;
+
 
 -- not sure why i need this here....would it not be covered by read_common
 grant select on common.attribute_type to ${projectName};

@@ -16,11 +16,13 @@ class AttributeService {
 		def attribute = CommonAttributeType.findByShortName(shortName)
 		if(!attribute)
 			return
-		vocabs.each {
-			def vocab = new AttributeVocabulary(it)
-			attribute.addToVocabs(vocab)
-			if(!vocab.save(flush: true))
-				println vocab.errors
+		vocabs.each { item ->
+			if(!vocabs.find { it.term == item.term}) {
+				def vocab = new AttributeVocabulary(item)
+				attribute.addToVocabs(vocab)
+				if(!vocab.save(flush: true))
+					println vocab.errors
+			}
 		}
 	}
 }
