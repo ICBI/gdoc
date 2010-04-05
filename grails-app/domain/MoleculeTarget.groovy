@@ -28,7 +28,20 @@ class MoleculeTarget{
 	
 	public String toString() {
 		if(this.@protein && this.@molecule) {
-			return this.@id + "-" + this.@protein.gene.id
+			if(this.@protein.gene.geneAliases){
+				def official = this.@protein.gene.geneAliases.find{
+					it.official == true
+				}
+				if(official){
+					return this.@molecule.id + "_" + official.symbol
+				}
+				else{
+					return this.@molecule.id + "_" + this.@protein.id
+				}
+			}
+			else{
+				return this.@molecule.id + "_" + this.@protein.gene.id
+			}	
 		}
 	}
 	

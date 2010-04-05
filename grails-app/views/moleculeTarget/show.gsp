@@ -44,10 +44,10 @@
 		<g:set var="moleculeTargetPath" value="${structure.structureFile.relativePath}" />
 		<table class="viewerTable">
 		<tr>
-			<td><b>Protein: </b>encoded by Entrez GeneId (${moleculeTarget.protein.gene?.id})
-				<br>
-				<g:set var="target" value="${moleculeTarget.protein.gene?.geneAliases?.toArray().collect{it.symbol}}" />
-					${target.join(",")}
+			<td><b>Protein: </b>
+				<br />encoded by Entrez GeneId:${moleculeTarget.protein.gene?.id}
+				<br />gene symbol:<g:set var="target" value="${moleculeTarget.protein.gene?.geneAliases?.toArray().find{it.official==true}}" />
+					${target.symbol}
 		</td>
 			<td valign="top" rowspan="4">
 				<g:javascript>
