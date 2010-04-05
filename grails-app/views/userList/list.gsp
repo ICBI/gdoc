@@ -28,9 +28,10 @@
 		}
 	</script>
 	
+	
 </head>
 <body>
-
+	
 	<g:javascript>
 	$(document).ready( function () {
 				$('#listFilter').change(function() {

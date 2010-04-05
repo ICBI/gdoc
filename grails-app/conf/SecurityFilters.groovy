@@ -28,7 +28,8 @@ class SecurityFilters {
 						println "user token authenticated"
 			  } 
               else if(!session.userId && !controllerName.equals('home') && !controllerName.equals('login') && !controllerName.equals('registration')) {
-                  redirect(controller:'home')
+				  println "$controllerName access denied"                  
+				  redirect(controller:'home')
                   return false
               }
            }

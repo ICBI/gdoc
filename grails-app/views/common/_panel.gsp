@@ -23,7 +23,7 @@
 				</div>
 			</div>			
     </div>
-    <div id="${it.attrs.id}_content" class="${it.attrs.contentClass}" style="background-color:#f5f5f5; ">
+    <div id="${it.attrs.id}_content" class="${it.attrs.contentClass}" style="background-color:#f5f5f5;border-collapse:separate">
          ${it.body()}
     </div>
 </div>

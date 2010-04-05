@@ -85,7 +85,7 @@ p
 }
 
 .welcome {
-	width: 650px;
+	width: 92%;
 }
 
 .welcomeTitle {
@@ -99,12 +99,12 @@ p
 }
 
 .notifications {
-	width: 450px;
+	width: 92%;
 	font-size:12px;
 }
 
 .invitations {
-	width: 620px;
+	width: 92%;
 	font-size:12px;
 }
 .inviteDiv {
@@ -158,6 +158,7 @@ p
 	font-size: .8em;
 	border: 1px solid #CCCCCC;
 	border-collapse: collapse;
+	
 }
 .label {
 	font-weight: bold;

@@ -65,18 +65,18 @@ class ExportService {
 				output += item.value + "\n"
 			}
 			if(item.key == 'sifItems'){
-				println "sif $output"
+				//println "sif $output"
 				sifFile.append(output)
 			}
 			else if (item.key == 'edgeItems'){
-				println "edge $output"
+				//println "edge $output"
 				edgeAttributeFile.append(output)
 			}
 			else if (item.key == 'nodeItems'){
-				println "node $output"
+				//println "node $output"
 				nodeAttributeFile.append(output)
 			}else if(item.key == 'geneItems'){
-				println "gene $output"
+				//println "gene $output"
 				geneAttributeFile.append(output)
 			}
 			output = ""

@@ -1,10 +1,12 @@
+
 <% response.setContentType("application/x-java-jnlp-file"); 
-  response.setHeader( "Pragma", "no-cache");
+  response.setHeader("Cache-Control", "public")
   response.setDateHeader( "Expires", 0 );%>
 <%@ page import="java.io.*" %>
 
 <g:set var="basepath" value="${request.getRequestURL().toString().split(request.getContextPath())[0]}" />
 <g:set var="filepath" value="${request.getRequestURL().toString().split(request.getContextPath())[0]}" />
+
 
 <?xml version="1.0" encoding="UTF-8"?>
 <jnlp codebase="${basepath}/gdoc/cytoscapeJnlp">

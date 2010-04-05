@@ -13,7 +13,7 @@ class InteractionService {
 				sifItems << temp
 				
 				def relationshipIds = rel.evidence.collect { it.evidenceId }.join(',')
-				println relationshipIds
+				//println relationshipIds
 				def pubMedUrl = "http://www.ncbi.nlm.nih.gov/pubmed/${relationshipIds}"
 				def temp2 = [geneSymbol, "(pubmed-relationship)", concept, "=", pubMedUrl]
 				edgeItems << temp2
