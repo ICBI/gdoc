@@ -6,13 +6,12 @@ class MoleculeTests extends GroovyTestCase {
 	void testRetrieveMolecules(){
 		def molecules = Molecule.findAll()
 		molecules.each{ molecule ->
-			if(molecule.name == 'Hydrazone'){
+			if(molecule.bindings){
 				println molecule.name +":"+molecule.formula
 				println "Targets ->"
 				molecule.bindings.each{binding ->
-					println binding.bindingData
 					if(binding.protein)
-						println binding.protein.name
+						println binding.protein.id
 						//println binding.protein.gene
 				}
 				println "Structure(s) ->"

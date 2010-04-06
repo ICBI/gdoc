@@ -43,7 +43,7 @@ class SearchController {
 				})
 			}
 			
-			println searchResult
+			//println searchResult
 			if(!searchResult.results){
 				suggs = gatherTermFreqs(params.q)
 				if(suggs.size()>=5){
@@ -91,7 +91,7 @@ class SearchController {
 				if(it.term.contains(query.trim()))
 					searchResult << it.term
 			}
-			println searchResult
+			//println searchResult
 			return searchResult
 		 } catch (SearchEngineQueryParseException ex) { 
 			println ex
