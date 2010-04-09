@@ -15,6 +15,13 @@ CREATE SEQUENCE ${projectName}.PATIENT_ATTRIB_VAL_SEQUENCE
   CACHE 20
   NOORDER;
 
+CREATE SEQUENCE ${projectName}.BIOSPECIMEN_SEQUENCE
+  START WITH 1000
+  MAXVALUE 999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;
 
 CREATE SEQUENCE ${projectName}.BIOSPECIMEN_VALUE_SEQUENCE
   START WITH 1000
@@ -33,6 +40,29 @@ CREATE SEQUENCE ${projectName}.MARRAY_FILE_COLUMN_SEQUENCE
   CACHE 20
   NOORDER;
 
+CREATE SEQUENCE ${projectName}.HT_FILE_SEQUENCE
+  START WITH 1000
+  MAXVALUE 999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;
+
+CREATE SEQUENCE ${projectName}.HT_RUN_SEQUENCE
+  START WITH 1000
+  MAXVALUE 999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;
+
+CREATE SEQUENCE ${projectName}.HT_RUN_BIOSPECIMEN_SEQUENCE
+  START WITH 1000
+  MAXVALUE 999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;
 
 CREATE SEQUENCE ${projectName}.MARRAY_FILE_ROW_SEQUENCE
   START WITH 1000
@@ -579,19 +609,15 @@ AS
 SELECT   ROWNUM id, f.name file_name, b.name biospecimen_name, d.ARRAY_TYPE design_type
      FROM   ${projectName}.ht_file_prior p,
             ${projectName}.ht_file f,
-            ${projectName}.ht_file_column c,
             ${projectName}.ht_run_biospecimen r,
-            ${projectName}.ht_column_link l,
             ${projectName}.biospecimen b,
             common.all_designs d,
             ${projectName}.ht_run hr
-    WHERE   c.ht_file_id = P.PRIOR_ht_FILE_ID
-            AND P.ht_FILE_ID = F.ht_FILE_ID
-            AND l.ht_run_biospecimen_id = r.ht_run_biospecimen_id
-            AND l.ht_file_column_id = c.ht_file_column_id
+    WHERE   P.ht_file_id = F.ht_FILE_ID
             AND r.biospecimen_id = b.biospecimen_id
             AND d.HTARRAY_DESIGN_ID = hr.ht_design_id
             AND hr.ht_run_id = r.ht_run_id
+            AND hr.raw_file_id = p.prior_ht_file_id
    WITH READ ONLY;
 
 
@@ -817,5 +843,7 @@ ALTER TABLE ${projectName}.BIOSPECIMEN ADD (
   CONSTRAINT BIOSPECIMEN_PROTOCOL_FK 
  FOREIGN KEY (PROTOCOL_ID) 
  REFERENCES COMMON.PROTOCOL (PROTOCOL_ID));
+
+Insert into ${projectName}.ATTRIBUTE_TIMEPOINT (ATTRIBUTE_TIMEPOINT_ID,SERIES_ID,TIMEPOINT,TAG,INSERT_USER,INSERT_DATE,INSERT_METHOD) values (0,0,0,'DEFAULT TIMEPOINT','USER',(SELECT SYSDATE FROM dual) ,'manual');
 
 commit;

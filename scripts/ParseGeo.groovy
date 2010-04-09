@@ -33,6 +33,9 @@ target(main: "The description of the script goes here!") {
 	parser.createStudyFile(Ant.antProject.properties.'project.location', "dataImport/${projectName}/${projectName}_study_table.txt", projectName)
 	println "Created study metadata file at dataImport/${projectName}/${projectName}_study_table.txt"
 	
+	parser.writeContactFile("dataImport/${projectName}/${projectName}_contact_table.txt")
+	println "Created contact metadata file at dataImport/${projectName}/${projectName}_contact_table.txt"
+	
 	def table
 	for(def i = 0; i < helperClass.strategies.size(); i++) {
 		println ""
@@ -52,12 +55,20 @@ target(main: "The description of the script goes here!") {
 		} 
 		table = null
 	}
+	
+	println "Creating clinical type metadata file: dataImport/${projectName}/${projectName}_clinical_type.txt"
+	parser.writeClinicalAttributeFile(table, "dataImport/${projectName}/${projectName}_clinical_type.txt")
+	
+	println "Creating clinical vocab metadata file: dataImport/${projectName}/${projectName}_clinical_vocab.txt"
+	parser.writeClinicalVocabFile(table, "dataImport/${projectName}/${projectName}_clinical_vocab.txt")
+	
 	if(!table) {
-		println "No clinical data found or this program does not support the format of the clinical data.  Please provide the clinical data in the required format or contact the developer of this program."
+		println "No clinical data found or this program does not support the format of the clinical data.  Please provide the clinical data in the required format, or create the clinical tables manually."
 		return
 	}
 	println "Creating clinical data file: dataImport/${projectName}/${projectName}_clinical_table.txt"
 	parser.writeMatrixFile(table, "dataImport/${projectName}/${projectName}_clinical_table.txt")
+	
 	println "Success!  Please review the generated files for accuracy, then run the loading process."
 
 }

@@ -3,11 +3,14 @@ class Biospecimen {
 	static mapping = {
 		table '__STUDY_SCHEMA__.BIOSPECIMEN'
 		version false
-		id column:'biospecimen_id'
+		id column:'biospecimen_id', generator: 'sequence', params: [sequence: '__STUDY_SCHEMA__.BIOSPECIMEN_SEQUENCE']
 		type column: 'class'
 		patient column:'patient_id'
 		values column:'biospecimen_id'
-		
+		insertUser column: 'INSERT_USER'
+		insertMethod column: 'INSERT_METHOD'
+		insertDate column: 'INSERT_DATE'
+		attributeTimepointId column: 'ATTRIBUTE_TIMEPOINT_ID'
 	}
 	static transients = ['biospecimenData']
 	
@@ -15,7 +18,12 @@ class Biospecimen {
 	
 	String type
 	String name
+	String insertUser
+	String insertMethod
+	Date insertDate
 	Patient patient
+	Boolean diseased
+	Integer attributeTimepointId
 	Map biospecimenData
 	
 	public Map getBiospecimenData() {

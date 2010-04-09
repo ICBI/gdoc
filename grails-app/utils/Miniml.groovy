@@ -99,25 +99,38 @@ class MinimlParser {
 						   "DEFINITION", "CDEP", "SEMANTIC_GROUP", "GDOC_PREFERRED", "CADSR_ID", 
 						   "EVS_ID", "QUALITATIVE", "CONTINUOUS", "VOCABULARY", "ORACLE_DATATYPE", 
 						   "UNIT", "LOWER_RANGE", "UPPER_RANGE"]
-			out.writeLine("\t" + headers.join("\t"))
+			out.writeLine(headers.join("\t"))
 			def attributes = dataMap.collect { key, value ->
 				return value.keySet().collect {
 					return it.toUpperCase()
 				}
 			}.flatten() as Set
-			out.writeLine("\t" + attributes.join("\t"))
+			attributes.each {
+				out.writeLine(it)
+			}
 		}
 	}
 	
 	def writeClinicalVocabFile(dataMap, filename) {
 		new File(filename).withWriter { out ->
 			def headers = ["TYPE", "TERM", "TERM_MEANING", "EVS_ID", "DEFINITION"]
-			out.writeLine("\t" + headers.join("\t"))
+			out.writeLine(headers.join("\t"))
 			def attributes = dataMap.collect { key, value ->
 				return value.keySet().collect {
 					return it.toUpperCase()
 				}
 			}.flatten() as Set
+		}
+	}
+	
+	def writeContactFile(filename) {
+		new File(filename).withWriter { out ->
+			def headers = ["NETID", "LAST_NAME", "FIRST_NAME", "SUFFIX", "EMAIL", "NOTES", "TYPE"]
+			def pi = ["N/A", "Data Source", "Public", "", "gdoc@georgetown.edu", "Generic contact for public data sources", "PI"]
+			def poc = ["N/A", "Data Source", "Public", "", "gdoc@georgetown.edu", "Generic contact for public data sources", "POINT_OF_CONTACT"]
+			out.writeLine(headers.join("\t"))
+			out.writeLine(pi.join("\t"))
+			out.writeLine(poc.join("\t"))
 		}
 	}
 	
