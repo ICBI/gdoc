@@ -16,11 +16,10 @@ target(main: "Load High Throughput Data") {
 	
 	println "Please specify a project name:"
 	def projectName = new InputStreamReader(System.in).readLine().toUpperCase()
-	def htFiles = new File("dataImport/${projectName}/${projectName}_ht_files.txt")
 	def mappingFile = new File("dataImport/${projectName}/${projectName}_biospecimen_mapping.txt")
 	
-/*	if(!studyFile.exists()) {
-		println "Cannot find high throughput metadata file at dataImport/${projectName}/${projectName}_ht_files.txt.  Please check the study name and try again."
+	if(!mappingFile.exists()) {
+		println "Cannot find high throughput metadata file at dataImport/${projectName}/${projectName}_biospecimen_mapping.txt.  Please check the study name and try again."
 		return
 	}
 	def dataSourceClass = classLoader.loadClass('StudyDataSource')
@@ -28,22 +27,8 @@ target(main: "Load High Throughput Data") {
 	while(study) {
 		println "Project with name: $projectName does not exist.  Unable to load high throughput data."
 		return
-	}*/
+	}
 	
-	def htDataService =  appCtx.getBean('htDataService')
-	
-	def params = [:]
-	params.schemaName = "WANG"
-	params.name = "test2.rda"
-	params.description = "test r data file"
-	params.relativePath = "NORMALIZED"
-	params.fileSize = 10000
-	params.fileType = "PLIER_NORMALIZED"
-	params.fileFormat = "RBINARY"
-	params.dataLevel = "NORMALIZED"
-	params.insertUser = "acs224"
-	params.insertMethod = "test"
-	params.insertDate = new Date()
 	def sessionFactory = appCtx.getBean("sessionFactory")
 
 	def session = sessionFactory.getCurrentSession()
