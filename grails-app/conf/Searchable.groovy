@@ -147,13 +147,13 @@ environments {
     development {
         searchable {
             // development is default; inherits from above
-			bulkIndexOnStartup = true
+			bulkIndexOnStartup = false
         }
     }
 	
 	devserver {
 		searchable {
-			bulkIndexOnStartup = true
+			bulkIndexOnStartup = false
 		}
 	}
 
@@ -165,7 +165,7 @@ environments {
 	
     test {
         searchable {
-            // disable bulk index on startup
+            // disable bulk index true startup
             bulkIndexOnStartup = false
 
             // use faster in-memory index

@@ -21,7 +21,7 @@ class LoginController {
 							if (user) {
 								session.userId = user.loginName
 								//println (user.loginName)
-								redirect(controller:'studyDataSource')
+								redirect(controller:'workflows')
 							}
 							else {
 								flash['message'] = 'Please enter a valid user ID and password'

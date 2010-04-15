@@ -17,7 +17,7 @@ jQuery(document).ready(function()
 <div id="navigation-block">
 	<ul id="gdocNavigation" class="sf-menu sf-vertical sf-js-enabled sf-shadow">
 		<li>
-			<g:navigationLink name="Home" controller="home"/>
+			<g:navigationLink name="Home" controller="workflows" />
 		</li>
 		<li>
 			<a class="sf-with-ul" href="#">Search for Data<span class="sf-sub-indicator"> »</span></a>

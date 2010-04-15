@@ -4,6 +4,10 @@ class HomeController {
 	def summaryService
 	
     def index = { 
+		if(session.userId){
+			redirect(controller:'workflows')
+			return
+		}
 		//get LCCC feed
 		feedMap = feedService.getFeed()
 		
@@ -19,6 +23,11 @@ class HomeController {
 			session.sampleSummary = sampleSummary
 			session.anatomicSourceValues = summaryService.anatomicSources(sampleSummary)
 		}
+	}
+	
+	def workflows = {
+		
+		
 	}
 	
 }

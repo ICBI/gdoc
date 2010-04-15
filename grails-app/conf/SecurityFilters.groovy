@@ -3,8 +3,8 @@ class SecurityFilters {
 	
    def filters = {
         loginCheck(controller:'*', action:'*') {
-           before = {
-			  if(params.token) {
+		 before = {
+			if(params.token) {
 						String token = new String(params.token.getBytes(), "UTF-8");
 						String decryptedToken = EncryptionUtil.decrypt(token);
 						String[] info = decryptedToken.split("\\|\\|");
@@ -27,9 +27,9 @@ class SecurityFilters {
 						}
 						println "user token authenticated"
 			  } 
-              else if(!session.userId && !controllerName.equals('home') && !controllerName.equals('login') && !controllerName.equals('registration')) {
-				  println "$controllerName access denied"                  
-				  redirect(controller:'home')
+              else if(!session.userId && !controllerName.equals('home') && !actionName.equals('index') && !controllerName.equals('login') && !controllerName.equals('registration')) {
+				  println "$actionName access denied"                  
+				  redirect(controller:'home', action:'index')
                   return false
               }
            }
