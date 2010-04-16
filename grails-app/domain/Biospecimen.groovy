@@ -14,7 +14,7 @@ class Biospecimen {
 	}
 	static transients = ['biospecimenData']
 	
-	static hasMany = [values : BiospecimenValue]
+	static hasMany = [values : BiospecimenValue, reductionAnalyses: ReductionAnalysis]
 	
 	String type
 	String name

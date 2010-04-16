@@ -8,8 +8,8 @@ class ReductionAnalysis {
 	String algorithm
 	String name
 	String algorithmType
-	static belongsTo = Patient
-	Patient patient
+	static belongsTo = Biospecimen
+	Biospecimen biospecimen
 	static hasMany = [locationValues: LocationValue]
 	Date dateCreated
 }
