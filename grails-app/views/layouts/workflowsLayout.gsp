@@ -28,14 +28,14 @@
 <div id="doc3" class="yui-t1">
 	<div id="hd">
 		<!-- Header start -->
-    <g:render template="/common/header"/>
+    <g:render template="/common/headerWorkflow"/>
     <!-- Header end -->
 	</div>
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
 				<div class="yui-gc">
-					<div class="yui-u first">
+					<div class="yui-u first" style="width:100%">
 						<g:layoutBody/><br />
 					</div>
 				</div>

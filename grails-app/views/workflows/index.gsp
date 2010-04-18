@@ -12,99 +12,119 @@
     </head>
     <body>
 				<jq:plugin name="ui"/>
-				
-				<br/>
+				<jq:plugin name="autocomplete"/>
+				<g:javascript>
+
+
+
+				  $(document).ready(function(){
+				   	$("#q").autocomplete("/gdoc/search/relevantTerms",{
+							max: 130,
+							scroll: true,
+							multiple:false,
+							matchContains: true,
+							dataType:'json',
+							parse: function(data){
+								var array = jQuery.makeArray(data);
+								for(var i=0;i<data.length;i++) {
+				 					var tempValue = data[i];
+									var tempResult = data[i];
+									array[i] = { data:data[i], value: tempValue, result: tempResult};
+							    }
+								return array;
+							},
+				            formatItem: function(data, i, max) {
+										return data;
+									},
+
+							formatResult: function(data) {
+										return data;
+									}
+					});
+
+
+				  });
+
+
+				</g:javascript>
+				<div style="width:75%;">
 			
 				
 				<g:if test="${flash.message}">
 					<div class="message" style="width:75%">${flash.message}</div>
 				</g:if>
 				
+				
 				<div id="centerContent">
-						<p><span style="font-size:1.1em">G-DOC</span> allows you to search for patients using clinical parameters -- or search samples, drugs, compounds, genes and findings. Analyze genomic expression, copy number, microRNA and other "-omics" data in relation to patient cohorts. By using the translational capabilities within this system, we hope you discover relationships among disparate datasets across G-DOC and collaborate with other researchers. Select from the options below to begin a workflow, or manage your data and account status.
-						</p>
+						<div style="text-align:center;margin-top:35px;margin-bottom:25px">
+							<g:form autocomplete="off" controller="search" action="index">
+
+							 <input name="q" id="q" type="text" value="" size="35"></input>
+
+							<input type="submit" value="search gdoc" />
+							</g:form>
+							<span style="font-size:.8em;margin-top:8px;">(enter genes, proteins, cancer sites, studies, investigators...)</span>
+						</div>
 						<br/>
+						
 						<!-- root element for scrollable -->
 				</div>
 				
 				<table style="width:100%;">
 					<tr>
-						<td valign="top">
+						<td valign="top" style="padding:8px;width:33%">
 				<div class="dialog">
-				 <div class="content" style="padding-right:40%">
+				 <div class="content">
 				  <div class="t"></div>
 				  <!-- Your content goes here -->
 				  <h1 style="font-size:1.2em;border-bottom:2px solid white">Search</h1><br />
-					<a style="color:#fff;padding:5px" href='#'>G-DOC&nbsp;Findings</a><br /><br />
-					<a style="color:#fff;padding:5px" href='#'>Sample data</a><br />
-					<br />
-					<p style="color:#fff;padding:5px">Patient data
-				  	<ul>
-						<g:each in="${session.myStudies}">
-						<g:if test="${it.hasClinicalData()}">
-							<li>
-								&nbsp;&nbsp;&nbsp;<g:navigationLink name="${it.shortName}" id="${it.id}" controller="clinical" />
-							</li>
-						</g:if>
-						</g:each>
-					</ul>
-					<br />
-					</p>
+					<a style="color:#fff;padding:5px" href='#'>Findings</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Biospecimens</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Clinical Data</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Browse Genome</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Molecular Profiling Data</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Genes</a> <br /><br />
-					<a style="color:#fff;padding:5px" href='#'>Compounds</a> <br />
+					<a style="color:#fff;padding:5px" href='#'>Compounds/Drug Targets</a> <br />
 				 </div>
 				 <div class="b"><div></div></div>
 				
 				
 				</div>		
 					</td>
-					<td valign="top">
+					<td valign="top" style="padding:8px;width:33%">
 			<div class="dialog3">
-			 <div class="content" style="padding-right:40%">
+			 <div class="content">
 			  <div class="t"></div>
 			  <!-- Your content goes here -->
 			  	<h1 style="font-size:1.2em;border-bottom:2px solid white">Analyze</h1><br />
-					<a style="color:#fff;padding:5px" href='#'>Class&nbsp;Comparison</a><br />
-					<g:each in="${session.myStudies}">
-						<g:if test="${it.hasGenomicData()}">
-							<li>
-								&nbsp;&nbsp;&nbsp;<g:navigationLink name="${it.shortName}" id="${it.id}" controller="analysis" />
-							</li>
-						</g:if>
-					</g:each>
-					<br />
-					<a style="color:#fff;padding:5px" href='#'>Copy Number</a><br /><br />
-					<a style="color:#fff;padding:5px" href='#'>KM Plot</a><br />
-						<g:each in="${session.myStudies}">
-						 <g:if test="${it.hasGenomicData()}">
-							<li>
-								&nbsp;&nbsp;&nbsp;<g:navigationLink name="${it.shortName}" id="${it.id}" controller="analysis" />
-							</li>
-						</g:if>
-						</g:each>
-					<br />
-					<a style="color:#fff;padding:5px" href='#'>PCA</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Basic Stats</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Group Comparison</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Classification</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Correlations/Multi Omics</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Pathways/Networks</a><br /><br />
+					<a style="color:#fff;padding:5px" href='#'>Molecular Docking</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Gene Pattern</a><br />
 			 </div>
 			 <div class="b"><div></div></div>
 			</div>		
 				</td>
-				<td valign="top">
+				<td valign="top" style="padding:8px;width:34%">
 		<div class="dialog2">
-		 <div class="content" style="padding-right:25%">
+		 <div class="content">
 		  <div class="t"></div>
 		  <!-- Your content goes here -->
 		  	<h1 style="font-size:1.2em;border-bottom:2px solid white">My G-DOC</h1><br />
 				<g:link controller="notification" style="color:#fff;padding:5px">Notifications</g:link><br /><br />
-				<g:link name="View&nbsp;My&nbsp;Saved&nbsp;Lists" controller="userList" style="color:#fff;padding:5px">Saved Lists</g:link><br /><br />
-				<g:link name="View&nbsp;My&nbsp;Saved&nbsp;Analysis" controller="savedAnalysis" style="color:#fff;padding:5px">Saved Analysis</g:link><br /><br />
-				<g:link name="Collaboration&nbsp;Groups" controller="collaborationGroups" style="color:#fff;padding:5px">Collaboration Groups</g:link>
+				<g:link name="View My Saved Lists" controller="userList" style="color:#fff;padding:5px">Saved Lists</g:link><br /><br />
+				<g:link name="View My Saved Analysis" controller="savedAnalysis" style="color:#fff;padding:5px">Saved Analysis</g:link><br /><br />
+				<g:link name="Collaboration Groups" controller="collaborationGroups" style="color:#fff;padding:5px">Collaboration Groups</g:link>
 					<ul style="margin-left:15px"><br />
-						<li>-<g:link controller="collaborationGroups" style="color:#fff;padding:5px">Manage&nbsp;my&nbsp;groups</g:link></li><br />
-						<li>-<g:link controller="collaborationGroups" params="[requestGroupAccess:true]" style="color:#fff;padding:5px">Request&nbsp;Access</g:link></li>
+						<li>-<g:link controller="collaborationGroups" style="color:#fff;padding:5px">Manage my groups</g:link></li><br />
+						<li>-<g:link controller="collaborationGroups" params="[requestGroupAccess:true]" style="color:#fff;padding:5px">Request Access</g:link></li>
 					</ul>
-				</li>
-				<br /><br /><br /><br />
+				<br />
+				<br />
+				
 		 </div>
 		 <div class="b"><div></div></div>
 		</div>		
@@ -113,6 +133,6 @@
 					
 					</table>	
 					<br/>
-					
+					</div>
     </body>
 </html>

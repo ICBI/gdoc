@@ -6,7 +6,7 @@
  position:relative;
  margin:0px auto;
  min-width:8em;
- max-width:80%; /* based on image dimensions - not quite consistent with drip styles yet */
+ /*max-width:80%; /* based on image dimensions - not quite consistent with drip styles yet */
  color:#fff;
  z-index:1;
  margin-left:12px; /* default, width of left corner */
@@ -17,7 +17,7 @@
  position:relative;
  margin:0px auto;
  min-width:8em;
- max-width:80%; /* based on image dimensions - not quite consistent with drip styles yet */
+ /*max-width:80%; /* based on image dimensions - not quite consistent with drip styles yet */
  color:#fff;
  z-index:1;
  margin-left:12px; /* default, width of left corner */
@@ -28,7 +28,7 @@
  position:relative;
  margin:0px auto;
  min-width:8em;
- max-width:80%; /* based on image dimensions - not quite consistent with drip styles yet */
+ /*max-width:80%; /* based on image dimensions - not quite consistent with drip styles yet */
  color:#fff;
  z-index:1;
  margin-left:12px; /* default, width of left corner */
