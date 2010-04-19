@@ -25,11 +25,12 @@ class GenomeBrowserController {
 		
 		def refSeqs = []
 		def sequence = [:]
-		sequence.length = 50000
+		def chromosome = Feature.findByChromosomeAndType("1", "CHROMOSOME")
+		sequence.length = 247249719
 		sequence.name = "1"
 		sequence.seqDir = "data/seq/1"
 		sequence.seqChunkSize = 20000
-		sequence.end = 50000
+		sequence.end = 247249719
 		sequence.start = 0
 		refSeqs << sequence
 		
@@ -50,7 +51,8 @@ class GenomeBrowserController {
 		def jsonResponse = [:]
 		jsonResponse.headers = ["start","end","strand","id","name","phase"]
 		jsonResponse.featureCount = 5
-		jsonResponse.featureNCList = [ [9999,11500,1,103,"","1"], [10000,11600,1,104,"","0"], [12999,17200,1,105,"","0"], [14000,18200,1,108,"","1"], [19000,23000,1,107,"", "2"]]
+		//jsonResponse.featureNCList = [ [9999,11500,1,103,"","1"], [10000,11600,1,104,"","0"], [12999,17200,1,105,"","0"], [14000,18200,1,108,"","1"], [19000,23000,1,107,"", "2"]]
+		jsonResponse.featureNCList = buildFeatures(params.chromosome)
 		jsonResponse.key = params.dataType
 		jsonResponse.className = "patient"
 		jsonResponse.clientConfig = null
@@ -61,6 +63,17 @@ class GenomeBrowserController {
 		jsonResponse.subfeatureHeaders = []
 		jsonResponse.sublistIndex = 1
 		render jsonResponse as JSON
+	}
+	
+	private buildFeatures(chromosome) {
+		StudyContext.setStudy("INDIVDEMO")
+		def values = LocationValue.findAllByChromosome(chromosome)
+		def returnVals = []
+		println values.size
+		values.each {
+			returnVals << [it.startPosition, it.endPosition, 1, it.id, "", it.reductionAnalysis.id.toString()]
+		}
+		return returnVals.sort { it[0] }
 	}
 	
 }
