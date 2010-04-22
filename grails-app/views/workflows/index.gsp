@@ -13,11 +13,13 @@
     <body>
 				<jq:plugin name="ui"/>
 				<jq:plugin name="autocomplete"/>
+					<jq:plugin name="tooltip"/>
 				<g:javascript>
 
 
 
 				  $(document).ready(function(){
+					$('.info').tooltip({showURL: false});
 				   	$("#q").autocomplete("/gdoc/search/relevantTerms",{
 							max: 130,
 							scroll: true,
@@ -63,27 +65,117 @@
 
 							<input type="submit" value="search gdoc" />
 							</g:form>
-							<span style="font-size:.8em;margin-top:8px;">(enter genes, proteins, cancer sites, studies, investigators...)</span>
+							<span style="font-size:.8em;margin-top:8px;">(enter published findings<img class="info" title="info about finding here" src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />
+					 genes, proteins, cancer type, studies, investigators, authors ...)</span>
 						</div>
 						<br/>
 						
 						<!-- root element for scrollable -->
 				</div>
 				
-				<table style="width:100%;">
-					<tr>
+				<div style="float:left;width:45%;padding-right:5px">
+						<table border="0">
+							<tr>
+								<td colspan="2" style="height:29px;background: #00ff00 url('/gdoc/images/bgTitles.png') repeat;">
+									<p style="margin-top:4px;color:#336699">Getting Started with G-DOC</p>
+								</td>
+							</tr>
+								<tr>
+									<td valign="top">
+										<img src="${createLinkTo(dir:'images',file:'quickStart.png')}" border="0" />
+									</td>
+									<td valign="top" style="color:#336699;">
+										<p style="font-size:1.1em;text-decoration:underline;padding-top:7px">
+											<a href="#" style="color:#336699;">Quick Start</a></p>
+										<p style="font-size:.8em">Begin using GDOC in a few steps. Search by cancer types (diseases), microarrays and the all data currently available.</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<img src="${createLinkTo(dir:'images',file:'tutorialsIcon.png')}" border="0" />
+									</td>
+									<td style="color:#336699">
+										<p style="font-size:1.1em;text-decoration:underline;padding-top:0px">
+											<a href="#" style="color:#336699;">Tutorials</a></p>
+										<p style="font-size:.8em">Watch step-by-step movies of workflows that are available within the G-DOC application. </p>
+									</td>
+								</tr>
+						</table>
+				</div>
+				<div style="float:right;width:45%">
+						<table border="0">
+							<tr>
+								<td colspan="2" style="height:29px;background: #00ff00 url('/gdoc/images/bgTitles.png') repeat;">
+									<p style="margin-top:4px;color:#336699">Features</p>
+								</td>
+							</tr>
+								<tr style="color:#336699;border-bottom:1px solid #336699;" valign="top">
+									<td>
+										<p style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:25px">Search</p>
+										<img src="${createLinkTo(dir:'images',file:'searchIcon.png')}" border="0" />
+									</td>
+									<td>
+										
+											<p style="font-size:.8em;margin-top:20px">
+											<a style="color:#336699;" href='#'>Biospecimens</a><br /><br />
+											<a style="color:#336699;" href='#'>Clinical Data</a><br /><br />
+											<a style="color:#336699;" href='#'>Browse Genome</a><br /><br />
+											<a style="color:#336699;" href='#'>Compounds/Drug Targets</a> <br />
+											</p>
+									</td>
+								</tr>
+								<tr style="color:#336699;border-bottom:1px solid #336699;" valign="top">
+									<td>
+										<p style="font-size:1.1em;text-decoration:underline;padding-top:0px;padding-left:22px">Analyze</p>
+										<img src="${createLinkTo(dir:'images',file:'analysisIcon.png')}" border="0" />
+									</td>
+									<td style="padding-bottom:5px">
+											<p style="font-size:.8em;margin-top:10px">
+											<a style="color:#336699;" href='#'>Group Comparison</a><br /><br />
+											<a style="color:#336699;" href='#'>Classification</a><br /><br />
+											<a style="color:#336699;" href='#'>Correlations/Multi Omics</a><br /><br />
+											<a style="color:#336699;" href='#'>Pathways/Networks</a><br /><br />
+											<a style="color:#336699;" href='#'>Advanced Molecular Analysis (Gene Pattern)</a><br />
+											</p>
+									</td>
+								</tr>
+								<tr style="color:#336699" valign="top">
+									<td>
+										<p style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:15px">My GDOC</p>
+										
+										<img src="${createLinkTo(dir:'images',file:'myGdoc.png')}" border="0" />
+									</td>
+									<td>
+										<p style="font-size:.8em;margin-top:20px">
+<g:link controller="notification" style="color:#336699;">Notifications</g:link><br /><br />
+<g:link name="View My Saved Lists" controller="userList" style="color:#336699;">Saved Lists</g:link><br /><br />
+<g:link name="View My Saved Analysis" controller="savedAnalysis" style="color:#336699;">Saved Analysis</g:link><br /><br />
+<g:link name="Collaboration Groups" controller="collaborationGroups" style="color:#336699;x">Collaboration Groups</g:link>
+		<ul style="margin-left:15px;font-size:.8em"><br />
+			<li>-<g:link controller="collaborationGroups" style="color:#336699;">Manage my groups</g:link></li><br />
+			<li>-<g:link controller="collaborationGroups" params="[requestGroupAccess:true]" style="color:#336699;">Request Access</g:link></li>
+												</ul></p>
+									</td>
+								</tr>
+						</table>
+				</div>		
+					
+					
+					
+					
+					
+					
+					
+					<%--tr>
 						<td valign="top" style="padding:8px;width:33%">
 				<div class="dialog">
 				 <div class="content">
 				  <div class="t"></div>
 				  <!-- Your content goes here -->
 				  <h1 style="font-size:1.2em;border-bottom:2px solid white">Search</h1><br />
-					<a style="color:#fff;padding:5px" href='#'>Findings</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Biospecimens</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Clinical Data</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Browse Genome</a><br /><br />
-					<a style="color:#fff;padding:5px" href='#'>Molecular Profiling Data</a><br /><br />
-					<a style="color:#fff;padding:5px" href='#'>Genes</a> <br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Compounds/Drug Targets</a> <br />
 				 </div>
 				 <div class="b"><div></div></div>
@@ -97,13 +189,11 @@
 			  <div class="t"></div>
 			  <!-- Your content goes here -->
 			  	<h1 style="font-size:1.2em;border-bottom:2px solid white">Analyze</h1><br />
-					<a style="color:#fff;padding:5px" href='#'>Basic Stats</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Group Comparison</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Classification</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Correlations/Multi Omics</a><br /><br />
 					<a style="color:#fff;padding:5px" href='#'>Pathways/Networks</a><br /><br />
-					<a style="color:#fff;padding:5px" href='#'>Molecular Docking</a><br /><br />
-					<a style="color:#fff;padding:5px" href='#'>Gene Pattern</a><br />
+					<a style="color:#fff;padding:5px" href='#'>Advanced Molecular Analysis (with Gene Pattern)</a><br />
 			 </div>
 			 <div class="b"><div></div></div>
 			</div>		
@@ -129,9 +219,9 @@
 		 <div class="b"><div></div></div>
 		</div>		
 			</td>
-					</tr>
+					</tr--%>
 					
-					</table>	
+					
 					<br/>
 					</div>
     </body>

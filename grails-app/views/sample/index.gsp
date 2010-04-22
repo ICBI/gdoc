@@ -6,7 +6,7 @@
         <title>Search Samples</title>         
     </head>
     <body>
-			<p style="font-size:14pt">Search Sample Data</p>
+			<p style="font-size:14pt">Search Biospecimens</p>
 	
 	<div id="centerContent" class="welcome">
 			<br/>
