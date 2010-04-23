@@ -118,7 +118,7 @@
 										
 											<p style="font-size:.8em;margin-top:20px">
 											<a style="color:#336699;" href='#'>Biospecimens</a><br /><br />
-											<a style="color:#336699;" href='#'>Clinical Data</a><br /><br />
+											<g:link controller="clinical" style="color:#336699;">Clinical Data</g:link><br /><br />
 											<a style="color:#336699;" href='#'>Browse Genome</a><br /><br />
 											<a style="color:#336699;" href='#'>Compounds/Drug Targets</a> <br />
 											</p>

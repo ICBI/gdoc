@@ -1,3 +1,5 @@
+import grails.converters.*
+
 class StudyDataSourceController {
 
 	def myStudies
@@ -28,6 +30,37 @@ class StudyDataSourceController {
 			otherStudies.remove(myStudies)
 		}
 		
+	}
+	
+	def setStudy = {
+		if(params.study){
+			println "set study to $params.study"
+			def currStudy = StudyDataSource.get(params.study)
+			session.study = currStudy
+			StudyContext.setStudy(session.study.schemaName)
+			session.dataTypes = AttributeType.findAll().sort { it.longName }
+			render session.study.shortName
+		}
+		else render ""
+	}
+	
+	def findStudiesForDisease = {
+		def myStudies = []
+		def studiesJSON = []
+		
+		if(params.disease){
+			println "user interested in $params.disease, grab all studies that have data for $params.disease"
+			myStudies = session.myStudies.findAll{it.cancerSite == params.disease}
+			myStudies.each{
+				if(it.shortName!="DRUG"){
+					def studies = [:]
+					studies["studyName"] = it.shortName
+					studies["studyId"] = it.id
+					studiesJSON << studies
+				}
+			}
+		}
+		render studiesJSON as JSON 
 	}
 	
 	def show = {

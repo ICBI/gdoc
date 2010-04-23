@@ -12,8 +12,13 @@ class ClinicalController {
 			def currStudy = StudyDataSource.get(params.id)
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
+			session.dataTypes = AttributeType.findAll().sort { it.longName }
 		}
-		session.dataTypes = AttributeType.findAll().sort { it.longName }
+		def diseases = session.myStudies.collect{it.cancerSite}
+		diseases.remove("N/A")
+		def myStudies = session.myStudies
+		[diseases:diseases as Set,myStudies:myStudies]
+		
 	}
 	
 	def test = {
