@@ -86,7 +86,7 @@
 									</td>
 									<td valign="top" style="color:#336699;">
 										<p style="font-size:1.1em;text-decoration:underline;padding-top:7px">
-											<a href="#" style="color:#336699;">Quick Start</a></p>
+											<g:link controller="quickStart" style="color:#336699;">Quick Start</g:link></p>
 										<p style="font-size:.8em">Begin using GDOC in a few steps. Search by cancer types (diseases), microarrays and the all data currently available.</p>
 									</td>
 								</tr>
@@ -117,10 +117,10 @@
 									<td>
 										
 											<p style="font-size:.8em;margin-top:20px">
-											<a style="color:#336699;" href='#'>Biospecimens</a><br /><br />
+											<g:link controller="sample" style="color:#336699;">Biospecimens</g:link><br /><br />
 											<g:link controller="clinical" style="color:#336699;">Clinical Data</g:link><br /><br />
-											<a style="color:#336699;" href='#'>Browse Genome</a><br /><br />
-											<a style="color:#336699;" href='#'>Compounds/Drug Targets</a> <br />
+											<g:link controller="genomeBrowser" style="color:#336699;">Browse Genome</g:link><br /><br />
+											<g:link controller="moleculeTarget" style="color:#336699;">Compounds/Drug Targets</g:link> <br />
 											</p>
 									</td>
 								</tr>
@@ -131,7 +131,7 @@
 									</td>
 									<td style="padding-bottom:5px">
 											<p style="font-size:.8em;margin-top:10px">
-											<a style="color:#336699;" href='#'>Group Comparison</a><br /><br />
+											<g:link controller="analysis" style="color:#336699;">Group Comparison</g:link><br /><br />
 											<a style="color:#336699;" href='#'>Classification</a><br /><br />
 											<a style="color:#336699;" href='#'>Correlations/Multi Omics</a><br /><br />
 											<a style="color:#336699;" href='#'>Pathways/Networks</a><br /><br />

@@ -12,14 +12,20 @@ class AnalysisController {
 	def drugDiscoveryService
 	
     def index = {
-		session.study = StudyDataSource.get(params.id)
-		StudyContext.setStudy(session.study.schemaName)
-		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-		def patientLists = lists.findAll { item ->
-			(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
+	    if(params.id){
+			session.study = StudyDataSource.get(params.id)
+			StudyContext.setStudy(session.study.schemaName)
+			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
+			def patientLists = lists.findAll { item ->
+				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
+			}
+			session.patientLists = patientLists.sort { it.name }
+			session.files = MicroarrayFile.findAllByNameLike('%.Rda')
 		}
-		session.patientLists = patientLists.sort { it.name }
-		session.files = MicroarrayFile.findAllByNameLike('%.Rda')
+		def diseases = session.myStudies.collect{it.cancerSite}
+		diseases.remove("N/A")
+		def myStudies = session.myStudies
+		[diseases:diseases as Set,myStudies:myStudies]
 	}
 	
 	def submit = { AnalysisCommand cmd ->

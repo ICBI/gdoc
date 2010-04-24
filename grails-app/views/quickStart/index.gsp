@@ -11,7 +11,7 @@
 	<br/>
 	
 	<div id="centerContent" class="welcome">
-		quick start page
+		placeholder for quick start page....under development
 	</div>
 	
 	</body>

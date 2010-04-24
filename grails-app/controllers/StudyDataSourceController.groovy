@@ -39,6 +39,12 @@ class StudyDataSourceController {
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
 			session.dataTypes = AttributeType.findAll().sort { it.longName }
+			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
+			def patientLists = lists.findAll { item ->
+				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
+			}
+			session.patientLists = patientLists.sort { it.name }
+			session.files = MicroarrayFile.findAllByNameLike('%.Rda')
 			render session.study.shortName
 		}
 		else render ""
@@ -52,7 +58,7 @@ class StudyDataSourceController {
 			println "user interested in $params.disease, grab all studies that have data for $params.disease"
 			myStudies = session.myStudies.findAll{it.cancerSite == params.disease}
 			myStudies.each{
-				if(it.shortName!="DRUG"){
+				if(it.shortName!="DRUG"){7
 					def studies = [:]
 					studies["studyName"] = it.shortName
 					studies["studyId"] = it.id
