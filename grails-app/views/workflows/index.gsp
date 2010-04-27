@@ -131,11 +131,12 @@
 									</td>
 									<td style="padding-bottom:5px">
 											<p style="font-size:.8em;margin-top:10px">
-											<g:link controller="analysis" style="color:#336699;">Group Comparison</g:link><br /><br />
-											<a style="color:#336699;" href='#'>Classification</a><br /><br />
+											<g:link controller="analysis" style="color:#336699;">Group Comparison</g:link> / 
+											<g:link controller="km" style="color:#336699;">KM Plots</g:link><br /><br />
+											<g:link controller="pca" style="color:#336699;">Classification</g:link><br /><br />
 											<a style="color:#336699;" href='#'>Correlations/Multi Omics</a><br /><br />
-											<a style="color:#336699;" href='#'>Pathways/Networks</a><br /><br />
-											<a style="color:#336699;" href='#'>Advanced Molecular Analysis (Gene Pattern)</a><br />
+											<g:link controller="genomeBrowser" style="color:#336699;">Pathways/Networks</g:link><br /><br />
+											<g:link controller="genePattern" style="color:#336699;">Advanced Molecular Analysis (Gene Pattern)</g:link><br />
 											</p>
 									</td>
 								</tr>
@@ -150,11 +151,8 @@
 <g:link controller="notification" style="color:#336699;">Notifications</g:link><br /><br />
 <g:link name="View My Saved Lists" controller="userList" style="color:#336699;">Saved Lists</g:link><br /><br />
 <g:link name="View My Saved Analysis" controller="savedAnalysis" style="color:#336699;">Saved Analysis</g:link><br /><br />
-<g:link name="Collaboration Groups" controller="collaborationGroups" style="color:#336699;x">Collaboration Groups</g:link>
-		<ul style="margin-left:15px;font-size:.8em"><br />
-			<li>-<g:link controller="collaborationGroups" style="color:#336699;">Manage my groups</g:link></li><br />
-			<li>-<g:link controller="collaborationGroups" params="[requestGroupAccess:true]" style="color:#336699;">Request Access</g:link></li>
-												</ul></p>
+<g:link name="Collaboration Groups" controller="collaborationGroups" style="color:#336699;x">Manage my groups / Request access</g:link>
+		</p>
 									</td>
 								</tr>
 						</table>

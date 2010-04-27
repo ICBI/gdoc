@@ -12,12 +12,11 @@ class AnalysisController {
 	def drugDiscoveryService
 	
     def index = {
-	    if(params.id){
-			session.study = StudyDataSource.get(params.id)
+	    if(session.study){
 			StudyContext.setStudy(session.study.schemaName)
 			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
 			def patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
+				(item.tags.contains("patient") && item.studyNames().contains(StudyContext.getStudy()))
 			}
 			session.patientLists = patientLists.sort { it.name }
 			session.files = MicroarrayFile.findAllByNameLike('%.Rda')
@@ -32,6 +31,7 @@ class AnalysisController {
 		println "Command: " + cmd.groups
 		println "type : " + cmd.requestType
 		println analysisService
+		println "baseline group : " + cmd.baselineGroup
 		println "groups : " + cmd.groups
 		println "pvalue : " + cmd.pvalue
 		println "foldChange : " + cmd.foldChange

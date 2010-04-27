@@ -8,9 +8,7 @@ class ClinicalController {
 	def middlewareService
 	
     def index = { 
-		if(params.id) {
-			def currStudy = StudyDataSource.get(params.id)
-			session.study = currStudy
+		if(session.study) {
 			StudyContext.setStudy(session.study.schemaName)
 			session.dataTypes = AttributeType.findAll().sort { it.longName }
 		}

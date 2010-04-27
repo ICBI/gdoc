@@ -96,5 +96,5 @@
 </g:if>
 
 <g:else>
-No study currently selected.
+<p>No study currently selected.</p>
 </g:else>

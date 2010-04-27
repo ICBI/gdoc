@@ -314,8 +314,10 @@ class UserListController {
 			render "List $params.name already exists"
 			return
 		}
+		println "save list"
 		def ids = []
 		if(params.selectAll == "true") {
+			println "save all ids"
 			//if patient list, save all gdocIds straight from result
 			if(params["tags"].indexOf("patient") > -1) {
 				session.results.each {
@@ -342,6 +344,7 @@ class UserListController {
 				}
 			}
 		} else if(params['ids']){
+			println "just save selected ids"
 			params['ids'].tokenize(",").each{
 				it = it.replace('[','');
 				it = it.replace(']','');

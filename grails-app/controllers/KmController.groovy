@@ -5,7 +5,6 @@ class KmController {
 
 	def kmService 
 	def patientService
-	def endpoints
 	def savedAnalysisService
 	def annotationService
 	def analysisService
@@ -14,17 +13,16 @@ class KmController {
 	
     def index = {
 		//clinical km setup
-		if(params.id) {
-			def currStudy = StudyDataSource.get(params.id)
-			session.study = currStudy
+		def endpoints = []
+		if(session.study) {
 			StudyContext.setStudy(session.study.schemaName)
+			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
+			def patientLists = lists.findAll { item ->
+				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
+			}
+			session.patientLists = patientLists
+			session.endpoints = KmAttribute.findAll()
 		}
-		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-		def patientLists = lists.findAll { item ->
-			(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
-		}
-		endpoints = KmAttribute.findAll()
-		session.patientLists = patientLists
 		
 		//gene exp setup
 		def reporters = []
@@ -32,10 +30,9 @@ class KmController {
 			reporters = params.reporters
 			println "got these reporters: "+reporters
 		}
-		if(reporters){
-			println "returning reporters"
-		 return [reporters:reporters]
-		}
+		def diseases = session.myStudies.collect{it.cancerSite}
+		diseases.remove("N/A")
+		return [diseases:diseases as Set,reporters:reporters]
 	}
 	
 	def search = { KmCommand cmd ->

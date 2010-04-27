@@ -1,7 +1,42 @@
 <g:if test="${session.study}">
+<jq:plugin name="flydisk" />
+<g:javascript>
+$(document).ready(function() {
+
+	jQuery().flydisk({ selectedColor:"#eee",                       //BgColor of selected items(Default: white) 
+	left_disk:'left',                 //Id of left drop down list (Mandatory)
+	right_disk:'right',               //Id of right drop down list(Mandatory)
+	add_button: 'Add',                //Id of Add button            ,, 
+	remove_button: 'Remove'
+
+});  
+$('#analysisForm').submit(function() {
+	$('#right :option').attr("selected", "selected");
+});
+$('#right :option').each(function() {
+	$("#left option[value='"+ this.value +  "']").remove();
+});
+$.sortOptions('#left');
+});
+
+</g:javascript>
+
+<p>Select a baseline group and a comparison group(s) followed by the datatype and dataset</p>
+<div class="message" style="width:75%">If you have not yet created your comparison groups, or would like to add to your existing group -- 
+	you can stratify patients using a <g:link controller="clinical">clinical query</g:link> or use the <g:link controller="quickStart">quickstart</g:link> page.</div>
+
 <g:form name="analysisForm" action="submit">
 <div class="clinicalSearch">
-	<br/>
+	<br />
+	<div class="errorDetail">
+		<g:renderErrors bean="${flash.cmd?.errors}" field="baselineGroup" />
+	</div>
+	Select baseline group:
+	<g:select name="baselineGroup"
+		noSelection="${['':'Select base-line group...']}"
+		value="${flash.cmd?.baselineGroup}"
+		from="${session.patientLists}" optionKey="name" optionValue="name"	/>
+	<br/><br />
 	Select Groups:
 	<br/>
 	<table width="400px;">
@@ -54,17 +89,21 @@
 	Statistical Method:
 	<br/>
 	<g:select name="statisticalMethod" 
-			noSelection="${['':'Select One...']}"
-			from="${['T-Test: Two Sample Test', 'Wilcoxin Test: Mann-Whitney Test', 'F-Test: One Way ANOVA']}" />
+			from="${['T-Test: Two Sample Test']}"
+			value="'T-Test: Two Sample Test'" />
 	<br/>
 	<br/>
-	Multiple Comparison Adjustment:
+	<%--Multiple Comparison Adjustment:
 	<br/>
 	<g:select name="adjustment" 
 			noSelection="${['':'Select One...']}"
 			from="${['Family-Wise Error Rate(FWER): Bonferroni', 'False Discovery Rate(FDR): Benjamini-Hochberg']}"/>
 	<br/>
-	<br/>
+	<br/--%>
+	Data-Type<br />
+	<g:select name="dataSetType" 
+			from="${session.dataSetType}"/>
+	<br/><br />
 	Dataset:
 	<br/>
 	<g:select name="dataFile" 
@@ -79,5 +118,5 @@
 </g:if>
 
 <g:else>
-No study currently selected.
+<p>No study currently selected.</p>
 </g:else>

@@ -12,24 +12,19 @@ class PcaController {
 	def patientService
 	
     def index = {
-		session.study = StudyDataSource.get(params.id)
-		StudyContext.setStudy(session.study.schemaName)
-		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-		def geneLists = []
-		def patientLists = []
-		def reporterLists = []
-		lists.each { item ->
-			if((item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy())))
-				patientLists << item
-			if((item.tags.contains("reporter") && (item.schemaNames().contains(StudyContext.getStudy())) || item.schemaNames().isEmpty()))
-				reporterLists << item
-			if((item.tags.contains("gene") && item.schemaNames().contains(StudyContext.getStudy())))
-				geneLists << item
-		}
-		session.patientLists = patientLists.sort { it.name }
+		if(session.study){
+			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
+			def reporterLists = []
+			lists.each { item ->
+				if(item.tags.contains("Reporter"))
+					reporterLists << item
+			}
 		session.reporterLists = reporterLists
-		session.geneLists = geneLists
 		session.files = MicroarrayFile.findAllByNameLike('%.Rda')
+		}
+		def diseases = session.myStudies.collect{it.cancerSite}
+		diseases.remove("N/A")
+		[diseases:diseases as Set]
 	}
 	
 	def submit = { PcaCommand cmd ->

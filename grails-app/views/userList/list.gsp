@@ -84,11 +84,11 @@
 
 	<div class="body">
 		<p class="pageHeading">
-			Manage Lists 
+			Manage Lists  
 			<span style="display:none" class="ajaxController">userList</span>	
 			
 			<g:if test="${session.listFilter}">
-				<span style="font-size:12px">&nbsp;&nbsp; |time period: ${session.listFilter} day(s)|</span>
+				<span style="font-size:12px">size: ${userListInstanceList.size()}&nbsp;&nbsp; |time period: ${session.listFilter} day(s)|</span>
 			</g:if>
 			<br/>
 			<span id="message" class="message" style="display:none"></span>

@@ -26,7 +26,9 @@ class AnalysisService {
 			group1.addAll(samples)
 			println "group 1: " + samples
 			def baseline = new SampleGroup()
-			def baselineSamples = idService.samplesForListName(cmd.groups[1])
+			println "my baselineGroup is $cmd.baselineGroup"
+			def baselineSamples = idService.samplesForListName(cmd.baselineGroup)
+			//def baselineSamples = idService.samplesForListName(cmd.groups[1])
 			baselineSamples = allIds.intersect(baselineSamples)
 			println "baseline samples: $baselineSamples"
 			baseline.addAll(baselineSamples)

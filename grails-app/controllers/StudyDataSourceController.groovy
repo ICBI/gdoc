@@ -40,11 +40,24 @@ class StudyDataSourceController {
 			StudyContext.setStudy(session.study.schemaName)
 			session.dataTypes = AttributeType.findAll().sort { it.longName }
 			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def patientLists = lists.findAll { item ->
+			def patientLists = []
+			def reporterLists = []
+			def geneLists = []
+			patientLists = lists.findAll { item ->
 				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 			}
+			reporterLists = lists.findAll { item ->
+				(item.tags.contains("Reporter"))
+			}
+			geneLists = lists.findAll { item ->
+				(item.tags.contains("gene"))
+			}
 			session.patientLists = patientLists.sort { it.name }
+			session.reporterLists = reporterLists
+			session.geneLists = geneLists
+			session.endpoints = KmAttribute.findAll()
 			session.files = MicroarrayFile.findAllByNameLike('%.Rda')
+			session.dataSetType = ["Gene Expression", "Copy Number"]
 			render session.study.shortName
 		}
 		else render ""
