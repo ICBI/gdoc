@@ -5,6 +5,7 @@
 		<g:javascript library="jquery"/>
 		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
 		<g:javascript src="jquery/scrollTable/jscrolltable.js"/>
+	
 		<!-- styling -->
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'scrollable-navig.css')}"/>
 		

@@ -1,4 +1,4 @@
-
+<g:javascript library="jquery"/>
 <jq:plugin name="autocomplete"/>
 <g:javascript>
 
@@ -61,9 +61,9 @@
 	</g:form>
 	
 </div>
-<div style="float:right;">
-	<div>welcome,${session.userId}</div>
-	<div><g:link action="logout" controller="login" update="success">logout</g:link></div>
+<div style="float:right;color:#f2f2f2">
+	<div>Logged in as: ${session.userId}</div>
+	<div><g:link style="color:#f2f2f2" action="logout" controller="login" update="success">Logout</g:link></div>
 </div>
 </g:else>
 

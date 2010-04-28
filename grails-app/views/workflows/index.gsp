@@ -120,8 +120,9 @@
 											<g:link controller="sample" style="color:#336699;">Biospecimens</g:link><br /><br />
 											<g:link controller="clinical" style="color:#336699;">Clinical Data</g:link><br /><br />
 											<g:link controller="genomeBrowser" style="color:#336699;">Browse Genome</g:link><br /><br />
-											<g:link controller="moleculeTarget" style="color:#336699;">Compounds/Drug Targets</g:link> <br />
-											</p>
+											<g:link controller="moleculeTarget" style="color:#336699;">Compounds/Drug Targets</g:link> <br /><br />
+											<g:link controller="studyDataSource" style="color:#336699;">Studies</g:link> <br />
+											</p><br />
 									</td>
 								</tr>
 								<tr style="color:#336699;border-bottom:1px solid #336699;" valign="top">

@@ -13,79 +13,34 @@ $(document).ready(function()
 <div id="top-navigation-block" width="100%">
 	<ul id="gdocNavigation" class="sf-menu sf-vertical sf-js-enabled sf-shadow">
 		<li>
-			<g:navigationLink name="Home" controller="home"/>
+			<g:navigationLink name="Home" controller="workflows" />
 		</li>
 		<li>
-			<a class="sf-with-ul" href="#">Search for Data<span class="sf-sub-indicator"> »</span></a>
+			<a class="sf-with-ul" href="#">Search<span class="sf-sub-indicator"> »</span></a>
 			<ul style="display: none; visibility: hidden;">
 				<li>
-					<a class="sf-with-ul" href="${createLink(controller: 'studyDataSource')}">Studies<span class="sf-sub-indicator"> »</span></a>
-					<ul style="display: none; visibility: hidden;">
-						<g:each in="${session.myStudies}">
-							<g:if test="${it.hasClinicalData()}">
-							<li>
-								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="clinical" />
-							</li>
-							</g:if>
-						</g:each>
-					</ul>
-				</li>
-				<li>
-					<a href="#">Patients</a>
-				</li>	
-				<li>
-					<a href="#">Samples</a>
-				</li>				
-				<li>
-					<g:navigationLink name="Genes" controller="geneExpression" />
-				</li>						
+					<a href="${createLink(controller: 'sample')}">Biospecimens</a>
+					<a href="${createLink(controller: 'clinical')}">Clinical Data</a>
+					<a href="${createLink(controller: 'genomeBrowser')}">Browse Genome</a>
+					<a href="${createLink(controller: 'moleculeTarget')}">Compounds and Targets</a>
+					<a href="${createLink(controller: 'studyDataSource')}">Studies</a>
+				</li>		
 			</ul>
 		</li>
 		<li>
-			<a class="sf-with-ul" href="#">Perform Analysis<span class="sf-sub-indicator"> »</span></a>
+			<a class="sf-with-ul" href="#">Analyze<span class="sf-sub-indicator"> »</span></a>
 			<ul style="display: none; visibility: hidden;">
-				<li>
-					<a class="sf-with-ul" href="#">Class Comparison<span class="sf-sub-indicator"> »</span></a>
-					<ul style="display: none; visibility: hidden;">
-					<g:each in="${session.myStudies}">
-						<g:if test="${it.hasGenomicData()}">
-							<li>
-								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="analysis" />
-							</li>
-						</g:if>
-					</g:each>
-					</ul>
-				</li>
-				<li>
-					<a class="sf-with-ul" href="#">KM Plot<span class="sf-sub-indicator"> »</span></a>
-					<ul style="display: none; visibility: hidden;">
-						<g:each in="${session.myStudies}">
-							<li>
-								<g:navigationLink name="${it.shortName}" id="${it.id}" controller="km" />
-							</li>
-						</g:each>
-					</ul>
-				</li>
-				<li>
-					<a class="sf-with-ul" href="#">PCA<span class="sf-sub-indicator"> »</span></a>
-					<ul style="display: none; visibility: hidden;">
-						<g:each in="${session.myStudies}">
-							<g:if test="${it.hasGenomicData()}">
-								<li>
-									<g:navigationLink name="${it.shortName}" id="${it.id}" controller="pca" />
-								</li>
-							</g:if>
-						</g:each>
-					</ul>
-				</li>		
-			</ul>			
-			
-		</li>
-		<li><a href="/gdoc/userList" name="Saved Lists">Saved Lists</a></li>
+					<li>
+						<a href="${createLink(controller: 'analysis')}">Group Comparison / KM Plots</a>
+						<a href="${createLink(controller: 'pca')}">Classification</a>
+						<a href="${createLink(controller: 'genomeBrowser')}">Correlations/Multi Omics</a>
+						<a href="#">Pathways and Networks</a>
+						<a href="${createLink(controller: 'genePattern')}">Advanced Molecular Analysis</a>
+					</li>
+			</ul>
+		
+		<li><g:link controller="userList">Saved Lists</g:link></li>
 		<li><g:navigationLink name="Saved Analysis" controller="savedAnalysis">Saved Analysis</g:navigationLink></li>
-		<li>
-			<g:navigationLink name="Drug Discovery" controller="moleculeTarget" action="index" />
-		</li>	
 		<li>
 			<a href="#">Help</a>
 		</li>		

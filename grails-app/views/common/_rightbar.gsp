@@ -1,4 +1,4 @@
-<jq:plugin name="ui"/>
+
 <br/>
 <g:if test="${session.userId}">
     <g:render template="/common/portal_rightbar"/>
