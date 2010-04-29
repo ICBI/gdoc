@@ -10,7 +10,6 @@
 						     // erase all OPTIONs from existing select menu on the page
 						    $("#study options").remove();
 							$("#study").bind('change', function() {
-								console.log('bound');
 								$("#update").removeAttr('disabled');
 							});
  							// You will rebuild new options based on the JSON response...

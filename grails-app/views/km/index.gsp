@@ -8,7 +8,7 @@
     </head>
     <body>
 				
-	<p style="font-size:14pt">Create KM Plot</p>
+	<p style="font-size:14pt">Create KM Plot / <g:link controller="analysis">Other Group Analyses</g:link></p>
 		
 		<div id="studyPicker">
 			<g:render template="/studyDataSource/studyPicker"/>

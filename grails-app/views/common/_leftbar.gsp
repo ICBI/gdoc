@@ -25,7 +25,7 @@ jQuery(document).ready(function()
 				<li>
 					<a href="${createLink(controller: 'sample')}">Biospecimens</a>
 					<a href="${createLink(controller: 'clinical')}">Clinical Data</a>
-					<a href="${createLink(controller: 'genomeBrowser')}">Browse Genome</a>
+					<a href="#">Browse Genome</a>
 					<a href="${createLink(controller: 'moleculeTarget')}">Compounds and Targets</a>
 					<a href="${createLink(controller: 'studyDataSource')}">Studies</a>
 				</li>		
@@ -37,7 +37,7 @@ jQuery(document).ready(function()
 					<li>
 						<a href="${createLink(controller: 'analysis')}">Group Comparison / KM Plots</a>
 						<a href="${createLink(controller: 'pca')}">Classification</a>
-						<a href="${createLink(controller: 'genomeBrowser')}">Correlations/Multi Omics</a>
+						<a href="#">Correlations/Multi Omics</a>
 						<a href="#">Pathways and Networks</a>
 						<a href="${createLink(controller: 'genePattern')}">Advanced Molecular Analysis</a>
 					</li>

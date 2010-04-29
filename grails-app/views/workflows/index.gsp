@@ -119,7 +119,7 @@
 											<p style="font-size:.8em;margin-top:20px">
 											<g:link controller="sample" style="color:#336699;">Biospecimens</g:link><br /><br />
 											<g:link controller="clinical" style="color:#336699;">Clinical Data</g:link><br /><br />
-											<g:link controller="genomeBrowser" style="color:#336699;">Browse Genome</g:link><br /><br />
+											<a style="color:#336699;" href='#'>Browse Genome</a><br /><br />
 											<g:link controller="moleculeTarget" style="color:#336699;">Compounds/Drug Targets</g:link> <br /><br />
 											<g:link controller="studyDataSource" style="color:#336699;">Studies</g:link> <br />
 											</p><br />

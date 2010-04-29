@@ -7,7 +7,7 @@
 </head>
 <body>
 	
-<p style="font-size:14pt">Perform Group Comparison Analysis</p>
+<p style="font-size:14pt">Perform Group Comparison Analysis / <g:link controller="km">KM Plot Analyses</g:link><span style="font-size:.7em"> (clinical and genomic)</span></p>
 
 <div id="studyPicker">
 	<g:render template="/studyDataSource/studyPicker"/>

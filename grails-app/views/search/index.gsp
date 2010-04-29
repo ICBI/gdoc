@@ -94,12 +94,25 @@
 								</g:if>
 				            <div class="desc">${result.longName}:${desc.encodeAsHTML()}</div>
 						</g:if>
-						<span style="color:green">cancer site: ${result.cancerSite},PI:${result.pocs.lastName}</span>
+						<%--span style="color:green">cancer site: ${result.cancerSite},Principal Investigators:
+							<g:set var="pis" value="${result.pis.collect{it.lastName}}" />
+							${pis}</span--%>
 					</div>
 				</g:if>
             	<g:if test="${className == 'MoleculeTarget'}">
 					<div>
-						<g:link action="show" id="${result.id}" controller="moleculeTarget">${result}</g:link> (Target Drug Molecule)
+						<g:link action="show" id="${result.id}" controller="moleculeTarget">
+							<g:if test="${result.molecule.name}">
+								<g:set var="molDesc" value="${result.molecule.name}" />
+					            	<g:if test="${molDesc.size() > 20}">
+										<g:set var="molDesc" value="${molDesc[0..20] + '...'+ ' with ' + result}" />
+									</g:if>
+					            <div class="molDesc">${molDesc.encodeAsHTML()}</div>
+							</g:if>
+							<g:else>
+								${result}
+							</g:else>
+						</g:link> (Target Drug Molecule)
 						<g:if test="${result.molecule.formula}">
 							<g:set var="desc" value="${result.molecule.formula}" />
 				            	<g:if test="${desc.size() > 120}">
@@ -110,7 +123,7 @@
 						<g:else>
 						No binding data available
 						</g:else>
-						<span style="color:green">target: 
+						<span style="color:green">targets: 
 						<g:set var="target" value="${result.protein.gene?.geneAliases?.toArray().collect{it.symbol}}" />
 							${target.join(",")}
 						</span>
@@ -118,9 +131,9 @@
 				</g:if>
 				<g:if test="${className == 'Finding'}">
 					<div>
-						<g:link action="show" id="${result.id}" controller="finding">${result}</g:link> (Finding)
-						<g:if test="${result.title}">
-							<g:set var="desc" value="${result.title}" />
+						<g:link action="show" id="${result.id}" controller="finding">${result.title}</g:link> (Finding)
+						<g:if test="${result.description}">
+							<g:set var="desc" value="${result.description}" />
 				            	<g:if test="${desc.size() > 120}">
 									<g:set var="desc" value="${desc[0..120] + '...'}" />
 								</g:if>
