@@ -28,9 +28,9 @@ class DependencyTests extends GroovyTestCase {
 		
 	}
 	
-	void testGpDemo() { 
+/*	void testGpDemo() { 
 		selenium.open "https://democomp.gdoc.georgetown.edu/gp" 
 		assertTrue selenium.isTextPresent("Sign-in to GenePattern")
 		
-	}
+	}*/
 }
