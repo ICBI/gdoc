@@ -29,6 +29,7 @@ class ClinicalController {
 		if(!params.fromAnalysis){
 			def errors = validateQuery(params, session.dataTypes)
 			println "Clinical Validation: " + errors
+			println "Params: " + params
 			if(errors && (errors != [:])) {
 				flash['errors'] = errors
 				flash['params'] = params

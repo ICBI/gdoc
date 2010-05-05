@@ -34,11 +34,14 @@
 			});
 		
 		function reload(){
-			$("#searchDiv").load('/gdoc/${controllerName}/_studyForm.gsp').fadeIn("slow");
+			$("#searchDiv").load('/gdoc/${controllerName}/_studyForm.gsp',{limit: 25}, function(){
+				bindBehaviour();
+				});
 			$("#changeStudy").css("display","block");
 			$("#studyPageSpinner").css("visibility","hidden");
 		}
 		
+	
 		function showStudyChange(){
 			$("#studyFieldset").css("display","block");
 		}

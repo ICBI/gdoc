@@ -18,6 +18,12 @@ class ClinicalService {
     boolean transactional = true
 	
 	def queryByCriteria(criteria, biospecimenIds) {
+		println "querying by criteria"
+		def patientIds = getPatientIdsForCriteria(criteria, biospecimenIds)
+		return getPatientsForIds(patientIds)
+	}
+	
+	def getPatientIdsForCriteria(criteria, biospecimenIds){
 		def engine = new SimpleTemplateEngine()
 		def queryTemplate = engine.createTemplate(queryString)
 		def rangeQueryTemplate = engine.createTemplate(rangeQueryString)
@@ -63,7 +69,7 @@ class ClinicalService {
 		if(bioPatientIds && bioPatientIds.size() > 0) {
 			patientIds = patientIds.intersect(bioPatientIds)
 		}
-		return getPatientsForIds(patientIds)
+		return patientIds
 	}
 	
 	def getPatientIdsForBiospecimenIds(biospecimenIds) { 
@@ -196,4 +202,5 @@ class ClinicalService {
 		def results = middlewareService.sparqlQuery(attributesQuery)
 		return results;
 	}
+	
 }

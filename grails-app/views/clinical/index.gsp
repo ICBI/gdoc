@@ -38,6 +38,7 @@
 					});
 				});
 			});
+			
 		</g:javascript>
 	<p style="font-size:14pt">Search Clinical Data</p>
 		

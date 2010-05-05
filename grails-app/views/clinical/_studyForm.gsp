@@ -1,4 +1,46 @@
+
+
+<script type="text/javascript">
+	var count = 0;
+
+	function bindBehaviour(){
+		$("[class*='info']").each(function(index){
+			$(this).tooltip({showURL: false});
+		});
+		$("[class*='close']").each(function(index){
+			$(this).click(function() {
+				$(this).parents('.clinicalSearch').hide('slow');
+			});
+		});
+		$("[class*='slider-range']").each(function(index){
+				var upper = parseInt(jQuery(this).data("maxval"));
+				var lower = parseInt(jQuery(this).data("minval"));
+				var lowerVal = lower;
+				var upperVal = upper;
+				var rangeInput = jQuery(this).parents('div').children('.rangeValue');
+				if(rangeInput.val()) {
+					var values = rangeInput.val().split(' - ');
+					lowerVal = values[0];
+					upperVal = values[1];
+				} else {
+					rangeInput.val(lower + ' - ' + upper);
+				}
+				jQuery(this).slider({
+					range: true,
+					min: lower,
+					max: upper,
+					values: [lowerVal, upperVal],
+					slide: function(event, ui) {
+									rangeInput.val(ui.values[0] + ' - ' + ui.values[1]);
+					}
+				});
+			
+		});
+	}
+</script>
+
 <g:if test="${session.study}">
+
 <g:form name="searchForm" action="search">
 	<g:each in="${session.dataTypes}">
 		<g:if test="${it.target == 'PATIENT'}">
@@ -65,7 +107,10 @@
 					</table>
 				</div>
 				<script type="text/javascript">
-					var item = jQuery('.slider-range').get(jQuery('.slider-range').size() - 1); 
+					count = count + 1;
+					//console.log(count);
+					var item = jQuery('.slider-range').get(count - 1); 
+					//console.log(jQuery('.slider-range').size() - 1);
 					jQuery(item).data("minval", "${it.lowerRange}");
 					jQuery(item).data("maxval", "${it.upperRange}");
 				</script>
@@ -98,3 +143,4 @@
 <g:else>
 <p>No study currently selected.</p>
 </g:else>
+
