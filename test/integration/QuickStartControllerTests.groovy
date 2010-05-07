@@ -23,18 +23,18 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 
 	void testQueryForRelapse() {
 		def currStudy = StudyDataSource.findByShortName("CLARKE-LIU")
-		def currStudy2 = StudyDataSource.findByShortName("CRC_PILOT")
+	//	def currStudy2 = StudyDataSource.findByShortName("CRC_PILOT")
 		def currStudy3 = StudyDataSource.findByShortName("LOI")
-		def currStudy4 = StudyDataSource.findByShortName("FCR_DEMO")
+	//	def currStudy4 = StudyDataSource.findByShortName("FCR_DEMO")
 		//StudyContext.setStudy("EDIN")
 		//session.study = currStudy
 		session.myStudies = []
 		session.myStudies << currStudy
-		session.myStudies << currStudy2
+	//session.myStudies << currStudy2
 		session.myStudies << currStudy3
-		session.myStudies << currStudy4
+	//	session.myStudies << currStudy4
 		//session.dataTypes = AttributeType.findAll().sort { it.longName }
-		params = ['outcome':'Relapse','diseases':['BREAST','COLON']]
+		params = ['outcome':'Relapse','diseases':['BREAST']]
 		QuickStartController controller = new QuickStartController()
 		controller.clinicalService = clinicalService
 		def results = controller.quickSearch(params);

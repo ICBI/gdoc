@@ -41,7 +41,7 @@ class QuickStartController {
 				//semantically resolve criteria purposes across studies
 				def outcomeCriteria = []
 				def outcomeType
-				outcomeCriteria = SemanticHelper.resolveAttributeForStudy(params.outcome,study.shortName)
+				outcomeCriteria = SemanticHelper.resolveAttributesForStudy(params,study.shortName)
 				if(outcomeCriteria){
 					//create my 2 groups of outcome
 					def patientsLess5 = []
@@ -57,9 +57,11 @@ class QuickStartController {
 					
 				    //get lessThanPatients
 					patientsLess5 = quickSearchForPatients(criteriaL5)
+					println "patients with Less in $patientsLess5"
 					
 					//get moreThanPatients
 					patientsMore5 = quickSearchForPatients(criteriaM5)
+					println "patients with more in $patientsMore5"
 					
 					//organize results
 					result["study"] = study.shortName	

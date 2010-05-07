@@ -53,7 +53,12 @@ class ClinicalService {
 			temp.schema = StudyContext.getStudy()
 			if(temp.value instanceof java.util.Map) {
 				selects << rangeQueryTemplate.make(temp)
-			} else {
+			} 
+			else if(temp.value instanceof java.util.ArrayList) {
+				//println "its an array create an or string and add to select statements"
+				selects << createORQueryString(temp.value)
+			} 
+			else {
 				selects << queryTemplate.make(temp)
 			}
 			
@@ -70,6 +75,34 @@ class ClinicalService {
 			patientIds = patientIds.intersect(bioPatientIds)
 		}
 		return patientIds
+	}
+	
+	def createORQueryString(attributes){
+		def schema = StudyContext.getStudy()
+		def selectStmnt = '(select p.patient_id from ' + schema + '.patient p, common.attribute_type c, ' + schema + '.patient_attribute_value v ' +
+			 			  'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
+						  ' and ('
+		//println "iterate over array and add each mapped criteria, depending on range or regular value"
+		def addendum = []
+		def addendumString = ""
+		attributes.each{ att ->
+			att.each{ key, value ->
+				if(value instanceof java.util.Map){
+					//value.each{ mapKey, mapVal ->
+						//println "this value for $key is a map, rangeify it for $value.min , $value.max"
+						addendum << "(c.short_name = \'${key}\' and v.value BETWEEN ${value.min} and ${value.max} )"
+					//}
+				}else{
+					//println "this value for $key is not a map"
+					addendum << "(c.short_name = \'${key}\' and v.value = \'${value}\' )"
+				}
+			}
+		}
+		addendumString = addendum.join(" OR ")
+		selectStmnt += addendumString
+		selectStmnt += "))"
+		println "MY SELCT statement = $selectStmnt"
+		return selectStmnt
 	}
 	
 	def getPatientIdsForBiospecimenIds(biospecimenIds) { 

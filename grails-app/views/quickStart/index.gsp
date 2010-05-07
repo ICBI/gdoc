@@ -1,18 +1,16 @@
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="layout" content="main" />
-		</script>
-        <title>G-DOC Quick Start</title> 
-        
+        <meta name="layout" content="report" />
+        <title>G-DOC Quick Start</title>     
+				<g:render template="/common/flex_header"/>
     </head>
     <body>
-	<p style="font-size:14pt">Quick Start</p>
 	<br/>
-	
-	<div id="centerContent" class="welcome">
-		placeholder for quick start page....under development
+	<p style="font-size:14pt">G-DOC Quick Start</p>
+	<div id="centerContent"  width="700px" >
+		<br/>	
+				<g:flex component="QuickStart" width="1300px" height="560px" />
 	</div>
-	
 	</body>
-</html>
+	
+</hmtl>

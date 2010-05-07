@@ -32,6 +32,7 @@ class QueryBuilder {
 				}
 			}
 		}
+		println "criteria= $criteria"
 		return criteria
 	}
 	
