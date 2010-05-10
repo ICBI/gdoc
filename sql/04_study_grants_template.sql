@@ -65,6 +65,7 @@ GRANT SELECT ON ORIGINAL_ATTRIBUTE TO READ_${projectName};
 GRANT SELECT ON PATIENT TO READ_${projectName};
 GRANT SELECT ON PATIENTS TO READ_${projectName};
 GRANT SELECT ON PATIENT_ATTRIBUTE_VALUE TO READ_${projectName};
+GRANT SELECT ON USED_ATTRIBUTES TO READ_${projectName};
 
 GRANT INSERT ON COMMON.patient_data_source to insert_${projectName};
 
@@ -85,3 +86,5 @@ GRANT SELECT ON COMMON.DSC_SEQUENCE TO insert_${projectName};
 
 
 GRANT SELECT ON ${projectName}.PATIENT_ATTRIB_VAL_SEQUENCE TO mcgdoc;
+
+GRANT READ_${projectName} to guidoc;
