@@ -39,6 +39,7 @@ GRANT edit_${projectName} to mcgdoc;
 GRANT insert_${projectName} to mcgdoc;
 
 GRANT read_common to ${projectName};
+GRANT READ_${projectName} to guidoc;
 -- cannot do the following grants to a role:
 GRANT REFERENCES ON COMMON.PROTOCOL to ${projectName}; 
 GRANT REFERENCES ON COMMON.ATTRIBUTE_TYPE to ${projectName};

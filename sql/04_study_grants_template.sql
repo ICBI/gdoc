@@ -86,5 +86,3 @@ GRANT SELECT ON COMMON.DSC_SEQUENCE TO insert_${projectName};
 
 
 GRANT SELECT ON ${projectName}.PATIENT_ATTRIB_VAL_SEQUENCE TO mcgdoc;
-
-GRANT READ_${projectName} to guidoc;
