@@ -2,7 +2,7 @@ import grails.converters.*
 
 class QuickStartController {
 	def clinicalService
-	
+	def biospecimenService
     def index = { 
 		
 	}
@@ -28,14 +28,14 @@ class QuickStartController {
 			}
 			println "studies, $studiesToSearch and diseases = $diseases"	
 		}
-		if(params.outcome){
-			def outcome = [:]
-			def outcomeType = SemanticHelper.determineOutcomeLabel(params.outcome)
-			outcome["outcomeType"] = outcomeType
-			results << outcome
-		}
+		
+		def outcome = [:]
+		outcome["outcomeType"] = params.outcome
+		results << outcome
+		
 		studiesToSearch.each{ study ->
 			StudyContext.setStudy(study.schemaName)
+			session.dataTypes = AttributeType.findAll().sort { it.longName }
 			def result = [:]
 			if(params.outcome){
 				//semantically resolve criteria purposes across studies
@@ -55,18 +55,34 @@ class QuickStartController {
 					def criteriaM5 = [:]
 					outcomeCriteria[1].each() { key, value -> criteriaM5[key]=value };
 					
+					def biospecimenIds
+					if(session.dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
+						def biospecimenCriteria = [:]
+						outcomeCriteria[2].each() { key, value -> biospecimenCriteria[key]=value };
+						println "bc crit: $biospecimenCriteria"
+						if(biospecimenCriteria) {
+							println "now $biospecimenCriteria"
+							biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
+							println "GOT IDS ${biospecimenIds}"
+						}
+					}
+					
 				    //get lessThanPatients
-					patientsLess5 = quickSearchForPatients(criteriaL5)
+					patientsLess5 = quickSearchForPatients(criteriaL5,biospecimenIds)
 					println "patients with Less in $patientsLess5"
 					
 					//get moreThanPatients
-					patientsMore5 = quickSearchForPatients(criteriaM5)
+					patientsMore5 = quickSearchForPatients(criteriaM5,biospecimenIds)
 					println "patients with more in $patientsMore5"
 					
+					
 					//organize results
+					def outcomeLabels = SemanticHelper.determineOutcomeLabel(params.outcome,study.shortName)
 					result["study"] = study.shortName	
 					result["patients_lessThan"] = patientsLess5.size().toString()
+					result["patients_lessThanLabel"] = patientsLess5.size().toString() + ":" + outcomeLabels[0]
 					result["patients_moreThan"] = patientsMore5.size().toString()
+					result["patients_moreThanLabel"] = patientsMore5.size().toString() + ":" + outcomeLabels[1]
 					results << result
 				}else {
 					println "no semantic match of $params.outcome for $study.shortName"
@@ -77,17 +93,9 @@ class QuickStartController {
 		render results as JSON
 	}
 	
-	def quickSearchForPatients(criteria){
-		def biospecimenIds
+	def quickSearchForPatients(criteria,biospecimenIds){
 		def patients = []
-		/**def criteria = QueryBuilder.build(params, "clinical_", session.dataTypes)
-		if(session.dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
-			def biospecimenCriteria = QueryBuilder.build(params, "biospecimen_", session.dataTypes)
-			if(biospecimenCriteria && biospecimenCriteria.size() > 0) {
-				biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
-				println "GOT IDS ${biospecimenIds.size()}"
-			}
-		}**/
+		
 		println "quick search criteria is $criteria"
 		patients = clinicalService.getPatientIdsForCriteria(criteria, biospecimenIds)
 		return patients

@@ -16,6 +16,7 @@ class BiospecimenService {
 	
 	def queryByCriteria(criteria) {
 		println "IN BIO"
+		println criteria.class
 		def engine = new SimpleTemplateEngine()
 		def queryTemplate = engine.createTemplate(queryString)
 		def rangeQueryTemplate = engine.createTemplate(rangeQueryString)
