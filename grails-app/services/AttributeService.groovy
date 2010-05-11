@@ -17,7 +17,7 @@ class AttributeService {
 		if(!attribute)
 			return
 		vocabs.each { item ->
-			if(!vocabs.find { it.term == item.term}) {
+			if(!attribute.vocabs.find { it.term == item.term}) {
 				def vocab = new AttributeVocabulary(item)
 				attribute.addToVocabs(vocab)
 				if(!vocab.save(flush: true))

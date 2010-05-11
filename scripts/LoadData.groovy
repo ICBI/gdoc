@@ -28,13 +28,13 @@ target(main: "Load data into the DB") {
 		return
 	}
 	println "Cleaning up schema...."
-	executeScript("sql/study_cleanup_template.sql", projectName, true)
+	executeScript("sql/study_cleanup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath], true)
 	println "Creating tablespace ${projectName}...."
-	executeScript("sql/01_create_tablespace_template.sql", projectName)
+	executeScript("sql/01_create_tablespace_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
 	println "Creating user ${projectName}...."
-	executeScript("sql/02_study_setup_template.sql", projectName)
+	executeScript("sql/02_study_setup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
 	println "Creating schema for project ${projectName}...."
-	executeScript("sql/03_study_schema_template.sql", projectName)
+	executeScript("sql/03_study_schema_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
 
 	def sql = groovy.sql.Sql.newInstance(CH.config.dataSource.url, projectName,
 	                     "change_me", CH.config.dataSource.driverClassName)
@@ -57,13 +57,13 @@ target(main: "Load data into the DB") {
 	println "Data loading for $projectName was successful"
 }
 
-def executeScript(script, projectName, continueError = false) {
+def executeScript(script, optionsHash, continueError = false) {
 	def dataSource =  appCtx.getBean('dataSource')
 	
 	def engine = new groovy.text.SimpleTemplateEngine() 
 	def template = engine.createTemplate(new File(script).text) 
 	
-	Writable writable = template.make([projectName: projectName])
+	Writable writable = template.make(optionsHash)
 	
 	def resource = new org.springframework.core.io.ByteArrayResource(writable.toString().getBytes())
 	org.springframework.test.jdbc.SimpleJdbcTestUtils.executeSqlScript(new org.springframework.jdbc.core.simple.SimpleJdbcTemplate(dataSource), resource, continueError)
