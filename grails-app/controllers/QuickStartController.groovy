@@ -2,103 +2,56 @@ import grails.converters.*
 
 class QuickStartController {
 	def clinicalService
+	def quickStartService
 	def biospecimenService
     def index = { 
 		
 	}
 	
 	def quickSearch = {
-		println params
-		def diseases = []
-		def studiesToSearch = []
+		println params	
 		def results = []
-
-		if(params.diseases && session.myStudies){
-			if(params.diseases.metaClass.respondsTo(params.diseases,"max")){
-				diseases = params.diseases as List
-				studiesToSearch = session.myStudies.findAll{ 
-					diseases.contains(it.cancerSite)
+		
+		//OUTCOME based
+  		if(params.outcome){
+			println "search by outcome"
+			def diseases = []
+			def studiesToSearch = []
+			def outcome = [:]
+			
+			//find studies for diseases
+			if(params.diseases && session.myStudies){
+				if(params.diseases.metaClass.respondsTo(params.diseases,"max")){
+					diseases = params.diseases as List
+					studiesToSearch = session.myStudies.findAll{diseases.contains(it.cancerSite)}
+				}else{
+					println "one disease "
+					diseases << params.diseases
+					studiesToSearch = session.myStudies.findAll{ diseases.contains(it.cancerSite)}
 				}
-			}else{
-				println "one disease "
-				diseases << params.diseases
-				studiesToSearch = session.myStudies.findAll{ 
-					diseases.contains(it.cancerSite)
+			println "studies, " + studiesToSearch.collect{it.shortName} + "  and diseases = $diseases"	
+			}
+			params.keySet().removeAll( ['action','diseases','controller','timestamp'] as Set )
+			outcome["outcomeType"] = SemanticHelper.determineOutcomeLabel(params.outcome)
+			results << outcome
+		
+			//iterate over each study and run run clinical query with 'equivalent' attributes
+			studiesToSearch.each{ study ->
+				StudyContext.setStudy(study.schemaName)
+				session.dataTypes = AttributeType.findAll().sort { it.longName }
+				//semantically resolve criteria purposes across studies
+				def result = quickStartService.queryOutcomes(params, study, session.dataTypes)
+				if(result){
+					results << result
 				}
 			}
-			println "studies, $studiesToSearch and diseases = $diseases"	
 		}
 		
-		def outcome = [:]
-		outcome["outcomeType"] = params.outcome
-		results << outcome
+		//DATA BASED
+		//code will go here
 		
-		studiesToSearch.each{ study ->
-			StudyContext.setStudy(study.schemaName)
-			session.dataTypes = AttributeType.findAll().sort { it.longName }
-			def result = [:]
-			if(params.outcome){
-				//semantically resolve criteria purposes across studies
-				def outcomeCriteria = []
-				def outcomeType
-				outcomeCriteria = SemanticHelper.resolveAttributesForStudy(params,study.shortName)
-				if(outcomeCriteria){
-					//create my 2 groups of outcome
-					def patientsLess5 = []
-					def patientsMore5 = []
-
-				    //set criteria for lessThan5
-					def criteriaL5 = [:]
-					outcomeCriteria[0].each() { key, value -> criteriaL5[key]=value };
-					
-					//set criteria for moreThan5
-					def criteriaM5 = [:]
-					outcomeCriteria[1].each() { key, value -> criteriaM5[key]=value };
-					
-					def biospecimenIds
-					if(session.dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
-						def biospecimenCriteria = [:]
-						outcomeCriteria[2].each() { key, value -> biospecimenCriteria[key]=value };
-						println "bc crit: $biospecimenCriteria"
-						if(biospecimenCriteria) {
-							println "now $biospecimenCriteria"
-							biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
-							println "GOT IDS ${biospecimenIds}"
-						}
-					}
-					
-				    //get lessThanPatients
-					patientsLess5 = quickSearchForPatients(criteriaL5,biospecimenIds)
-					println "patients with Less in $patientsLess5"
-					
-					//get moreThanPatients
-					patientsMore5 = quickSearchForPatients(criteriaM5,biospecimenIds)
-					println "patients with more in $patientsMore5"
-					
-					
-					//organize results
-					def outcomeLabels = SemanticHelper.determineOutcomeLabel(params.outcome,study.shortName)
-					result["study"] = study.shortName	
-					result["patients_lessThan"] = patientsLess5.size().toString()
-					result["patients_lessThanLabel"] = patientsLess5.size().toString() + ":" + outcomeLabels[0]
-					result["patients_moreThan"] = patientsMore5.size().toString()
-					result["patients_moreThanLabel"] = patientsMore5.size().toString() + ":" + outcomeLabels[1]
-					results << result
-				}else {
-					println "no semantic match of $params.outcome for $study.shortName"
-				}
-		   }
-		}
 		println results.flatten() as JSON
 		render results as JSON
-	}
-	
-	def quickSearchForPatients(criteria,biospecimenIds){
-		def patients = []
-		
-		println "quick search criteria is $criteria"
-		patients = clinicalService.getPatientIdsForCriteria(criteria, biospecimenIds)
-		return patients
 	}
 	
 	def setupQuickStart = {

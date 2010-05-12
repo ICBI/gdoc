@@ -1,0 +1,62 @@
+class QuickStartService {
+	def clinicalService
+	def biospecimenService
+	
+	def queryOutcomes(outcomeParams, study, dataTypes){
+		/** @TODO: refactor, along with SemanticHelper to either 
+		1)run canned query (or access view) and utilze existing clinicalService to add criteria onto precanned outcome of patientIds
+		2)JUST refactor SemanticHelper to resolve come outcomes and outcomesTimes 
+		**/
+		def outcomeCriteria = []
+		def outcomeType
+		def results = []
+		def result = [:]
+		outcomeCriteria = SemanticHelper.resolveAttributesForStudy(outcomeParams,study.shortName)
+		if(outcomeCriteria){
+			//create my 2 groups of outcome
+			def patientsLess5 = []
+			def patientsMore5 = []
+
+		    //set criteria for lessThan5
+			def criteriaL5 = [:]
+			outcomeCriteria[0].each() { key, value -> criteriaL5[key]=value };
+			
+			//set criteria for moreThan5
+			def criteriaM5 = [:]
+			outcomeCriteria[1].each() { key, value -> criteriaM5[key]=value };
+			
+			def biospecimenIds
+			if(dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
+				def biospecimenCriteria = [:]
+				outcomeCriteria[2].each() { key, value -> biospecimenCriteria[key]=value };
+				if(biospecimenCriteria) {
+					biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
+					println "GOT IDS ${biospecimenIds}"
+				}
+			}
+			
+		    //get lessThanPatients
+			patientsLess5 = clinicalService.getPatientIdsForCriteria(criteriaL5,biospecimenIds)
+			//println "patients with Less in $patientsLess5"
+			
+			//get moreThanPatients
+			patientsMore5 = clinicalService.getPatientIdsForCriteria(criteriaM5, biospecimenIds)
+			//println "patients with more in $patientsMore5"
+			
+			
+			//organize results
+			def outcomeLabels = SemanticHelper.determineStudyDataLabel(outcomeParams.outcome,study.shortName)
+			result["study"] = study.shortName	
+			result["patients_lessThan"] = patientsLess5.size().toString()
+			result["patients_lessThanLabel"] = patientsLess5.size().toString() + ":" + outcomeLabels[0]
+			result["patients_moreThan"] = patientsMore5.size().toString()
+			result["patients_moreThanLabel"] = patientsMore5.size().toString() + ":" + outcomeLabels[1]
+			//results << result
+		}else {
+			println "no semantic match of $outcomeParams.outcome for $study.shortName"
+		}
+		
+		return result
+	}
+	
+}

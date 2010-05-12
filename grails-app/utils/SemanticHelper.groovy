@@ -6,9 +6,10 @@ class SemanticHelper {
 		def resolvedCriteria2 = [:]
 		def specimenCriteria = [:]
 		def count = 0
-		//all this will be refactored to use a properties file, or a better semantic solution
-		//------------------------------
-		//println "iterate over $attributes in sem. helper"
+		/** @TODO: refactor
+		1)run canned query (or access view) and utilze existing clinicalService to add criteria onto precanned outcome of patientIds
+		2)JUST refactor SemanticHelper to resolve come outcomes and outcomesTimes 
+		**/
 		attributes.each{ attributeKey, attributeVal ->
 			println "resolve $attributeKey , $attributeVal in sem. helper"
 			if(attributeVal == 'Relapse'){
@@ -36,14 +37,28 @@ class SemanticHelper {
 							count++
 							break;
 				   case 'CRC_PILOT': 
-									lessThanAttributeRelapse << [RELAPSE:'YES']
-									resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
-									lessThanAttributeYears << [('SURGERY_TO_RELAPSE/FU'):[min:0, max:4]]
-									resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
-									moreThanAttributeYears<< [('SURGERY_TO_RELAPSE/FU'):[min:5, max:50],RELAPSE:'NO']
-									resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
-									count++
-									break;
+							lessThanAttributeRelapse << [RELAPSE:'YES']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							lessThanAttributeYears << [('SURGERY_TO_RELAPSE/FU'):[min:0, max:4]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							moreThanAttributeYears<< [('SURGERY_TO_RELAPSE/FU'):[min:5, max:50],RELAPSE:'NO']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+					case 'WANG':
+							lessThanAttributeRelapse << [RELAPSE:'YES']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears<< [RELAPSE:'NO']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+					case 'ZHOU':
+							lessThanAttributeRelapse << [RELAPSE:'YES']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears<< [RELAPSE:'NO']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
 				   default: bundledSemanticCriteria = null;
 				}
 			}else if(attributeKey == 'grade'){
@@ -56,8 +71,76 @@ class SemanticHelper {
 				   default: bundledSemanticCriteria = null;
 				}
 			}
+			else if(attributeKey == 'er'){
+				def erStatus = []
+				def erVal
+				switch (study) {
+					case 'LOI':
+						if(attributeVal == 'Positive') 
+							erVal = 'POSITIVE'
+						else erVal = 'NEGATIVE'
+					 	erStatus << [ER_STATUS_PATIENT:erVal]
+						resolvedCriteria['erStatus'] = erStatus
+						resolvedCriteria2['erStatus'] = erStatus
+						count++
+						break;
+					case 'WANG':
+						if(attributeVal == 'Positive') 
+							erVal = 'POSITIVE'
+						else erVal = 'NEGATIVE'
+						erStatus << [ER_STATUS:erVal]
+						resolvedCriteria['erStatus'] = erStatus
+						resolvedCriteria2['erStatus'] = erStatus
+						count++
+						break;
+					case 'ZHOU':
+						if(attributeVal == 'Positive') 
+							erVal = 'POSITIVE'
+						else erVal = 'NEGATIVE'
+						erStatus << [ER_STATUS:erVal]
+						resolvedCriteria['erStatus'] = erStatus
+						resolvedCriteria2['erStatus'] = erStatus
+						count++
+						break;
+				}
+			}
+			else if(attributeVal == 'Mortality'){
+				def lessThanAttributeYears = []
+				def lessThanAttributeRelapse = []
+				def moreThanAttributeYears = []
+				switch (study) {
+				   case 'CLARKE-LIU': 
+							lessThanAttributeYears << [('SURGERY_TO_DEATH/FU'):[min:0, max:4]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							lessThanAttributeRelapse << [BREASTCANCER_DEATH:'YES']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears << [('SURGERY_TO_DEATH/FU'):[min:5, max:50]]
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+				   case 'CRC_PILOT': 
+							lessThanAttributeRelapse << [VITAL_STATUS:'DEAD']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears<< [VITAL_STATUS:'ALIVE']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+					case 'FCR':
+							lessThanAttributeYears << [('SURGERY_TO_DEATH/FU__FCR'):[min:0, max:4]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							lessThanAttributeRelapse << [VITAL_STATUS:'DEAD']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears << [('SURGERY_TO_DEATH/FU__FCR'):[min:5, max:50]]
+							moreThanAttributeYears << [VITAL_STATUS:'DEAD']
+							moreThanAttributeYears << [VITAL_STATUS:'ALIVE']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+				   default: bundledSemanticCriteria = null;
+				}
+			}
 			//-----------------------------
-			if((resolvedCriteria || resolvedCriteria2) && (count == (attributes.size() - 1))){
+			if((resolvedCriteria || resolvedCriteria2) && (count == (attributes.size()))){
 				bundledSemanticCriteria << resolvedCriteria
 				bundledSemanticCriteria << resolvedCriteria2
 				bundledSemanticCriteria << specimenCriteria
@@ -67,18 +150,37 @@ class SemanticHelper {
 		return bundledSemanticCriteria
 	}
 	
-	static def determineOutcomeLabel(attribute, study){
+	static def determineStudyDataLabel(attribute, study){
 		def labels = []
-		if(attribute == 'Relapse'){
+		if(attribute == 'Mortality'){
 			switch (study) {
-			   case 'CLARKE-LIU': labels = ["Relapse free for less than 5 years", "Relapse free for more than 5 years, or no relapse"]
-			   case 'CRC_PILOT': labels = ["Relapse free for less than 5 years", "Relapse free for more than 5 years, or no relapse"]
-			   case 'LOI': labels = ["Relapse free for less than 5 years", "Relapse free for more than 5 years, or no relapse"]
-			   default: labels = ["Relapse free for less than 5 years", "Relapse free for more than 5 years, or no relapse"]
+			   case 'CLARKE-LIU': labels = ["Survival for less than 5 years", "Survival for more than 5 years"]; break;
+			   case 'CRC_PILOT': labels = ["Dead", "Alive"]; break;
+			   case 'FCR': labels = ["Survival for less than 5 years", "Survival for more than 5 years"]; break;
+			   default: labels = ["Dead", "Alive"]
 			}
 		}
-		if(attribute == 'Mortality'){
-			return "Survival"
+		if(attribute == 'Relapse'){
+			switch (study) {
+			   case 'CLARKE-LIU': labels = ["Relapse free for less than 5 years", "Relapse free for more than 5 years, or no relapse"]; break;
+			   case 'CRC_PILOT': labels = ["Relapse free for less than 5 years", "Relapse free for more than 5 years, or no relapse"]; break;
+			   case 'LOI': labels = ["Relapse free for less than 5 years", "Relapse free for more than 5 years, or no relapse"]; break;
+			   case 'WANG': labels = ["Relapse", "No Relapse"]; break;
+			   case 'ZHOU': labels = ["Relapse", "No Relapse"]; break;
+			   default: labels = ["Relapse", "No Relapse"]
+			}
+		}
+		return labels
+	}
+	
+	static def determineOutcomeLabel(attribute){
+		def labels = []
+		switch (attribute) {
+			case 'Relapse': labels = ["Relapse-free for predetermined period OR no Relapse","Relapse"]
+							break;
+			case 'Mortality': labels = ["Survival past predetermined period","No Survival"]
+							  break;
+			default: labels = ["No outcome defined", "No outcome defined"]
 		}
 		return labels
 	}
