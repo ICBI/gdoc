@@ -150,6 +150,11 @@ environments {
 			bulkIndexOnStartup = false
         }
     }
+    sandbox {
+        searchable {
+			bulkIndexOnStartup = false
+        }
+    }
 	
 	devserver {
 		searchable {

@@ -73,6 +73,17 @@ environments {
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		schemaPath = "/oracle/oracle/oradata/gdoc"
+	}
+	sandbox {
+		jmsserver = "jnp://localhost:1099"
+ 		responseQueue = "AnalysisResponseKevin"
+		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
+		tempDir = "/local/content/gdoc"
+		middlewareUrl = "http://localhost:9090/gdoc-middleware"
+		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
+		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		schemaPath = "/oracle/oracle/oradata/gdoc_sb"
 	}
 	test {
 		jmsserver = "jnp://localhost:1099"

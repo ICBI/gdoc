@@ -10,14 +10,25 @@ hibernate {
 }
 // environment specific settings
 environments {
+	
+	sandbox {
+		dataSource {
+			url = "jdbc:oracle:thin:@localhost:1521:gdoc_sb"
+			username = "mcgdoc"
+			password = "change_me"
+			logSql = false
+		}
+	}
+	
 	development {
 		dataSource {
 			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
-			username = "guidoc"
-			password = "cure4cancer"
-			logSql = true
+			username = "mcgdoc"
+			password = "change_me"
+			logSql = false
 		}
 	}
+	
 /*	development {
 		dataSource {
 			url = "jdbc:oracle:thin:@172.16.200.128:1521:XE"
@@ -44,7 +55,7 @@ environments {
 	}
 	test {
 		dataSource {
-			url = "jdbc:oracle:thin:@10.10.50.3:1521:gdoc"
+			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
 			username = "guidoc"
 			password = "cure4cancer"
 			logSql = true
