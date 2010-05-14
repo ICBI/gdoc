@@ -1,8 +1,7 @@
 TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
 CASE_OR_CONTROL	0	CASE		Case
-	1	CONTROL		Control
-	NA	UNKNOWN		Unknown
-CLUSTER_ID	?			
+CASE_OR_CONTROL	1	CONTROL		Control
+CASE_OR_CONTROL	NA	UNKNOWN		Unknown
 POSTMENOPAUSAL_STATUS	AFTER	After chemotherapy		Patient was postmenopausal after chemotherapy
 POSTMENOPAUSAL_STATUS	BEFORE	Before chemotherapy		Patient was postmenopausal before chemotherapy
 ER_STATUS	POSITIVE	Positive		Estrogen Receptor positive

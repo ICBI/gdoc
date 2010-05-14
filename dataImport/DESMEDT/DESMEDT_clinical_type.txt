@@ -1,6 +1,6 @@
 original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
 Case.control..0.case..1.control	new	CASE_OR_CONTROL	Case or Control	Case or control	OTHER					1	0	1	varchar			
-Cluster.ID	new	CLUSTER_ID	Cluster ID	Cluster ID	OTHER					1	0	1	varchar			
+Cluster.ID	new	CLUSTER_ID	Cluster ID	Cluster ID	OTHER					1	0	0	varchar			
 GGI	new	GGI	Gene expression Grade Index score	Gene expression Grade Index score	OTHER					1	0	0	number			
 age	ATTRIBUTE_TYPE_ID=147	AGE	Patient's age	Patient's current age or age at death	DEMOGRAPHICAL					1	0	0	number	years		
 Post.menopausal.status	new	POSTMENOPAUSAL_STATUS	Postmenopausal Status	Indicates whether the patient was postmenopausal before or after chemotherapy	DEMOGRAPHICAL					1	0	1	varchar			
