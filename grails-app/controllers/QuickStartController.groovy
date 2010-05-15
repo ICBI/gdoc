@@ -49,6 +49,19 @@ class QuickStartController {
 		
 		//DATA BASED
 		//code will go here
+		if(params.type){
+			println "search by data types"
+			params.keySet().removeAll( ['action','controller','timestamp'] as Set )
+			session.myStudies.each{ study ->
+				StudyContext.setStudy(study.schemaName)
+				def result = quickStartService.queryStudyData(params, study)
+				if(result){
+					results << result
+				}
+			}
+			
+		}
+		
 		
 		println results.flatten() as JSON
 		render results as JSON

@@ -6,4 +6,5 @@ class HtDesign {
 		
 	}
 	String platform
+	String arrayType
 }

@@ -2,6 +2,7 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 	def clinicalService
 	def biospecimenService
 	def quickStartService
+	def htDataService
 	def session
 	def params
 	
@@ -13,18 +14,34 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 		
 	}
 	
+
     void testQueryForCounts() {
-		StudyContext.setStudy("EDIN")
-		def patients = clinicalService.getPatientIdsForCriteria(['BREASTCANCER_DEATH':'YES', 'RELAPSE_CODE':1, 'DR':'YES'], [])
-		println patients.size()
+		def currStudy = StudyDataSource.findByShortName("CLARKE-LIU")
+		def currStudy2 = StudyDataSource.findByShortName("CRC_PILOT")
+		def currStudy3 = StudyDataSource.findByShortName("LOI")
+		def currStudy5 = StudyDataSource.findByShortName("FCR")
+		def currStudy6 = StudyDataSource.findByShortName("WANG")
+		def currStudy7 = StudyDataSource.findByShortName("ZHOU")
+		session.study = currStudy
+		session.myStudies = []
+		session.myStudies << currStudy
+	    session.myStudies << currStudy2
+		session.myStudies << currStudy3
+	   	session.myStudies << currStudy5
+		session.myStudies << currStudy6
+		session.myStudies << currStudy7
 		
-		def patients2 = []
-	 	patients2 = clinicalService.getPatientIdsForCriteria([], [])
-		println patients2.size()
+		params = ['type':'ALL','action':'quickSearch','controller':'quickStart']
+		QuickStartController controller = new QuickStartController()
+		controller.quickStartService = quickStartService
+		def results = controller.quickSearch(params);
+		println results
     }
 
-	void testQueryForRelapse() {
-		def currStudy = StudyDataSource.findByShortName("CLARKE-LIU")
+	
+
+	void testQueryForOutcomes() {
+		/**def currStudy = StudyDataSource.findByShortName("CLARKE-LIU")
 		def currStudy2 = StudyDataSource.findByShortName("CRC_PILOT")
 		def currStudy3 = StudyDataSource.findByShortName("LOI")
 		//def currStudy4 = StudyDataSource.findByShortName("FCR_DEMO")
@@ -48,7 +65,7 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 		controller.biospecimenService = biospecimenService
 		controller.quickStartService = quickStartService
 		def results = controller.quickSearch(params);
-		println results
+		println results**/
 	}
 		
 }

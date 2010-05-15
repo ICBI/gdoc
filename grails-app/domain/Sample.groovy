@@ -8,4 +8,7 @@ class Sample {
 	}
 	String name
 	String file
+	static belongsTo = Biospecimen
+	Biospecimen biospecimen
+	String designType
 }

@@ -92,5 +92,28 @@ class HtDataService {
 		jdbcTemplate.execute(insertStatement.toString())
 	}
 	
+	def getAllHTDataTypes(){
+		def htTypes = []
+		def arrayTypes = []
+		arrayTypes = HtDesign.findAll()
+		if(arrayTypes){
+			if(arrayTypes.metaClass.respondsTo(arrayTypes,"max")){
+				htTypes.addAll(arrayTypes.collect{it.arrayType} as Set)
+			}else{
+				htTypes << arrayTypes.arrayType
+			}
+		}
+		def msTypes = []
+		msTypes = MSDesign.findAll()
+		if(msTypes){
+			if(msTypes.metaClass.respondsTo(msTypes,"max")){
+				htTypes.addAll(msTypes.collect{it.msType} as Set)
+			}else{
+				htTypes << msTypes.msType
+			}
+		}
+		println htTypes
+		return htTypes
+	}
 	
 }

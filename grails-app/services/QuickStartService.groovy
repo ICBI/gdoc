@@ -1,6 +1,70 @@
 class QuickStartService {
 	def clinicalService
 	def biospecimenService
+	def htDataService
+	def jdbcTemplate 
+	
+	def queryStudyData(dataParams, study){
+		StudyContext.setStudy(study.schemaName)
+		def result = [:]
+		result["study"] = study.shortName
+		//find all patients (clnicalData)
+		def patients = []
+		patients = Patient.findAll()
+		println "total patients: " + patients.size()
+		result["clinical"] = patients.size()
+		
+		//find all array specimens
+		def types = []
+		if(dataParams.type == 'ALL'){
+			types = htDataService.getAllHTDataTypes()
+		}
+		else{
+			if(dataParams.type.metaClass.respondsTo(dataParams.type,"max")){
+				types = dataParams.type as List
+			}else{
+				types << dataParams.type
+			}
+		}
+		
+		println "find if data available for $types"
+		/**find all XYZ DATA**/
+		types.each{ type ->
+			//get specimens
+			def samples = []
+			samples = Sample.findAllByDesignType(type)
+			println "samples after "+ samples
+			//get biospecs
+			def bsWith = []
+			def pw = []
+			def sids = []
+			if(samples){
+				sids = samples.collect{it.id}
+				def sidsString = sids.toString().replace("[","")
+				sidsString = sidsString.replace("]","")
+				//get biospecsl("from Sample as s where s.id in (:p)", [p:plist])
+				def query = "select s.biospecimen_id from " + study.schemaName + ".HT_FILE_CONTENTS s where s.id in ("+sidsString+")"
+				bsWith = jdbcTemplate.queryForList(query)
+				println "biospecimens after $bsWith"
+				def bsIds = bsWith.collect { id ->
+					return id["BIOSPECIMEN_ID"]
+				}
+				println bsIds
+				def biospecimens = []
+				biospecimens = Biospecimen.getAll(bsIds)
+				//get patients
+				def patientWith = []
+				patientWith = biospecimens.collect{it.patient.id}
+				println patientWith
+				if(patientWith){
+					pw = Patient.getAll(patientWith) as Set
+					println "all patients with $type: " + pw.size() + " " + pw
+				}
+			}
+			result[type] = pw.size()
+		}
+		return result
+	}
 	
 	def queryOutcomes(outcomeParams, study, dataTypes){
 		/** @TODO: refactor, along with SemanticHelper to either 
