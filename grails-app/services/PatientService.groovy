@@ -74,7 +74,7 @@ class PatientService {
 		values.each { name, value ->
 			def type = CommonAttributeType.findByShortName(name)
 			if(!type)
-				return
+				throw new Exception("Attribute Type ${name} not found.  Unable to load data.")
 			def attValue = new AttributeValue()
 			attValue.commonType = type
 			attValue.value = value

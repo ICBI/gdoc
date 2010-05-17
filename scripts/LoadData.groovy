@@ -216,6 +216,7 @@ def loadPatientData(projectName) {
 		def patientAndData = [:]
 		patientData.eachLine { line, number ->
 			def data = line.split("\t", -1)
+			data = data.collect { it.trim() }
 			if(number != 1) {
 				def patient = [:]
 				patient.dataSourceInternalId = data[0]
