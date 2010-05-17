@@ -2,7 +2,11 @@ import grails.converters.*
 
 class GenomeBrowserController {
 
-    def index = { 
+	def index = {
+		
+	}
+	
+    def view = { 
 		def tracks = []
 		
 		def args = [:]
@@ -69,7 +73,7 @@ class GenomeBrowserController {
 		
 		patients.each {
 			def patientTrack = [:]
-			patientTrack.url = "genomeBrowser/data/{refseq}/Patient/${it.id}"
+			patientTrack.url = "data/{refseq}/Patient/${it.id}"
 			patientTrack.label = "Patient${it.id}"
 			patientTrack.type = "FeatureTrack"
 			patientTrack.key = "Patient ${it.id}"
@@ -103,12 +107,14 @@ class GenomeBrowserController {
 	}
 
 	def data = {
+		if(params.dataType != "Patient") {
+			def link = createLinkTo(dir: "" + request.forwardURI.replace("/gdoc/genomeBrowser", ""))
+			redirect(url: link)
+		}
 		println params.chromosome + " : " + params.dataType + " : " + params.id
 		def jsonResponse = [:]
 		jsonResponse.headers = ["start","end","strand","id","name","phase"]
-		//jsonResponse.featureNCList = [ [9999,11500,1,103,"","1"], [10000,11600,1,104,"","0"], [12999,17200,1,105,"","0"], [14000,18200,1,108,"","1"], [19000,23000,1,107,"", "2"]]
 		def chromosome = params.chromosome.replace("chr", "")
-		println "CHROMOSOME : ${chromosome}"
 		jsonResponse.featureNCList = buildFeatures(params.id, chromosome)
 		jsonResponse.featureCount = jsonResponse.featureNCList.size()
 		
@@ -131,6 +137,8 @@ class GenomeBrowserController {
 		def reduction = analysis.find {
 			it.biospecimen.patient.id.toString() == patientId
 		}
+		if(!reduction)
+			return []
 		def values = reduction.locationValues.findAll {
 			it.chromosome == chromosome
 		}
