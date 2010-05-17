@@ -19,6 +19,8 @@ function FeatureTrack(trackMeta, url, refSeq, browserParams) {
     this.baseUrl = (browserParams.baseUrl ? browserParams.baseUrl : "");
     //number of histogram bins per block
     this.numBins = 25;
+    //height of histogram blocks, in pixels per count
+    this.histHeight = 2;
     this.histLabel = false;
     this.padding = 5;
     this.trackPadding = browserParams.trackPadding;
@@ -40,9 +42,11 @@ FeatureTrack.prototype.loadSuccess = function(trackInfo) {
     for (var i = 0; i < trackInfo.subfeatureHeaders.length; i++) {
 	this.subFields[trackInfo.subfeatureHeaders[i]] = i;
     }
-    this.features.importExisting(trackInfo.featureNCList, trackInfo.sublistIndex);
+    this.features.importExisting(trackInfo.featureNCList,
+                                 trackInfo.sublistIndex,
+                                 trackInfo.lazyIndex,
+                                 this.baseUrl);
     this.rangeMap = trackInfo.rangeMap;
-console.log(this.rangeMap);
     this.histScale = 4 * (trackInfo.featureCount / this.refSeq.length);
     this.labelScale = 50 * (trackInfo.featureCount / this.refSeq.length);
     this.subfeatureScale = 80 * (trackInfo.featureCount / this.refSeq.length);
@@ -50,6 +54,8 @@ console.log(this.rangeMap);
     this.subfeatureClasses = trackInfo.subfeatureClasses;
     this.arrowheadClass = trackInfo.arrowheadClass;
     this.urlTemplate = trackInfo.urlTemplate;
+    this.histogram = trackInfo.histogram;
+    this.histBinBases = trackInfo.histBinBases;
 
     if (trackInfo.clientConfig) {
         var cc = trackInfo.clientConfig;
@@ -87,36 +93,71 @@ console.log(this.rangeMap);
     this.setLoaded();
 };
 
-FeatureTrack.prototype.setViewInfo = function(numBlocks, trackDiv,
-                                              labelDiv, widthPct,
-                                              widthPx, scale) {
-    Track.prototype.setViewInfo.apply(this, [numBlocks, trackDiv, labelDiv,
+FeatureTrack.prototype.setViewInfo = function(genomeView, numBlocks,
+                                              trackDiv, labelDiv,
+                                              widthPct, widthPx, scale) {
+    Track.prototype.setViewInfo.apply(this, [genomeView, numBlocks,
+                                             trackDiv, labelDiv,
                                              widthPct, widthPx, scale]);
     this.setLabel(this.key);
 };
 
-FeatureTrack.prototype.fillHist = function(block, leftBase, rightBase,
+FeatureTrack.prototype.fillHist = function(blockIndex, block,
+                                           leftBase, rightBase,
                                            stripeWidth) {
-    var hist = this.features.histogram(leftBase, rightBase, this.numBins);
-    //console.log(hist);
-    var maxBin = 0;
-    for (var bin = 0; bin < this.numBins; bin++)
-	maxBin = Math.max(maxBin, hist[bin]);
-    var binDiv;
-    for (var bin = 0; bin < this.numBins; bin++) {
-        binDiv = document.createElement("div");
-	binDiv.className = this.className + "-hist";;
-        binDiv.style.cssText =
-            "left: " + ((bin / this.numBins) * 100) + "%; "
-            + "height: " + (2 * hist[bin]) + "px;"
-	    + "bottom: " + this.trackPadding + "px;"
-            + "width: " + (((1 / this.numBins) * 100) - (100 / stripeWidth)) + "%;"
-            + (this.histCss ? this.histCss : "");
-        if (Util.is_ie6) binDiv.appendChild(document.createComment());
-        block.appendChild(binDiv);
+    var track = this;
+    var makeHistBlock = function(hist) {
+        var maxBin = 0;
+        for (var bin = 0; bin < track.numBins; bin++) {
+            if (typeof hist[bin] == 'number' && isFinite(hist[bin])) {
+                maxBin = Math.max(maxBin, hist[bin]);
+            }
+        }
+        var binDiv;
+        for (var bin = 0; bin < track.numBins; bin++) {
+            if (!(typeof hist[bin] == 'number' && isFinite(hist[bin])))
+                continue;
+            binDiv = document.createElement("div");
+	    binDiv.className = track.className + "-hist";;
+            binDiv.style.cssText =
+                "left: " + ((bin / track.numBins) * 100) + "%; "
+                + "height: " + (2 * hist[bin]) + "px;"
+                + "bottom: " + track.trackPadding + "px;"
+                + "width: " + (((1 / track.numBins) * 100) - (100 / stripeWidth)) + "%;"
+                + (track.histCss ? track.histCss : "");
+            if (Util.is_ie6) binDiv.appendChild(document.createComment());
+            block.appendChild(binDiv);
+        }
+
+        track.heightUpdate(track.histHeight * maxBin, blockIndex);
+    };
+
+    // bases in each histogram bin that we're currently rendering
+    var bpPerBin = (rightBase - leftBase) / this.numBins;
+    // number of bins in the server-supplied histogram for each current bin
+    var binCount = bpPerBin / this.histBinBases;
+    // if the server-supplied histogram fits neatly into our current histogram,
+    if ((binCount > .9)
+        &&
+        (Math.abs(binCount - Math.round(binCount)) < .0001)) {
+        // we can use the server-supplied counts
+        var firstServerBin = Math.floor(leftBase / this.histBinBases);
+        binCount = Math.round(binCount);
+        var hist = [];
+        for (var bin = 0; bin < this.numBins; bin++) {
+            hist[bin] = 0;
+            for (var serverBin = 0; serverBin < binCount; serverBin++) {
+                hist[bin] += this.histogram[firstServerBin
+                                            + (bin * binCount)
+                                            + serverBin];
+            }
+        }
+        makeHistBlock(hist);
+    } else {
+        // make our own counts
+        this.features.histogram(leftBase, rightBase,
+                                this.numBins, makeHistBlock);
     }
-    //TODO: come up with a better method for scaling than 2 px per count
-    return 2 * maxBin;
 };
 
 FeatureTrack.prototype.endZoom = function(destScale, destBlockBases) {
@@ -128,14 +169,21 @@ FeatureTrack.prototype.endZoom = function(destScale, destBlockBases) {
     this.clear();
 };
 
-FeatureTrack.prototype.fillBlock = function(block, leftBlock, rightBlock, leftBase, rightBase, scale, stripeWidth) {
+FeatureTrack.prototype.fillBlock = function(blockIndex, block,
+                                            leftBlock, rightBlock,
+                                            leftBase, rightBase,
+                                            scale, stripeWidth) {
     //console.log("scale: %d, histScale: %d", scale, this.histScale);
     if (scale < this.histScale) {
-	return this.fillHist(block, leftBase, rightBase, stripeWidth);
+	this.fillHist(blockIndex, block, leftBase, rightBase, stripeWidth);
     } else {
-	return this.fillFeatures(block, leftBlock, rightBlock,
-				 leftBase, rightBase, scale);
+	this.fillFeatures(blockIndex, block, leftBlock, rightBlock,
+                          leftBase, rightBase, scale);
     }
+};
+
+FeatureTrack.prototype.cleanupBlock = function(block) {
+    if (block && block.featureLayout) block.featureLayout.cleanup();
 };
 
 FeatureTrack.prototype.transfer = function(sourceBlock, destBlock) {
@@ -144,42 +192,40 @@ FeatureTrack.prototype.transfer = function(sourceBlock, destBlock) {
     //moved onto destBlock.
 
     if (!(sourceBlock && destBlock)) return;
-
-    var sourceSlots;
-    if (sourceBlock.startBase < destBlock.startBase)
-	sourceSlots = sourceBlock.rightSlots;
-    else
-	sourceSlots = sourceBlock.leftSlots;
-
-    if (sourceSlots === undefined) return;
+    if (!sourceBlock.featureLayout) return;
 
     var destLeft = destBlock.startBase;
     var destRight = destBlock.endBase;
     var blockWidth = destRight - destLeft;
     var sourceSlot;
 
-    for (var i = 0; i < sourceSlots.length; i++) {
-	//if the feature div in this slot is a child of sourceBlock,
-	//and if the feature overlaps destBlock,
+    var overlaps = (sourceBlock.startBase < destBlock.startBase)
+                       ? sourceBlock.featureLayout.rightOverlaps
+                       : sourceBlock.featureLayout.leftOverlaps;
+
+    for (var i = 0; i < overlaps.length; i++) {
+	//if the feature overlaps destBlock,
 	//move to destBlock & re-position
-	sourceSlot = sourceSlots[i];
-	if (sourceSlot && (sourceSlot.parentNode === sourceBlock)) {
+	sourceSlot = sourceBlock.featureNodes[overlaps[i].id];
+	if (sourceSlot && sourceSlot.feature) {
 	    if ((sourceSlot.feature[1] > destLeft)
 		&& (sourceSlot.feature[0] < destRight)) {
+                sourceBlock.removeChild(sourceSlot);
 		var featLeft = (100 * (sourceSlot.feature[0] - destLeft) / blockWidth);
 		sourceSlot.style.left = featLeft + "%";
-                sourceBlock.removeChild(sourceSlot);
 		destBlock.appendChild(sourceSlot);
+                destBlock.featureNodes[overlaps[i].id] = sourceSlot;
+                delete sourceBlock.featureNodes[overlaps[i].id];
 		if ("label" in sourceSlot) {
 		    sourceSlot.label.style.left = featLeft + "%";
 		    destBlock.appendChild(sourceSlot.label);
 		}
-	    }
-	}
+            }
+        }
     }
 };
 
-FeatureTrack.prototype.fillFeatures = function(block,
+FeatureTrack.prototype.fillFeatures = function(blockIndex, block,
                                                leftBlock, rightBlock,
                                                leftBase, rightBase,
                                                scale) {
@@ -200,11 +246,22 @@ FeatureTrack.prototype.fillFeatures = function(block,
     var phase = this.fields["phase"];
     var subfeatures = this.fields["subfeatures"];
 
-    var slots = [];
+    var layouter = new Layout(leftBase, rightBase);
+    block.featureLayout = layouter;
+    block.featureNodes = {};
+    block.style.backgroundColor = "#ddd";
 
     //are we filling right-to-left (true) or left-to-right (false)?
-    //this affects how we do layout
     var goLeft = false;
+    if (leftBlock && leftBlock.featureLayout) {
+        leftBlock.featureLayout.setRightLayout(layouter);
+        layouter.setLeftLayout(leftBlock.featureLayout);
+    }
+    if (rightBlock && rightBlock.featureLayout) {
+        rightBlock.featureLayout.setLeftLayout(layouter);
+        layouter.setRightLayout(rightBlock.featureLayout);
+        goLeft = true;
+    }
 
     //determine dimensions of labels (height, per-character width)
     if (!("nameHeight" in this)) {
@@ -249,18 +306,6 @@ FeatureTrack.prototype.fillFeatures = function(block,
         }
     }
 
-    var startSlots = new Array();
-    if (leftBlock && leftBlock.rightSlots) {
-        slots = leftBlock.rightSlots.concat();
-        block.leftSlots = startSlots;
-    } else if (rightBlock && rightBlock.leftSlots) {
-        slots = rightBlock.leftSlots.concat();
-        block.rightSlots = startSlots;
-        goLeft = true;
-    } else {
-	block.leftSlots = startSlots;
-    }
-
     var levelUnits = "px";
     var blockWidth = rightBase - leftBase;
     var maxLevel = 0;
@@ -278,8 +323,12 @@ FeatureTrack.prototype.fillFeatures = function(block,
     var basesPerLabelChar = this.nameWidth / scale;
     if (name && (scale > labelScale)) levelHeight += this.nameHeight;
 
-    var featCallback = function(feature) {
+    var featCallback = function(feature, path) {
         var level;
+        //uniqueId is a stringification of the path in the NCList where
+        //the feature lives; it's unique across the top-level NCList
+        //(the top-level NCList covers a track/chromosome combination)
+        var uniqueId = path.join(",");
         //featureStart and featureEnd indicate how far left or right
         //the feature extends in bp space, including labels
         //and arrowheads if applicable
@@ -293,52 +342,22 @@ FeatureTrack.prototype.fillFeatures = function(block,
                 featureStart -= (curTrack.minusArrowWidth / scale); break;
             }
         }
-	if (scale > labelScale)
+        if (scale > labelScale)
 	    featureEnd = Math.max(featureEnd,
 				  feature[start] + (((name && feature[name])
 						     ? feature[name].length : 0)
 						    * basesPerLabelChar));
-	for (var j = 0; j < slots.length; j++) {
-	    if (!slots[j]) continue;
-            if (feature === slots[j].feature) {
-		if (!startSlots[j]) startSlots[j] = slots[j];
-		maxLevel = Math.max(j, maxLevel);
-		return;
-	    }
-	}
-        slotLoop: for (var j = 0; j < slots.length; j++) {
-	    if (!slots[j]) {
-		level = j;
-		break;
-	    }
-	    var otherEnd = slots[j].feature[end];
-            var otherStart = slots[j].feature[start];
-            if (curTrack.arrowheadClass) {
-                switch (feature[strand]) {
-                case 1:
-                    otherEnd   += (curTrack.plusArrowWidth / scale); break;
-                case -1:
-                    otherStart -= (curTrack.minusArrowWidth / scale); break;
-                }
-            }
 
-	    if ((scale > labelScale)
-                && name
-                && feature[name]
-                && slots[j].feature[name])
-                otherEnd = Math.max(otherEnd,
-                                    slots[j].feature[start]
-                                    + (slots[j].feature[name].length
-                                       * basesPerLabelChar));
-            if (((otherEnd + basePadding) >= featureStart)
-                && ((otherStart - basePadding) <= featureEnd)) {
-		//this feature overlaps
-                continue;
-            } else {
-                level = j;
-                break;
-            }
+        //console.log("ID " + uniqueId + (layouter.hasSeen(uniqueId) ? " (seen)" : " (new)"));
+        if (layouter.hasSeen(uniqueId)) {
+            //console.log("this layouter has seen " + uniqueId);
+            return;
         }
+
+        var top = layouter.addRect(uniqueId,
+                                   featureStart,
+                                   featureEnd + basePadding,
+                                   levelHeight);
 
         if (curTrack.urlTemplate) {
             featDiv = document.createElement("a");
@@ -347,8 +366,10 @@ FeatureTrack.prototype.fillFeatures = function(block,
         } else {
             featDiv = document.createElement("div");
         }
-	featDiv.feature = feature;
-	featDiv.layoutEnd = featureEnd;
+        featDiv.feature = feature;
+        featDiv.layoutEnd = featureEnd;
+
+        block.featureNodes[uniqueId] = featDiv;
 
         switch (feature[strand]) {
         case 1:
@@ -364,22 +385,9 @@ FeatureTrack.prototype.fillFeatures = function(block,
 	if ((phase !== undefined) && (feature[phase] !== null))
 	    featDiv.className = featDiv.className + feature[phase];
 
-        if (level === undefined) {
-	    //create a new slot
-            slots.push(featDiv);
-            level = slots.length - 1;
-        } else {
-	    //div goes into an existing slot
-	    slots[level] = featDiv;
-	}
-
-        maxLevel = Math.max(level, maxLevel);
-
-	if (!startSlots[level]) startSlots[level] = featDiv;
-
         featDiv.style.cssText =
             "left: " + (100 * (feature[start] - leftBase) / blockWidth) + "%; "
-            + "top: " + (level * levelHeight) + levelUnits + ";"
+            + "top: " + top + levelUnits + ";"
             + " width: " + (100 * ((feature[end] - feature[start]) / blockWidth)) + "%;"
             + (curTrack.featureCss ? curTrack.featureCss : "");
 
@@ -418,11 +426,12 @@ FeatureTrack.prototype.fillFeatures = function(block,
             labelDiv.appendChild(document.createTextNode(feature[name]));
             labelDiv.style.cssText =
                 "left: " + (100 * (feature[start] - leftBase) / blockWidth) + "%; "
-                + "top: " + ((level * levelHeight) + glyphHeight) + levelUnits + ";";
+                + "top: " + (top + glyphHeight) + levelUnits + ";";
 	    featDiv.label = labelDiv;
 	    labelDiv.feature = feature;
             block.appendChild(labelDiv);
         }
+
         if (subfeatures
             && (scale > subfeatureScale)
             && feature[subfeatures]
@@ -437,26 +446,25 @@ FeatureTrack.prototype.fillFeatures = function(block,
         //TODO: handle IE leaks (
         //Event.observe(featDiv, "click", callback);
         block.appendChild(featDiv);
+        return;
     };
 
     var startBase = goLeft ? rightBase : leftBase;
     var endBase = goLeft ? leftBase : rightBase;
 
-    this.features.iterate(startBase, endBase, featCallback);
 
-    if (goLeft)
-	block.leftSlots = slots;
-    else
-	block.rightSlots = slots;
-
-    return ((maxLevel + 1) * levelHeight);
+    this.features.iterate(startBase, endBase, featCallback,
+                          function () {
+                              block.style.backgroundColor = "";
+                              curTrack.heightUpdate(layouter.totalHeight,
+                                                    blockIndex);
+                          });
 };
 
 FeatureTrack.prototype.handleSubfeatures = function(feature,
                                                     featDiv,
                                                     subIndices) {
     // for each subfeature index,
-console.log("in handle");
     SUBFEATURE: for (var i = 0; i < subIndices.length; i++) {
         // look through this.rangeMap for the
         // range containing this subfeature index
@@ -516,14 +524,10 @@ FeatureTrack.prototype.fetchSubfeatures = function(feature,
 };
 
 FeatureTrack.prototype.renderSubfeature = function(feature, featDiv, subfeature) {
-	console.log("in subfeature");
-	
     var featStart = feature[this.fields["start"]];
     var subStart = subfeature[this.subFields["start"]];
     var subEnd = subfeature[this.subFields["end"]];
     var featLength = feature[this.fields["end"]] - featStart;
-console.log(this.subfeatureClasses);
-console.log(subfeature[this.subFields["type"]]);
     var className = this.subfeatureClasses[subfeature[this.subFields["type"]]];
     var subDiv = document.createElement("div");
     switch (subfeature[this.subFields["strand"]]) {
@@ -546,7 +550,7 @@ console.log(subfeature[this.subFields["type"]]);
 
 /*
 
-Copyright (c) 2007-2009 The Evolutionary Software Foundation
+Copyright (c) 2007-2010 The Evolutionary Software Foundation
 
 Created by Mitchell Skinner <mitch_skinner@berkeley.edu>
 

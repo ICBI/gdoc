@@ -43,7 +43,6 @@ var Browser = function(params) {
         function() {
             //set up top nav/overview pane and main GenomeView pane
             dojo.addClass(document.body, "tundra");
-console.log(params.containerID)
             brwsr.container = dojo.byId(params.containerID);
             brwsr.container.genomeBrowser = brwsr;
             var topPane = document.createElement("div");
@@ -104,6 +103,8 @@ console.log(params.containerID)
                                          + (((newRef.start + newRef.end) * 0.4) | 0)
                                          + " .. "
                                          + (((newRef.start + newRef.end) * 0.6) | 0));
+					brwsr.view.updateTrackList();
+					brwsr.view.showVisibleBlocks(true)
                         });
 
             //hook up GenomeView
@@ -286,7 +287,8 @@ Browser.prototype.createTrackList = function(parent, params) {
  * @private
  */
 Browser.prototype.onVisibleTracksChanged = function() {
-    var trackLabels = dojo.map(this.view.trackList(),
+    this.view.updateTrackList();
+    var trackLabels = dojo.map(this.view.tracks,
                                function(track) { return track.name; });
     dojo.cookie(this.container.id + "-tracks",
                 trackLabels.join(","),
@@ -477,7 +479,7 @@ Browser.prototype.visibleRegion = function() {
  * (suitable for passing to showTracks)
  */
 Browser.prototype.visibleTracks = function() {
-    var trackLabels = dojo.map(this.view.trackList(),
+    var trackLabels = dojo.map(this.view.tracks,
                                function(track) { return track.name; });
     return trackLabels.join(",");
 };

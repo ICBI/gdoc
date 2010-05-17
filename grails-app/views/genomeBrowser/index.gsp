@@ -19,6 +19,7 @@
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'StaticTrack.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'ImageTrack.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'GenomeView.js')}" ></script>
+    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Layout.js')}" ></script>
 
     <script type="text/javascript">
     /* <![CDATA[ */

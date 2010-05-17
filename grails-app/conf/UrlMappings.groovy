@@ -1,6 +1,6 @@
 class UrlMappings {
     static mappings = {
-	  "/genomeBrowser/data/$chromosome/$dataType" {
+	  "/genomeBrowser/data/$chromosome/$dataType/$id" {
 		controller = "genomeBrowser"
 		action = "data"
 	  }

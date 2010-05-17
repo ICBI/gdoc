@@ -3,6 +3,8 @@ function Track(name, key, loaded, changeCallback) {
     this.key = key;
     this.loaded = loaded;
     this.changed = changeCallback;
+    this.height = 0;
+    this.shown = true;
     this.empty = false;
 }
 
@@ -20,8 +22,22 @@ Track.prototype.loadFail = function(error) {
     this.setLoaded();
 };
 
-Track.prototype.setViewInfo = function(numBlocks, trackDiv, labelDiv,
+Track.prototype.setViewInfo = function(heightUpdate, numBlocks,
+                                       trackDiv, labelDiv,
                                        widthPct, widthPx, scale) {
+    var track = this;
+    this.heightUpdate = function(height, blockIndex) {
+        if (!this.shown) {
+            heightUpdate(0);
+            return;
+        }
+        if (blockIndex !== undefined) track.blockHeights[blockIndex] = height;
+
+        track.height = Math.max(track.height, height);
+        if (!track.inShowRange) {
+            heightUpdate(Math.max(track.labelHeight, track.height));
+        }
+    };
     this.div = trackDiv;
     this.label = labelDiv;
     this.widthPct = widthPct;
@@ -37,6 +53,20 @@ Track.prototype.setViewInfo = function(numBlocks, trackDiv, labelDiv,
     this.sizeInit(numBlocks, widthPct);
     this.labelHTML = "";
     this.labelHeight = 0;
+};
+
+Track.prototype.hide = function() {
+    if (this.shown) {
+        this.div.style.display = "none";
+        this.shown = false;
+    }
+};
+
+Track.prototype.show = function() {
+    if (!this.shown) {
+        this.div.style.display = "block";
+        this.shown = true;
+    }
 };
 
 Track.prototype.initBlocks = function() {
@@ -78,6 +108,9 @@ Track.prototype.showRange = function(first, last, startBase, bpPerBlock, scale) 
     if ((this.labelHeight == 0) && this.label)
         this.labelHeight = this.label.offsetHeight;
 
+    this.inShowRange = true;
+    this.height = this.labelHeight;
+
     var firstAttached = (null == this.firstAttached ? last + 1 : this.firstAttached);
     var lastAttached =  (null == this.lastAttached ? first - 1 : this.lastAttached);
 
@@ -86,37 +119,37 @@ Track.prototype.showRange = function(first, last, startBase, bpPerBlock, scale) 
     //fill left, including existing blocks (to get their heights)
     for (i = lastAttached; i >= first; i--) {
         leftBase = startBase + (bpPerBlock * (i - first));
-        maxHeight = Math.max(maxHeight,
-                             this._showBlock(i, leftBase,
-                                             leftBase + bpPerBlock, scale));
+        this._showBlock(i, leftBase, leftBase + bpPerBlock, scale);
     }
     //fill right
     for (i = lastAttached + 1; i <= last; i++) {
         leftBase = startBase + (bpPerBlock * (i - first));
-        maxHeight = Math.max(maxHeight,
-                             this._showBlock(i, leftBase,
-                                             leftBase + bpPerBlock, scale));
+        this._showBlock(i, leftBase, leftBase + bpPerBlock, scale);
     }
 
     //detach left blocks
     var destBlock = this.blocks[first];
     for (i = firstAttached; i < first; i++) {
         this.transfer(this.blocks[i], destBlock);
+        this.cleanupBlock(this.blocks[i]);
         this._hideBlock(i);
     }
     //detach right blocks
     destBlock = this.blocks[last];
     for (i = lastAttached; i > last; i--) {
         this.transfer(this.blocks[i], destBlock);
+        this.cleanupBlock(this.blocks[i]);
         this._hideBlock(i);
     }
 
     this.firstAttached = first;
     this.lastAttached = last;
     this._adjustBlanks();
-
-    return Math.max(maxHeight, this.labelHeight ? this.labelHeight : 0);
+    this.inShowRange = false;
+    this.heightUpdate(this.height);
 };
+
+Track.prototype.cleanupBlock = function() {};
 
 Track.prototype._hideBlock = function(blockIndex) {
     if (this.blocks[blockIndex]) {
@@ -167,10 +200,14 @@ Track.prototype._loadingBlock = function(blockDiv) {
 };
 
 Track.prototype._showBlock = function(blockIndex, startBase, endBase, scale) {
-    if (this.blocks[blockIndex]) return this.blockHeights[blockIndex];
-    if (this.empty) return this.labelHeight;
-
-    var blockHeight;
+    if (this.blocks[blockIndex]) {
+        this.heightUpdate(this.blockHeights[blockIndex], blockIndex);
+        return;
+    }
+    if (this.empty) {
+        this.heightUpdate(this.labelHeight, blockIndex);
+        return;
+    }
 
     var blockDiv = document.createElement("div");
     blockDiv.className = "block";
@@ -179,21 +216,20 @@ Track.prototype._showBlock = function(blockIndex, startBase, endBase, scale) {
     blockDiv.startBase = startBase;
     blockDiv.endBase = endBase;
     if (this.loaded) {
-        blockHeight = this.fillBlock(blockDiv,
-                                     this.blocks[blockIndex - 1],
-                                     this.blocks[blockIndex + 1],
-                                     startBase,
-                                     endBase,
-                                     scale,
-                                     this.widthPx);
+        this.fillBlock(blockIndex,
+                       blockDiv,
+                       this.blocks[blockIndex - 1],
+                       this.blocks[blockIndex + 1],
+                       startBase,
+                       endBase,
+                       scale,
+                       this.widthPx);
     } else {
-        blockHeight = this._loadingBlock(blockDiv);
+         this._loadingBlock(blockDiv);
     }
 
     this.blocks[blockIndex] = blockDiv;
-    this.blockHeights[blockIndex] = blockHeight;
     this.div.appendChild(blockDiv);
-    return blockHeight;
 };
 
 Track.prototype.moveBlocks = function(delta) {
@@ -243,6 +279,7 @@ Track.prototype.moveBlocks = function(delta) {
     this._adjustBlanks();
 };
 
+/*
 Track.prototype.heightUpdate = function() {
     var maxHeight = 0;
     for (var i = this.firstAttached; i < this.lastAttached; i++)
@@ -250,6 +287,7 @@ Track.prototype.heightUpdate = function() {
             maxHeight = this.blockHeights[i];
     return maxHeight;
 };
+*/
 
 Track.prototype.sizeInit = function(numBlocks, widthPct) {
     var i, oldLast;

@@ -8,10 +8,13 @@
 function NCList() {
 }
 
-NCList.prototype.importExisting = function(nclist, sublistIndex) {
+NCList.prototype.importExisting = function(nclist, sublistIndex,
+                                           lazyIndex, baseURL) {
     this.topList = nclist;
     this.sublistIndex = sublistIndex;
-}
+    this.lazyIndex = lazyIndex;
+    this.baseURL = baseURL;
+};
 
 NCList.prototype.fill = function(intervals, sublistIndex) {
     //intervals: array of arrays of [start, end, ...]
@@ -24,7 +27,7 @@ NCList.prototype.fill = function(intervals, sublistIndex) {
     this.sublistIndex = sublistIndex;
     var myIntervals = intervals;//.concat();
     //sort by OL
-    myIntervals.sort(function(a, b) { 
+    myIntervals.sort(function(a, b) {
         if (a[0] != b[0])
             return a[0] - b[0];
         else
@@ -63,7 +66,7 @@ NCList.prototype.fill = function(intervals, sublistIndex) {
             }
         }
     }
-}
+};
 
 NCList.prototype.binarySearch = function(arr, item, itemIndex) {
     var low = -1;
@@ -81,29 +84,79 @@ NCList.prototype.binarySearch = function(arr, item, itemIndex) {
     //if we're iterating rightward, return the high index;
     //if leftward, the low index
     if (1 == itemIndex) return high; else return low;
-}
+};
 
-//due to javascript function-call overhead, there's some copy/paste code below,
-//for performance.  If later profiling shows that we can get away with a cleaner
-//version using function pointers then it might be better to re-arrange this.
-
-NCList.prototype.iterHelper = function(arr, from, to, fun, inc, searchIndex, testIndex) {
+NCList.prototype.iterHelper = function(arr, from, to, fun, finish,
+                                       inc, searchIndex, testIndex, path) {
     var len = arr.length;
     var i = this.binarySearch(arr, from, searchIndex);
-    while ((i < len) 
+    while ((i < len)
            && (i >= 0)
-           && ((inc * arr[i][testIndex]) < (inc * to))) {
-        fun(arr[i]);
-        if (arr[i][this.sublistIndex] !== undefined)
+           && ((inc * arr[i][testIndex]) < (inc * to)) ) {
+
+        if ("object" == typeof arr[i][this.lazyIndex]) {
+            var ncl = this;
+            // lazy node
+            if ("loading" == arr[i][this.lazyIndex].state) {
+                finish.inc();
+                arr[i][this.lazyIndex].callbacks.push(
+                    function(parentIndex) {
+                        return function(o) {
+                            ncl.iterHelper(o, from, to, fun, finish, inc,
+                                           searchIndex, testIndex,
+                                           path.concat(parentIndex));
+                            finish.dec();
+                        };
+                    }(i));
+            } else if ("lazy" == arr[i][this.lazyIndex].state) {
+                //node hasn't been loaded, start loading
+                arr[i][this.lazyIndex].state = "loading";
+                arr[i][this.lazyIndex].callbacks = [];
+                finish.inc();
+                dojo.xhrGet(
+                    {
+                        url: this.baseURL + arr[i][this.lazyIndex].path,
+                        handleAs: "json",
+                        load: function(lazyFeat, lazyObj,
+                                       sublistIndex, parentIndex) {
+                            return function(o) {
+                                lazyObj.state = "loaded";
+                                lazyFeat[sublistIndex] = o;
+                                ncl.iterHelper(o, from, to,
+                                               fun, finish, inc,
+                                               searchIndex, testIndex,
+                                               path.concat(parentIndex));
+                                for (var c = 0;
+                                     c < lazyObj.callbacks.length;
+                                     c++)
+                                     lazyObj.callbacks[c](o);
+                                finish.dec();
+                            };
+                        }(arr[i], arr[i][this.lazyIndex], this.sublistIndex, i),
+                        error: function() {
+                            finish.dec();
+                        }
+                    });
+            } else if ("loaded" == arr[i][this.lazyIndex].state) {
+                //just continue below
+            } else {
+                console.log("unknown lazy type: " + arr[i]);
+            }
+        } else {
+            fun(arr[i], path.concat(i));
+        }
+
+        if (arr[i][this.sublistIndex])
             this.iterHelper(arr[i][this.sublistIndex], from, to,
-                            fun, inc, searchIndex, testIndex);
+                            fun, finish, inc, searchIndex, testIndex,
+                            path.concat(i));
         i += inc;
     }
-}    
+};
 
-NCList.prototype.iterate = function(from, to, fun) {
-    //calls the given function for all of the intervals that overlap
-    //the given interval.
+NCList.prototype.iterate = function(from, to, fun, postFun) {
+    // calls the given function once for each of the
+    // intervals that overlap the given interval
     //if from <= to, iterates left-to-right, otherwise iterates right-to-left
 
     //inc: iterate leftward or rightward
@@ -112,66 +165,52 @@ NCList.prototype.iterate = function(from, to, fun) {
     var searchIndex = (from > to) ? 0 : 1;
     //testIndex: test on start or end
     var testIndex = (from > to) ? 1 : 0;
-    this.iterHelper(this.topList, from, to, fun, inc, searchIndex, testIndex);
-}
+    var finish = new Finisher(postFun);
+    this.iterHelper(this.topList, from, to, fun, finish,
+                    inc, searchIndex, testIndex, []);
+    finish.finish();
+};
 
-NCList.prototype.overlaps = function(from, to) {
-    //returns an array of all of the intervals that overlap
-    //the given interval.
-    //if from <= to, result is sorted left-to-right (on start),
-    //otherwise right-to-left (on end)
-
-    //inc: iterate leftward or rightward
-    var inc = (from > to) ? -1 : 1;
-    //searchIndex: search on start or end
-    var searchIndex = (from > to) ? 0 : 1;
-    //testIndex: test on start or end
-    var testIndex = (from > to) ? 1 : 0;
-    var result = [];
-    this.overlapHelper(this.topList, from, to, result,
-		       inc, searchIndex, testIndex);
-    return result;
-}
-
-NCList.prototype.overlapHelper = function(arr, from, to, result,
-					  inc, searchIndex, testIndex) {
-    var len = arr.length;
-    var i = this.binarySearch(arr, from, searchIndex);
-    while ((i < len) 
-           && (i >= 0)
-           && ((inc * arr[i][testIndex]) < (inc * to))) {
-	result.push(arr[i]);
-        if (arr[i][this.sublistIndex] !== undefined)
-            this.overlapHelper(arr[i][this.sublistIndex], from, to,
-			       result, inc, searchIndex, testIndex);
-        i += inc;
-    }
-}    
-
-NCList.prototype.histogram = function(from, to, numBins) {
-    //returns a histogram of the feature density in the given interval
+NCList.prototype.histogram = function(from, to, numBins, callback) {
+    //calls callback with a histogram of the feature density
+    //in the given interval
 
     var result = new Array(numBins);
+    var binWidth = (to - from) / numBins;
     for (var i = 0; i < numBins; i++) result[i] = 0;
-    this.histHelper(this.topList, from, to, result, numBins, (to - from) / numBins);
-    return result;
+    //this.histHelper(this.topList, from, to, result, numBins, (to - from) / numBins);
+    this.iterate(from, to,
+                 function(feat) {
+	             var firstBin =
+                         Math.max(0, ((feat[0] - from) / binWidth) | 0);
+                     var lastBin =
+                         Math.min(numBins, ((feat[1] - from) / binWidth) | 0);
+	             for (var bin = firstBin; bin <= lastBin; bin++)
+                         result[bin]++;
+                 },
+                 function() {
+                     callback(result);
+                 }
+                 );
+};
+
+function Finisher(fun) {
+    this.fun = fun;
+    this.count = 0;
 }
 
-NCList.prototype.histHelper = function(arr, from, to, result, numBins, binWidth) {
-    var len = arr.length;
-    var i = this.binarySearch(arr, from, 1);
-    var firstBin, lastBin;
-    while ((i < len) 
-           && (i >= 0)
-           && (arr[i][0] < to)) {
-	firstBin = Math.max(0, ((arr[i][0] - from) / binWidth) | 0);
-	lastBin = Math.min(numBins, ((arr[i][1] - from) / binWidth) | 0);
-	for (var bin = firstBin; bin <= lastBin; bin++) result[bin]++;
-        if (arr[i][this.sublistIndex] !== undefined)
-            this.histHelper(arr[i][this.sublistIndex], from, to, result, numBins, binWidth);
-        i++;
-    }
-}
+Finisher.prototype.inc = function() {
+    this.count++;
+};
+
+Finisher.prototype.dec = function() {
+    this.count--;
+    this.finish();
+};
+
+Finisher.prototype.finish = function() {
+    if (this.count <= 0) this.fun();
+};
 
 /*
 

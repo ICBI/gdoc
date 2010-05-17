@@ -24,42 +24,36 @@ function SequenceTrack(trackMeta, url, refSeq, browserParams) {
     this.chunks = [];
     this.chunkSize = trackMeta.args.chunkSize;
     this.baseUrl = (browserParams.baseUrl ? browserParams.baseUrl : "") + url;
-    this.shown = false;
 }
 
 SequenceTrack.prototype = new Track("");
 
 SequenceTrack.prototype.startZoom = function(destScale, destStart, destEnd) {
-    if (this.shown) {
-        this.div.style.display = "none";
-        this.shown = false;
-    }
+    this.hide();
+    this.heightUpdate(0);
 };
 
 SequenceTrack.prototype.endZoom = function(destScale, destBlockBases) {
-    if (destScale == this.browserParams.charWidth) {
-        this.div.style.display = "block";
-        this.shown = true;
-    }
+    if (destScale == this.browserParams.charWidth) this.show();
     Track.prototype.clear.apply(this);
 };
 
-SequenceTrack.prototype.setViewInfo = function(numBlocks, trackDiv,
-                                               labelDiv, widthPct,
-                                               widthPx, scale) {
-    Track.prototype.setViewInfo.apply(this, [numBlocks, trackDiv, labelDiv,
+SequenceTrack.prototype.setViewInfo = function(genomeView, numBlocks,
+                                               trackDiv, labelDiv,
+                                               widthPct, widthPx, scale) {
+    Track.prototype.setViewInfo.apply(this, [genomeView, numBlocks,
+                                             trackDiv, labelDiv,
                                              widthPct, widthPx, scale]);
     if (scale == this.browserParams.charWidth) {
-        trackDiv.style.display = "block";
-        this.shown = true;
+        this.show();
     } else {
-        trackDiv.style.display = "none";
-        this.shown = false;
+        this.hide();
     }
     this.setLabel(this.key);
 };
 
-SequenceTrack.prototype.fillBlock = function(block, leftBlock, rightBlock,
+SequenceTrack.prototype.fillBlock = function(blockIndex, block,
+                                             leftBlock, rightBlock,
                                              leftBase, rightBase,
                                              scale, stripeWidth) {
     if (this.shown) {
@@ -72,9 +66,9 @@ SequenceTrack.prototype.fillBlock = function(block, leftBlock, rightBlock,
 	                  seqNode.style.cssText = "top: 0px;";
                           block.appendChild(seqNode);
                       });
-        return this.browserParams.seqHeight;
+        this.heightUpdate(this.browserParams.seqHeight, blockIndex);
     } else {
-        return 0;
+        this.heightUpdate(0, blockIndex);
     }
 };
 
