@@ -8,7 +8,7 @@ ER.PgR	ATTRIBUTE_TYPE_ID=200	ER_STATUS	ER Status	Estrogen Receptor Status	PATHOL
 ER.PgR	ATTRIBUTE_TYPE_ID=201	PGR_STATUS	Progestrone receptor status	Progestrone receptor status	PATHOLOGY					1	0	1	varchar			
 Adj.neoadj.chemotherapy.received	new	ADJ_OR_NEOADJ_CT	Neoadjuvant Or  Adjuvant chemotherapies received	Neoadjuvant/Adjuvant chemotherapy received by patient or not	CLINICAL					1	0	1	varchar			
 grade.	ATTRIBUTE_TYPE_ID=236	TUMOR_STAGE	The extent of the spread of a malignant tumor from its site of origin.	Tumor staging is the process of defining at what point in the natural history of the malignant disease the patient is when the diagnosis is made. The organ and cell type in which the malignancy has developed defines the type of malignancy.	PATHOLOGY					1	0	1	varchar			
-Local.Therapy	new	BREAST_CONVERVING_SURGERY	Breast conserving surgery	Patient underwent Breast Conserving Surgery	CLINICAL					1	0	1	varchar			
+Local.Therapy	new	BREAST_CONSERVING_SURGERY	Breast conserving surgery	Patient underwent Breast Conserving Surgery	CLINICAL					1	0	1	varchar			
 Local.Therapy	new	RADIOTHERAPY	Radiotherapy	Patient recieved Radiotherapy	CLINICAL					1	0	1	varchar			
 Local.Therapy	new	MASTECTOMY	Mastectomy	Patient underwent Mastectomy	CLINICAL					1	0	1	varchar			
 node	ATTRIBUTE_TYPE_ID=202	NODAL_STATUS	Lymph Node Status	Lymph Node positivity for tumor cells	PATHOLOGY					1	0	1	varchar			
