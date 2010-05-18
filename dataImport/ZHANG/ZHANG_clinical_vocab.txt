@@ -1,0 +1,6 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+VITAL_STATUS	DEAD	DEAD		Patient is dead
+VITAL_STATUS	ALIVE	ALIVE		Patient was alive at last follow up
+METASTASIS_WITHIN_5YRS	YES	YES		Patient showed evidence of metastasis within 5 years
+METASTASIS_WITHIN_5YRS	NO	NO		Patient did not show evidence of metastasis within 5 years
+				
