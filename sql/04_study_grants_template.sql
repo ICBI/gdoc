@@ -67,6 +67,16 @@ GRANT SELECT ON PATIENTS TO READ_${projectName};
 GRANT SELECT ON PATIENT_ATTRIBUTE_VALUE TO READ_${projectName};
 GRANT SELECT ON USED_ATTRIBUTES TO READ_${projectName};
 
+GRANT SELECT ON location_value TO READ_${projectName};
+GRANT INSERT ON location_value TO INSERT_${projectName};
+GRANT UPDATE ON location_value TO EDIT_${projectName};
+GRANT DELETE ON location_value TO EDIT_${projectName};
+
+GRANT SELECT ON reduction_analysis TO READ_${projectName};
+GRANT INSERT ON reduction_analysis TO INSERT_${projectName};
+GRANT UPDATE ON reduction_analysis TO EDIT_${projectName};
+GRANT DELETE ON reduction_analysis TO EDIT_${projectName};
+
 GRANT INSERT ON COMMON.patient_data_source to insert_${projectName};
 
 GRANT SELECT ON COMMON.ATTRIBUTE_VOCAB_SEQUENCE TO insert_${projectName};

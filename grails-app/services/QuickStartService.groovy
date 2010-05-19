@@ -4,20 +4,58 @@ class QuickStartService {
 	def htDataService
 	def jdbcTemplate 
 	
-	def queryStudyData(dataParams, study){
+	def getDataAvailability(studies, params){
+		println "get all study availability"
+		def vocabList = [:]
+		def attList = [""]
+		def results = []
+		if(studies) {
+			//get all diseases
+			def diseases = []
+			diseases = studies.collect{it.cancerSite}
+			diseases.remove("N/A")
+			vocabList["diseases"] = diseases as Set
+			//get all datatypes
+			def allDataTypes = []
+			allDataTypes = htDataService.getAllHTDataTypes()
+			vocabList["allDataTypes"] = allDataTypes as Set
+			studies.each{ study ->
+				//println "gather atts for $study"
+				if(study.shortName != 'FCR'){
+					StudyContext.setStudy(study.schemaName)
+					if(study.content){
+						StudyContext.setStudy(study.schemaName)
+						def data = [:]
+						data['type'] = 'ALL'
+						def result = queryStudyData(data, study,allDataTypes)
+						if(result){
+							results << result
+						}
+					}
+				}
+			}
+			vocabList["dataAvailability"] = results
+		}
+		return vocabList
+	}
+	
+	def queryStudyData(dataParams, study, allDataTypes){
 		StudyContext.setStudy(study.schemaName)
 		def result = [:]
-		result["study"] = study.shortName
+		def studyName = [:]
+	
+		
 		//find all patients (clnicalData)
 		def patients = []
 		patients = Patient.findAll()
-		println "total patients: " + patients.size()
-		result["clinical"] = patients.size()
+		result['STUDY'] = study.shortName
+		println "total patients in study: " + patients.size()
+		result['CLINICAL'] = patients.size()
 		
 		//find all array specimens
 		def types = []
 		if(dataParams.type == 'ALL'){
-			types = htDataService.getAllHTDataTypes()
+			types = allDataTypes
 		}
 		else{
 			if(dataParams.type.metaClass.respondsTo(dataParams.type,"max")){
@@ -27,41 +65,67 @@ class QuickStartService {
 			}
 		}
 		
-		println "find if data available for $types"
-		/**find all XYZ DATA**/
+		println "find if data available for $types in $study"
 		types.each{ type ->
-			//get specimens
-			def samples = []
-			samples = Sample.findAllByDesignType(type)
-			println "samples after "+ samples
-			//get biospecs
-			def bsWith = []
-			def pw = []
-			def sids = []
-			if(samples){
-				sids = samples.collect{it.id}
-				def sidsString = sids.toString().replace("[","")
-				sidsString = sidsString.replace("]","")
-				//get biospecsl("from Sample as s where s.id in (:p)", [p:plist])
-				def query = "select s.biospecimen_id from " + study.schemaName + ".HT_FILE_CONTENTS s where s.id in ("+sidsString+")"
-				bsWith = jdbcTemplate.queryForList(query)
-				println "biospecimens after $bsWith"
-				def bsIds = bsWith.collect { id ->
-					return id["BIOSPECIMEN_ID"]
+			if(type != 'CLINICAL'){
+				//get specimens
+				def samples = []
+				def reductionAnalyses = []
+				samples = Sample.findAllByDesignType(type)
+				reductionAnalyses = ReductionAnalysis.findAllByDesignType(type)
+				//get biospecs
+				def pw = []
+				if(samples){
+					def bsWith = []
+					def sids = []
+					sids = samples.collect{it.id}
+					def sidsString = sids.toString().replace("[","")
+					sidsString = sidsString.replace("]","")
+					def query = "select s.biospecimen_id from " + study.schemaName + ".HT_FILE_CONTENTS s where s.id in ("+sidsString+")"
+					bsWith = jdbcTemplate.queryForList(query)
+					println "biospecimens after $bsWith"
+					def bsIds = bsWith.collect { id ->
+						return id["BIOSPECIMEN_ID"]
+					}
+					//println bsIds
+					def biospecimens = []
+					biospecimens = Biospecimen.getAll(bsIds)
+					//get patients
+					def patientWith = []
+					patientWith = biospecimens.collect{it.patient.id}
+					println patientWith
+					if(patientWith){
+						pw = Patient.getAll(patientWith) as Set
+						//println "all patients with $type: " + pw.size() + " " + pw
+					}
 				}
-				println bsIds
-				def biospecimens = []
-				biospecimens = Biospecimen.getAll(bsIds)
-				//get patients
-				def patientWith = []
-				patientWith = biospecimens.collect{it.patient.id}
-				println patientWith
-				if(patientWith){
-					pw = Patient.getAll(patientWith) as Set
-					println "all patients with $type: " + pw.size() + " " + pw
+				if(reductionAnalyses){
+					def bsWithRA = []
+					def rids = []
+					rids = reductionAnalyses.collect{it.id}
+					def ridsString = rids.toString().replace("[","")
+					ridsString = ridsString.replace("]","")
+					def rquery = "select s.biospecimen_id from " + study.schemaName + ".REDUCTION_ANALYSIS s where s.id in ("+ridsString+")"
+					bsWithRA = jdbcTemplate.queryForList(rquery)
+					println "biospecimens with RA $bsWithRA"
+					def bsRids = bsWithRA.collect { id ->
+						return id["BIOSPECIMEN_ID"]
+					}
+					//println bsRids
+					def biospecimensWithRA = []
+					biospecimensWithRA = Biospecimen.getAll(bsRids)
+					//get patients
+					def patientWithRA = []
+					patientWithRA = biospecimensWithRA.collect{it.patient.id}
+					println patientWithRA
+					if(patientWithRA){
+						pw = Patient.getAll(patientWithRA) as Set
+						//println "all patients with $type: " + pw.size() + " " + pw
+					}
 				}
+				def stats = [:]
+				result[type] = pw.size()
 			}
-			result[type] = pw.size()
 		}
 		return result
 	}

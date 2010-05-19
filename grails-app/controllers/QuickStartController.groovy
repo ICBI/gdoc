@@ -4,6 +4,7 @@ class QuickStartController {
 	def clinicalService
 	def quickStartService
 	def biospecimenService
+	def htDataService
     def index = { 
 		
 	}
@@ -45,68 +46,36 @@ class QuickStartController {
 					results << result
 				}
 			}
+			println results.flatten() as JSON
+			render results as JSON
 		}
 		
 		//DATA BASED
 		//code will go here
 		if(params.type){
 			println "search by data types"
+			def dtResults = [:]
 			params.keySet().removeAll( ['action','controller','timestamp'] as Set )
-			session.myStudies.each{ study ->
-				StudyContext.setStudy(study.schemaName)
-				def result = quickStartService.queryStudyData(params, study)
-				if(result){
-					results << result
-				}
-			}
-			
+			dtResults = quickStartService.getDataAvailability(session.myStudies, params)
+			println dtResults
+			render dtResults as JSON
 		}
 		
 		
-		println results.flatten() as JSON
+		//println results.flatten() as JSON
 		render results as JSON
 	}
 	
 	def setupQuickStart = {
 		def vocabList = [:]
 		def attList = [""]
-		def results = []
+		if(!session.dataAvailability){
 		if(session.myStudies) {
-			def diseases = []
-			diseases = session.myStudies.collect{it.cancerSite}
-			diseases.remove("N/A")
-			vocabList["diseases"] = diseases as Set
-			session.myStudies.each{ study ->
-				//println "gather atts for $study"
-				StudyContext.setStudy(study.schemaName)
-				if(study.content){
-					def dataTypes = AttributeType.findAll().sort { it.longName }
-					//println dataTypes.collect {it.shortName}
-					dataTypes.each{
-						if(it.vocabulary){
-							if(vocabList[it.shortName]){
-								def curVals = []
-								curVals = vocabList[it.shortName]
-								//println "current Values for $it.shortName : $curVals"
-								def v = []
-								v = it.vocabs.collect{it.term}
-								curVals.addAll(v)
-								//println "newest Values for $it.shortName : $curVals"
-								def newSet = curVals as Set
-								//println "final Values for $it.shortName : $newSet"
-								vocabList[it.shortName] = newSet
-							}else{
-								def v = []
-								v = it.vocabs.collect{it.term}
-								vocabList[it.shortName] = v
-							}
-						}
-					}
-				}
-			}
-			//println vocabList as JSON
-			render vocabList as JSON
+			results = quickStartService.getDataAvailability(session.myStudies, null)
+			session.dataAvailability = results
+			render session.dataAvailability as JSON
 		}
+	  }else render session.dataAvailability as JSON
 	}
 	
 }

@@ -95,6 +95,7 @@ class HtDataService {
 	def getAllHTDataTypes(){
 		def htTypes = []
 		def arrayTypes = []
+		htTypes << "CLINICAL"
 		arrayTypes = HtDesign.findAll()
 		if(arrayTypes){
 			if(arrayTypes.metaClass.respondsTo(arrayTypes,"max")){

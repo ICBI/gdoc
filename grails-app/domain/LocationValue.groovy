@@ -8,7 +8,6 @@ class LocationValue {
 	String chromosome
 	Double startPosition
 	Double endPosition
-	String type
 	Double value
 	static belongsTo = ReductionAnalysis
 	ReductionAnalysis reductionAnalysis

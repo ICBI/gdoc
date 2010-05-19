@@ -82,6 +82,23 @@ CREATE SEQUENCE ${projectName}.HT_COLUMN_LINK_SEQ
   NOORDER;
 
 
+CREATE SEQUENCE ${projectName}.location_value_SEQUENCE
+  START WITH 100
+  MAXVALUE 999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;
+
+CREATE SEQUENCE ${projectName}.reduction_analysis_SEQUENCE;
+  START WITH 100
+  MAXVALUE 999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;
+
+
 CREATE TABLE ${projectName}.MS_PEAK_EVIDENCE_LINK
 (
   MS_PEAK_EVIDENCE_LINK_ID  NUMBER(10)          NOT NULL,
@@ -370,6 +387,49 @@ NOCOMPRESS
 NOCACHE
 NOPARALLEL
 MONITORING;
+
+create table  ${projectName}.reduction_analysis 
+  (
+  id number(19,0) not null, 
+  version number(19,0), 
+  algorithm varchar2(255), 
+  algorithm_type varchar2(255),
+  biospecimen_id number(19,0) not null,
+  date_created date not null, 
+  name varchar2(255),
+  design_type varchar2(255) not null
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+create table  ${projectName}.location_value 
+  (id number(19,0) not null, 
+  version number(19,0), 
+  chromosome varchar2(255) not null,
+  start_position double precision not null,
+  end_position double precision not null, 
+  reduction_analysis_id number(19,0) not null,  
+  value double precision not null
+ )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+CREATE UNIQUE INDEX  ${projectName}.reduction_analysis_PK ON reduction_analysis
+(ID)
+LOGGING
+NOPARALLEL;
+
+CREATE UNIQUE INDEX  ${projectName}.location_value_PK ON location_value
+(ID)
+LOGGING
+NOPARALLEL;
 
 
 CREATE UNIQUE INDEX ${projectName}.SCHEMA_CONFIGURATION_PK ON ${projectName}.SCHEMA_CONFIGURATION
@@ -727,6 +787,16 @@ ALTER TABLE ${projectName}.SCHEMA_CONFIGURATION ADD (
  PRIMARY KEY
  (SCHEMA_VERSION));
 
+ALTER TABLE ${projectName}.reduction_analysis add (
+ 	CONSTRAINT reduction_analysis_pk
+	PRIMARY KEY
+	(ID)); 
+
+ALTER TABLE ${projectName}.location_value add (
+	 CONSTRAINT location_value_pk
+	PRIMARY KEY
+	(ID));
+
 ALTER TABLE ${projectName}.MS_PEAK_EVIDENCE_LINK ADD (
   CONSTRAINT MPEL_PEAK_FK 
  FOREIGN KEY (MS_PEAK_ID) 
@@ -843,6 +913,16 @@ ALTER TABLE ${projectName}.BIOSPECIMEN ADD (
   CONSTRAINT BIOSPECIMEN_PROTOCOL_FK 
  FOREIGN KEY (PROTOCOL_ID) 
  REFERENCES COMMON.PROTOCOL (PROTOCOL_ID));
+
+alter table ${projectName}.location_value add (
+	constraint location_value_reduction_analysis_link_fk 
+	foreign key (reduction_analysis_id) 
+  	references ${projectName}.reduction_analysis);
+
+alter table ${projectName}.reduction_analysis add (
+ 	constraint reduction_analysis_biospecimen_link_fk 
+	foreign key (biospecimen_id) 
+  	references ${projectName}.BIOSPECIMEN);
 
 Insert into ${projectName}.ATTRIBUTE_TIMEPOINT (ATTRIBUTE_TIMEPOINT_ID,SERIES_ID,TIMEPOINT,TAG,INSERT_USER,INSERT_DATE,INSERT_METHOD) values (0,0,0,'DEFAULT TIMEPOINT','USER',(SELECT SYSDATE FROM dual) ,'manual');
 

@@ -12,4 +12,5 @@ class ReductionAnalysis {
 	Biospecimen biospecimen
 	static hasMany = [locationValues: LocationValue]
 	Date dateCreated
+	String designType
 }

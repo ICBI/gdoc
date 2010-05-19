@@ -3,6 +3,7 @@ class WorkflowsController {
 	def savedAnalysisService
 	def userListService
 	def middlewareService
+	def quickStartService
 	
     def index = { 
 		if(!session.profileLoaded){
@@ -22,7 +23,7 @@ class WorkflowsController {
 			//get shared anaylysis and places them in session scope
 			def sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
 			session.sharedAnalysisIds = sharedAnalysisIds
-			
+			session.dataAvailability = quickStartService.getDataAvailability(session.myStudies, null)
 			
 			session.myCollaborationGroups = myCollaborationGroups
 		
