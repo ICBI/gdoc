@@ -3,11 +3,6 @@ import grails.converters.*
 class GenomeBrowserController {
 
 	def index = {
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		def myStudies = session.myStudies
-		[diseases:diseases as Set,myStudies:myStudies]
-		
 		def chromosomes = 1..22
 		def chrs = []
 		chromosomes.each {
@@ -16,6 +11,11 @@ class GenomeBrowserController {
 		chrs << "X"
 		chrs << "Y"
 		session.chromosomes = chrs
+		
+		def diseases = session.myStudies.collect{it.cancerSite}
+		diseases.remove("N/A")
+		def myStudies = session.myStudies
+		[diseases:diseases as Set,myStudies:myStudies]
 	}
 	
     def view = { 
@@ -24,14 +24,14 @@ class GenomeBrowserController {
 		
 		def args = [:]
 		args.args = ["chunkSize" : 20000]
-		args.url = "data/seq/{refseq}/"
+		args.url = "/content/data/seq/{refseq}/"
 		args.type = "SequenceTrack"
 		args.label = "DNA"
 		args.key = "DNA"
 		tracks << args
 		
 		def chr = [:]
-		chr.url = "data/tracks/{refseq}/Cytobands/trackData.json"
+		chr.url = "/content/data/tracks/{refseq}/Cytobands/trackData.json"
 		chr.type = "FeatureTrack"
 		chr.label = "Cytobands"
 		chr.key = "Cytobands"
@@ -39,7 +39,7 @@ class GenomeBrowserController {
 		tracks << chr
 		
 		def genes = [:]
-		genes.url = "data/tracks/{refseq}/UCSCGenes/trackData.json"
+		genes.url = "/content/data/tracks/{refseq}/UCSCGenes/trackData.json"
 		genes.type = "FeatureTrack"
 		genes.label = "UCSCGenes"
 		genes.key = "UCSC Genes"
@@ -47,7 +47,7 @@ class GenomeBrowserController {
 		tracks << genes
 		
 		def gwas = [:]
-		gwas.url = "data/tracks/{refseq}/GWAS/trackData.json"
+		gwas.url = "/content/data/tracks/{refseq}/GWAS/trackData.json"
 		gwas.type = "FeatureTrack"
 		gwas.label = "GWAS"
 		gwas.key = "GWAS Catalog"
@@ -55,7 +55,7 @@ class GenomeBrowserController {
 		tracks << gwas
 		
 		def omim = [:]
-		omim.url = "data/tracks/{refseq}/OMIM/trackData.json"
+		omim.url = "/content/data/tracks/{refseq}/OMIM/trackData.json"
 		omim.type = "FeatureTrack"
 		omim.label = "OMIM"
 		omim.key = "OMIM Genes"
@@ -63,7 +63,7 @@ class GenomeBrowserController {
 		tracks << omim
 		
 		def mrna = [:]
-		mrna.url = "data/tracks/{refseq}/mRNA/trackData.json"
+		mrna.url = "/content/data/tracks/{refseq}/mRNA/trackData.json"
 		mrna.type = "FeatureTrack"
 		mrna.label = "mRNA"
 		mrna.key = "mRNA"
@@ -71,7 +71,7 @@ class GenomeBrowserController {
 		tracks << mrna
 		
 		def snp = [:]
-		snp.url = "data/tracks/{refseq}/SNP/trackData.json"
+		snp.url = "/content/data/tracks/{refseq}/SNP/trackData.json"
 		snp.type = "FeatureTrack"
 		snp.label = "SNPs-130"
 		snp.key = "SNPs (130)"
@@ -110,7 +110,7 @@ class GenomeBrowserController {
 			def sequence = [:]
 			sequence.length = chromosome.endPosition
 			sequence.name = "chr${it}"
-			sequence.seqDir = "data/seq/${it}"
+			sequence.seqDir = "/content/data/seq/${it}"
 			sequence.seqChunkSize = 20000
 			sequence.end = chromosome.endPosition
 			sequence.start = 0
@@ -121,7 +121,8 @@ class GenomeBrowserController {
 
 	def data = {
 		if(params.dataType != "Patient") {
-			def link = createLinkTo(dir: "" + request.forwardURI.replace("/gdoc/genomeBrowser", ""))
+			println "got request for: ${request.forwardURI}"
+			def link = request.forwardURI.replace("/gdoc/genomeBrowser", "/content")
 			redirect(url: link)
 		}
 		println params.chromosome + " : " + params.dataType + " : " + params.id

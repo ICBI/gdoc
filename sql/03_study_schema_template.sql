@@ -421,12 +421,12 @@ NOPARALLEL
 MONITORING;
 
 
-CREATE UNIQUE INDEX  ${projectName}.reduction_analysis_PK ON reduction_analysis
+CREATE UNIQUE INDEX  ${projectName}.reduction_analysis_PK ON ${projectName}.reduction_analysis
 (ID)
 LOGGING
 NOPARALLEL;
 
-CREATE UNIQUE INDEX  ${projectName}.location_value_PK ON location_value
+CREATE UNIQUE INDEX  ${projectName}.location_value_PK ON ${projectName}.location_value
 (ID)
 LOGGING
 NOPARALLEL;
