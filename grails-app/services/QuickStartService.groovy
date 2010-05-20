@@ -21,7 +21,7 @@ class QuickStartService {
 			vocabList["allDataTypes"] = allDataTypes as Set
 			studies.each{ study ->
 				//println "gather atts for $study"
-				if(study.shortName != 'FCR'){
+				
 					StudyContext.setStudy(study.schemaName)
 					if(study.content){
 						StudyContext.setStudy(study.schemaName)
@@ -32,7 +32,7 @@ class QuickStartService {
 							results << result
 						}
 					}
-				}
+				
 			}
 			vocabList["dataAvailability"] = results
 		}

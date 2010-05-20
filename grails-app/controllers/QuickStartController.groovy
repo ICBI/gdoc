@@ -43,6 +43,26 @@ class QuickStartController {
 				//semantically resolve criteria purposes across studies
 				def result = quickStartService.queryOutcomes(params, study, session.dataTypes)
 				if(result){
+					if(session.dataAvailability){
+						session.dataAvailability['dataAvailability'].each{elm ->
+							if(elm['STUDY'] == study.shortName){
+								println "add breakdown for " + elm['STUDY']
+								result["dataBreakdown"] = elm
+							}
+						}
+					}else{
+						def da = quickStartService.getDataAvailability(study, null)
+						println "my study's da $da"
+						println "da class "+da.class
+						println "dava " + da['dataAvailability']
+						println "dava class " + da['dataAvailability'].class
+						if(da){
+							da['dataAvailability'].each{elm ->
+								println "retrieve da values for $study.shortName from query"
+								result["dataBreakdown"] = elm
+							}
+						}
+					}
 					results << result
 				}
 			}
