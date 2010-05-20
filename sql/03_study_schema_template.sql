@@ -915,12 +915,12 @@ ALTER TABLE ${projectName}.BIOSPECIMEN ADD (
  REFERENCES COMMON.PROTOCOL (PROTOCOL_ID));
 
 alter table ${projectName}.location_value add (
-	constraint location_value_reduction_analysis_link_fk 
+	constraint lv_reduction_analysis_link_fk 
 	foreign key (reduction_analysis_id) 
   	references ${projectName}.reduction_analysis);
 
 alter table ${projectName}.reduction_analysis add (
- 	constraint reduction_analysis_biospecimen_link_fk 
+ 	constraint ra_biospecimen_link_fk 
 	foreign key (biospecimen_id) 
   	references ${projectName}.BIOSPECIMEN);
 
