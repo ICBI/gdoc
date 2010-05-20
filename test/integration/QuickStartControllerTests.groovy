@@ -15,7 +15,7 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 	}
 	
 
-    /**void testQueryForCounts() {
+    void testQueryForCounts() {
 		def currStudy = StudyDataSource.findByShortName("CLARKE-LIU")
 		def currStudy2 = StudyDataSource.findByShortName("CRC_PILOT")
 		def currStudy3 = StudyDataSource.findByShortName("LOI")
@@ -31,16 +31,16 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 		session.myStudies << currStudy6
 		session.myStudies << currStudy7
 		
-		params = ['type':'ALL','action':'quickSearch','controller':'quickStart']
+		params = ['molProfilingType':'GENE EXPRESSION','action':'quickSearch','controller':'quickStart']
 		QuickStartController controller = new QuickStartController()
 		controller.quickStartService = quickStartService
 		controller.htDataService = htDataService
 		def results = controller.quickSearch(params);
-    }**/
+    }
 
 	
 
-	void testQueryForOutcomes() {
+	/**void testQueryForOutcomes() {
 		def currStudy = StudyDataSource.findByShortName("CLARKE-LIU")
 		def currStudy2 = StudyDataSource.findByShortName("CRC_PILOT")
 		def currStudy3 = StudyDataSource.findByShortName("LOI")
@@ -66,6 +66,6 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 		controller.quickStartService = quickStartService
 		def results = controller.quickSearch(params);
 		println results
-	}
+	}**/
 		
 }

@@ -4,7 +4,7 @@ class QuickStartService {
 	def htDataService
 	def jdbcTemplate 
 	
-	def getDataAvailability(studies, params){
+	def getDataAvailability(studies){
 		println "get all study availability"
 		def vocabList = [:]
 		def attList = [""]
@@ -25,9 +25,7 @@ class QuickStartService {
 					StudyContext.setStudy(study.schemaName)
 					if(study.content){
 						StudyContext.setStudy(study.schemaName)
-						def data = [:]
-						data['type'] = 'ALL'
-						def result = queryStudyData(data, study,allDataTypes)
+						def result = queryStudyData(study,allDataTypes)
 						if(result){
 							results << result
 						}
@@ -39,7 +37,7 @@ class QuickStartService {
 		return vocabList
 	}
 	
-	def queryStudyData(dataParams, study, allDataTypes){
+	def queryStudyData(study, allDataTypes){
 		StudyContext.setStudy(study.schemaName)
 		def result = [:]
 		def studyName = [:]
@@ -52,22 +50,11 @@ class QuickStartService {
 		println "total patients in study: " + patients.size()
 		result['CLINICAL'] = patients.size()
 		
-		//find all array specimens
-		def types = []
-		if(dataParams.type == 'ALL'){
-			types = allDataTypes
-		}
-		else{
-			if(dataParams.type.metaClass.respondsTo(dataParams.type,"max")){
-				types = dataParams.type as List
-			}else{
-				types << dataParams.type
-			}
-		}
 		
-		println "find if data available for $types in $study"
-		types.each{ type ->
+		
+		allDataTypes.each{ type ->
 			if(type != 'CLINICAL'){
+				println "find if $type data in $study"
 				//get specimens
 				def samples = []
 				def reductionAnalyses = []

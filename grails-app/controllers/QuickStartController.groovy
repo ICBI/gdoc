@@ -51,11 +51,7 @@ class QuickStartController {
 							}
 						}
 					}else{
-						def da = quickStartService.getDataAvailability(study, null)
-						println "my study's da $da"
-						println "da class "+da.class
-						println "dava " + da['dataAvailability']
-						println "dava class " + da['dataAvailability'].class
+						def da = quickStartService.getDataAvailability(study)
 						if(da){
 							da['dataAvailability'].each{elm ->
 								println "retrieve da values for $study.shortName from query"
@@ -72,11 +68,29 @@ class QuickStartController {
 		
 		//DATA BASED
 		//code will go here
-		if(params.type){
+		if(params.molProfilingType){
 			println "search by data types"
 			def dtResults = [:]
+			def existingDtResults = [:]
+			def dtArray = []
 			params.keySet().removeAll( ['action','controller','timestamp'] as Set )
-			dtResults = quickStartService.getDataAvailability(session.myStudies, params)
+			if(session.dataAvailability){
+				existingDtResults = session.dataAvailability
+			}
+			else{
+				existingDtResults = quickStartService.getDataAvailability(session.myStudies)
+			}
+				existingDtResults['dataAvailability'].each{elm ->
+					elm.each{ k,v ->
+						if((params.molProfilingType == k) && (v > 0)){
+							println "found $k for " + elm['STUDY']
+							dtArray << elm
+						}
+					}
+					
+				}
+			
+			dtResults["dataAvailability"] = dtArray
 			println dtResults
 			render dtResults as JSON
 		}
@@ -91,7 +105,7 @@ class QuickStartController {
 		def attList = [""]
 		if(!session.dataAvailability){
 		if(session.myStudies) {
-			results = quickStartService.getDataAvailability(session.myStudies, null)
+			def results = quickStartService.getDataAvailability(session.myStudies)
 			session.dataAvailability = results
 			render session.dataAvailability as JSON
 		}
