@@ -90,7 +90,7 @@ CREATE SEQUENCE ${projectName}.location_value_SEQUENCE
   CACHE 20
   NOORDER;
 
-CREATE SEQUENCE ${projectName}.reduction_analysis_SEQUENCE;
+CREATE SEQUENCE ${projectName}.reduction_analysis_SEQUENCE
   START WITH 100
   MAXVALUE 999999999999999999999999999
   MINVALUE 1
