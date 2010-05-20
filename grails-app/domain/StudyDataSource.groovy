@@ -51,4 +51,10 @@ class StudyDataSource {
 			it.type == "CLINIC"
 		}
 	}
+	
+	def hasCopyNumberData() {
+		return content.find {
+			it.type == "COPY_NUMBER"
+		}
+	}
 }

@@ -3,10 +3,23 @@ import grails.converters.*
 class GenomeBrowserController {
 
 	def index = {
+		def diseases = session.myStudies.collect{it.cancerSite}
+		diseases.remove("N/A")
+		def myStudies = session.myStudies
+		[diseases:diseases as Set,myStudies:myStudies]
 		
+		def chromosomes = 1..22
+		def chrs = []
+		chromosomes.each {
+			chrs << it
+		}
+		chrs << "X"
+		chrs << "Y"
+		session.chromosomes = chrs
 	}
 	
     def view = { 
+		println "PARAMS: $params"
 		def tracks = []
 		
 		def args = [:]

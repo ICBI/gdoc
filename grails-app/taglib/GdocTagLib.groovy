@@ -33,4 +33,27 @@ class GdocTagLib {
 		}
 	}
 	
+	def managedCheckBox = { attrs ->
+	          def value = attrs.remove('value')
+	          def name = attrs.remove('name')
+	          def disabled = attrs.remove('disabled')
+	          if(!value) value = false
+	          out << '<input type="hidden" '
+	          out << "name=\"_${name}\" />"
+	          out << '<input type="checkbox" '
+	          out << "name=\"${name}\" "
+	          if(value != 'false') {
+	                out << "checked=\"$value\" "
+	          }
+	          if(disabled)
+	          {
+	          	out << 'disabled="disabled" '
+	          }
+	        // process remaining attributes
+	        //outputAttributes(attrs)
+
+	// close the tag, with no body 
+			out << ' />' 
+	}
+	
 }
