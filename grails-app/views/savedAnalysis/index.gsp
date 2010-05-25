@@ -33,7 +33,7 @@
 	<div class="body">
 		<p class="pageHeading">Saved Analysis
 		<g:if test="${session.analysisFilter}">
-			<span style="font-size:12px">&nbsp;&nbsp; |time period: ${session.analysisFilter} day(s)|</span>
+			<span style="font-size:12px">total: ${allAnalysesSize}&nbsp;&nbsp; |filter: ${session.analysisFilter}|</span>
 		</g:if>
 		</p>
 		<span style="display:none" class="ajaxController">savedAnalysis</span>	
@@ -47,7 +47,7 @@
 			<span>
 			<g:form name="filterForm" action="index">
 			Filter:&nbsp;<g:select name="analysisFilter" 
-				noSelection="${['':'Filter By Days...']}"
+				noSelection="${['':'Filter...']}"
 				value="${session.analysisFilter?:'value'}"
 				from="${timePeriods}"
 				optionKey="key" optionValue="value">
@@ -61,12 +61,36 @@
 		</tr>
 		</table>
 		
+		<div id="pager1" style="text-align:right;padding:2px 10px 3px 0px">
+		<g:set var="totalPages" value="${Math.ceil(allAnalysesSize / savedAnalysis.size())}" />
+
+	    <g:if test="${totalPages == 1}">
+	        <span class="currentStep">1</span>
+	    </g:if>
+	    <g:else>
+	        <g:paginate controller="savedAnalysis" action="index" 
+	                    total="${savedAnalysis.totalCount}" prev="&lt; previous" next="next &gt;"/>
+	    </g:else>
+		</div>
+		
 <g:panel title="My Saved Analysis" styleClass="welcome" contentClass="myPanelContent" id="savedAnalysis">
 	<div id="analysisContainer">
 	<g:render template="/savedAnalysis/savedAnalysisTable" />
 	</div>
 </g:panel>
 	</g:form>
+	
+		<div id="pager2" style="text-align:right;padding:2px 10px 3px 0px">
+		<g:set var="totalPages" value="${Math.ceil(allAnalysesSize / savedAnalysis.size())}" />
+
+	    <g:if test="${totalPages == 1}">
+	        <span class="currentStep">1</span>
+	    </g:if>
+	    <g:else>
+	        <g:paginate controller="savedAnalysis" action="index" 
+	                    total="${savedAnalysis.totalCount}" prev="&lt; previous" next="next &gt;"/>
+	    </g:else>
+		</div>
 	</div>
 
 </body>

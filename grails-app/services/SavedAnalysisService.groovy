@@ -40,6 +40,8 @@ class SavedAnalysisService {
 			def dateTwo = two.dateCreated
 			return dateTwo.compareTo(dateOne)
 		}
+		
+		
 		return analyses
 	}
 	
@@ -125,21 +127,50 @@ class SavedAnalysisService {
 		}
 	}
 	
-	def filterAnalysis(timePeriod, allAnalysis){
+	def filterAnalysis(timePeriod, allAnalysis, userId){
+		def filteredAnalysis = []
 		if(timePeriod == "all"){
 			return allAnalysis
 		}
-		else{
-		def tp = Integer.parseInt(timePeriod)
-		def filteredAnalysis = []
-		def today = new Date()
-		allAnalysis.each{ analysis ->
-			if(today.minus(analysis.dateCreated) <= tp){
-				filteredAnalysis << analysis
+		else if(timePeriod == "hideShared"){
+			println "hide all shared lists"
+			allAnalysis.each{ analysis ->
+				if(analysis.author.loginName == userId){
+					filteredAnalysis << analysis
+				}
 			}
+			return filteredAnalysis
 		}
-		return filteredAnalysis
+		else{
+			def tp = Integer.parseInt(timePeriod)
+			def today = new Date()
+			allAnalysis.each{ analysis ->
+				if(today.minus(analysis.dateCreated) <= tp){
+					filteredAnalysis << analysis
+				}
+			}
+			return filteredAnalysis
 		}
+	}
+	
+	def getPaginatedAnalyses(ids,offset){
+		def idsString = ids.toString().replace("[","")
+		idsString = idsString.replace("]","")
+		def query = "from SavedAnalysis as sa where sa.id in ("+idsString+") order by sa.dateCreated desc"
+		def al = []
+		def pagedAnalyses =
+		SavedAnalysis.createCriteria().list(
+			max:10,
+			offset:offset)
+			{
+			'in'('id',ids)
+			}
+		
+		al = SavedAnalysis.findAll(query,[max:10,offset:offset])
+		pagedAnalyses.clear()
+		pagedAnalyses.addAll(al)
+		println "myAnalyses -> $pagedAnalyses as Paged set"
+		return pagedAnalyses
 	}
 	
 	def getSavedAnalysis(userId, taskId) {

@@ -7,32 +7,53 @@ class SavedAnalysisController{
 	
 	def index = {
 		def myAnalyses = []
-		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",all:"show all"]
+		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"hide shared lists",all:"show all"]
 		def filteredAnalysis = []
-		
+		def pagedAnalyses
 		myAnalyses = savedAnalysisService.getAllSavedAnalysis(session.userId,session.sharedAnalysisIds)
+		
+		//remove special cases
+		def specialCases = []
+		myAnalyses.each{ analysis ->
+			if((analysis.type == AnalysisType.KM_GENE_EXPRESSION) && (analysis.query.geAnalysisId.toString())){
+				specialCases << analysis
+			}
+		}
+		println "remove special case analyses $specialCases"
+		myAnalyses.removeAll(specialCases)
+		
+		def ids = myAnalyses.collect{it.id}
+		def filteredAnalysisIds = []
 		
 		if(params.analysisFilter){
 			if(params.analysisFilter == 'all'){
 				session.analysisFilter = "all"
 				filteredAnalysis = myAnalyses
-				return [ savedAnalysis: filteredAnalysis, timePeriods: timePeriods]
+				filteredAnalysisIds = ids
 			}
 			else{
 				session.analysisFilter = params.analysisFilter
-				filteredAnalysis = savedAnalysisService.filterAnalysis(params.analysisFilter,myAnalyses)
-				//println params.analysisFilter
-				//println filteredAnalysis.size()
+				filteredAnalysis = savedAnalysisService.filterAnalysis(params.analysisFilter,myAnalyses,session.userId)
+				filteredAnalysisIds = filteredAnalysis.collect{it.id}
 			}
 		}
 		else if(session.analysisFilter){
-			filteredAnalysis = savedAnalysisService.filterAnalysis(session.analysisFilter,myAnalyses)
+			filteredAnalysis = savedAnalysisService.filterAnalysis(session.analysisFilter,myAnalyses,session.userId)
+			filteredAnalysisIds = filteredAnalysis.collect{it.id}
 		}
 		else{
-			session.analysisFilter = "30"
-			filteredAnalysis = savedAnalysisService.filterAnalysis(session.analysisFilter,myAnalyses)
+			session.analysisFilter = "all"
+			filteredAnalysisIds = ids
 		}
-        [ savedAnalysis: filteredAnalysis, timePeriods: timePeriods]
+		
+		
+		if(params.offset){
+			pagedAnalyses = savedAnalysisService.getPaginatedAnalyses(filteredAnalysisIds,params.offset.toInteger())
+		}
+		else{
+			pagedAnalyses = savedAnalysisService.getPaginatedAnalyses(filteredAnalysisIds,0)	
+		}
+        [ savedAnalysis: pagedAnalyses, allAnalysesSize:myAnalyses.size(), timePeriods: timePeriods]
     }
 
 	def delete = {
@@ -41,7 +62,7 @@ class SavedAnalysisController{
 		myAnalyses = savedAnalysisService.getAllSavedAnalysis(session.userId,session.sharedAnalysisIds)
 		def filteredAnalysis = []
 		if(session.analysisFilter){
-			filteredAnalysis = savedAnalysisService.filterAnalysis(session.analysisFilter,myAnalyses)
+			filteredAnalysis = savedAnalysisService.filterAnalysis(session.analysisFilter,myAnalyses,session.userId)
 		}
 		render(template:"/savedAnalysis/savedAnalysisTable",model:[ savedAnalysis: filteredAnalysis ])
 	}
