@@ -4,7 +4,9 @@ import org.hibernate.criterion.Projections
 
 class UserListTests extends GroovyTestCase {
 	
-	
+	void testNothing(){
+		
+	}
 /*
 	void testCreateTempUserListsForKM(){
 		def templists = []
