@@ -161,10 +161,12 @@ class QuickStartService {
 			
 			//organize results
 			def outcomeLabels = SemanticHelper.determineStudyDataLabel(outcomeParams.outcome,study.shortName)
-			result["study"] = study.shortName	
-			result["patients_lessThan"] = patientsLess5.size().toString()
+			result["study"] = study.shortName
+			result["patients_lessThan"]	= patientsLess5
+			result["patients_lessThanSize"] = patientsLess5.size().toString()
 			result["patients_lessThanLabel"] = patientsLess5.size().toString() + ":" + outcomeLabels[0]
-			result["patients_moreThan"] = patientsMore5.size().toString()
+			result["patients_moreThan"] = patientsMore5
+			result["patients_moreThanSize"] = patientsMore5.size().toString()
 			result["patients_moreThanLabel"] = patientsMore5.size().toString() + ":" + outcomeLabels[1]
 			//results << result
 		}else {

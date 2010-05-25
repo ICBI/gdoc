@@ -1,10 +1,10 @@
-
+import grails.orm.PagedResultList
+import org.hibernate.Criteria
+import org.hibernate.criterion.Projections
 
 class UserListTests extends GroovyTestCase {
 	
-	void testNothing() {
-		
-	}
+	
 /*
 	void testCreateTempUserListsForKM(){
 		def templists = []

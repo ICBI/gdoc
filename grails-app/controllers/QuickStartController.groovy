@@ -5,6 +5,7 @@ class QuickStartController {
 	def quickStartService
 	def biospecimenService
 	def htDataService
+	def userListService
     def index = { 
 		
 	}
@@ -110,6 +111,40 @@ class QuickStartController {
 			render session.dataAvailability as JSON
 		}
 	  }else render session.dataAvailability as JSON
+	}
+	
+	def analysis = {
+		println params
+		def study = StudyDataSource.findByShortName(params.study)
+		def studies = []
+		def group1Ids = []
+		def group2Ids = []
+		def tags = []
+		def list1
+		def list2
+		studies << study.schemaName
+		if(params.tags){
+			tags = itemsToList(params.tags)
+		}
+		if(params.group1Ids){
+			group1Ids = itemsToList(params.group1Ids)
+			list1 = userListService.createList(session.userId,params.group1Name,group1Ids,studies,tags)
+			println "created 1st list, $list1"
+		}
+		if(params.group2Ids){
+			group2Ids = itemsToList(params.group2Ids)
+			list2 = userListService.createList(session.userId,params.group2Name,group2Ids,studies,tags)
+			println "created 2nd list, $list2"
+		}
+		redirect(controller:"analysis") 
+	}
+	
+	def itemsToList(items){
+		def list = []
+		items.tokenize(",").each{
+			list << it.trim()
+		}
+		return list
 	}
 	
 }

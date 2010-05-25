@@ -88,7 +88,7 @@
 			<span style="display:none" class="ajaxController">userList</span>	
 			
 			<g:if test="${session.listFilter}">
-				<span style="font-size:12px">size: ${userListInstanceList.size()}&nbsp;&nbsp; |time period: ${session.listFilter} day(s)|</span>
+				<span style="font-size:12px">size: ${allLists.size()}&nbsp;&nbsp; |filter: ${session.listFilter} |</span>
 			</g:if>
 			<br/>
 			<span id="message" class="message" style="display:none"></span>
@@ -99,7 +99,7 @@
 			<span>
 			<g:form name="filterForm" action="list">
 			Filter:&nbsp;<g:select name="listFilter" 
-				noSelection="${['':'Filter By Days...']}"
+				noSelection="${['':'Filter Lists...']}"
 				value="${session.listFilter?:'value'}"
 				from="${timePeriods}"
 				optionKey="key" optionValue="value">
@@ -120,11 +120,34 @@
 			<g:submitButton name="del" value="Delete List (s)" style="font-size: 12px;color:black;text-decoration:none;padding: 3px 8px;background-color:#E6E6E6;border: 1px solid #a0a0a0;margin: 5px 3px 3px 5px;" onclick="return confirm('Are you sure?');" /></span></td>
 			</tr>
 			</table>
+			
+			<div id="pager1" style="text-align:right;padding:2px 10px 3px 0px">
+			<g:set var="totalPages" value="${Math.ceil(allLists.size() / userListInstanceList.size())}" />
+
+		    <g:if test="${totalPages == 1}">
+		        <span class="currentStep">1</span>
+		    </g:if>
+		    <g:else>
+		        <g:paginate controller="userList" action="list" 
+		                    total="${userListInstanceList.totalCount}" prev="&lt; previous" next="next &gt;"/>
+		    </g:else>
+			</div>
 	
 	<div class="list" id="allLists">
 		<g:render template="/userList/userListTable" model="${['userListInstanceList':userListInstanceList]}"/>
 	</div>
 	
+	<div id="pager2" style="text-align:right;padding:2px 10px 3px 0px">
+	<g:set var="totalPages" value="${Math.ceil(allLists.size() / userListInstanceList.size())}" />
+
+    <g:if test="${totalPages == 1}">
+        <span class="currentStep">1</span>
+    </g:if>
+    <g:else>
+        <g:paginate controller="userList" action="list" 
+                    total="${userListInstanceList.totalCount}" prev="&lt; previous" next="next &gt;"/>
+    </g:else>
+	</div>
 </g:form>
 
 </div>

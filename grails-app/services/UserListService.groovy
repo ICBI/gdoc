@@ -61,6 +61,26 @@ def drugDiscoveryService
 		}
 	}
 	
+	def getPaginatedLists(ids,offset){
+		def idsString = ids.toString().replace("[","")
+		idsString = idsString.replace("]","")
+		def query = "from UserList as ul where ul.id in ("+idsString+") order by ul.dateCreated desc"
+		def al = []
+		def pagedLists =
+		UserList.createCriteria().list(
+			max:10,
+			offset:offset)
+			{
+			'in'('id',ids)
+			}
+		
+		al = UserList.findAll(query,[max:10,offset:offset])
+		pagedLists.clear()
+		pagedLists.addAll(al)
+		println "myLists -> $pagedLists as Paged set"
+		return pagedLists
+	}
+	
 	def getUserLists(userId){
 		def author = GDOCUser.findByLoginName(userId)
 		def lists = UserList.findAllByAuthor(author)
