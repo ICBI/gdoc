@@ -116,6 +116,8 @@ class QuickStartController {
 	def analysis = {
 		println params
 		def study = StudyDataSource.findByShortName(params.study)
+		session.study = study
+		StudyContext.setStudy(study.schemaName)
 		def studies = []
 		def group1Ids = []
 		def group2Ids = []
@@ -145,6 +147,14 @@ class QuickStartController {
 			list << it.trim()
 		}
 		return list
+	}
+	
+	def clinical = {
+		println params
+		def study = StudyDataSource.findByShortName(params.study)
+		StudyContext.setStudy(study.schemaName)
+		session.study = study
+		redirect(controller:"clinical") 
 	}
 	
 }

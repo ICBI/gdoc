@@ -53,7 +53,6 @@ def drugDiscoveryService
 			println "hide all shared lists"
 			allLists.each{ list ->
 				if(list.author.loginName == userId){
-					println "author is " + list.author.loginName + " and user is $userId"
 					filteredLists << list
 				}
 			}
@@ -92,8 +91,9 @@ def drugDiscoveryService
 	}
 	
 	def getUserLists(userId){
+		def lists = []
 		def author = GDOCUser.findByLoginName(userId)
-		def lists = UserList.findAllByAuthor(author)
+		lists = UserList.findAllByAuthor(author)
 		println "size=" + lists.size()
 		return lists
 	}

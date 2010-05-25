@@ -21,9 +21,12 @@ $.sortOptions('#left');
 
 </g:javascript>
 
-<p>Select a baseline group and a comparison group(s) followed by the datatype and dataset</p>
-<div class="message" style="width:75%">If you have not yet created your comparison groups, or would like to add to your existing group -- 
-	you can stratify patients using a <g:link controller="clinical">clinical query</g:link> or use the <g:link controller="quickStart">quickstart</g:link> page.</div>
+<p>Select a baseline group and a comparison group(s)</p>
+<g:if test="${flash.message}">
+<div class="message" style="width:75%">
+	${flash?.message}
+</div>
+</g:if>
 
 <g:form name="analysisForm" action="submit">
 <div class="clinicalSearch">

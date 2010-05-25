@@ -16,7 +16,7 @@ class AnalysisController {
 			StudyContext.setStudy(session.study.schemaName)
 			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
 			def patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.studyNames().contains(StudyContext.getStudy()))
+				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 			}
 			session.patientLists = patientLists.sort { it.name }
 			session.files = MicroarrayFile.findAllByNameLike('%.Rda')

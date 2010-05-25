@@ -49,6 +49,11 @@ class ClinicalController {
 			searchResults = clinicalService.queryByCriteria(criteria, biospecimenIds)
 			processResults(searchResults)
 		}else{
+			if(params.studyShortName){
+				println "set study"
+				def study = StudyDataSource.findByShortName(params.studyShortName)
+				StudyContext.setStudy(study.schemaName)
+			}
 			searchResults = clinicalService.getPatientsForIds(params.ids)
 			processResults(searchResults)
 		}
