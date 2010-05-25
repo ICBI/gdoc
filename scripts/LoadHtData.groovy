@@ -24,7 +24,7 @@ target(main: "Load High Throughput Data") {
 	}
 	def dataSourceClass = classLoader.loadClass('StudyDataSource')
 	def study = dataSourceClass.findBySchemaName(projectName)
-	while(study) {
+	while(!study) {
 		println "Project with name: $projectName does not exist.  Unable to load high throughput data."
 		return
 	}
