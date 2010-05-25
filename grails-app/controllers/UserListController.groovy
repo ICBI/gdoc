@@ -13,7 +13,7 @@ class UserListController {
     def list = {
 		println params
 		def lists = []
-		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",all:"show all"]
+		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"hide shared lists",all:"show all"]
 		def filteredLists = []
 		def pagedLists
         lists = userListService.getAllLists(session.userId, session.sharedListIds)
@@ -28,12 +28,12 @@ class UserListController {
 			}
 			else{
 				session.listFilter = params.listFilter
-				filteredLists = userListService.filterLists(params.listFilter,lists)
+				filteredLists = userListService.filterLists(params.listFilter,lists,session.userId)
 				filteredListIds = filteredLists.collect{it.id}
 			}
 		}
 		else if(session.listFilter){
-			filteredLists = userListService.filterLists(session.listFilter,lists)
+			filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 			filteredListIds = filteredLists.collect{it.id}
 		}
 		else{
@@ -139,7 +139,7 @@ class UserListController {
 				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 				def filteredLists = []
 				if(session.listFilter){
-					filteredLists = userListService.filterLists(session.listFilter,lists)
+					filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 				}
 				redirect(action:list)
 				//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
@@ -148,7 +148,7 @@ class UserListController {
 				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 				def filteredLists = []
 				if(session.listFilter){
-					filteredLists = userListService.filterLists(session.listFilter,lists)
+					filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 				}
 				redirect(action:list)
 				//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
@@ -159,7 +159,7 @@ class UserListController {
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 			def filteredLists = []
 			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists)
+				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 			}
 			redirect(action:list)
 			//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
@@ -175,7 +175,7 @@ class UserListController {
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 			def filteredLists = []
 			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists)
+				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 			}
            	render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
         }
@@ -184,7 +184,7 @@ class UserListController {
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 			def filteredLists = []
 			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists)
+				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 			}
 			render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
         }
@@ -250,7 +250,7 @@ class UserListController {
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 			def filteredLists = []
 			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists)
+				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 			}
             render(view:"list",model:[ userListInstanceList: filteredLists ])
         }
@@ -269,7 +269,7 @@ class UserListController {
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 			def filteredLists = []
 			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists)
+				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 			}
             render(view:"list",model:[ userListInstanceList: filteredLists ])
         }

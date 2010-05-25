@@ -44,20 +44,30 @@ def drugDiscoveryService
 		return lists
 	}
 	
-	def filterLists(timePeriod, allLists){
+	def filterLists(timePeriod, allLists, userId){
+		def filteredLists = []
 		if(timePeriod == "all"){
 			return allLists
 		}
-		else{
-		def tp = Integer.parseInt(timePeriod)
-		def filteredLists = []
-		def today = new Date()
-		allLists.each{ list ->
-			if(today.minus(list.dateCreated) <= tp){
-				filteredLists << list
+		else if(timePeriod == "hideShared"){
+			println "hide all shared lists"
+			allLists.each{ list ->
+				if(list.author.loginName == userId){
+					println "author is " + list.author.loginName + " and user is $userId"
+					filteredLists << list
+				}
 			}
+			return filteredLists
 		}
-		return filteredLists
+		else{
+			def tp = Integer.parseInt(timePeriod)
+			def today = new Date()
+			allLists.each{ list ->
+				if(today.minus(list.dateCreated) <= tp){
+					filteredLists << list
+				}
+			}
+			return filteredLists
 		}
 	}
 	
