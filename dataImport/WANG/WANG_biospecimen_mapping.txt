@@ -285,7 +285,3 @@ PATIENT_ID	SAMPLE_ID	CEL_FILE	ARRAY_DESIGN	RDA_FILE	RDA_DESCRIPTION
 903	GSM36892	GSM36892.CEL	HG-U133A	Wang_binary.rda	RMA normalized
 909	GSM36894	GSM36894.CEL	HG-U133A	Wang_binary.rda	RMA normalized
 913	GSM36911	GSM36911.CEL	HG-U133A	Wang_binary.rda	RMA normalized
-					
-					
-					
-              					
