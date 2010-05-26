@@ -9,6 +9,7 @@ class StudyDataSourceController {
 	def savedAnalysisService
 	def userListService
 	def middlewareService
+	def htDataService
 	
     def index = { 
 		def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
@@ -56,8 +57,8 @@ class StudyDataSourceController {
 			session.reporterLists = reporterLists
 			session.geneLists = geneLists
 			session.endpoints = KmAttribute.findAll()
-			session.files = MicroarrayFile.findAllByNameLike('%.Rda')
-			session.dataSetType = ["Gene Expression", "Copy Number"]
+			session.files = htDataService.getHTDataMap()
+			session.dataSetType = session.files.keySet()
 			render session.study.shortName
 		}
 		else render ""

@@ -117,4 +117,17 @@ class HtDataService {
 		return htTypes
 	}
 	
+	def getHTDataMap() {
+		def files = Sample.executeQuery("select distinct s.file, s.designType from Sample s")
+		def fileHash = [:]
+		files.each {
+			if(!fileHash[it[1]])
+				fileHash[it[1]] = []
+			if(it[1] == "GENE EXPRESSION")
+				fileHash[it[1]] << MicroarrayFile.findByName(it[0])
+				
+		}
+		return fileHash
+	}
+	
 }

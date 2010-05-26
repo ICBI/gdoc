@@ -17,8 +17,24 @@ $('#right :option').each(function() {
 	$("#left option[value='"+ this.value +  "']").remove();
 });
 $.sortOptions('#left');
+
+$("#dataSetType").change(function() {
+	loadDataSets(this.value)
+});
+loadDataSets($('#dataSetType').val());
+
 });
 
+function loadDataSets(dataType) {
+	$.ajax({
+		url: "selectDataType",
+		data: "dataType=" + dataType,
+		cache: false,
+		success: function(html) {
+ 			$("#dataDiv").html(html);
+		}
+	});
+}
 </g:javascript>
 
 <p>Select a baseline group and a comparison group(s)</p>
@@ -105,13 +121,16 @@ $.sortOptions('#left');
 	<br/--%>
 	Data-Type<br />
 	<g:select name="dataSetType" 
+			noSelection="${['':'Select Data Type']}"
 			from="${session.dataSetType}"/>
 	<br/><br />
 	Dataset:
 	<br/>
+	<div id="dataDiv">
 	<g:select name="dataFile" 
-			from="${session.files}"
+			noSelection="${['':'Select Data Type First']}"
 			optionKey="name" optionValue="${{it.description}}"/>
+	</div>
 	<br/>
 	<g:hiddenField name="study" value="${session.study.schemaName}" />
 </div>

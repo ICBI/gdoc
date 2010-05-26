@@ -10,6 +10,7 @@ class AnalysisController {
 	def annotationService
 	def userListService
 	def drugDiscoveryService
+	def htDataService
 	
     def index = {
 	    if(session.study){
@@ -19,12 +20,19 @@ class AnalysisController {
 				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 			}
 			session.patientLists = patientLists.sort { it.name }
-			session.files = MicroarrayFile.findAllByNameLike('%.Rda')
+			session.files = htDataService.getHTDataMap()
 		}
 		def diseases = session.myStudies.collect{it.cancerSite}
 		diseases.remove("N/A")
 		def myStudies = session.myStudies
 		[diseases:diseases as Set,myStudies:myStudies]
+	}
+	
+	def selectDataType = {
+		if(!session.files[params.dataType])
+			render g.select(optionKey: 'name', optionValue: 'description', noSelection: ['': 'Select Data Type First'], id: 'dataFile', name: "dataFile")
+		else
+			render g.select(optionKey: 'name', optionValue: 'description', from: session.files[params.dataType], id: 'dataFile', name: "dataFile")
 	}
 	
 	def submit = { AnalysisCommand cmd ->
