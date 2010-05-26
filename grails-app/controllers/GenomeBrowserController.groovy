@@ -86,9 +86,9 @@ class GenomeBrowserController {
 		
 		patients.each {
 			def patientTrack = [:]
-			patientTrack.url = "data/{refseq}/Patient/${it.id}"
-			patientTrack.label = "Patient${it.id}"
-			patientTrack.type = "FeatureTrack"
+			patientTrack.url = "/content/data/tracks/{refseq}/patient_${it.id}.wig.json"
+			patientTrack.label = "patient_${it.id}.wig"
+			patientTrack.type = "ImageTrack"
 			patientTrack.key = "Patient ${it.id}"
 
 			tracks << patientTrack
