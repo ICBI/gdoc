@@ -10,6 +10,7 @@ class PcaController {
 	def annotationService
 	def userListService
 	def patientService
+	def htDataService
 	
     def index = {
 		if(session.study){
@@ -20,11 +21,18 @@ class PcaController {
 					reporterLists << item
 			}
 		session.reporterLists = reporterLists
-		session.files = MicroarrayFile.findAllByNameLike('%.Rda')
+		session.files = htDataService.getHTDataMap()
 		}
 		def diseases = session.myStudies.collect{it.cancerSite}
 		diseases.remove("N/A")
 		[diseases:diseases as Set]
+	}
+	
+	def selectDataType = {
+		if(!session.files[params.dataType])
+			render g.select(optionKey: 'name', optionValue: 'description', noSelection: ['': 'Select Data Type First'], id: 'dataFile', name: "dataFile")
+		else
+			render g.select(optionKey: 'name', optionValue: 'description', from: session.files[params.dataType], id: 'dataFile', name: "dataFile")
 	}
 	
 	def submit = { PcaCommand cmd ->

@@ -1,3 +1,25 @@
+<g:javascript>
+$(document).ready(function() {
+
+$("#dataSetType").change(function() {
+	loadDataSets(this.value)
+});
+loadDataSets($('#dataSetType').val());
+
+});
+
+function loadDataSets(dataType) {
+	$.ajax({
+		url: "selectDataType",
+		data: "dataType=" + dataType,
+		cache: false,
+		success: function(html) {
+ 			$("#dataDiv").html(html);
+		}
+	});
+}
+</g:javascript>
+
 <p>Select a patient list, optional reporter list, classification method, and datatype/dataset</p>
 
 <g:if test="${session.study}">
@@ -70,12 +92,18 @@
 				value="'PCA: Principal Component Analysis'" />
 		<br/>
 		<br />
+		Data-Type<br />
+		<g:select name="dataSetType" 
+				noSelection="${['':'Select Data Type']}"
+				from="${session.dataSetType}"/>
+		<br/><br />
 		Dataset:
 		<br/>
+		<div id="dataDiv">
 		<g:select name="dataFile" 
-				from="${session.files}"
+				noSelection="${['':'Select Data Type First']}"
 				optionKey="name" optionValue="${{it.description}}"/>
-		<br/>
+		</div>
 		<g:hiddenField name="study" value="${session.study.schemaName}" />
 	</div>
 	<br/>
