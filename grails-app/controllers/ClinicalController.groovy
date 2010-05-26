@@ -54,7 +54,11 @@ class ClinicalController {
 				def study = StudyDataSource.findByShortName(params.studyShortName)
 				StudyContext.setStudy(study.schemaName)
 			}
-			searchResults = clinicalService.getPatientsForIds(params.ids)
+			println "go get patients for gdocIds for clinical report"
+			println params.ids
+			println params.ids.class
+			searchResults = clinicalService.getPatientsForGdocIds(params.ids)
+			//searchResults = clinicalService.getPatientsForIds(params.ids)
 			processResults(searchResults)
 		}
 	}
@@ -169,7 +173,14 @@ class ClinicalController {
 		def returnVal = [:]
 		println "GOT REQUEST: " + request.JSON
 		println "GOT PARAMS: " + params
+		
 		def patientIds = request.JSON['ids']
+		if(request.JSON['study']){
+			def shortName = request.JSON['study']
+			println "set study to $shortName"
+			def study = StudyDataSource.findByShortName(shortName)
+			StudyContext.setStudy(study.schemaName)
+		}
 		println "PATIENT IDS: $patientIds"
 		def cleanedIds = patientIds.collect {
 			def temp = it.replace("\"", "")
