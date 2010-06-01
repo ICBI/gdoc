@@ -1,7 +1,7 @@
 class AnalysisCommand {
 	
 	String baselineGroup
-	String[] groups
+	String groups
 	String pvalue
 	String foldChange
 	String dataFile

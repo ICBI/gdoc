@@ -8,7 +8,8 @@ def drugDiscoveryService
 	def getAllLists(userId,sharedIds){
 		def user = GDOCUser.findByLoginName(userId)
 		user.refresh()
-		def lists = getUserLists(user.loginName)
+		def lists = []
+		lists = getUserLists(user.loginName)
 		def listIds = []
 		def sharedListIds = []
 		sharedListIds = sharedIds
@@ -93,6 +94,7 @@ def drugDiscoveryService
 	def getUserLists(userId){
 		def lists = []
 		def author = GDOCUser.findByLoginName(userId)
+		author.refresh()
 		lists = UserList.findAllByAuthor(author)
 		println "size=" + lists.size()
 		return lists
@@ -384,6 +386,41 @@ def createList(userName, listName, listItems, studies, tags) {
 			return [error: "Error creating UserList ${userListInstance.name}."]
 		}
 	}
+	
+	
+	def createAndReturnList(userName, listName, listItems, studies, tags) {
+			def author = GDOCUser.findByLoginName(userName)
+			def listDup = author.lists().find {
+				it.name == listName
+			}
+			if(listDup) {
+				return [error: "List with name $listName already exists."]
+			}
+			def userListInstance = new UserList()
+			userListInstance.name = listName
+			userListInstance.author = author
+			listItems.each {
+				if(it){
+					userListInstance.addToListItems(new UserListItem(value:it));
+				}
+			}
+			studies.each {
+				if(it){
+					def ds = StudyDataSource.findBySchemaName(it)
+					userListInstance.addToStudies(ds)
+				}
+			}
+			if(!userListInstance.hasErrors() && userListInstance.save()) {
+				tags.each {
+					userListInstance.addTag(it)
+				}
+				println "UserList ${userListInstance.name} created successfully."
+				return userListInstance
+			} else {
+				println "Error creating UserList ${userListInstance.name}."
+				return null
+			}
+		}
 	
 	/**util method that finds metadata about list items for display purposes**/
 def decorateListItems(userList){

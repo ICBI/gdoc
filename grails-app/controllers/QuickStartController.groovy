@@ -130,15 +130,23 @@ class QuickStartController {
 		}
 		if(params.group1Ids){
 			group1Ids = itemsToList(params.group1Ids)
-			list1 = userListService.createList(session.userId,params.group1Name,group1Ids,studies,tags)
+			list1 = userListService.createAndReturnList(session.userId,params.group1Name,group1Ids,studies,tags)
 			println "created 1st list, $list1"
 		}
 		if(params.group2Ids){
 			group2Ids = itemsToList(params.group2Ids)
-			list2 = userListService.createList(session.userId,params.group2Name,group2Ids,studies,tags)
+			list2 = userListService.createAndReturnList(session.userId,params.group2Name,group2Ids,studies,tags)
 			println "created 2nd list, $list2"
 		}
-		redirect(controller:"analysis") 
+		if(list1 && list2){
+			println "created both lists, $list1.name, $list2.name successfully"
+			redirect(controller:"analysis", action:"index", params:[baselineGroup:list1.name,groups:list2.name]) 
+		}
+		else{
+			redirect(controller:"analysis", action:"index") 
+		}
+		
+		return 
 	}
 	
 	def itemsToList(items){

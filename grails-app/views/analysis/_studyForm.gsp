@@ -41,6 +41,8 @@ function loadDataSets(dataType) {
 <g:if test="${flash.message}">
 <div class="message" style="width:75%">
 	${flash?.message}
+	${flash.cmd?.baselineGroup}
+	${flash.cmd?.groups}
 </div>
 </g:if>
 
@@ -56,13 +58,17 @@ function loadDataSets(dataType) {
 		value="${flash.cmd?.baselineGroup}"
 		from="${session.patientLists}" optionKey="name" optionValue="name"	/>
 	<br/><br />
-	Select Groups:
-	<br/>
-	<table width="400px;">
+	Select comparison group:
+	<g:select name="groups"
+		noSelection="${['':'Select comparison group...']}"
+		value="${flash.cmd?.groups}"
+		from="${session.patientLists}" optionKey="name" optionValue="name"	/>
+	<br/><br />
+	<%--table width="400px;">
 		<tr>
 			<td>
 				<g:multiselect id="left" from="${session.patientLists}" optionKey="name" optionValue="name" 
-						multiple="true" size="10" style="width: 150px"/>
+						multiple="true" size="10" style="width: 200px"/>
 			</td>
 			<td>
 				<table>
@@ -79,7 +85,7 @@ function loadDataSets(dataType) {
 				</table>
 			</td>
 			<td>
-				<g:multiselect id="right" name="groups" multiple="true" size="10" style="width: 150px"
+				<g:multiselect id="right" name="groups" multiple="true" size="10" style="width: 200px"
 					from="${flash.cmd?.groups}" class="${hasErrors(bean:flash.cmd,field:'groups','errors')}"/> 
 			</td>
 		</tr>
@@ -95,7 +101,7 @@ function loadDataSets(dataType) {
 				</div>
 			</td>
 		</tr>
-	</table>
+	</table--%>
 	<br/>
 	p-value:
 	<br/>

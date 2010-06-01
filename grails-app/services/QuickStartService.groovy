@@ -153,15 +153,29 @@ class QuickStartService {
 		    //get lessThanPatients
 			def patLTIds = []
 			patLTIds = clinicalService.getPatientIdsForCriteria(criteriaL5,biospecimenIds)
-			println "get gdocIds for less"
-			patientsLess5 = Patient.getAll(patLTIds).collect{it.gdocId}
+			println "get gdocIds for less = " + patLTIds
+			def patLT = []
+			if(patLTIds){
+				patLT = Patient.getAll(patLTIds)
+			}
+		 	
+			if(patLT){
+				patientsLess5 = patLT.collect{it.gdocId}
+			}
 			//println "patients with Less in $patientsLess5"
 			
 			//get moreThanPatients
 			def patMTIds = []
 			patMTIds= clinicalService.getPatientIdsForCriteria(criteriaM5, biospecimenIds)
-			println "get gdocIds for more than"
-			patientsMore5 =  Patient.getAll(patMTIds).collect{it.gdocId}
+			println "get gdocIds for more than = " + patMTIds
+			def patMT = []
+			if(patMTIds){
+				patMT = Patient.getAll(patMTIds)
+			}
+			
+			if(patMT){
+				patientsMore5 = patMT.collect{it.gdocId}
+			}
 			//println "patients with more in $patientsMore5"
 			
 			

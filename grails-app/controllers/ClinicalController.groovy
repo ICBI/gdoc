@@ -25,8 +25,6 @@ class ClinicalController {
 	}
 	
 	def search = {
-		//check to see if search is new, or if we already have ids (e.g : coming from an analysis )
-		if(!params.fromAnalysis){
 			def errors = validateQuery(params, session.dataTypes)
 			println "Clinical Validation: " + errors
 			println "Params: " + params
@@ -48,19 +46,6 @@ class ClinicalController {
 			//println criteria
 			searchResults = clinicalService.queryByCriteria(criteria, biospecimenIds)
 			processResults(searchResults)
-		}else{
-			if(params.studyShortName){
-				println "set study"
-				def study = StudyDataSource.findByShortName(params.studyShortName)
-				StudyContext.setStudy(study.schemaName)
-			}
-			println "go get patients for gdocIds for clinical report"
-			println params.ids
-			println params.ids.class
-			searchResults = clinicalService.getPatientsForGdocIds(params.ids)
-			//searchResults = clinicalService.getPatientsForIds(params.ids)
-			processResults(searchResults)
-		}
 	}
 	
 	def searchFromAnalysis = {

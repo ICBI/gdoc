@@ -94,7 +94,7 @@ class PcaController {
 			patient.clinicalData.each {key, value ->
 				it[key] = value
 			}
-			it["patientId"] = patient.id
+			it["patientId"] = patient.gdocId
 		}
 		
 		def clinicalTypes = []
@@ -114,6 +114,9 @@ class PcaController {
 			def type = [shortName: it.shortName, longName: it.longName, type: itemType, values: values]
 			clinicalTypes << type
 		}
+		def schemName = StudyContext.getStudy()
+		def study = StudyDataSource.findBySchemaName(schemName)
+		pcaResults["study"] = study.shortName
 		pcaResults["clinicalTypes"] = clinicalTypes
 		pcaResults["samples"] = samples
 		println pcaResults as JSON

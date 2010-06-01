@@ -14,13 +14,27 @@ class AnalysisController {
 	
     def index = {
 	    if(session.study){
+			if(params.baselineGroup && params.groups){
+				AnalysisCommand cmd  = new AnalysisCommand();
+				cmd.baselineGroup = params.baselineGroup 
+				cmd.groups = params.groups
+				flash.cmd = cmd
+				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups are now available below for group comparison"
+			}
 			StudyContext.setStudy(session.study.schemaName)
 			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def patientLists = lists.findAll { item ->
+			def patientLists = []
+			patientLists = lists.findAll { item ->
 				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 			}
+			patientLists.each{
+				println it.name
+			}
+			session.patientLists = []
 			session.patientLists = patientLists.sort { it.name }
 			session.files = htDataService.getHTDataMap()
+			session.dataSetType = session.files.keySet()
+			println "my ht files for $session.study = $session.files"
 		}
 		def diseases = session.myStudies.collect{it.cancerSite}
 		diseases.remove("N/A")
