@@ -79,7 +79,7 @@ class SecurityService {
 		String filter = "(&(uid="+netId+"))";
 		NamingEnumeration list = ctx.search(options.get("ldapSearchableBase"), filter, ctls);
 		if(list){
-			println "$netId user found, retrieve needed attributes"
+			println "$netId user found, let's retrieve retrieve needed attributes to create a G-DOC account"
 			BasicAttributes attr =  ctx.getAttributes("uid="+netId+","+options.get("ldapSearchableBase"))
 				if(attr){
 					def user = new User()
