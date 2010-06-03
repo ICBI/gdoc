@@ -20,7 +20,7 @@ class AnalysisService {
 			def request = new ClassComparisonRequest(sess, "ClassComparison_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
-			def samples = idService.samplesForListName(cmd.groups[0])
+			def samples = idService.samplesForListName(cmd.groups)
 			def allIds = idService.sampleIdsForFile(cmd.dataFile)
 			samples = allIds.intersect(samples)
 			group1.addAll(samples)
@@ -56,7 +56,7 @@ class AnalysisService {
 			def sampleGroup = new SampleGroup()
 			def allIds = idService.sampleIdsForFile(cmd.dataFile)
 			if(!cmd.groups.toList().contains('ALL')) {
-				def sampleIds = idService.samplesForListName(cmd.groups[0])
+				def sampleIds = idService.samplesForListName(cmd.groups)
 				println "SAMPLEIDS: $sampleIds"
 				allIds = allIds.intersect(sampleIds)
 				println "ALLIDS: $allIds"

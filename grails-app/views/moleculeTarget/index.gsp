@@ -4,15 +4,16 @@
         <meta name="layout" content="main" />
 
 	<g:javascript library="jquery"/>
-	<script type="text/javascript" src="/gdoc/applets/marvin/marvin.js"></script>
+	<%--script type="text/javascript" src="/gdoc/applets/marvin/marvin.js"></script--%>
 	<jq:plugin name="ui"/>
 	<jq:plugin name="autocomplete"/>
 	<g:javascript>
 	
 	function exportMol() {
 		var ffmt = "smiles:";
-		var s = document.MSketch.getMol(ffmt);
-		s = unix2local(s);
+		var s = document.Editor.getSmiles();//document.Editor.getMolFile();//document.MSketch.getMol(ffmt);
+		alert('yo' + s);
+		//s = unix2local(s);
 		if(s != "") {
 			document.MolForm.smiles.value = s; 
 			document.MolForm.submit();
@@ -101,13 +102,29 @@
 			</div>
 		
 			<div id="fragment-5">
-				<script LANGUAGE="JavaScript1.1">
+				<%--script LANGUAGE="JavaScript1.1">
 				msketch_name = "MSketch";
 				msketch_begin("/gdoc/applets/marvin/", 540, 400);
 				msketch_param("molbg", "#ffffff");
 				msketch_end();
 
-				</script>
+				</script--%>
+				<applet code="org.openscience.jchempaint.applet.JChemPaintEditorApplet" archive="/gdoc/applets/jchemPaint/jchempaint-applet-core.jar"
+						name="Editor"
+				        width="500" height="400">
+				<!--param name="load" value="applettests/big.mol"-->
+				<param name="impliciths" value="true">
+				<param name="codebase_lookup" value="false" />
+
+				<PARAM name="onLoadTarget" value="statusFrame">
+				<PARAM NAME="image" VALUE="hourglass.gif">
+				<PARAM NAME="boxborder" VALUE="false">
+				<PARAM NAME="centerimage" VALUE="true">
+				</applet>
+				<br><br>
+				<a href="javascript:alert(document.Editor.getMolFile())">show mol file</a>
+				<a href="javascript:alert(document.Editor.getSmiles())">show smiles</a>
+				
 				<g:form name="MolForm" url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
 				<input value="Write SMILES String" onclick="exportMol()" type="button" style="display:none">
 				<g:textField name="smiles" style="display:none"/>

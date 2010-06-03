@@ -22,17 +22,17 @@ class RegistrationController {
 		} else {
 			println "no errors, begin registration"
 			flash['cmd'] = cmd
-			/*check if user already exists
+			//check if user already exists
 			def existingUser = GDOCUser.findByLoginName(cmd.netId)
 			if(existingUser){
 				println cmd.netId + " already exists as a user in the G-DOC system. Use Net-Id credentials to login above"
 				flash.message = cmd.netId + " already exists as a user in the G-DOC system. Use Net-Id credentials to login above"
 				redirect(action:'index')
 				return
-			}else{*/
+			}else{
 				//if user doesn't exist, validate the netID
 				def newUser = securityService.validateNetId(cmd.netId.trim(), cmd.department)
-				/**if(newUser){
+				if(newUser){
 					//check to make sure user has required fields
 					if(newUser.getLoginName() && newUser.getFirstName() && newUser.getLastName()){
 						//if user's netId is valid, add user to G-DOC system
@@ -65,8 +65,8 @@ class RegistrationController {
 					redirect(action:'index')
 					return
 				}
-			}**/
-			flash.message = "found a user in G-DOC"
+			}
+			
 			redirect(action:'index')
 		}
 
