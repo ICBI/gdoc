@@ -45,7 +45,7 @@ class SavedAnalysisService {
 		return analyses
 	}
 	
-	def addSavedAnalysis(userId, notification, command) {
+	def addSavedAnalysis(userId, notification, command, tags) {
 		def user = GDOCUser.findByLoginName(userId)
 		println "GOT NOTIFICATION $notification"
 		println notification.item.taskId
@@ -59,9 +59,18 @@ class SavedAnalysisService {
 		def study = StudyDataSource.findBySchemaName(command.study)
 		newAnalysis.addToStudies(study)
 		newAnalysis.save(flush:true)
+		if(tags){
+			tags.each {
+				println "add tag, $it to analysis"
+				newAnalysis.addTag(it)
+			}
+		}
 	}
 	
-	def saveAnalysisResult(userId, result, command){
+	
+	
+	
+	def saveAnalysisResult(userId, result, command, tags){
 		def user = GDOCUser.findByLoginName(userId)
 		//println ("THE RESULT:")
 		//println result
@@ -73,8 +82,15 @@ class SavedAnalysisService {
 		def study = StudyDataSource.findBySchemaName(command.study)
 		newAnalysis.addToStudies(study)
 		newAnalysis.save(flush:true)
+		if(tags){
+			tags.each {
+				println "add tag, $it to analysis"
+				newAnalysis.addTag(it)
+			}
+		}
 		return newAnalysis
 	}
+	
 	
 	
 	def updateSavedAnalysis(userId, notification) {

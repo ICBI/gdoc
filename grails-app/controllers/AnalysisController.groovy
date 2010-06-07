@@ -19,7 +19,7 @@ class AnalysisController {
 				cmd.baselineGroup = params.baselineGroup 
 				cmd.groups = params.groups
 				flash.cmd = cmd
-				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups are now available below for group comparison"
+				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups have been prepopulated below for group comparison"
 			}
 			StudyContext.setStudy(session.study.schemaName)
 			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
@@ -39,7 +39,7 @@ class AnalysisController {
 		def diseases = session.myStudies.collect{it.cancerSite}
 		diseases.remove("N/A")
 		def myStudies = session.myStudies
-		[diseases:diseases as Set,myStudies:myStudies]
+		[diseases:diseases as Set,myStudies:myStudies, params:params]
 	}
 	
 	def selectDataType = {
@@ -50,6 +50,7 @@ class AnalysisController {
 	}
 	
 	def submit = { AnalysisCommand cmd ->
+		println "analysis params : $params"
 		println "Command: " + cmd.groups
 		println "type : " + cmd.requestType
 		println analysisService
@@ -59,12 +60,24 @@ class AnalysisController {
 		println "foldChange : " + cmd.foldChange
 		println "study:" + cmd.study 
 		println cmd.errors
+		def datasetType = params.dataSetType.replace(" ","_")
+		def tags = []
+		tags << "$datasetType"
+		
+		/** see if list is tagged as temporary, then add make the transient 
+		query property true and add to command**/
+		def compList = UserList.findByName(cmd.groups)
+		def baseList = UserList.findByName(cmd.baselineGroup)
+		if(compList.tags?.contains("_temporary") || baseList.tags?.contains("_temporary")){
+			tags << "_temporary"
+		}
+		
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
 			def study = StudyDataSource.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
-			analysisService.sendRequest(session.id, cmd)
+			analysisService.sendRequest(session.id, cmd, tags)
 			redirect(controller:'notification')
 		}
 

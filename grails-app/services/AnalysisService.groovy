@@ -90,7 +90,7 @@ class AnalysisService {
 		}
 	]
 	
-	def sendRequest(sessionId, command) {
+	def sendRequest(sessionId, command, tags) {
 		def request
 		try {
 			def userId = RCH.currentRequestAttributes().session.userId
@@ -101,7 +101,7 @@ class AnalysisService {
 			request = strategies[command.requestType].call(userId, command)
 			println request
 			def item = ["status": "Running", "item": request]
-			savedAnalysisService.addSavedAnalysis(userId, item, command)
+			savedAnalysisService.addSavedAnalysis(userId, item, command, tags)
 			jmsTemplate.send([
 				createMessage: { Object[] params ->
 					def session = params[0]

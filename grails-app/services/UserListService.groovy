@@ -412,6 +412,7 @@ def createList(userName, listName, listItems, studies, tags) {
 			}
 			if(!userListInstance.hasErrors() && userListInstance.save()) {
 				tags.each {
+					println "add tag, $it"
 					userListInstance.addTag(it)
 				}
 				println "UserList ${userListInstance.name} created successfully."

@@ -116,7 +116,7 @@ class SavedAnalysisController{
 			println "session command" + session.command
 			if(session.command != null){
 			println ("THE COMMAND PARAMS:")
-				if(savedAnalysisService.saveAnalysisResult(session.userId, params.resultData,session.command)){
+				if(savedAnalysisService.saveAnalysisResult(session.userId, params.resultData,session.command,null)){
 					println ("saved analysis")
 					savedAttempt["result"] = "Analysis Saved"
 					render savedAttempt as JSON		

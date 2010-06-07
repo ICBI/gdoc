@@ -9,13 +9,20 @@ class GeneExpressionController {
 	def fileBasedAnnotationService
 	
     def index = { 
-		session.study = StudyDataSource.get(params.id)
-		StudyContext.setStudy(session.study.schemaName)
-		def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-		def patientLists = lists.findAll { item ->
-			(item.tags.contains("patient") && item.tags.contains(StudyContext.getStudy()))
+		if(session.study){
+			StudyContext.setStudy(session.study.schemaName)
+			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
+			def patientLists = []
+			patientLists = lists.findAll { item ->
+				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
+			}
+			session.patientLists = []
+			session.patientLists = patientLists.sort { it.name }
 		}
-		session.patientLists = patientLists
+		def diseases = session.myStudies.collect{it.cancerSite}
+		diseases.remove("N/A")
+		def myStudies = session.myStudies
+		[diseases:diseases as Set,myStudies:myStudies, params:params]
 	}
 
 	def search = { GeneExpressionCommand cmd ->
@@ -24,9 +31,10 @@ class GeneExpressionController {
 			def study = StudyDataSource.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
+			def tags = []
 			def files = MicroarrayFile.findByNameLike('%.Rda')
 			cmd.dataFile = files.name
-			def taskId = analysisService.sendRequest(session.id, cmd)
+			def taskId = analysisService.sendRequest(session.id, cmd, tags)
 			redirect(controller:'notification')
 		}
 	}

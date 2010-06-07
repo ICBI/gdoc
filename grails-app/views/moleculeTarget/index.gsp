@@ -122,8 +122,6 @@
 				<PARAM NAME="centerimage" VALUE="true">
 				</applet>
 				<br><br>
-				<a href="javascript:alert(document.Editor.getMolFile())">show mol file</a>
-				<a href="javascript:alert(document.Editor.getSmiles())">show smiles</a>
 				
 				<g:form name="MolForm" url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
 				<input value="Write SMILES String" onclick="exportMol()" type="button" style="display:none">

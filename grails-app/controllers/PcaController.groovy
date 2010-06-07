@@ -41,7 +41,10 @@ class PcaController {
 			def study = StudyDataSource.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
-			analysisService.sendRequest(session.id, cmd)
+			def datasetType = params.dataSetType.replace(" ","_")
+			def tags = []
+			tags << "$datasetType"
+			analysisService.sendRequest(session.id, cmd, tags)
 			redirect(controller:'notification')
 		}
 

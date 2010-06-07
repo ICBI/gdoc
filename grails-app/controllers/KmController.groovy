@@ -122,10 +122,13 @@ class KmController {
 					def study = StudyDataSource.findBySchemaName(cmd.study)
 					redirect(action:'index',id:study.id)
 				} else {
+					def tags = []
+					tags << "KM"
+					tags << "GENE_EXPRESSION"
 					def files = MicroarrayFile.findByNameLike('%.Rda')
 						println "BEFORE"
 					cmd.dataFile = files.name
-					def taskId = analysisService.sendRequest(session.id, cmd)
+					def taskId = analysisService.sendRequest(session.id, cmd, tags)
 					def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, taskId)
 					println "CHECKING status ${geAnalysis.id} ${taskId}"
 					println "after 10, status is: " + geAnalysis.status
@@ -292,7 +295,10 @@ class KmController {
 			println "km has been redrawn, just return result data"
 			render resultData
 		}else{
-			if(savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd)){
+			def tags = []
+			tags << "KM"
+			tags << "CLINICAL"
+			if(savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd, tags)){
 				println "saved km and now returning result data"
 				render resultData
 			}

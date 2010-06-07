@@ -127,14 +127,25 @@ class QuickStartController {
 		studies << study.schemaName
 		if(params.tags){
 			tags = itemsToList(params.tags)
+			tags << "_temporary"
 		}
 		if(params.group1Ids){
 			group1Ids = itemsToList(params.group1Ids)
+			def existingList = UserList.findByName(params.group1Name)
+			if(existingList){
+				existingList.delete(flush:true)
+				println "deleted " + existingList
+			}
 			list1 = userListService.createAndReturnList(session.userId,params.group1Name,group1Ids,studies,tags)
 			println "created 1st list, $list1"
 		}
 		if(params.group2Ids){
 			group2Ids = itemsToList(params.group2Ids)
+			def existingList2 = UserList.findByName(params.group2Name)
+			if(existingList2){
+				existingList2.delete(flush:true)
+				println "deleted " + existingList2
+			}
 			list2 = userListService.createAndReturnList(session.userId,params.group2Name,group2Ids,studies,tags)
 			println "created 2nd list, $list2"
 		}
@@ -143,7 +154,7 @@ class QuickStartController {
 			redirect(controller:"analysis", action:"index", params:[baselineGroup:list1.name,groups:list2.name]) 
 		}
 		else{
-			redirect(controller:"analysis", action:"index") 
+			redirect(controller:"analysis", action:"index", params:[quickstart:'true']) 
 		}
 		
 		return 

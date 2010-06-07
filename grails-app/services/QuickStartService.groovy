@@ -153,7 +153,7 @@ class QuickStartService {
 		    //get lessThanPatients
 			def patLTIds = []
 			patLTIds = clinicalService.getPatientIdsForCriteria(criteriaL5,biospecimenIds)
-			println "get gdocIds for less = " + patLTIds
+			//println "get gdocIds for less = " + patLTIds
 			def patLT = []
 			if(patLTIds){
 				patLT = Patient.getAll(patLTIds)
@@ -167,7 +167,7 @@ class QuickStartService {
 			//get moreThanPatients
 			def patMTIds = []
 			patMTIds= clinicalService.getPatientIdsForCriteria(criteriaM5, biospecimenIds)
-			println "get gdocIds for more than = " + patMTIds
+			//println "get gdocIds for more than = " + patMTIds
 			def patMT = []
 			if(patMTIds){
 				patMT = Patient.getAll(patMTIds)
@@ -184,10 +184,10 @@ class QuickStartService {
 			result["study"] = study.shortName
 			result["patients_lessThan"]	= patientsLess5
 			result["patients_lessThanSize"] = patientsLess5.size().toString()
-			result["patients_lessThanLabel"] = patientsLess5.size().toString() + ":" + outcomeLabels[0]
+			result["patients_lessThanLabel"] = " " + patientsLess5.size().toString() + " patients :" + outcomeLabels[0]
 			result["patients_moreThan"] = patientsMore5
 			result["patients_moreThanSize"] = patientsMore5.size().toString()
-			result["patients_moreThanLabel"] = patientsMore5.size().toString() + ":" + outcomeLabels[1]
+			result["patients_moreThanLabel"] = " " + patientsMore5.size().toString() + " patients :" + outcomeLabels[1]
 			//results << result
 		}else {
 			println "no semantic match of $outcomeParams.outcome for $study.shortName"

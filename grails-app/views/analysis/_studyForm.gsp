@@ -41,10 +41,9 @@ function loadDataSets(dataType) {
 <g:if test="${flash.message}">
 <div class="message" style="width:75%">
 	${flash?.message}
-	${flash.cmd?.baselineGroup}
-	${flash.cmd?.groups}
 </div>
 </g:if>
+
 
 <g:form name="analysisForm" action="submit">
 <div class="clinicalSearch">
