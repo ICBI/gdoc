@@ -21,8 +21,13 @@
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'GenomeView.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Layout.js')}" ></script>
 
+	<g:javascript library="jquery" />
+	<jq:plugin name="tooltip"/>
+	<jq:plugin name="livequery"/>
+
     <script type="text/javascript">
     /* <![CDATA[ */
+			jQuery.noConflict();
 		   var trackInfo = ${session.tracks}
 		   var refSeqs = ${session.sequences}
            var queryParams = dojo.queryToObject(window.location.search.slice(1));
@@ -43,6 +48,12 @@
                                    bookmark: bookmarkCallback,
 								   browserRoot: "${createLinkTo(dir: '')}/"
                                });
+		jQuery(document).ready(function (){
+			jQuery('.patientTooltip').livequery(function() { 
+				jQuery(this).tooltip({showURL: false});
+			});
+		});
+	
     /* ]]> */
     </script>	       
 </head>

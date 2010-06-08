@@ -694,14 +694,14 @@ div.generic_parent-hist {
 .cytoband,
 .plus-cytoband,
 .minus-cytoband {
-	position: absolute;
-    height: 4px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    background-color: #AAA;
-    z-index: 6;
-    min-width: 1px;
+    position: absolute;
+    height: 5px;
+    background-color: #4B76E8;
+    border-style: solid;
+    border-color: #00f;
+    border-width: 1px;
     cursor: pointer;
+    z-index: 10;
 }
 
 .omim,
@@ -751,11 +751,11 @@ div.gwas-hist {
 .ucsc-genes,
 .plus-ucsc-genes,
 .minus-ucsc-genes {
-	position: absolute;
+    position: absolute;
     height: 4px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    background-color: #AAA;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: #999;
     z-index: 6;
     min-width: 1px;
     cursor: pointer;
@@ -795,21 +795,21 @@ div.mrna-hist {
 .snp,
 .plus-snp,
 .minus-snp {
-	position: absolute;
-    height: 4px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    background-color: #AAA;
-    z-index: 6;
-    min-width: 1px;
+    position: absolute;
+    height: 5px;
+    background-color: #4B76E8;
+    border-style: solid;
+    border-color: #00f;
+    border-width: 1px;
     cursor: pointer;
+    z-index: 10;
 }
 
 div.snp-hist {
     position: absolute;
-    background-color: #ddd;
-    border-color: #555;
+    background-color: #4B76E8;
     border-style: solid;
+    border-color: #00f;
     border-width: 1px;
     z-index: 10;
 }
@@ -911,3 +911,13 @@ div.snp-hist {
     min-width: 1px;
     cursor: pointer;
 }
+
+#tooltip {
+    position: absolute;
+    z-index: 3000;
+    border: 1px solid #111;
+    background-color: #eee;
+    padding: 5px;
+    opacity: 0.85;
+}
+#tooltip h3, #tooltip div { margin: 0; }

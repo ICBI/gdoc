@@ -19,7 +19,31 @@ class GenomeBrowserController {
 	}
 	
     def view = { 
-		println "PARAMS: $params"
+	
+		// Create refrence sequences
+		def refSeqs = []
+		
+		def chromosomes = 1..22
+		def chrs = []
+		chromosomes.each {
+			chrs << it
+		}
+		chrs << "X"
+		chrs << "Y"
+		chrs.each {
+			def chromosome = Feature.findByChromosomeAndType(it, "CHROMOSOME")
+			def sequence = [:]
+			sequence.length = chromosome.endPosition
+			sequence.name = "chr${it}"
+			sequence.seqDir = "/content/data/seq/${it}"
+			sequence.seqChunkSize = 20000
+			sequence.end = chromosome.endPosition
+			sequence.start = 0
+			refSeqs << sequence
+		}
+		session.sequences = refSeqs as JSON
+		
+		// Create tracks
 		def tracks = []
 		
 		def args = [:]
@@ -78,8 +102,19 @@ class GenomeBrowserController {
 		
 		tracks << snp
 		
-		StudyContext.setStudy("INDIVDEMO")
+		if(!params.omicsData) {
+			session.tracks = tracks as JSON
+			return
+		}
+		
+		StudyContext.setStudy(session.study.schemaName)
 		def analysis = ReductionAnalysis.findAll()
+		
+		if(!analysis) {
+			session.tracks = tracks as JSON
+			return
+		}
+			
 		def patients = analysis.collect {
 			it.biospecimen.patient
 		}
@@ -89,34 +124,17 @@ class GenomeBrowserController {
 			patientTrack.url = "/content/data/tracks/{refseq}/patient_${it.id}.wig.json"
 			patientTrack.label = "patient_${it.id}.wig"
 			patientTrack.type = "ImageTrack"
-			patientTrack.key = "Patient ${it.id}"
+			def clinicalDataString = ""
+			it.clinicalData.keySet().sort().each{ key ->
+				clinicalDataString += "${key}: ${it.clinicalData[key]}<br/>"
+			}
+			patientTrack.key = "<div class=\"patientTooltip\" title=\"${clinicalDataString}\">Patient ${it.id}</div>"
 
 			tracks << patientTrack
 		}
 		
 		session.tracks = tracks as JSON
-		
-		def refSeqs = []
-		
-		def chromosomes = 1..22
-		def chrs = []
-		chromosomes.each {
-			chrs << it
-		}
-		chrs << "X"
-		chrs << "Y"
-		chrs.each {
-			def chromosome = Feature.findByChromosomeAndType(it, "CHROMOSOME")
-			def sequence = [:]
-			sequence.length = chromosome.endPosition
-			sequence.name = "chr${it}"
-			sequence.seqDir = "/content/data/seq/${it}"
-			sequence.seqChunkSize = 20000
-			sequence.end = chromosome.endPosition
-			sequence.start = 0
-			refSeqs << sequence
-		}
-		session.sequences = refSeqs as JSON
+
 	}
 
 	def data = {
