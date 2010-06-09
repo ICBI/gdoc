@@ -15,7 +15,7 @@ class SavedAnalysisController{
 		//remove special cases
 		def specialCases = []
 		myAnalyses.each{ analysis ->
-			if((analysis.type == AnalysisType.KM_GENE_EXPRESSION) && (analysis.query.geAnalysisId.toString())){
+			if((analysis.type == AnalysisType.KM_GENE_EXPRESSION) && (analysis.query.geAnalysisId.toString() == 'null')){
 				specialCases << analysis
 			}
 		}

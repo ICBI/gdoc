@@ -358,14 +358,14 @@ class SecurityService {
 	private userCanAccess(user, objectId, type) {
 		def studyNames = this.getSharedItemIds(user.loginName, StudyDataSource.class.name)
 		def klazz = Thread.currentThread().contextClassLoader.loadClass(type)
-		println "LOOKING UP $objectId for $type"
+		//println "LOOKING UP $objectId for $type"
 		def item = klazz.get(objectId)
 		if(!item)
 			return false
 		def access = item.studies.collectAll {
 			studyNames.contains(it.shortName)
 		}
-		println "ACCESS FOR $objectId is $access $studyNames"
+		//println "ACCESS FOR $objectId is $access $studyNames"
 		return !access.contains(false)
 	}
 	private isStudy(pe) {

@@ -4,7 +4,7 @@ class TagService{
 	
 	def addTag(type,id,tag){
 		def klazz = Thread.currentThread().contextClassLoader.loadClass(type)
-		println "LOOKING UP $type : $id to add tag: $tag"
+		//println "LOOKING UP $type : $id to add tag: $tag"
 		def taggableThing = klazz.get(id)
 		if(taggableThing){
 			taggableThing.addTag(tag)

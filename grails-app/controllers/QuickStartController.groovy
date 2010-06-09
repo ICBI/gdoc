@@ -52,7 +52,7 @@ class QuickStartController {
 							}
 						}
 					}else{
-						def da = quickStartService.getDataAvailability(study)
+						def da = quickStartService.getMyDataAvailability(study)
 						if(da){
 							da['dataAvailability'].each{elm ->
 								println "retrieve da values for $study.shortName from query"
@@ -79,7 +79,7 @@ class QuickStartController {
 				existingDtResults = session.dataAvailability
 			}
 			else{
-				existingDtResults = quickStartService.getDataAvailability(session.myStudies)
+				existingDtResults = quickStartService.getMyDataAvailability(session.myStudies)
 			}
 				existingDtResults['dataAvailability'].each{elm ->
 					elm.each{ k,v ->
@@ -106,11 +106,15 @@ class QuickStartController {
 		def attList = [""]
 		if(!session.dataAvailability){
 		if(session.myStudies) {
+			println "I don not have da in session"
 			def results = quickStartService.getDataAvailability(session.myStudies)
 			session.dataAvailability = results
 			render session.dataAvailability as JSON
 		}
-	  }else render session.dataAvailability as JSON
+	  }else {
+		println "I DO have da in session = $session.dataAvailability"
+		render session.dataAvailability as JSON
+		}
 	}
 	
 	def analysis = {
@@ -126,11 +130,11 @@ class QuickStartController {
 		def list2
 		studies << study.schemaName
 		if(params.tags){
-			tags = itemsToList(params.tags)
-			tags << "_temporary"
+			tags = ParamsHelper.itemsToList(params.tags)
+			tags << Constants.TEMPORARY
 		}
 		if(params.group1Ids){
-			group1Ids = itemsToList(params.group1Ids)
+			group1Ids = ParamsHelper.itemsToList(params.group1Ids)
 			def existingList = UserList.findByName(params.group1Name)
 			if(existingList){
 				existingList.delete(flush:true)
@@ -140,7 +144,7 @@ class QuickStartController {
 			println "created 1st list, $list1"
 		}
 		if(params.group2Ids){
-			group2Ids = itemsToList(params.group2Ids)
+			group2Ids = ParamsHelper.itemsToList(params.group2Ids)
 			def existingList2 = UserList.findByName(params.group2Name)
 			if(existingList2){
 				existingList2.delete(flush:true)
@@ -160,13 +164,6 @@ class QuickStartController {
 		return 
 	}
 	
-	def itemsToList(items){
-		def list = []
-		items.tokenize(",").each{
-			list << it.trim()
-		}
-		return list
-	}
 	
 	def clinical = {
 		println params

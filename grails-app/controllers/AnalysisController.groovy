@@ -64,12 +64,10 @@ class AnalysisController {
 		def tags = []
 		tags << "$datasetType"
 		
-		/** see if list is tagged as temporary, then add make the transient 
-		query property true and add to command**/
-		def compList = UserList.findByName(cmd.groups)
-		def baseList = UserList.findByName(cmd.baselineGroup)
-		if(compList.tags?.contains("_temporary") || baseList.tags?.contains("_temporary")){
-			tags << "_temporary"
+		def list1IsTemp = userListService.listIsTemporary(cmd.groups)
+		def list2IsTemp = userListService.listIsTemporary(cmd.baselineGroup)
+		if(list1IsTemp || list2IsTemp){
+			tags << Constants.TEMPORARY
 		}
 		
 		if(cmd.hasErrors()) {

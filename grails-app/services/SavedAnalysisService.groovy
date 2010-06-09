@@ -61,7 +61,7 @@ class SavedAnalysisService {
 		newAnalysis.save(flush:true)
 		if(tags){
 			tags.each {
-				println "add tag, $it to analysis"
+				//println "add tag, $it to analysis"
 				newAnalysis.addTag(it)
 			}
 		}
@@ -82,9 +82,19 @@ class SavedAnalysisService {
 		def study = StudyDataSource.findBySchemaName(command.study)
 		newAnalysis.addToStudies(study)
 		newAnalysis.save(flush:true)
+		if(newAnalysis.type == AnalysisType.KM_GENE_EXPRESSION){
+			tags << "GENE_EXPRESSION"
+			if(newAnalysis.query.geAnalysisId.toString() != null){
+				println "found the related analysis: " + newAnalysis.query.geAnalysisId + " , is it temporary?"
+				def relatedAnalysis = SavedAnalysis.get(newAnalysis.query.geAnalysisId)
+				if(relatedAnalysis.tags?.contains(Constants.TEMPORARY)){
+					tags << Constants.TEMPORARY
+				}
+			}
+		}
 		if(tags){
 			tags.each {
-				println "add tag, $it to analysis"
+				//println "add tag, $it to analysis"
 				newAnalysis.addTag(it)
 			}
 		}

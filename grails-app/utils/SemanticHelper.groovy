@@ -52,7 +52,9 @@ class SemanticHelper {
 					case 'WANG':
 							lessThanAttributeRelapse << [RELAPSE:'YES']
 							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
-							moreThanAttributeYears<< [RELAPSE:'NO']
+							lessThanAttributeYears << [('TIME_TO_RELAPSE/FU_MONTHS'):[min:0, max:59]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							moreThanAttributeYears<< [('TIME_TO_RELAPSE/FU_MONTHS'):[min:60, max:600],RELAPSE:'NO']
 							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
 							count++
 							break;
@@ -60,6 +62,20 @@ class SemanticHelper {
 							lessThanAttributeRelapse << [RELAPSE:'YES']
 							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
 							moreThanAttributeYears<< [RELAPSE:'NO']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+					case 'SOTIRIOU':
+							lessThanAttributeYears << [('TIME_TO_RELAPSE/FU_MONTHS'):[min:0, max:59]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							moreThanAttributeYears<< [('TIME_TO_RELAPSE/FU_MONTHS'):[min:60, max:600],RELAPSE:'NO']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+					case 'ZHANG':
+							lessThanAttributeRelapse << [METASTASIS_WITHIN_5YRS:'YES']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears<< [METASTASIS_WITHIN_5YRS:'NO']
 							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
 							count++
 							break;
@@ -106,6 +122,24 @@ class SemanticHelper {
 						resolvedCriteria2['erStatus'] = erStatus
 						count++
 						break;
+					case 'DESMEDT':
+						if(attributeVal == 'Positive') 
+							erVal = 'POSITIVE'
+						else erVal = 'NEGATIVE'
+						erStatus << [ER_STATUS:erVal]
+						resolvedCriteria['erStatus'] = erStatus
+						resolvedCriteria2['erStatus'] = erStatus
+						count++
+						break;
+					case 'SOTIRIOU':
+						if(attributeVal == 'Positive') 
+							erVal = 'POSITIVE'
+						else erVal = 'NEGATIVE'
+						erStatus << [ER_STATUS:erVal]
+						resolvedCriteria['erStatus'] = erStatus
+						resolvedCriteria2['erStatus'] = erStatus
+						count++
+						break;
 				}
 			}
 			else if(attributeVal == 'Mortality'){
@@ -140,6 +174,27 @@ class SemanticHelper {
 							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
 							count++
 							break;
+					case 'DESMEDT':
+							lessThanAttributeYears << [('DISEASE_FREE_SURVIVAL_MON'):[min:0, max:59]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							moreThanAttributeYears << [('DISEASE_FREE_SURVIVAL_MON'):[min:60, max:600]]
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+					case 'ZHOU':
+							lessThanAttributeYears << [('DISEASE_FREE_SURVIVAL_YEARS'):[min:0, max:4]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							moreThanAttributeYears << [('DISEASE_FREE_SURVIVAL_YEARS'):[min:5, max:50]]
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+					case 'ZHANG':
+							lessThanAttributeYears << [('DISEASE_FREE_SURVIVAL_MON'):[min:0, max:59]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							moreThanAttributeYears << [('DISEASE_FREE_SURVIVAL_MON'):[min:60, max:600]]
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
 				   default: bundledSemanticCriteria = null;
 				}
 			}
@@ -158,9 +213,12 @@ class SemanticHelper {
 		def labels = []
 		if(attribute == 'Mortality'){
 			switch (study) {
-			   case 'CLARKE-LIU': labels = ["Survival:less than 5 years", "Survival:more than 5 years"]; break;
+			   case 'CLARKE-LIU': labels = ["No survival for more than 5 years", "Survived more than 5 years"]; break;
 			   case 'CRC_PILOT': labels = ["Dead", "Alive"]; break;
-			   case 'FCR': labels = ["Survival:less than 5 years", "Survival:more than 5 years"]; break;
+			   case 'FCR': labels = ["No survival for more than 5 years", "Survived more than 5 years"]; break;
+			   case 'DESMEDT': labels = ["No survival (disease-free) for more than 5 years", "Survived more than 5 years disease-free"]; break;
+			   case 'ZHOU': labels = ["No survival (disease-free) for more than 5 years", "Survived more than 5 years disease-free"]; break;
+			   case 'ZHANG': labels = ["No survival (disease-free) for more than 5 years", "Survived more than 5 years disease-free"]; break;
 			   default: labels = ["Dead", "Alive"]
 			}
 		}
@@ -171,6 +229,8 @@ class SemanticHelper {
 			   case 'LOI': labels = ["Had relapse in less than 5 years", "Relapse free for more than 5 years, or no relapse"]; break;
 			   case 'WANG': labels = ["Relapse", "No Relapse"]; break;
 			   case 'ZHOU': labels = ["Relapse", "No Relapse"]; break;
+			   case 'SOTIRIOU': labels = ["Had relapse in less than 5 years", "Relapse free for more than 5 years, or no relapse"]; break;
+			   case 'ZHANG': labels = ["Had Metastasis within 5 years", "Metastasis free for more than 5 years"]; break;
 			   default: labels = ["Relapse", "No Relapse"]
 			}
 		}

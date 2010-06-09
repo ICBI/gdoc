@@ -125,6 +125,10 @@ class KmController {
 					def tags = []
 					tags << "KM"
 					tags << "GENE_EXPRESSION"
+					def list1IsTemp = userListService.listIsTemporary(cmd.groups)
+					if(list1IsTemp){
+						tags << Constants.TEMPORARY
+					}
 					def files = MicroarrayFile.findByNameLike('%.Rda')
 						println "BEFORE"
 					cmd.dataFile = files.name
@@ -197,7 +201,6 @@ class KmController {
 		session.savedKM = params.id
 	}
 	
-	//TODO - decide if we always want to auto-save KM plots. Right now, we do not. They must implicitly call 'save'.
 	def view = { 
 		if(session.savedKM){
 			println "retrieving SAVED KM"
@@ -297,7 +300,6 @@ class KmController {
 		}else{
 			def tags = []
 			tags << "KM"
-			tags << "CLINICAL"
 			if(savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd, tags)){
 				println "saved km and now returning result data"
 				render resultData

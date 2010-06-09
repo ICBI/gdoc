@@ -126,9 +126,10 @@
 						<a href="javascript:void(0)" style="padding-right:5px">
 						<img alt="edit list" title="Rename list" src="${createLinkTo(dir: 'images', file: 'pencil.png')}" onclick="makeEditable(${userListInstance.id});" /></a>
 						
-						
+						<g:if test="${!userListInstance.tags.contains('_temporary')}">
 						<g:link class="thickbox" name="Share &nbsp; ${userListInstance.name} &nbsp; with collaboration groups?" action="share" controller="share" 
 params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" title="Share list" style="height: 18px;padding-right:5px" src="${createLinkTo(dir: 'images', file: 'share.png')}"/></a></g:link>
+						</g:if>
 						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
 							<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
 						</g:link>
@@ -165,13 +166,19 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 					<g:if test="${userListInstance.studies.size()>0}">
 						${userListInstance.studyNames().join(", ")}
 					</g:if><br/>
-					Tags:
 					<g:if test="${userListInstance.tags.size()>0}">
+					<g:if test="${userListInstance.tags.contains('_temporary')}">
+					<span style="color:red;padding:3px">NOTE: This list was created via the G-DOC QuickStart and will be removed when you log out of this session.</span>
+					</g:if>
+					<g:else>
+					Tags:
 					<input type="text" name="${userListInstance.id}_tags_name" class="${userListInstance.id}_tags tags clearfix" value="${userListInstance.tags.replace(' ',',')}">
 					</input>
+					</g:else>
 					</g:if>
 					<g:if test="${userListInstance.tags.size()==0}">
 					<input type="text" name="${userListInstance.id}_tags_name"  class="${userListInstance.id}_tags tag_box tags clearfix" />
+					
 					</g:if>
 					
 				</div>

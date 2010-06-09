@@ -412,7 +412,7 @@ def createList(userName, listName, listItems, studies, tags) {
 			}
 			if(!userListInstance.hasErrors() && userListInstance.save()) {
 				tags.each {
-					println "add tag, $it"
+					//println "add tag, $it"
 					userListInstance.addTag(it)
 				}
 				println "UserList ${userListInstance.name} created successfully."
@@ -447,6 +447,15 @@ def decorateListItems(userList){
 	return metadata
 }
 	
-	
+def listIsTemporary(listName){
+	def compList = UserList.findByName(listName)
+	if(compList.tags?.contains(Constants.TEMPORARY)){
+		return true
+	}
+	else{
+		return false
+	}
+	return false
+}	
 
 }

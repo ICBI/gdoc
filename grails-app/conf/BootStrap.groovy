@@ -5,11 +5,15 @@ import grails.util.GrailsUtil
 import org.apache.commons.lang.StringUtils
 
 class BootStrap {
-
+	def quickStartService
+	
      def init = { servletContext ->
 		
 		switch (GrailsUtil.environment) {
 	       case "development":
+				def da = quickStartService.getDataAvailability()
+				servletContext.setAttribute("dataAvailability", da)
+				
 				//load the properties file and put props into system properties
 		     	//Load the the application properties and set them as system properties
 		  		def config = ConfigurationHolder.config
@@ -31,7 +35,19 @@ class BootStrap {
 		  		  val = gdocProperties.getProperty(key);
 		  		  System.setProperty(key, val);
 		  		}
-	           break
+	           break;
+			case "devserver":
+				def da = quickStartService.getDataAvailability()
+				servletContext.setAttribute("dataAvailability", da)
+				break;
+			case "production":
+				def da = quickStartService.getDataAvailability()
+				servletContext.setAttribute("dataAvailability", da)
+				break;
+			case "demo":
+				def da = quickStartService.getDataAvailability()
+				servletContext.setAttribute("dataAvailability", da)
+				break;	
 	   	}
 		
 		// Setup metaclass methods for string 

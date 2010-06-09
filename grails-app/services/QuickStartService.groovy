@@ -1,11 +1,21 @@
-class QuickStartService {
+import org.springframework.context.ApplicationContext
+import org.springframework.context.ApplicationContextAware
+import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
+import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
+
+class QuickStartService implements ApplicationContextAware{
 	def clinicalService
 	def biospecimenService
 	def htDataService
 	def jdbcTemplate 
+	def applicationContext
 	
-	def getDataAvailability(studies){
+	void setApplicationContext(ApplicationContext context) { this.applicationContext = context.getServletContext() }
+	
+	def getDataAvailability(){
 		println "get all study availability"
+		def studies = []
+		studies = StudyDataSource.list();
 		def vocabList = [:]
 		def attList = [""]
 		def results = []
@@ -21,13 +31,14 @@ class QuickStartService {
 			vocabList["allDataTypes"] = allDataTypes as Set
 			studies.each{ study ->
 				//println "gather atts for $study"
-				
-					StudyContext.setStudy(study.schemaName)
-					if(study.content){
+					if(study.shortName != 'TEST-DATA'){
 						StudyContext.setStudy(study.schemaName)
-						def result = queryStudyData(study,allDataTypes)
-						if(result){
-							results << result
+						if(study.content){
+							StudyContext.setStudy(study.schemaName)
+							def result = queryStudyData(study,allDataTypes)
+							if(result){
+								results << result
+							}
 						}
 					}
 				
@@ -36,6 +47,33 @@ class QuickStartService {
 		}
 		return vocabList
 	}
+	
+	def getMyDataAvailability(studies){
+		def myDa = [:]
+		def appDa
+		def servletContext = SCH.servletContext
+		if(servletContext){
+			appDa = servletContext.getAttribute("dataAvailability")
+		}
+		else appDa = getDataAvailability()
+		myDa["dataAvailability"] = []
+		myDa["diseases"] = appDa["diseases"]
+		myDa["allDataTypes"] = appDa["allDataTypes"]
+		appDa['dataAvailability'].each{elm ->
+			def studyName = elm.find{ key, value ->
+				if(key == 'STUDY'){
+					return value
+				}
+			}
+			studies.each{ myStudy ->
+				if(myStudy.shortName == elm['STUDY']){
+					myDa["dataAvailability"] << elm
+				}
+			}
+		}
+		return myDa
+	}
+	
 	
 	def queryStudyData(study, allDataTypes){
 		StudyContext.setStudy(study.schemaName)

@@ -23,7 +23,7 @@ class WorkflowsController {
 			//get shared anaylysis and places them in session scope
 			def sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
 			session.sharedAnalysisIds = sharedAnalysisIds
-			session.dataAvailability = quickStartService.getDataAvailability(session.myStudies)
+			session.dataAvailability = quickStartService.getMyDataAvailability(session.myStudies)
 			
 			session.myCollaborationGroups = myCollaborationGroups
 		
