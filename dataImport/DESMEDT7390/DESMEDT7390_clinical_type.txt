@@ -14,5 +14,5 @@ t.dmfs	new	DMFS_DAYS	Distant metastasis free survival in days	Tracks the distant
 e.dmfs	new	EVENT_DMFS	Event indicator for Distant Metastasis Free Survival	Indicates that distant metastasis occurred and was recorded OR no distant metastasis was recorded	CLINICAL					0	0	1	NUMBER(1)		0	1
 t.tdm	new	TDM_DAYS	Time to distant metastasis in days	Tracks the time from diagnosis or surgery to event (distant metastasis) in days	CLINICAL					0	0	0	"NUMBER(4,1)"	days	1	18250
 e.tdm	new	EVENT_TDM	Event indicator for time to distant metastasis	Indicates a distant metastatis OR that no record of distant metastasis	CLINICAL					0	0	1	NUMBER(1)		0	1
-NPI	new	NPI	Nottingham Prognostic Index	NPI is used to determine prognosis following surgery for breast cancer	CLINICAL					0	0	0	"NUMBER(3,2)"		0	10
+NPI	new	NPI_SCORE	Nottingham Prognostic Index	NPI is used to determine prognosis following surgery for breast cancer	CLINICAL					1	0	0	"NUMBER(5,2)"			
 risknpi	new	RISK_NPI	Risk calculation based on NPI score	Risk calculation based on NPI score	CLINICAL					1	0	1	VARCHAR			
