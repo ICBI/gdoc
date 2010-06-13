@@ -55,7 +55,7 @@ class AnalysisService {
 			request.dataFileName = cmd.dataFile
 			def sampleGroup = new SampleGroup()
 			def allIds = idService.sampleIdsForFile(cmd.dataFile)
-			if(!cmd.groups.toList().contains('ALL')) {
+			if(!cmd.groups == 'ALL') {
 				def sampleIds = idService.samplesForListName(cmd.groups)
 				println "SAMPLEIDS: $sampleIds"
 				allIds = allIds.intersect(sampleIds)
@@ -101,7 +101,7 @@ class AnalysisService {
 			request = strategies[command.requestType].call(userId, command)
 			println request
 			def item = ["status": "Running", "item": request]
-			savedAnalysisService.addSavedAnalysis(userId, item, command, tags)
+			def newAnalysis = savedAnalysisService.addSavedAnalysis(userId, item, command, tags)
 			jmsTemplate.send([
 				createMessage: { Object[] params ->
 					def session = params[0]
@@ -112,7 +112,7 @@ class AnalysisService {
 			] as MessageCreator)
 			println "after send"
 		} catch (Exception e) {
-			println "Failed to send request for test" + e
+			println "Failed to send request for test " + e
 		}
 		return request.taskId
 	}

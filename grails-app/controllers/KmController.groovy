@@ -125,7 +125,8 @@ class KmController {
 					def tags = []
 					tags << "KM"
 					tags << "GENE_EXPRESSION"
-					def list1IsTemp = userListService.listIsTemporary(cmd.groups)
+					def author = GDOCUser.findByLoginName(session.userId)
+					def list1IsTemp = userListService.listIsTemporary(cmd.groups,author)
 					if(list1IsTemp){
 						tags << Constants.TEMPORARY
 					}
@@ -215,6 +216,10 @@ class KmController {
 		def sampleGroups = []
 		def att
 		def groupHash = [:]
+		
+		def tags = []
+		tags << "KM"
+		
 		session.selectedLists.each { list ->
 			def samples = []
 			def tempList
@@ -228,6 +233,14 @@ class KmController {
 			    tempList = UserList.findAllByName(list.name)
 			}
 			println "TEMPLIST $tempList"
+			if(cmd instanceof KmCommand){
+				def author = GDOCUser.findByLoginName(session.userId)
+				def list1IsTemp = userListService.listIsTemporary(tempList.name,author)
+				if(list1IsTemp){
+					tags << Constants.TEMPORARY
+				}
+			}
+			
 			def ids = tempList.listItems.collectAll { listItem ->
 					listItem.value
 				}.flatten()
@@ -261,6 +274,7 @@ class KmController {
 			println "assigned points"
 		}
 		def pvalue = null
+		
 	
 		if(cmd instanceof KmGeneExpCommand){
 			def geInfo = [:]
@@ -298,9 +312,9 @@ class KmController {
 			println "km has been redrawn, just return result data"
 			render resultData
 		}else{
-			def tags = []
-			tags << "KM"
-			if(savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd, tags)){
+			
+			def savedAna = savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd, tags)
+			if(savedAna){
 				println "saved km and now returning result data"
 				render resultData
 			}

@@ -31,8 +31,16 @@ class NotificationController {
 		session.invitations = invitations
 		
 		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
-		if(savedAnalysis)
+		if(savedAnalysis){
 			notifications.addAll(savedAnalysis)
+			savedAnalysis.each{
+				if(savedAnalysisService.analysisIsTemporary(it.id)){
+					//if(!session.tempAnalyses?.contains(it.id)){
+						session.tempAnalyses << it.id
+					//}
+				}
+			}
+		}
 		if(gpJobs)
 			notifications.addAll(gpJobs)
 		

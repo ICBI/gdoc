@@ -44,6 +44,26 @@ class PcaController {
 			def datasetType = params.dataSetType.replace(" ","_")
 			def tags = []
 			tags << "$datasetType"
+			def cleanedGroups = []
+			cmd.groups.each{ g ->
+				if(g){
+					g.tokenize(",").each{
+						it = it.replace('[','');
+						it = it.replace(']','');
+						cleanedGroups << it
+					}
+				}		
+			}
+			def author = GDOCUser.findByLoginName(session.userId)
+			def tempListFound = cleanedGroups.find{ group ->
+				if(userListService.listIsTemporary(group,author)){
+					return true
+				}
+			}
+			if(tempListFound){
+				tags << Constants.TEMPORARY
+			}
+			
 			analysisService.sendRequest(session.id, cmd, tags)
 			redirect(controller:'notification')
 		}

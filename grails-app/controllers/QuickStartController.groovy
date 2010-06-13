@@ -137,6 +137,10 @@ class QuickStartController {
 			group1Ids = ParamsHelper.itemsToList(params.group1Ids)
 			def existingList = UserList.findByName(params.group1Name)
 			if(existingList){
+				if(session.tempLists?.contains(existingList.id)){
+					session.tempLists.remove(existingList.id)
+					println "removed " + existingList + " from session"
+				}
 				existingList.delete(flush:true)
 				println "deleted " + existingList
 			}
@@ -147,6 +151,10 @@ class QuickStartController {
 			group2Ids = ParamsHelper.itemsToList(params.group2Ids)
 			def existingList2 = UserList.findByName(params.group2Name)
 			if(existingList2){
+				if(session.tempLists?.contains(existingList2.id)){
+					session.tempLists.remove(existingList2.id)
+					println "removed " + existingList2 + " from session"
+				}
 				existingList2.delete(flush:true)
 				println "deleted " + existingList2
 			}
@@ -154,7 +162,9 @@ class QuickStartController {
 			println "created 2nd list, $list2"
 		}
 		if(list1 && list2){
-			println "created both lists, $list1.name, $list2.name successfully"
+			session.tempLists << list1.id
+			session.tempLists << list2.id
+			println "created both lists, $list1.name, $list2.name successfully, and added ids to session: $session.tempLists"
 			redirect(controller:"analysis", action:"index", params:[baselineGroup:list1.name,groups:list2.name]) 
 		}
 		else{

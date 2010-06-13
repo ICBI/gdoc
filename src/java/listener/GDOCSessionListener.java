@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSessionEvent;
 import org.codehaus.groovy.grails.commons.ApplicationHolder;
 import serviceinterfaces.SessionCleanerServiceInt;
 import org.springframework.context.ApplicationContext;
-
+import java.util.HashSet;
 
 public class GDOCSessionListener implements HttpSessionListener { 
 	//private static final Log log = LogFactory.getLog(GDOCSessionListener.class);
@@ -21,11 +21,16 @@ public class GDOCSessionListener implements HttpSessionListener {
 	public void sessionDestroyed(HttpSessionEvent event) {
 		System.out.println("Session destroyed."); 
 		String userId = (String) event.getSession().getAttribute("userId");
+		HashSet tempLists = (HashSet) event.getSession().getAttribute("tempLists");
+		HashSet tempAnalyses = (HashSet) event.getSession().getAttribute("tempAnalyses");
 		ApplicationContext ctx = (ApplicationContext)ApplicationHolder.getApplication().getMainContext();
 		SessionCleanerServiceInt service = (SessionCleanerServiceInt) ctx.getBean("cleanupService");
-		if(service != null && userId != null){
+		if(service != null && userId != null && (tempLists !=null) && (tempAnalyses!=null)){
 			System.out.println(userId + " has destroyed session, cleanup temp data");
-			service.cleanup(userId);
+			if(!(tempLists.isEmpty()) || !(tempAnalyses.isEmpty())){
+				System.out.println(userId + " found temporary data");
+				service.cleanup(userId,tempLists,tempAnalyses);
+			}	
 		}
 	}
 }

@@ -64,8 +64,9 @@ class AnalysisController {
 		def tags = []
 		tags << "$datasetType"
 		
-		def list1IsTemp = userListService.listIsTemporary(cmd.groups)
-		def list2IsTemp = userListService.listIsTemporary(cmd.baselineGroup)
+		def author = GDOCUser.findByLoginName(session.userId)
+		def list1IsTemp = userListService.listIsTemporary(cmd.groups,author)
+		def list2IsTemp = userListService.listIsTemporary(cmd.baselineGroup,author)
 		if(list1IsTemp || list2IsTemp){
 			tags << Constants.TEMPORARY
 		}

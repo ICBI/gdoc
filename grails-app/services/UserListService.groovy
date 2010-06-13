@@ -447,9 +447,10 @@ def decorateListItems(userList){
 	return metadata
 }
 	
-def listIsTemporary(listName){
-	def compList = UserList.findByName(listName)
-	if(compList.tags?.contains(Constants.TEMPORARY)){
+def listIsTemporary(listName,author){
+	println "find if $listName is temporary"
+	def compList = UserList.findByNameAndAuthor(listName,author)
+	if(compList && compList.tags?.contains(Constants.TEMPORARY)){
 		return true
 	}
 	else{

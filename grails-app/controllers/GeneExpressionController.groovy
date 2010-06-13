@@ -32,6 +32,27 @@ class GeneExpressionController {
 			redirect(action:'index',id:study.id)
 		} else {
 			def tags = []
+			def cleanedGroups = []
+			cmd.groups.each{ g ->
+				if(g){
+					g.tokenize(",").each{
+						it = it.replace('[','');
+						it = it.replace(']','');
+						cleanedGroups << it
+					}
+				}		
+			}
+			
+			def author = GDOCUser.findByLoginName(session.userId)
+			def tempListFound = cleanedGroups.find{ group ->
+				if(userListService.listIsTemporary(group,author)){
+					return true
+				}
+			}
+			if(tempListFound){
+				tags << Constants.TEMPORARY
+			}
+		
 			def files = MicroarrayFile.findByNameLike('%.Rda')
 			cmd.dataFile = files.name
 			def taskId = analysisService.sendRequest(session.id, cmd, tags)

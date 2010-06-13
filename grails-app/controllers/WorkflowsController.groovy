@@ -10,6 +10,8 @@ class WorkflowsController {
 			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
 			println studyNames
 			def myStudies = []
+			session.tempLists = new HashSet()
+			session.tempAnalyses = new HashSet()
 			studyNames.each{
 				def foundStudy = StudyDataSource.findByShortName(it)
 				if(foundStudy){

@@ -18,6 +18,11 @@ class SavedAnalysisController{
 			if((analysis.type == AnalysisType.KM_GENE_EXPRESSION) && (analysis.query.geAnalysisId.toString() == 'null')){
 				specialCases << analysis
 			}
+			if(savedAnalysisService.analysisIsTemporary(analysis.id)){
+				//if(!session.tempAnalyses?.contains(it.id)){
+				session.tempAnalyses << analysis.id
+				//}
+			}
 		}
 		println "remove special case analyses $specialCases"
 		myAnalyses.removeAll(specialCases)
