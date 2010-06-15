@@ -40,7 +40,7 @@
 			});
 			
 		</g:javascript>
-	<p style="font-size:14pt">Search Clinical Data</p>
+	<p style="font-size:14pt">Search for Clinical Data</p>
 		
 		<div id="studyPicker">
 			<g:render template="/studyDataSource/studyPicker"/>
