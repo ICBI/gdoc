@@ -48,10 +48,8 @@
                                    bookmark: bookmarkCallback,
 								   browserRoot: "${createLinkTo(dir: '')}/"
                                });
-		jQuery(document).ready(function (){
-			jQuery('.patientTooltip').livequery(function() { 
-				jQuery(this).tooltip({showURL: false});
-			});
+		jQuery('.patientTooltip').livequery(function() { 
+			jQuery(this).tooltip({showURL: false});
 		});
 	
     /* ]]> */

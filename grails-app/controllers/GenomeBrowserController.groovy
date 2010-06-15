@@ -55,9 +55,9 @@ class GenomeBrowserController {
 		tracks << args
 		
 		def chr = [:]
-		chr.url = "/content/data/tracks/{refseq}/Cytobands/trackData.json"
+		chr.url = "/content/data/tracks/{refseq}/ChromosomeBand/trackData.json"
 		chr.type = "FeatureTrack"
-		chr.label = "Cytobands"
+		chr.label = "ChromosomeBand"
 		chr.key = "Cytobands"
 		
 		tracks << chr
@@ -71,17 +71,17 @@ class GenomeBrowserController {
 		tracks << genes
 		
 		def gwas = [:]
-		gwas.url = "/content/data/tracks/{refseq}/GWAS/trackData.json"
+		gwas.url = "/content/data/tracks/{refseq}/gwas/trackData.json"
 		gwas.type = "FeatureTrack"
-		gwas.label = "GWAS"
+		gwas.label = "gwas"
 		gwas.key = "GWAS Catalog"
 		
 		tracks << gwas
 		
 		def omim = [:]
-		omim.url = "/content/data/tracks/{refseq}/OMIM/trackData.json"
+		omim.url = "/content/data/tracks/{refseq}/omim/trackData.json"
 		omim.type = "FeatureTrack"
-		omim.label = "OMIM"
+		omim.label = "omim"
 		omim.key = "OMIM Genes"
 		
 		tracks << omim
@@ -95,12 +95,20 @@ class GenomeBrowserController {
 		tracks << mrna
 		
 		def snp = [:]
-		snp.url = "/content/data/tracks/{refseq}/SNP/trackData.json"
+		snp.url = "/content/data/tracks/{refseq}/snp/trackData.json"
 		snp.type = "FeatureTrack"
-		snp.label = "SNPs-130"
+		snp.label = "snp"
 		snp.key = "SNPs (130)"
 		
 		tracks << snp
+		
+		def mirna = [:]
+		mirna.url = "/content/data/tracks/{refseq}/mirna/trackData.json"
+		mirna.type = "FeatureTrack"
+		mirna.label = "mirna"
+		mirna.key = "sno/miRNA"
+		
+		tracks << mirna
 		
 		if(!params.omicsData) {
 			session.tracks = tracks as JSON
