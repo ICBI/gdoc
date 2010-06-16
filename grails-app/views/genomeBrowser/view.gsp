@@ -28,6 +28,42 @@
     <script type="text/javascript">
     /* <![CDATA[ */
 			jQuery.noConflict();
+			function clickFeature(event) {
+				var elem = (event.currentTarget || event.srcElement);
+                //depending on bubbling, we might get the subfeature here
+                //instead of the parent feature
+                if (!elem.feature) elem = elem.parentElement;
+                if (!elem.feature) return; //shouldn't happen; just bail if it does
+                var feat = elem.feature;
+				var featureType = getFeatureType(elem);
+				var id = feat[4];
+				console.log(getFeatureType(elem));
+				console.log(feat[4]);
+				switch(featureType) {
+					case 'snp': 
+						handleSnp(id);
+						break;
+					case 'omim':
+						handleOmim(id);
+					default:
+						break;
+				}
+
+			}
+			
+			function getFeatureType(element) {
+				var tracks = jQuery(element).parents('.track');
+				if(tracks)
+					return tracks[0].id.substring(tracks[0].id.indexOf('_') + 1);
+			}
+			
+			function handleSnp(id) {
+				window.open("http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=" + id.substring(id.indexOf('rs') + 2));
+			}
+			
+			function handleOmim(id) {
+				window.open("http://www.ncbi.nlm.nih.gov/omim/" + id);
+			}
 		   var trackInfo = ${session.tracks}
 		   var refSeqs = ${session.sequences}
            var queryParams = dojo.queryToObject(window.location.search.slice(1));
