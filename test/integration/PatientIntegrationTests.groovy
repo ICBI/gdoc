@@ -6,7 +6,7 @@ class PatientIntegrationTests extends GroovyTestCase {
 	
 	void testFindAll() { 
 		
-		StudyContext.setStudy("EDINFAKE")
+		StudyContext.setStudy("EDIN")
 		
 		def patients = Patient.findAll([max:10])
 		assert patients.size() > 0
