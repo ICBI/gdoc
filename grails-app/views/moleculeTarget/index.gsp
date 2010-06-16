@@ -145,8 +145,9 @@
   </span>
 <div style="width:100%">
 <g:if test="${ligands?.results}">
-	<table class="resultTable" style="width:100%">
+	<table class="resultTable" style="width:900px">
 	<g:each in="${ligands.results}" var="molecule">
+	<g:if test="${molecule}">
 	<g:set var="moleculePaths" value="${molecule.structures?.toArray().collect{it.structureFile.relativePath}}" />
 		
 		<g:set var="ligandImg" value="${moleculePaths.find{it.contains('.png')}}" />
@@ -229,7 +230,7 @@
 			</td>
 		
 	</tr>
-	
+	</g:if>
 	</g:each>
 	</table>
 </g:if> 
