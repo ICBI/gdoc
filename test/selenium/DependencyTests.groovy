@@ -22,11 +22,11 @@ class DependencyTests extends GroovyTestCase {
 		
 	}
 	
-	void testCatissueDemo() { 
+/*	void testCatissueDemo() { 
 		selenium.open "https://demotisu.gdoc.georgetown.edu/catissuecore/RedirectHome.do" 
 		assertTrue selenium.isTextPresent("Welcome to caTissue Suite")
 		
-	}
+	}*/
 	
 /*	void testGpDemo() { 
 		selenium.open "https://democomp.gdoc.georgetown.edu/gp" 
