@@ -21,13 +21,14 @@ $.sortOptions('#left');
 $("#dataSetType").change(function() {
 	loadDataSets(this.value)
 });
+
 loadDataSets($('#dataSetType').val());
 
 });
 
 function loadDataSets(dataType) {
 	$.ajax({
-		url: "selectDataType",
+		url: "${createLink(action:'selectDataType')}",
 		data: "dataType=" + dataType,
 		cache: false,
 		success: function(html) {
