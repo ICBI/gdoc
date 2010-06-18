@@ -6,6 +6,8 @@ class AnalysisCommand {
 	String foldChange
 	String dataFile
 	String study
+	String statisticalMethod
+	String adjustment
 	AnalysisType requestType = (AnalysisType.CLASS_COMPARISON)
 	
 	static constraints = {

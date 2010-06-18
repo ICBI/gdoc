@@ -104,26 +104,26 @@ function loadDataSets(dataType) {
 	<br/>
 	p-value:
 	<br/>
-	<g:validationInput name="pvalue"/>
+	<g:validationInput name="pvalue" value=".05"/>
 	<br/>
 	Fold Change:
 	<br/>
-	<g:validationInput name="foldChange"/>
+	<g:validationInput name="foldChange" value="2"/>
 	<br/>
 	Statistical Method:
 	<br/>
 	<g:select name="statisticalMethod" 
-			from="${['T-Test: Two Sample Test']}"
-			value="'T-Test: Two Sample Test'" />
+			from="${session.statisticalMethods}"
+			value="'TTest'" optionKey="key" optionValue="value"/>
 	<br/>
 	<br/>
-	<%--Multiple Comparison Adjustment:
+	Multiple Comparison Adjustment:
 	<br/>
 	<g:select name="adjustment" 
-			noSelection="${['':'Select One...']}"
-			from="${['Family-Wise Error Rate(FWER): Bonferroni', 'False Discovery Rate(FDR): Benjamini-Hochberg']}"/>
+			from="${session.adjustments}"
+			value="'NONE'" optionKey="key" optionValue="value"/>
 	<br/>
-	<br/--%>
+	<br/>
 	Data-Type<br />
 	<g:select name="dataSetType" 
 			noSelection="${['':'Select Data Type']}"

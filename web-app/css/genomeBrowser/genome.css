@@ -770,6 +770,28 @@ div.ucsc-genes-hist {
     z-index: 10;
 }
 
+.refseq_genes,
+.plus-refseq_genes,
+.minus-refseq_genes {
+    position: absolute;
+    height: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: #999;
+    z-index: 6;
+    min-width: 1px;
+    cursor: pointer;
+}
+
+div.refseq_genes-hist {
+    position: absolute;
+    background-color: #ddd;
+    border-color: #555;
+    border-style: solid;
+    border-width: 1px;
+    z-index: 10;
+}
+
 .mrna,
 .plus-mrna,
 .minus-mrna {

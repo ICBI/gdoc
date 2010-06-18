@@ -37,14 +37,16 @@
                 var feat = elem.feature;
 				var featureType = getFeatureType(elem);
 				var id = feat[4];
-				console.log(getFeatureType(elem));
-				console.log(feat[4]);
 				switch(featureType) {
 					case 'snp': 
 						handleSnp(id);
 						break;
 					case 'omim':
 						handleOmim(id);
+						break;
+					case 'refseq':
+						handleRefseq(id);
+						break;
 					default:
 						break;
 				}
@@ -63,6 +65,10 @@
 			
 			function handleOmim(id) {
 				window.open("http://www.ncbi.nlm.nih.gov/omim/" + id);
+			}
+			
+			function handleRefseq(id) {
+				window.open("http://www.ncbi.nlm.nih.gov/sites/entrez?cmd=search&db=gene&term=" + id);
 			}
 		   var trackInfo = ${session.tracks}
 		   var refSeqs = ${session.sequences}

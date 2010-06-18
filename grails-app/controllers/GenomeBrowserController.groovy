@@ -63,20 +63,20 @@ class GenomeBrowserController {
 		tracks << chr
 		
 		def genes = [:]
-		genes.url = "/content/data/tracks/{refseq}/UCSCGenes/trackData.json"
+		genes.url = "/content/data/tracks/{refseq}/refseq/trackData.json"
 		genes.type = "FeatureTrack"
-		genes.label = "UCSCGenes"
-		genes.key = "UCSC Genes"
+		genes.label = "refseq"
+		genes.key = "RefSeq Genes"
 		
 		tracks << genes
 		
-		def gwas = [:]
+/*		def gwas = [:]
 		gwas.url = "/content/data/tracks/{refseq}/gwas/trackData.json"
 		gwas.type = "FeatureTrack"
 		gwas.label = "gwas"
 		gwas.key = "GWAS Catalog"
 		
-		tracks << gwas
+		tracks << gwas*/
 		
 		def omim = [:]
 		omim.url = "/content/data/tracks/{refseq}/omim/trackData.json"
@@ -86,13 +86,13 @@ class GenomeBrowserController {
 		
 		tracks << omim
 		
-		def mrna = [:]
+/*		def mrna = [:]
 		mrna.url = "/content/data/tracks/{refseq}/mRNA/trackData.json"
 		mrna.type = "FeatureTrack"
 		mrna.label = "mRNA"
 		mrna.key = "mRNA"
 		
-		tracks << mrna
+		tracks << mrna*/
 		
 		def snp = [:]
 		snp.url = "/content/data/tracks/{refseq}/snp/trackData.json"

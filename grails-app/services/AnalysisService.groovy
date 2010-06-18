@@ -3,6 +3,7 @@ import gov.nih.nci.caintegrator.analysis.messaging.ExpressionLookupRequest
 import gov.nih.nci.caintegrator.analysis.messaging.PrincipalComponentAnalysisRequest
 import gov.nih.nci.caintegrator.analysis.messaging.SampleGroup
 import gov.nih.nci.caintegrator.analysis.messaging.ReporterGroup
+import gov.nih.nci.caintegrator.enumeration.*
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.jms.core.MessageCreator
 import org.springframework.web.context.request.RequestContextHolder as RCH
@@ -35,6 +36,8 @@ class AnalysisService {
 			request.pValueThreshold = cmd.pvalue.toDouble()
 			request.foldChangeThreshold = cmd.foldChange.toDouble()
 			
+			request.multiGrpComparisonAdjType = MultiGroupComparisonAdjustmentType.valueOf(cmd.adjustment)
+			request.statisticalMethod = StatisticalMethodType.valueOf(cmd.statisticalMethod)
 			request.group1 = group1
 			request.baselineGroup = baseline
 			return request

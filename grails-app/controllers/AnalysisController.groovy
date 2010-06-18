@@ -36,6 +36,10 @@ class AnalysisController {
 			session.dataSetType = session.files.keySet()
 			println "my ht files for $session.study = $session.files"
 		}
+		def methods = ['TTest':'T-Test: Two Sample Test', 'Wilcoxin':'Wilcoxin Test: Mann-Whitney Test']
+		session.statisticalMethods = methods
+		def adjustments = ['NONE':'None', 'FWER':'Family-Wise Error Rate(FWER): Bonferroni', 'FDR':'False Discovery Rate(FDR): Benjamini-Hochberg']
+		session.adjustments = adjustments
 		def diseases = session.myStudies.collect{it.cancerSite}
 		diseases.remove("N/A")
 		def myStudies = session.myStudies

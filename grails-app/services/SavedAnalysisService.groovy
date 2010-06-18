@@ -229,7 +229,6 @@ class SavedAnalysisService {
 	}
 	
 	def analysisIsTemporary(analysisId){
-		println "find if analysis is temporary"
 		def compAnalysis = SavedAnalysis.get(analysisId)
 		if(compAnalysis.tags?.contains(Constants.TEMPORARY)){
 			return true
