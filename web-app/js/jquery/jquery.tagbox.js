@@ -294,7 +294,7 @@
 								var idArray = $(this).parent().attr('class').split("_tags");
 								var tagid = idArray[0];
 								var ajaxController = $(".ajaxController").html();
-								console.log(tag);
+								//console.log(tag);
 								$.post("/gdoc/" + ajaxController + "/removeTag?tag="+tag+"&id="+tagid);	
 				                return false;
 				            }

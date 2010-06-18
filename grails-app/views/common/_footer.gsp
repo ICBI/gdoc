@@ -1,4 +1,5 @@
-<div style="background: #f2f2f2 url(/gdoc/images/border_bottom.gif) top repeat-x;height:100%" align="center"><br />
+
+<div style="background: #f2f2f2 url(/gdoc/images/border_bottom.gif) top repeat-x;height:100%;" align="center"><br />
 
 <span>	<img src="${createLinkTo(dir:'images',file:'lombardi_logo.png')}" border="0" /></span>
 <span size="6" style="vertical-align:40px;margin-right:100px;margin-left:100px;font-size: 10px; font-family: arial,helvetica,sans-serif; color: #1c2674">

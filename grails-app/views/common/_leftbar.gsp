@@ -55,6 +55,22 @@ jQuery(document).ready(function()
 	</form>
 </div>
 
+<div id="navigation-block">
+	<ul id="mygdocNavigation" class="sf-menu sf-vertical sf-js-enabled sf-shadow">
+		<li>
+			<g:link controller="notification">Notifications</g:link>
+		</li>
+		<li>
+			<g:link name="View My Saved Lists" controller="userList">Saved Lists</g:link>
+		</li>
+		<li>
+			<g:link name="View My Saved Analysis" controller="savedAnalysis">Saved Analysis</g:link>
+		</li>
+		<li>
+			<g:link name="Collaboration Groups" controller="collaborationGroups">Manage my groups / Request access</g:link>
+		</li>
+</div>
+
 
 
 

@@ -56,10 +56,10 @@
 				${session.study?.shortName}</span>
 			<span style="display:inline-table;font-size:.8em">
 				<g:if test="${session.study}">
-					<a href="#" id="changeStudy" style="display:block" onclick="showStudyChange();">change study?</a>
+					<a href="#" id="changeStudy" style="display:block;margin-left:26px" onclick="showStudyChange();">change study?</a>
 				</g:if>
 				<g:else>
-					<a href="#" id="changeStudy" style="display:none" onclick="showStudyChange();">change study?</a>
+					<a href="#" id="changeStudy" style="display:none;margin-left:26px" onclick="showStudyChange();">change study?</a>
 				</g:else>
 			</span>
 		</p>

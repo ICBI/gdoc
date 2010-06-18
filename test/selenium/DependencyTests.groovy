@@ -14,7 +14,7 @@ class DependencyTests extends GroovyTestCase {
 		selenium.open "https://demo.gdoc.georgetown.edu/gdoc/" 
 		assertTrue selenium.isTextPresent("Welcome to GDOC")
 		
-	}**/
+	}
 	
 /*	void testCatissueDev() { 
 		selenium.open "https://devtisu.gdoc.georgetown.edu/catissuecore/RedirectHome.do" 

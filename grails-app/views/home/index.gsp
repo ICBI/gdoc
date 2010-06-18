@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Georgetown Database of Cancer</title>
-		<meta name="layout" content="main" />
+		<meta name="layout" content="splash" />
 		<g:javascript library="jquery"/>
 		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
 		<g:javascript src="jquery/scrollTable/jscrolltable.js"/>
@@ -15,28 +15,20 @@
 				<jq:plugin name="ui"/>
 				
 				<br/>
-			
-				<div style="font-size:16px;margin-bottom:5px">Welcome to GDOC</div>
+				<div style="width:900px;height:250px;border:1px solid silver;margin:auto;" align="center">
+					<br /><br /><br /><i>flash goes here</i>
+				</div>
+				
 				
 				<g:if test="${flash.message}">
 					<div class="message" style="width:75%">${flash.message}</div>
 				</g:if>
 				
-				<div id="centerContent" class="welcomeTitle">
-						<p>The Georgetown Database of Cancer integrates multiple datatypes to present
-						a unified data view, allowing for rapid data exploration.</p>
-						
-						<p>Lombardi's world-renowned Research Faculty are discovering cancer
-							 risk factors, designing effective prevention strategies, and learning
-							 how to detect cancers earlier. They are developing and testing the cancer
-							 treatments of tomorrow - targeted therapies that will improve both survival
-							 and quality of life.</p>
-						<br/>
-						<!-- root element for scrollable -->
-						
+				<div id="centerContent" class="welcomeTitle" style="margin:20px">
+					
 						
 					<br/>
-					<table>
+					<table border="0">
 						<tr><td valign="top">
 					<table class="listTable" border="1" style="font-size:.9em" id="patientsTable">
 						<th colspan="2" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Patients</th>

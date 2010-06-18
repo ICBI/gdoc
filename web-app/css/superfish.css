@@ -90,7 +90,7 @@ ul.sf-menu li li li.sfHover ul {
 	position:		absolute;
 	display:		block;
 	right:			.75em;
-	top:			1.05em; /* IE6 only */
+	top:			.75em; /* IE6 only */
 	width:			10px;
 	height:			10px;
 	text-indent: 	-999em;
@@ -134,3 +134,6 @@ li.sfHover > a > .sf-sub-indicator {
 .sf-shadow ul.sf-shadow-off {
 	background: transparent;
 }
+
+
+

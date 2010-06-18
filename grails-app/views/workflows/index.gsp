@@ -138,7 +138,7 @@
 											<g:link controller="pca" style="color:#336699;">Classification</g:link><br /><br />
 											<a style="color:#336699;" href='#'>Correlations/Multi Omics</a><br /><br />
 											<g:link controller="genomeBrowser" style="color:#336699;">Pathways/Networks</g:link><br /><br />
-											<g:link controller="genePattern" style="color:#336699;">Advanced Molecular Analysis (Gene Pattern)</g:link><br />
+											<%--g:link controller="genePattern" style="color:#336699;">Advanced Molecular Analysis (Gene Pattern)</g:link><br /--%>
 											</p>
 									</td>
 								</tr>

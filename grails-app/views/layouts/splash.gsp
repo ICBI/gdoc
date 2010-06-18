@@ -43,21 +43,9 @@
 	<div class="c" style="background:#fff;border:.5px solid #000;padding:3px 0;">
 	<div id="bd" style="min-height:400px;">
 		<div id="yui-main">
-			<div class="yui-b">
-				<div class="yui-gc">
-					<div class="yui-u first">
+			
 						<g:layoutBody/><br />
-					</div>
-					<div class="yui-u">
-						<g:render template="/common/rightbar"/>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="c" style="padding:5px">
-		<div id="navigation" class="yui-b first">
-			<g:render template="/common/leftbar"/>
-		</div>
+					
 		</div>
 	</div>
 	<div id="ft">
@@ -70,7 +58,7 @@
 <g:javascript>
 // code to set height of left bar
 jQuery(document).ready(function() {
-	$('#navigation').height($('#yui-main').height()-5);
+	$('#navigation').height($('#yui-main').height());
 });
 </g:javascript>
 </body>

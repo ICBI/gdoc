@@ -47,7 +47,9 @@ class BootStrap {
 			case "demo":
 				def da = quickStartService.getDataAvailability()
 				servletContext.setAttribute("dataAvailability", da)
-				break;	
+				break;
+			case "test":
+				break;
 	   	}
 		
 		// Setup metaclass methods for string 

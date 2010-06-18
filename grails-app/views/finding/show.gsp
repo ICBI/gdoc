@@ -16,7 +16,7 @@
 		</g:javascript>
     </head>
     <body>
-	<p style="font-size:14pt">Finding #${params?.id}</p>
+	<%--p style="font-size:14pt">Finding: ${finding.title}</p--%>
 	<br/>
 	
 	<div id="centerContent" class="welcome">
@@ -32,7 +32,7 @@
 				</tr>
 				</g:if>
 				<tr>
-					<td><b>Author</b>: ${finding.author?.firstName}&nbsp;${finding.author?.lastName}</td>
+					<td><b>Curator</b>: ${finding.author?.firstName}&nbsp;${finding.author?.lastName}</td>
 				</tr>
 
 				<tr>

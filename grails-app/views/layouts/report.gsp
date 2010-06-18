@@ -14,24 +14,40 @@
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<g:javascript library="jquery"/>
 		<g:layoutHead/>
+		<jq:plugin name="curvycorners"/>
 </head>
-<body>
-<div id="doc3" class="yui-t1">
+<body style="background-color:#334477">
+	<g:javascript>
+	jQuery(document).ready(function()
+	{
+		
+		$('.c').corner();
+	
+	});
+	</g:javascript>
+<div id="doc2" class="yui-t1">
 <div id="hd" style="overflow:hidden;">
     <!-- Header start -->
     <g:render template="/common/header"/>
 
     <!-- Header end -->
 </div>
+<div class="c" style="background:#fff;border:.5px solid #000;padding:3px 0;">
+	<div style="padding:5px">
 	<g:render template="/common/nav_top" />
+	
 <br/>
 <div id="bd" class="reportBody" style="clear: both;">		
 	<g:layoutBody/>
 </div>
+
 <div id="ft">
     <!-- Footer start -->
     <g:render template="/common/footer"/>
     <!-- Footer end -->
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

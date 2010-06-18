@@ -19,18 +19,28 @@
 		<g:javascript library="jquery"/>
 		<g:javascript src="gdoc.js"/>
 		<g:layoutHead/>
+		<jq:plugin name="curvycorners"/>
 </head>
-<body>
+<body style="background-color:#334477">
 	
+	<g:javascript>
+	jQuery(document).ready(function()
+	{
+		
+		$('.c').corner();
+	
+	});
+	</g:javascript>
 	
 <g:set var="activePage" value="${params.controller}" /> 
-<div id="doc3" class="yui-t1">
+<div id="doc2" class="yui-t1">
 	<div id="hd">
 		<!-- Header start -->
     <g:render template="/common/header"/>
     <!-- Header end -->
 	</div>
-	<div id="bd">
+	<div class="c" style="background:#fff;border:.5px solid #000;padding:3px 0;">
+	<div id="bd" style="min-height:400px;">
 		<div id="yui-main">
 			<div class="yui-b">
 				<div class="yui-gc">
@@ -44,14 +54,17 @@
 				</div>
 			</div>
 		</div>
+		<div class="c" style="padding:5px">
 		<div id="navigation" class="yui-b first">
 			<g:render template="/common/leftbar"/>
 		</div>
+		</div>
 	</div>
-	<div id="ft">
+	<div id="ft" >
 		<!-- Footer start -->
     <g:render template="/common/footer"/>
     <!-- Footer end -->
+	</div>
 	</div>
 </div>
 <g:javascript>

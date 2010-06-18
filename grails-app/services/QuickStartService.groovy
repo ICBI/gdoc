@@ -92,7 +92,7 @@ class QuickStartService implements ApplicationContextAware{
 		
 		allDataTypes.each{ type ->
 			if(type != 'CLINICAL'){
-				println "find if $type data in $study"
+				println "find if $type data in $study.shortName"
 				//get specimens
 				def samples = []
 				def reductionAnalyses = []
@@ -114,14 +114,20 @@ class QuickStartService implements ApplicationContextAware{
 					}
 					//println bsIds
 					def biospecimens = []
-					biospecimens = Biospecimen.getAll(bsIds)
+					//biospecimens = Biospecimen.getAll(bsIds)
 					//get patients
 					def patientWith = []
-					patientWith = biospecimens.collect{it.patient.id}
-					println patientWith
-					if(patientWith){
-						pw = Patient.getAll(patientWith) as Set
-						//println "all patients with $type: " + pw.size() + " " + pw
+					def bidsString = bsIds.toString().replace("[","")
+					bidsString = bidsString.replace("]","")
+					def query2 = "select b.patient_id from " + study.schemaName + ".BIOSPECIMEN b where b.biospecimen_id in ("+bidsString+")"
+					patientWith = jdbcTemplate.queryForList(query2);//biospecimens.collect{it.patient.id}
+					def patIds = patientWith.collect { id ->
+						return id["PATIENT_ID"]
+					}
+					println "returned patient ids=" + patIds
+					if(patIds){
+						pw = Patient.getAll(patIds) as Set
+						println "all patients with $type: " + pw.size() + " " + pw
 					}
 				}
 				if(reductionAnalyses){

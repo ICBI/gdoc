@@ -19,7 +19,7 @@
 
 
 				<tr>
-					<td><b>Author</b>: ${finding.author?.firstName}&nbsp;${finding.author?.lastName}</td>
+					<td><b>Curator</b>: ${finding.author?.firstName}&nbsp;${finding.author?.lastName}</td>
 				</tr>
 
 				<tr>

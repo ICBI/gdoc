@@ -12,7 +12,6 @@
 	function exportMol() {
 		var ffmt = "smiles:";
 		var s = document.Editor.getSmiles();//document.Editor.getMolFile();//document.MSketch.getMol(ffmt);
-		alert('yo' + s);
 		//s = unix2local(s);
 		if(s != "") {
 			document.MolForm.smiles.value = s; 
@@ -143,15 +142,15 @@
     &nbsp;
     </g:else>
   </span>
-<div style="width:100%">
+<div>
 <g:if test="${ligands?.results}">
-	<table class="resultTable" style="width:900px">
+	<table class="resultTable">
 	<g:each in="${ligands.results}" var="molecule">
 	<g:if test="${molecule}">
 	<g:set var="moleculePaths" value="${molecule.structures?.toArray().collect{it.structureFile.relativePath}}" />
 		
 		<g:set var="ligandImg" value="${moleculePaths.find{it.contains('.png')}}" />
-	<tr><td style="border-bottom:1px solid orange"><div style="font-size:1em;width:100%"><strong>${molecule.name}</strong></div></td></tr>
+	<tr><td style="border-bottom:1px solid orange" colspan="2"><div style="font-size:1em;"><strong>${molecule.name}</strong></div></td></tr>
 	<tr>
 	
 		<td valign="top" style="width:40%;padding-left:20px">

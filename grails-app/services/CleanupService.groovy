@@ -20,8 +20,10 @@ class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
 		if(analyses){
 			def tbSize = analyses.size()
 			analyses.each{
+				println "delete analysis $it"
 				def sa = SavedAnalysis.get(it)
-				sa.delete(flush: true)
+				if(sa)
+					sa.delete(flush: true)
 			}
 			println "deleted $tbSize temp analyses for $author.loginName";
 		}
@@ -40,6 +42,7 @@ class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
 			def tbSize = lists.size()
 			lists.each{
 				def list = UserList.get(it)
+				if(list)
 				list.delete(flush: true)
 			}
 			println "deleted $tbSize temp lists for $author.loginName";
