@@ -6,13 +6,13 @@ class DependencyTests extends GroovyTestCase {
 	void testGdocDev() { 
 		
 		selenium.open "https://dev.gdoc.georgetown.edu/gdoc/" 
-		assertTrue selenium.isTextPresent("Welcome to GDOC")
+		assertTrue selenium.isTextPresent("CONTACT US")
 		
 	} 
 	
 	void testGdocDemo() { 
 		selenium.open "https://demo.gdoc.georgetown.edu/gdoc/" 
-		assertTrue selenium.isTextPresent("Welcome to GDOC")
+		assertTrue selenium.isTextPresent("CONTACT US")
 		
 	}
 	
