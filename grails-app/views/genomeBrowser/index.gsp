@@ -4,17 +4,25 @@
 	<meta name="layout" content="main" />
 	<g:javascript library="jquery" />
 	<jq:plugin name="blockui" />
+	<script type="text/javascript" src="${createLinkTo(dir: 'js/dojo',  file: 'dojo.js')}" djConfig="isDebug: false"></script>
+	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'LazyPatricia.js')}" ></script>
 	<title>GDOC Genome Browser</title>         
 </head>
 <body>
 <g:javascript>
+	var names = new LazyTrie("/content/data/names/lazy-",
+			      "/content/data/names/root.json");
 	$(document).ready(function() {
+		toggleFeature();
 		toggleBlock($('#omics'));
 		$('#omics').change(function() {
 			toggleBlock(this);
 		});
 		$('#submit').click(function() {
-			$('#browseForm').submit();
+			if($('#searchType:checked').val() == 'feature')
+				search($('#feature').val());
+			else
+				$('#browseForm').submit();
 		})
 		$('.searchRadio').change(function() {
 			$('.search').toggle();
@@ -30,6 +38,50 @@
 			});
 		}
 	}
+	
+	function toggleFeature() {
+		if($('#searchType:checked').val() == 'feature') {
+			$('#locationSearch').hide();
+			$('#geneSearch').show();
+		} else {
+			$('#geneSearch').hide();
+			$('#locationSearch').show();
+		}
+	}
+	
+	function search(item) {
+		dojo.subscribe("noFeature", function(data) {
+			$('#noFeature').show();
+		});
+		names.exactMatch(item, function(matches) {
+		    var goingTo;
+		    //first check for exact case match
+		    for (var i = 0; i < matches.length; i++) {
+				if (matches[i][1] == item) {
+			    	goingTo = matches[i];
+				}
+		    }
+		    //if no exact case match, try a case-insentitive match
+	       	if (!goingTo) {
+	        	for (var i = 0; i < matches.length; i++) {
+	        		if (matches[i][1].toLowerCase() == loc.toLowerCase())
+	                	goingTo = matches[i];
+	        	}
+	        }	
+	
+            //else just pick a match
+	    	if (!goingTo) goingTo = matches[0];
+	    	var startbp = goingTo[3];
+	    	var endbp = goingTo[4];
+	    	var flank = Math.round((endbp - startbp) * .2);
+			$('#trackMatch').val(names.extra[matches[0][0]]);
+			$('#hiddenLocation').val(goingTo[2] + ":" + (startbp - flank)  + ".." + (endbp + flank));
+			$('#browseForm').submit();
+			
+		});
+
+		
+	}
 </g:javascript>
 <p style="font-size:14pt">Genome Browser</p>
 <br/>
@@ -37,10 +89,11 @@
 	<g:form name="browseForm" action="view">
 		<div class="clinicalSearch">
 			Select Location Criteria<br/><br/>
-			<g:radio name="searchType" value="gene" checked="true" class="searchRadio"/> Browse to Gene <br/><br/>
+			<g:radio name="searchType" value="feature" checked="true" class="searchRadio"/> Browse to Feature (Enter RefSeq ID, dbSNP ID, miRNA ID)<br/><br/>
 			<g:radio name="searchType" value="location" class="searchRadio"/> Browse to Chromosome Location <br/><br/>
 			<div id="geneSearch" class="search">
-				Enter Gene Name: <g:textField name="gene"/><br/><br/>
+				Enter Feature ID: <g:textField name="feature"/><br/>
+				<div id="noFeature" class="errorDetail" style="display:none;">No features by that name found.  Please try again.</div><br/>
 			</div>
 			<div id="locationSearch" class="search" style="display: none">
 				Enter Chromosome: 
@@ -49,6 +102,8 @@
 				Location: 
 				<g:textField name="location"/><br/><br/>
 			</div>
+			<g:hiddenField name="hiddenLocation"/>
+			<g:hiddenField name="trackMatch"/>
 			<g:checkBox name="omicsData" id="omics"/> Add Omics Data to Display<br/><br/>
 		</div>
 	</g:form>

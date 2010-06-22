@@ -38,7 +38,7 @@ $.growlUI = function(title, message, timeout, onClose) {
 	var $m = $('<div class="growlUI"></div>');
 	if (title) $m.append('<h1>'+title+'</h1>');
 	if (message) $m.append('<h2>'+message+'</h2>');
-	if (timeout == undefined) timeout = 3000;
+	if (timeout == undefined) timeout = 1500;
 	$.blockUI({
 		message: $m, fadeIn: 700, fadeOut: 1000, centerY: false,
 		timeout: timeout, showOverlay: false,

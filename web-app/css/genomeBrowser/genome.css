@@ -889,3 +889,9 @@ div.mirna-hist {
     opacity: 0.85;
 }
 #tooltip h3, #tooltip div { margin: 0; }
+
+div.growlUI { /*background: url(check48.png) no-repeat 10px 10px*/ }
+div.growlUI h1, div.growlUI h2 {
+	color: white; padding: 5px 5px 5px 25px; text-align: left;
+	align: left; 
+}

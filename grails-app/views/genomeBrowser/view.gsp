@@ -23,11 +23,16 @@
 
 	<g:javascript library="jquery" />
 	<jq:plugin name="tooltip"/>
+	<jq:plugin name="blockui" />
 	<jq:plugin name="livequery"/>
 
     <script type="text/javascript">
     /* <![CDATA[ */
 			jQuery.noConflict();
+			dojo.subscribe("noFeature", function(data) {
+				console.log('noFeature');
+				jQuery.growlUI('Error', 'No feature with identifier \'' + data + '\' found.'); 
+			});
 			function clickFeature(event) {
 				var elem = (event.currentTarget || event.srcElement);
                 //depending on bubbling, we might get the subfeature here
@@ -46,6 +51,9 @@
 						break;
 					case 'refseq':
 						handleRefseq(id);
+						break;
+					case 'mirna':
+						handleMirna(id);
 						break;
 					default:
 						break;
@@ -70,6 +78,11 @@
 			function handleRefseq(id) {
 				window.open("http://www.ncbi.nlm.nih.gov/sites/entrez?cmd=search&db=gene&term=" + id);
 			}
+			
+			function handleMirna(id) {
+				if(id.indexOf('hsa') > -1)
+					window.open("http://www.mirbase.org/cgi-bin/query.pl?terms=" + id);
+			}
 		   var trackInfo = ${session.tracks}
 		   var refSeqs = ${session.sequences}
            var queryParams = dojo.queryToObject(window.location.search.slice(1));
@@ -84,16 +97,14 @@
                                    containerID: "GenomeBrowser",
                                    refSeqs: refSeqs,
                                    trackData: trackInfo,
-                                   defaultTracks: "CopyNumber",
-                                   location: queryParams.loc,
-                                   tracks: queryParams.tracks,
-                                   bookmark: bookmarkCallback,
+                                   location: '${session.browseLocation}',
+                                   tracks: 'DNA,ChromosomeBand,${session.showTracks}',
 								   browserRoot: "${createLinkTo(dir: '')}/"
                                });
 		jQuery('.patientTooltip').livequery(function() { 
 			jQuery(this).tooltip({showURL: false});
 		});
-	
+		
     /* ]]> */
     </script>	       
 </head>

@@ -19,7 +19,15 @@ class GenomeBrowserController {
 	}
 	
     def view = { 
-	
+		if(params.searchType == 'feature')
+			session.browseLocation = params.hiddenLocation
+		else {
+			println params.location
+			if(!params.location || params.location == '')
+				params.location = '1..2'
+			session.browseLocation = params.chromosome + ":" + params.location
+		}
+		session.showTracks = params.trackMatch
 		// Create refrence sequences
 		def refSeqs = []
 		
@@ -146,62 +154,10 @@ class GenomeBrowserController {
 	}
 
 	def data = {
-		if(params.dataType != "Patient") {
-			println "got request for: ${request.forwardURI}"
-			def link = request.forwardURI.replace("/gdoc/genomeBrowser", "/content")
-			redirect(url: link)
-		}
-		println params.chromosome + " : " + params.dataType + " : " + params.id
-		def jsonResponse = [:]
-		jsonResponse.headers = ["start","end","strand","id","name","phase"]
-		def chromosome = params.chromosome.replace("chr", "")
-		jsonResponse.featureNCList = buildFeatures(params.id, chromosome)
-		jsonResponse.featureCount = jsonResponse.featureNCList.size()
-		
-		jsonResponse.key = params.dataType
-		jsonResponse.className = "copyNumber"
-		jsonResponse.clientConfig = null
-		jsonResponse.arrowheadClass = null
-		jsonResponse.rangeMap = []
-		jsonResponse.label = "Copy Number"
-		jsonResponse.type = "FeatureTrack"
-		jsonResponse.subfeatureHeaders = []
-		jsonResponse.sublistIndex = 1
-		render jsonResponse as JSON
-	}
-	
-	private buildFeatures(patientId, chromosome) {
-		StudyContext.setStudy("INDIVDEMO")
-		def analysis = ReductionAnalysis.findAll()
-		println analysis
-		def reduction = analysis.find {
-			it.biospecimen.patient.id.toString() == patientId
-		}
-		if(!reduction)
-			return []
-		def values = reduction.locationValues.findAll {
-			it.chromosome == chromosome
-		}
-		def returnVals = []
-		values.each {
-			def color = 0
-			if(it.value > 1.75)
-				color = 1
-			if(it.value > 1.9)
-				color = 2
-			if(it.value > 2)
-				color = 3
-			if(it.value > 2.1)
-				color = 4	
-			if(it.value > 2.2)
-				color = 5
-			if(it.value > 2.3)
-				color = 6
-			if(it.value > 2.5)
-				color = 7				
-			returnVals << [it.startPosition, it.endPosition, 1, it.id, "", color, it.value]
-		}
-		return returnVals.sort { it[0] }
+		println "got request for: ${request.forwardURI}"
+		def link = request.forwardURI.replace("/gdoc/genomeBrowser", "/content")
+		redirect(url: link)
+
 	}
 	
 }

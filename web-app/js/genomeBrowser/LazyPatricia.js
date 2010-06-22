@@ -128,6 +128,8 @@ LazyTrie.prototype.exactMatch = function(key, callback) {
     this.findNode(key, function(prefix, node) {
             if ((prefix.toLowerCase() == key.toLowerCase()) && node[1])
                 callback(node[1]);
+			else 
+				dojo.publish("noFeature", [key]);
         });
 };
 
@@ -156,7 +158,10 @@ LazyTrie.prototype.findPath = function(query, callback) {
 
     while(true) {
         childIndex = this.binarySearch(node, query.charAt(qStart));
-        if (childIndex < 0) return;
+        if (childIndex < 0) {
+			dojo.publish("noFeature", [query]);
+			return;
+		}
         path.push(childIndex);
 
         if ("number" == typeof node[childIndex][0]) {
@@ -179,8 +184,11 @@ LazyTrie.prototype.findPath = function(query, callback) {
         // match
         if (query.substr(qStart, node[0].length)
             != node[0].substr(0, Math.min(node[0].length,
-                                          query.length - qStart)))
+                                          query.length - qStart))) {
+			dojo.publish("noFeature", [query]);
             return;
+		}
+		
 
         qStart += node[0].length;
         if (qStart >= query.length) {
@@ -188,7 +196,7 @@ LazyTrie.prototype.findPath = function(query, callback) {
             // have some matches
             callback(path);
             return;
-        }
+        } 
     }
 };
 
