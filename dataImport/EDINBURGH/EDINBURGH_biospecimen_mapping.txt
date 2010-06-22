@@ -39,8 +39,8 @@ PATIENT_ID	SAMPLE_ID	CEL_FILE	ARRAY_DESIGN	RDA_FILE	RDA_DESCRIPTION
 13MH	X13MH.3	X13MH.3.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
 20ET	X20ET.1	X20ET.1.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
 20ET	X20ET.3	X20ET.3.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
-5	X5.2DD	X5.2DD.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
-5	X5.6DD	X5.6DD.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
+5DD	X5.2DD	X5.2DD.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
+5DD	X5.6DD	X5.6DD.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
 4RE	X4.1RE	X4.1RE.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
 4RE	X4.4RE	X4.4RE.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
 4HC	X4.6HC	X4.6HC.CEL	U133 Plus 2.0	Edinburgh_binary.Rda	RMA normalized
