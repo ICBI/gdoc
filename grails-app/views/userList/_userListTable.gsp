@@ -34,36 +34,13 @@
 	</g:javascript>
 	<g:javascript>
 	$(document).ready( function () {
-			  $("[class*='_tags']").each(function(index){
-				$(this).tagbox({
-								grouping: '"',
-								separator:/[,]/ ,
-								autocomplete:true
-							});
-				
-			  });
+			  
 			
 			$("[class*='_name']").each(function(index){
 				$(this).contentEditable="true";
 			});
 			  
-			$("[class='tag']").each(function(index){
-				var span = $(this).find('label').find('span');
-				if(span.html() == 'clinicalM' || 
-					span.html() == 'patientM' ||
-						span.html() == 'reporterM' ||
-						span.html() == 'geneM'){
-					var newStr = $(this).find('label').find('span').html();
-			        var tag = newStr.substring(0, newStr.length-1);
-					$(this).find('label').find('abbr').remove();
-					$(this).find('label').find('input').remove();
-					$(this).find('label').find('span').remove();
-					$(this).find('label').append("<div style='margin: 3px;margin-left:15px;display:inline-block';padding-top:5px>" + tag + "</div>");
-				}
-				//console.log($(this).find('label'));
-				//console.log(span.html());
-				//console.log(abbr);
-			});
+			
 			
 			
 	} );
@@ -171,15 +148,11 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 					<span style="color:red;padding:3px">NOTE: This list was created via the G-DOC QuickStart and will be removed when you log out of this session.</span>
 					</g:if>
 					<g:else>
-					Tags:
-					<input type="text" name="${userListInstance.id}_tags_name" class="${userListInstance.id}_tags tags clearfix" value="${userListInstance.tags.replace(' ',',')}">
-					</input>
+					Tags: ${userListInstance.tags}
+					
 					</g:else>
 					</g:if>
-					<g:if test="${userListInstance.tags.size()==0}">
-					<input type="text" name="${userListInstance.id}_tags_name"  class="${userListInstance.id}_tags tag_box tags clearfix" />
 					
-					</g:if>
 					
 				</div>
 		</div>
@@ -190,36 +163,7 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 </g:panel>
 
 <g:javascript library="jquery"/>
-<jq:plugin name="tagbox"/>
-<g:javascript>
 
- $("[class*='_tags']").each(function(index){
-	$(this).tagbox({
-					grouping: '"',
-					separator:/[,]/ ,
-					autocomplete:true
-				});
-	
-  });
-  
-$("[class='tag']").each(function(index){
-	var span = $(this).find('label').find('span');
-	if(span.html() == 'clinicalM' || 
-		span.html() == 'patientM' ||
-			span.html() == 'reporterM'){
-		var newStr = $(this).find('label').find('span').html();
-		var tag = newStr.substring(0, newStr.length-1);
-		$(this).find('label').find('abbr').remove();
-		$(this).find('label').find('input').remove();
-		$(this).find('label').find('span').remove();
-		$(this).find('label').append("<div style='margin: 3px;margin-left:15px;display:inline-block';padding-top:5px>" + tag + "</div>");
-	}
-	//console.log($(this).find('label'));
-	//console.log(span.html());
-	//console.log(abbr);
-});
-
-</g:javascript>
 </g:if>
 <g:else>
 <p>Currently, you have no saved lists during the time period of 

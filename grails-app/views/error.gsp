@@ -21,7 +21,7 @@
 	
 	
 <g:set var="activePage" value="${params.controller}" /> 
-<div id="doc3" class="yui-t1">
+<div id="doc2" class="yui-t1">
 	<div id="hd">
 		<!-- Header start -->
     <g:render template="/common/header"/>
