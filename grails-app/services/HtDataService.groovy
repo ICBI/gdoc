@@ -3,7 +3,7 @@ class HtDataService {
     boolean transactional = true
 	
 	def jdbcTemplate
-	
+	def biospecimenService
 	private static def HT_FILE_INSERT = 'insert into ${schemaName}.HT_FILE(HT_FILE_ID, NAME, RELATIVE_PATH, SIZE_B, FILE_TYPE_ID, FILE_FORMAT_ID, DATA_LEVEL, INSERT_USER, INSERT_DATE, INSERT_METHOD, DESCRIPTION) ' +
 																			'values (${schemaName}.HT_FILE_SEQUENCE.nextVal, \'${fileName}\', \'${relativePath}\', ${fileSize}, ${fileTypeId}, ${fileFormatId}, \'${dataLevel}\', \'${insertUser}\', (SELECT SYSDATE FROM dual), \'${insertMethod}\', \'${description}\')'
 	private static def FILE_TYPE_SELECT = 'select FILE_TYPE_ID from FILE_TYPE where NAME = \'${fileType}\''
@@ -59,7 +59,17 @@ class HtDataService {
 		priorFiles.each {
 			def file = loadHtFile(it, null)
 			def run = loadHtRun(it, file)
-			def biospecimen = loadBiospecimen(it)
+			println "get biospecimen to link with run"
+			def studyPatient = StudyPatient.findByDataSourceInternalId(it.patientId)
+			def patient  = Patient.get(studyPatient.id)
+			def biospecimen = Biospecimen.findByPatient(patient)
+			if(biospecimen){
+				println "found biospecimen, now link"
+			}else{
+				println "biospecimen does not yet exist, create one, and then link"
+				biospecimen = biospecimenService.loadBiospecimen(it)
+			}
+			
 			linkBiospecimenRun(it.schemaName, biospecimen.id, run.id)
 			files << file
 		}
@@ -67,7 +77,7 @@ class HtDataService {
 		return normFile
 	}
 	
-	def loadBiospecimen(params) {
+	/**def loadBiospecimen(params) {
 		
 		def studyPatient = StudyPatient.findByDataSourceInternalId(params.patientId)
 		def patient  = Patient.get(studyPatient.id)
@@ -79,7 +89,7 @@ class HtDataService {
 		if(!biospecimen.save())
 			println biospecimen.errors
 		return biospecimen
-	}
+	}**/
 	
 	def linkBiospecimenRun(schemaName, biospecimenId, runId) {
 		def engine = new groovy.text.SimpleTemplateEngine() 

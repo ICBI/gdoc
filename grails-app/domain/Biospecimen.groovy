@@ -30,15 +30,15 @@ class Biospecimen {
 		if(!this.@biospecimenData) {
 			this.@biospecimenData = [:]
 			values.each { value ->
-				if(value.type.vocabulary) {
-					def vocab = value.type.vocabs.find { 
+				if(value.commonType.vocabulary) {
+					def vocab = value.commonType.vocabs.find { 
 						it.term == value.value
 					}
 					if(vocab) {
-						this.@biospecimenData[value.type.shortName] = vocab.termMeaning
+						this.@biospecimenData[value.commonType.shortName] = vocab.termMeaning
 					}
 				} else {
-					this.@biospecimenData[value.type.shortName] = value.value
+					this.@biospecimenData[value.commonType.shortName] = value.value
 				}
 			}
 		}

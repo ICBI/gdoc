@@ -2,12 +2,15 @@ class BiospecimenValue {
 	static mapping = {
 		table '__STUDY_SCHEMA__.biospecimen_attribute_value'
 		version false
-		id column:'BIOSPEC_ATTRIBUTE_VALUE_ID'
+		id column:'BIOSPEC_ATTRIBUTE_VALUE_ID', generator: 'sequence', params: [sequence: '__STUDY_SCHEMA__.BIOSPECIMEN_VALUE_SEQUENCE']
 		biospecimen column:'BIOSPECIMEN_ID'
-		type column:'attribute_type_id'
+		commonType column:'attribute_type_id'
 	}
 
 	String value
 	Biospecimen biospecimen
-	AttributeType type
+	CommonAttributeType commonType
+	String insertUser
+	String insertMethod
+	Date insertDate
 }

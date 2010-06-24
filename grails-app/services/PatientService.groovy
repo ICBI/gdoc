@@ -72,19 +72,23 @@ class PatientService {
 		if(!patient)
 			return
 		values.each { name, value ->
-			def type = CommonAttributeType.findByShortName(name)
-			if(!type)
-				throw new Exception("Attribute Type ${name} not found.  Unable to load data.")
-			def attValue = new AttributeValue()
-			attValue.commonType = type
-			attValue.value = value
-			attValue.insertUser = auditInfo.insertUser
-			attValue.insertMethod = auditInfo.insertMethod
-			attValue.insertDate = auditInfo.insertDate
-			attValue.studyPatient = patient
-			patient.addToValues(attValue)
-			if(!attValue.save(flush:true))
-				println attValue.errors
+			if(value){
+				def type = CommonAttributeType.findByShortName(name)
+				if(!type)
+					throw new Exception("Attribute Type ${name} not found.  Unable to load data.")
+				def attValue = new AttributeValue()
+				attValue.commonType = type
+				attValue.value = value
+				attValue.insertUser = auditInfo.insertUser
+				attValue.insertMethod = auditInfo.insertMethod
+				attValue.insertDate = auditInfo.insertDate
+				attValue.studyPatient = patient
+				patient.addToValues(attValue)
+				if(!attValue.save(flush:true))
+					println attValue.errors
+			}else{
+				println "no value found for attribute ${name}"
+			}
 		}
 		patient.merge()
 	}

@@ -61,4 +61,64 @@ class BiospecimenService {
 		println biospecimens.size()
 		return biospecimens.grep { it }
 	}
+	
+	def createBiospecimensForStudy(studyName, biospecimens,biospecimenAndData,auditInfo) {
+		def studyDataSource = StudyDataSource.findByShortName(studyName)
+		if(!studyDataSource)
+			return
+		StudyContext.setStudy(studyDataSource.schemaName)
+		biospecimens.each {
+			loadBiospecimen(it)
+		}
+		biospecimenAndData.each { biospecimenName, values ->
+			addDataValuesToBiospecimen(studyName, biospecimenName, values, auditInfo)
+		}
+	}
+	
+	def addDataValuesToBiospecimen(projectName, biospecimenName, values, auditInfo) {
+		def studyDataSource = StudyDataSource.findByShortName(projectName)
+		if(!studyDataSource)
+			return
+		StudyContext.setStudy(studyDataSource.schemaName)
+		def biospecimen = Biospecimen.findByName(biospecimenName)
+		if(!biospecimen)
+			return
+		values.each { name, value ->
+			if(value){
+				def type = CommonAttributeType.findByShortName(name)
+				if(!type){
+					println "Attribute Type ${name} not found.  Unable to load data."
+				}
+				else{
+					def attValue = new BiospecimenValue()
+					attValue.commonType = type
+					attValue.value = value
+					attValue.insertUser = auditInfo.insertUser
+					attValue.insertMethod = auditInfo.insertMethod
+					attValue.insertDate = auditInfo.insertDate
+					attValue.biospecimen = biospecimen
+					biospecimen.addToValues(attValue)
+					if(!attValue.save(flush:true))
+						println attValue.errors
+				}
+			}else{
+				println "no value found for attribute ${name}"
+			}
+		}
+		biospecimen.merge()
+	}
+	
+	
+	def loadBiospecimen(params) {
+		def studyPatient = StudyPatient.findByDataSourceInternalId(params.patientId)
+		def patient  = Patient.get(studyPatient.id)
+		def biospecimen = new Biospecimen(params)
+		biospecimen.patient = patient
+		biospecimen.type = "SAMPLE"
+		biospecimen.diseased = true
+		biospecimen.attributeTimepointId = 0
+		if(!biospecimen.save())
+			println biospecimen.errors
+		return biospecimen
+	}
 }
