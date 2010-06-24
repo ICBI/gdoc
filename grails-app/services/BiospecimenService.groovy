@@ -8,7 +8,7 @@ class BiospecimenService {
 	def queryString = '(select b.biospecimen_id from ${schema}.biospecimen b, common.attribute_type c, ${schema}.biospecimen_attribute_value v ' +
 		 			  'where b.biospecimen_id = v.biospecimen_id and v.attribute_type_id = c.attribute_type_id ' +
 					  ' and v.value = \'${value}\' and c.short_name = \'${key}\')'
-	def rangeQueryString = '(select b.biospecimen_id from ${schema}.biospecimen b, common.attribute_type c, ${schema}.biospecimen_attribute_value v ' +
+	def rangeQueryString = '(select /*+ index(v,BIOSPECIMEN_ATT_VALUE_INDEX1) */ b.biospecimen_id from ${schema}.biospecimen b, common.attribute_type c, ${schema}.biospecimen_attribute_value v ' +
 		 			  	   'where b.biospecimen_id = v.biospecimen_id and v.attribute_type_id = c.attribute_type_id ' +
 					  	   ' and c.short_name = \'${key}\' and v.value BETWEEN ${value.min} and ${value.max} )'					
 	
