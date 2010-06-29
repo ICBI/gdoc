@@ -14,8 +14,8 @@
 			      "/content/data/names/root.json");
 	$(document).ready(function() {
 		toggleFeature();
-		toggleBlock($('#omics'));
-		$('#omics').change(function() {
+		toggleBlock($('#omicsData'));
+		$('#omicsData').change(function() {
 			toggleBlock(this);
 		});
 		$('#submit').click(function() {
@@ -87,10 +87,11 @@
 <br/>
 <div>
 	<g:form name="browseForm" action="view">
+	${flash.cmd?.errors}
 		<div class="clinicalSearch">
 			Select Location Criteria<br/><br/>
-			<g:radio name="searchType" value="feature" checked="true" class="searchRadio"/> Browse to Feature (Enter RefSeq ID, dbSNP ID, miRNA ID)<br/><br/>
-			<g:radio name="searchType" value="location" class="searchRadio"/> Browse to Chromosome Location <br/><br/>
+			<g:radio name="searchType" value="feature" checked="${!flash.cmd || (flash.cmd?.searchType == 'feature')}" class="searchRadio"/> Browse to Feature (Enter RefSeq ID, dbSNP ID, miRNA ID)<br/><br/>
+			<g:radio name="searchType" value="location" checked="${flash.cmd?.searchType == 'location'}" class="searchRadio"/> Browse to Chromosome Location <br/><br/>
 			<div id="geneSearch" class="search">
 				Enter Feature ID: <g:textField name="feature"/><br/>
 				<div id="noFeature" class="errorDetail" style="display:none;">No features by that name found.  Please try again.</div><br/>
@@ -100,17 +101,25 @@
 				<g:select name="chromosome" from="${session.chromosomes}">
 				</g:select>
 				Location: 
-				<g:textField name="location"/><br/><br/>
+				<g:textField name="location"/><br/>
+				<div class="errorDetail">
+					<g:renderErrors bean="${flash.cmd?.errors}" field="location" />
+				</div>
+				<br/>
 			</div>
 			<g:hiddenField name="hiddenLocation"/>
 			<g:hiddenField name="trackMatch"/>
-			<g:checkBox name="omicsData" id="omics"/> Add Omics Data to Display<br/><br/>
+			<g:hiddenField name="omicsTypes"/>
+			<g:checkBox name="omicsData" value="${flash.cmd?.omicsData}"/> Add Omics Data to Display<br/><br/>
 		</div>
 	</g:form>
 		
 		<div class="clinicalSearch" id="omicsDiv">
 			<div id="studyPicker">
 				<g:render template="/studyDataSource/studyPicker"/>
+			</div>
+			<div class="errorDetail">
+				<g:renderErrors bean="${flash.cmd?.errors}" field="omicsTypes" />
 			</div>
 			<div id="searchDiv">
 				<g:render template="studyForm"/>

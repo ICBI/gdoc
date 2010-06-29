@@ -18,16 +18,22 @@ class GenomeBrowserController {
 		[diseases:diseases as Set,myStudies:myStudies]
 	}
 	
-    def view = { 
+    def view = { GenomeBrowserCommand cmd ->
+	
+		if(cmd.hasErrors()) {
+			flash['cmd'] = cmd
+			redirect(action:'index')
+		}
+		
 		if(params.searchType == 'feature')
-			session.browseLocation = params.hiddenLocation
+			session.browseLocation = cmd.hiddenLocation
 		else {
 			println params.location
-			if(!params.location || params.location == '')
+			if(!params.location || cmd.location == '')
 				params.location = '1..2'
-			session.browseLocation = params.chromosome + ":" + params.location
+			session.browseLocation = cmd.chromosome + ":" + cmd.location
 		}
-		session.showTracks = params.trackMatch
+		session.showTracks = cmd.trackMatch
 		// Create refrence sequences
 		def refSeqs = []
 		
