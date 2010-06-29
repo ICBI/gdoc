@@ -346,6 +346,7 @@ Browser.prototype.navigateTo = function(loc) {
     //matches[3] = chromosome (optional)
     //matches[4] = start base (optional)
     //matches[6] = end base (or center base, if it's the only one)
+
     if (matches) {
 	if (matches[3]) {
 	    var refName;

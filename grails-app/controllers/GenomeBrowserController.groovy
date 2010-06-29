@@ -31,7 +31,7 @@ class GenomeBrowserController {
 			println params.location
 			if(!params.location || cmd.location == '')
 				params.location = '1..2'
-			session.browseLocation = cmd.chromosome + ":" + cmd.location
+			session.browseLocation = "CHR" + cmd.chromosome + ":" + cmd.location + ".." + cmd.location
 		}
 		session.showTracks = cmd.trackMatch
 		// Create refrence sequences

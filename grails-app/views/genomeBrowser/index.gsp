@@ -87,7 +87,6 @@
 <br/>
 <div>
 	<g:form name="browseForm" action="view">
-	${flash.cmd?.errors}
 		<div class="clinicalSearch">
 			Select Location Criteria<br/><br/>
 			<g:radio name="searchType" value="feature" checked="${!flash.cmd || (flash.cmd?.searchType == 'feature')}" class="searchRadio"/> Browse to Feature (Enter RefSeq ID, dbSNP ID, miRNA ID)<br/><br/>

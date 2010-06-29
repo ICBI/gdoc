@@ -13,12 +13,14 @@ class GenomeBrowserCommand {
 	static constraints = {
 		searchType(blank:false)
 		feature(validator: { val, obj ->
-			println "FEATURE: ${val}"
-			return ((obj.searchType == 'feature') && (val != ''))
+			if(obj.searchType == 'feature')
+				return (val != '')
+			return true
 		})
 		location(validator: { val, obj -> 
-			println "location: ${val}"
-			return ((obj.searchType == 'location') && (val != ''))
+			if(obj.searchType == 'location')
+				return (val != '')
+			return true
 		})
 		omicsTypes(validator: { val, obj -> 
 			if(obj.omicsData) {

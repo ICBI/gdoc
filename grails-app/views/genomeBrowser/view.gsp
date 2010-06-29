@@ -30,7 +30,6 @@
     /* <![CDATA[ */
 			jQuery.noConflict();
 			dojo.subscribe("noFeature", function(data) {
-				console.log('noFeature');
 				jQuery.growlUI('Error', 'No feature with identifier \'' + data + '\' found.'); 
 			});
 			function clickFeature(event) {
