@@ -28,8 +28,66 @@
 					
 						
 					<br/>
+					
 					<table border="0">
-						<tr><td valign="top">
+						<tr>
+							<td valign="top">
+							<table class="listTable" border="1" style="font-size:.9em" id="patientsTable">
+								<th colspan="4" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Cancer/Study Overview</th>
+								<tr style="padding:4px 4px 4px 4px">
+									<td>Disease</td>
+									<td># Studies</td>
+									<td># Patients</td>
+									<td>Available Data Types</td>
+									<g:if test="${diseaseBreakdown}">
+									<g:each in="${diseaseBreakdown}" var="item">
+											<tr>
+											<td>${item.key}</td>
+											<td>${item.value.studyNumber}</td>
+											<td>${item.value.patientNumber}</td>
+											<td>${item.value.availableData}</td>
+											</tr>
+									</g:each>
+									</g:if>
+									<g:else>
+										<tr>
+											<td>Error communicating with patient service.  Please try again.</td>
+										</tr>
+									</g:else>
+								</tr>
+							</table>	
+							</td>
+						</tr>
+						<tr>
+							<td valign="top" style="padding-top:15px">
+							<table class="listTable" border="1" style="font-size:.9em" id="patientsTable">
+								<th colspan="4" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Data-Type Overview</th>
+								<tr style="padding:4px 4px 4px 4px">
+									<td>Data Type</td>
+									<td># Studies</td>
+									<g:if test="${dataBreakdown}">
+									<g:each in="${dataBreakdown}" var="data">
+											<tr>
+											<td>${data.key}</td>
+											<td>${data.value}</td>
+											</tr>
+									</g:each>
+									</g:if>
+									<g:else>
+										<tr>
+											<td>Error communicating with patient service.  Please try again.</td>
+										</tr>
+									</g:else>
+								</tr>
+							</table>	
+							</td>
+						</tr>	
+						</td></tr></table>	
+							
+							
+							
+							
+						<%--td valign="top">
 					<table class="listTable" border="1" style="font-size:.9em" id="patientsTable">
 						<th colspan="2" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Patients</th>
 						<tr style="padding:4px 4px 4px 4px">
@@ -76,8 +134,8 @@
 							</tr>
 						</g:else>
 						<tbody>
-					</table>
-				</td></tr></table>
+					</table--%>
+				
 					
 					
 					

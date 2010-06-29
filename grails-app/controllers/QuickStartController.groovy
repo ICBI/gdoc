@@ -92,7 +92,7 @@ class QuickStartController {
 				}
 			
 			dtResults["dataAvailability"] = dtArray
-			println dtResults
+			println dtResults["dataAvailability"]
 			render dtResults as JSON
 		}
 		

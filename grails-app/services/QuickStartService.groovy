@@ -85,14 +85,15 @@ class QuickStartService implements ApplicationContextAware{
 		def patients = []
 		patients = Patient.findAll()
 		result['STUDY'] = study.shortName
-		println "total patients in study: " + patients.size()
+		result['CANCER'] = study.cancerSite
+		println "find data for $study.shortName -> total patients in study: " + patients.size()
 		result['CLINICAL'] = patients.size()
 		
 		
 		
 		allDataTypes.each{ type ->
 			if(type != 'CLINICAL'){
-				println "find if $type data in $study.shortName"
+				//println "find if $type data in $study.shortName"
 				//get specimens
 				def samples = []
 				def reductionAnalyses = []
@@ -108,7 +109,7 @@ class QuickStartService implements ApplicationContextAware{
 					sidsString = sidsString.replace("]","")
 					def query = "select s.biospecimen_id from " + study.schemaName + ".HT_FILE_CONTENTS s where s.id in ("+sidsString+")"
 					bsWith = jdbcTemplate.queryForList(query)
-					println "biospecimens after $bsWith"
+					//println "biospecimens after $bsWith"
 					def bsIds = bsWith.collect { id ->
 						return id["BIOSPECIMEN_ID"]
 					}
@@ -124,10 +125,10 @@ class QuickStartService implements ApplicationContextAware{
 					def patIds = patientWith.collect { id ->
 						return id["PATIENT_ID"]
 					}
-					println "returned patient ids=" + patIds
+					//println "returned patient ids=" + patIds
 					if(patIds){
 						pw = Patient.getAll(patIds) as Set
-						println "all patients with $type: " + pw.size() + " " + pw
+						//println "all patients with $type: " + pw.size() + " " + pw
 					}
 				}
 				if(reductionAnalyses){
@@ -138,7 +139,7 @@ class QuickStartService implements ApplicationContextAware{
 					ridsString = ridsString.replace("]","")
 					def rquery = "select s.biospecimen_id from " + study.schemaName + ".REDUCTION_ANALYSIS s where s.id in ("+ridsString+")"
 					bsWithRA = jdbcTemplate.queryForList(rquery)
-					println "biospecimens with RA $bsWithRA"
+					//println "biospecimens with RA $bsWithRA"
 					def bsRids = bsWithRA.collect { id ->
 						return id["BIOSPECIMEN_ID"]
 					}
@@ -148,7 +149,7 @@ class QuickStartService implements ApplicationContextAware{
 					//get patients
 					def patientWithRA = []
 					patientWithRA = biospecimensWithRA.collect{it.patient.id}
-					println patientWithRA
+					//println patientWithRA
 					if(patientWithRA){
 						pw = Patient.getAll(patientWithRA) as Set
 						//println "all patients with $type: " + pw.size() + " " + pw
@@ -190,7 +191,7 @@ class QuickStartService implements ApplicationContextAware{
 				outcomeCriteria[2].each() { key, value -> biospecimenCriteria[key]=value };
 				if(biospecimenCriteria) {
 					biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
-					println "GOT IDS ${biospecimenIds}"
+					//println "GOT IDS ${biospecimenIds}"
 				}
 			}
 			
