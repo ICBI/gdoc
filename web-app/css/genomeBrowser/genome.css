@@ -895,3 +895,13 @@ div.growlUI h1, div.growlUI h2 {
 	color: white; padding: 5px 5px 5px 25px; text-align: left;
 	align: left; 
 }
+
+.patient-label {
+	font-family: sans-serif;
+    z-index: 20;
+    background-color: #C0C0C0;
+    border: 2px #2b434c solid;
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+}

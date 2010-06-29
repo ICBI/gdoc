@@ -32,6 +32,17 @@
 			dojo.subscribe("noFeature", function(data) {
 				jQuery.growlUI('Error', 'No feature with identifier \'' + data + '\' found.'); 
 			});
+			dojo.subscribe("tracksChanged", function(data) {
+				jQuery('.patientTooltip').each(function() {
+					if(!jQuery(this).data('tooltip'))
+						jQuery(this).tooltip({showURL: false});
+					jQuery(this).parent('.tracklist-label, .track-label').each(function() {
+						jQuery(this).removeClass('track-label tracklist-label');
+						jQuery(this).addClass('patient-label');
+					});
+				});
+				
+			});
 			function clickFeature(event) {
 				var elem = (event.currentTarget || event.srcElement);
                 //depending on bubbling, we might get the subfeature here
@@ -100,9 +111,6 @@
                                    tracks: 'DNA,ChromosomeBand,${session.showTracks}',
 								   browserRoot: "${createLinkTo(dir: '')}/"
                                });
-		jQuery('.patientTooltip').livequery(function() { 
-			jQuery(this).tooltip({showURL: false});
-		});
 		
     /* ]]> */
     </script>	       

@@ -294,6 +294,8 @@ Browser.prototype.onVisibleTracksChanged = function() {
                 trackLabels.join(","),
                 {expires: 60});
     this.view.showVisibleBlocks();
+	dojo.publish("tracksChanged", [trackLabels]);
+
 };
 
 /**
