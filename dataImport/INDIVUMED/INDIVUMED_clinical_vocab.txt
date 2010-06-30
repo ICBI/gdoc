@@ -76,19 +76,19 @@ RELATIONSHIP	COUSIN_FATHER	Cousin on the father's side		Cousin on the father's s
 VITAL_STATUS_RELATIVE	ALIVE	ALIVE		Relative of patient is alive
 VITAL_STATUS_RELATIVE	DEAD	DEAD		Relative of patient is dead
 DISEASE_CODE_RELATIVE 	C80	malignant neoplasm without specification of site		malignant neoplasm without specification of site
-DISEASE_CODE_RELATIVE 	C34.9	" malignant neoplasm of lung, unspecified "		" malignant neoplasm of lung, unspecified "
-DISEASE_CODE_RELATIVE 	C64	" malignant neoplasm of kidney, except renal pelvis "		" malignant neoplasm of kidney, except renal pelvis "
-DISEASE_CODE_RELATIVE 	C18.9	" malignant neoplasm of colon, unspecified "		" malignant neoplasm of colon, unspecified "
-DISEASE_CODE_RELATIVE 	C55	" malignant neoplasm of uterus, part unspecified "		" malignant neoplasm of uterus, part unspecified "
+DISEASE_CODE_RELATIVE 	C34.9	  malignant neoplasm of lung, unspecified  		  malignant neoplasm of lung, unspecified  
+DISEASE_CODE_RELATIVE 	C64	  malignant neoplasm of kidney, except renal pelvis  		  malignant neoplasm of kidney, except renal pelvis  
+DISEASE_CODE_RELATIVE 	C18.9	  malignant neoplasm of colon, unspecified  		  malignant neoplasm of colon, unspecified  
+DISEASE_CODE_RELATIVE 	C55	  malignant neoplasm of uterus, part unspecified  		  malignant neoplasm of uterus, part unspecified  
 DISEASE_CODE_RELATIVE 	C61	malignant neoplasm of prostate		malignant neoplasm of prostate
-DISEASE_CODE_RELATIVE 	C16.9	" malignant neoplasm of stomach: stomach, unspecified "		" malignant neoplasm of stomach: stomach, unspecified "
-DISEASE_CODE_RELATIVE 	C85.9	" non-hodgkin's lymphoma, unspecified type "		" non-hodgkin's lymphoma, unspecified type "
-DISEASE_CODE_RELATIVE 	C50.9	" malignant neoplasm of breast, unspecified "		" malignant neoplasm of breast, unspecified "
+DISEASE_CODE_RELATIVE 	C16.9	  malignant neoplasm of stomach: stomach, unspecified  		  malignant neoplasm of stomach: stomach, unspecified  
+DISEASE_CODE_RELATIVE 	C85.9	  non-hodgkin's lymphoma, unspecified type  		  non-hodgkin's lymphoma, unspecified type  
+DISEASE_CODE_RELATIVE 	C50.9	  malignant neoplasm of breast, unspecified  		  malignant neoplasm of breast, unspecified  
 DISEASE_CODE_RELATIVE 	E11.9	non-insulin-dependent diabetes mellitus without complications		non-insulin-dependent diabetes mellitus without complications
-DISEASE_CODE_RELATIVE 	C22.9	" malignant neoplasm of liver, unspecified "		" malignant neoplasm of liver, unspecified "
-DISEASE_CODE_RELATIVE 	C26.0	" malignant neoplasm of Intestinal tract, part unspecified "		" malignant neoplasm of Intestinal tract, part unspecified "
-DISEASE_CODE_RELATIVE 	C32.9	" malignant neoplasm of larynx, unspecified "		" malignant neoplasm of larynx, unspecified "
-DISEASE_CODE_RELATIVE 	C44.9	" malignant neoplasm of skin, unspecified "		" malignant neoplasm of skin, unspecified "
+DISEASE_CODE_RELATIVE 	C22.9	  malignant neoplasm of liver, unspecified  		  malignant neoplasm of liver, unspecified  
+DISEASE_CODE_RELATIVE 	C26.0	  malignant neoplasm of Intestinal tract, part unspecified  		  malignant neoplasm of Intestinal tract, part unspecified  
+DISEASE_CODE_RELATIVE 	C32.9	  malignant neoplasm of larynx, unspecified  		  malignant neoplasm of larynx, unspecified  
+DISEASE_CODE_RELATIVE 	C44.9	  malignant neoplasm of skin, unspecified  		  malignant neoplasm of skin, unspecified  
 DISEASE_CODE_PREV_CANCER	C18.7	malignant neoplasm of sigmoid colon		malignant neoplasm of sigmoid colon
 DISEASE_CODE_PREV_CANCER	C78.7	secondary malignant neoplasm of liver		secondary malignant neoplasm of liver
 DISEASE_CODE_PREV_CANCER	C18.2	malignant neoplasm of ascending colon		malignant neoplasm of ascending colon
