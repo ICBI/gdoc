@@ -14,6 +14,6 @@ Local.Therapy	new	MASTECTOMY	Mastectomy	Patient underwent Mastectomy	CLINICAL			
 node	ATTRIBUTE_TYPE_ID=202	NODAL_STATUS	Lymph Node Status	Lymph Node positivity for tumor cells	PATHOLOGY					1	0	1	varchar			
 Treatment	new	LETROZOL_TREATMENT	Letrozol Treatment	The patient was treated with Letrozol	CLINICAL					1	0	1	varchar			
 Treatment	ATTRIBUTE_TYPE_ID=197	TAMOXIFEN_TREATMENT	Tamoxifen Treatment	The patient was treated with tamoxifen	CLINICAL					1	0	1	varchar			
-t.rfs.months	new	DISEASE_FREE_SURVIVAL_MON	Disease free survival in months	Disease free survival in months	CLINICAL					1	0	0	varchar	months		
+t.rfs.months	new	DISEASE_FREE_SURVIVAL_MON	Disease free survival in months	Disease free survival in months	CLINICAL					0	0	0	NUMBER(4,1)	months	0	600		
 HER2.status	new	HER2_STATUS	HER2 Status	Human Epidermal growth factor Receptor 2 status	PATHOLOGY					1	0	1	varchar			
 size	new	TUMOR_SIZE_2CM	Tumor size less than or equal to or greater than 2 cm	Tumor size less than or equal to or greater than 2 cm	PATHOLOGY					1	0	1	varchar			
