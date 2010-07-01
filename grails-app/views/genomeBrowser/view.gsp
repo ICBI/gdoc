@@ -5,6 +5,8 @@
 	<link rel="stylesheet" href="${createLinkTo(dir: 'css/genomeBrowser',  file: 'genome.css')}"/>
 	<link rel="stylesheet" href="${createLinkTo(dir: 'css/genomeBrowser',  file: 'tundra.css')}"/>
 	<link rel="stylesheet" href="${createLinkTo(dir: 'js/dojo/resources',  file: 'dojo.css')}"/>
+	<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'superfish.css')}"/>
+    <link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
 
     <script type="text/javascript" src="${createLinkTo(dir: 'js/dojo',  file: 'dojo.js')}" djConfig="isDebug: false"></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/dojo',  file: 'jbrowse_dojo.js')}" ></script>
@@ -15,20 +17,21 @@
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'LazyPatricia.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Track.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'SequenceTrack.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'FeatureTrack.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'FeatureTrack.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'StaticTrack.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'ImageTrack.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'GenomeView.js')}" ></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Layout.js')}" ></script>
 
-	<g:javascript library="jquery" />
+	<g:javascript library="jquery"/>
 	<jq:plugin name="tooltip"/>
 	<jq:plugin name="blockui" />
 	<jq:plugin name="livequery"/>
-
     <script type="text/javascript">
     /* <![CDATA[ */
-			jQuery.noConflict();
+		jQuery.noConflict();
+
+
 			dojo.subscribe("noFeature", function(data) {
 				jQuery.growlUI('Error', 'No feature with identifier \'' + data + '\' found.'); 
 			});
@@ -116,7 +119,20 @@
     </script>	       
 </head>
 <body>
+	<div id="doc3" class="yui-t1">
+	<div id="hd" style="overflow:hidden;">
+	    <!-- Header start -->
+	    <g:render template="/common/header"/>
+
+	    <!-- Header end -->
+	</div>
+	<div class="c" style="background:#fff;border:.5px solid #000;">
+		<div>
+		<g:render template="/common/nav_top" />
+
+	<br/>
     <div id="GenomeBrowser" style="height: 100%; width: 100%; padding: 0; border: 0;"></div>
+	</div>
 </body>
 
 </hmtl>

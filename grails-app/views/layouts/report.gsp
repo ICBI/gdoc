@@ -21,7 +21,7 @@
 	jQuery(document).ready(function()
 	{
 		
-		$('.c').corner();
+		jQuery('.c').corner();
 	
 	});
 	</g:javascript>

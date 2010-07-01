@@ -4,8 +4,8 @@
 
 
 
-  $(document).ready(function(){
-   	$("#q").autocomplete("/gdoc/search/relevantTerms",{
+  jQuery(document).ready(function(){
+   	jQuery("#q").autocomplete("/gdoc/search/relevantTerms",{
 			max: 130,
 			scroll: true,
 			multiple:false,
