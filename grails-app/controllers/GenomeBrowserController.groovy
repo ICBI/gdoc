@@ -124,7 +124,7 @@ class GenomeBrowserController {
 		
 		tracks << mirna
 		
-		if(!params.omicsData) {
+		if(!params.omicsData && !session.study) {
 			session.tracks = tracks as JSON
 			return
 		}
