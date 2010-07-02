@@ -63,6 +63,7 @@ environments {
 		middlewareUrl = "https://demo.gdoc.georgetown.edu/gdoc-middleware"
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		schemaPath = "/oracle/oracle/oradata/gdoc"
     }
 	development {
 	//	jmsserver = "jnp://141.161.30.205:1099"
