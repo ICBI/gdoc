@@ -17,14 +17,14 @@ PRIMARY_DISEASE	C18.4	malignant neoplasm of transverse colon		malignant neoplasm
 PRIMARY_DISEASE	C18.7	malignant neoplasm of sigmoid colon		malignant neoplasm of sigmoid colon
 PRIMARY_DISEASE	C20	malignant neoplasm of rectum		malignant neoplasm of rectum
 PRIMARY_DISEASE	C18.5	malignant neoplasm of splenic flexure		malignant neoplasm of splenic flexure
-NEOADJ_THERAPY	YES	Neoadjuvant therapy received		Neoadjuvant therapy received
-NEOADJ_THERAPY	NO	Neoadjuvant therapy not received		Neoadjuvant therapy not received
-NEOADJ_CT	YES	Neoadjuvant chemotherapy not received		Neoadjuvant chemotherapy not received
-NEOADJ_CT	NO	Neoadjuvant chemotherapy received		Neoadjuvant chemotherapy received
-NEOADJ_RADIATION	YES	Neoadjuvant radiation received		Neoadjuvant radiation received
-NEOADJ_RADIATION	NO	Neoadjuvant radiation not received		Neoadjuvant radiation not received
-NEOADJ_HORMONE_TH	YES	Neoadjuvant hormone therapy received		Neoadjuvant hormone therapy received
-NEOADJ_HORMONE_TH	NO	Neoadjuvant hormone therapy not received		Neoadjuvant hormone therapy not received
+NEOADJ_THERAPY	YES	YES		Neoadjuvant therapy received
+NEOADJ_THERAPY	NO	NO		Neoadjuvant therapy not received
+NEOADJ_CT	NO	NO		Neoadjuvant chemotherapy not received
+NEOADJ_CT	YES	YES		Neoadjuvant chemotherapy received
+NEOADJ_RADIATION	YES	YES		Neoadjuvant radiation received
+NEOADJ_RADIATION	NO	NO		Neoadjuvant radiation not received
+NEOADJ_HORMONE_TH	YES	YES		Neoadjuvant hormone therapy received
+NEOADJ_HORMONE_TH	NO	NO		Neoadjuvant hormone therapy not received
 DISEASE_LOCALIZATION	LEFT_FIXTURE	Left fixture		Left fixture
 DISEASE_LOCALIZATION	SIGMOID_COLON	sigmoid colon		sigmoid colon
 DISEASE_LOCALIZATION	TRANSVERSE_COLON	transverse colon		transverse colon
@@ -51,6 +51,9 @@ TUMOR_STAGE	I	Stage I		Stage I  as determined by the AJCC TNM System for the Can
 TUMOR_STAGE	II	Stage II		Stage II as determined by the AJCC TNM System for the Cancer Type
 TUMOR_STAGE	III	Stage III		Stage III as determined by the AJCC TNM System for the Cancer Type
 TUMOR_STAGE	IV	Stage IV		Stage IV as determined by the AJCC TNM System for the Cancer Type
+RADICALITY	R0	R0		Microscopically radical
+RADICALITY	R1	R1		Microscopically non-radical
+RADICALITY	R2	R2		Macroscopically radical
 TUMOR_DIGNITY	MALIGNANT	MALIGNANT		Malignant Tumor
 METASTASIS_LOCATION	LUNG	LUNG		Metastasis occurred in the Lung
 METASTASIS_LOCATION	LIVER	LIVER		Metastasis occurred in the Liver
@@ -76,19 +79,19 @@ RELATIONSHIP	COUSIN_FATHER	Cousin on the father's side		Cousin on the father's s
 VITAL_STATUS_RELATIVE	ALIVE	ALIVE		Relative of patient is alive
 VITAL_STATUS_RELATIVE	DEAD	DEAD		Relative of patient is dead
 DISEASE_CODE_RELATIVE	C80	malignant neoplasm without specification of site		malignant neoplasm without specification of site
-DISEASE_CODE_RELATIVE	C34.9	   malignant neoplasm of lung, unspecified   		   malignant neoplasm of lung, unspecified   
-DISEASE_CODE_RELATIVE	C64	   malignant neoplasm of kidney, except renal pelvis   		   malignant neoplasm of kidney, except renal pelvis   
-DISEASE_CODE_RELATIVE	C18.9	   malignant neoplasm of colon, unspecified   		   malignant neoplasm of colon, unspecified   
-DISEASE_CODE_RELATIVE	C55	   malignant neoplasm of uterus, part unspecified   		   malignant neoplasm of uterus, part unspecified   
+DISEASE_CODE_RELATIVE	C34.9	    malignant neoplasm of lung, unspecified    		    malignant neoplasm of lung, unspecified    
+DISEASE_CODE_RELATIVE	C64	    malignant neoplasm of kidney, except renal pelvis    		    malignant neoplasm of kidney, except renal pelvis    
+DISEASE_CODE_RELATIVE	C18.9	    malignant neoplasm of colon, unspecified    		    malignant neoplasm of colon, unspecified    
+DISEASE_CODE_RELATIVE	C55	    malignant neoplasm of uterus, part unspecified    		    malignant neoplasm of uterus, part unspecified    
 DISEASE_CODE_RELATIVE	C61	malignant neoplasm of prostate		malignant neoplasm of prostate
-DISEASE_CODE_RELATIVE	C16.9	   malignant neoplasm of stomach: stomach, unspecified   		   malignant neoplasm of stomach: stomach, unspecified   
-DISEASE_CODE_RELATIVE	C85.9	   non-hodgkin's lymphoma, unspecified type   		   non-hodgkin's lymphoma, unspecified type   
-DISEASE_CODE_RELATIVE	C50.9	   malignant neoplasm of breast, unspecified   		   malignant neoplasm of breast, unspecified   
+DISEASE_CODE_RELATIVE	C16.9	    malignant neoplasm of stomach: stomach, unspecified    		    malignant neoplasm of stomach: stomach, unspecified    
+DISEASE_CODE_RELATIVE	C85.9	    non-hodgkin's lymphoma, unspecified type    		    non-hodgkin's lymphoma, unspecified type    
+DISEASE_CODE_RELATIVE	C50.9	    malignant neoplasm of breast, unspecified    		    malignant neoplasm of breast, unspecified    
 DISEASE_CODE_RELATIVE	E11.9	non-insulin-dependent diabetes mellitus without complications		non-insulin-dependent diabetes mellitus without complications
-DISEASE_CODE_RELATIVE	C22.9	   malignant neoplasm of liver, unspecified   		   malignant neoplasm of liver, unspecified   
-DISEASE_CODE_RELATIVE	C26.0	   malignant neoplasm of Intestinal tract, part unspecified   		   malignant neoplasm of Intestinal tract, part unspecified   
-DISEASE_CODE_RELATIVE	C32.9	   malignant neoplasm of larynx, unspecified   		   malignant neoplasm of larynx, unspecified   
-DISEASE_CODE_RELATIVE	C44.9	   malignant neoplasm of skin, unspecified   		   malignant neoplasm of skin, unspecified   
+DISEASE_CODE_RELATIVE	C22.9	    malignant neoplasm of liver, unspecified    		    malignant neoplasm of liver, unspecified    
+DISEASE_CODE_RELATIVE	C26.0	    malignant neoplasm of Intestinal tract, part unspecified    		    malignant neoplasm of Intestinal tract, part unspecified    
+DISEASE_CODE_RELATIVE	C32.9	    malignant neoplasm of larynx, unspecified    		    malignant neoplasm of larynx, unspecified    
+DISEASE_CODE_RELATIVE	C44.9	    malignant neoplasm of skin, unspecified    		    malignant neoplasm of skin, unspecified    
 DISEASE_CODE_PREV_CANCER	C18.7	malignant neoplasm of sigmoid colon		malignant neoplasm of sigmoid colon
 DISEASE_CODE_PREV_CANCER	C78.7	secondary malignant neoplasm of liver		secondary malignant neoplasm of liver
 DISEASE_CODE_PREV_CANCER	C18.2	malignant neoplasm of ascending colon		malignant neoplasm of ascending colon
