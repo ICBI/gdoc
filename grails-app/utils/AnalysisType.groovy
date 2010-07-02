@@ -3,6 +3,7 @@ public enum AnalysisType {
 	CLASS_COMPARISON, 
 	GENE_EXPRESSION,
 	KM_GENE_EXPRESSION,
+	HEATMAP,
 	PCA;
 
 	public String value() {
