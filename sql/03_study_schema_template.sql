@@ -661,6 +661,13 @@ FROM (common.attribute_type c
        on o.attribute_type_id = c.attribute_type_id
      ) inner join ${projectName}.patient_attribute_value v
        on v.attribute_type_id = c.attribute_type_id
+UNION
+SELECT distinct c.attribute_type_id, o.name as original_name, o.conversion_note, c.short_name, c.long_name, c.definition, c.class, c.semantic_group, c.gdoc_preferred, c.cadsr_id, c.evs_id, c.qualitative, c.continuous, c.vocabulary, c.oracle_datatype, c.unit, c.upper_range, c.lower_range, 'BIOSPECIMEN' as target
+FROM (common.attribute_type c
+	       left outer join ${projectName}.original_attribute o
+	       on o.attribute_type_id = c.attribute_type_id
+	     ) inner join ${projectName}.biospecimen_attribute_value v
+	       on v.attribute_type_id = c.attribute_type_id;
 WITH READ ONLY;
 
 

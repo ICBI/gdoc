@@ -70,7 +70,7 @@
 <g:javascript>
 // code to set height of left bar
 jQuery(document).ready(function() {
-	$('#navigation').height($('#yui-main').height()-5);
+	$('#navigation').height($('#yui-main').height());
 });
 </g:javascript>
 </body>

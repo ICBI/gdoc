@@ -102,6 +102,8 @@ def loadStudyData(projectName) {
 				contentTypes.eachWithIndex { item, index ->
 					def content = [:]
 					content.type = item.trim()
+					println "convert " + showContent[index] + " to integer "
+					println showContent[index].class
 					content.showInGui = showContent[index].trim().toInteger()
 					contents << content
 				}

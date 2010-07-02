@@ -45,6 +45,7 @@ class QuickStartService implements ApplicationContextAware{
 			}
 			vocabList["dataAvailability"] = results
 		}
+		println "DA: $vocabList"
 		return vocabList
 	}
 	

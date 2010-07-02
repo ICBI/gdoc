@@ -50,6 +50,15 @@ class SemanticHelper {
 							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
 							count++
 							break;
+					case 'CRC_PILOT': 
+							lessThanAttributeRelapse << [RELAPSE:'YES']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							lessThanAttributeYears << [('SURGERY_TO_RELAPSE/FU'):[min:0, max:4]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							moreThanAttributeYears<< [('SURGERY_TO_RELAPSE/FU'):[min:5, max:50],RELAPSE:'NO']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
 					case 'WANG':
 							lessThanAttributeRelapse << [RELAPSE:'YES']
 							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
@@ -192,6 +201,13 @@ class SemanticHelper {
 							count++
 							break;
 				   case 'CRC_PILOT': 
+							lessThanAttributeRelapse << [VITAL_STATUS:'DEAD']
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears<< [VITAL_STATUS:'ALIVE']
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							count++
+							break;
+					case 'CRC_PILOT_DEMO': 
 							lessThanAttributeRelapse << [VITAL_STATUS:'DEAD']
 							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
 							moreThanAttributeYears<< [VITAL_STATUS:'ALIVE']
