@@ -63,11 +63,11 @@ RECURRENCE_ANY	NO	NO		Recurrence did not occur
 RECURRENCE_ANY	YES	YES		Recurrence occurred
 VITAL_STATUS	ALIVE	ALIVE		Patient was alive at last follow-up
 VITAL_STATUS	DEAD	DEAD		Patient is dead
-RELATIONSHIP	SISTER	SISTER		Sister of the patient
-RELATIONSHIP	FATHER	FATHER		Father of the patient
-RELATIONSHIP	BROTHER	BROTHER		Brother of the patient
-RELATIONSHIP	MOTHER	MOTHER		Mother of the patient
-RELATIONSHIP	DAUGHTER	DAUGHTER		Daughter of the patient
+RELATIONSHIP	SISTER	Sister		Sister of the patient
+RELATIONSHIP	FATHER	Father		Father of the patient
+RELATIONSHIP	BROTHER	Brother		Brother of the patient
+RELATIONSHIP	MOTHER	Mother		Mother of the patient
+RELATIONSHIP	DAUGHTER	Daughter		Daughter of the patient
 RELATIONSHIP	AUNT_MOTHER	Aunt on the mother's side		Aunt on the mother's side of the patient
 RELATIONSHIP	UNCLE_MOTHER	Uncle on the mother's side		Uncle on the mother's side of the patient
 RELATIONSHIP	UNCLE_FATHER	Uncle on the father's side		Uncle on the father's side of the patient

@@ -31,9 +31,9 @@ FUP radiation	ATTRIBUTE_TYPE_ID=242	RADIATION	Radiation received	The patient rec
 FUP general patient data-Surgery to relapse or last follow up	ATTRIBUTE_TYPE_ID=193	SURGERY_TO_RECUR/FU_DAYS	Days between Surgery and Recurrence or Last Followup	The number of days between a patient's surgery and Recurrence or Last Followup.  Time of relapse free survival.	CLINICAL					0	0	0	   NUMBER(4,1)   	years	0	18250
 FUP general patient data-Relapse free	ATTRIBUTE_TYPE_ID=196	RECURRENCE_ANY	Any Recurrence	The appearance of the signs and symptoms of malignancy after treatment and response to therapy	CLINICAL					1	0	1	VARCHAR2(3)			
 FUP general patient data-Patient alive	ATTRIBUTE_TYPE_ID=121	VITAL_STATUS	Vital Status	  Vital Status: ALIVE, DEAD, UNKNOWN  	CLINICAL		0			1	0	1	VARCHAR2(7)			
-Family history-relationship	new	RELATIONSHIP	Relationship with patient	Family history - Relationship with patient 	CLINICAL		0			1	0	1	VARCHAR2(20)			
-Family history-alive	new	VITAL_STATUS_RELATIVE	Vital Status of relative	Family history - vital status of patient	CLINICAL		0			1	0	1	VARCHAR2(7)			
-Family history-disease code	new	DISEASE_CODE_RELATIVE	Disease code of relative	Family history - Disease code of relative	CLINICAL					1	0	1	VARCHAR2(10)			
+Family history-relationship	new	RELATIONSHIP	Family history - Relationship with patient	Family history - Relationship with patient 	CLINICAL		0			1	0	1	VARCHAR2(20)			
+Family history-alive	new	VITAL_STATUS_RELATIVE	Family history - Vital Status of relative	Family history - vital status of patient	CLINICAL		0			1	0	1	VARCHAR2(7)			
+Family history-disease code	new	DISEASE_CODE_RELATIVE	Family history - Disease code of relative	Family history - Disease code of relative	CLINICAL					1	0	1	VARCHAR2(10)			
 FUP Previous cancer -disease code	new	DISEASE_CODE_PREV_CANCER	Disease code of previous cancer in patient	Disease code of previous cancer in patient	CLINICAL					1	0	1	VARCHAR2(10)			
 FUP Previous cancer- remission	new	PREV_CANCER_REMISSION	Remission status of previous cancer of patient 	Remission status of previous cancer of patient 	CLINICAL					1	0	1	VARCHAR2(10)			
 FUP Previous cancer -treatment	new	PREV_CANCER_TREATMENT	Treatment received for previous cancer of patient	Treatment received for previous cancer of patient	CLINICAL					1	0	1	VARCHAR2(20)			
