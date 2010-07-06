@@ -667,7 +667,7 @@ FROM (common.attribute_type c
 	       left outer join ${projectName}.original_attribute o
 	       on o.attribute_type_id = c.attribute_type_id
 	     ) inner join ${projectName}.biospecimen_attribute_value v
-	       on v.attribute_type_id = c.attribute_type_id;
+	       on v.attribute_type_id = c.attribute_type_id
 WITH READ ONLY;
 
 
