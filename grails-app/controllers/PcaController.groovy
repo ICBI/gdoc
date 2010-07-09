@@ -17,7 +17,7 @@ class PcaController {
 			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
 			def reporterLists = []
 			lists.each { item ->
-				if(item.tags.contains("Reporter"))
+				if(item.tags.contains("reporter"))
 					reporterLists << item
 			}
 		session.reporterLists = reporterLists

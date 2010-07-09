@@ -76,13 +76,14 @@ class GenomeBrowserController {
 		
 		tracks << chr
 		
-		def genes = [:]
-		genes.url = "/content/data/tracks/{refseq}/refseq/trackData.json"
-		genes.type = "FeatureTrack"
-		genes.label = "refseq"
-		genes.key = "RefSeq Genes"
+		def geneSymbols = [:]
+		geneSymbols.url = "/content/data/tracks/{refseq}/genes/trackData.json"
+		geneSymbols.type = "FeatureTrack"
+		geneSymbols.label = "genes"
+		geneSymbols.key = "Genes"
 		
-		tracks << genes
+		tracks << geneSymbols
+		
 		
 /*		def gwas = [:]
 		gwas.url = "/content/data/tracks/{refseq}/gwas/trackData.json"
@@ -124,7 +125,15 @@ class GenomeBrowserController {
 		
 		tracks << mirna
 		
-		if(!params.omicsData && !session.study) {
+		def genes = [:]
+		genes.url = "/content/data/tracks/{refseq}/refseq/trackData.json"
+		genes.type = "FeatureTrack"
+		genes.label = "refseq"
+		genes.key = "RefSeq Genes"
+		
+		tracks << genes
+		
+		if(!params.omicsData || !session.study) {
 			session.tracks = tracks as JSON
 			return
 		}

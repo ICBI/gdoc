@@ -48,7 +48,7 @@ class StudyDataSourceController {
 				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 			}
 			reporterLists = lists.findAll { item ->
-				(item.tags.contains("Reporter"))
+				(item.tags.contains("reporter"))
 			}
 			geneLists = lists.findAll { item ->
 				(item.tags.contains("gene"))

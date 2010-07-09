@@ -1,5 +1,28 @@
-<g:javascript library="jquery"/>
+<g:if test="${session.study}">
 
+<g:javascript library="jquery"/>
+<g:javascript>
+$(document).ready(function() {
+
+$("#dataSetType").change(function() {
+	loadDataSets(this.value)
+});
+
+loadDataSets($('#dataSetType').val());
+
+});
+
+function loadDataSets(dataType) {
+	$.ajax({
+		url: "${createLink(action:'selectDataType')}",
+		data: "dataType=" + dataType,
+		cache: false,
+		success: function(html) {
+ 			$("#dataDiv").html(html);
+		}
+	});
+}
+</g:javascript>
 <div id="searchForm">
 		<div class="clinicalSearch">	
 			<g:form name="reporterForm" action="drawHeatMap">
@@ -42,7 +65,28 @@
 								optionKey="name" optionValue="name" />
 				</td>
 			</tr>
-			
+			<tr>
+				<td>
+					Data-Type
+				</td>
+				<td>
+					<g:select name="dataSetType" 
+							noSelection="${['':'Select Data Type']}"
+							from="${session.dataSetType}"/>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					Dataset:
+				</td>
+				<td>
+					<div id="dataDiv">
+					<g:select name="dataFile" 
+							noSelection="${['':'Select Data Type First']}"
+							optionKey="name" optionValue="${{it.description}}"/>
+					</div>
+				</td>
+			</tr>
 			<tr>
 				<td style="align:right" colspan="2">
 					<g:submitButton name="search" value="Submit" />
@@ -57,3 +101,4 @@
 		</div>
 </div>
 
+</g:if>

@@ -1,6 +1,7 @@
 import gov.nih.nci.caintegrator.analysis.messaging.ClassComparisonRequest
 import gov.nih.nci.caintegrator.analysis.messaging.ExpressionLookupRequest
 import gov.nih.nci.caintegrator.analysis.messaging.PrincipalComponentAnalysisRequest
+import gov.nih.nci.caintegrator.analysis.messaging.HeatMapRequest
 import gov.nih.nci.caintegrator.analysis.messaging.SampleGroup
 import gov.nih.nci.caintegrator.analysis.messaging.ReporterGroup
 import gov.nih.nci.caintegrator.enumeration.*
@@ -90,11 +91,38 @@ class AnalysisService {
 				request.reporterGroup = reporterGroup
 			}
 			return request
+		},
+		(AnalysisType.HEATMAP): { sess, cmd ->
+			def request = new HeatMapRequest(sess, "HEATMAP_" + System.currentTimeMillis())
+			request.dataFileName = cmd.dataFile
+			def group1 = new SampleGroup()
+			def allIds = idService.sampleIdsForFile(request.dataFileName)
+			if(!cmd.patientList == 'ALL') {
+				def sampleIds = idService.samplesForListName(cmd.patientList)
+				println "SAMPLEIDS: $sampleIds"
+				allIds = allIds.intersect(sampleIds)
+				println "ALLIDS: $allIds"
+			}
+			group1.addAll(allIds)
+			println "group 1: " + allIds
+/*			if(cmd.reporterCriteria == 'variance' && cmd.variance)
+				request.varianceFilterValue = cmd.variance.toDouble() / 100.0
+			else if(cmd.reporterCriteria == 'foldChange' && cmd.foldChange)
+				request.foldChangeFilterValue = cmd.foldChange.toDouble()*/
+			request.sampleGroup = group1
+			if(cmd.reporterList) {
+				def reporterGroup = new ReporterGroup()
+				reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
+				println "REPORTERS: $reporterGroup"
+				request.reporterGroup = reporterGroup
+			}
+			return request
 		}
 	]
 	
 	def sendRequest(sessionId, command, tags) {
 		def request
+		println "in send request"
 		try {
 			def userId = RCH.currentRequestAttributes().session.userId
 			println "sending message"

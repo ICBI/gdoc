@@ -1,7 +1,7 @@
 import grails.converters.*
 import java.text.*
 import java.math.*
-
+import gov.nih.nci.caintegrator.analysis.messaging.HeatMapResult
 
 class HeatMapController {
 
@@ -19,6 +19,12 @@ class HeatMapController {
 			def patientLists = lists.findAll { item ->
 				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 			}
+			def reporterLists = []
+			lists.each { item ->
+				if(item.tags.contains("reporter"))
+					reporterLists << item
+			}
+			session.reporterLists = reporterLists
 			session.patientLists = patientLists
 		}
 		
@@ -28,6 +34,12 @@ class HeatMapController {
 		return [diseases:diseases as Set,myStudies:myStudies, params:params]
 	}
 	
+	def view = {
+		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+		StudyContext.setStudy(analysisResult.query["study"])
+		session.results = analysisResult.analysis.item
+		session.analysis = analysisResult
+	}
 	
 	def drawHeatMap = { HeatMapCommand cmd ->
 		println "heatmap params : $params"
@@ -51,12 +63,40 @@ class HeatMapController {
 			def study = StudyDataSource.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
-			//analysisService.sendRequest(session.id, cmd, tags)
-			redirect(controller:'savedAnalysis')
+			analysisService.sendRequest(session.id, cmd, tags)
+			redirect(controller:'notification')
 		}
 
 	}
 	
+	def selectDataType = {
+		if(!session.files[params.dataType])
+			render g.select(optionKey: 'name', optionValue: 'description', noSelection: ['': 'Select Data Type First'], id: 'dataFile', name: "dataFile")
+		else
+			render g.select(optionKey: 'name', optionValue: 'description', from: session.files[params.dataType], id: 'dataFile', name: "dataFile")
+	}
+	
+	def file = {
+		def result = session.results
+		try{
+			if(params.name){
+				byte[] fileBytes
+				if(params.name.indexOf('.cdt') > 1)
+					fileBytes = result.cdtFile
+				if(params.name.indexOf('.gtr') > 1)
+					fileBytes = result.gtrFile
+				if(params.name.indexOf('.atr') > 1)
+					fileBytes = result.atrFile
+				response.outputStream << fileBytes
+			}
+		}catch(java.io.FileNotFoundException fnf){
+			println fnf.toString()
+			render "File ($params.name) was not found...is the file name correct?"
+		} catch (Exception e) {
+			e.printStackTrace()
+		}
+		
+	}
 	
 	
 	

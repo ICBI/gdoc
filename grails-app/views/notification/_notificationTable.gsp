@@ -10,6 +10,7 @@
 		<g:render template="genePatternItem" bean="${item}" var="job" />
 	</g:else>
 </g:each>
+
 </g:if>
 <g:else>
 No running analysis at this time.

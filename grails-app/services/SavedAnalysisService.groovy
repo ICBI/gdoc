@@ -111,8 +111,8 @@ class SavedAnalysisService {
 			runningAnalysis.analysis = notification
 			runningAnalysis.status = notification.status
 			runningAnalysis.taskId = notification.item.taskId
-			println "ANALYSIS: $runningAnalysis"
 			runningAnalysis.save(flush:true)
+				
 		} else {
 			println "ERROR!  Analysis ${notification.item.taskId} not found"
 		}

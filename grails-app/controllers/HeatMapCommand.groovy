@@ -5,6 +5,7 @@ class HeatMapCommand {
 	String geneList
 	String study
 	String statisticalMethod
+	String dataFile
 	AnalysisType requestType = (AnalysisType.HEATMAP)
 	
 	static constraints = {
