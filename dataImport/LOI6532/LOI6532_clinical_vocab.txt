@@ -13,3 +13,6 @@ EVENT_DFS	1	EVENT		1 stands for EVENT indicating recurrence of disease
 EVENT_DFS	0	CENSORING		0 stands for CENSORING meaning no recurrence was recorded
 EVENT_DMFS	0	CENSORING		0 stands for CENSORING indicating no record of distant metastasis
 EVENT_DMFS	1	EVENT		1 stands for EVENT Indicating a distant metastatis 
+CHIP_TYPE	HG-U133A	HG-U133A		Affymetrix Human Genome U133A was used 
+CHIP_TYPE	HG-U133B	HG-U133B		Affymetrix Human Genome U133B was used 
+CHIP_TYPE	HG-U133 Plus2	HG-U133 Plus2		Affymetrix Human Genome U133 Plus2 was used 
