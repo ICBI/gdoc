@@ -8,38 +8,42 @@
 				
 				<td>Select a Patient Group</td>
 				<td colspan="2">
-					<div class="errorDetail">
-						<g:renderErrors bean="${flash.cmd?.errors}" field="patientList" />
-					</div>
+
 					<g:select name="patientList"
 							  from="${session.patientLists}"
 							noSelection="${['ALL':'All Patients']}"
-							optionKey="name" optionValue="name" /></td>
+							optionKey="name" optionValue="name" />
+					<div class="errorDetail">
+						<g:renderErrors bean="${flash.cmd?.errors}" field="patientList" />
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td>
 					Select Gene List:</td>
 				<td colspan="2">
-					<div class="errorDetail">
-						<g:renderErrors bean="${flash.cmd?.errors}" field="geneList" />
-					</div>
+
 					<g:select name="geneList"
 								  from="${session.geneLists}"
 								noSelection="${['':'-Select a Gene List']}"
 								optionKey="name" optionValue="name" />
+					<div class="errorDetail">
+						<g:renderErrors bean="${flash.cmd?.errors}" field="geneList" />
+					</div>								
 				</td>
 			</tr>
 			<tr>
 				<td>
 				-OR-	Select Reporter List:</td>
 				<td colspan="2">
-					<div class="errorDetail">
-						<g:renderErrors bean="${flash.cmd?.errors}" field="reporterList" />
-					</div>
+
 					<g:select name="reporterList"
 								  from="${session.reporterLists}"
 								noSelection="${['':'-Select a Reporter List']}"
 								optionKey="name" optionValue="name" />
+					<div class="errorDetail">
+						<g:renderErrors bean="${flash.cmd?.errors}" field="reporterList" />
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -61,6 +65,9 @@
 					<g:select name="dataFile" 
 							noSelection="${['':'Select Data Type First']}"
 							optionKey="name" optionValue="${{it.description}}"/>
+					</div>
+					<div class="errorDetail">
+						<g:renderErrors bean="${flash.cmd?.errors}" field="dataFile" />
 					</div>
 				</td>
 			</tr>
