@@ -57,6 +57,7 @@ class HtDataService {
 	def loadNormalizedFileWithPriors(priorFiles, normalizedFile) {
 		def files = []
 		priorFiles.each {
+			StudyContext.setStudy(it.schemaName)
 			def file = MicroarrayFile.findByName(it.name)
 			if(!file){
 			  file = loadHtFile(it, null)
