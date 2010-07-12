@@ -60,6 +60,8 @@ class HtDataService {
 			def file = MicroarrayFile.findByName(it.name)
 			if(!file){
 			  file = loadHtFile(it, null)
+			}else{
+			   println "$file.name has already been loaded, just load the run"
 			}
 			def run = loadHtRun(it, file)
 			println "get biospecimen to link with run"
