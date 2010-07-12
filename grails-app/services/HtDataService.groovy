@@ -57,7 +57,10 @@ class HtDataService {
 	def loadNormalizedFileWithPriors(priorFiles, normalizedFile) {
 		def files = []
 		priorFiles.each {
-			def file = loadHtFile(it, null)
+			def file = MicroarrayFile.findByName(it.name)
+			if(!file){
+			  file = loadHtFile(it, null)
+			}
 			def run = loadHtRun(it, file)
 			println "get biospecimen to link with run"
 			def studyPatient = StudyPatient.findByDataSourceInternalId(it.patientId)
