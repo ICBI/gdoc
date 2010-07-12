@@ -49,7 +49,7 @@ function loadDataSets(dataType) {
 					<g:select name="geneList"
 								  from="${session.geneLists}"
 								noSelection="${['':'-Select a Gene List']}"
-								optionKey="id" optionValue="name" />
+								optionKey="name" optionValue="name" />
 				</td>
 			</tr>
 			<tr>

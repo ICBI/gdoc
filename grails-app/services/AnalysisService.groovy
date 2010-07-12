@@ -110,7 +110,12 @@ class AnalysisService {
 			else if(cmd.reporterCriteria == 'foldChange' && cmd.foldChange)
 				request.foldChangeFilterValue = cmd.foldChange.toDouble()*/
 			request.sampleGroup = group1
-			if(cmd.reporterList) {
+			if(cmd.geneList) {
+				def reporterGroup = new ReporterGroup()
+				reporterGroup.addAll(annotationService.findReportersForGeneList(cmd.geneList))
+				println "REPORTERS: $reporterGroup"
+				request.reporterGroup = reporterGroup
+			} else if(cmd.reporterList) {
 				def reporterGroup = new ReporterGroup()
 				reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
 				println "REPORTERS: $reporterGroup"

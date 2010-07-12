@@ -32,6 +32,9 @@
 			<g:elseif test="${analysis.type == AnalysisType.PCA}">
 					<g:link controller="pca" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>			
+			<g:elseif test="${analysis.type == AnalysisType.HEATMAP}">
+				<g:link controller="heatMap" action="view" id="${analysis.id}">${analysis.type}</g:link> 
+			</g:elseif>
 				&nbsp;&nbsp;<span><g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/></span>
 			</div>
 				<g:if test="${session.userId.equals(analysis.author.loginName)}">
