@@ -22,7 +22,7 @@
 <g:elseif test="${notification.status == 'Error'}">
 	<div style="float: left;">${notification.type} (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 	</div>
-	<div class="status" style="float: right;">${notification.status}</div>
+	<div class="status" style="float: right;" title='${notification.analysis.item.errorMessage}'>${notification.status}</div>
 </g:elseif>		
 <g:else>
 	<div style="float: left;">${notification.type} (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 

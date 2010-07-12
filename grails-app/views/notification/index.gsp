@@ -29,7 +29,7 @@
 						clearInterval(refreshId);
 					}
 				});
-		  }, 2000);
+		  }, 10000);
 			addClickHandler();
 		});
 		
