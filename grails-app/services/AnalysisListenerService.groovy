@@ -17,10 +17,8 @@ class AnalysisListenerService {
 			item = ["status": "Complete", "item" : message]
 			savedAnalysisService.updateSavedAnalysis(message.sessionId, item)
 		} else {
-			println "ERROR MESSAGE: ${message.failedRequest.properties}"
 			def errorItem = message.failedRequest.properties
 			errorItem["errorMessage"] = message.message
-			println "ERROR item: ${errorItem}"
 			item = ["status": "Error", "item" : errorItem]
 			savedAnalysisService.updateSavedAnalysis(message.failedRequest.sessionId, item)
 		}

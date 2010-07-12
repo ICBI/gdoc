@@ -1,28 +1,5 @@
 <g:if test="${session.study}">
 
-<g:javascript library="jquery"/>
-<g:javascript>
-$(document).ready(function() {
-
-$("#dataSetType").change(function() {
-	loadDataSets(this.value)
-});
-
-loadDataSets($('#dataSetType').val());
-
-});
-
-function loadDataSets(dataType) {
-	$.ajax({
-		url: "${createLink(action:'selectDataType')}",
-		data: "dataType=" + dataType,
-		cache: false,
-		success: function(html) {
- 			$("#dataDiv").html(html);
-		}
-	});
-}
-</g:javascript>
 <div id="searchForm">
 		<div class="clinicalSearch">	
 			<g:form name="reporterForm" action="drawHeatMap">

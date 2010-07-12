@@ -10,7 +10,7 @@ class HeatMapCommand {
 	
 	static constraints = {
 		patientList(blank:false)
-		geneList(validator: {val, obj ->
+/*		geneList(validator: {val, obj ->
 			if(val && obj.properties['reporterList']){
 					return "custom.val"
 			}else if(!val && !obj.properties['reporterList']){
@@ -27,7 +27,8 @@ class HeatMapCommand {
 			}else {
 				return true
 			}
-		})
+		})*/
+		dataFile(blank:false)
 	}
 	
 }
