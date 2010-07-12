@@ -51,7 +51,7 @@ class SavedAnalysisService {
 		println notification.item.taskId
 		def params = command.properties
 		println params
-		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType'] as Set )
+		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType', 'idService'] as Set )
 		println "PARAMS: $params"
 		def json = params as JSON
 		println "COMMAND $json" 
