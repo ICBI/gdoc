@@ -45,7 +45,7 @@ environments {
 		middlewareUrl = "http://localhost/gdoc-middleware"
     }
     devserver {
-        grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "https://dev.gdoc.georgetown.edu"
 		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
@@ -55,7 +55,7 @@ environments {
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
     }
     demo {
-        grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "https://demo.gdoc.georgetown.edu"
 		jmsserver = "jnp://localhost:1099"
 		responseQueue = "AnalysisResponse"
 		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
@@ -66,6 +66,7 @@ environments {
 		schemaPath = "/oracle/oracle/oradata/gdoc"
     }
 	development {
+		grails.serverURL = "http://localhost:8080"
 	//	jmsserver = "jnp://141.161.30.205:1099"
 		jmsserver = "jnp://localhost:1099"
  		responseQueue = "AnalysisResponseKevin"
