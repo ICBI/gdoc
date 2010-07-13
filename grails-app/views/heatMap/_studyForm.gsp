@@ -81,6 +81,8 @@
 			</tr>
 			</table>
 			<g:hiddenField name="study" value="${session.study.schemaName}" />
+			<g:hiddenField name="fromComparison" value="false" />
+			
 		</g:form>
 		</div>
 </div>

@@ -101,6 +101,19 @@
 				
 			
 			}); 
+			jQuery('#reporterForm').submit(function(){
+				var selected = jQuery("#searchResults").getGridParam('selarrrow'); 
+				if(selected.length == 0) {
+					jQuery('#message').html("No IDs selected.")
+					jQuery('#message').css("display","block");
+					window.setTimeout(function() {
+					  jQuery('#message').empty().hide();
+					}, 2500);
+					return false;
+				} else {
+					jQuery('#reporterIds').val(selected);
+				}
+			});
 		});
 		function selectAllItems() {
 					jQuery('#searchResults tbody tr').each(function() {
@@ -144,7 +157,15 @@
 							</span>
 							</div>	
 							<br/>
+							<g:form name="reporterForm" action="drawHeatMap" controller="heatMap">
+								<g:hiddenField name="dataFile" value="${session.analysis.query.dataFile}" />
+								<g:hiddenField name="reporterIds" />
+								<g:hiddenField name="fromComparison" value="true"/>
+								<g:hiddenField name="study" value="${session.analysis.studySchemas()[0]}"/>
+								<g:submitButton name="search" value="View HeatMap for selected reporters" />
+							</g:form>	
 							<br/>
+							
 						<span id="message" class="message" style="display:none"></span>
 				
 				</g:if>

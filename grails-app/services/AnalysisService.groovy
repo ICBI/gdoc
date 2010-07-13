@@ -26,13 +26,13 @@ class AnalysisService {
 			def allIds = idService.sampleIdsForFile(cmd.dataFile)
 			samples = allIds.intersect(samples)
 			group1.addAll(samples)
-			println "group 1: " + samples
+			log.debug "group 1: " + samples
 			def baseline = new SampleGroup()
-			println "my baselineGroup is $cmd.baselineGroup"
+			log.debug "my baselineGroup is $cmd.baselineGroup"
 			def baselineSamples = idService.samplesForListName(cmd.baselineGroup)
 			//def baselineSamples = idService.samplesForListName(cmd.groups[1])
 			baselineSamples = allIds.intersect(baselineSamples)
-			println "baseline samples: $baselineSamples"
+			log.debug "baseline samples: $baselineSamples"
 			baseline.addAll(baselineSamples)
 			request.pValueThreshold = cmd.pvalue.toDouble()
 			request.foldChangeThreshold = cmd.foldChange.toDouble()
@@ -61,9 +61,9 @@ class AnalysisService {
 			def allIds = idService.sampleIdsForFile(cmd.dataFile)
 			if(!cmd.groups == 'ALL') {
 				def sampleIds = idService.samplesForListName(cmd.groups)
-				println "SAMPLEIDS: $sampleIds"
+				log.debug "SAMPLEIDS: $sampleIds"
 				allIds = allIds.intersect(sampleIds)
-				println "ALLIDS: $allIds"
+				log.debug "ALLIDS: $allIds"
 			}
 			sampleGroup.addAll(allIds)
 			def reporterGroup = new ReporterGroup()
@@ -78,7 +78,7 @@ class AnalysisService {
 			def group1 = new SampleGroup()
 			def allIds = idService.sampleIdsForFile(cmd.dataFile)
 			group1.addAll(allIds)
-			println "group 1: " + allIds
+			log.debug "group 1: " + allIds
 /*			if(cmd.reporterCriteria == 'variance' && cmd.variance)
 				request.varianceFilterValue = cmd.variance.toDouble() / 100.0
 			else if(cmd.reporterCriteria == 'foldChange' && cmd.foldChange)
@@ -87,35 +87,48 @@ class AnalysisService {
 			if(cmd.reporterList) {
 				def reporterGroup = new ReporterGroup()
 				reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
-				println "REPORTERS: $reporterGroup"
+				log.debug "REPORTERS: $reporterGroup"
 				request.reporterGroup = reporterGroup
 			}
 			return request
 		},
 		(AnalysisType.HEATMAP): { sess, cmd ->
 			def request = new HeatMapRequest(sess, "HEATMAP_" + System.currentTimeMillis())
+			log.debug "COMMAND: ${cmd}"
+			log.debug "reporterIds: ${cmd.reporterIds}"
+			log.debug "from comparison: ${cmd.fromComparison}"
+			log.debug "datafile: ${cmd.dataFile}"
+			log.debug "request: ${request == null}"
+			log.debug "idService: $idService"
 			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
 			def allIds = idService.sampleIdsForFile(request.dataFileName)
-			if(!cmd.patientList == 'ALL') {
+			log.debug "ALLIDS: $allIds"
+			if(!cmd.fromComparison && !cmd.patientList == 'ALL') {
 				def sampleIds = idService.samplesForListName(cmd.patientList)
-				println "SAMPLEIDS: $sampleIds"
 				allIds = allIds.intersect(sampleIds)
-				println "ALLIDS: $allIds"
 			}
+			
 			group1.addAll(allIds)
-			println "group 1: " + allIds
+			log.debug "group 1: " + allIds
 			request.sampleGroup = group1
 			if(cmd.geneList) {
 				def reporterGroup = new ReporterGroup()
 				reporterGroup.addAll(annotationService.findReportersForGeneList(cmd.geneList))
-				println "REPORTERS: $reporterGroup"
+				log.debug "REPORTERS: $reporterGroup"
 				request.reporterGroup = reporterGroup
 			} else if(cmd.reporterList) {
 				def reporterGroup = new ReporterGroup()
 				reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
-				println "REPORTERS: $reporterGroup"
+				log.debug "REPORTERS: $reporterGroup"
 				request.reporterGroup = reporterGroup
+			}
+			if(cmd.fromComparison) {
+				def reporterGroup = new ReporterGroup()
+				log.debug "cmd reporters ${cmd.reporterIds}"
+				reporterGroup.addAll(cmd.reporterIds.replace("[", "").replace("]", "").split(",").toList())
+				request.reporterGroup = reporterGroup
+				log.debug "REPORTERS: $reporterGroup"
 			}
 			return request
 		}
@@ -123,15 +136,15 @@ class AnalysisService {
 	
 	def sendRequest(sessionId, command, tags) {
 		def request
-		println "in send request"
+		log.debug "in send request"
 		try {
 			def userId = RCH.currentRequestAttributes().session.userId
-			println "sending message"
+			log.debug "sending message: $userId"
 			strategies.each { key, value ->
-				println "KEY: $key ${command.requestType}"
+				log.debug "KEY: $key ${command.requestType}"
 			}
 			request = strategies[command.requestType].call(userId, command)
-			println request
+			log.debug request
 			def item = ["status": "Running", "item": request]
 			def newAnalysis = savedAnalysisService.addSavedAnalysis(userId, item, command, tags)
 			jmsTemplate.send([
@@ -142,9 +155,9 @@ class AnalysisService {
 					return message
 				}
 			] as MessageCreator)
-			println "after send"
+			log.debug "after send"
 		} catch (Exception e) {
-			println "Failed to send request for test " + e
+			log.error "Failed to send request for test " + e
 		}
 		return request.taskId
 	}

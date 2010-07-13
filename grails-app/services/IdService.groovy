@@ -58,6 +58,8 @@ class IdService {
 	
 	def sampleIdsForFile(fileName) {
 		def samples = Sample.findAllByFile(fileName)
+		if(!samples)
+			return new ArrayList()
 		def ids = samples.collect { it.name }
 		return ids
 	}

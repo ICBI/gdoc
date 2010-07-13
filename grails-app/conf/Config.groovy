@@ -53,6 +53,12 @@ environments {
 		middlewareUrl = "https://dev.gdoc.georgetown.edu/gdoc-middleware"
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		log4j = {
+			root {
+			    error 'stdout'
+			    additivity = true
+			}
+		}
     }
     demo {
         grails.serverURL = "https://demo.gdoc.georgetown.edu"
@@ -64,6 +70,12 @@ environments {
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
 		schemaPath = "/oracle/oracle/oradata/gdoc"
+		log4j = {
+			root {
+			    error 'stdout'
+			    additivity = true
+			}
+		}
     }
 	development {
 		grails.serverURL = "http://localhost:8080"
@@ -76,6 +88,13 @@ environments {
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
 		schemaPath = "/oracle/oracle/oradata/gdoc"
+		log4j = {
+			root {
+			    error 'stdout'
+			    additivity = true
+			}
+			debug "grails.app"
+		}
 	}
 	sandbox {
 		jmsserver = "jnp://localhost:1099"
@@ -99,13 +118,11 @@ environments {
 
 // log4j configuration
 
-log4j = {
+/*log4j = {
 	root {
 	    error 'stdout'
 	    additivity = true
 	}
-	
-	/*
     appender.stdout = "org.apache.log4j.ConsoleAppender"
     appender.'stdout.layout'="org.apache.log4j.PatternLayout"
     appender.'stdout.layout.ConversionPattern'='[%r] %c{2} %m%n'
@@ -130,8 +147,7 @@ log4j = {
         }
     }
     additivity.StackTrace=false
-*/
-}
+}*/
 
 
 

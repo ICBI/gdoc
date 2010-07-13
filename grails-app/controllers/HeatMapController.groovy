@@ -49,6 +49,8 @@ class HeatMapController {
 		println "reporterList : " + cmd.reporterList
 		println "study:" + cmd.study 
 		println cmd.errors
+		if(!session.study)
+			StudyContext.setStudy(cmd.study)
 		def tags = []
 		tags << "heatMap"
 		
