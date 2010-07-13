@@ -11,9 +11,12 @@
 			var refreshId = setInterval(function() {
 		  	jQuery.ajax({
 					type: "POST",
-					url: "${createLink(contoller: 'notification', action: 'check')}",
+					url: "${createLink(controller: 'notification', action: 'check')}",
 					success: function(data) {
-						jQuery("#notifications_content").html(data);
+						//console.log(data);
+						//jQuery("#notifications_content").html(data);
+						document.getElementById('notifications_content').innerHTML = data;
+						
 						var status = jQuery(".status").map(function() {
 							return jQuery(this).html();
 						});
@@ -29,7 +32,7 @@
 						clearInterval(refreshId);
 					}
 				});
-		  }, 10000);
+		  }, 2000);
 			addClickHandler();
 		});
 		

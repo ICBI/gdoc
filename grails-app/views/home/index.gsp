@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Georgetown Database of Cancer</title>
+		<g:render template="/common/flex_header"/>
 		<meta name="layout" content="splash" />
 		<g:javascript library="jquery"/>
 		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
@@ -49,7 +50,7 @@
 				
 				<br/>
 				<div style="width:900px;height:350px;border:1px solid silver;margin:auto;" align="center">
-					<br /><br /><br /><i>flash object(s) goes here</i>
+					<g:flex component="Main" width="900px" height="350px" />
 				</div>
 				
 				
@@ -62,7 +63,7 @@
 						
 					<br/>
 					
-					<table border="0" style="width:940px;margin:auto">
+					<table border="0" style="width:900px;margin:auto">
 						<tr>
 							<td valign="top" style="width:45%">
 							<table class="listTable" border="1" style="font-size:.9em" id="patientsTable">

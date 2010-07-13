@@ -1,3 +1,5 @@
+import grails.converters.*
+
 class NotificationController {
 
 	def savedAnalysisService
@@ -13,6 +15,14 @@ class NotificationController {
 	
 	def check = {
 		buildNotifications()
+		def statusList = []
+		session.notifications.each{
+			def statusMap = [:]
+			statusMap["id"] = it.id
+			statusMap["status"] = it.status
+			statusList << statusMap
+		}
+		//render statusList as JSON
 		render(template:"/notification/notificationTable")
 	}
 	

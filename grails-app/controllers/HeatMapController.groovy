@@ -79,16 +79,19 @@ class HeatMapController {
 	}
 	
 	def file = {
-		def result = session.results
+		def result = savedAnalysisService.getSavedAnalysis(params.id)//session.results
+		StudyContext.setStudy(result.query["study"])
+		session.results = result.analysis.item
+		session.analysis = result
 		try{
 			if(params.name){
 				byte[] fileBytes
 				if(params.name.indexOf('.cdt') > 1)
-					fileBytes = result.cdtFile
+					fileBytes = result.analysis.item.cdtFile
 				if(params.name.indexOf('.gtr') > 1)
-					fileBytes = result.gtrFile
+					fileBytes = result.analysis.item.gtrFile
 				if(params.name.indexOf('.atr') > 1)
-					fileBytes = result.atrFile
+					fileBytes = result.analysis.item.atrFile
 				response.outputStream << fileBytes
 			}
 		}catch(java.io.FileNotFoundException fnf){

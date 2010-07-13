@@ -33,7 +33,15 @@
 					<g:link controller="pca" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>			
 			<g:elseif test="${analysis.type == AnalysisType.HEATMAP}">
-				<g:link controller="heatMap" action="view" id="${analysis.id}">${analysis.type}</g:link> 
+				<APPLET CODE="edu/stanford/genetics/treeview/applet/ButtonApplet.class"
+				  archive="/gdoc/applets/treeview/TreeViewApplet.jar,/gdoc/applets/treeview/nanoxml-2.2.2.jar,/gdoc/applets/treeview/Dendrogram.jar" width=75 height=20
+				    alt="Your browser understands the &lt;APPLET&gt; tag but isn't running the applet, for some reason.">
+				    Your browser is completely ignoring the &lt;APPLET&gt; tag!
+				    <param name="cdtFile" value="${grailsApplication.config.grails.serverURL}/gdoc/heatMap/file?id=${analysis.id}&name=cluster.cdt">
+				    <param name="cdtName" value="${grailsApplication.config.grails.serverURL}/gdoc/heatMap/file?id=${analysis.id}name=cluster">
+					<param name="plugins" value="edu.stanford.genetics.treeview.plugin.dendroview.DendrogramFactory">
+				  </applet>
+				<%--g:link controller="heatMap" action="view" id="${analysis.id}">${analysis.type}</g:link--%> 
 			</g:elseif>
 				&nbsp;&nbsp;<span><g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/></span>
 			</div>
