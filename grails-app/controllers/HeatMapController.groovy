@@ -92,6 +92,8 @@ class HeatMapController {
 					fileBytes = result.analysis.item.gtrFile
 				if(params.name.indexOf('.atr') > 1)
 					fileBytes = result.analysis.item.atrFile
+				if(params.name.indexOf('.jtv') > 1)
+					fileBytes = "<DocumentConfig></DocumentConfig>".getBytes()
 				response.outputStream << fileBytes
 			}
 		}catch(java.io.FileNotFoundException fnf){
