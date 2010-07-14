@@ -65,7 +65,7 @@ class HeatMapController {
 			def study = StudyDataSource.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
-			if(cmd.fromComparison) {
+			if(cmd.fromComparison && cmd.selectAll) {
 				def ids = []
 				if(session.results){
 					session.results.resultEntries.each{ ccEntry ->
