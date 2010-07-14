@@ -65,6 +65,15 @@ class HeatMapController {
 			def study = StudyDataSource.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
+			if(cmd.fromComparison) {
+				def ids = []
+				if(session.results){
+					session.results.resultEntries.each{ ccEntry ->
+						ids << ccEntry.reporterId
+					}
+				}
+				cmd.reporterIds = "[" + ids.join(',') + "]"
+			}
 			analysisService.sendRequest(session.id, cmd, tags)
 			redirect(controller:'notification')
 		}

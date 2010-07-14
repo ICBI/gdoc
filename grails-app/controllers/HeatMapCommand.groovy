@@ -8,6 +8,7 @@ class HeatMapCommand {
 	String statisticalMethod
 	String dataFile
 	Boolean fromComparison
+	Boolean selectAll
 	String reporterIds
 	AnalysisType requestType = (AnalysisType.HEATMAP)
 	def annotationService

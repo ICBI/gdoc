@@ -111,6 +111,7 @@
 					}, 2500);
 					return false;
 				} else {
+					jQuery('#selectAll').val(selectAll);
 					jQuery('#reporterIds').val(selected);
 				}
 			});
@@ -161,6 +162,7 @@
 								<g:hiddenField name="dataFile" value="${session.analysis.query.dataFile}" />
 								<g:hiddenField name="reporterIds" />
 								<g:hiddenField name="fromComparison" value="true"/>
+								<g:hiddenField name="selectAll" value="false"/>
 								<g:hiddenField name="study" value="${session.analysis.studySchemas()[0]}"/>
 								<g:submitButton name="search" value="View HeatMap for selected reporters" />
 							</g:form>	
