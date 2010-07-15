@@ -28,13 +28,13 @@ class AnalysisController {
 				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
 			}
 			patientLists.each{
-				println it.name
+				log.debug it.name
 			}
 			session.patientLists = []
 			session.patientLists = patientLists.sort { it.name }
 			session.files = htDataService.getHTDataMap()
 			session.dataSetType = session.files.keySet()
-			println "my ht files for $session.study = $session.files"
+			log.debug "my ht files for $session.study = $session.files"
 		}
 		def methods = ['TTest':'T-Test: Two Sample Test', 'Wilcoxin':'Wilcoxin Test: Mann-Whitney Test']
 		session.statisticalMethods = methods
@@ -54,16 +54,16 @@ class AnalysisController {
 	}
 	
 	def submit = { AnalysisCommand cmd ->
-		println "analysis params : $params"
-		println "Command: " + cmd.groups
-		println "type : " + cmd.requestType
-		println analysisService
-		println "baseline group : " + cmd.baselineGroup
-		println "groups : " + cmd.groups
-		println "pvalue : " + cmd.pvalue
-		println "foldChange : " + cmd.foldChange
-		println "study:" + cmd.study 
-		println cmd.errors
+		log.debug "analysis params : $params"
+		log.debug "Command: " + cmd.groups
+		log.debug "type : " + cmd.requestType
+		log.debug analysisService
+		log.debug "baseline group : " + cmd.baselineGroup
+		log.debug "groups : " + cmd.groups
+		log.debug "pvalue : " + cmd.pvalue
+		log.debug "foldChange : " + cmd.foldChange
+		log.debug "study:" + cmd.study 
+		log.debug cmd.errors
 		def datasetType = params.dataSetType.replace(" ","_")
 		def tags = []
 		tags << "$datasetType"

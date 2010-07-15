@@ -13,7 +13,7 @@ class StudyDataSourceController {
 	
     def index = { 
 		def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
-		println studyNames
+		log.debug studyNames
 		myStudies = []
 		studyNames.each{
 			def foundStudy = StudyDataSource.findByShortName(it)
@@ -24,7 +24,7 @@ class StudyDataSourceController {
 		myStudies = myStudies.sort{ it.shortName }
 		otherStudies = StudyDataSource.findAll()
 		otherStudies.sort { it.shortName }
-		println myStudies
+		log.debug myStudies
 		if(myStudies.metaClass.respondsTo(myStudies, "size")) {
 			otherStudies.removeAll(myStudies)
 		} else {
@@ -35,7 +35,7 @@ class StudyDataSourceController {
 	
 	def setStudy = {
 		if(params.study){
-			println "set study to $params.study"
+			log.debug "set study to $params.study"
 			def currStudy = StudyDataSource.get(params.study)
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
@@ -69,7 +69,7 @@ class StudyDataSourceController {
 		def studiesJSON = []
 		
 		if(params.disease){
-			println "user interested in $params.disease, grab all studies that have data for $params.disease"
+			log.debug "user interested in $params.disease, grab all studies that have data for $params.disease"
 			myStudies = session.myStudies.findAll{it.cancerSite == params.disease}
 			myStudies.each{
 				if(it.shortName!="DRUG"){7
@@ -90,13 +90,13 @@ class StudyDataSourceController {
 		if(currStudy.hasClinicalData()){
 			clinicalElements = AttributeType.findAll()
 		}
-		println clinicalElements
+		log.debug clinicalElements
 	}
 	
 	def loadRemoteSources() {
 		def middlewareSources = middlewareService.loadResource("Datasource", null, session.userId)
 		def dataSourceMap = [:]
-		println middlewareSources
+		log.debug middlewareSources
 		if(middlewareSources instanceof Map) {
 			middlewareSources.each { key, value ->
 				value.resources.each {
@@ -107,7 +107,7 @@ class StudyDataSourceController {
 				}
 			}
 		}
-		println dataSourceMap
+		log.debug dataSourceMap
 		session.dataSourceMap = dataSourceMap
 	}
 }

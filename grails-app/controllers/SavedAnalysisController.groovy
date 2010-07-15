@@ -24,7 +24,7 @@ class SavedAnalysisController{
 				//}
 			}
 		}
-		println "remove special case analyses $specialCases"
+		log.debug "remove special case analyses $specialCases"
 		myAnalyses.removeAll(specialCases)
 		
 		def ids = myAnalyses.collect{it.id}
@@ -75,18 +75,18 @@ class SavedAnalysisController{
 	def deleteMultipleAnalyses ={
 		def message = ""
 		if(params.deleteAnalyses){
-			println "Requesting deletion of: $params.deleteAnalyses"
+			log.debug "Requesting deletion of: $params.deleteAnalyses"
 			if(params.deleteAnalyses.metaClass.respondsTo(params.deleteAnalyses, "max")){
 				params.deleteAnalyses.each{ analysisIdToBeRemoved ->
 					print analysisIdToBeRemoved + " "
 					def analysis = SavedAnalysis.get(analysisIdToBeRemoved)
 			        if(analysis) {
 			            if(analysis.evidence){
-							println "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
+							log.debug "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
 							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
 						}else{
 			            	analysis.delete(flush:true)
-							println "deleted " + analysis
+							log.debug "deleted " + analysis
 							message += "analysis $analysis.id has been deleted."
 						}
 					}
@@ -95,7 +95,7 @@ class SavedAnalysisController{
 				def analysis = SavedAnalysis.get(params.deleteAnalyses)
 		        if(analysis) {
 		             if(analysis.evidence){
-							println "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
+							log.debug "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
 							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
 						}else{
 			            	analysis.delete(flush:true)
@@ -115,30 +115,30 @@ class SavedAnalysisController{
 	
 	//TODO - decide if we always want to auto-save KM plots. Right now, we do not. They must implicitly call 'save'.
 	def save = {
-			println ("THE RESULT:")
-			println params.resultData
+			log.debug ("THE RESULT:")
+			log.debug params.resultData
 			def savedAttempt = [:]
-			println "session command" + session.command
+			log.debug "session command" + session.command
 			if(session.command != null){
-			println ("THE COMMAND PARAMS:")
+			log.debug ("THE COMMAND PARAMS:")
 				if(savedAnalysisService.saveAnalysisResult(session.userId, params.resultData,session.command,null)){
-					println ("saved analysis")
+					log.debug ("saved analysis")
 					savedAttempt["result"] = "Analysis Saved"
 					render savedAttempt as JSON		
 				} 	else{
 							savedAttempt["result"] = "Analysis not Saved -- may have already been saved."
-							println savedAttempt
+							log.debug savedAttempt
 							render savedAttempt as JSON
 					}
 			}else{
 					savedAttempt["result"] = "Analysis not Saved -- may have already been saved."
-					println savedAttempt
+					log.debug savedAttempt
 					render savedAttempt as JSON
 			}
 	}
 	
 	def addTag = {
-		println params
+		log.debug params
 		if(params.id && params.tag){
 			def list = tagService.addTag(SavedAnalysis.class.name,params.id,params.tag.trim())
 			if(list){
@@ -151,7 +151,7 @@ class SavedAnalysisController{
 	}
 	
 	def removeTag = {
-		println params
+		log.debug params
 		if(params.id && params.tag){
 			def analysis = tagService.removeTag(SavedAnalysis.class.name,params.id,params.tag.trim())
 			if(analysis){

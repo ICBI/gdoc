@@ -21,13 +21,13 @@ class ClinicalController {
 	
 	def test = {
 		def results = middlewareService.sparqlQuery()
-		println results
+		log.debug results
 	}
 	
 	def search = {
 			def errors = validateQuery(params, session.dataTypes)
-			println "Clinical Validation?: " + errors
-			println "Params: " + params
+			log.debug "Clinical Validation?: " + errors
+			log.debug "Params: " + params
 			if(errors && (errors != [:])) {
 				flash['errors'] = errors
 				flash['params'] = params
@@ -40,10 +40,10 @@ class ClinicalController {
 				def biospecimenCriteria = QueryBuilder.build(params, "biospecimen_", session.dataTypes)
 				if(biospecimenCriteria && biospecimenCriteria.size() > 0) {
 					biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
-					println "GOT IDS ${biospecimenIds.size()}"
+					log.debug "GOT IDS ${biospecimenIds.size()}"
 				}
 			}
-			//println criteria
+			//log.debug criteria
 			searchResults = clinicalService.queryByCriteria(criteria, biospecimenIds)
 			processResults(searchResults)
 	}
@@ -118,7 +118,7 @@ class ClinicalController {
 			}
 			results << [id: patient.gdocId, cell: cells]
 		}
-		//println "results rows:" + results
+		//log.debug "results rows:" + results
 		def jsonObject = [
 			page: currPage,
 			total: Math.ceil(searchResults.size() / rows),
@@ -156,25 +156,25 @@ class ClinicalController {
 	
 	def patientReport = {
 		def returnVal = [:]
-		println "GOT REQUEST: " + request.JSON
-		println "GOT PARAMS: " + params
+		log.debug "GOT REQUEST: " + request.JSON
+		log.debug "GOT PARAMS: " + params
 		
 		def patientIds = request.JSON['ids']
 		if(request.JSON['study']){
 			def shortName = request.JSON['study']
-			println "set study to $shortName"
+			log.debug "set study to $shortName"
 			def study = StudyDataSource.findByShortName(shortName)
 			StudyContext.setStudy(study.schemaName)
 		}
-		println "PATIENT IDS: $patientIds"
+		log.debug "PATIENT IDS: $patientIds"
 		def cleanedIds = patientIds.collect {
 			def temp = it.replace("\"", "")
 			temp.trim()
 			return temp
 		}
-		println "CLEANED : $cleanedIds"
+		log.debug "CLEANED : $cleanedIds"
 		def results = clinicalService.getPatientsForGdocIds(cleanedIds)
-		println "RESULTS: $results"
+		log.debug "RESULTS: $results"
 		processResults(results)
 		returnVal['url'] = '/gdoc/clinical/viewPatientReport'
 		render returnVal as JSON
@@ -198,12 +198,12 @@ class ClinicalController {
 	}
 	
 	private processResults(searchResults) {
-		//println searchResults
+		//log.debug searchResults
 		def columns = []
 		columns << [index: "id", name: "GDOC ID", sortable: true, width: '70']
 		//columns << [index: "dataSourceInternalId", name: "PATIENT ID", sortable: true, width: '70']
 		def columnNames = []
-		println searchResults
+		log.debug searchResults
 		searchResults.each { patient ->
 			patient.clinicalData.each { key, value ->
 				if(!columnNames.contains(key)) {
@@ -250,7 +250,7 @@ class ClinicalController {
 						errors[input.key] = [message: "clinical.range.invalid", field: [it.longName]]
 					}
 				}
-				println "VALUES: " + input.value[0] + input.value[1]
+				log.debug "VALUES: " + input.value[0] + input.value[1]
 			}
 		}
 		return errors

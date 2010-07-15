@@ -4,7 +4,7 @@ class CytoscapeController {
 	
 	
 	def index = {
-			println params
+			log.debug params
 			def baseUrl = request.getRequestURL().toString().split(request.getContextPath())[0]
 			def token = session.userId + "||" + System.currentTimeMillis()
 			def sifUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.sifFile
@@ -21,7 +21,7 @@ class CytoscapeController {
 				byte[] fileBytes = file.readBytes()
 					response.outputStream << fileBytes
 			}catch(java.io.FileNotFoundException fnf){
-				println fnf.toString()
+				log.debug fnf.toString()
 				render "File ($params.inputFile) was not found...is the file name correct?"
 			}
 		}

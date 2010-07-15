@@ -65,22 +65,22 @@ class GeneExpressionController {
 		def expressionValues = []
 		session.results = savedAnalysisService.getSavedAnalysis(params.id)
 
-		println session.results
+		log.debug session.results
 		def sampleReporter = [:]
-		println "VECTORS: " + session.results.analysis.item
+		log.debug "VECTORS: " + session.results.analysis.item
 		session.results.analysis.item.dataVectors.each { data ->
-			println data.name
+			log.debug data.name
 			sampleReporter[data.name] = [:]
 			data.dataPoints.each { point ->
-				println "POINT: " +  point.id + " : " + point.x
+				log.debug "POINT: " +  point.id + " : " + point.x
 				sampleReporter[data.name][point.id] = Math.pow(2, point.x)
-				println "REPORTER: " +  sampleReporter[data.name]
+				log.debug "REPORTER: " +  sampleReporter[data.name]
 			}
 		}
-		println session.results.query.groups
+		log.debug session.results.query.groups
 		session.results.query.groups.each { group ->
 			def samples = idService.samplesForListName(group)
-			println samples
+			log.debug samples
 			def valueHash = [:]
 			valueHash["group"] = group
 			def tempVals = []
@@ -89,7 +89,7 @@ class GeneExpressionController {
 				samples.each { sample ->
 					valueHash[key] << sampleReporter[key][sample]
 				}
-				println valueHash[key]
+				log.debug valueHash[key]
 				if(valueHash[key])
 					valueHash[key] = valueHash[key].sum() / valueHash[key].size()
 				else 

@@ -78,7 +78,7 @@ class PcaController {
 		session.analysis = analysisResult
 		def attributes = []
 		analysisResult.studySchemas().each { study ->
-			println "STUDY $study"
+			log.debug "STUDY $study"
 			StudyContext.setStudy(study)
 			def sds = StudyDataSource.findBySchemaName(study)
 			session.study = sds
@@ -142,7 +142,7 @@ class PcaController {
 		pcaResults["study"] = study.shortName
 		pcaResults["clinicalTypes"] = clinicalTypes
 		pcaResults["samples"] = samples
-		println pcaResults as JSON
+		log.debug pcaResults as JSON
 		render pcaResults as JSON
 	}
 }

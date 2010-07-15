@@ -39,11 +39,11 @@ def shareItem = {
 			 alreadySharedGroups.each{
 				groups.remove(it)
 			 }
-			println "removed already shared groups: $alreadySharedGroups"
-			println "remaing groups: $groups"
+			log.debug "removed already shared groups: $alreadySharedGroups"
+			log.debug "remaing groups: $groups"
 			}
 			if(!groups.isEmpty()){
-			println "sharing with groups: $groups"
+			log.debug "sharing with groups: $groups"
 			securityService.share(item, groups)
 			}
 		}catch(SecurityException se){
@@ -53,7 +53,7 @@ def shareItem = {
 		}
 	}
 	if(groups.isEmpty()){
-			println "no item is to be shared"
+			log.debug "no item is to be shared"
 			flash['message'] = 'This item has already been shared with the following: '
 			for(int i=0;i<alreadySharedGroups.size();i++){
 				if((i+1)==alreadySharedGroups.size()){
@@ -64,7 +64,7 @@ def shareItem = {
 			}
 			redirect(action:share,params:[failure:true,name:params.name])
 	}else{
-		println "shared to groups: $groups"
+		log.debug "shared to groups: $groups"
 		flash.message = params.name + " has been shared with: "
 		for(int i=0;i<groups.size();i++){
 			if((i+1)==groups.size()){

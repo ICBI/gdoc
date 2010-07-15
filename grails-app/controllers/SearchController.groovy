@@ -8,14 +8,14 @@ class SearchController {
 	def index = {
 		
 		 if (!params.q?.trim()) { 
-			println "no params"
+			log.debug "no params"
 			return [:] 
 		 } 
 		else{
 			try { 
 			def tbdResults = []
 			def suggs = []
-			println "search string = $params.q" + "*" 
+			log.debug "search string = $params.q" + "*" 
 			def searchResult
 			if(!params.offset){
 				searchResult = searchableService.search([result:'searchResult',defaultOperator:"and",offset:0,max:10,order: "asc"],{
@@ -43,7 +43,7 @@ class SearchController {
 				})
 			}
 			
-			//println searchResult
+			//log.debug searchResult
 			if(!searchResult.results){
 				suggs = gatherTermFreqs(params.q)
 				if(suggs.size()>=5){
@@ -60,7 +60,7 @@ class SearchController {
 	
 	
 	def relevantTerms = {
-		println params
+		log.debug params
 		def searchResult = []
 		if (!params.q?.trim()) { 
 			render ""
@@ -69,7 +69,7 @@ class SearchController {
 				searchResult = gatherTermFreqs(params.q)
 				render searchResult as JSON
 			 } catch (SearchEngineQueryParseException ex) { 
-				println ex
+				log.debug ex
 				render ""
 			 }
 		}
@@ -91,10 +91,10 @@ class SearchController {
 				if(it.term.contains(query.trim()))
 					searchResult << it.term
 			}
-			//println searchResult
+			//log.debug searchResult
 			return searchResult
 		 } catch (SearchEngineQueryParseException ex) { 
-			println ex
+			log.debug ex
 			return []
 		 }
 	}

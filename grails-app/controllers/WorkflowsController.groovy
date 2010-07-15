@@ -8,7 +8,7 @@ class WorkflowsController {
     def index = { 
 		if(!session.profileLoaded){
 			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
-			println studyNames
+			log.debug studyNames
 			def myStudies = []
 			session.tempLists = new HashSet()
 			session.tempAnalyses = new HashSet()
@@ -31,14 +31,14 @@ class WorkflowsController {
 		
 			loadRemoteSources()
 			session.profileLoaded = true
-			println session.myCollaborationGroups
+			log.debug session.myCollaborationGroups
 		}
 	}
 	
 	def loadRemoteSources() {
 		def middlewareSources = middlewareService.loadResource("Datasource", null, session.userId)
 		def dataSourceMap = [:]
-		println middlewareSources
+		log.debug middlewareSources
 		if(middlewareSources instanceof Map) {
 			middlewareSources.each { key, value ->
 				value.resources.each {
@@ -49,7 +49,7 @@ class WorkflowsController {
 				}
 			}
 		}
-		println dataSourceMap
+		log.debug dataSourceMap
 		session.dataSourceMap = dataSourceMap
 	}
 	

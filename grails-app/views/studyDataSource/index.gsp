@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="layout" content="main" />
+        <meta name="layout" content="workflowsLayout" />
 		</script>
         <title>Study DataSource</title>         
     </head>
@@ -9,7 +9,7 @@
 	<p style="font-size:14pt">Study Data Sources</p>
 	<br/>
 	
-	<div id="centerContent" class="welcome">
+	<div id="centerContent" class="welcome" style="width: 80%">
 		<g:panel id="studyPanel" title="My Studies" styleClass="welcome" collapse="true">
 				<table class="studyTable">
 					<tr>

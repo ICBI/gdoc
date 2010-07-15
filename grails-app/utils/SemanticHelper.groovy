@@ -11,7 +11,7 @@ class SemanticHelper {
 		2)JUST refactor SemanticHelper to resolve come outcomes and outcomesTimes 
 		**/
 		attributes.each{ attributeKey, attributeVal ->
-			println "resolve $attributeKey , $attributeVal in sem. helper"
+			log.debug "resolve $attributeKey , $attributeVal in sem. helper"
 			if(attributeVal == 'Relapse'){
 				def lessThanAttributeYears = []
 				def lessThanAttributeRelapse = []

@@ -35,7 +35,7 @@ class CollaborationGroupsController {
 		def allMem = allMemberships.collect{it.collaborationGroup}
 		if(allMem)
 			allMem = allMem as Set
-		println manMem
+		log.debug manMem
 		[managedMemberships:manMem,otherMemberships:otherMem,allMemberships:allMem]
 	}
 	
@@ -52,7 +52,7 @@ class CollaborationGroupsController {
 					redirect(action:"index")
 				}
 			}catch(DuplicateCollaborationGroupException de){
-				println "DUPLICATE! " + de
+				log.debug "DUPLICATE! " + de
 				flash.message = cmd.collaborationGroupName + " already exists as a collaboration group. Contact the " + 
 					"collaboration manager of that group for access, or rename your group."
 				redirect(action:"index")
@@ -78,7 +78,7 @@ class CollaborationGroupsController {
 				existingUsers.each{ u ->
 					exUserString += u + " ,"
 				}
-				println "$exUserString already exist(s) in the group" + cmd.collaborationGroupName 
+				log.debug "$exUserString already exist(s) in the group" + cmd.collaborationGroupName 
 				flash.message = "$exUserString already exists in the " + cmd.collaborationGroupName  + " group. No users added to group."
 				redirect(uri:"/collaborationGroups/index")
 			}
@@ -87,7 +87,7 @@ class CollaborationGroupsController {
 				if(manager && (manager.loginName == session.userId)){
 					cmd.users.each{ user ->
 						if(invitationService.requestAccess(manager.loginName,user,cmd.collaborationGroupName))
-							println session.userId + " invited user $user to " + cmd.collaborationGroupName 
+							log.debug session.userId + " invited user $user to " + cmd.collaborationGroupName 
 						}
 				}
 				flash.message = "An invitation has been sent to join the " + cmd.collaborationGroupName + " collaboration group."
@@ -101,7 +101,7 @@ class CollaborationGroupsController {
 		if(params.collaborationGroupName){
 			def manager = securityService.findCollaborationManager(params.collaborationGroupName)
 			if(invitationService.requestAccess(session.userId,manager.loginName,params.collaborationGroupName)){
-				println session.userId + " is requesting access to " + params.collaborationGroupName 
+				log.debug session.userId + " is requesting access to " + params.collaborationGroupName 
 				flash.message = "An access request has been sent to join the " + params.collaborationGroupName + " collaboration group."
 				redirect(action:"index")
 			}
@@ -124,7 +124,7 @@ class CollaborationGroupsController {
 			def delString = ""
 			cmd.users.each{ user ->
 				invitationService.revokeAccess(manager.loginName, user, cmd.collaborationGroupName)
-				println "$user has been removed from " + cmd.collaborationGroupName 
+				log.debug "$user has been removed from " + cmd.collaborationGroupName 
 				delString += user + ", "
 			}
 			flash.message = delString + " removed from " + cmd.collaborationGroupName 
@@ -146,7 +146,7 @@ class CollaborationGroupsController {
 	
 	//accepts an invitation to join a group
 	def addUser = {
-		println params.id
+		log.debug params.id
 		if(params.user && params.id && params.group){
 			if(invitationService.acceptAccess(params.user,params.id))
 				flash.message = "$params.user user has been added to the $params.group"
@@ -158,7 +158,7 @@ class CollaborationGroupsController {
 	
 	//either rejects some user access to a group, or rejects an invitation to join a group
 	def rejectInvite = {
-		println params.id
+		log.debug params.id
 		if(params.user && params.id && params.group){
 			if(invitationService.rejectAccess(params.id))
 				flash.message = "$params.user user will not be joining the $params.group group at this time"

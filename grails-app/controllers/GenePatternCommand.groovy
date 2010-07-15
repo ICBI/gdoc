@@ -13,9 +13,6 @@ class GenePatternCommand {
 			if(val.size() != 2) {
 				return "custom.size"
 			}
-			val.each {list ->
-				println val
-			}
 			return true
 		})
 		analysisName(blank:false)

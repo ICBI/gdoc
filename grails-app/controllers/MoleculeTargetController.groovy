@@ -7,17 +7,17 @@ class MoleculeTargetController {
 	def searchableService
 	
 	def index = {
-		println params
+		log.debug params
 		def ligands
 		if(chainModel){
 			ligands = chainModel["ligands"]
 			if(ligands.results){
-				println "results found"
+				log.debug "results found"
 				ligands.results = Molecule.getAll(ligands.results.collect{it.id})
 			}
 		}
 		if(params.offset){
-			println "offset was passed"
+			log.debug "offset was passed"
 		}
 		[ligands:ligands,params:[params.page,params.offset]]
 	
@@ -37,7 +37,7 @@ class MoleculeTargetController {
 		session.molCommand = null
 		session.smiles = params.smiles
 		def targets = Molecule.search(params.smiles,params)
-		println targets
+		log.debug targets
 		if(!params.offset){
 			chain(action:index,model:[ligands:targets],params:[page:'sketch',smiles:params.smiles])
 			return
@@ -49,8 +49,8 @@ class MoleculeTargetController {
 	}
 	
 	def searchLigands = { MoleculeTargetCommand cmd ->
-		println "Entity: " + cmd.entity
-		println cmd.errors
+		log.debug "Entity: " + cmd.entity
+		log.debug cmd.errors
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
 			redirect(action:'index',params:params)
@@ -63,7 +63,7 @@ class MoleculeTargetController {
 	
 	def handleMoleculeSearch(cmd, params){
 		if(!session.molCommand && session.smiles){
-			println "this needs to be redirected to sketch, offset $params"
+			log.debug "this needs to be redirected to sketch, offset $params"
 			chain(action:searchLigandsFromSketch,params:[page:'sketch',smiles:session.smiles,offset:params])
 			return
 		}
@@ -87,7 +87,7 @@ class MoleculeTargetController {
 			def searchTerm = cmd.entity
 				//if weight is specified , add to search
 				if(cmd.molWeightLow || cmd.molWeightHigh){
-					println "constrain by molecular weight"
+					log.debug "constrain by molecular weight"
 					if(!cmd.molWeightLow){
 						cmd.molWeightLow = 0.0
 					}
@@ -104,12 +104,12 @@ class MoleculeTargetController {
 					targets = Molecule.search(params,{
 						queryString(searchTerm)
 					})
-					println targets
+					log.debug targets
 					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity,offset:params.offset])
 					return
 				}
 			}catch (SearchEngineQueryParseException ex) { 
-				 	println ex
+				 	log.debug ex
 					flash.message = "Error ocurred during search"
 					redirect(action:index)
 					return 
@@ -144,14 +144,14 @@ class MoleculeTargetController {
 				}
 				render searchResult as JSON
 			 } catch (SearchEngineQueryParseException ex) { 
-				println ex
+				log.debug ex
 				return []
 			 }
 		}
 	}
 	
 	def show = {
-			println params
+			log.debug params
 			def moleculeTarget
 			def similarTargets = []
 			def molTarId 
@@ -161,11 +161,11 @@ class MoleculeTargetController {
 			}
 			if(moleculeTarget){
 				similarTargets = MoleculeTarget.findAllByProtein(moleculeTarget.protein)
-				println similarTargets
+				log.debug similarTargets
 				def desiredTarget = similarTargets.find{
 					it.id == molTarId
 				}
-				println desiredTarget
+				log.debug desiredTarget
 				[moleculeTarget:desiredTarget,similarTargets:similarTargets]
 			}	
 		}
@@ -183,7 +183,7 @@ class MoleculeTargetController {
 				response.outputStream << fileBytes
 			}
 		}catch(java.io.FileNotFoundException fnf){
-			println fnf.toString()
+			log.debug fnf.toString()
 			render "File ($params.inputFile) was not found...is the file name correct?"
 		}
 	}

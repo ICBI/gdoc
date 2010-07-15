@@ -19,10 +19,10 @@ class CrossStudyController {
 	def searchAcrossStudies = {
 		//params["range_nci:AGE"] = "50 - 90"
 		params["nci:DR"] = "YES"
-		println params
+		log.debug params
 		def sparql = QueryBuilder.buildSparql(params)
 		def results = clinicalService.queryAcrossStudies(sparql)
-		println results
+		log.debug results
 		[results:results]
 	}
 }

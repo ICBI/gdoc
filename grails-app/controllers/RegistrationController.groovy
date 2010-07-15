@@ -12,20 +12,20 @@ class RegistrationController {
 	}
 	
 	def register = { RegistrationCommand cmd ->
-		println "netId : " + cmd.netId
-		println "department:" + cmd.department 
-		println cmd.errors
+		log.debug "netId : " + cmd.netId
+		log.debug "department:" + cmd.department 
+		log.debug cmd.errors
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
-			//println cmd.errors
+			//log.debug cmd.errors
 			redirect(action:'index')
 		} else {
-			println "no errors, begin registration"
+			log.debug "no errors, begin registration"
 			flash['cmd'] = cmd
 			//check if user already exists
 			def existingUser = GDOCUser.findByLoginName(cmd.netId)
 			if(existingUser){
-				println cmd.netId + " already exists as a user in the G-DOC system. Use Net-Id credentials to login above"
+				log.debug cmd.netId + " already exists as a user in the G-DOC system. Use Net-Id credentials to login above"
 				flash.message = cmd.netId + " already exists as a user in the G-DOC system. Use Net-Id credentials to login above"
 				redirect(action:'index')
 				return
@@ -48,19 +48,19 @@ class RegistrationController {
 							redirect(controller:'home', action:'index')
 							return
 						}else{
-							println "system error adding the user to G-DOC"
+							log.debug "system error adding the user to G-DOC"
 							flash.message = "We're sorry, there was a system error adding the user to G-DOC. Please try again."
 							redirect(action:'index')
 							return
 						}
 					}else{
-						println "user has NET ID, but missing a required field (loginName, firstName or lastName)"
+						log.debug "user has NET ID, but missing a required field (loginName, firstName or lastName)"
 						flash.message = "There was a system error adding the user to G-DOC. The user may be missing a first and/or last name in the system."
 						redirect(action:'index')
 						return
 					}
 				}else{
-					println cmd.netId + " is an invalid Net-Id. Contact Georgetown University Administration to obtain Net-Id."
+					log.debug cmd.netId + " is an invalid Net-Id. Contact Georgetown University Administration to obtain Net-Id."
 					flash.message = cmd.netId + " is an invalid Net-Id. Contact Georgetown University Administration to obtain Net-Id."
 					redirect(action:'index')
 					return

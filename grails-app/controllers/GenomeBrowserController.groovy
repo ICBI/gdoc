@@ -28,7 +28,7 @@ class GenomeBrowserController {
 		if(params.searchType == 'feature')
 			session.browseLocation = cmd.hiddenLocation
 		else {
-			println params.location
+			log.debug params.location
 			if(!params.location || cmd.location == '')
 				params.location = '1..2'
 			session.browseLocation = "CHR" + cmd.chromosome + ":" + cmd.location + ".." + cmd.location
@@ -169,7 +169,7 @@ class GenomeBrowserController {
 	}
 
 	def data = {
-		println "got request for: ${request.forwardURI}"
+		log.debug "got request for: ${request.forwardURI}"
 		def link = request.forwardURI.replace("/gdoc/genomeBrowser", "/content")
 		redirect(url: link)
 

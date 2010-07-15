@@ -20,7 +20,7 @@ class LoginController {
 							def user = securityService.login(params)
 							if (user) {
 								session.userId = user.loginName
-								//println (user.loginName)
+								//log.debug (user.loginName)
 								redirect(controller:'workflows')
 							}
 							else {
@@ -28,7 +28,7 @@ class LoginController {
 								redirect(controller:'home')
 							}
 						}catch(LoginException le){
-							println "login invalid in controller"
+							log.debug "login invalid in controller"
 							flash['message'] = 'Please enter a valid user ID and password'
 							redirect(controller:'home')
 						}
@@ -37,10 +37,10 @@ class LoginController {
 		}
 		
 		def logout = {
-			println params
+			log.debug params
 			securityService.logout(session)
 			flash.message = "user logged out"
-			println "user logged out"
+			log.debug "user logged out"
 			redirect(controller:'home',action:'index')
 		}
 	

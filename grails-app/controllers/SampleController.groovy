@@ -18,10 +18,10 @@ class SampleController {
 			def datasources = []
 			def options = [:]
 			summary.each { item ->
-				println item
+				log.debug item
 				datasources << item.key
 				item.value.each { option ->
-					println option
+					log.debug option
 					if(!options[option.key]) {
 						options[option.key] = new HashSet()
 					}
@@ -32,17 +32,17 @@ class SampleController {
 					}
 				}
 			}
-			println "OPTIONS: " + options
+			log.debug "OPTIONS: " + options
 			session.options = options
 			session.datasources = datasources
 		}
 	}
 	
     def search = { 
-		println "PARAMS: $params"
+		log.debug "PARAMS: $params"
 		params.keySet().removeAll( ['action', 'submit', 'controller'] as Set )
 		session.sampleQuery = params
-		println "PARAMS2: $params"
+		log.debug "PARAMS2: $params"
 		def returnData = middlewareService.postResource("Sample", params, session.userId)
 		if(returnData && returnData instanceof Map) {
 			session.summary = returnData

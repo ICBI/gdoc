@@ -28,7 +28,7 @@ class KmController {
 		def reporters = []
 		if(params.reporters){
 			reporters = params.reporters
-			println "got these reporters: "+reporters
+			log.debug "got these reporters: "+reporters
 		}
 		def diseases = session.myStudies.collect{it.cancerSite}
 		diseases.remove("N/A")
@@ -58,7 +58,7 @@ class KmController {
 	def searchGE = {}
 	
 	def redrawGEPlot = {
-		println params
+		log.debug params
 		if(params.reporter){
 		 def reporter = params.reporter
 		 def allReporters = []
@@ -74,7 +74,7 @@ class KmController {
 		--------------------------------------------------------------------------------**/
 		//TODO - carry mean expressions to flex cmponent and back so no re-calc is necessary
 		 def expValues = kmService.findReportersMeanExpression(geAnalysisId,reporter)
-		  println "found mean expression for redrawn plot"
+		  log.debug "found mean expression for redrawn plot"
 		def meanExpression = expValues[0].expression
 			def foldChangeGroups = []
 			def foldChange = Double.parseDouble(fc)
@@ -131,22 +131,22 @@ class KmController {
 						tags << Constants.TEMPORARY
 					}
 					def files = MicroarrayFile.findByNameLike('%.Rda')
-						println "BEFORE"
+						log.debug "BEFORE"
 					cmd.dataFile = files.name
 					def taskId = analysisService.sendRequest(session.id, cmd, tags)
 					def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, taskId)
-					println "CHECKING status ${geAnalysis.id} ${taskId}"
-					println "after 10, status is: " + geAnalysis.status
+					log.debug "CHECKING status ${geAnalysis.id} ${taskId}"
+					log.debug "after 10, status is: " + geAnalysis.status
 					while(geAnalysis.status != 'Complete'){
 						Thread.sleep(5000)
 						geAnalysis = savedAnalysisService.getSavedAnalysis(geAnalysis.id)
 						geAnalysis.reloadData()
-						println "CHECKING status ${geAnalysis.id} ${taskId}"
-						//println "JSON ${geAnalysis.analysisData} DATA ${geAnalysis.analysis}"
-						println "status of geAnalysis after checking savd is: " + geAnalysis.status
+						log.debug "CHECKING status ${geAnalysis.id} ${taskId}"
+						//log.debug "JSON ${geAnalysis.analysisData} DATA ${geAnalysis.analysis}"
+						log.debug "status of geAnalysis after checking savd is: " + geAnalysis.status
 					}
-					println "analysis COMPLETE"
-					println "retrieve expression values"
+					log.debug "analysis COMPLETE"
+					log.debug "retrieve expression values"
 					def expValues = kmService.findReportersMeanExpression(geAnalysis.id,null)
 					def highestMean = expValues[0].expression
 					def reporter = expValues[0].reporter
@@ -155,11 +155,11 @@ class KmController {
 					foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,highestMean,foldChange,geAnalysis.id)
 					def groups = []
 					groups.add(foldChangeGroups['&gt;' + foldChange])
-					//println foldChangeGroups['greater'].size()
+					//log.debug foldChangeGroups['greater'].size()
 					groups.add(foldChangeGroups['&lt;' +"-" + foldChange])
-					//println foldChangeGroups['less'].size()
+					//log.debug foldChangeGroups['less'].size()
 					groups.add(foldChangeGroups['between'])
-					//println foldChangeGroups['less'].size()
+					//log.debug foldChangeGroups['less'].size()
 					
 					cmd.geAnalysisId = geAnalysis.id
 					cmd.groups = groups
@@ -198,15 +198,15 @@ class KmController {
 	//there is no need to grab the lists from database and recalc the results,
 	//as this has already been done. 
 	def repopulateKM = {
-		println "IN REPOPULATE"
+		log.debug "IN REPOPULATE"
 		session.savedKM = params.id
 	}
 	
 	def view = { 
 		if(session.savedKM){
-			println "retrieving SAVED KM"
+			log.debug "retrieving SAVED KM"
 			def analysis = savedAnalysisService.getSavedAnalysis(session.savedKM)
-			println analysis.analysisData
+			log.debug analysis.analysisData
 			session.savedKM = null
 			render analysis.analysisData
 		}
@@ -224,15 +224,15 @@ class KmController {
 			def samples = []
 			def tempList
 			if(list instanceof UserList){
-				println "LIST: ${list.name}"
+				log.debug "LIST: ${list.name}"
 				
 				tempList = list
 			}else{
-				println "LIST2: ${list}"
+				log.debug "LIST2: ${list}"
 				
 			    tempList = UserList.findAllByName(list.name)
 			}
-			println "TEMPLIST $tempList"
+			log.debug "TEMPLIST $tempList"
 			if(cmd instanceof KmCommand){
 				def author = GDOCUser.findByLoginName(session.userId)
 				def list1IsTemp = userListService.listIsTemporary(tempList.name,author)
@@ -244,7 +244,7 @@ class KmController {
 			def ids = tempList.listItems.collectAll { listItem ->
 					listItem.value
 				}.flatten()
-			println "ids: " + ids
+			log.debug "ids: " + ids
 			ids = ids.sort()
 			def patients = patientService.patientsForGdocIds(ids)
 			def attributes = KmAttribute.findAll()
@@ -252,7 +252,7 @@ class KmController {
 			def censorStrategy = { patient, endpoint ->
 				
 				att = attributes.find {
-					println "COMPARE: ${it.attribute} : $endpoint"
+					log.debug "COMPARE: ${it.attribute} : $endpoint"
 					it.attribute == endpoint
 				}
 				return (patient.clinicalData[att.censorAttribute] == att.censorValue)
@@ -268,10 +268,10 @@ class KmController {
 			}
 			sampleGroups << samples
 			groupHash[list.name] = samples
-			println "SAMPLES: $groupHash"
+			log.debug "SAMPLES: $groupHash"
 			def points = kmService.plotCoordinates(samples)
 			groups[list.name] = points
-			println "assigned points"
+			log.debug "assigned points"
 		}
 		def pvalue = null
 		
@@ -295,27 +295,27 @@ class KmController {
 				geInfo["geGroups"] << cleanedIds		
 			}
 			groups["geneExpressionInfo"] = geInfo
-			println "GE INFO: "
-			println groups["geneExpressionInfo"]
+			log.debug "GE INFO: "
+			log.debug groups["geneExpressionInfo"]
 			pvalue = computeMultiplePvalues(groupHash)
 		} else {
 			if(sampleGroups[0] && sampleGroups[1]) {
 				pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])
 			}
 		}
-		println "PVALUE $pvalue"
+		log.debug "PVALUE $pvalue"
 		groups["pvalue"] = pvalue
 		groups["endpointDesc"] = att.attributeDescription
 		def resultData = groups as JSON
-		println resultData
+		log.debug resultData
 		if(session.redrawnKM){
-			println "km has been redrawn, just return result data"
+			log.debug "km has been redrawn, just return result data"
 			render resultData
 		}else{
 			
 			def savedAna = savedAnalysisService.saveAnalysisResult(session.userId, resultData.toString(),cmd, tags)
 			if(savedAna){
-				println "saved km and now returning result data"
+				log.debug "saved km and now returning result data"
 				render resultData
 			}
 		}

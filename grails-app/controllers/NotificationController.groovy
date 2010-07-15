@@ -9,8 +9,8 @@ class NotificationController {
 	
     def index = { 
 		buildNotifications()
-		println session.notifications
-		println session.invitations
+		log.debug session.notifications
+		log.debug session.invitations
 	}
 	
 	def check = {
@@ -58,9 +58,9 @@ class NotificationController {
 		def today = new Date()
 		def removeable = []
 		notifications.each{ n ->
-			//println today.minus(n.dateCreated)
+			//log.debug today.minus(n.dateCreated)
 			if(today.minus(n.dateCreated) > 2){
-				//println "remove " + n
+				//log.debug "remove " + n
 				removeable << n
 			}
 		}

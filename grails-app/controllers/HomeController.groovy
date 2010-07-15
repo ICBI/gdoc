@@ -31,7 +31,7 @@ class HomeController {
 			totalStudies = da["dataAvailability"].size()
 		da["dataAvailability"].each{ study ->
 			def disease = study["CANCER"]
-			//println "disease: " + disease
+			//log.debug "disease: " + disease
 			study.each{ key,value ->
 				if(!diseaseBreakdown[disease]){
 					diseaseBreakdown[disease] = [:]
@@ -40,7 +40,7 @@ class HomeController {
 					if(key == 'CANCER'){
 					if(diseaseBreakdown[disease]["studyNumber"]){
 						diseaseBreakdown[disease]["studyNumber"] += 1
-						//println "add another $disease study: $study.STUDY"
+						//log.debug "add another $disease study: $study.STUDY"
 					}else{
 						diseaseBreakdown[disease]["studyNumber"] = 1
 					}
@@ -57,7 +57,7 @@ class HomeController {
 				
 				if(key != "STUDY" &&  key != "CANCER"){
 					if(value > 0){
-						//println  "$disease has $key available"
+						//log.debug  "$disease has $key available"
 						def nameAndImage = [:]
 						def image = key.replace(" ","_")+"_icon.gif" 
 						nameAndImage[key] = image
@@ -75,8 +75,8 @@ class HomeController {
 		diseaseBreakdown['<i>TOTAL</i>']['patientNumber'] = totalPatient
 		diseaseBreakdown['<i>TOTAL</i>']['studyNumber'] = totalStudies
 		diseaseBreakdown['<i>TOTAL</i>']['availableData'] = totalData
-		//println diseaseBreakdown
-		//println dataBreakdown
+		//log.debug diseaseBreakdown
+		//log.debug dataBreakdown
 		
 		//get anatomic sources
 		def sampleSummary = summaryService.sampleSummary()

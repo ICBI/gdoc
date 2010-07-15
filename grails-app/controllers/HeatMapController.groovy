@@ -42,13 +42,13 @@ class HeatMapController {
 	}
 	
 	def drawHeatMap = { HeatMapCommand cmd ->
-		println "heatmap params : $params"
-		println "type : " + cmd.requestType
-		println "patientList : " + cmd.patientList
-		println "geneList : " + cmd.geneList
-		println "reporterList : " + cmd.reporterList
-		println "study:" + cmd.study 
-		println cmd.errors
+		log.debug "heatmap params : $params"
+		log.debug "type : " + cmd.requestType
+		log.debug "patientList : " + cmd.patientList
+		log.debug "geneList : " + cmd.geneList
+		log.debug "reporterList : " + cmd.reporterList
+		log.debug "study:" + cmd.study 
+		log.debug cmd.errors
 		if(!session.study)
 			StudyContext.setStudy(cmd.study)
 		def tags = []
@@ -106,7 +106,7 @@ class HeatMapController {
 				response.outputStream << fileBytes
 			}
 		}catch(java.io.FileNotFoundException fnf){
-			println fnf.toString()
+			log.debug fnf.toString()
 			render "File ($params.name) was not found...is the file name correct?"
 		} catch (Exception e) {
 			e.printStackTrace()

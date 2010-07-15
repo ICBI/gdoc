@@ -11,7 +11,7 @@ class UserListController {
     def index = { redirect(action:list,params:params) }
 
     def list = {
-		println params
+		log.debug params
 		def lists = []
 		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"hide shared lists",all:"show all"]
 		def filteredLists = []
@@ -75,7 +75,7 @@ class UserListController {
 	}
 	
 	def addTag = {
-		println params
+		log.debug params
 		if(params.id && params.tag){
 			def list = tagService.addTag(UserList.class.name,params.id,params.tag.trim())
 			if(list){
@@ -88,7 +88,7 @@ class UserListController {
 	}
 	
 	def removeTag = {
-		println params
+		log.debug params
 		if(params.id && params.tag){
 			def list = tagService.removeTag(UserList.class.name,params.id,params.tag.trim())
 			if(list){
@@ -101,7 +101,7 @@ class UserListController {
 	}
 	
 	def vennDiagram = {
-		println params
+		log.debug params
 		def author = GDOCUser.findByLoginName(params.author)
 		def vennJSON = userListService.vennDiagram(params.listName,author,params.ids);
 		def tags = userListService.gatherTags(params.ids)
@@ -109,7 +109,7 @@ class UserListController {
 		tagsString = tagsString.replace("[","")
 		tagsString = tagsString.replace("]","")
 		def parsedJSON = JSON.parse(vennJSON.toString());
-		println vennJSON
+		log.debug vennJSON
 		flash.message = null
 		def intersectedIds = parsedJSON
 		[ vennJSON: vennJSON, intersectedIds: intersectedIds, tags: tagsString]
@@ -154,7 +154,7 @@ class UserListController {
 				//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 			}
 		}else{
-			println "no lists have been selected"
+			log.debug "no lists have been selected"
 			flash.message = "no lists have been selected"
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 			def filteredLists = []
@@ -170,7 +170,7 @@ class UserListController {
         def userListInstance = UserList.get( params.id )
         if(userListInstance) {
             userListInstance.delete(flush:true)
-			println "deleted " + userListInstance
+			log.debug "deleted " + userListInstance
 			flash.message = userListInstance.name + " has been deleted"
 			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
 			def filteredLists = []
@@ -195,18 +195,18 @@ class UserListController {
 	def deleteMultipleLists ={
 		def message = ""
 		if(params.deleteList){
-			println "Requesting deletion of: $params.deleteList"
+			log.debug "Requesting deletion of: $params.deleteList"
 			if(params.deleteList.metaClass.respondsTo(params.deleteList, "max")){
 				for(String listIdToBeRemoved : params.deleteList){
 					print listIdToBeRemoved + " "
 					def userListInstance = UserList.get(listIdToBeRemoved)
 			        if(userListInstance) {
 			            if(userListInstance.evidence){
-							println "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
+							log.debug "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
 							message += " $userListInstance.name could not be deleted because it represents a piece of evidence in a G-DOC finding."
 						}else{
 			            	userListInstance.delete(flush:true)
-							println "deleted " + userListInstance
+							log.debug "deleted " + userListInstance
 							message += " $userListInstance.name has been deleted."
 						}
 					}
@@ -215,11 +215,11 @@ class UserListController {
 				def userListInstance = UserList.get(params.deleteList)
 		        if(userListInstance) {
 					if(userListInstance.evidence){
-						println "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
+						log.debug "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
 						message = "$userListInstance.name could not be deleted because it represents a piece of evidence in a G-DOC finding."
 					}else{
 		            	userListInstance.delete(flush:true)
-						println "deleted " + userListInstance
+						log.debug "deleted " + userListInstance
 						message = "$userListInstance.name has been deleted."
 					}
 				}
@@ -236,7 +236,7 @@ class UserListController {
 	}
 
 	def deleteListItem = {
-		println params
+		log.debug params
         def userListItemInstance = UserListItem.findById(params["id"])
         if(userListItemInstance) {
 			def list = UserList.findById(userListItemInstance.list.id)
@@ -257,7 +257,7 @@ class UserListController {
     }
 
 	def getListItems = {
-		println params
+		log.debug params
 		def userListInstance = UserList.get( params.id )
 		def metadata = userListService.decorateListItems(userListInstance)
        	if(userListInstance) {
@@ -314,7 +314,7 @@ class UserListController {
 
 
     def saveFromQuery = {
-		println params
+		log.debug params
 		def author = GDOCUser.findByLoginName(session.userId)
 		if(!params["name"]){
 			params["name"] = author.loginName + new Date().getTime();
@@ -328,10 +328,10 @@ class UserListController {
 			render "List $params.name already exists"
 			return
 		}
-		println "save list"
+		log.debug "save list"
 		def ids = []
 		if(params.selectAll == "true") {
-			println "save all ids"
+			log.debug "save all ids"
 			//if patient list, save all gdocIds straight from result
 			if(params["tags"].indexOf("patient") > -1) {
 				session.results.each {
@@ -358,7 +358,7 @@ class UserListController {
 				}
 			}
 		} else if(params['ids']){
-			println "just save selected ids"
+			log.debug "just save selected ids"
 			params['ids'].tokenize(",").each{
 				it = it.replace('[','');
 				it = it.replace(']','');
@@ -398,7 +398,7 @@ class UserListController {
     }
 
 	def saveListFromExistingLists = {
-		println params
+		log.debug params
 		def author = GDOCUser.findByLoginName(session.userId)
 		if(!params["name"]){
 			params["name"] = author.loginName + new Date().getTime();
@@ -468,7 +468,7 @@ class UserListController {
 	}
 	
 	def renameList = {
-		println params
+		log.debug params
 		def message = ""
 		if(params.newNameValue && params.id){
 			def author = GDOCUser.findByLoginName(session.userId)
@@ -476,7 +476,7 @@ class UserListController {
 				it.name == params.newNameValue.trim()
 			}
 			if(listDup) {
-				println "List $params.newNameValue already exists"
+				log.debug "List $params.newNameValue already exists"
 				message = "List $params.newNameValue already exists"
 				render(message)
 			}else{
@@ -498,7 +498,7 @@ class UserListController {
 				it.name == params["listName"]
 			}
 			if(request.getFile("file").getOriginalFilename().lastIndexOf(".txt") == -1){
-				println "List $params.listName needs to be formatted as plain-text .txt file"
+				log.debug "List $params.listName needs to be formatted as plain-text .txt file"
 				flash["message"]= "List $params.listName needs to be formatted as plain-text .txt file"
 				redirect(action:upload,params:[failure:true])
 				return
@@ -506,7 +506,7 @@ class UserListController {
 			
 			
 			if(listDup) {
-				println "List $params.listName already exists"
+				log.debug "List $params.listName already exists"
 				flash["message"]= "List $params.listName already exists"
 				redirect(action:upload,params:[failure:true])
 				return
@@ -515,7 +515,7 @@ class UserListController {
 				userList.name = params["listName"]
 				userList.author = author 
 				request.getFile("file").inputStream.eachLine { value ->
-					//println value
+					//log.debug value
 					userList.addToListItems(new UserListItem(value:value.trim()))
 				}
 	        	if(!userList.hasErrors() && userList.save()) {
@@ -536,14 +536,14 @@ class UserListController {
 	}
 	
 	def export = {
-		println "EXPORTING LIST ${params.id}"
+		log.debug "EXPORTING LIST ${params.id}"
 		response.setHeader("Content-disposition", "attachment; filename=${params.id}-export.txt")  
 		response.contentType = "text/plain"
 		exportService.exportList(response.outputStream, params.id)
 	}
 	
 	def exportToCytoscape = {
-		println "BUILDING AND EXPORTING TO CYTOSCAPE ${params.id}"
+		log.debug "BUILDING AND EXPORTING TO CYTOSCAPE ${params.id}"
 		def cytoscapeFiles = exportService.buildCytoscapeFiles(params.id)
 		redirect(controller:"cytoscape",action:"index",params:[sifFile:cytoscapeFiles['sifFile'],edgeAttributeFile:cytoscapeFiles['edgeAttributeFile'],nodeAttributeFile:cytoscapeFiles['nodeAttributeFile'],geneAttributeFile:cytoscapeFiles['geneAttributeFile']])
 		return
