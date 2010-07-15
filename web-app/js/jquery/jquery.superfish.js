@@ -19,11 +19,13 @@
 			over = function(){
 				var $$ = $(this), menu = getMenu($$);
 				clearTimeout(menu.sfTimer);
+				$('.applet').css("display","none");
 				$$.showSuperfishUl().siblings().hideSuperfishUl();
 			},
 			out = function(){
 				var $$ = $(this), menu = getMenu($$), o = sf.op;
 				clearTimeout(menu.sfTimer);
+				$('.applet').css("display","block");
 				menu.sfTimer=setTimeout(function(){
 					o.retainPath=($.inArray($$[0],o.$path)>-1);
 					$$.hideSuperfishUl();
