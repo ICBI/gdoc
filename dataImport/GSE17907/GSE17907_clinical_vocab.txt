@@ -6,7 +6,7 @@ BC_MOLECULAR_SUBTYPE	LuminalA	LuminalA		Breast cancer sub type is : LuminalA
 BC_MOLECULAR_SUBTYPE	Normal	Normal		Breast cancer sub type is : Normal breast like
 BC_MOLECULAR_SUBTYPE	Basal	Basal		Breast cancer sub type is : Basal
 HIST_TUMOR_TYPE	9	9 - Ductal Carcinoma		9 - Ductal Carcinoma
-HIST_TUMOR_TYPE	10	"10 - Mixture of ductal, lobular (or other) carcinoma"		"10 - Mixture of ductal, lobular (or other) carcinoma"
+HIST_TUMOR_TYPE	10	10 - Mixture of ductal, lobular (or other) carcinoma		10 - Mixture of ductal, lobular (or other) carcinoma
 HIST_TUMOR_TYPE	11	11 - Other		11 - Other
 PTNM_T	T1	T1 - Size and/or extent of the primary tumor		T1 - Size and/or extent of the primary tumor
 PTNM_T	T2	T2 - Size and/or extent of the primary tumor		T2 - Size and/or extent of the primary tumor
