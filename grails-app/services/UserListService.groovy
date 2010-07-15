@@ -16,7 +16,7 @@ def drugDiscoveryService
 		if(!sharedListIds){
 			sharedListIds = getSharedListIds(userId)
 		}else{
-			println "use shared lists ids previously retrieved"
+			log.debug "use shared lists ids previously retrieved"
 		}
 		if(lists.metaClass.respondsTo(lists, "size")) {
 				lists.each{
@@ -51,7 +51,7 @@ def drugDiscoveryService
 			return allLists
 		}
 		else if(timePeriod == "hideShared"){
-			println "hide all shared lists"
+			log.debug "hide all shared lists"
 			allLists.each{ list ->
 				if(list.author.loginName == userId){
 					filteredLists << list
@@ -87,7 +87,7 @@ def drugDiscoveryService
 		al = UserList.findAll(query,[max:10,offset:offset])
 		pagedLists.clear()
 		pagedLists.addAll(al)
-		println "myLists -> $pagedLists as Paged set"
+		log.debug "myLists -> $pagedLists as Paged set"
 		return pagedLists
 	}
 	
@@ -96,7 +96,7 @@ def drugDiscoveryService
 		def author = GDOCUser.findByLoginName(userId)
 		author.refresh()
 		lists = UserList.findAllByAuthor(author)
-		println "size=" + lists.size()
+		log.debug "size=" + lists.size()
 		return lists
 	}
 	
@@ -160,7 +160,7 @@ def drugDiscoveryService
 		def vids = []
 		if(ids.metaClass.respondsTo(ids, "max")) {
 			ids.each{
-				  println it + " has been sent"
+				  log.debug it + " has been sent"
 			      UserList list = UserList.get(it);
 				  lists.add(list);
 			}
@@ -180,9 +180,9 @@ def drugDiscoveryService
 		
 		sortedListsBySize.each{
 			if(it.listItems){
-				println it.name + ": " + it.listItems.size()
+				log.debug it.name + ": " + it.listItems.size()
 			}else{
-				println it.name + ": has no list items"
+				log.debug it.name + ": has no list items"
 				return null;
 			}
 		}
@@ -190,7 +190,7 @@ def drugDiscoveryService
 		
 		//if only 2 lists
 		if(sortedListsBySize.size() == 2){
-			println "venn diagram of 2 lists"
+			log.debug "venn diagram of 2 lists"
 			def firstList = sortedListsBySize.toArray()[0];
 			def secondList = sortedListsBySize.toArray()[1];
 			def relSize1and2 = 	(secondList.listItems.size()/firstList.listItems.size()) * 100;
@@ -198,11 +198,11 @@ def drugDiscoveryService
 			//circle 1
 			def circle1 = [:]
 			def circle1Size = 100;
-			println "circle 1:" + firstList.name + "," +circle1Size + "%"
+			log.debug "circle 1:" + firstList.name + "," +circle1Size + "%"
 			//circle 2
 			def circle2 = [:]
 			def circle2Size = relSize1and2;
-			println "circle 2:" + secondList.name + "," +circle2Size + "%"
+			log.debug "circle 2:" + secondList.name + "," +circle2Size + "%"
 			
 			//when sizes are determined,calculate pct comparisons
 			def compLists1and2 = []
@@ -218,18 +218,18 @@ def drugDiscoveryService
 			def allValueMap = [:]
 			allValueMap["items"] = pct1and2.toArray()[0]
 			allValueMap["circleInt"] = pct1and2.get(1)
-			println pct1and2.get(1).class
+			log.debug pct1and2.get(1).class
 			allIntersections["allCircles"]  = allValueMap
 			
 			vennCalculations << circle1
 			vennCalculations << circle2
 			vennCalculations << allIntersections
-			println "return venn Calculations"
+			log.debug "return venn Calculations"
 			return vennCalculations as JSON
 		}
 		//if 3 lists
 		else if(sortedListsBySize.size() == 3){
-			println "venn diagram of 3 lists"
+			log.debug "venn diagram of 3 lists"
 			def firstList = sortedListsBySize.toArray()[0];
 			def secondList = sortedListsBySize.toArray()[1];
 			def thirdList = sortedListsBySize.toArray()[2];
@@ -239,15 +239,15 @@ def drugDiscoveryService
 			//circle 1
 			def circle1 = [:]
 			def circle1Size = 100;
-			println "circle 1:" + firstList.name + "," +circle1Size + "%"
+			log.debug "circle 1:" + firstList.name + "," +circle1Size + "%"
 			//circle 2
 			def circle2 = [:]
 			def circle2Size = relSize1and2;
-			println "circle 2:" + secondList.name + "," +circle2Size + "%"
+			log.debug "circle 2:" + secondList.name + "," +circle2Size + "%"
 			//circle 3
 			def circle3 = [:]
 			def circle3Size = relSize1and3;
-			println "circle 3:" + thirdList.name + "," +circle3Size + "%"
+			log.debug "circle 3:" + thirdList.name + "," +circle3Size + "%"
 			
 			//when sizes are determined,calculate pct comparisons
 			//1 and 2
@@ -301,7 +301,7 @@ def drugDiscoveryService
 		def tmp4 = items1 as Set
 		items1.retainAll( items2 )
 		def pct1and2and3 = (items1.size() / tmp4.size())*100
-		println "pct of 1 and 2 and 3: " + pct1and2and3.intValue()
+		log.debug "pct of 1 and 2 and 3: " + pct1and2and3.intValue()
 		return [items1,pct1and2and3]
 	}
 	
@@ -313,19 +313,19 @@ def drugDiscoveryService
 		//come back to this code...NOT being used right now
 		//----------------------------------------
 		def diffI1 = items1 as Set
-		println "size before:" + diffI1.size()
+		log.debug "size before:" + diffI1.size()
 		def diff = items1 as Set
 		diffI1.removeAll(items2)
-		println "size after:" + diffI1.size()
+		log.debug "size after:" + diffI1.size()
 		def count = diff.size() - diffI1.size()
-		println "difference:" + count
+		log.debug "difference:" + count
 		def pct1of2 = (count/items2.size())*100
-		println "pct of "+ lists.toArray()[1].name + " inside " + lists.toArray()[0].name + " = " + pct1of2
+		log.debug "pct of "+ lists.toArray()[1].name + " inside " + lists.toArray()[0].name + " = " + pct1of2
 		//-----------------------------------//
 		
 		items1.retainAll( items2 )
 		def pct1and2 = (items1.size() / tmp.size())*100
-		println "pct of " + lists.toArray()[0].name +" and "+ lists.toArray()[1].name+" : " + pct1and2.intValue()
+		log.debug "pct of " + lists.toArray()[0].name +" and "+ lists.toArray()[1].name+" : " + pct1and2.intValue()
 		return [items1,pct1and2]
 		//return [items1,pct1of2]
 	}
@@ -412,13 +412,13 @@ def createList(userName, listName, listItems, studies, tags) {
 			}
 			if(!userListInstance.hasErrors() && userListInstance.save()) {
 				tags.each {
-					//println "add tag, $it"
+					//log.debug "add tag, $it"
 					userListInstance.addTag(it)
 				}
-				println "UserList ${userListInstance.name} created successfully."
+				log.debug "UserList ${userListInstance.name} created successfully."
 				return userListInstance
 			} else {
-				println "Error creating UserList ${userListInstance.name}."
+				log.debug "Error creating UserList ${userListInstance.name}."
 				return null
 			}
 		}
@@ -448,7 +448,7 @@ def decorateListItems(userList){
 }
 	
 def listIsTemporary(listName,author){
-	println "find if $listName is temporary"
+	log.debug "find if $listName is temporary"
 	def compList = UserList.findByNameAndAuthor(listName,author)
 	if(compList && compList.tags?.contains(Constants.TEMPORARY)){
 		return true

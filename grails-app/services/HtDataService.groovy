@@ -36,7 +36,7 @@ class HtDataService {
 		if(priorFiles)
 			file.priorFiles = priorFiles
 		if(!file.save())
-			println file.errors
+			log.debug file.errors
 		return file
 	}
 	
@@ -50,7 +50,7 @@ class HtDataService {
 		run.design = design
 		run.rawFile = file
 		if(!run.save()) 
-			println run.errors
+			log.debug run.errors
 		return run
 	}
 	
@@ -62,17 +62,17 @@ class HtDataService {
 			if(!file){
 			  file = loadHtFile(it, null)
 			}else{
-			   println "$file.name has already been loaded, just load the run"
+			   log.debug "$file.name has already been loaded, just load the run"
 			}
 			def run = loadHtRun(it, file)
-			println "get biospecimen to link with run"
+			log.debug "get biospecimen to link with run"
 			def studyPatient = StudyPatient.findByDataSourceInternalId(it.patientId)
 			def patient  = Patient.get(studyPatient.id)
 			def biospecimen = Biospecimen.findByPatient(patient)
 			if(biospecimen){
-				println "found biospecimen, now link"
+				log.debug "found biospecimen, now link"
 			}else{
-				println "biospecimen does not yet exist, create one, and then link"
+				log.debug "biospecimen does not yet exist, create one, and then link"
 				biospecimen = biospecimenService.loadBiospecimen(it)
 			}
 			
@@ -93,7 +93,7 @@ class HtDataService {
 		biospecimen.diseased = true
 		biospecimen.attributeTimepointId = 0
 		if(!biospecimen.save())
-			println biospecimen.errors
+			log.debug biospecimen.errors
 		return biospecimen
 	}**/
 	
@@ -129,7 +129,7 @@ class HtDataService {
 				htTypes << msTypes.msType
 			}
 		}
-		println htTypes
+		log.debug htTypes
 		return htTypes
 	}
 	

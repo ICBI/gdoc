@@ -1,7 +1,7 @@
 class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
 	
 	def void cleanup(String userId, HashSet lists, HashSet analyses){
-		println "cleanup temporary artifacts for $userId"
+		log.debug "cleanup temporary artifacts for $userId"
 		def author = GDOCUser.findByLoginName(userId)
 		removeTemporaryAnalyses(analyses, author)
 		removeTemporaryLists(lists, author)
@@ -20,12 +20,12 @@ class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
 		if(analyses){
 			def tbSize = analyses.size()
 			analyses.each{
-				println "delete analysis $it"
+				log.debug "delete analysis $it"
 				def sa = SavedAnalysis.get(it)
 				if(sa)
 					sa.delete(flush: true)
 			}
-			println "deleted $tbSize temp analyses for $author.loginName";
+			log.debug "deleted $tbSize temp analyses for $author.loginName";
 		}
 	}
 	
@@ -45,7 +45,7 @@ class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
 				if(list)
 				list.delete(flush: true)
 			}
-			println "deleted $tbSize temp lists for $author.loginName";
+			log.debug "deleted $tbSize temp lists for $author.loginName";
 		}
 		
 	}

@@ -15,8 +15,8 @@ class BiospecimenService {
     boolean transactional = true
 	
 	def queryByCriteria(criteria) {
-		println "IN BIO"
-		println criteria.class
+		log.debug "IN BIO"
+		log.debug criteria.class
 		def engine = new SimpleTemplateEngine()
 		def queryTemplate = engine.createTemplate(queryString)
 		def rangeQueryTemplate = engine.createTemplate(rangeQueryString)
@@ -37,14 +37,14 @@ class BiospecimenService {
 			
 		}
 		def query = selects.join(" INTERSECT ")
-		println query
+		log.debug query
 		def ids = jdbcTemplate.queryForList(query)
 		def biospecimenIds = ids.collect { id ->
 			return id["BIOSPECIMEN_ID"]
 		}
 		def biospecimens = []
 		def index = 0;
-		println "biospecimen ids $biospecimenIds"
+		log.debug "biospecimen ids $biospecimenIds"
 		while(index < biospecimenIds.size()) {
 			def specimensLeft = biospecimenIds.size() - index
 			def tempSpecimens
@@ -58,7 +58,7 @@ class BiospecimenService {
 				index += specimensLeft
 			}
 		}
-		println biospecimens.size()
+		log.debug biospecimens.size()
 		return biospecimens.grep { it }
 	}
 	
@@ -87,7 +87,7 @@ class BiospecimenService {
 			if(value){
 				def type = CommonAttributeType.findByShortName(name)
 				if(!type){
-					println "Attribute Type ${name} not found.  Unable to load data."
+					log.debug "Attribute Type ${name} not found.  Unable to load data."
 				}
 				else{
 					def attValue = new BiospecimenValue()
@@ -99,10 +99,10 @@ class BiospecimenService {
 					attValue.biospecimen = biospecimen
 					biospecimen.addToValues(attValue)
 					if(!attValue.save(flush:true))
-						println attValue.errors
+						log.debug attValue.errors
 				}
 			}else{
-				println "no value found for attribute ${name}"
+				log.debug "no value found for attribute ${name}"
 			}
 		}
 		biospecimen.merge()
@@ -118,7 +118,7 @@ class BiospecimenService {
 		biospecimen.diseased = true
 		biospecimen.attributeTimepointId = 0
 		if(!biospecimen.save())
-			println biospecimen.errors
+			log.debug biospecimen.errors
 		return biospecimen
 	}
 }

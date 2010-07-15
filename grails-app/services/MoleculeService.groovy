@@ -41,7 +41,7 @@ class MoleculeService {
 				saltdata:saltdata)
 				
 				if (!molecule.save(flush: true)) {
-					println molecule.errors
+					log.error molecule.errors
 				}
 				else {
 					createStructure(molecule)
@@ -62,12 +62,12 @@ class MoleculeService {
 		}
 		 structureFile = new StructureFile(name:molecule.name,relativePath:imgPath)
 		if (!structureFile.save(flush: true)) {
-			println structureFile.errors
+			log.error structureFile.errors
 		}else{
 			Structure.count()
 			structure = new Structure(structureFile:structureFile,molecule:molecule)
 			if (!structure.save(flush: true)) {
-				println structure.errors
+				log.error structure.errors
 			}
 		}
 		return structure

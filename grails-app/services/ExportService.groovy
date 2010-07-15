@@ -25,7 +25,7 @@ class ExportService {
 		def nodeAttributeFileName = "${listId}-nodeAttr.NA"
 		def geneAttributeFileName = "${listId}-geneNodeAttr.NA"
 		//create files
-		println  "all files going to " + System.getProperty("java.io.tmpdir")
+		log.debug  "all files going to " + System.getProperty("java.io.tmpdir")
 		def sifFile = new File(System.getProperty("java.io.tmpdir")+"/"+sifName)
 		def edgeAttributeFile = new File(System.getProperty("java.io.tmpdir")+"/"+edgeAttributeFileName)
 		def nodeAttributeFile = new File(System.getProperty("java.io.tmpdir")+"/"+nodeAttributeFileName)
@@ -48,9 +48,9 @@ class ExportService {
 		edgeAttributeFile.write("PubMedLink (class=java.lang.String)"+"\n")
 		nodeAttributeFile.write("Type (class=java.lang.String)"+"\n")
 		geneAttributeFile.write("Annotation (class=java.lang.String)"+"\n")
-		println "wote edge header"
+		log.debug "wote edge header"
 		items.each { item ->
-			println "process $item.key"
+			log.debug "process $item.key"
 			if(item.value.metaClass.respondsTo(item.value, 'join')) {
 				item.value.each{ terms ->
 					if(terms.metaClass.respondsTo(terms, 'join')) {
@@ -65,18 +65,18 @@ class ExportService {
 				output += item.value + "\n"
 			}
 			if(item.key == 'sifItems'){
-				//println "sif $output"
+				//log.debug "sif $output"
 				sifFile.append(output)
 			}
 			else if (item.key == 'edgeItems'){
-				//println "edge $output"
+				//log.debug "edge $output"
 				edgeAttributeFile.append(output)
 			}
 			else if (item.key == 'nodeItems'){
-				//println "node $output"
+				//log.debug "node $output"
 				nodeAttributeFile.append(output)
 			}else if(item.key == 'geneItems'){
-				//println "gene $output"
+				//log.debug "gene $output"
 				geneAttributeFile.append(output)
 			}
 			output = ""

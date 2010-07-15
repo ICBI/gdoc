@@ -3,7 +3,7 @@ class PatientService {
     boolean transactional = true
 
     def patientsForGdocIds(gdocIds) {
-		println "GDOC: $gdocIds"
+		log.debug "GDOC: $gdocIds"
 		def allPatients
 		gdocIds = gdocIds.collect {
 			it.toLong()
@@ -56,10 +56,10 @@ class PatientService {
 			def studyPatient = new StudyPatient(it)
 			patient.studyDataSource = studyDataSource
 			if(!studyPatient.save(flush: true)) 
-				println studyPatient.errors
+				log.debug studyPatient.errors
 			patient.patient = studyPatient
 			if(!patient.save(flush: true)) 
-				println patient.errors
+				log.debug patient.errors
 		}
 	}
 	
@@ -85,9 +85,9 @@ class PatientService {
 				attValue.studyPatient = patient
 				patient.addToValues(attValue)
 				if(!attValue.save(flush:true))
-					println attValue.errors
+					log.debug attValue.errors
 			}else{
-				println "no value found for attribute ${name}"
+				log.debug "no value found for attribute ${name}"
 			}
 		}
 		patient.merge()

@@ -11,7 +11,7 @@ class AnnotationService {
 		def reporterNames = reporters.collect {
 			it.name
 		}
-		println "REPORTERS ${reporterNames}"
+		log.debug "REPORTERS ${reporterNames}"
 		return reporterNames
 	}
 	
@@ -53,10 +53,10 @@ class AnnotationService {
 	
 	def findGeneByAlias(alias) {
 		def geneAlias = GeneAlias.findBySymbol(alias.toUpperCase())
-		//println "found geneAlias $geneAlias.symbol"
+		//log.debug "found geneAlias $geneAlias.symbol"
 		if(geneAlias) {
 			geneAlias = GeneAlias.findByGeneAndOfficial(geneAlias.gene, true)
-			//println "found official geneAlias $geneAlias.symbol , $geneAlias.gene"
+			//log.debug "found official geneAlias $geneAlias.symbol , $geneAlias.gene"
 		}
 		return geneAlias
 	}

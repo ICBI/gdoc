@@ -18,7 +18,7 @@ class ClinicalService {
     boolean transactional = true
 	
 	def queryByCriteria(criteria, biospecimenIds) {
-		println "querying by criteria"
+		log.debug "querying by criteria"
 		def patientIds = getPatientIdsForCriteria(criteria, biospecimenIds)
 		return getPatientsForIds(patientIds)
 	}
@@ -34,13 +34,13 @@ class ClinicalService {
 		if(biospecimenIds && biospecimenIds.size() > 0) {
 			bioPatientIds = getPatientIdsForBiospecimenIds(biospecimenIds)
 		}
-		println "BIO PATIENT IDS $bioPatientIds"
+		log.debug "BIO PATIENT IDS $bioPatientIds"
 		if(!criteria || criteria.size() == 0) {
 			def patients = Patient.executeQuery("select p.id from Patient p")
 			// filter out patients that did not match biopecimens
 			if(bioPatientIds && bioPatientIds.size() > 0) {
 				patients = patients.findAll {
-					println "COMPARING ${it}"
+					log.debug "COMPARING ${it}"
 					bioPatientIds.count(it) > 0
 				}
 			}
@@ -55,7 +55,7 @@ class ClinicalService {
 				selects << rangeQueryTemplate.make(temp)
 			} 
 			else if(temp.value instanceof java.util.ArrayList) {
-				//println "its an array create an or string and add to select statements"
+				//log.debug "its an array create an or string and add to select statements"
 				selects << createORQueryString(temp.value)
 			} 
 			else {
@@ -64,7 +64,7 @@ class ClinicalService {
 			
 		}
 		def query = selects.join(" INTERSECT ")
-		println query
+		log.debug query
 		def ids = jdbcTemplate.queryForList(query)
 		def patientIds = ids.collect { id ->
 			return id["PATIENT_ID"]
@@ -82,18 +82,18 @@ class ClinicalService {
 		def selectStmnt = '(select unique (p.patient_id) from ' + schema + '.patient p, common.attribute_type c, ' + schema + '.patient_attribute_value v ' +
 			 			  'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 						  ' and ('
-		//println "iterate over array and add each mapped criteria, depending on range or regular value"
+		//log.debug "iterate over array and add each mapped criteria, depending on range or regular value"
 		def addendum = []
 		def addendumString = ""
 		attributes.each{ att ->
 			att.each{ key, value ->
 				if(value instanceof java.util.Map){
 					//value.each{ mapKey, mapVal ->
-						//println "this value for $key is a map, rangeify it for $value.min , $value.max"
+						//log.debug "this value for $key is a map, rangeify it for $value.min , $value.max"
 						addendum << "(c.short_name = \'${key}\' and v.value BETWEEN ${value.min} and ${value.max} )"
 					//}
 				}else{
-					//println "this value for $key is not a map"
+					//log.debug "this value for $key is not a map"
 					addendum << "(c.short_name = \'${key}\' and v.value = \'${value}\' )"
 				}
 			}
@@ -101,7 +101,7 @@ class ClinicalService {
 		addendumString = addendum.join(" OR ")
 		selectStmnt += addendumString
 		selectStmnt += "))"
-		println "MY SELCT statement = $selectStmnt"
+		log.debug "MY SELCT statement = $selectStmnt"
 		return selectStmnt
 	}
 	
@@ -120,7 +120,7 @@ class ClinicalService {
 				temp.ids = ids.join(", ")
 				temp.schema = StudyContext.getStudy()
 				def query = queryTemplate.make(temp)
-				println "QUERY $query"
+				log.debug "QUERY $query"
 				tempSpecimens = jdbcTemplate.queryForList(query.toString())
 				patientIds.addAll(tempSpecimens.collect { id ->
 					return id["PATIENT_ID"]
@@ -128,13 +128,13 @@ class ClinicalService {
 				index += PAGE_SIZE
 			} else {
 				def ids = biospecimenIds.getAt(index..<biospecimenIds.size())
-				println "IDS $ids"
+				log.debug "IDS $ids"
 				
 				def temp =[:]
 				temp.ids = ids.join(", ")
 				temp.schema = StudyContext.getStudy()
 				def query = queryTemplate.make(temp)
-				println "QUERY $query"
+				log.debug "QUERY $query"
 				tempSpecimens = jdbcTemplate.queryForList(query.toString())
 				patientIds.addAll(tempSpecimens.collect { id ->
 					return id["PATIENT_ID"]
@@ -152,7 +152,7 @@ class ClinicalService {
 		temp.ids = gdocIds.join(", ")
 		temp.schema = StudyContext.getStudy()
 		def query = queryTemplate.make(temp)
-		println query
+		log.debug query
 		def patientIds = []
 		def tempSpecimens = jdbcTemplate.queryForList(query.toString())
 		patientIds.addAll(tempSpecimens.collect { id ->
@@ -164,7 +164,7 @@ class ClinicalService {
 	def getPatientsForIds(patientIds) {
 		def pids = []
 		if(patientIds.metaClass.respondsTo(patientIds, "replace")) {
-			println " ids are coming from string"
+			log.debug " ids are coming from string"
 			patientIds.tokenize(",").each{
 				pids.add(it)	
 			}
@@ -173,7 +173,7 @@ class ClinicalService {
 		}
 		def patients = []
 		def index = 0;
-		println "patient ids $pids"
+		log.debug "patient ids $pids"
 		while(index < pids.size()) {
 			def patientsLeft = pids.size() - index
 			def tempPatients
@@ -187,7 +187,7 @@ class ClinicalService {
 				index += patientsLeft
 			}
 		}
-		println patients.size()
+		log.debug patients.size()
 		return patients.grep { it }
 	}
 	
@@ -199,17 +199,17 @@ class ClinicalService {
 		def results = middlewareService.sparqlQuery(sparql)
 		def processedResults = [:]
 		results.each{key,value ->
-			println key
+			log.debug key
 			if(key=='results'){
 				results.results.bindings.each{ binding ->
 						 def patient = binding.gid.value
 						 def attribute = binding.t.value.split('#')[1].toString()
 						 def att_value = binding.v.value
 						 def study = binding.study.value.split('Study#')[1].toString()
-						 //println "study is $study"
-						 //println "patient id: $patient"
-						 //println "attribute: $attribute"
-						 //println "value: $att_value"
+						 //log.debug "study is $study"
+						 //log.debug "patient id: $patient"
+						 //log.debug "attribute: $attribute"
+						 //log.debug "value: $att_value"
 						if(processedResults.containsKey(patient)){
 							def att_map = [:]
 							att_map[attribute] = att_value
@@ -226,7 +226,7 @@ class ClinicalService {
 				}
 			}
 		}
-		//println processedResults
+		//log.debug processedResults
 		return processedResults
 	}
 	

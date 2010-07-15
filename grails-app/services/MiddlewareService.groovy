@@ -15,7 +15,7 @@ class MiddlewareService {
 	
 	def sparqlQuery(selectClause) {
 		def url = "${CH.config.middlewareUrl}/sparql/?query="
-		println url
+		log.debug url
 		def data
 		try {
 			def client = new HttpClient()
@@ -35,7 +35,7 @@ class MiddlewareService {
 			selectClause
 			def get = new GetMethod(url + URLEncoder.encode(queryString, "UTF-8"))
 			def status = client.executeMethod(get)
-			println status
+			log.debug status
 		
 			if (status != HttpStatus.SC_OK) {
 				return "Method failed: " + get.getStatusLine()
@@ -77,9 +77,9 @@ class MiddlewareService {
 		     	new UsernamePasswordCredentials(user.loginName, user.password)
 			state.setCredentials( null, null, credentials )
 			def get = new GetMethod(url)
-			println "URL is: $url"
+			log.debug "URL is: $url"
 			def status = client.executeMethod(get)
-			println "Status is: $status"
+			log.debug "Status is: $status"
 		
 			if (status != HttpStatus.SC_OK) {
 				return "Method failed: " + get.getStatusLine()
@@ -89,7 +89,7 @@ class MiddlewareService {
 				data = JSON.parse(get.getResponseBodyAsString().toString())
 			get.releaseConnection()
 		} catch(Exception e) {
-			println e
+			log.debug e
 			data = "Cannot connect to server, please try again."
 		}
 		return data
@@ -117,7 +117,7 @@ class MiddlewareService {
 			post.setRequestHeader("Content-Type", "application/json")
 			post.setRequestEntity(new StringRequestEntity(jsonData.toString(), "application/json", null))
 			def status = client.executeMethod(post)
-			println status
+			log.debug status
 		
 			if (status != HttpStatus.SC_OK) {
 				return "Method failed: " + post.getStatusLine()

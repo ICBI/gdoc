@@ -105,6 +105,13 @@ environments {
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
 		schemaPath = "/oracle/oracle/oradata/gdoc_sb"
+		log4j = {
+			root {
+			    error 'stdout'
+			    additivity = true
+			}
+			debug "grails.app"
+		}
 	}
 	test {
 		jmsserver = "jnp://localhost:1099"

@@ -47,21 +47,21 @@ class SavedAnalysisService {
 	
 	def addSavedAnalysis(userId, notification, command, tags) {
 		def user = GDOCUser.findByLoginName(userId)
-		println "GOT NOTIFICATION $notification"
-		println notification.item.taskId
+		log.debug "GOT NOTIFICATION $notification"
+		log.debug notification.item.taskId
 		def params = command.properties
-		println params
+		log.debug params
 		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType', 'idService'] as Set )
-		println "PARAMS: $params"
+		log.debug "PARAMS: $params"
 		def json = params as JSON
-		println "COMMAND $json" 
+		log.debug "COMMAND $json" 
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user, status: notification.status, taskId: notification.item.taskId)
 		def study = StudyDataSource.findBySchemaName(command.study)
 		newAnalysis.addToStudies(study)
 		newAnalysis.save(flush:true)
 		if(tags){
 			tags.each {
-				//println "add tag, $it to analysis"
+				//log.debug "add tag, $it to analysis"
 				newAnalysis.addTag(it)
 			}
 		}
@@ -73,12 +73,12 @@ class SavedAnalysisService {
 	
 	def saveAnalysisResult(userId, result, command, tags){
 		def user = GDOCUser.findByLoginName(userId)
-		//println ("THE RESULT:")
-		//println result
-		//println ("THE COMMAND PARAMS:")
+		//log.debug ("THE RESULT:")
+		//log.debug result
+		//log.debug ("THE COMMAND PARAMS:")
 		def params = command.properties
 		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'requestType', 'annotationService'] as Set )
-		println "going to send: " + command.requestType + ", " + params + ", " + result + ", " + user
+		log.debug "going to send: " + command.requestType + ", " + params + ", " + result + ", " + user
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user, status: "Complete")
 		def study = StudyDataSource.findBySchemaName(command.study)
 		newAnalysis.addToStudies(study)
@@ -86,7 +86,7 @@ class SavedAnalysisService {
 		if(newAnalysis.type == AnalysisType.KM_GENE_EXPRESSION){
 			tags << "GENE_EXPRESSION"
 			if(newAnalysis.query.geAnalysisId.toString() != null){
-				println "found the related analysis: " + newAnalysis.query.geAnalysisId + " , is it temporary?"
+				log.debug "found the related analysis: " + newAnalysis.query.geAnalysisId + " , is it temporary?"
 				def relatedAnalysis = SavedAnalysis.get(newAnalysis.query.geAnalysisId)
 				if(relatedAnalysis.tags?.contains(Constants.TEMPORARY)){
 					tags << Constants.TEMPORARY
@@ -95,7 +95,7 @@ class SavedAnalysisService {
 		}
 		if(tags){
 			tags.each {
-				//println "add tag, $it to analysis"
+				//log.debug "add tag, $it to analysis"
 				newAnalysis.addTag(it)
 			}
 		}
@@ -107,14 +107,14 @@ class SavedAnalysisService {
 	def updateSavedAnalysis(userId, notification) {
 		def runningAnalysis = getSavedAnalysis(userId, notification.item.taskId)
 		if(runningAnalysis) {
-			println "UPDATING ANALYSIS $notification"
+			log.debug "UPDATING ANALYSIS $notification"
 			runningAnalysis.analysis = notification
 			runningAnalysis.status = notification.status
 			runningAnalysis.taskId = notification.item.taskId
 			runningAnalysis.save(flush:true)
 				
 		} else {
-			println "ERROR!  Analysis ${notification.item.taskId} not found"
+			log.debug "ERROR!  Analysis ${notification.item.taskId} not found"
 		}
 	}
 	
@@ -138,12 +138,12 @@ class SavedAnalysisService {
 	}
 	
 	def deleteAnalysis(analysisId) {
-		println "delete analysis: " + analysisId
+		log.debug "delete analysis: " + analysisId
 		def analysis = SavedAnalysis.get(analysisId)
 		if(analysis) {
 			if(analysis.type == AnalysisType.KM_GENE_EXPRESSION){
 				if(analysis.query.geAnalysisId.toString() != null){
-					println "deleted the related analysis: " + analysis.query.geAnalysisId
+					log.debug "deleted the related analysis: " + analysis.query.geAnalysisId
 					def relatedAnalysis = SavedAnalysis.get(analysis.query.geAnalysisId)
 					relatedAnalysis.delete(flush: true)
 				}
@@ -160,7 +160,7 @@ class SavedAnalysisService {
 			return allAnalysis
 		}
 		else if(timePeriod == "hideShared"){
-			println "hide all shared lists"
+			log.debug "hide all shared lists"
 			allAnalysis.each{ analysis ->
 				if(analysis.author.loginName == userId){
 					filteredAnalysis << analysis
@@ -196,7 +196,7 @@ class SavedAnalysisService {
 		al = SavedAnalysis.findAll(query,[max:10,offset:offset])
 		pagedAnalyses.clear()
 		pagedAnalyses.addAll(al)
-		println "myAnalyses -> $pagedAnalyses as Paged set"
+		log.debug "myAnalyses -> $pagedAnalyses as Paged set"
 		return pagedAnalyses
 	}
 	

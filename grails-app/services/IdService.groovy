@@ -35,7 +35,7 @@ class IdService {
 			}
 		}
 		def ids = []
-		println "just the sampleIds: " + sampleIds
+		log.debug "just the sampleIds: " + sampleIds
 		sampleIds = sampleIds.flatten().grep { it }
 		
 		return sampleIds.intersect(allSamples())
@@ -65,7 +65,7 @@ class IdService {
 	}
 	
 	def allSamples() {
-		println "all samples: " + Sample.findAll().collect { it.name }
+		log.debug "all samples: " + Sample.findAll().collect { it.name }
 		return Sample.findAll().collect { it.name }
 	}
 }

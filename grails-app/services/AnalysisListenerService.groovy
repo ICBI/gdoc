@@ -11,7 +11,7 @@ class AnalysisListenerService {
 	def sessionFactory
 	
 	def onMessage(message) {
-		println "GOT MESSAGE: $message"
+		log.debug "GOT MESSAGE: $message"
 		def item
 		if(message instanceof AnalysisResult) {
 			item = ["status": "Complete", "item" : message]

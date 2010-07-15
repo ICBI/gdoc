@@ -7,7 +7,7 @@ class AttributeService {
 			if(!CommonAttributeType.findByShortName(it.shortName)) {
 				def att = new CommonAttributeType(it)
 				if(!att.save(flush:true))
-					println att.errors
+					log.debug att.errors
 			}
 		}
     }
@@ -21,7 +21,7 @@ class AttributeService {
 				def vocab = new AttributeVocabulary(item)
 				attribute.addToVocabs(vocab)
 				if(!vocab.save(flush: true))
-					println vocab.errors
+					log.debug vocab.errors
 			}
 		}
 	}

@@ -7,7 +7,7 @@ class StudyDataSourceService {
     def create(data) {
 		def dataSource = new StudyDataSource(data)
 		if (!dataSource.save(flush: true)) 
-			println dataSource.errors
+			log.error dataSource.errors
 		return dataSource
     }
 
@@ -17,7 +17,7 @@ class StudyDataSourceService {
 			def content = new DataSourceContent(it)
 			dataSource.addToContent(content)
 			if(!content.save(flush: true)) 
-				println content.errors
+				log.error content.errors
 			
 		}
 		return dataSource
@@ -52,7 +52,7 @@ class StudyDataSourceService {
 		if(!contact) {
 			contact = new Contact(contactData)
 			if(!contact.save(flush:true)) 
-				println contact.errors
+				log.error contact.errors
 		}
 		return contact
 	}

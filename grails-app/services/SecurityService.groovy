@@ -35,14 +35,14 @@ class SecurityService {
 			//print authenticationManager.getApplicationContextName();
 			boolean loginOK = this.getAuthenticationManager().login(params.loginName, params.password);
 			if (loginOK){
-				System.out.println("SUCESSFUL LOGIN");
+				log.debug("SUCESSFUL LOGIN");
 			}
 			else {
-				System.out.println("ERROR IN LOGIN");
+				log.error("ERROR IN LOGIN");
 				throw new LoginException("error in authentication");
 			}
 			}catch (CSException cse){
-				System.out.println("ERROR IN LOGIN -- CS Exception");
+				log.error("ERROR IN LOGIN -- CS Exception");
 				cse.printStackTrace(System.out);
 				throw new LoginException("error in authentication");
 		}
@@ -59,11 +59,11 @@ class SecurityService {
 	def validateNetId(netId, department){
 		Configuration config = Configuration.getConfiguration();
 	    AppConfigurationEntry[] entries = config.getAppConfigurationEntry("gdoc");
-		println entries
+		log.debug entries
 	    AppConfigurationEntry entry = entries[0];
 		def options = entry.getOptions();
 		options.each {
-		    println it.getKey() + " " + it.getValue()
+		    log.debug it.getKey() + " " + it.getValue()
 		 }
 		Hashtable env = new Hashtable();
 		env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
@@ -79,28 +79,28 @@ class SecurityService {
 		String filter = "(&(uid="+netId+"))";
 		NamingEnumeration list = ctx.search(options.get("ldapSearchableBase"), filter, ctls);
 		if(list){
-			println "$netId user found, let's retrieve retrieve needed attributes to create a G-DOC account"
+			log.debug "$netId user found, let's retrieve retrieve needed attributes to create a G-DOC account"
 			BasicAttributes attr =  ctx.getAttributes("uid="+netId+","+options.get("ldapSearchableBase"))
 				if(attr){
 					def user = new User()
 					if(attr.get("uid")){
-						println "found user id " + attr.get("uid").get()
+						log.debug "found user id " + attr.get("uid").get()
 						user.setLoginName(attr.get("uid").get())
 					}
 					if(attr.get("givenname")){
-						println "found givenname " + attr.get("givenname").get()
+						log.debug "found givenname " + attr.get("givenname").get()
 						user.setFirstName(attr.get("givenname").get())
 					}
 					if(attr.get("sn")){
-						println "found sn " + attr.get("sn").get()
+						log.debug "found sn " + attr.get("sn").get()
 						user.setLastName(attr.get("sn").get())
 					}
 					if(attr.get("ou")){
-						println "found ou " + attr.get("ou").get()
+						log.debug "found ou " + attr.get("ou").get()
 						user.setOrganization(attr.get("ou").get())
 					}
 					if(attr.get("mail")){
-						println "found mail " + attr.get("mail").get()
+						log.debug "found mail " + attr.get("mail").get()
 						user.setEmailId(attr.get("mail").get())
 					}
 					if(department){
@@ -109,12 +109,12 @@ class SecurityService {
 					return user
 				}
 				else{
-					println "no attributes found for $netId"
+					log.debug "no attributes found for $netId"
 					return null
 				}
 		}
 		else{
-			println "no user found for that id"
+			log.debug "no user found for that id"
 			return null
 		}
 		
@@ -125,10 +125,10 @@ class SecurityService {
 		try{
 			authManager.createUser(user)
 		}catch(CSTransactionException cste){
-			println cste
+			log.debug cste
 			return false
 		}
-		println "added user " + user.getLoginName()
+		log.debug "added user " + user.getLoginName()
 		return true
 	}
 	
@@ -139,10 +139,10 @@ class SecurityService {
 		try{
 			authManager.removeUser(userId)
 		}catch(CSTransactionException cste){
-			println cste
+			log.debug cste
 			return false
 		}
-		println "deleted user " + userId
+		log.debug "deleted user " + userId
 		return true
 	}
 	
@@ -171,7 +171,7 @@ class SecurityService {
 	If so, returns the groups it has been shared with
 	**/
 	def groupsShared(item){
-			println "is $item already shared?"
+			log.debug "is $item already shared?"
 			def authManager = this.getAuthorizationManager()
 			def groupNames = []
 		try{
@@ -179,7 +179,7 @@ class SecurityService {
 				if(pe){
 					def groups = authManager.getProtectionGroups(pe.protectionElementId.toString())
 					if(groups){
-						println "item $item hs already been shared to "
+						log.debug "item $item hs already been shared to "
 							groups.each{
 								groupNames << it.getProtectionGroupName()
 							}
@@ -264,7 +264,7 @@ class SecurityService {
 		def user = authManager.getUser(loginName)
 		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString())
 		def toDelete = groups.find {
-			println "${it.protectionGroup.protectionGroupName} and ${groupName}"
+			log.debug "${it.protectionGroup.protectionGroupName} and ${groupName}"
 			it.protectionGroup.protectionGroupName == groupName
 		}
 		if(!toDelete)
@@ -344,7 +344,7 @@ class SecurityService {
 			}
 		}
 		if(itemType == 'StudyDataSource' && !studies) {
-			println "CACHING STUDIES $ids"
+			log.debug "CACHING STUDIES $ids"
 			studies = ids
 		}
 		
@@ -358,14 +358,14 @@ class SecurityService {
 	private userCanAccess(user, objectId, type) {
 		def studyNames = this.getSharedItemIds(user.loginName, StudyDataSource.class.name)
 		def klazz = Thread.currentThread().contextClassLoader.loadClass(type)
-		//println "LOOKING UP $objectId for $type"
+		//log.debug "LOOKING UP $objectId for $type"
 		def item = klazz.get(objectId)
 		if(!item)
 			return false
 		def access = item.studies.collectAll {
 			studyNames.contains(it.shortName)
 		}
-		//println "ACCESS FOR $objectId is $access $studyNames"
+		//log.debug "ACCESS FOR $objectId is $access $studyNames"
 		return !access.contains(false)
 	}
 	private isStudy(pe) {

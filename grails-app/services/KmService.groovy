@@ -125,7 +125,7 @@ class KmService {
 	/****/
 	def findReportersMeanExpression(analysisId, reporter){
 		def geAnalysis = savedAnalysisService.getSavedAnalysis(analysisId)
-		println "GOT SAVED ANALYSIS ${geAnalysis.analysis.item}"
+		log.debug "GOT SAVED ANALYSIS ${geAnalysis.analysis.item}"
 		def sortedMeanExpression = new JSONArray()
 		def comparator= [ compare:
 		  {a,b-> b.equals(a)? 0: b<a? -1: 1 }
@@ -138,13 +138,13 @@ class KmService {
 		if(reporter!=null){
 			geAnalysis.analysis.item.dataVectors.each { data ->
 				if(data.name.equals(reporter)){
-					println "only find exp for one reporter:" + reporter
+					log.debug "only find exp for one reporter:" + reporter
 					def values = 0
 					data.dataPoints.each { sample ->
 					values += sample.x
 					}
 					if(values){
-						println "$values / " + data.dataPoints.size()
+						log.debug "$values / " + data.dataPoints.size()
 				  		reporterExpressionValues[values/data.dataPoints.size()] = data.name
 					}
 				}
@@ -159,11 +159,11 @@ class KmService {
 					values += sample.x
 				}
 				if(values){
-					println "$values / " + data.dataPoints.size()
+					log.debug "$values / " + data.dataPoints.size()
 		  			reporterExpressionValues[values/data.dataPoints.size()] = data.name
 				}
 			}
-			println "AFTER ${reporterExpressionValues}"
+			log.debug "AFTER ${reporterExpressionValues}"
 		}
 		
 		reporterExpressionValues.each{ exp, myReporter ->
@@ -174,7 +174,7 @@ class KmService {
 		}
 		if(sortedMeanExpression){
 			sortedMeanExpression.each{
-			//	println it["reporter"] + ":" + it["expression"]
+			//	log.debug it["reporter"] + ":" + it["expression"]
 			}
 		}
 		return sortedMeanExpression
@@ -188,12 +188,12 @@ class KmService {
 		def lessThanFold = []
 		def inBetween = []
 		
-		println "ALL VALUES:"
+		log.debug "ALL VALUES:"
 		geAnalysis.analysis.item.dataVectors.each { data ->
 			if(data.name.equals(reporter)){
 			data.dataPoints.each { sample ->
 			 
-		//	println sample.id + ": " + sample.x
+		//	log.debug sample.id + ": " + sample.x
 			def sampleFoldChange = sample.x - meanExpression
 			    if((sampleFoldChange > (foldChange*-1)) && 
 					(sampleFoldChange < foldChange)){
@@ -213,9 +213,9 @@ class KmService {
 		groups['&lt;' + "-" + foldChange] = idService.gdocIdsForSampleNames(lessThanFold)
 		if(inBetween)
 		groups['between'] = idService.gdocIdsForSampleNames(inBetween)
-		//println "greater: " + groups['greater'].size()
-		//println "less: " + groups['less'].size()
-		//println "in between" + groups['between'].size()
+		//log.debug "greater: " + groups['greater'].size()
+		//log.debug "less: " + groups['less'].size()
+		//log.debug "in between" + groups['between'].size()
 		return groups
 	}
 
