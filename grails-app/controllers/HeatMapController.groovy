@@ -88,19 +88,19 @@ class HeatMapController {
 	}
 	
 	def file = {
-		def result = savedAnalysisService.getSavedAnalysis(params.id)//session.results
-		StudyContext.setStudy(result.query["study"])
-		session.results = result.analysis.item
-		session.analysis = result
+		def result = session.results//savedAnalysisService.getSavedAnalysis(params.id)
+		//StudyContext.setStudy(result.query["study"])
+		//session.results = result.analysis.item
+		//session.analysis = result
 		try{
 			if(params.name){
 				byte[] fileBytes
 				if(params.name.indexOf('.cdt') > 1)
-					fileBytes = result.analysis.item.cdtFile
+					fileBytes = result.cdtFile
 				if(params.name.indexOf('.gtr') > 1)
-					fileBytes = result.analysis.item.gtrFile
+					fileBytes = result.gtrFile
 				if(params.name.indexOf('.atr') > 1)
-					fileBytes = result.analysis.item.atrFile
+					fileBytes = result.atrFile
 				if(params.name.indexOf('.jtv') > 1)
 					fileBytes = "<DocumentConfig></DocumentConfig>".getBytes()
 				response.outputStream << fileBytes
