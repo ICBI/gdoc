@@ -14,7 +14,6 @@ class AnalysisJSON extends grails.converters.JSON {
 	}
 
 	@Override public void bean(Object o) throws ConverterException { 
-		log.debug "CONVERTING JSON $o"
 		if(o instanceof ExpressionLookupResult) {
 			def item = o
 			def result = [:]

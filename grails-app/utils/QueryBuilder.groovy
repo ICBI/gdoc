@@ -32,7 +32,6 @@ class QueryBuilder {
 				}
 			}
 		}
-		log.debug "criteria= $criteria"
 		return criteria
 	}
 	
@@ -87,7 +86,6 @@ class QueryBuilder {
 		sparqlString += " ?patient gdoc:Has_Clinical_Attribute ?a . " +
 			"?a gdoc:Clinical_Value ?v . " +
 			"?a rdf:type ?t . ?patient gdoc:GDOC_ID ?gid }";
-		log.debug sparqlString
 		return sparqlString
 	}
 	

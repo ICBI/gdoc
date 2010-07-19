@@ -12,7 +12,6 @@ public class ExpressionLookupResultMarshaller extends DomainClassMarshaller {
 	}
 	
 	public void marshalObject(Object value, JSON json) {
-		log.debug "CONVERTING JSON 2 ${value}"
 		/*
 		json.build{
 			taskId(value.taskId)
