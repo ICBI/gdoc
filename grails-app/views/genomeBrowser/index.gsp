@@ -64,7 +64,7 @@
 		    //if no exact case match, try a case-insentitive match
 	       	if (!goingTo) {
 	        	for (var i = 0; i < matches.length; i++) {
-	        		if (matches[i][1].toLowerCase() == loc.toLowerCase())
+	        		if (matches[i][1].toLowerCase() == item.toLowerCase())
 	                	goingTo = matches[i];
 	        	}
 	        }	

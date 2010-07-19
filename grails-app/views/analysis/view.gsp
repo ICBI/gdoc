@@ -137,7 +137,7 @@
 	<div id="centerContent">
 		<br/>
 			
-			<g:if test="${!session.results}">
+			<g:if test="${!session.results || (session.results.resultEntries.size() == 0)}">
 				No results found.
 			</g:if>
 			<g:else>
