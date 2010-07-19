@@ -10,6 +10,8 @@ er ihc status:	new	ER_IHC_STATUS	ER IHC Status	Estrogen Receptor positivity test
 pr ihc status	new	PR_IHC_STATUS	PR IHC Status	Progesterone receptor positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
 p53 ihc status	new	P53_IHC_STATUS	P53 IHC Status	Protein P53 positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
 ki67 ihc status	new	KI67_IHC_STATUS	KI67 IHC Status	Protein KI67 positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
+Erbb2 ht ihc status	new	ERBB2_HT_IHC_STATUS	ERBB2 HT IHC Status	Protein ERBB2 HT positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
+Erbb2 tab ihc status	new	ERBB2_TAB_IHC_STATUS	ERBB2 TAB IHC Status	Protein ERBB2 TAB positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
 Erbb2p ihc status	new	ERBB2P_IHC_STATUS	ERBB2P IHC Status	Protein ERBB2P positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
 igf1r ihc status: 	new	IGF1R_IHC_STATUS	IGF1R IHC Status	Protein IGF1R positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
 egfr ihc status:	new	EGFR_IHC_STATUS	EGFR IHC Status	Protein EGFR positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			

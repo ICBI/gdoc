@@ -24,6 +24,10 @@ P53_IHC_STATUS	NEGATIVE	NEGATIVE		Protein P53 tested by immunochemistry shows ne
 P53_IHC_STATUS	POSITIVE	POSITIVE		Protein P53 tested by immunochemistry shows positivity
 KI67_IHC_STATUS	NEGATIVE	NEGATIVE		Protein KI67 tested by immunochemistry shows negativity
 KI67_IHC_STATUS	POSITIVE	POSITIVE		Protein KI67 tested by immunochemistry shows positivity
+ERBB2_HT_IHC_STATUS	NEGATIVE	NEGATIVE		Protein ERBB2 HT tested by immunochemistry shows negativity
+ERBB2_HT_IHC_STATUS	POSITIVE	POSITIVE		Protein ERBB2 HT tested by immunochemistry shows positivity
+ERBB2_TAB_IHC_STATUS	NEGATIVE	NEGATIVE		Protein ERBB2 TAB tested by immunochemistry shows negativity
+ERBB2_TAB_IHC_STATUS	POSITIVE	POSITIVE		Protein ERBB2 TAB tested by immunochemistry shows positivity
 ERBB2P_IHC_STATUS	NEGATIVE	NEGATIVE		Protein ERBB2P tested by immunochemistry shows negativity
 ERBB2P_IHC_STATUS	POSITIVE	POSITIVE		Protein ERBB2P tested by immunochemistry shows positivity
 IGF1R_IHC_STATUS	NEGATIVE	NEGATIVE		Protein IGF1R tested by immunochemistry shows negativity
@@ -36,4 +40,3 @@ FOXA1_IHC_STATUS	NEGATIVE	NEGATIVE		Protein FOXA1 tested by immunochemistry show
 FOXA1_IHC_STATUS	POSITIVE	POSITIVE		Protein FOXA1 tested by immunochemistry shows positivity
 EVENT_DMFS	0	CENSORING		0 stands for CENSORING indicating no record of distant metastasis
 EVENT_DMFS	1	EVENT		1 stands for EVENT Indicating a distant metastatis 
-				
