@@ -17,19 +17,25 @@ class SummaryService {
 	}
 	
 	def patientCounts(){
+		def roles = jdbcTemplate.queryForList("SELECT * FROM SESSION_ROLES")
+		log.debug "ROLES: " + roles
 		def studyList = StudyDataSource.findAll()
 		def studyCounts =[:]
 		def total = 0
 		studyList.each{
-			if(it.schemaName != 'PREOP' && it.schemaName != 'EDINFAKE' && it.schemaName != 'DRUG'){
-					StudyContext.setStudy(it.schemaName)
-					def query = "select count(p) from Patient p"
-					def patients = Patient.executeQuery(query)
-					if(patients){
-						//println patients[0]
-						studyCounts[it.shortName] = patients[0]
-						total += patients[0]
-					}
+			try {
+				if(it.schemaName != 'PREOP' && it.schemaName != 'EDINFAKE' && it.schemaName != 'DRUG'){
+						StudyContext.setStudy(it.schemaName)
+						def query = "select count(p) from Patient p"
+						def patients = Patient.executeQuery(query)
+						if(patients){
+							//println patients[0]
+							studyCounts[it.shortName] = patients[0]
+							total += patients[0]
+						}
+				}
+			} catch(Exception e) {
+				log.debug "Got exception: ", e
 			}
 		}
 		studyCounts["Total"] = total

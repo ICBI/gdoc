@@ -2,6 +2,10 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.springframework.orm.hibernate3.SessionFactoryUtils
 import org.springframework.orm.hibernate3.SessionHolder
 import org.springframework.transaction.support.TransactionSynchronizationManager
+import gov.nih.nci.security.AuthenticationManager
+import gov.nih.nci.security.authorization.domainobjects.ProtectionElement
+import gov.nih.nci.security.SecurityServiceProvider
+import org.springframework.mock.jndi.SimpleNamingContextBuilder
 
 grailsHome = Ant.antProject.properties."env.GRAILS_HOME"
 includeTargets << grailsScript("Bootstrap")
@@ -27,33 +31,47 @@ target(main: "Load data into the DB") {
 		println "Project with name: $projectName already exists.  Unable to overwrite data in this schema."
 		return
 	}
-	println "Cleaning up schema...."
-	executeScript("sql/study_cleanup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath], true)
-	println "Creating tablespace ${projectName}...."
-	executeScript("sql/01_create_tablespace_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
-	println "Creating user ${projectName}...."
-	executeScript("sql/02_study_setup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
-	println "Creating schema for project ${projectName}...."
-	executeScript("sql/03_study_schema_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
+	def isPublic = false
+	try {
+		println "Cleaning up schema...."
+		executeScript("sql/study_cleanup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath], true)
+		println "Creating tablespace ${projectName}...."
+		executeScript("sql/01_create_tablespace_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
+		println "Creating user ${projectName}...."
+		executeScript("sql/02_study_setup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
+		println "Creating schema for project ${projectName}...."
+		executeScript("sql/03_study_schema_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
 
-	def sql = groovy.sql.Sql.newInstance(CH.config.dataSource.url, projectName,
-	                     "change_me", CH.config.dataSource.driverClassName)
+		def sql = groovy.sql.Sql.newInstance(CH.config.dataSource.url, projectName,
+		                     "change_me", CH.config.dataSource.driverClassName)
 	
-	def engine = new groovy.text.SimpleTemplateEngine() 
-	def template = engine.createTemplate(new File("sql/04_study_grants_template.sql").text) 
+		def engine = new groovy.text.SimpleTemplateEngine() 
+		def template = engine.createTemplate(new File("sql/04_study_grants_template.sql").text) 
 	
-	Writable writable = template.make([projectName: projectName])
-	writable.toString().eachLine {
-		if(it)
-			sql.execute(it.replace(';', ''))
+		Writable writable = template.make([projectName: projectName])
+		writable.toString().eachLine {
+			if(it)
+				sql.execute(it.replace(';', ''))
+		}
+		println "Loading study information for $projectName...."
+		isPublic = loadStudyData(projectName)
+		println "Loading clinical attributes for $projectName...."
+		loadClinicalData(projectName)
+		println "Loading patient data for $projectName...."
+		loadPatientData(projectName)
+		loadClinicalDataValues(projectName)
+	} catch (Throwable e) {
+		e.printStackTrace()
+		"Data loading for $projectName was not successful"
+		return
 	}
-	println "Loading study information for $projectName...."
-	loadStudyData(projectName)
-	println "Loading clinical attributes for $projectName...."
-	loadClinicalData(projectName)
-	println "Loading patient data for $projectName...."
-	loadPatientData(projectName)
-	loadClinicalDataValues(projectName)
+	def jmxService =  appCtx.getBean('jmxService')
+	jmxService.flushConnectionPool()
+	println "is public $isPublic"
+	if(isPublic) {
+		println "Adding $projectName as a public study."
+		addPublicStudy(projectName)
+	}
 	println "Data loading for $projectName was successful"
 }
 
@@ -78,6 +96,7 @@ def loadStudyData(projectName) {
 
 	def session = sessionFactory.getCurrentSession()
 	def trans = session.beginTransaction()
+	def isPublic = false
 	try {
 		studyFile.eachLine { line, number ->
 			if(number != 1) {
@@ -85,9 +104,9 @@ def loadStudyData(projectName) {
 				def params = [:]
 				params.shortName = data[0]
 				params.schemaName = data[7]
-				params.longName = data[0]
+				params.longName = data[1]
 				params.abstractText = data[2]
-				params.cancerSite = "MULTIPLE"
+				params.cancerSite = data[3]
 				params.patientIdName = data[4]
 				params.integrated = data[5]
 				params.overallAccess = data[6]
@@ -127,6 +146,7 @@ def loadStudyData(projectName) {
 						} else if(contactData[6] == 'POINT_OF_CONTACT') {
 							studyDataSourceService.addPoc(dataSource.id, contactParams)
 						}
+						isPublic = contactParams.firstName == 'Public'
 					}
 				}
 				
@@ -135,8 +155,9 @@ def loadStudyData(projectName) {
 		trans.commit()
 	} catch (Exception e) {
 		trans.rollback()
-		e.printStackTrace()
+		throw e
 	}
+	return isPublic
 }
 
 def loadClinicalData(projectName) {
@@ -198,8 +219,8 @@ def loadClinicalData(projectName) {
 		
 		trans.commit()
 	} catch (Exception e) {
-		e.printStackTrace()
 		trans.rollback()
+		throw e
 	}
 }
 
@@ -231,7 +252,6 @@ def loadPatientData(projectName) {
 					patientDataHash[value] = data[key]
 				}
 				patientAndData[data[0]] = patientDataHash
-				
 			} else {
 				data.eachWithIndex { value, index ->
 					if(index != 0) {
@@ -243,9 +263,9 @@ def loadPatientData(projectName) {
 		patientService.createPatientsForStudy(projectName, patients, patientAndData)
 		trans.commit()
 	} catch (Exception e) {
-		e.printStackTrace()
 		trans.rollback()
-	}
+		throw e
+	} 
 	TransactionSynchronizationManager.unbindResource(sessionFactory)
 }
 
@@ -291,10 +311,33 @@ def loadClinicalDataValues(projectName) {
 		}
 		trans.commit()
 	} catch (Exception e) {
-		e.printStackTrace()
 		trans.rollback()
+		throw e
 	}
 	TransactionSynchronizationManager.unbindResource(sessionFactory)
+}
+
+def addPublicStudy(projectName) {
+	def dataSource = appCtx.getBean("dataSource")
+	SimpleNamingContextBuilder builder =
+		SimpleNamingContextBuilder.emptyActivatedContextBuilder()
+
+	builder.bind("java:/gdoc", dataSource);
+	def authManager = SecurityServiceProvider.getAuthorizationManager("gdoc")
+	
+	// Create protection element
+	ProtectionElement pe = authManager.getProtectionElement(projectName, 'StudyDataSource')
+	if(!pe) {
+		pe = new ProtectionElement()
+		pe.protectionElementName = projectName + '_DATA'
+		
+		pe.objectId = projectName
+		pe.attribute = 'StudyDataSource'
+		authManager.createProtectionElement(pe)
+	} 
+	
+	//attach to protection group
+	authManager.assignProtectionElement('PUBLIC', pe.objectId, pe.attribute)
 }
 
 setDefaultTarget(main)

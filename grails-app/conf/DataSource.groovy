@@ -29,27 +29,15 @@ environments {
 		}
 	}
 	
-/*	development {
-		dataSource {
-			url = "jdbc:oracle:thin:@172.16.200.128:1521:XE"
-			username = "mcgdoc"
-			password = "cure4cancer"
-			logSql = false
-		}
-	}*/
 	devserver {
 		dataSource {
-			url = "jdbc:oracle:thin:@10.10.50.3:1521:gdoc"
-			username = "guidoc"
-			password = "cure4cancer"
+			jndiName="java:gdoc"
 			logSql = true
 		}
 	}
 	demo {
 		dataSource {
-			url = "jdbc:oracle:thin:@10.10.50.3:1521:gdoc"
-			username = "guidoc"
-			password = "cure4cancer"
+			jndiName="java:gdoc"
 			logSql = false
 		}
 	}
