@@ -18,8 +18,8 @@ ERBB2_IHC_STATUS	POSITIVE	POSITIVE		Protein ERBB2 tested by immunochemistry show
 ERBB2_IHC_STATUS	NEGATIVE	NEGATIVE		Protein ERBB2 tested by immunochemistry shows negativity
 ER_IHC_STATUS	POSITIVE	POSITIVE		Estrogen Receptor tested by Immunohistochemistry is positive
 ER_IHC_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor tested by Immunohistochemistry is negative
-PGR_IHC_STATUS	NEGATIVE	NEGATIVE		Progesteron Receptor tested by Immunohistochemistry is negative
-PGR_IHC_STATUS	POSITIVE	POSITIVE		Progesteron Receptor tested by Immunohistochemistry is positive
+PR_IHC_STATUS	NEGATIVE	NEGATIVE		Progesteron Receptor tested by Immunohistochemistry is negative
+PR_IHC_STATUS	POSITIVE	POSITIVE		Progesteron Receptor tested by Immunohistochemistry is positive
 P53_IHC_STATUS	NEGATIVE	NEGATIVE		Protein P53 tested by immunochemistry shows negativity
 P53_IHC_STATUS	POSITIVE	POSITIVE		Protein P53 tested by immunochemistry shows positivity
 KI67_IHC_STATUS	NEGATIVE	NEGATIVE		Protein KI67 tested by immunochemistry shows negativity
