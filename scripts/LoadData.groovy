@@ -334,10 +334,9 @@ def addPublicStudy(projectName) {
 		pe.objectId = projectName
 		pe.attribute = 'StudyDataSource'
 		authManager.createProtectionElement(pe)
+		//attach to protection group
+		authManager.assignProtectionElement('PUBLIC', pe.objectId, pe.attribute)
 	} 
-	
-	//attach to protection group
-	authManager.assignProtectionElement('PUBLIC', pe.objectId, pe.attribute)
 }
 
 setDefaultTarget(main)
