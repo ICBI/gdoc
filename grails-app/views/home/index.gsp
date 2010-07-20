@@ -102,9 +102,9 @@
 										<table border="0">
 											<tr>
 											<td style="width:10%" valign="top">
-												<div class="sel" style="padding:25px;border-top:.5px solid #334477;border-right:0px;border-left:.5px solid #334477">NEWS</div>
-												<div class="sel" style="padding:25px;border-top:.5px solid #334477;border-right:1px solid #334477;border-left:.5px solid #334477">PUBLICATIONS</div>
-												<div class="sel" style="padding:25px;border-top:.5px solid #334477;border-right:1px solid #334477;border-left:.5px solid #334477;border-bottom:.5px solid #334477;">FINDINGS</div>
+												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:0px;border-left:1px solid #334477">NEWS</div>
+												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477">PUBLICATIONS</div>
+												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477;border-bottom:1px solid #334477;">FINDINGS</div>
 												<div style="height:150px;border-right:1px solid #334477"></div>
 											</td>
 
