@@ -3,12 +3,12 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 @Mixin(SeleniumTest) 
 class DependencyTests extends GroovyTestCase { 
-/*	void testGdocDev() { 
+	void testGdocDev() { 
 		
 		selenium.open "https://dev.gdoc.georgetown.edu/gdoc/" 
 		assertTrue selenium.isTextPresent("CONTACT US")
 		
-	} */
+	} 
 	
 	void testGdocDemo() { 
 		selenium.open "https://demo.gdoc.georgetown.edu/gdoc/" 
