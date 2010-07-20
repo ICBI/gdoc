@@ -1,5 +1,6 @@
 import grails.converters.*
 
+@Mixin(ControllerMixin)
 class StudyDataSourceController {
 
 	def myStudies
@@ -40,22 +41,9 @@ class StudyDataSourceController {
 			session.study = currStudy
 			StudyContext.setStudy(session.study.schemaName)
 			session.dataTypes = AttributeType.findAll().sort { it.longName }
-			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def patientLists = []
-			def reporterLists = []
-			def geneLists = []
-			patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
-			}
-			reporterLists = lists.findAll { item ->
-				(item.tags.contains("reporter"))
-			}
-			geneLists = lists.findAll { item ->
-				(item.tags.contains("gene"))
-			}
-			session.patientLists = patientLists.sort { it.name }
-			session.reporterLists = reporterLists
-			session.geneLists = geneLists
+			loadPatientLists()
+			loadReporterLists()
+			loadGeneLists()
 			session.endpoints = KmAttribute.findAll()
 			session.files = htDataService.getHTDataMap()
 			session.dataSetType = session.files.keySet()
@@ -80,6 +68,7 @@ class StudyDataSourceController {
 				}
 			}
 		}
+		studiesJSON.sort { it.studyName }
 		render studiesJSON as JSON 
 	}
 	

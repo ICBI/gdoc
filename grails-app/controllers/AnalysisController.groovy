@@ -2,7 +2,7 @@ import grails.converters.*
 import java.text.*
 import java.math.*
 
-
+@Mixin(ControllerMixin)
 class AnalysisController {
 
 	def analysisService
@@ -22,28 +22,19 @@ class AnalysisController {
 				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups have been prepopulated below for group comparison"
 			}
 			StudyContext.setStudy(session.study.schemaName)
-			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def patientLists = []
-			patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
-			}
-			patientLists.each{
-				log.debug it.name
-			}
-			session.patientLists = []
-			session.patientLists = patientLists.sort { it.name }
+
 			session.files = htDataService.getHTDataMap()
 			session.dataSetType = session.files.keySet()
 			log.debug "my ht files for $session.study = $session.files"
 		}
+
 		def methods = ['TTest':'T-Test: Two Sample Test', 'Wilcoxin':'Wilcoxin Test: Mann-Whitney Test']
 		session.statisticalMethods = methods
 		def adjustments = ['NONE':'None', 'FWER':'Family-Wise Error Rate(FWER): Bonferroni', 'FDR':'False Discovery Rate(FDR): Benjamini-Hochberg']
 		session.adjustments = adjustments
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		def myStudies = session.myStudies
-		[diseases:diseases as Set,myStudies:myStudies, params:params]
+		
+		loadPatientLists()
+		[diseases:getDiseases(),myStudies:session.myStudies, params:params]
 	}
 	
 	def selectDataType = {

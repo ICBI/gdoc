@@ -1,5 +1,6 @@
 import grails.converters.*
 
+@Mixin(ControllerMixin)
 class GenomeBrowserController {
 
 	def index = {
@@ -12,10 +13,7 @@ class GenomeBrowserController {
 		chrs << "Y"
 		session.chromosomes = chrs
 		
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		def myStudies = session.myStudies
-		[diseases:diseases as Set,myStudies:myStudies]
+		[diseases:getDiseases(),myStudies:session.myStudies]
 	}
 	
     def view = { GenomeBrowserCommand cmd ->

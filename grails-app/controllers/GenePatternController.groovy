@@ -1,3 +1,4 @@
+@Mixin(ControllerMixin)
 class GenePatternController {
 
 	def genePatternService
@@ -5,21 +6,11 @@ class GenePatternController {
 	
     def index = {
 		if(session.study) {
-			StudyContext.setStudy(session.study.schemaName)
-			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.studyNames().contains(StudyContext.getStudy()))
-			}
-			session.patientLists = patientLists.sort { it.name }
-			def geneLists = lists.findAll { item ->
-				item.tags.contains("gene")
-			}
-			session.geneLists = geneLists
 			session.files = MicroarrayFile.findAllByNameLike('%.Rda')
 		}
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		[diseases:diseases as Set]
+		loadPatientLists()
+		loadGeneLists()
+		[diseases:getDiseases()]
 		
 	}
 

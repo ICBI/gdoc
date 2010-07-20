@@ -5,34 +5,38 @@
 		<g:javascript>
 			$(document).ready(function (){
 				$("#disease").change(function() {
-					jQuery.getJSON("/gdoc/studyDataSource/findStudiesForDisease", { disease: $("#disease").val() },
-						function(j) {
-						     // erase all OPTIONs from existing select menu on the page
-						    $("#study options").remove();
-							$("#study").bind('change', function() {
-								$("#update").removeAttr('disabled');
-							});
- 							// You will rebuild new options based on the JSON response...
-						     var options = "<option value=''>Select A Study ...</option>";
-						     // it is the array of key-value pairs to turn
-						     // into option value/labels...
-						     for (var i = 0; i < j.length; i++)
-						       {
-								//console.log("load " + j[i]);
-						        options += "<option value=" +
-						        j[i].studyId + ">" +
-						        j[i].studyName +
-						        "</option>";
-						        }
-						        // stick these new options in the existing select menu
-						        $("#study").html(options);
-						        // now your select menu is rebuilt with dynamic info
-						  }
-					); // end getJSON
+					queryForDisease();
 		 		  }); // end clicked button to trigger AJAX
-				
+				if($("#disease").val()) {
+					queryForDisease();
+				}
 			});
-		
+		function queryForDisease() {
+			jQuery.getJSON("/gdoc/studyDataSource/findStudiesForDisease", { disease: $("#disease").val() },
+				function(j) {
+				     // erase all OPTIONs from existing select menu on the page
+				    $("#study options").remove();
+					$("#study").bind('change', function() {
+						$("#update").removeAttr('disabled');
+					});
+					// You will rebuild new options based on the JSON response...
+				     var options = "<option value=''>Select A Study ...</option>";
+				     // it is the array of key-value pairs to turn
+				     // into option value/labels...
+				     for (var i = 0; i < j.length; i++)
+				       {
+						//console.log("load " + j[i]);
+				        options += "<option value=" +
+				        j[i].studyId + ">" +
+				        j[i].studyName +
+				        "</option>";
+				        }
+				        // stick these new options in the existing select menu
+				        $("#study").html(options);
+				        // now your select menu is rebuilt with dynamic info
+				  }
+			); // end getJSON
+		}
 		function reload(){
 			$("#searchDiv").load('/gdoc/${controllerName}/_studyForm.gsp',{limit: 25}, function(){
 				if(typeof bindBehaviour == 'function')

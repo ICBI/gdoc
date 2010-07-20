@@ -1,5 +1,6 @@
 import grails.converters.*
 
+@Mixin(ControllerMixin)
 class ClinicalController {
 
 	def clinicalService
@@ -12,10 +13,7 @@ class ClinicalController {
 			StudyContext.setStudy(session.study.schemaName)
 			session.dataTypes = AttributeType.findAll().sort { it.longName }
 		}
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		def myStudies = session.myStudies
-		[diseases:diseases as Set,myStudies:myStudies]
+		[diseases:getDiseases(),myStudies:session.myStudies]
 		
 	}
 	

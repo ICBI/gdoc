@@ -3,6 +3,7 @@ import java.text.*
 import java.math.*
 import gov.nih.nci.caintegrator.analysis.messaging.HeatMapResult
 
+@Mixin(ControllerMixin)
 class HeatMapController {
 
 	def analysisService
@@ -13,25 +14,10 @@ class HeatMapController {
 	def htDataService
 	
     def index = {
-	    if(session.study){
-			StudyContext.setStudy(session.study.schemaName)
-			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
-			}
-			def reporterLists = []
-			lists.each { item ->
-				if(item.tags.contains("reporter"))
-					reporterLists << item
-			}
-			session.reporterLists = reporterLists
-			session.patientLists = patientLists
-		}
-		
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		def myStudies = session.myStudies
-		return [diseases:diseases as Set,myStudies:myStudies, params:params]
+		loadPatientLists()
+		loadReporterLists()
+		loadGeneLists()
+		return [diseases:getDiseases(),myStudies:session.myStudies, params:params]
 	}
 	
 	def view = {

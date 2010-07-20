@@ -1,5 +1,6 @@
 import grails.converters.*
 
+@Mixin(ControllerMixin)
 class GeneExpressionController {
 
 	def analysisService
@@ -9,20 +10,8 @@ class GeneExpressionController {
 	def fileBasedAnnotationService
 	
     def index = { 
-		if(session.study){
-			StudyContext.setStudy(session.study.schemaName)
-			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def patientLists = []
-			patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
-			}
-			session.patientLists = []
-			session.patientLists = patientLists.sort { it.name }
-		}
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		def myStudies = session.myStudies
-		[diseases:diseases as Set,myStudies:myStudies, params:params]
+		loadPatientLists()
+		[diseases:getDiseases(),myStudies:session.myStudies, params:params]
 	}
 
 	def search = { GeneExpressionCommand cmd ->

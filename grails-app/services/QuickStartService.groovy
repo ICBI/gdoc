@@ -22,9 +22,9 @@ class QuickStartService implements ApplicationContextAware{
 		if(studies) {
 			//get all diseases
 			def diseases = []
-			diseases = studies.collect{it.cancerSite}
+			diseases = studies.collect{it.cancerSite}.sort{it}.unique()
 			diseases.remove("N/A")
-			vocabList["diseases"] = diseases as Set
+			vocabList["diseases"] = diseases
 			//get all datatypes
 			def allDataTypes = []
 			allDataTypes = htDataService.getAllHTDataTypes()

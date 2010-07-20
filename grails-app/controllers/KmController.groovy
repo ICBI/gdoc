@@ -1,6 +1,7 @@
 import grails.converters.*
 import org.json.simple.*
 
+@Mixin(ControllerMixin)
 class KmController {
 
 	def kmService 
@@ -16,23 +17,16 @@ class KmController {
 		def endpoints = []
 		if(session.study) {
 			StudyContext.setStudy(session.study.schemaName)
-			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
-			}
-			session.patientLists = patientLists
 			session.endpoints = KmAttribute.findAll()
 		}
-		
+		loadPatientLists()
 		//gene exp setup
 		def reporters = []
 		if(params.reporters){
 			reporters = params.reporters
 			log.debug "got these reporters: "+reporters
 		}
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		return [diseases:diseases as Set,reporters:reporters]
+		return [diseases:getDiseases(),reporters:reporters]
 	}
 	
 	def search = { KmCommand cmd ->

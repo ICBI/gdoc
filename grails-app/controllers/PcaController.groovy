@@ -2,7 +2,7 @@ import grails.converters.*
 import java.text.*
 import java.math.*
 
-
+@Mixin(ControllerMixin)
 class PcaController {
 
 	def analysisService
@@ -14,18 +14,11 @@ class PcaController {
 	
     def index = {
 		if(session.study){
-			def lists = userListService.getAllLists(session.userId,session.sharedListIds)
-			def reporterLists = []
-			lists.each { item ->
-				if(item.tags.contains("reporter"))
-					reporterLists << item
-			}
-		session.reporterLists = reporterLists
-		session.files = htDataService.getHTDataMap()
+			session.files = htDataService.getHTDataMap()
 		}
-		def diseases = session.myStudies.collect{it.cancerSite}
-		diseases.remove("N/A")
-		[diseases:diseases as Set]
+		
+		loadReporterLists()
+		[diseases:getDiseases()]
 	}
 	
 	def selectDataType = {
