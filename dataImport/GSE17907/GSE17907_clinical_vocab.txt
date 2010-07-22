@@ -40,3 +40,5 @@ FOXA1_IHC_STATUS	NEGATIVE	NEGATIVE		Protein FOXA1 tested by immunochemistry show
 FOXA1_IHC_STATUS	POSITIVE	POSITIVE		Protein FOXA1 tested by immunochemistry shows positivity
 EVENT_DMFS	0	CENSORING		0 stands for CENSORING indicating no record of distant metastasis
 EVENT_DMFS	1	EVENT		1 stands for EVENT Indicating a distant metastatis 
+CASE_OR_CONTROL	CASE	CASE		Used as case in the experiment
+CASE_OR_CONTROL	CONTROL	CONTROL		Used as control in the experiment as it is normal

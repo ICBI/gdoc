@@ -20,3 +20,4 @@ foxa1 ihc status	new	FOXA1_IHC_STATUS	FOXA1 IHC Status	Protein FOXA1 positivity 
 mfs	318	EVENT_DMFS	Event indicator for Distant Metastasis Free Survival	Indicates that distant metastasis occurred and was recorded OR no distant metastasis was recorded	CLINICAL					0	0	1	NUMBER(1)		0	1
 mfsdel (month)	new	DMFS_MONTHS	Distant metastasis free survival in months	Tracks the distant metastasis free survival time from diagnosis or surgery of the patient till the event or last follow up 	CLINICAL					0	0	0	NUMBER(4,1)	months	1	60
 age	147	AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	NUMBER(4, 1)	years	0	120
+breast tumor or normal tumor	343	CASE_OR_CONTROL	Case or Control	Case or control	OTHER					1	0	1	VARCHAR			
