@@ -102,6 +102,12 @@
 		</delete>
 		<antcall target="--grails-clean"/>
 	</target>
+	
+	<target name="signjar">
+	<signjar keystore="/opt/certificate/guGdoc2.store" alias="guGdocCert2" storepass="changeit">
+        <fileset dir="/Users/kmr75/dev/gdoc/web-app/cytoscapeJnlp" includes="*.jar"/>
+    </signjar>
+	</target>
 
 	<!-- extra target to avoid errors on Windows because libs on classpath can not be deleted -->
 	<target name="--grails-clean" depends="-init-grails">
