@@ -40,4 +40,4 @@ FUP Previous cancer -treatment	new	PREV_CANCER_TREATMENT	Treatment received for 
 FUP chemotherapies-agent	new	FUP_CT_AGENT	Follow up chemotherapy agent	Agent used in the Follow up chemotherapy for patient	CLINICAL					1	0	1	VARCHAR2(20)			
 Timepoint	ATTRIBUTE_TYPE_ID=413	TIMEPOINT	Timepoint	Timepoint during which biospecimen was obtained	CLINICAL					1	0	1	VARCHAR2(10)			
 Source	ATTRIBUTE_TYPE_ID=414	SOURCE	Source	Source of biospecimen	PATHOLOGY					1	0	1	VARCHAR2(30)			
-The number of days after surgery	new	DAYS_AFTER_SURGERY	Days between Surgery and Followup	Follow up done after these number of days	CLINICAL					0	0	0	NUMBER(4,1)	years	0	18250
+The number of days after surgery	new	DAYS_AFTER_SURGERY	Days between Surgery and Followup	Days between Surgery and Followup	CLINICAL					0	0	0	NUMBER(4,1)	years	0	18250
