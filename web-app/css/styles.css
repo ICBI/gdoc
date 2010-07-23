@@ -355,5 +355,13 @@ p
           font-weight: bold;
       }
 
+.partDiv{
+	padding: 3px;
+	background-color:#FFF9EB;
+	border:1px solid #EBF1FF;
+}
 
+.partDiv a{
+	color:#1A5EFF;
+}
 

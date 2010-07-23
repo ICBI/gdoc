@@ -18,27 +18,40 @@
 						
 						$("[class*='sel']").each(function(index){
 							$(this).css('cursor','pointer');
+							var part = $("[class*='parts']").eq(index);
 							$(this).click(function() {
-								var part = $("[class*='parts']").eq(index);
+								
 							  	$("[class*='parts']").each(function(index){
 								 $(this).css('display','none');
 								});
 								$("[class*='sel']").each(function(index){
 								 $(this).css('border-right','1px solid #334477');
+								 $(this).css('background-color','#EBF1FF');
 								});
-							  	$(this).css('background','#fff');
+							  	$(this).css('background-color','#fff');
 								$(this).css('border-right','0px');
 							  	part.css('display','block');
 							});
 							$(this).hover(function(){
-								$(this).css('background','#CFDEFF');
+								var color = $(this).css('background-color');
+								if(color == 'rgb(255, 255, 255)'){
+									$(this).css('background','#fff');
+								}else{
+									$(this).css('background','#EBF1FF');
+								}
 							});
 							$(this).mouseleave(function(){
-								$(this).css('background','#fff');
+								var color = $(this).css('background-color');
+								if(color == 'rgb(255, 255, 255)'){
+									$(this).css('background','#fff');
+								}else{
+									$(this).css('background','#EBF1FF');
+								}
+								
 							});
 							
 						});
-						//$('.parts').corner();
+						$('.partDiv').corner();
 						
 			});
 		
@@ -67,7 +80,7 @@
 						<tr>
 							<td valign="top" style="width:45%">
 							<table class="listTable" border="1" style="font-size:.9em" id="patientsTable">
-								<th colspan="4" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Cancer/Study Overview</th>
+								<th colspan="4" style="padding:8px 8px 8px 8px;background-color:#EBF1FF">Cancer/Study Overview</th>
 								<tr style="padding:4px 4px 4px 4px;background-color:#f2f2f2">
 									<td>Disease</td>
 									<td># Studies</td>
@@ -102,21 +115,35 @@
 										<table border="0">
 											<tr>
 											<td style="width:10%" valign="top">
-												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:0px;border-left:1px solid #334477">NEWS</div>
-												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477">PUBLICATIONS</div>
-												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477;border-bottom:1px solid #334477;">FINDINGS</div>
+												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:0px;border-left:1px solid #334477;background-color:#fff">NEWS</div>
+												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477;background-color:#EBF1FF">FINDINGS</div>
+												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477;background-color:#EBF1FF;border-bottom:1px solid #334477;">PUBLICATIONS</div>
 												<div style="height:150px;border-right:1px solid #334477"></div>
 											</td>
 
 											<td rowspan="3" valign="top">
-												<div id="news" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;">
-													news
+												<div id="news" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;overflow: scroll;">
+													<div class="partDiv">
+													<g:if test="${feedMap}">
+													<g:each in="${feedMap}" var="feedItem">
+														<p><a href="${feedItem.value}" target="_blank">${feedItem.key}</a></p>
+													</g:each>
+													</g:if>
+													</div>
 												</div>
-												<div id="pub" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;display:none">
-													pub
+												<div id="findings" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;;overflow: scroll;display:none">
+													<div class="partDiv">
+													<g:if test="${findings}">
+													<g:each in="${findings}" var="finding">
+														<p style="border-bottom:1px dashed black;padding:2px">${finding.title}&nbsp;</p>
+													</g:each>
+													</g:if>
+													</div>
 												</div>
-												<div id="findings" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;display:none">
-													latest findings
+												<div id="pub" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;overflow: scroll;display:none">
+													<div class="partDiv">
+													future publications will be listed here...
+													</div>
 												</div>
 											</td>
 											</tr>
@@ -131,7 +158,7 @@
 						<tr>
 							<td valign="top" style="padding-top:15px">
 							<table class="listTable" border="1" style="font-size:.9em" id="patientsTable">
-								<th colspan="4" style="padding:8px 8px 8px 8px;background-color:#BDD2FF">Data-Type Overview</th>
+								<th colspan="4" style="padding:8px 8px 8px 8px;background-color:#EBF1FF">Data-Type Overview</th>
 								<tr style="padding:4px 4px 4px 4px;background-color:#f2f2f2">
 									<td>Data Type</td>
 									<td># Studies</td>
@@ -161,6 +188,11 @@
 						
 						</table>	
 							
+							<script type="text/javascript">
+									jQuery(document).ready(function() {
+										$("#samplesTable").Scrollable(125, 250);
+									});
+							 	</script>
 					
 							
 							
@@ -218,11 +250,7 @@
 					
 				</div>
 				
-				<script type="text/javascript">
-						jQuery(document).ready(function() {
-							$("#samplesTable").Scrollable(125, 250);
-						});
-				 	</script>
+				
 				
     </body>
 </html>

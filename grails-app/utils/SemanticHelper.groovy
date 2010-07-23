@@ -41,15 +41,15 @@ class SemanticHelper {
 							count++
 							break;
 				   case 'CRC_PILOT': 
-							lessThanAttributeRelapse << [RELAPSE:'YES']
+							lessThanAttributeRelapse << [RECURRENCE_ANY:'YES']
 							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
-							lessThanAttributeYears << [('SURGERY_TO_RELAPSE/FU'):[min:0, max:4]]
+							lessThanAttributeYears << [('SURGERY_TO_RECUR/FU_DAYS'):[min:0, max:1460]]
 							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
-							moreThanAttributeYears<< [('SURGERY_TO_RELAPSE/FU'):[min:5, max:50],RELAPSE:'NO']
+							moreThanAttributeYears<< [('SURGERY_TO_RECUR/FU_DAYS'):[min:1461, max:18250],RECURRENCE_ANY:'NO']
 							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
 							count++
 							break;
-					case 'CRC_PILOT': 
+					case 'CRC_PILOT_DEMO': 
 							lessThanAttributeRelapse << [RELAPSE:'YES']
 							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
 							lessThanAttributeYears << [('SURGERY_TO_RELAPSE/FU'):[min:0, max:4]]
@@ -106,9 +106,31 @@ class SemanticHelper {
 							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
 							lessThanAttributeRelapse << [EVENT_DFS:1]
 							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
-							moreThanAttributeYears<< [('DISEASE_FREE_SURVIVAL_DAYS'):[min:1460, max:18250]]
+							moreThanAttributeYears<< [('DISEASE_FREE_SURVIVAL_DAYS'):[min:1461, max:18250]]
 							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
 							moreThanAttributeRelapse << [EVENT_DFS:1]
+							resolvedCriteria2['moreThanAttributeRelapse'] = moreThanAttributeRelapse
+							count++
+							break;
+					case 'LOI6532':
+							lessThanAttributeYears << [('DMFS_DAYS'):[min:0, max:1460]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							lessThanAttributeRelapse << [EVENT_DMFS:1]
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears<< [('DMFS_DAYS'):[min:1461, max:18250]]
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							moreThanAttributeRelapse << [EVENT_DMFS:1]
+							resolvedCriteria2['moreThanAttributeRelapse'] = moreThanAttributeRelapse
+							count++
+							break;
+					case 'GSE17907':
+							lessThanAttributeYears << [('DMFS_MONTHS'):[min:0, max:59]]
+							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
+							lessThanAttributeRelapse << [EVENT_DMFS:1]
+							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
+							moreThanAttributeYears<< [('DMFS_MONTHS'):[min:60, max:600]]
+							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
+							moreThanAttributeRelapse << [EVENT_DMFS:1]
 							resolvedCriteria2['moreThanAttributeRelapse'] = moreThanAttributeRelapse
 							count++
 							break;
@@ -169,6 +191,24 @@ class SemanticHelper {
 							erVal = 'POSITIVE'
 						else erVal = 'NEGATIVE'
 							erStatus << [ER_STATUS:erVal]
+						resolvedCriteria['erStatus'] = erStatus
+						resolvedCriteria2['erStatus'] = erStatus
+						count++
+						break;
+					case 'GSE17907':
+						if(attributeVal == 'Positive') 
+								erVal = 'POSITIVE'
+						else erVal = 'NEGATIVE'
+								erStatus << [ER_IHC_STATUS:erVal]
+						resolvedCriteria['erStatus'] = erStatus
+						resolvedCriteria2['erStatus'] = erStatus
+						count++
+						break;
+					case 'LOI6532':
+						if(attributeVal == 'Positive') 
+									erVal = 'POSITIVE'
+						else erVal = 'NEGATIVE'
+									erStatus << [ER_STATUS:erVal]
 						resolvedCriteria['erStatus'] = erStatus
 						resolvedCriteria2['erStatus'] = erStatus
 						count++
@@ -278,6 +318,9 @@ class SemanticHelper {
 			   case 'DESMEDT7390': labels = ["Had relapse less than 5 years", "No Relapse (disease-free) for more than 5 years"]; break;
 			   case 'SOTIRIOU': labels = ["Had relapse in less than 5 years", "Relapse free for more than 5 years, or no relapse"]; break;
 			   case 'ZHANG': labels = ["Had Metastasis within 5 years", "Metastasis free for more than 5 years"]; break;
+			   case 'GSE17907': labels = ["Had Metastasis within 5 years", "Metastasis free for more than 5 years"]; break;
+			   case 'LOI6532': labels = ["Had Metastasis within 5 years", "Metastasis free for more than 5 years"]; break;
+			   case 'CRC_PILOT_DEMO': labels = ["Had Metastasis within 5 years", "Metastasis free for more than 5 years"]; break;
 			   default: labels = ["Relapse", "No Relapse"]
 			}
 		}

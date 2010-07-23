@@ -2,9 +2,9 @@ import grails.converters.*
 
 class HomeController {
 	def feedService
-	def feedMap
 	def summaryService
 	def quickStartService
+	def findingService
 	
     def index = { 
 		if(session.userId){
@@ -12,7 +12,7 @@ class HomeController {
 			return
 		}
 		//get LCCC feed
-	//	feedMap = feedService.getFeed()
+		def feedMap = feedService.getFeed()
 		
 		//session.patientSummary = summaryService.patientSummary()
 		//session.studySummary = summaryService.studySummary()
@@ -20,7 +20,7 @@ class HomeController {
 		//get patient counts for each study
 		session.studyCounts = summaryService.patientCounts()
 		def studies = StudyDataSource.list();
-		
+		def findings = findingService.getAllFindings()
 		def da = quickStartService.getMyDataAvailability(studies)
 		def diseaseBreakdown = [:]
 		def dataBreakdown = [:]
@@ -85,7 +85,7 @@ class HomeController {
 			session.anatomicSourceValues = summaryService.anatomicSources(sampleSummary)
 		}
 		
-		[diseaseBreakdown:diseaseBreakdown, dataBreakdown:dataBreakdown]
+		[diseaseBreakdown:diseaseBreakdown, dataBreakdown:dataBreakdown, feedMap:feedMap, findings:findings]
 	}
 	
 	def workflows = {
