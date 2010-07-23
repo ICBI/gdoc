@@ -21,6 +21,7 @@ class GeneExpressionCommand {
 			}
 			return true
 		})
+		dataFile(blank:false)
 	}
 	
 }

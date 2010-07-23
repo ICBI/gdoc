@@ -1,42 +1,5 @@
 <g:if test="${session.study}">
-<jq:plugin name="flydisk" />
-<g:javascript>
-$(document).ready(function() {
-
-	jQuery().flydisk({ selectedColor:"#eee",                       //BgColor of selected items(Default: white) 
-	left_disk:'left',                 //Id of left drop down list (Mandatory)
-	right_disk:'right',               //Id of right drop down list(Mandatory)
-	add_button: 'Add',                //Id of Add button            ,, 
-	remove_button: 'Remove'
-
-});  
-$('#analysisForm').submit(function() {
-	$('#right :option').attr("selected", "selected");
-});
-$('#right :option').each(function() {
-	$("#left option[value='"+ this.value +  "']").remove();
-});
-$.sortOptions('#left');
-
-$("#dataSetType").change(function() {
-	loadDataSets(this.value)
-});
-
-loadDataSets($('#dataSetType').val());
-
-});
-
-function loadDataSets(dataType) {
-	$.ajax({
-		url: "${createLink(action:'selectDataType')}",
-		data: "dataType=" + dataType,
-		cache: false,
-		success: function(html) {
- 			$("#dataDiv").html(html);
-		}
-	});
-}
-</g:javascript>
+<g:javascript src="dataSet.js"/>
 
 <p>Select a baseline group and a comparison group(s)</p>
 <g:if test="${flash.message}">

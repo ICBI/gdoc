@@ -37,13 +37,6 @@ class AnalysisController {
 		[diseases:getDiseases(),myStudies:session.myStudies, params:params]
 	}
 	
-	def selectDataType = {
-		if(!session.files[params.dataType])
-			render g.select(optionKey: 'name', optionValue: 'description', noSelection: ['': 'Select Data Type First'], id: 'dataFile', name: "dataFile")
-		else
-			render g.select(optionKey: 'name', optionValue: 'description', from: session.files[params.dataType], id: 'dataFile', name: "dataFile")
-	}
-	
 	def submit = { AnalysisCommand cmd ->
 		log.debug "analysis params : $params"
 		log.debug "Command: " + cmd.groups

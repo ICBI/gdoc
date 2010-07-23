@@ -1,4 +1,5 @@
 <g:if test="${session.study}">
+<g:javascript src="dataSet.js"/>
 
 <div id="searchForm">
 		<div class="clinicalSearch">	

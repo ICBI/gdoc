@@ -1,24 +1,4 @@
-<g:javascript>
-$(document).ready(function() {
-
-$("#dataSetType").change(function() {
-	loadDataSets(this.value)
-});
-loadDataSets($('#dataSetType').val());
-
-});
-
-function loadDataSets(dataType) {
-	$.ajax({
-		url: "selectDataType",
-		data: "dataType=" + dataType,
-		cache: false,
-		success: function(html) {
- 			$("#dataDiv").html(html);
-		}
-	});
-}
-</g:javascript>
+<g:javascript src="dataSet.js"/>
 
 <p>Select a patient list, optional reporter list, classification method, and datatype/dataset</p>
 
@@ -103,6 +83,9 @@ function loadDataSets(dataType) {
 		<g:select name="dataFile" 
 				noSelection="${['':'Select Data Type First']}"
 				optionKey="name" optionValue="${{it.description}}"/>
+		</div>
+		<div class="errorDetail">
+			<g:renderErrors bean="${flash.cmd?.errors}" field="dataFile" />
 		</div>
 		<g:hiddenField name="study" value="${session.study.schemaName}" />
 	</div>

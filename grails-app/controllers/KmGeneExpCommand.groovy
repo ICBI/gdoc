@@ -22,6 +22,7 @@ class KmGeneExpCommand {
 			}
 			return true
 		})
+		dataFile(blank:false)
 	}
 	
 }

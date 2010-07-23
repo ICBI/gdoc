@@ -21,13 +21,6 @@ class PcaController {
 		[diseases:getDiseases()]
 	}
 	
-	def selectDataType = {
-		if(!session.files[params.dataType])
-			render g.select(optionKey: 'name', optionValue: 'description', noSelection: ['': 'Select Data Type First'], id: 'dataFile', name: "dataFile")
-		else
-			render g.select(optionKey: 'name', optionValue: 'description', from: session.files[params.dataType], id: 'dataFile', name: "dataFile")
-	}
-	
 	def submit = { PcaCommand cmd ->
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
