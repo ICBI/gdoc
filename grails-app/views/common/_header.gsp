@@ -37,7 +37,7 @@
 
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
-<a href="/gdoc"><img src="${createLinkTo(dir:'images',file:'gdocHeader.png')}" border="0" /></a>
+<a href="/gdoc"><img src="${createLinkTo(dir:'images',file:'gdocLogo.png')}" border="0" /></a>
 </td><td valign="bottom" style="text-align:right;padding:7px">
 
 
