@@ -68,6 +68,9 @@
 					case 'mirna':
 						handleMirna(id);
 						break;
+					case 'genes':
+						handleGene(id);
+						break;						
 					default:
 						break;
 				}
@@ -95,6 +98,10 @@
 			function handleMirna(id) {
 				if(id.indexOf('hsa') > -1)
 					window.open("http://www.mirbase.org/cgi-bin/query.pl?terms=" + id);
+			}
+			
+			function handleGene(id) {
+				window.open("http://www.genecards.org/cgi-bin/carddisp.pl?gene=" + id);
 			}
 		   var trackInfo = ${session.tracks}
 		   var refSeqs = ${session.sequences}
