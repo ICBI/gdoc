@@ -13,6 +13,7 @@ class AnalysisCommand {
 	static constraints = {
 		baselineGroup(blank:false)
 		groups(blank:false)
+		dataFile(blank:false)
 		pvalue(blank:false, validator: {val, obj ->
 			if(!val.isDouble()) {
 				return "custom.number"
