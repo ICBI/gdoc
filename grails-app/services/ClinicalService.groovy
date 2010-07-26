@@ -79,7 +79,7 @@ class ClinicalService {
 	
 	def createORQueryString(attributes){
 		def schema = StudyContext.getStudy()
-		def selectStmnt = '(select unique (p.patient_id) from ' + schema + '.patient p, common.attribute_type c, ' + schema + '.patient_attribute_value v ' +
+		def selectStmnt = '(select /*+ index(v,PATIENT_ATTRIBUTE_VALUE_INDEX1) */ unique (p.patient_id) from ' + schema + '.patient p, common.attribute_type c, ' + schema + '.patient_attribute_value v ' +
 			 			  'where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id ' +
 						  ' and ('
 		//log.debug "iterate over array and add each mapped criteria, depending on range or regular value"

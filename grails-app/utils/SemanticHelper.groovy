@@ -128,7 +128,7 @@ class SemanticHelper {
 							resolvedCriteria['lessThanAttributeYears'] = lessThanAttributeYears
 							lessThanAttributeRelapse << [EVENT_DMFS:1]
 							resolvedCriteria['lessThanAttributeRelapse'] = lessThanAttributeRelapse
-							moreThanAttributeYears<< [('DMFS_MONTHS'):[min:60, max:600]]
+							moreThanAttributeYears<< [('DMFS_MONTHS'):[min:60, max:60]]
 							resolvedCriteria2['moreThanAttributeYears'] = moreThanAttributeYears
 							moreThanAttributeRelapse << [EVENT_DMFS:1]
 							resolvedCriteria2['moreThanAttributeRelapse'] = moreThanAttributeRelapse

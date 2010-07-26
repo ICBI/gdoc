@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Georgetown Database of Cancer</title>
-		<meta name="layout" content="workflowsLayout" />
+		<meta name="layout" content="splash" />
 		<g:javascript library="jquery"/>
 		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
 		<g:javascript src="jquery/scrollTable/jscrolltable.js"/>
@@ -49,7 +49,7 @@
 
 
 				</g:javascript>
-				<div style="width:75%;">
+				<div style="width:75%;margin:0 auto;" align="center">
 			
 				
 				<g:if test="${flash.message}">
@@ -122,7 +122,8 @@
 											<g:link controller="genomeBrowser" style="color:#336699;">Browse Genome</g:link><br /><br />
 											<g:link controller="moleculeTarget" style="color:#336699;">Compounds/Drug Targets</g:link> <br /><br />
 											<g:link controller="geneExpression" style="color:#336699;">Gene Expression</g:link><br /><br />
-											<g:link controller="studyDataSource" style="color:#336699;">Studies</g:link> <br />
+											<g:link controller="studyDataSource" style="color:#336699;">Studies</g:link> <br /><br />
+											<g:link controller="finding" style="color:#336699;">Findings</g:link> <br />
 											</p><br />
 									</td>
 								</tr>
@@ -135,10 +136,11 @@
 											<p style="font-size:.8em;margin-top:10px">
 											<g:link controller="analysis" style="color:#336699;">Group Comparison</g:link> / 
 											<g:link controller="km" style="color:#336699;">KM Plots</g:link><br /><br />
+											<g:link controller="heatMap" style="color:#336699;">HeatMap Viewer</g:link><br /><br />
 											<g:link controller="pca" style="color:#336699;">Classification</g:link><br /><br />
-											<a style="color:#336699;" href='#'>Correlations/Multi Omics</a><br /><br />
-											<g:link controller="genomeBrowser" style="color:#336699;">Pathways/Networks</g:link><br /><br />
-											<g:link controller="heatMap" style="color:#336699;">HeatMap Viewer</g:link><br />
+											<span style="color:gray;text-decoration:underline">Correlations/Multi-Omics (future feature)</span><br /><br />
+											<span style="color:gray;text-decoration:underline">Pathways/Networks</span><br />
+											
 											</p>
 									</td>
 								</tr>

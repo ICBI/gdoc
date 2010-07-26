@@ -58,9 +58,11 @@
 				<b>View Options</b><br />
 					<g:form>
 					<g:radio value="view" checked="true"/> Protein-Ligand Complex<br />
-					<g:radio value="view" /> Binding Pocket-Ligand Complex<br />
-					<g:radio value="view" /> Protein Only<br />
-					<g:radio value="view" /> Binding Pocket Only<br />
+					<span style="color:gray;">
+					<g:radio value="view" disabled="true"/> Binding Pocket-Ligand Complex<br />
+					<g:radio value="view" disabled="true"/> Protein Only<br />
+					<g:radio value="view" disabled="true"/> Binding Pocket Only<br />
+					</span>
 					</g:form>
 			</td>
 		</tr>
