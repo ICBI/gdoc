@@ -1,13 +1,14 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="layout" content="main" />
+	<meta name="layout" content="splash" />
 	<title>G-DOC Registration</title>
 </head>
 
 <g:if test="${flash.cmd instanceof RegistrationCommand && flash.message}">
 	<div class="errorDetail">${flash.message}</div>
 </g:if>
+<div style="margin:0px auto;text-align:center">
 <p style="font-size:14pt">Registration Form</p>
 <div class="clinicalSearch">
 <fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
@@ -27,4 +28,5 @@
 		</g:form>
 	</div>
 </fieldset>
+</div>
 </div>

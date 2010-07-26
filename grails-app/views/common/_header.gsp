@@ -50,6 +50,7 @@
        <input name="password" type="password" size="10"></input>
        <input type="submit" value="login" />
 </g:form >
+<span style="color:white;padding-top:8px;font-size:.9em">Not registered? <g:link controller="registration" style="color:white">register now</g:link> (NetId required)</span>
 </g:if>
 <g:else>
 <div style="float:left;margin-top: 20px;">

@@ -115,23 +115,14 @@
 										<table border="0">
 											<tr>
 											<td style="width:10%" valign="top">
-												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:0px;border-left:1px solid #334477;background-color:#fff">NEWS</div>
-												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477;background-color:#EBF1FF">FINDINGS</div>
+												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:0px;border-left:1px solid #334477;background-color:#fff">FINDINGS</div>
+												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477;background-color:#EBF1FF">NEWS</div>
 												<div class="sel" style="padding:25px;border-top:1px solid #334477;border-right:1px solid #334477;border-left:1px solid #334477;background-color:#EBF1FF;border-bottom:1px solid #334477;">PUBLICATIONS</div>
 												<div style="height:150px;border-right:1px solid #334477"></div>
 											</td>
 
 											<td rowspan="3" valign="top">
-												<div id="news" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;overflow: scroll;">
-													<div class="partDiv">
-													<g:if test="${feedMap}">
-													<g:each in="${feedMap}" var="feedItem">
-														<p><a href="${feedItem.value}" target="_blank">${feedItem.key}</a></p>
-													</g:each>
-													</g:if>
-													</div>
-												</div>
-												<div id="findings" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;;overflow: scroll;display:none">
+												<div id="findings" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:0px solid #334477;height:330px;border-top:1px solid #334477;height:330px;;overflow: scroll;">
 													<div class="partDiv">
 													<g:if test="${findings}">
 													<g:each in="${findings}" var="finding">
@@ -140,6 +131,17 @@
 													</g:if>
 													</div>
 												</div>
+												
+												<div id="news" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;overflow: scroll;display:none">
+													<div class="partDiv">
+													<g:if test="${feedMap}">
+													<g:each in="${feedMap}" var="feedItem">
+														<p><a href="${feedItem.value}" target="_blank">${feedItem.key}</a></p>
+													</g:each>
+													</g:if>
+													</div>
+												</div>
+												
 												<div id="pub" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;overflow: scroll;display:none">
 													<div class="partDiv">
 													future publications will be listed here...
