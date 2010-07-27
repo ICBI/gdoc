@@ -24,10 +24,7 @@ class AnnotationService {
 	}
 	
 	def findReportersForGeneList(listName) {
-		def lists = UserList.findAll()
-		def list = lists.find { item ->
-			item.name == listName
-		}
+		def list = UserList.findByName(listName)
 		
 		def listValues = list.listItems.collect {item ->
 			item.value
@@ -41,10 +38,8 @@ class AnnotationService {
 	}
 	
 	def findReportersForReporterList(listName) {
-		def lists = UserList.findAll()
-		def list = lists.find { item ->
-			item.name == listName
-		}
+		def list = UserList.findByName(listName)
+
 		def listValues = list.listItems.collect {item ->
 			item.value
 		}
