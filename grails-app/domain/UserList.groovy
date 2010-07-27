@@ -1,8 +1,11 @@
+import org.grails.taggable.*
+
 class UserList implements Taggable{
 	static mapping = {
 		table 'USER_LIST'
 		id column: 'ID'
 		studies joinTable: [name: 'LIST_STUDY', column: 'STUDY_ID', key: 'LIST_ID'] 
+		cache true
 	}
 
 	String name

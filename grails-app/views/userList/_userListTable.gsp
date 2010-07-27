@@ -148,7 +148,7 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 					<span style="color:red;padding:3px">NOTE: This list was created via the G-DOC QuickStart and will be removed when you log out of this session.</span>
 					</g:if>
 					<g:else>
-					Tags: ${userListInstance.tags}
+					Tags: ${userListInstance.tags.join(", ")}
 					
 					</g:else>
 					</g:if>

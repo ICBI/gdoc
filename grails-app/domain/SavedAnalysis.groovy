@@ -1,5 +1,5 @@
 import grails.converters.*
-
+import org.grails.taggable.*
 
 class SavedAnalysis implements Taggable {
 	static mapping = {
@@ -8,6 +8,7 @@ class SavedAnalysis implements Taggable {
 		queryData type: 'text'
 		type column:'analysis_type'
 		studies joinTable: [name: 'ANALYSIS_STUDY', column: 'STUDY_ID', key: 'ANALYSIS_ID']
+		cache true
 	}
 	
 	static constraints = {

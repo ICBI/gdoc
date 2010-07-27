@@ -79,7 +79,7 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 			<span style="color:red;padding:3px">NOTE: This analysis was created via the G-DOC QuickStart and will be removed when you log out of this session.</span>
 		</g:if>
 		<g:else>
-		Tags:${analysis.tags}
+		Tags: ${analysis.tags.join(", ")}
 		</g:else>
 		</g:if>
 		
