@@ -19,7 +19,7 @@ class SearchableTests extends GroovyTestCase {
 	def annotationService
 	
 	
-	void testSearchStemming(){
+	/**void testSearchStemming(){
 		def searchString = "EGFR"
 		def searchResult = []
 		searchResult = searchableService.search([defaultOperator:"and"],{
@@ -50,7 +50,7 @@ class SearchableTests extends GroovyTestCase {
 			}
 		}else
 			println "no results"
-	}
+	}**/
 	
 /**
   void testSearchIndex(){
@@ -128,7 +128,7 @@ class SearchableTests extends GroovyTestCase {
 			}catch (SearchEngineQueryParseException ex) { 
 				 	println ex
 			}
-		}
+		}**/
 		
 		void testLigandSearch(){
 			try { 
@@ -150,7 +150,7 @@ class SearchableTests extends GroovyTestCase {
 						println searchTerm
 						targets = Molecule.search{
 							queryString("EGFR")
-							must(between("weight",430.00,435.00,true))
+							//must(between("weight",430.00,435.00,true))
 						}
 					}
 					else{
@@ -165,10 +165,23 @@ class SearchableTests extends GroovyTestCase {
 				}
 					
 				}
-			println targets
+		def myStudies = [new Long(4),new Long(125),new Long(2)]
+		def results = []
+		  targets.results.each{
+			    println it.protectionGroup
+			    if(it.protectionGroup){
+					println myStudies
+					println it.protectionGroup.id.class
+				}
+				if(it.protectionGroup && myStudies.contains(it.protectionGroup.id)){
+					println "got result for $it.protectionGroup.id"
+					results << it
+				}
+			}
+		println "filtered results -> $results"	
 			}catch (SearchEngineQueryParseException ex) { 
 				 	println ex
 			}
-		}**/
+		}
 
 }

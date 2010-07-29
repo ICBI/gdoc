@@ -105,20 +105,20 @@
 							<g:if test="${result.molecule.name}">
 								<g:set var="molDesc" value="${result.molecule.name}" />
 					            	<g:if test="${molDesc.size() > 20}">
-										<g:set var="molDesc" value="${molDesc[0..20] + '...'+ ' with ' + result}" />
+										<g:set var="molDesc" value="${molDesc[0..10] + '...'+ ' with ' + result}" />
 									</g:if>
-					            <div class="molDesc">${molDesc.encodeAsHTML()}</div>
+					            <div class="molDesc">(Target Drug Molecule) ${molDesc.encodeAsHTML()}</div>
 							</g:if>
 							<g:else>
 								${result}
 							</g:else>
-						</g:link> (Target Drug Molecule)
+						</g:link>
 						<g:if test="${result.molecule.formula}">
 							<g:set var="desc" value="${result.molecule.formula}" />
 				            	<g:if test="${desc.size() > 120}">
 									<g:set var="desc" value="${desc[0..120] + '...'}" />
 								</g:if>
-				            <div class="desc">${desc.encodeAsHTML()}</div>
+				            <%--div class="desc">${desc.encodeAsHTML()}</div--%>
 						</g:if>
 						<g:else>
 						No binding data available

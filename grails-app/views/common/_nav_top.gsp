@@ -19,12 +19,13 @@ jQuery(document).ready(function()
 			<a class="sf-with-ul" href="#">Search<span class="sf-sub-indicator"> »</span></a>
 			<ul style="display: none; visibility: hidden;">
 				<li>
-					<a href="${createLink(controller: 'sample')}">Biospecimens</a>
+					<%--a href="${createLink(controller: 'sample')}">Biospecimens</a--%>
 					<a href="${createLink(controller: 'clinical')}">Clinical Data</a>
 					<a href="${createLink(controller: 'genomeBrowser')}">Browse Genome</a>
 					<g:link controller="geneExpression">Gene Expression</g:link>
 					<a href="${createLink(controller: 'moleculeTarget')}">Compounds and Targets</a>
 					<a href="${createLink(controller: 'studyDataSource')}">Studies</a>
+					<a href="${createLink(controller: 'finding')}">Findings</a>
 				</li>		
 			</ul>
 		</li>
@@ -34,8 +35,8 @@ jQuery(document).ready(function()
 					<li>
 						<a href="${createLink(controller: 'analysis')}">Group Comparison / KM Plots</a>
 						<a href="${createLink(controller: 'pca')}">Classification</a>
-						<a href="${createLink(controller: 'genomeBrowser')}">Correlations/Multi Omics</a>
-						<a href="#">Pathways and Networks</a>
+						<%--a href="${createLink(controller: 'genomeBrowser')}">Correlations/Multi Omics</a--%>
+						<%--a href="#">Pathways and Networks</a--%>
 						<g:link controller="heatMap">HeatMap Viewer</g:link>
 					</li>
 			</ul>

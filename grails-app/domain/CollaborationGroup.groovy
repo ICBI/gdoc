@@ -29,4 +29,8 @@ class CollaborationGroup {
 		}
 	}
 	
+	static searchable = {
+		alias "collaborationGroup"
+	}
+	
 }

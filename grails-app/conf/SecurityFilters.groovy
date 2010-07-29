@@ -84,7 +84,8 @@ class SecurityFilters {
 				}
 			}
 		}
-		structureRetriever(controller:'moleculeTarget', action:'*') {
+		//removed this filter as there may be public compounds / targets
+		/**structureRetriever(controller:'moleculeTarget', action:'*') {
 			before = {
 				if(session.myCollaborationGroups.contains("DDG_COLLAB")){
 					//println "allow user $session.userId to Drug Discovery Group information"
@@ -97,6 +98,6 @@ class SecurityFilters {
 					return false
 				}
 			}
-		}
+		}**/
  	} 
 }

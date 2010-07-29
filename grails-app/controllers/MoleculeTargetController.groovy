@@ -5,22 +5,49 @@ class MoleculeTargetController {
 	def drugDiscoveryService
 	def annotationService
 	def searchableService
+	def collaborationGroupService
 	
 	def index = {
 		log.debug params
 		def ligands
+		def search = false
 		if(chainModel){
+			search = true;
 			ligands = chainModel["ligands"]
 			if(ligands.results){
-				log.debug "results found"
-				ligands.results = Molecule.getAll(ligands.results.collect{it.id})
+				//log.debug "results found, filterby security group"
+				def filteredMols = []
+				filteredMols = filterLigands(ligands.results)
+				log.debug "filtered: $filteredMols"
+				if(filteredMols){
+					ligands.total = filteredMols.size()
+					ligands.results = Molecule.getAll(filteredMols.collect{it.id})
+				}
+				else{
+					ligands.results = []
+					ligands.total = 0
+				}
 			}
 		}
-		if(params.offset){
-			log.debug "offset was passed"
-		}
-		[ligands:ligands,params:[params.page,params.offset]]
+		[ligands:ligands,search:search,params:[params.page,params.offset,params.entityName]]
 	
+	}
+	
+	def filterLigands(ligandResults){
+		def user = GDOCUser.findByLoginName(session.userId)
+		def userMemberships = user.memberships
+		def collabGroups = []
+		userMemberships.each{
+			collabGroups << it.collaborationGroup.id
+		}
+		def results = []
+		  ligandResults.each{
+				if(it.protectionGroup)
+				if(it.protectionGroup && collabGroups.contains(it.protectionGroup.id)){
+					results << it
+				}
+		  }
+		return results
 	}
 	
 	def page = {
@@ -80,7 +107,7 @@ class MoleculeTargetController {
 				targets = Molecule.search(params,{
 					must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
 				})
-				chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity,offset:params.offset])
+				chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:cmd.entity,offset:params.offset])
 				return
 			}
 			try { 
@@ -98,14 +125,14 @@ class MoleculeTargetController {
 						must(queryString(searchTerm))
 						must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
 					})
-					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity,offset:params.offset])
+					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:cmd.entity,offset:params.offset])
 					return
 				}else{
 					targets = Molecule.search(params,{
 						queryString(searchTerm)
 					})
 					log.debug targets
-					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:params.entity,offset:params.offset])
+					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:cmd.entity,offset:params.offset])
 					return
 				}
 			}catch (SearchEngineQueryParseException ex) { 
@@ -164,6 +191,15 @@ class MoleculeTargetController {
 				log.debug similarTargets
 				def desiredTarget = similarTargets.find{
 					it.id == molTarId
+				}
+				log.debug "find if molecule of target is permitted by user"
+				if(desiredTarget){
+					def result = filterLigands(desiredTarget.molecule)
+					log.debug "$result was found"
+					if(!result){
+						log.debug "molecule of target is NOT permitted by user"
+						desiredTarget = null
+					}
 				}
 				log.debug desiredTarget
 				[moleculeTarget:desiredTarget,similarTargets:similarTargets]

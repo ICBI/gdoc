@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Georgetown Database of Cancer</title>
-		<meta name="layout" content="splash" />
+		<meta name="layout" content="workflowsLayout" />
 		<g:javascript library="jquery"/>
 		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
 		<g:javascript src="jquery/scrollTable/jscrolltable.js"/>
@@ -49,7 +49,7 @@
 
 
 				</g:javascript>
-				<div style="width:75%;margin:0 auto;" align="center">
+				<div style="width:85%">
 			
 				
 				<g:if test="${flash.message}">
@@ -117,13 +117,13 @@
 									<td>
 										
 											<p style="font-size:.8em;margin-top:20px">
-											<g:link controller="sample" style="color:#336699;">Biospecimens</g:link><br /><br />
 											<g:link controller="clinical" style="color:#336699;">Clinical Data</g:link><br /><br />
 											<g:link controller="genomeBrowser" style="color:#336699;">Browse Genome</g:link><br /><br />
 											<g:link controller="moleculeTarget" style="color:#336699;">Compounds/Drug Targets</g:link> <br /><br />
 											<g:link controller="geneExpression" style="color:#336699;">Gene Expression</g:link><br /><br />
 											<g:link controller="studyDataSource" style="color:#336699;">Studies</g:link> <br /><br />
-											<g:link controller="finding" style="color:#336699;">Findings</g:link> <br />
+											<g:link controller="finding" style="color:#336699;">Findings</g:link> <br /><br />
+											<span style="color:gray;text-decoration:underline">Biospecimens (future feature)</span><br />
 											</p><br />
 									</td>
 								</tr>
@@ -139,7 +139,7 @@
 											<g:link controller="heatMap" style="color:#336699;">HeatMap Viewer</g:link><br /><br />
 											<g:link controller="pca" style="color:#336699;">Classification</g:link><br /><br />
 											<span style="color:gray;text-decoration:underline">Correlations/Multi-Omics (future feature)</span><br /><br />
-											<span style="color:gray;text-decoration:underline">Pathways/Networks</span><br />
+											<span style="color:gray;text-decoration:underline">Pathways/Networks (future feature)</span><br />
 											
 											</p>
 									</td>

@@ -132,17 +132,18 @@
 	</div>
 </div>
 
+
 <span>
+	<g:if test="${search}">
     <g:if test="${ligands?.results}"><br />
 	<div class="title"
      <span style="padding:15px"> Showing <strong>${ligands.offset + 1}</strong> - <strong>${ligands.results.size() + ligands.offset}</strong> of <strong>${ligands.total}</strong></span>
 	</div>
-    </g:if>
-    <g:else>
-    &nbsp;
-    </g:else>
   </span>
 <div>
+
+
+
 <g:if test="${ligands?.results}">
 	<table class="resultTable">
 	<g:each in="${ligands.results}" var="molecule">
@@ -234,6 +235,7 @@
 	</table>
 </g:if> 
 
+
 <div>
     <div class="paging">
       <g:if test="${ligands?.results}">
@@ -247,3 +249,11 @@
     </div>
   </div>
 </div>
+</g:if>
+<g:else>
+No results found 
+<g:if test="${params.entityName}">
+ for ${params.entityName}
+</g:if>
+</g:else>
+</g:if>

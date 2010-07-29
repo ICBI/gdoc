@@ -38,6 +38,7 @@ class Molecule {
     String chemicalName
 	Date dateCreated
 	Date lastUpdated
+	CollaborationGroup protectionGroup
 	
 	static hasMany = [bindings: MoleculeTarget, structures: Structure]
 	static fetchMode = [bindings: 'eager',structures:'eager']
@@ -81,6 +82,7 @@ class Molecule {
 		alias "molecule"
 	    bindings component: true
 		structures component: true
+		protectionGroup component: true
 		dateCreated index: 'no'
 		lastUpdated index: 'no'
 		refractivity index: 'no'

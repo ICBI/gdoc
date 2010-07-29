@@ -171,7 +171,7 @@
 	
 		</g:if>
 		<g:else><br /><br />
-		No bindings found
+		No bindings found for this target, or user does not have access to the associated compound. 
 		</g:else>
 		</body>
 		
