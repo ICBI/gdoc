@@ -516,7 +516,8 @@ class UserListController {
 				userList.author = author 
 				request.getFile("file").inputStream.eachLine { value ->
 					//log.debug value
-					userList.addToListItems(new UserListItem(value:value.trim()))
+					if(value.trim())
+						userList.addToListItems(new UserListItem(value:value.trim()))
 				}
 	        	if(!userList.hasErrors() && userList.save()) {
 
