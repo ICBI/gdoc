@@ -146,7 +146,7 @@
 								</tr>
 								<tr style="color:#336699" valign="top">
 									<td>
-										<p style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:15px">My GDOC</p>
+										<p style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:15px">My G-DOC</p>
 										
 										<img src="${createLinkTo(dir:'images',file:'myGdoc.png')}" border="0" />
 									</td>
