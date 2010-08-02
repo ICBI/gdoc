@@ -75,9 +75,11 @@
 					<div id="${userListInstance.id}_title" style="border:0px solid black;height: 20px;">
 					<div style="border:0px solid black;width:40%;float:left">	
 	<span class="${userListInstance.id}_name" id="${userListInstance.id}_name" style="font-weight:bold;padding-left:5px;padding-right:5px">${fieldValue(bean:userListInstance, field:'name')} </span>
+	<span>(${userListInstance.listItems.size()} items)</span>
 						
 							
 					</div>
+					<g:if test="${userListInstance.listItems.size() <= 100}">
 					<div id="${userListInstance.id}_toggleContainer" style="border:0px solid black;float:left; vertical-align: top">
 						<div id="${userListInstance.id}_tog" style="border:0px solid black;height: 20px; cursor: pointer;"
 						onclick="toggle('${userListInstance.id}');">
@@ -93,6 +95,10 @@
 						<span id="${userListInstance.id}_toggle_pageSpinner" style="visibility:hidden;display:inline"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 						</div>
 					</div>
+					</g:if>
+					<g:else>
+						* List exceeds 100 items *
+					</g:else>
 					<span style="float:right">
 						
 						<g:formatDate date="${userListInstance.dateCreated}" format="h:mm M/dd/yyyy"/>

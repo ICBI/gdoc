@@ -7,6 +7,7 @@ class QuickStartService implements ApplicationContextAware{
 	def clinicalService
 	def biospecimenService
 	def htDataService
+	def outcomeDataService
 	def jdbcTemplate 
 	def applicationContext
 	
@@ -163,7 +164,7 @@ class QuickStartService implements ApplicationContextAware{
 		return result
 	}
 	
-	def queryOutcomes(outcomeParams, study, dataTypes){
+	def queryOutcomes(outcomeParams,studiesToSearch, dataAvailable){
 		/** @TODO: refactor, along with SemanticHelper to either 
 		1)run canned query (or access view) and utilze existing clinicalService to add criteria onto precanned outcome of patientIds
 		2)JUST refactor SemanticHelper to resolve come outcomes and outcomesTimes 
@@ -171,7 +172,57 @@ class QuickStartService implements ApplicationContextAware{
 		def outcomeCriteria = []
 		def outcomeType
 		def results = []
-		def result = [:]
+		
+		def lessResults = Outcome.findAllByOutcomeType(outcomeParams[0],[sort:'studyName'])
+		def moreResults = Outcome.findAllByOutcomeType(outcomeParams[1],[sort:'studyName'])
+		
+		studiesToSearch.each{ study ->
+			def result = [:]
+			result["study"] = study.shortName
+			def da = dataAvailable.find{ studyDa ->
+				studyDa['STUDY'] == study.shortName
+			}
+			result["dataBreakdown"] = da
+			def patientsLess = []
+			def outcomeLessLabel = "No label"
+			def outcomeMoreLabel = "No label"
+			def patientsMore = []
+			if(lessResults){
+				outcomeLessLabel = lessResults[0].outcomeDescription
+				def outcomesL = []
+				outcomesL = lessResults.findAll{ outcome ->
+					study.shortName == outcome.studyName
+				}
+				patientsLess = outcomesL.collect{it.patientId}
+			}
+			
+			if(moreResults){
+				outcomeMoreLabel = moreResults[0].outcomeDescription 
+				def outcomesM = []
+				outcomesM = moreResults.findAll{ outcome ->
+					study.shortName == outcome.studyName
+				}
+				patientsMore = outcomesM.collect{it.patientId}
+			}
+			
+			if(patientsLess || patientsMore){
+				result["patients_lessThan"]	= patientsLess
+				result["patients_lessThanSize"] = patientsLess.size().toString()
+				result["patients_lessThanLabel"] = " " + patientsLess.size().toString() + " patients :" + outcomeLessLabel
+
+				result["patients_moreThan"] = patientsMore
+				result["patients_moreThanSize"] = patientsMore.size().toString()
+				result["patients_moreThanLabel"] = " " + patientsMore.size().toString() + " patients :" + outcomeMoreLabel
+				results << result
+			}
+			else{
+				log.debug("no data available for $study.shortName")
+			}
+			
+		}
+	
+		/**
+		REFACTORED to use canned queries
 		outcomeCriteria = SemanticHelper.resolveAttributesForStudy(outcomeParams,study.shortName)
 		if(outcomeCriteria){
 			//create my 2 groups of outcome
@@ -238,8 +289,8 @@ class QuickStartService implements ApplicationContextAware{
 		}else {
 			log.debug "no semantic match of $outcomeParams.outcome for $study.shortName"
 		}
-		
-		return result
+		**/
+		return results
 	}
 	
 }

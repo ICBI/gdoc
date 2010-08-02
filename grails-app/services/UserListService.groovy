@@ -137,7 +137,7 @@ def drugDiscoveryService
 					strategy(items, list)
             }
 			if(list.tags){
-				list.tags.tokenize(" ").each{ tag ->
+				list.tags.each{ tag ->
 					unitedTags << tag
 				}
 			}
@@ -346,7 +346,7 @@ def gatherTags(ids){
 	ids.each{
 	      UserList list = UserList.get(it);
 			if(list.tags){
-				list.tags.tokenize(" ").each{ tag ->
+				list.tags.each{ tag ->
 					unitedTags << tag
 				}
 			}

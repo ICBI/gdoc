@@ -338,4 +338,16 @@ class SemanticHelper {
 		}
 		return labels
 	}
+	
+	static def determineOutcomeQuery(attribute){
+		def labels = []
+		switch (attribute) {
+			case 'Relapse': labels = ["Relapse","No Relapse"]
+							break;
+			case 'Mortality': labels = ["Mortality","No Mortality"]
+							  break;
+			default: labels = ["No outcome defined", "No outcome defined"]
+		}
+		return labels
+	}
 }

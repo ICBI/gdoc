@@ -46,14 +46,14 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 
 	
 
-	void testQueryForOutcomes() { /**
+	void testQueryForOutcomes() { 
 		def currStudy = StudyDataSource.findByShortName("CLARKE-LIU")
 		def currStudy2 = StudyDataSource.findByShortName("CRC_PILOT")
 		def currStudy3 = StudyDataSource.findByShortName("LOI")
 		def currStudy4 = StudyDataSource.findByShortName("SOTIRIOU")
 		def currStudy5 = StudyDataSource.findByShortName("DESMEDT")
 		def currStudy6 = StudyDataSource.findByShortName("WANG")
-		def currStudy7 = StudyDataSource.findByShortName("ZHOU")
+		//def currStudy7 = StudyDataSource.findByShortName("ZHOU")
 		def currStudy8 = StudyDataSource.findByShortName("ZHANG")
 		//StudyContext.setStudy("EDIN")
 		session.study = currStudy
@@ -64,7 +64,7 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 	   	session.myStudies << currStudy4
 		session.myStudies << currStudy5
 		session.myStudies << currStudy6
-		session.myStudies << currStudy7
+		//session.myStudies << currStudy7
 		session.myStudies << currStudy8
 		//session.dataTypes = AttributeType.findAll().sort { it.longName }
 		params = ['outcome':'Relapse','diseases':['BREAST']]
@@ -73,7 +73,7 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 		controller.biospecimenService = biospecimenService
 		controller.quickStartService = quickStartService
 		def results = controller.quickSearch(params);
-		println results **/
+		println results
 	}
 		
 }
