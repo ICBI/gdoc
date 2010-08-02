@@ -15,6 +15,15 @@ class AnnotationService {
 		return reporterNames
 	}
 	
+	def findReportersForGeneAndFile(gene, file) {
+		def platform = findPlatformForFile(file)
+		def platformReporters = findReportersByPlatform(platform)
+		def geneReporters = findReportersForGene(gene)
+		platformReporters.retainAll(geneReporters)
+		log.debug "GOT REPORTERS FOR PLATFORM $platformReporters"
+		return platformReporters
+	}
+	
 	def findGeneForReporter(reporterId) {
 		def reporter = Reporter.findByName(reporterId)
 		if(reporter)
@@ -57,14 +66,14 @@ class AnnotationService {
 	}
 	
 	def findReportersByPlatform(platformName) {
-		def criteria = Reporter.createCriteria()
+		def criteria = ArrayDesign.createCriteria()
 		def reporters = criteria {
 			projections {
-				property('name')
+				reporters {
+					property('name')
+				}
 			}
-			arrayDesigns {
-				eq("platform", platformName)
-			}
+			eq("platform", platformName)
 		}
 		return reporters
 	}
@@ -75,5 +84,18 @@ class AnnotationService {
 			eq("geneSymbol", gene.toUpperCase())
 		}
 		return reporters
+	}
+	
+	def findPlatformForFile(fileName) {
+		def criteria = Sample.createCriteria()
+		def platform = criteria {
+			projections {
+				design {
+					distinct('platform')
+				}
+			}
+			eq("file", fileName)
+		}
+		return platform[0]
 	}
 }

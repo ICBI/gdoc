@@ -49,7 +49,7 @@ class AnalysisService {
 			def sampleGroup = new SampleGroup()
 			sampleGroup.addAll(idService.sampleIdsForFile(cmd.dataFile))
 			def reporterGroup = new ReporterGroup()
-			reporterGroup.addAll(annotationService.findReportersForGene(cmd.geneName))
+			reporterGroup.addAll(annotationService.findReportersForGeneAndFile(cmd.geneName, cmd.dataFile))
 			request.reporters = reporterGroup
 			request.samples = sampleGroup
 			return request
@@ -67,7 +67,7 @@ class AnalysisService {
 			}
 			sampleGroup.addAll(allIds)
 			def reporterGroup = new ReporterGroup()
-			reporterGroup.addAll(annotationService.findReportersForGene(cmd.geneName))
+			reporterGroup.addAll(annotationService.findReportersForGeneAndFile(cmd.geneName, cmd.dataFile))
 			request.reporters = reporterGroup
 			request.samples = sampleGroup
 			return request

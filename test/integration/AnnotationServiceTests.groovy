@@ -9,4 +9,10 @@ class AnnotationServiceTests extends GroovyTestCase {
 			
 		}
     }
+
+	void testReportersForGeneAndPlatform() {
+		StudyContext.setStudy('WANG')
+		def reporters = annotationService.findReportersForGeneAndFile('EGFR', 'Wang_binary.Rda')
+		println reporters
+	}
 }

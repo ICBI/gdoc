@@ -1,5 +1,6 @@
 <jq:plugin name="flydisk" />
 <jq:plugin name="ui"/>
+<g:javascript src="dataSet.js"/>
 <script type="text/javascript">
 var geneExpression = false;
 $(document).ready(function(){
@@ -190,7 +191,28 @@ if(geneExpression) {
 											</div>
 											<g:hiddenField name="study" value="${session.study.schemaName}" />
 										</td>
-									</tr>			
+									</tr>
+									<tr>
+										<td>Select Datatype:</td>
+										<td colspan="2">
+											<g:select name="dataSetType" 
+													noSelection="${['':'Select Data Type']}"
+													from="${session.dataSetType}"/>
+										</td>
+									</tr>
+									<tr>
+										<td>Select Dataset:</td>
+										<td colspan="2">
+											<div id="dataDiv">
+											<g:select name="dataFile" 
+													noSelection="${['':'Select Data Type First']}"
+													optionKey="name" optionValue="${{it.description}}"/>
+											</div>
+											<div class="errorDetail">
+												<g:renderErrors bean="${flash.cmd?.errors}" field="dataFile" />
+											</div>	
+										</td>
+									</td>			
 									<tr>
 										<td style="align:right" colspan="2">
 											<g:submitButton name="search" value="Plot" onclick="showSpinner();"/>

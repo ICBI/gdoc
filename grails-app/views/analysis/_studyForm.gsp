@@ -55,7 +55,7 @@
 			value="'NONE'" optionKey="key" optionValue="value"/>
 	<br/>
 	<br/>
-	Data-Type<br />
+	Data-Type:<br />
 	<g:select name="dataSetType" 
 			noSelection="${['':'Select Data Type']}"
 			from="${session.dataSetType}"/>

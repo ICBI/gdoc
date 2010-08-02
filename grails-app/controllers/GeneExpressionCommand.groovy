@@ -15,7 +15,7 @@ class GeneExpressionCommand {
 			return true
 		})
 		geneName(blank:false, validator: {val, obj ->
-			def reporters = obj.annotationService.findReportersForGene(val)
+			def reporters = obj.annotationService.findReportersForGeneAndFile(val, obj.dataFile)
 			if(!reporters) {
 				return "custom.gene"
 			}

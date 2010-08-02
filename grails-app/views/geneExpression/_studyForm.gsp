@@ -1,5 +1,6 @@
 <g:if test="${session.study}">
 <jq:plugin name="flydisk" />
+<g:javascript src="dataSet.js"/>
 <g:javascript>
 $(document).ready(function() {
 
@@ -66,9 +67,24 @@ $(document).ready(function() {
 				Gene Name	
 			</div>
 			<br/>
-				<g:validationInput name="geneName"/>
-				<br/>
-				<br/>
+			<g:validationInput name="geneName"/>
+			<br/>
+			Data-Type:<br />
+			<g:select name="dataSetType" 
+					noSelection="${['':'Select Data Type']}"
+					from="${session.dataSetType}"/>
+			<br/><br />
+			Dataset:
+			<br/>
+			<div id="dataDiv">
+			<g:select name="dataFile" 
+					noSelection="${['':'Select Data Type First']}"
+					optionKey="name" optionValue="${{it.description}}"/>
+			</div>
+			<div class="errorDetail">
+				<g:renderErrors bean="${flash.cmd?.errors}" field="dataFile" />
+			</div>
+			<br/>
 		</div>
 	<br/>
 	<g:hiddenField name="study" value="${session.study.schemaName}" />

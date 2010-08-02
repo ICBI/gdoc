@@ -683,7 +683,7 @@ WITH READ ONLY;
 
 CREATE OR REPLACE VIEW ${projectName}.HT_FILE_CONTENTS
 AS 
-SELECT   ROWNUM id, f.name file_name, b.biospecimen_id biospecimen_id, b.name biospecimen_name, d.ARRAY_TYPE design_type
+SELECT   ROWNUM id, f.name file_name, b.biospecimen_id biospecimen_id, b.name biospecimen_name, d.ARRAY_TYPE design_type, d.htarray_design_id design_id
      FROM   ${projectName}.ht_file_prior p,
             ${projectName}.ht_file f,
             ${projectName}.ht_run_biospecimen r,
