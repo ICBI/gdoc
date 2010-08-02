@@ -41,7 +41,7 @@ class QuickStartController {
 			if(session.dataAvailability){
 				da = session.dataAvailability['dataAvailability']
 			}else{
-				def allda = quickStartService.getMyDataAvailability(study)
+				def allda = quickStartService.getMyDataAvailability(studiesToSearch)
 				if(allda){
 					da = allda['dataAvailability']
 				}
