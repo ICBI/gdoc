@@ -22,6 +22,13 @@ target(main: "Load Mass Spec Data") {
 		println "Cannot find mass spec metadata file at dataImport/${projectName}/${projectName}_ms_biospecimen_mapping.txt.  Please check the study name and try again."
 		return
 	}
+	
+	def peakFile = new File("dataImport/${projectName}/${projectName}_ms_peak_list.txt")
+	
+	if(!peakFile.exists()) {
+		println "Cannot find peak file at dataImport/${projectName}/${projectName}_ms_peak_list.txt.  Please check the study name and try again."
+		return
+	}
 	def dataSourceClass = classLoader.loadClass('StudyDataSource')
 	def study = dataSourceClass.findBySchemaName(projectName)
 	while(!study) {
@@ -35,7 +42,7 @@ target(main: "Load Mass Spec Data") {
 	def trans = session.beginTransaction()
 	loadRawFiles(projectName, mappingFile)
 	
-	loadPeaks(projectName, null)
+	loadPeaks(projectName, peakFile)
 	trans.commit()
 	
 	println "Mass spec data loading for $projectName was successful"
@@ -104,7 +111,35 @@ def loadNormFile(schemaName, fileName, description, priorFiles) {
 }
 
 def loadPeaks(projectName, mappingFile) {
+	def htDataService =  appCtx.getBean('htDataService')
 	
+	def rdaFile = null
+	def allPeaks = []
+	mappingFile.eachLine { line, number ->
+		if(number != 1) {
+			def data = line.split('\t')
+			if(!rdaFile || rdaFile != data[0]) {
+				if(allPeaks.size > 0) {
+					htDataService.loadPeaks(rdaFile, allPeaks)
+					allPeaks = []
+				}
+				rdaFile = data[0]
+			}
+			def params = [:]
+			params.schemaName = projectName
+			params.name = data[1]
+			params.retention = data[2]
+			params.mz = data[3]
+			params.insertUser = "acs224"
+			params.insertMethod = "load-ms-data"
+			params.insertDate = new Date()
+			allPeaks << params
+		}
+	}
+	if(allPeaks.size > 0) {
+		htDataService.loadPeaks(rdaFile, allPeaks)
+		allPeaks = []
+	}
 }
  
 setDefaultTarget(main)

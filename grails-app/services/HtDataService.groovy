@@ -135,4 +135,18 @@ class HtDataService {
 		return fileHash
 	}
 	
+	def loadPeaks(rdaFile, allPeaks) {
+		allPeaks.each {
+			StudyContext.setStudy(it.schemaName)
+			def file = MicroarrayFile.findByName(rdaFile)
+			if(!file){
+				println "File $rdaFile has not been loaded.  Please check the mapping files."
+				return
+			}
+			def peak = new MSPeak(it)
+			peak.file = file
+			if(!peak.save())
+				log.debug peak.errors
+		}
+	}
 }

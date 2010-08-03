@@ -12,10 +12,10 @@ class MicroarrayFile {
 		fileType column: 'file_type_id'
 		fileFormat column: 'file_format_id'
 		priorFiles joinTable:[name:'__STUDY_SCHEMA__.HT_FILE_PRIOR', key:'HT_FILE_ID', column:'PRIOR_HT_FILE_ID']
-		
 	}
-	static hasMany   = [ priorFiles: MicroarrayFile ]
-    
+	static hasMany   = [ priorFiles: MicroarrayFile, peaks: MSPeak ]
+	static mappedBy = [ peaks: "file"]
+
 	String name
 	String description
 	String relativePath
