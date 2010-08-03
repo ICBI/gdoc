@@ -3,7 +3,8 @@ $(document).ready(function() {
 	$("#dataSetType").change(function() {
 		loadDataSets(this.value)
 	});
-	loadDataSets($('#dataSetType').val());
+	if($('#dataSetType').val())
+		loadDataSets($('#dataSetType').val());
 
 });
 
