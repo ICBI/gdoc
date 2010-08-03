@@ -216,15 +216,11 @@ class KmController {
 		
 		session.selectedLists.each { list ->
 			def samples = []
-			def tempList
-			if(list instanceof UserList){
+			def tempList = UserList.findByName(list.name)
+			if(!tempList){
 				log.debug "LIST: ${list.name}"
 				
 				tempList = list
-			}else{
-				log.debug "LIST2: ${list}"
-				
-			    tempList = UserList.findAllByName(list.name)
 			}
 			log.debug "TEMPLIST $tempList"
 			if(cmd instanceof KmCommand){
