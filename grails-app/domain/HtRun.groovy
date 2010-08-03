@@ -12,7 +12,7 @@ class HtRun {
 	}
     
 	String name
-	HtDesign design
+	Design design
 	MicroarrayFile rawFile
 	String insertUser
 	String insertMethod

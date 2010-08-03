@@ -13,26 +13,14 @@ class HtDataService {
 	private static def LINK_BIOSPECIMEN_RUN = 'insert into ${schemaName}.HT_RUN_BIOSPECIMEN(HT_RUN_BIOSPECIMEN_ID, BIOSPECIMEN_ID, HT_RUN_ID) values (${schemaName}.HT_RUN_BIOSPECIMEN_SEQUENCE.nextval, ${biospecimenId}, ${runId})'
     def loadHtFile(params, priorFiles) {
 	
-/*		def engine = new groovy.text.SimpleTemplateEngine() 
-		def fileTypeTemplate = engine.createTemplate(FILE_TYPE_SELECT)
-		def fileTypeQuery = fileTypeTemplate.make(params)
-		def fileTypeId = jdbcTemplate.queryForLong(fileTypeQuery.toString())
-		params['fileTypeId'] = fileTypeId
-		
-		def fileFormatTemplate = engine.createTemplate(FILE_FORMAT_SELECT)
-		def fileFormatQuery = fileFormatTemplate.make(params)
-		def fileFormatId = jdbcTemplate.queryForLong(fileFormatQuery.toString())
-		params['fileFormatId'] = fileFormatId
-		
-		def template = engine.createTemplate(HT_FILE_INSERT) 
-		Writable writable = template.make(params)
-		jdbcTemplate.execute(writable.toString())*/
 		StudyContext.setStudy(params.schemaName)
 		def fileType = FileType.findByName(params.fileType)
 		def fileFormat = FileFormat.findByName(params.fileFormat)
 		def file = new MicroarrayFile(params)
 		file.fileType = fileType
 		file.fileFormat = fileFormat
+		if(params.fileName)
+			file.name = params.fileName
 		if(priorFiles)
 			file.priorFiles = priorFiles
 		if(!file.save())
@@ -41,7 +29,7 @@ class HtDataService {
 	}
 	
 	def loadHtRun(params, file) {
-		def design = HtDesign.findByPlatform(params.design)
+		def design = Design.findByPlatform(params.design)
 		if(!design) {
 			throw new Exception("HtDesign cannot be null")
 		}
@@ -49,6 +37,7 @@ class HtDataService {
 		def run = new HtRun(params)
 		run.design = design
 		run.rawFile = file
+		run.name = params.fileName
 		if(!run.save()) 
 			log.debug run.errors
 		return run
@@ -58,7 +47,7 @@ class HtDataService {
 		def files = []
 		priorFiles.each {
 			StudyContext.setStudy(it.schemaName)
-			def file = MicroarrayFile.findByName(it.name)
+			def file = MicroarrayFile.findByName(it.fileName)
 			if(!file){
 			  file = loadHtFile(it, null)
 			}else{
@@ -68,7 +57,7 @@ class HtDataService {
 			log.debug "get biospecimen to link with run"
 			def studyPatient = StudyPatient.findByDataSourceInternalId(it.patientId)
 			def patient  = Patient.get(studyPatient.id)
-			def biospecimen = Biospecimen.findByPatient(patient)
+			def biospecimen = Biospecimen.findByPatientAndName(patient, it.name)
 			if(biospecimen){
 				log.debug "found biospecimen, now link"
 			}else{

@@ -7,7 +7,7 @@ grailsHome = Ant.antProject.properties."env.GRAILS_HOME"
 includeTargets << grailsScript("Bootstrap")
 includeTargets << grailsScript("Init")
 
-target(main: "Load High Throughput Data") {
+target(main: "Load Mass Spec Data") {
 	depends(clean, compile, classpath)
 	
 	// Load up grails contexts to be able to use GORM
@@ -16,16 +16,16 @@ target(main: "Load High Throughput Data") {
 	
 	println "Please specify a project name:"
 	def projectName = new InputStreamReader(System.in).readLine().toUpperCase()
-	def mappingFile = new File("dataImport/${projectName}/${projectName}_biospecimen_mapping.txt")
+	def mappingFile = new File("dataImport/${projectName}/${projectName}_ms_biospecimen_mapping.txt")
 	
 	if(!mappingFile.exists()) {
-		println "Cannot find high throughput metadata file at dataImport/${projectName}/${projectName}_biospecimen_mapping.txt.  Please check the study name and try again."
+		println "Cannot find mass spec metadata file at dataImport/${projectName}/${projectName}_ms_biospecimen_mapping.txt.  Please check the study name and try again."
 		return
 	}
 	def dataSourceClass = classLoader.loadClass('StudyDataSource')
 	def study = dataSourceClass.findBySchemaName(projectName)
 	while(!study) {
-		println "Project with name: $projectName does not exist.  Unable to load high throughput data."
+		println "Project with name: $projectName does not exist.  Unable to load mass spec data."
 		return
 	}
 	
@@ -34,9 +34,11 @@ target(main: "Load High Throughput Data") {
 	def session = sessionFactory.getCurrentSession()
 	def trans = session.beginTransaction()
 	loadRawFiles(projectName, mappingFile)
+	
+	loadPeaks(projectName, null)
 	trans.commit()
 	
-	println "High throughput data loading for $projectName was successful"
+	println "Mass spec data loading for $projectName was successful"
 }
 
 def loadRawFiles(schemaName, mappingFile) {
@@ -63,14 +65,14 @@ def loadRawFiles(schemaName, mappingFile) {
 			params.design = data[3]
 			params.relativePath = "RAW"
 			params.fileSize = 0
-			params.fileType = "CEL"
-			params.fileFormat = "BINARY"
+			params.fileType = "LCMSMS_NORMALIZED"
+			params.fileFormat = "TEXT"
 			params.dataLevel = "RAW"
 			params.description = ""
 			params.insertUser = "acs224"
-			params.insertMethod = "load-ht-data"
+			params.insertMethod = "load-ms-data"
 			params.insertDate = new Date()
-			params.designTable = "HTARRAY_DESIGN"
+			params.designTable = "MS_DESIGN"
 			allFiles << params
 		}
 	}
@@ -92,13 +94,17 @@ def loadNormFile(schemaName, fileName, description, priorFiles) {
 	norm.description = description
 	norm.relativePath = "NORMALIZED"
 	norm.fileSize = 10000
-	norm.fileType = "PLIER_NORMALIZED"
+	norm.fileType = "LCMSMS_NORMALIZED"
 	norm.fileFormat = "RBINARY"
 	norm.dataLevel = "NORMALIZED"
 	norm.insertUser = "acs224"
-	norm.insertMethod = "load-ht-data"
+	norm.insertMethod = "load-ms-data"
 	norm.insertDate = new Date()
 	return htDataService.loadNormalizedFileWithPriors(priorFiles, norm)
 }
 
+def loadPeaks(projectName, mappingFile) {
+	
+}
+ 
 setDefaultTarget(main)
