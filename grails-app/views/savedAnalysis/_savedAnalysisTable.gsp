@@ -13,10 +13,12 @@
 		<g:if test="${savedAnalysis.size()>0}">
 <div class="notificationContainer" style="height: 10px">
 		<div style="float: left;">
+			
 			<g:if test="${session.userId.equals(analysis.author.loginName)}">
 			<div style="border:0px solid black;width:2%;float:left;padding-right:20px"><g:checkBox class="the_checkbox" name="deleteAnalyses"
 				 value="${analysis.id}" checked="false"/></div>
 			</g:if>
+			<g:if test="${analysis.status == 'Complete'}">
 			<g:if test="${analysis.type == AnalysisType.CLASS_COMPARISON}">
 				<g:link controller="analysis" action="view"  id="${analysis.id}">${analysis.type}</g:link>
 			</g:if>
@@ -33,19 +35,15 @@
 					<g:link controller="pca" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>			
 			<g:elseif test="${analysis.type == AnalysisType.HEATMAP}">
-			    <%--span style="border:1px solid black" class="applet">
-				<APPLET CODE="edu/stanford/genetics/treeview/applet/ButtonApplet.class"
-				  archive="/gdoc/applets/treeview/TreeViewApplet.jar,/gdoc/applets/treeview/nanoxml-2.2.2.jar,/gdoc/applets/treeview/Dendrogram.jar" width=75 height=20
-				    alt="Your browser understands the &lt;APPLET&gt; tag but isn't running the applet, for some reason.">
-				    Your browser is completely ignoring the &lt;APPLET&gt; tag!
-				    <param name="cdtFile" value="${grailsApplication.config.grails.serverURL}/gdoc/heatMap/file?id=${analysis.id}&name=cluster.cdt">
-				    <param name="cdtName" value="${grailsApplication.config.grails.serverURL}/gdoc/heatMap/file?id=${analysis.id}name=cluster">
-					<param name="plugins" value="edu.stanford.genetics.treeview.plugin.dendroview.DendrogramFactory">
-				  </applet>
-				</span--%>
 				<g:link controller="heatMap" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>
 				&nbsp;&nbsp;<span><g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/></span>
+			</g:if>
+			<g:elseif test="${analysis.status == 'Error'}">
+				<div style="float: left;">${analysis.type} (<g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
+				</div>
+				<div class="status" style="float: right;text-decoration:underline;cursor:pointer" title='${analysis.analysis.item.errorMessage}'>${analysis.status.toUpperCase()}</div>
+			</g:elseif>
 			</div>
 				<g:if test="${session.userId.equals(analysis.author.loginName)}">
 				<div style="border:0px solid black;width:20%;float:right">	
@@ -56,7 +54,6 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 				<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'delete', id:analysis.id, update:'analysisContainer')}return false;}">
 				<img alt="Delete Analysis" title="Delete Analysis" style="vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>
 				
-
 				</div>
 				</g:if>
 				<g:else>
@@ -85,6 +82,7 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 		
 		
 	</div>
+	
 	<br/>
 	</g:if>
 	</td>

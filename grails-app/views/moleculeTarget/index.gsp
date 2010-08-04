@@ -108,6 +108,7 @@
 				msketch_end();
 
 				</script--%>
+				<span class="applet">
 				<applet code="org.openscience.jchempaint.applet.JChemPaintEditorApplet" archive="/gdoc/applets/jchemPaint/jchempaint-applet-core.jar"
 						name="Editor"
 				        width="500" height="400">
@@ -120,6 +121,7 @@
 				<PARAM NAME="boxborder" VALUE="false">
 				<PARAM NAME="centerimage" VALUE="true">
 				</applet>
+				</span>
 				<br><br>
 				
 				<g:form name="MolForm" url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
@@ -152,6 +154,9 @@
 		
 		<g:set var="ligandImg" value="${moleculePaths.find{it.contains('.png')}}" />
 	<tr><td style="border-bottom:1px solid orange" colspan="2"><div style="font-size:1em;"><strong>${molecule.name}</strong></div></td></tr>
+	<g:if test="${molecule.protectionGroup}">
+		<tr><td colspan="2"><div style="font-size:.9em;">This compound is accessible to ${molecule.protectionGroup.name}</div></td></tr>
+	</g:if>	
 	<tr>
 	
 		<td valign="top" style="width:40%;padding-left:20px">
@@ -223,6 +228,7 @@
 				<g:else>
 					No targets currently found for this compound
 				</g:else>
+				
 			</div>
 		</td>
 		<td style="text-align:right">

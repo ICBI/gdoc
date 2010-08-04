@@ -15,13 +15,15 @@ class MoleculeTargetController {
 			search = true;
 			ligands = chainModel["ligands"]
 			if(ligands.results){
-				//log.debug "results found, filterby security group"
+				ligands.results = Molecule.getAll(ligands.results.collect{it.id})
+				log.debug "results found, $ligands.results.size()"
 				def filteredMols = []
 				filteredMols = filterLigands(ligands.results)
 				log.debug "filtered: $filteredMols"
 				if(filteredMols){
-					ligands.total = filteredMols.size()
+					//ligands.total = filteredMols.size()
 					ligands.results = Molecule.getAll(filteredMols.collect{it.id})
+					log.debug "my new results: $ligands.results"
 				}
 				else{
 					ligands.results = []
@@ -34,6 +36,7 @@ class MoleculeTargetController {
 	}
 	
 	def filterLigands(ligandResults){
+		log.debug "unfiltered: $ligandResults"
 		def user = GDOCUser.findByLoginName(session.userId)
 		def userMemberships = user.memberships
 		def collabGroups = []
@@ -47,6 +50,7 @@ class MoleculeTargetController {
 					results << it
 				}
 		  }
+		log.debug "filtered: $results"
 		return results
 	}
 	

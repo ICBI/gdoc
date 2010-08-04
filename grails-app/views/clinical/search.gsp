@@ -27,6 +27,17 @@
 		
 		});
 	} );
+	
+	function showSaveSpinner(show) {
+			if(show == true){
+				$("#saveSpinner").css("visibility","visible");
+				success();
+			}else{
+				$("#saveSpinner").css("visibility","hidden");
+				jQuery('#message').css("display","block");
+				success(); 
+			}
+	}
 	</g:javascript>
 	<g:javascript>
 		var selectedIds = [];
@@ -98,7 +109,7 @@
 					tags.push("clinical");
 					tags.push("patient");
 					var listName = jQuery('#list_name').val();
-					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
+					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
 				}
 			}); 
 		});
@@ -111,10 +122,11 @@
 		}
 		function success() {
 			jQuery('#list_name').val("");
-			jQuery('#message').css("display","block");
 			window.setTimeout(function() {
 			  jQuery('#message').empty().hide();
 			}, 2500);
+			
+		
 		}
 	</g:javascript>
 	<br/>
@@ -137,6 +149,7 @@
 				<span class="bla" id="listAdd">Save Selected
 					</span><br />
 				<span id="message" class="message" style="display:none"></span>
+				<span id="saveSpinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 				</div>
 				</div>
 				</g:if>

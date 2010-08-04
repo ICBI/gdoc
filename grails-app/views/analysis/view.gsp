@@ -29,6 +29,17 @@
 		
 		});
 	} );
+	
+	function showSaveSpinner(show) {
+			if(show == true){
+				$("#saveSpinner").css("visibility","visible");
+				success();
+			}else{
+				$("#saveSpinner").css("visibility","hidden");
+				jQuery('#message').css("display","block");
+				success(); 
+			}
+	}
 	</g:javascript>
 	<jq:plugin name="jqgrid"/>
 	<g:javascript>
@@ -96,7 +107,7 @@
 					var selectedItem = this.title;
 					tags.push(selectedItem);
 					var listName = jQuery('#list_name').val();
-					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onSuccess: 'success()', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
+					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
 				}
 				
 			
@@ -125,7 +136,6 @@
 		
 		function success() {
 			jQuery('#list_name').val("");
-			jQuery('#message').css("display","block");
 			window.setTimeout(function() {
 				jQuery('#message').empty().hide();
 			}, 2500);
@@ -136,16 +146,17 @@
 	
 	<div id="centerContent">
 		<br/>
-			
+			<g:render template="analysis_details" bean="${session.analysis}" />
+			<br/>
 			<g:if test="${!session.results || (session.results.resultEntries.size() == 0)}">
-				No results found.
+				<br /><br />
+				No results found for this analysis. <br /><br />
 			</g:if>
 			<g:else>
 			
 				
 				<g:if test="${session.userId}">
-					<g:render template="analysis_details" bean="${session.analysis}" />
-					<br/>
+
 					<div style="margin:5px 5px 5px 50px;">
 						<span style="vertical-align:5px"> <label for="list_name">List Name:</label>
 							<g:textField name="list_name" size="15"/>
@@ -169,7 +180,7 @@
 							<br/>
 							
 						<span id="message" class="message" style="display:none"></span>
-				
+						<span id="saveSpinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 				</g:if>
 				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0" style="position:absolute; z-index: 1000;"></table>
 				<div id="pager" class="scroll" style="text-align:center;height: 45px"></div>

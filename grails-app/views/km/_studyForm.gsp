@@ -40,6 +40,7 @@ if(geneExpression) {
 </g:javascript>
 
 <g:if test="${session.study}">
+<g:if test="${session.endpoints}">
 <div id="centerContent">
 	<br/>
 	<g:if test="${flash.cmd instanceof KmGeneExpCommand}">
@@ -48,6 +49,7 @@ if(geneExpression) {
 		</g:javascript>
 	</g:if>
 	<div class="tabDiv">
+		
 		<div id="centerTabs" class="tabDiv">
 		    <ul>
 		        <li><a href="#fragment-4"><span>Clinical KM</span></a></li>
@@ -55,6 +57,8 @@ if(geneExpression) {
 		        	<li><a href="#fragment-5"><span>Gene Expression KM</span></a></li>
 						</g:if>
 		    </ul>
+			
+			
 		    <div id="fragment-4">
 		        <g:form name="searchForm" action="search">
 						<div class="clinicalSearch">
@@ -130,14 +134,15 @@ if(geneExpression) {
 					<g:submitButton name="search" value="Plot"/>
 				</g:form>
 		    </div>
-				<g:if test="${session.study.hasGenomicData()}">
+				
 		    	<div id="fragment-5">
+						<g:if test="${session.study.hasGenomicData() && session.dataSetType.contains('GENE EXPRESSION')}">
 						<g:javascript>
-						function showSpinner() {
-							document.getElementById("spinner").style.visibility="visible" 
+						function showGESpinner() {
+							document.getElementById("GEspinner").style.visibility="visible" 
 						}
 						</g:javascript>
-
+					
 						<div id="form">
 								<div class="clinicalSearch">	
 									<g:form name="reporterForm" action="submitGEPlot" url="${[action:'submitGEPlot']}">
@@ -193,7 +198,7 @@ if(geneExpression) {
 										</td>
 									</tr>
 									<tr>
-										<td>Select Datatype:</td>
+										<td>Select Datatype: is</td>
 										<td colspan="2">
 											<g:select name="dataSetType" 
 													noSelection="${['':'Select Data Type']}"
@@ -215,26 +220,40 @@ if(geneExpression) {
 									</td>			
 									<tr>
 										<td style="align:right" colspan="2">
-											<g:submitButton name="search" value="Plot" onclick="showSpinner();"/>
+											<g:submitButton name="search" value="Plot" onclick="showGESpinner();"/>
 										 <input type="reset" name="reset" value="reset" />
 										</td>
 										<td>
-										<span id="spinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/>...performing 				            gene expression analysis</span>
+										<span id="GEspinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/>...performing 				            gene expression analysis</span>
 									</td>
 									</tr>
 									</table>
 
 								</g:form>
 								</div>
+								
+								</g:if>
+								<g:else>
+									No expression data available for ${session.study.shortName}
+								</g:else>
 						</div>
-					</div>
-				</g:if>
-		</div>
+						
+						
+						
+				</div>
+					
+		</div>		
+		
+				
 	</div>
-	
-</div>
-</g:if>
 
+</div>
+
+</g:if>
+<g:else>
+	No Kaplan-Meier endpoint data is available for ${session.study.shortName}
+</g:else>
+</g:if>
 <g:else>
 <p>No study currently selected.</p>
 </g:else>

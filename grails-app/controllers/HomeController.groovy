@@ -60,12 +60,13 @@ class HomeController {
 						//log.debug  "$disease has $key available"
 						def nameAndImage = [:]
 						def image = key.replace(" ","_")+"_icon.gif" 
-						nameAndImage[key] = image
+						def k  = key.replace("_"," ")
+						nameAndImage[k] = image
 						diseaseBreakdown[disease]["availableData"] << nameAndImage
-						if(dataBreakdown[key]){
-							dataBreakdown[key] += 1
+						if(dataBreakdown[k]){
+							dataBreakdown[k] += 1
 						}
-						else dataBreakdown[key] = 1
+						else dataBreakdown[k] = 1
 						totalData << nameAndImage
 					}
 				}

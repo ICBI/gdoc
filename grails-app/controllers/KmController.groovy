@@ -18,6 +18,7 @@ class KmController {
 		if(session.study) {
 			StudyContext.setStudy(session.study.schemaName)
 			session.endpoints = KmAttribute.findAll()
+			
 		}
 		loadPatientLists()
 		//gene exp setup
@@ -168,8 +169,6 @@ class KmController {
 					session.redrawnKM = null
 					redirect(uri:'/km/searchGE')
 				}
-		//	render(template:"/km/geneExpressionFormKM")
-			//redirect(action:'index', params:[ reporters: reporterNames ])
 	}
 	
 	def createTempUserListsForKM(foldChangeGroups){
