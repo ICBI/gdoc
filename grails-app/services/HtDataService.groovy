@@ -128,8 +128,8 @@ class HtDataService {
 		files.each {
 			if(!fileHash[it[1]])
 				fileHash[it[1]] = []
-			if(it[1] == "GENE EXPRESSION")
-				fileHash[it[1]] << MicroarrayFile.findByName(it[0])
+			//if(it[1] == "GENE EXPRESSION")
+			fileHash[it[1]] << MicroarrayFile.findByName(it[0])
 				
 		}
 		return fileHash
