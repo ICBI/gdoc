@@ -1,4 +1,5 @@
 import grails.converters.*
+import org.apache.commons.math.stat.descriptive.rank.Median
 
 @Mixin(ControllerMixin)
 class GeneExpressionController {
@@ -62,11 +63,12 @@ class GeneExpressionController {
 			sampleReporter[data.name] = [:]
 			data.dataPoints.each { point ->
 				log.debug "POINT: " +  point.id + " : " + point.x
-				sampleReporter[data.name][point.id] = Math.pow(2, point.x)
+				sampleReporter[data.name][point.id] = point.x
 				log.debug "REPORTER: " +  sampleReporter[data.name]
 			}
 		}
 		log.debug session.results.query.groups
+		def median = new Median()
 		session.results.query.groups.each { group ->
 			def samples = idService.samplesForListName(group)
 			log.debug samples
@@ -78,9 +80,9 @@ class GeneExpressionController {
 				samples.each { sample ->
 					valueHash[key] << sampleReporter[key][sample]
 				}
-				log.debug valueHash[key]
-				if(valueHash[key])
-					valueHash[key] = valueHash[key].sum() / valueHash[key].size()
+				if(valueHash[key]) {
+					valueHash[key] = median.evaluate((Double[])valueHash[key].toArray())
+				}
 				else 
 					valueHash[key] = 0
 			}
