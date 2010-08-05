@@ -67,7 +67,7 @@ class StudyDataSourceController {
 			log.debug "user interested in $params.disease, grab all studies that have data for $params.disease"
 			myStudies = session.myStudies.findAll{it.cancerSite == params.disease}
 			myStudies.each{
-				if(it.shortName!="DRUG"){7
+				if(it.shortName!="DRUG"){
 					def studies = [:]
 					studies["studyName"] = it.shortName
 					studies["studyId"] = it.id
