@@ -17,11 +17,11 @@
 			<g:javascript>
 			function showToolsSpinner(show) {
 				if(show == true){
-					$("#message").css("display","block");
 					$("#toolSpinner").css("visibility","visible");
 					cleanup();
 				}else{
 					$("#toolSpinner").css("visibility","hidden");
+					$("#message").css("display","block");
 					cleanup(); 
 				}
 			}
@@ -76,14 +76,16 @@
 		</g:panel>	
 	</td>
 	<td valign="top">
+	
 	<g:panel id="myVennPanel" title="Save intersection as list?" styleClass="prefs" panelColor="userLogPanelTitle" contentClass="myPanelContent">
 	<g:formRemote name="vennIntersectForm" update="message" onLoading="showToolsSpinner(true)"
-	    onComplete="showToolsSpinner(false)" action="saveFromQuery" url="${[action:'saveListFromExistingLists']}">
+	    onComplete="showToolsSpinner(false)" url="${[action:'saveListFromExistingLists']}">
 	<span>List Name: <g:textField name="name" /></span><br />
 	<g:hiddenField name="author.username" value="${session.userId}" />
 	<g:hiddenField name="ids" value="${intersectedIds.allCircles.items.flatten()}" />
+	<g:hiddenField name="studies" value="${intersectedIds.allCircles.studies.flatten()}" />
 	<g:hiddenField name="tags" value="${tags}" />
-	<g:actionSubmit value="create list"  action="saveFromQuery" />
+	<g:actionSubmit value="create list" />
 	</g:formRemote>	
 	
 	<span id="toolSpinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>

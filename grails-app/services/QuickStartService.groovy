@@ -173,8 +173,8 @@ class QuickStartService implements ApplicationContextAware{
 		def outcomeType
 		def results = []
 		
-		def lessResults = Outcome.findAllByOutcomeType(outcomeParams[0],[sort:'studyName'])
-		def moreResults = Outcome.findAllByOutcomeType(outcomeParams[1],[sort:'studyName'])
+		def lessResults = Outcome.findAllByOutcomeType(outcomeParams[0])
+		def moreResults = Outcome.findAllByOutcomeType(outcomeParams[1])
 		
 		studiesToSearch.each{ study ->
 			def result = [:]
@@ -191,7 +191,7 @@ class QuickStartService implements ApplicationContextAware{
 				outcomeLessLabel = lessResults[0].outcomeDescription
 				def outcomesL = []
 				outcomesL = lessResults.findAll{ outcome ->
-					study.shortName == outcome.studyName
+					study.shortName == outcome.studyDataSource.shortName
 				}
 				patientsLess = outcomesL.collect{it.patientId}
 			}
@@ -200,7 +200,7 @@ class QuickStartService implements ApplicationContextAware{
 				outcomeMoreLabel = moreResults[0].outcomeDescription 
 				def outcomesM = []
 				outcomesM = moreResults.findAll{ outcome ->
-					study.shortName == outcome.studyName
+					study.shortName == outcome.studyDataSource.shortName
 				}
 				patientsMore = outcomesM.collect{it.patientId}
 			}

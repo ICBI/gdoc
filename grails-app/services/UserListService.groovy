@@ -157,17 +157,28 @@ def drugDiscoveryService
 		//need to calculate relative size by comparison
 		def vennCalculations = []
 		List<UserList> lists = new ArrayList<UserList>();
+		Set unitedStudies = []
 		def vids = []
 		if(ids.metaClass.respondsTo(ids, "max")) {
 			ids.each{
 				  log.debug it + " has been sent"
 			      UserList list = UserList.get(it);
 				  lists.add(list);
+				  if(list.studies){
+					list.studies.each{
+						unitedStudies << it.schemaName
+					}
+				  }
 			}
 		}
 		else{
 			UserList list = UserList.get(ids);
 			lists.add(list);
+			if(list.studies){
+				list.studies.each{
+					unitedStudies << it.schemaName
+				}
+			 }
 		}
 		
 		
@@ -217,6 +228,7 @@ def drugDiscoveryService
 			def allIntersections = [:]
 			def allValueMap = [:]
 			allValueMap["items"] = pct1and2.toArray()[0]
+			allValueMap["studies"] = unitedStudies.join(",")
 			allValueMap["circleInt"] = pct1and2.get(1)
 			log.debug pct1and2.get(1).class
 			allIntersections["allCircles"]  = allValueMap

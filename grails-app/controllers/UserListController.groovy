@@ -427,7 +427,17 @@ class UserListController {
 				tags << it
 			}
 		}
-		def userListInstance = userListService.createList(session.userId, params.name, ids, [StudyContext.getStudy()], tags)
+		def studies = new HashSet<String>()
+		if(params["studies"]){
+			params['studies'].tokenize(",").each{
+				it = it.replace('[','');
+				it = it.replace(']','');
+				studies << it
+			}
+		}else{
+			studies << StudyContext.getStudy()
+		}
+		def userListInstance = userListService.createList(session.userId, params.name, ids, studies , tags)
         if(userListInstance) {
 				render "$params.name created succesfully"
         } else {

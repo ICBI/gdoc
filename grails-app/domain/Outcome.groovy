@@ -4,14 +4,14 @@ class Outcome {
 		version false
 		id column:'ID', generator: 'sequence', params: [sequence: 'OUTCOME_DATA_SEQUENCE']
 		patientId column:'PATIENT_ID'
-		studyName column:'STUDY_NAME'
+		studyDataSource column: 'data_source_id'
 		outcomeType column:'OUTCOME_TYPE'
 		outcomeDescription column:'OUTCOME_DESCRIPTION'
 	}
+	static fetchMode = [studyDataSource:"eager"]
 	
-	
-	String studyName
 	Long patientId
+	StudyDataSource studyDataSource
 	String outcomeType
 	String outcomeDescription
 	
