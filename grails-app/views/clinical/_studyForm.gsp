@@ -64,13 +64,13 @@
 					<g:if test="${flash.params}">
 						<g:select name="${type + '_' + it.shortName}" 
 								noSelection="${['':'Select One...']}" value="${flash.params[type + '_' + it.shortName]}"
-								from="${it.vocabs}" optionKey="term" optionValue="termMeaning">
+								from="${it.vocabs.sort{it.term}}" optionKey="term" optionValue="termMeaning">
 						</g:select>
 					</g:if>
 					<g:else>
 						<g:select name="${type + '_' + it.shortName}" 
 								noSelection="${['':'Select One...']}"
-								from="${it.vocabs}" optionKey="term" optionValue="termMeaning">
+								from="${it.vocabs.sort{it.term}}" optionKey="term" optionValue="termMeaning">
 						</g:select>
 					</g:else>
 				</div>

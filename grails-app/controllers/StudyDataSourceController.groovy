@@ -56,7 +56,7 @@ class StudyDataSourceController {
 		if(!session.files[params.dataType])
 			render g.select(optionKey: 'name', optionValue: 'description', noSelection: ['': 'Select Data Type First'], id: 'dataFile', name: "dataFile")
 		else
-			render g.select(optionKey: 'name', optionValue: 'description', from: session.files[params.dataType], id: 'dataFile', name: "dataFile")
+			render g.select(optionKey: 'name', optionValue: 'description', from: session.files[params.dataType].sort{it.name}, id: 'dataFile', name: "dataFile")
 	}
 	
 	def findStudiesForDisease = {
