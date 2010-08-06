@@ -143,7 +143,12 @@
 	</g:javascript>
 	<br/>
 	<p style="font-size:14pt">Analysis Results</p>
-	
+	<p style="font-size:12pt">Current Study: 
+	<span id="label" style="display:inline-table">
+		<g:if test="${!session.study}">no study currently selected</g:if>
+		${session.study?.shortName}
+	</span>
+	</p>
 	<div id="centerContent">
 		<br/>
 			<g:render template="analysis_details" bean="${session.analysis}" />

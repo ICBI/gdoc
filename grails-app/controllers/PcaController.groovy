@@ -70,6 +70,8 @@ class PcaController {
 			session.study = sds
 			attributes.addAll(AttributeType.findAll())
 		}
+		StudyContext.setStudy(analysisResult.query["study"])
+		loadCurrentStudy()
 		session.dataTypes = attributes
 	}
 	

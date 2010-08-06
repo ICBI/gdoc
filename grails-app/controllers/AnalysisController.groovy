@@ -73,6 +73,7 @@ class AnalysisController {
 	def view = {
 		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
 		StudyContext.setStudy(analysisResult.query["study"])
+		loadCurrentStudy()
 		session.results = analysisResult.analysis.item
 		session.analysis = analysisResult
 		def columns = []

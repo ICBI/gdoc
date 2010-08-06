@@ -133,7 +133,12 @@
 	<p style="font-size:14pt">Clinical Search Results</p>
 	<div id="centerContent">
 		<br/>
-			
+			<p style="font-size:12pt">Current Study: 
+			<span id="label" style="display:inline-table">
+				<g:if test="${!session.study}">no study currently selected</g:if>
+				${session.study?.shortName}
+			</span>
+			</p>
 			<g:if test="${!session.results}">
 				No results found.
 			</g:if>

@@ -12,6 +12,12 @@
     <body>
 	
 		<p style="font-size:14pt">Heatmap Viewer</p>
+		<p style="font-size:12pt">Current Study: 
+		<span id="label" style="display:inline-table">
+			<g:if test="${!session.study}">no study currently selected</g:if>
+			${session.study?.shortName}
+		</span>
+		</p>
 		<div style="padding:10px;border:1px solid black;margin:5px;background-color:#FFF9EB;width:350px" id="hm">
 			To open the heatmap viewer, please click the button below. The viewer will open in a new window,
 			but all data interaction will still occur within your current session. <br /><br />

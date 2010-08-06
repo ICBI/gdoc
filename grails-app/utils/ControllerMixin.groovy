@@ -36,4 +36,19 @@ class ControllerMixin {
 		}
 		self.session.geneLists = geneLists.sort {it.name}
 	}
+	
+	static loadCurrentStudy(self) {
+		def currStudy = StudyDataSource.findBySchemaName(StudyContext.getStudy())
+		if(!self.session.study || (currStudy.schemaName != self.session.study.schemaName)){
+			self.session.study = currStudy
+			self.session.dataTypes = AttributeType.findAll().sort { it.longName }
+			loadPatientLists(self)
+			loadReporterLists(self)
+			loadGeneLists(self)
+			self.session.endpoints = KmAttribute.findAll()
+			self.session.files = self.htDataService.getHTDataMap()
+			self.session.dataSetType = self.session.files.keySet()
+		}
+			
+	}
 }
