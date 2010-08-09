@@ -49,9 +49,11 @@ target(main: "Load data into the DB") {
 		def template = engine.createTemplate(new File("sql/04_study_grants_template.sql").text) 
 	
 		Writable writable = template.make([projectName: projectName])
+		println "Adding grants for project ${projectName}...."
 		writable.toString().eachLine {
-			if(it)
+			if(it){
 				sql.execute(it.replace(';', ''))
+			}
 		}
 		println "Loading study information for $projectName...."
 		isPublic = loadStudyData(projectName)
