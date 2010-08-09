@@ -188,24 +188,30 @@ class QuickStartService implements ApplicationContextAware{
 			def outcomeMoreLabel = "No label"
 			def patientsMore = []
 			if(lessResults){
-				outcomeLessLabel = lessResults[0].outcomeDescription
 				def outcomesL = []
 				outcomesL = lessResults.findAll{ outcome ->
-					study.shortName == outcome.studyDataSource.shortName
+					study.id == outcome.studyDataSource.id
 				}
-				patientsLess = outcomesL.collect{it.patientId}
+				if(outcomesL){
+					outcomeLessLabel = outcomesL[0].outcomeDescription
+					patientsLess = outcomesL.collect{it.patientId}
+				}
+			
 			}
 			
 			if(moreResults){
-				outcomeMoreLabel = moreResults[0].outcomeDescription 
 				def outcomesM = []
 				outcomesM = moreResults.findAll{ outcome ->
-					study.shortName == outcome.studyDataSource.shortName
+					study.id == outcome.studyDataSource.id
 				}
-				patientsMore = outcomesM.collect{it.patientId}
+				if(outcomesM){
+					outcomeMoreLabel = outcomesM[0].outcomeDescription 
+					patientsMore = outcomesM.collect{it.patientId}
+				}
 			}
 			
 			if(patientsLess || patientsMore){
+				log.debug("found data available for $study.shortName")
 				result["patients_lessThan"]	= patientsLess
 				result["patients_lessThanSize"] = patientsLess.size().toString()
 				result["patients_lessThanLabel"] = " " + patientsLess.size().toString() + " patients :" + outcomeLessLabel

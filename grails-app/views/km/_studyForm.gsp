@@ -48,7 +48,7 @@ if(geneExpression) {
 			geneExpression = true;
 		</g:javascript>
 	</g:if>
-	<div class="tabDiv">
+	<div class="tabDiv" style="border:1px solid black">
 		
 		<div id="centerTabs" class="tabDiv">
 		    <ul>
@@ -61,7 +61,7 @@ if(geneExpression) {
 			
 		    <div id="fragment-4">
 		        <g:form name="searchForm" action="search">
-						<div class="clinicalSearch">
+						
 							<br/>
 							Select Patient Groups:
 							<br/>
@@ -104,9 +104,9 @@ if(geneExpression) {
 								</tr>
 							</table>
 							<br/>
-							<div style="float: left">
+						
 								Endpoint:	
-							</div>
+						
 							<br/>
 							<g:if test="${flash.cmd instanceof KmCommand}">
 								<g:select name="endpoint" value="${flash.cmd?.endpoint}"
@@ -115,19 +115,18 @@ if(geneExpression) {
 								</g:select>
 							</g:if>
 							<g:else>
-								<g:select name="endpoint" 
+								<g:select name="endpoint" style="height:20px"
 										noSelection="${['':'Select One...']}"
 										from="${session.endpoints}" optionKey="attribute" optionValue="attributeDescription" >
 								</g:select>					
 							</g:else>
-								<br/>
-								<br/>
+								
 								<div class="errorDetail">
 									<g:if test="${flash.cmd instanceof KmCommand}">
 										<g:renderErrors bean="${flash.cmd?.errors}" field="endpoint" />
 									</g:if>
 								</div>
-						</div>
+				
 					<br/>
 					<g:hiddenField name="study" value="${session.study.schemaName}" />
 					<br/>
@@ -144,7 +143,7 @@ if(geneExpression) {
 						</g:javascript>
 					
 						<div id="form">
-								<div class="clinicalSearch">	
+									
 									<g:form name="reporterForm" action="submitGEPlot" url="${[action:'submitGEPlot']}">
 									<table class="formTable" cellpadding="2" cellspacing="2" style="border: none;">
 									<tr>
@@ -236,10 +235,7 @@ if(geneExpression) {
 								<g:else>
 									No expression data available for ${session.study.shortName}
 								</g:else>
-						</div>
-						
-						
-						
+					
 				</div>
 					
 		</div>		

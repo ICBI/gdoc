@@ -1,7 +1,43 @@
 <g:javascript library="jquery"/>
 <script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'jquery.editableText.js')}"></script>
-	
+	<g:javascript>
+	$(document).ready(function() {
+		
+		$("[class*='_name']").each(function(index){
+			$(this).editableText({
+			          // default value
+			          newlinesEnabled: false
 
+			});
+		});
+
+		$("[class*='_name']").change(function(){
+		         var newValue = $(this).html();
+				 var id = $(this).attr("id").split("_name")[0];
+		         // do something
+		         // For example, you could place an AJAX call here:
+		        $.ajax({
+		          type: "POST",
+		          url: "/gdoc/userList/renameList",
+		          data: "newNameValue=" + newValue + "&id=" + id,
+		          success: function(msg){
+		            $('.message').html(msg);
+					$('.message').css("display","block");
+					if(msg=="saved"){
+						$("#userListIds option[value='"+ id +  "']").text(newValue);
+						$('.editableToolbar').children().css("width","0px");
+					}else{
+						makeEditable(id);
+					}
+					window.setTimeout(function() {
+					  $('.message').remove();
+					}, 1500);
+		          }
+		       });
+		   });
+		
+	}
+	</g:javascript>
 	<table id="${userListInstance.id}_listItems">
 		
 		<g:each in="${listItems}" status="j" var="list_item">

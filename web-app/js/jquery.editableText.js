@@ -46,8 +46,8 @@
             var buttons = $(
 				"<div class='editableToolbar'>" +
             		"<a href='#' class='edit'></a>" +
-            		"<a href='#' class='save'></a>" +
-            		"<a href='#' class='cancel'></a>" +
+            		"<a href='#' class='save' style='text-decoration:none'>&nbsp;&nbsp;&nbsp;</a>" +
+            		"<a href='#' class='cancel' style='text-decoration:none;cursor:pointer'>&nbsp;&nbsp;&nbsp;</a>" +
             	"</div>")
 				.insertBefore(editable);
 			
@@ -65,7 +65,7 @@
 						
 			buttons.find('.cancel').click(function(){
 				stopEditing();
-				//editable.html(prevValue);
+				editable.html(prevValue);
 				return false;
 			});		
 			
