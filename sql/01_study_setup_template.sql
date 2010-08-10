@@ -29,9 +29,9 @@ GRANT edit_${projectName} TO edit_gdoc;
 
 CREATE USER ${projectName} 
   IDENTIFIED BY change_me
-  DEFAULT TABLESPACE ${projectName}
-  TEMPORARY TABLESPACE ${projectName}_temp_ts
-  QUOTA UNLIMITED ON ${projectName};
+  DEFAULT TABLESPACE USERS
+  TEMPORARY TABLESPACE TEMP
+  QUOTA UNLIMITED ON USERS;
 GRANT CREATE SESSION TO ${projectName};
 GRANT create_${projectName} to ${projectName};
 GRANT create_${projectName} to mcgdoc;

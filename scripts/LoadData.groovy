@@ -35,18 +35,16 @@ target(main: "Load data into the DB") {
 	try {
 		println "Cleaning up schema...."
 		executeScript("sql/study_cleanup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath], true)
-		println "Creating tablespace ${projectName}...."
-		executeScript("sql/01_create_tablespace_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
 		println "Creating user ${projectName}...."
-		executeScript("sql/02_study_setup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
+		executeScript("sql/01_study_setup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
 		println "Creating schema for project ${projectName}...."
-		executeScript("sql/03_study_schema_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
+		executeScript("sql/02_study_schema_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
 
 		def sql = groovy.sql.Sql.newInstance(CH.config.dataSource.url, projectName,
 		                     "change_me", CH.config.dataSource.driverClassName)
 	
 		def engine = new groovy.text.SimpleTemplateEngine() 
-		def template = engine.createTemplate(new File("sql/04_study_grants_template.sql").text) 
+		def template = engine.createTemplate(new File("sql/03_study_grants_template.sql").text) 
 	
 		Writable writable = template.make([projectName: projectName])
 		println "Adding grants for project ${projectName}...."

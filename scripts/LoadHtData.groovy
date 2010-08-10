@@ -88,7 +88,6 @@ def loadNormFile(schemaName, fileName, description, priorFiles) {
 	def norm = [:]
 	norm.schemaName = schemaName
 	norm.name = fileName
-	norm.fileName = fileName
 	norm.description = description
 	norm.relativePath = "NORMALIZED"
 	norm.fileSize = 10000
