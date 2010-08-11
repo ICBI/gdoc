@@ -69,7 +69,6 @@ environments {
 		middlewareUrl = "https://demo.gdoc.georgetown.edu/gdoc-middleware"
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
-		schemaPath = "/oracle/oracle/oradata/gdoc"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -87,7 +86,6 @@ environments {
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
-		schemaPath = "/oracle/oracle/oradata/gdoc"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -104,7 +102,6 @@ environments {
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
-		schemaPath = "/oracle/oracle/oradata/gdoc_sb"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -113,6 +110,22 @@ environments {
 			debug "grails.app"
 		}
 	}
+	stage {
+        grails.serverURL = "https://nitrogen.uis.georgetown.edu"
+		jmsserver = "jnp://localhost:1099"
+		responseQueue = "AnalysisResponse"
+		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
+		tempDir = "/opt/gdoc-temp"
+		middlewareUrl = "https://nitrogen.uis.georgetown.edu/gdoc-middleware"
+		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
+		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		log4j = {
+			root {
+			    error 'stdout'
+			    additivity = true
+			}
+		}
+    }
 	test {
 		jmsserver = "jnp://localhost:1099"
  		responseQueue = "AnalysisResponseKevin"

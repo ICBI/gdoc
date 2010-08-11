@@ -16,7 +16,7 @@ environments {
 			url = "jdbc:oracle:thin:@localhost:1521:gdoc_sb"
 			username = "mcgdoc"
 			password = "change_me"
-			logSql = false
+			logSql = true
 		}
 	}
 	
@@ -25,7 +25,7 @@ environments {
 			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
 			username = "guidoc"
 			password = "cure4cancer"
-			logSql = false
+			logSql = true
 		}
 	}
 	
@@ -49,12 +49,16 @@ environments {
 			logSql = true
 		}
 	}
+	stage {
+		dataSource {
+			jndiName="java:gdoc"
+			logSql = false
+		}
+	}
 	production {
 		dataSource {
-			url = "jdbc:oracle:thin:@141.161.25.36:1521:XE"
-			username = "guidoc"
-			password = "cure4cancer"
-			logSql = true
+			jndiName="java:gdoc"
+			logSql = false
 		}
 	}
 }

@@ -34,11 +34,11 @@ target(main: "Load data into the DB") {
 	def isPublic = false
 	try {
 		println "Cleaning up schema...."
-		executeScript("sql/study_cleanup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath], true)
+		executeScript("sql/study_cleanup_template.sql", [projectName: projectName], true)
 		println "Creating user ${projectName}...."
-		executeScript("sql/01_study_setup_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
+		executeScript("sql/01_study_setup_template.sql", [projectName: projectName])
 		println "Creating schema for project ${projectName}...."
-		executeScript("sql/02_study_schema_template.sql", [projectName: projectName, schemaPath: CH.config.schemaPath])
+		executeScript("sql/02_study_schema_template.sql", [projectName: projectName])
 
 		def sql = groovy.sql.Sql.newInstance(CH.config.dataSource.url, projectName,
 		                     "change_me", CH.config.dataSource.driverClassName)
