@@ -25,7 +25,7 @@ jQuery(document).ready(function()
 				<li>
 					<%--a href="${createLink(controller: 'sample')}">Biospecimens</a--%>
 					<a href="${createLink(controller: 'clinical')}">Clinical Data</a>
-					<a href="#">Browse Genome</a>
+					<a href="${createLink(controller: 'genomeBrowser')}">Browse Genome</a>
 					<g:link controller="geneExpression">Gene Expression</g:link>
 					<a href="${createLink(controller: 'moleculeTarget')}">Compounds and Targets</a>
 					<a href="${createLink(controller: 'studyDataSource')}">Studies</a>
