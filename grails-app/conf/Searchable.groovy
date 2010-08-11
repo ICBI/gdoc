@@ -177,6 +177,14 @@ environments {
             //compassConnection = "ram://test-index"
         }
     }
+	stage {
+		searchable {
+			bulkIndexOnStartup = true
+			compassConnection = new File(
+		        "/opt/gdoc-data/searchable/gdoc-compassindex"
+		    ).absolutePath
+		}
+	}
 
     production {
         searchable {
