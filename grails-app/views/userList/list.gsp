@@ -121,6 +121,7 @@
 			</tr>
 			</table>
 			
+			<g:if test="${allLists.size() > 0}">
 			<div id="pager1" style="text-align:right;padding:2px 10px 3px 0px">
 			<g:set var="totalPages" value="${Math.ceil(allLists.size() / userListInstanceList.size())}" />
 
@@ -133,22 +134,26 @@
 		    </g:else>
 			</div>
 	
-	<div class="list" id="allLists">
-		<g:render template="/userList/userListTable" model="${['userListInstanceList':userListInstanceList]}"/>
-	</div>
+			<div class="list" id="allLists">
+				<g:render template="/userList/userListTable" model="${['userListInstanceList':userListInstanceList]}"/>
+			</div>
 	
-	<div id="pager2" style="text-align:right;padding:2px 10px 3px 0px">
-	<g:set var="totalPages" value="${Math.ceil(allLists.size() / userListInstanceList.size())}" />
+			<div id="pager2" style="text-align:right;padding:2px 10px 3px 0px">
+				<g:set var="totalPages" value="${Math.ceil(allLists.size() / userListInstanceList.size())}" />
 
-    <g:if test="${totalPages == 1}">
-        <span class="currentStep">1</span>
-    </g:if>
-    <g:else>
-        <g:paginate controller="userList" action="list" 
+    			<g:if test="${totalPages == 1}">
+        			<span class="currentStep">1</span>
+    			</g:if>
+    			<g:else>
+        			<g:paginate controller="userList" action="list" 
                     total="${userListInstanceList.totalCount}" prev="&lt; previous" next="next &gt;"/>
-    </g:else>
-	</div>
-</g:form>
+    			</g:else>
+			</div>
+			</g:if>
+			<g:else>
+				<p>Currrently, you have no saved lists</p>
+			</g:else>
+		</g:form>
 
 </div>
 </body>

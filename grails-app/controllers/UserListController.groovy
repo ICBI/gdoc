@@ -15,41 +15,41 @@ class UserListController {
 		def lists = []
 		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"hide shared lists",all:"show all"]
 		def filteredLists = []
-		def pagedLists
+		def pagedLists = []
         lists = userListService.getAllLists(session.userId, session.sharedListIds)
-		def ids = lists.collect{it.id}
-		def filteredListIds = []
-		
-		if(params.listFilter){
-			if(params.listFilter == 'all'){
-				session.listFilter = "all"
-				filteredLists = lists
+		if(lists){
+			def ids = lists.collect{it.id}
+			def filteredListIds = []
+
+			if(params.listFilter){
+				if(params.listFilter == 'all'){
+					session.listFilter = "all"
+					filteredLists = lists
+					filteredListIds = filteredLists.collect{it.id}
+				}
+				else{
+					session.listFilter = params.listFilter
+					filteredLists = userListService.filterLists(params.listFilter,lists,session.userId)
+					filteredListIds = filteredLists.collect{it.id}
+				}
+			}
+			else if(session.listFilter){
+				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
 				filteredListIds = filteredLists.collect{it.id}
 			}
 			else{
-				session.listFilter = params.listFilter
-				filteredLists = userListService.filterLists(params.listFilter,lists,session.userId)
-				filteredListIds = filteredLists.collect{it.id}
+				session.listFilter = "all"
+				//filteredLists = userListService.filterLists(session.listFilter,lists)
+				filteredListIds = ids
+			}
+
+			if(params.offset){
+				pagedLists = userListService.getPaginatedLists(filteredListIds,params.offset.toInteger())
+			}
+			else{
+				pagedLists = userListService.getPaginatedLists(filteredListIds,0)	
 			}
 		}
-		else if(session.listFilter){
-			filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-			filteredListIds = filteredLists.collect{it.id}
-		}
-		else{
-			session.listFilter = "all"
-			//filteredLists = userListService.filterLists(session.listFilter,lists)
-			filteredListIds = ids
-		}
-		
-		if(params.offset){
-			pagedLists = userListService.getPaginatedLists(filteredListIds,params.offset.toInteger())
-		}
-		else{
-			pagedLists = userListService.getPaginatedLists(filteredListIds,0)	
-		}
-		
-		
 		
        [ userListInstanceList: pagedLists, allLists: lists, timePeriods: timePeriods]
     }

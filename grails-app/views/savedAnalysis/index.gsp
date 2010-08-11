@@ -57,10 +57,12 @@
 
 		<td><g:form name="delAnalysisForm" action="deleteMultipleAnalyses">
 		<span class="controlBarUpload" id="controlBarDelete">
-		<g:submitButton name="del" value="Delete Analyses" style="font-size: 12px;color:black;text-decoration:none;padding: 3px 8px;background-color:#E6E6E6;border: 1px solid #a0a0a0;margin: 5px 3px 3px 5px;" onclick="return confirm('Are you sure?');" /></span></td>
+		<g:submitButton name="del" value="Delete Analyses" style="font-size: 12px;color:black;text-decoration:none;padding: 3px 8px;background-color:#E6E6E6;border: 1px solid #a0a0a0;margin: 5px 3px 3px 5px;" onclick="return confirm('Are you sure?');" />
+		</span>
+		</g:form></td>
 		</tr>
 		</table>
-		
+		<g:if test="${savedAnalysis.size() > 0}">
 		<div id="pager1" style="text-align:right;padding:2px 10px 3px 0px">
 		<g:set var="totalPages" value="${Math.ceil(allAnalysesSize / savedAnalysis.size())}" />
 
@@ -78,7 +80,7 @@
 	<g:render template="/savedAnalysis/savedAnalysisTable" />
 	</div>
 </g:panel>
-	</g:form>
+	
 	
 		<div id="pager2" style="text-align:right;padding:2px 10px 3px 0px">
 		<g:set var="totalPages" value="${Math.ceil(allAnalysesSize / savedAnalysis.size())}" />
@@ -91,6 +93,10 @@
 	                    total="${savedAnalysis.totalCount}" prev="&lt; previous" next="next &gt;"/>
 	    </g:else>
 		</div>
+		</g:if>
+		<g:else>
+			<p>Currrently, you have no saved analyses</p>
+		</g:else>
 	</div>
 
 </body>

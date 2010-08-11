@@ -37,11 +37,14 @@ def drugDiscoveryService
 			}
 		   }
 		}
-		lists = lists.sort { one, two ->
-			def dateOne = one.dateCreated
-			def dateTwo = two.dateCreated
-			return dateTwo.compareTo(dateOne)
+		if(lists){
+			lists = lists.sort { one, two ->
+				def dateOne = one.dateCreated
+				def dateTwo = two.dateCreated
+				return dateTwo.compareTo(dateOne)
+			}
 		}
+		
 		return lists
 	}
 	
@@ -96,11 +99,11 @@ def drugDiscoveryService
 		def author = GDOCUser.findByLoginName(userId)
 		author.refresh()
 		lists = UserList.findAllByAuthor(author)
-		log.debug "size=" + lists.size()
 		return lists
 	}
 	
 	def getSharedListIds(userId){
+		log.debug "get $userId shared lists"
 		def sharedListIds = []
 		sharedListIds = securityService.getSharedItemIds(userId, UserList.class.name)
 		return sharedListIds

@@ -2,6 +2,7 @@
     <head>
         <title>Georgetown Database of Cancer</title>
 		<g:render template="/common/flex_header"/>
+		<g:javascript src="swfobject.js"/>
 		<meta name="layout" content="splash" />
 		<g:javascript library="jquery"/>
 		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
@@ -52,19 +53,98 @@
 							
 						});
 						$('.partDiv').corner();
+						<!-- For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
+			            var swfVersionStr = "10.0.45";
+			            <!-- To use express install, set to playerProductInstall.swf, otherwise the empty string. -->
+			            var xiSwfUrlStr = "/gdoc/visualizations/playerProductInstall.swf";
+			            var flashvars = {};
+			            var params = {};
+			            params.quality = "high";
+			            params.bgcolor = "#ffffff";
+			            params.allowscriptaccess = "sameDomain";
+			            params.allowfullscreen = "true";
+			            var attributes = {};
+			            attributes.id = "Main";
+			            attributes.name = "Main";
+			            attributes.align = "middle";
+			            swfobject.embedSWF(
+			                "/gdoc/visualizations/Main.swf", "flashContent", 
+			                "900", "350", 
+			                swfVersionStr, xiSwfUrlStr, 
+			                flashvars, params, attributes);
+						<!-- JavaScript enabled so display the flashContent div in case it is not replaced with a swf object. -->
+						swfobject.createCSS("#flashContent", "display:block;text-align:left;");
 						
 			});
 		
 		</g:javascript>
+		<script type="text/javascript">
+		            <!-- For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
+		            var swfVersionStr = "10.0.45";
+		            <!-- To use express install, set to playerProductInstall.swf, otherwise the empty string. -->
+		            var xiSwfUrlStr = "/gdoc/visualizations/playerProductInstall.swf";
+		            var flashvars = {};
+		            var params = {};
+		            params.quality = "high";
+		            params.bgcolor = "#ffffff";
+		            params.allowscriptaccess = "sameDomain";
+		            params.allowfullscreen = "true";
+		            var attributes = {};
+		            attributes.id = "Main";
+		            attributes.name = "Main";
+		            attributes.align = "middle";
+		            swfobject.embedSWF(
+		                "/gdoc/visualizations/Main.swf", "flashContent", 
+		                "900", "350", 
+		                swfVersionStr, xiSwfUrlStr, 
+		                flashvars, params, attributes);
+					<!-- JavaScript enabled so display the flashContent div in case it is not replaced with a swf object. -->
+					swfobject.createCSS("#flashContent", "display:block;text-align:right;");
+		        </script><style media="screen" type="text/css">#flashContent {visibility:hidden}#flashContent {display:block;text-align:left;}</style>
 		
     </head>
     <body>
 				<jq:plugin name="ui"/>
 				
 				<br/>
-				<div style="width:900px;height:350px;border:1px solid silver;margin:auto;" align="center">
-					<g:flex component="Main" width="900px" height="350px" />
+				<div style="width:900px;border:1px solid silver;margin:0pt auto; text-align: center;height:350" align="center">
+					<div id="flashContent"></div>
 				</div>
+				
+					        
+					          <noscript>
+						<div style="width:900px;border:1px solid silver;margin:0pt auto; text-align: center;height:350" align="center">
+					            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="900" height="350" id="Main">
+					              <param name="movie" value="Main.swf" />
+					              <param name="quality" value="high" />
+					              <param name="bgcolor" value="#ffffff" />
+					              <param name="allowScriptAccess" value="sameDomain" />
+					              <param name="allowFullScreen" value="true" />
+					              <!--[if !IE]>-->
+					              <object type="application/x-shockwave-flash" data="Main.swf" width="900" height="350">
+					                <param name="quality" value="high" />
+					                <param name="bgcolor" value="#ffffff" />
+					                <param name="allowScriptAccess" value="sameDomain" />
+					                <param name="allowFullScreen" value="true" />
+					                <!--<![endif]-->
+					                <!--[if gte IE 6]>-->
+					                <p> 
+					                  Either scripts and active content are not permitted to run or Adobe Flash Player version
+					                  10.0.45 or greater is not installed.
+					                </p>
+					                <!--<![endif]-->
+					                <a href="http://www.adobe.com/go/getflashplayer">
+					                  <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+					                </a>
+					                <!--[if !IE]>-->
+					              </object>
+					              <!--<![endif]-->
+					            </object>
+					</div>
+					          </noscript>
+
+					        
+					   
 				
 				
 				<g:if test="${flash.message}">
