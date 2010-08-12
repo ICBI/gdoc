@@ -52,7 +52,15 @@ environments {
 	stage {
 		dataSource {
 			jndiName="java:gdoc"
-			logSql = false
+			logSql = true
+		}
+	}
+	stage-load {
+		dataSource {
+			url = "jdbc:oracle:thin:@//ohs-test-1.uis.georgetown.edu:1521/gdoct_portal.svcs.gu"
+			username = "mcgdoc"
+			password = "m#gd0c!"
+			logSql = true
 		}
 	}
 	production {
