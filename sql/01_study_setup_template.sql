@@ -25,7 +25,6 @@ GRANT read_${projectName} TO edit_${projectName};
 GRANT insert_${projectName} TO create_${projectName}; 
 GRANT insert_${projectName} TO edit_${projectName};
 
-GRANT edit_${projectName} TO edit_gdoc;
 
 CREATE USER ${projectName} 
   IDENTIFIED BY change_me
