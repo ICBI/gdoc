@@ -55,7 +55,7 @@ environments {
 			logSql = true
 		}
 	}
-	stage-load {
+	stage_load {
 		dataSource {
 			url = "jdbc:oracle:thin:@//ohs-test-1.uis.georgetown.edu:1521/gdoct_portal.svcs.gu"
 			username = "mcgdoc"
