@@ -126,6 +126,22 @@ environments {
 			}
 		}
     }
+	stage_load {
+        grails.serverURL = "https://nitrogen.uis.georgetown.edu"
+		jmsserver = "jnp://nitrogen.uis.georgetown.edu:1099"
+		responseQueue = "AnalysisResponse"
+		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
+		tempDir = "/opt/gdoc-temp"
+		middlewareUrl = "https://nitrogen.uis.georgetown.edu/gdoc-middleware"
+		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
+		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		log4j = {
+			root {
+			    error 'stdout'
+			    additivity = true
+			}
+		}
+    }
 	test {
 		jmsserver = "jnp://localhost:1099"
  		responseQueue = "AnalysisResponseKevin"
