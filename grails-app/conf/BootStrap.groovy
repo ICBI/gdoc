@@ -36,19 +36,11 @@ class BootStrap {
 		  		  System.setProperty(key, val);
 		  		}
 	           break;
-			case "devserver":
-				def da = quickStartService.getDataAvailability()
-				servletContext.setAttribute("dataAvailability", da)
-				break;
-			case "production":
-				def da = quickStartService.getDataAvailability()
-				servletContext.setAttribute("dataAvailability", da)
-				break;
-			case "demo":
-				def da = quickStartService.getDataAvailability()
-				servletContext.setAttribute("dataAvailability", da)
-				break;
 			case "test":
+				break;	
+			default:
+				def da = quickStartService.getDataAvailability()
+				servletContext.setAttribute("dataAvailability", da)
 				break;
 	   	}
 		
