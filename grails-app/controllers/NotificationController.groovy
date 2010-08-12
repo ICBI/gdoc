@@ -40,8 +40,8 @@ class NotificationController {
 		invitations = invitationService.findAllInvitationsForUser(session.userId)
 		session.invitations = invitations
 		
-		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
-		if(savedAnalysis){
+/*		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
+*/		if(savedAnalysis){
 			notifications.addAll(savedAnalysis)
 			savedAnalysis.each{
 				if(savedAnalysisService.analysisIsTemporary(it.id)){
@@ -51,8 +51,8 @@ class NotificationController {
 				}
 			}
 		}
-		if(gpJobs)
-			notifications.addAll(gpJobs)
+/*		if(gpJobs)
+			notifications.addAll(gpJobs)*/
 		
 		//remove analysis that are more than 2 days old
 		def today = new Date()
