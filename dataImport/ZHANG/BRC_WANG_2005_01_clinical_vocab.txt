@@ -1,5 +1,0 @@
-TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
-EVENT_DFS	0	CENSORING		0 stands for CENSORING meaning no recurrence was recorded
-EVENT_DFS	1	EVENT		1 stands for EVENT indicating recurrence of disease  
-METASTASIS_WITHIN_5YRS	YES	YES		Patient showed evidence of metastasis within 5 years
-METASTASIS_WITHIN_5YRS	NO	NO		Patient did not show evidence of metastasis within 5 years

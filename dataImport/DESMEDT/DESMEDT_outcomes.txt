@@ -1,1 +1,0 @@
-Outcome	Param	Column	Value	Min	Max	Query	DescriptionRelapse	Time	DISEASE_FREE_SURVIVAL_MON		0	59		Had relapse less than 5 yearsNo Relapse	Time	DISEASE_FREE_SURVIVAL_MON		60	600		No Relapse (disease-free) for more than 5 years
