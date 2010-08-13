@@ -1,0 +1,1 @@
+Outcome	Param	Column	Value	Min	Max	Query	DescriptionRelapse	Attribute	METASTASIS_WITHIN_5YRS	YES				Had Metastasis within 5 yearsNo Relapse	Attribute	METASTASIS_WITHIN_5YRS	NO				Metastasis free for more than 5 years
