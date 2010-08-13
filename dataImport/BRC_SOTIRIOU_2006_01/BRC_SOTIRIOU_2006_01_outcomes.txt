@@ -1,0 +1,1 @@
+Outcome	Param	Column	Value	Min	Max	Query	DescriptionRelapse	Time	DISEASE_FREE_SURVIVAL_YEARS		0	4		Had relapse in less than 5 yearsRelapse	Attribute	EVENT_DFS	1				Had relapse in less than 5 yearsNo Relapse	Time	DISEASE_FREE_SURVIVAL_YEARS		5	50		Relapse free for more than 5 yearsNo Relapse	Attribute	EVENT_DFS	1				Relapse free for more than 5 years
