@@ -46,7 +46,7 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 
 	
 
-	void testQueryForOutcomes() { 
+	void testQueryForOutcomes() { /**
 		def currStudy = StudyDataSource.findByShortName("CLARKE-LIU")
 		def currStudy2 = StudyDataSource.findByShortName("CRC_PILOT")
 		def currStudy3 = StudyDataSource.findByShortName("LOI")
@@ -73,7 +73,7 @@ class QuickStartControllerTests extends grails.test.ControllerUnitTestCase {
 		controller.biospecimenService = biospecimenService
 		controller.quickStartService = quickStartService
 		def results = controller.quickSearch(params);
-		println results
+		println results**/
 	}
 		
 }
