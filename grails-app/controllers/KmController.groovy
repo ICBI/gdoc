@@ -294,6 +294,8 @@ class KmController {
 			}
 		}
 		log.debug "PVALUE $pvalue"
+		if(!pvalue)
+			pvalue = "N/A"
 		groups["pvalue"] = pvalue
 		groups["endpointDesc"] = att.attributeDescription
 		def resultData = groups as JSON
