@@ -38,12 +38,7 @@ class AnnotationService {
 		def listValues = list.listItems.collect {item ->
 			item.value
 		}
-		def reporters = []
-		listValues.each {
-			def items = findReportersForGene(it)
-			reporters.addAll(items)
-		}
-		return reporters
+		return findAllReportersForGenes(listValues)
 	}
 	
 	def findReportersForReporterList(listName) {
@@ -76,6 +71,21 @@ class AnnotationService {
 			eq("platform", platformName)
 		}
 		return reporters
+	}
+	
+	def findAllReportersForGenes(genes) {
+		def queryClosure = { tempIds -> 
+			def c = Reporter.createCriteria()
+			return c.listDistinct {
+				projections {
+					property('name')
+				}
+				'in'("geneSymbol", tempIds)
+			}
+		}
+		def results = QueryUtils.paginateResults(genes, queryClosure)
+		log.debug "GOT ${results.size} reporters"
+		return results
 	}
 	
 	def searchForReportersByGene(gene) {
