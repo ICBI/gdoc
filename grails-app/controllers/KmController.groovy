@@ -244,10 +244,11 @@ class KmController {
 					log.debug "COMPARE: ${it.attribute} : $endpoint"
 					it.attribute == endpoint
 				}
-				return (patient.clinicalData[att.censorAttribute] == att.censorValue)
+				log.debug "VALUES: ${patient.clinicalDataValues[att.censorAttribute]} : ${att.censorValue}"
+				return (patient.clinicalDataValues[att.censorAttribute] == att.censorValue)
 			}
 			patients.each { patient ->
-				if( patient.clinicalData[cmd.endpoint]) {
+				if( patient.clinicalDataValues[cmd.endpoint]) {
 					def sample = [:]
 					sample["survival"] = patient.clinicalData[cmd.endpoint].toDouble()
 					sample["censor"] = censorStrategy(patient, cmd.endpoint)

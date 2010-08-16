@@ -9,12 +9,13 @@ class Patient {
 	}
 	static hasMany = [values : AttributeValue, biospecimens: Biospecimen]
 	static fetchMode = [values:"eager", biospecimens: "eager"]
-	static transients = ['clinicalData']
+	static transients = ['clinicalData', 'clinicalDataValues']
 	
 	//String dataSourceInternalId
 	Long gdocId
 	Map clinicalData
-
+	Map clinicalDataValues
+	
 	public Map getClinicalData() {
 		if(!this.@clinicalData) {
 			this.@clinicalData = [:]
@@ -32,5 +33,15 @@ class Patient {
 			}
 		}
 		return this.@clinicalData
+	}
+	
+	public Map getClinicalDataValues() {
+		if(!this.@clinicalDataValues) {
+			this.@clinicalDataValues = [:]
+			values.each { value ->
+				this.@clinicalDataValues[value.type.shortName] = value.value
+			}
+		}
+		return this.@clinicalDataValues
 	}
 }
