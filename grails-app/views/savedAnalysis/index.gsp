@@ -59,7 +59,7 @@
 		<span class="controlBarUpload" id="controlBarDelete">
 		<g:submitButton name="del" value="Delete Analyses" style="font-size: 12px;color:black;text-decoration:none;padding: 3px 8px;background-color:#E6E6E6;border: 1px solid #a0a0a0;margin: 5px 3px 3px 5px;" onclick="return confirm('Are you sure?');" />
 		</span>
-		</g:form></td>
+		</td>
 		</tr>
 		</table>
 		<g:if test="${savedAnalysis.size() > 0}">
@@ -98,5 +98,5 @@
 			<p>Currrently, you have no saved analyses</p>
 		</g:else>
 	</div>
-
+	</g:form>
 </body>
