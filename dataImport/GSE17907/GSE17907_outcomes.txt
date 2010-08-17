@@ -1,1 +1,0 @@
-Outcome	Param	Column	Value	Min	Max	Query	DescriptionRelapse	Time	DMFS_MONTHS		0	59		Had Distant Metastasis within 5 yearsRelapse	Attribute	EVENT_DMFS	1				Had Distant Metastasis within 5 yearsNo Relapse	Time	DMFS_MONTHS		60	60		No Distant Metastasis within 5 yearsNo Relapse	Attribute	EVENT_DMFS	1				No Distant Metastasis within 5 years
