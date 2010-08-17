@@ -1,9 +1,38 @@
-import org.hibernate.FetchMode as FM
+import org.springframework.jdbc.core.JdbcTemplate 
+import groovy.text.SimpleTemplateEngine
 
 class OutcomeDataService {
+	def sessionFactory
+	def jdbcTemplate
 	def clinicalService
-	def biospecimenService
     boolean transactional = true
+
+	def addQueryOutcome(study,name, query, description){
+		def patientIds = []
+		def patients = []
+		StudyContext.setStudy(study.schemaName)
+		log.debug "Study schema is for $study.schemaName , OUTCOME QUERY: $query"
+		patientIds = jdbcTemplate.queryForList(query)
+		if(patientIds){
+			def pids = patientIds.collect { id ->
+				return id["PATIENT_ID"]
+			}
+			patients = Patient.getAll(pids)
+			if(patients){
+				def gdocIds = new HashSet()
+				gdocIds = patients.collect{it.gdocId}
+				log.debug "returned $gdocIds.size() found for query"
+				gdocIds.each{ gdocId ->
+					def outcomeData = new Outcome(patientId:gdocId,studyDataSource:study, outcomeType:name, outcomeDescription:description)
+					if(!outcomeData.save(flush: true)){
+						log.error outcomeData.errors
+					}
+				}
+			}
+		}else{
+			log.debug "No patient ids found for: $query"
+		}
+	}
 
     def addQueryOutcomes(bundledSemanticCriteria, study, outcomeLess, outcomeMore, descriptionLess, descriptionMore) {
 		def success = true

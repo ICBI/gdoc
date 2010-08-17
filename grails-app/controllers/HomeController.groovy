@@ -27,7 +27,7 @@ class HomeController {
 		def totalPatient = 0
 		def totalStudies = 0
 		def totalData = new HashSet()
-		if(da["dataAvailability"])
+		if(da["dataAvailability"]){
 			totalStudies = da["dataAvailability"].size()
 		da["dataAvailability"].each{ study ->
 			def disease = study["CANCER"]
@@ -72,12 +72,13 @@ class HomeController {
 				}
 			}
 		}
+	}
 		diseaseBreakdown['<i>TOTAL</i>'] = [:]
 		diseaseBreakdown['<i>TOTAL</i>']['patientNumber'] = totalPatient
 		diseaseBreakdown['<i>TOTAL</i>']['studyNumber'] = totalStudies
 		diseaseBreakdown['<i>TOTAL</i>']['availableData'] = totalData
-		//log.debug diseaseBreakdown
-		//log.debug dataBreakdown
+		log.debug diseaseBreakdown
+		log.debug dataBreakdown
 		
 		//get anatomic sources
 		def sampleSummary = summaryService.sampleSummary()

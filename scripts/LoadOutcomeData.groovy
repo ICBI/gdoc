@@ -33,18 +33,14 @@ target(main: "Load outcome relpase data into the DB") {
 		return
 	}
 	try {
-		println "load all clinical outcome data...."
-		println "load all relapse outcome data...."
-		successful = loadOutcomeData(study, outcomeFile)
+		println "load all outcome data...."
+	    loadOutcomeData(study, outcomeFile)
 	} catch (Throwable e) {
 		e.printStackTrace()
 		"Outcome-data loading for $projectName was not successful"
 		return
 	}
-	if(successful)
 	println "Outcome-data loading for $projectName was successful"
-	else
-	println "Outcome-data loading for $projectName was not successful"
 }
 
 
@@ -55,143 +51,28 @@ def loadOutcomeData(study, outcomeFile) {
 	def sessionFactory = appCtx.getBean("sessionFactory")
 	def session = sessionFactory.getCurrentSession()
 	def trans = session.beginTransaction()
-	def isPublic = false
 	
-	def bundledRelapseCriteria = []
-	def bundledMortalityCriteria = []
-	def relapseCriteria = [:]
-	def relapseCriteriaOrList = []
-	def relapseCriteria2 = [:]
-	def relapseCriteria2OrList = []
-	def mortalityCriteria = [:]
-	def mortalityCriteriaOrList = []
-	def mortalityCriteria2 = [:]
-	def mortalityCriteria2OrList = []
-	def specimenCriteria = [:]
-	
-	
-	println "add all $study.schemaName criteria"
-	def outcomeLess
-	def outcomeMore
-	def descriptionLess
-	def descriptionMore
-	def outcomeLessM
-	def outcomeMoreM
-	def descriptionLessM
-	def descriptionMoreM
-	
-	/**build criteria query for structured .txt file...should this just be  regular, verified SQL string instead of reading a .txt?**/
+	try{
 	outcomeFile.eachLine { lineData, outcomeLineNumber ->
 		if(outcomeLineNumber != 1) {
 			def outcomeData = lineData.split('\t', -1)
-			def criteriaList = []
-			if(outcomeData[0] && outcomeData[1]){
-				if(outcomeData[0] == 'Relapse'){
-					println "add some relapse criteria"
-					if(outcomeData[6] == 'OR'){
-						relapseCriteriaOrList << buildCriteriaMap(outcomeData)
-					}else{
-						criteriaList << buildCriteriaMap(outcomeData)
-						relapseCriteria[outcomeLineNumber.toString()] = criteriaList
-					}
-					if(!outcomeLess)
-						outcomeLess = outcomeData[0]
-					if(!descriptionLess){
-						descriptionLess = outcomeData[7]
-					}
-				}else if(outcomeData[0] == 'No Relapse'){
-					println "add some no relapse criteria"
-					if(outcomeData[6] == 'OR'){
-						relapseCriteria2OrList << buildCriteriaMap(outcomeData)
-					}else{
-						criteriaList << buildCriteriaMap(outcomeData)
-						relapseCriteria2[outcomeLineNumber.toString()] = criteriaList
-					}
-					if(!outcomeMore)
-						outcomeMore = outcomeData[0]
-					if(!descriptionMore){
-						descriptionMore = outcomeData[7]
-					}
-				}else if(outcomeData[0] == 'Mortality'){
-					println "add some mortality criteria"
-					if(outcomeData[6] == 'OR'){
-						mortalityCriteriaOrList << buildCriteriaMap(outcomeData)
-					}else{
-						criteriaList << buildCriteriaMap(outcomeData)
-						mortalityCriteria[outcomeLineNumber.toString()] = criteriaList
-					}
-					if(!outcomeLessM)
-						outcomeLessM = outcomeData[0]
-					if(!descriptionLessM){
-						descriptionLessM = outcomeData[7]
-					}
-					
-				}else if(outcomeData[0] == 'No Mortality'){
-					println "add some no mortality criteria"
-					if(outcomeData[6] == 'OR'){
-						mortalityCriteria2OrList << buildCriteriaMap(outcomeData)
-					}else{
-						criteriaList << buildCriteriaMap(outcomeData)
-						mortalityCriteria2[outcomeLineNumber.toString()] = criteriaList
-					}
-					if(!outcomeMoreM)
-						outcomeMoreM = outcomeData[0]
-					if(!descriptionMoreM){
-						descriptionMoreM = outcomeData[7]
-					}
-				}
-				
+			println outcomeData
+			def name = outcomeData[0] 
+			def query = outcomeData[1].replaceAll('"'," ")
+			def description = outcomeData[2] 
+			if(name && query && description){
+				outcomeService.addQueryOutcome(study,name, query, description)
 			}
+			println "finished loading $name data"
 		}
 	}
-	
-	//check for 'or' queries
-	if(relapseCriteriaOrList)
-		relapseCriteria["relapseCriteriaOrList"] = relapseCriteriaOrList
-	if(relapseCriteria2OrList)
-		relapseCriteria2["relapseCriteria2OrList"] = relapseCriteria2OrList
-	if(mortalityCriteriaOrList)
-		mortalityCriteria["mortalityCriteriaOrList"] = mortalityCriteriaOrList
-	if(mortalityCriteria2OrList)
-		mortalityCriteria2["mortalityCriteria2OrList"] = mortalityCriteria2OrList
-	
-	
-	if(relapseCriteria && relapseCriteria2){
-		bundledRelapseCriteria << relapseCriteria
-		bundledRelapseCriteria << relapseCriteria2
-		bundledRelapseCriteria << specimenCriteria
-	}
-	if(mortalityCriteria && mortalityCriteria2){
-		bundledMortalityCriteria << mortalityCriteria
-		bundledMortalityCriteria << mortalityCriteria2
-	}
-	
-	
-	
-	try {
-		println "send to outcome service"
-		def relapseCreated = false
-		def mortalityCreated = false
-		if(bundledRelapseCriteria){
-			println "send relapse crit"
-			outcomeService.addQueryOutcomes(bundledRelapseCriteria,study,outcomeLess, outcomeMore, descriptionLess,descriptionMore)
-			createdSuccessfully = true
-		}
-		
-		if(bundledMortalityCriteria){
-			println "send mortality crit"
-			outcomeService.addQueryOutcomes(bundledMortalityCriteria,study,outcomeLessM, outcomeMoreM, descriptionLessM,descriptionMoreM)
-			createdSuccessfully = true
-		}
-		
-		trans.commit()
-		
-	
+	trans.commit()	
+	println "committed data"
 	} catch (Exception e) {
-		trans.rollback()
-		throw e
+				trans.rollback()
+				throw e
 	}
-	return createdSuccessfully
+	
 }
 
 
