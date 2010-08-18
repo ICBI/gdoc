@@ -184,7 +184,11 @@
 							</g:form>	
 							<br/>
 							
-						<span id="message" class="message" style="display:none"></span>
+						<span id="message" class="message" style="display:none">
+						</span>
+						<g:if test="${flash.reporterError}">
+							<span id="message" class="message">	${flash.reporterError}</span><br/>
+						</g:if>
 						<span id="saveSpinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 				</g:if>
 				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0" style="position:absolute; z-index: 1000;"></table>

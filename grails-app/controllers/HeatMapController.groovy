@@ -59,8 +59,18 @@ class HeatMapController {
 						ids << ccEntry.reporterId
 					}
 				}
+				
 				cmd.reporterIds = "[" + ids.join(',') + "]"
 			}
+			if(cmd.reporterIds) {
+				def numberReporters = cmd.reporterIds.split(',').size()
+				if(numberReporters > HeatMapCommand.MAX_REPORTERS || numberReporters < 2) {
+					flash['reporterError'] = "You must select more than 2 reporters and less than 5000 reporters for heat map."
+					redirect(action:'view', controller: 'analysis',id:session.analysis.id)
+					return
+				}
+			}
+			
 			analysisService.sendRequest(session.id, cmd, tags)
 			redirect(controller:'notification')
 		}
