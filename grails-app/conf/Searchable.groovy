@@ -121,7 +121,7 @@ searchable {
      *
      * If false, you must manage the index manually using index/unindex/reindex
      */
-    mirrorChanges = true
+    mirrorChanges = false
 
     /**
      * Should the database be indexed at startup (using Compass:GPS)?
