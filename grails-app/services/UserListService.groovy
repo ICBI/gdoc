@@ -50,47 +50,57 @@ def drugDiscoveryService
 	
 	def filterLists(timePeriod, allLists, userId){
 		def filteredLists = []
-		if(timePeriod == "all"){
-			return allLists
-		}
-		else if(timePeriod == "hideShared"){
-			log.debug "hide all shared lists"
-			allLists.each{ list ->
-				if(list.author.loginName == userId){
-					filteredLists << list
-				}
+		if(allLists){
+			if(timePeriod == "all"){
+				return allLists
 			}
-			return filteredLists
-		}
-		else{
-			def tp = Integer.parseInt(timePeriod)
-			def today = new Date()
-			allLists.each{ list ->
-				if(today.minus(list.dateCreated) <= tp){
-					filteredLists << list
+			else if(timePeriod == "hideShared"){
+				log.debug "hide all shared lists"
+				allLists.each{ list ->
+					if(list.author.loginName == userId){
+						filteredLists << list
+					}
 				}
+				return filteredLists
 			}
+			else{
+				def tp = Integer.parseInt(timePeriod)
+				def today = new Date()
+				allLists.each{ list ->
+					if(today.minus(list.dateCreated) <= tp){
+						filteredLists << list
+					}
+				}
+				return filteredLists
+			}
+		}else{
 			return filteredLists
 		}
 	}
 	
 	def getPaginatedLists(ids,offset){
-		def idsString = ids.toString().replace("[","")
-		idsString = idsString.replace("]","")
-		def query = "from UserList as ul where ul.id in ("+idsString+") order by ul.dateCreated desc"
-		def al = []
-		def pagedLists =
-		UserList.createCriteria().list(
-			max:10,
-			offset:offset)
-			{
-			'in'('id',ids)
-			}
-		
-		al = UserList.findAll(query,[max:10,offset:offset])
-		pagedLists.clear()
-		pagedLists.addAll(al)
-		log.debug "myLists -> $pagedLists as Paged set"
+		def pagedLists = []
+		println "my ids are $ids and offset is $offset"
+		if(ids){
+			def idsString = ids.toString().replace("[","")
+			idsString = idsString.replace("]","")
+			def query = "from UserList as ul where ul.id in ("+idsString+") order by ul.dateCreated desc"
+			def al = []
+			pagedLists =
+			UserList.createCriteria().list(
+				max:10,
+				offset:offset)
+				{
+				'in'('id',ids)
+				}
+
+			al = UserList.findAll(query,[max:10,offset:offset])
+			pagedLists.clear()
+			pagedLists.addAll(al)
+			log.debug "myLists -> $pagedLists as Paged set"
+		}else{
+			log.debug "no paginated lists"
+		}
 		return pagedLists
 	}
 	

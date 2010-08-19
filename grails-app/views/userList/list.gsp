@@ -121,7 +121,7 @@
 			</tr>
 			</table>
 			
-			<g:if test="${allLists.size() > 0}">
+			<g:if test="${allLists.size() > 0 && userListInstanceList.size() >0}">
 			<div id="pager1" style="text-align:right;padding:2px 10px 3px 0px">
 			<g:set var="totalPages" value="${Math.ceil(allLists.size() / userListInstanceList.size())}" />
 
