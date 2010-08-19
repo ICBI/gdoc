@@ -38,7 +38,7 @@ class UserListController {
 				filteredListIds = filteredLists.collect{it.id}
 			}
 			else{
-				session.listFilter = "hideShared"
+				session.listFilter = "all"
 				//filteredLists = userListService.filterLists(session.listFilter,lists)
 				filteredListIds = ids
 			}
