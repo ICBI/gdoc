@@ -81,7 +81,7 @@ class KmController {
 			groups.add(foldChangeGroups['between'])
 			kmCommand.geAnalysisId = Integer.parseInt(geAnalysisId)
 			def savedAnalysis = SavedAnalysis.get(kmCommand.geAnalysisId)
-			kmCommand.groups = groups
+			kmCommand.geneExpGroups = groups
 			kmCommand.reporters = allReporters
 			kmCommand.foldChange = foldChange;
 			kmCommand.currentReporter = reporter
@@ -157,7 +157,7 @@ class KmController {
 					//log.debug foldChangeGroups['less'].size()
 					
 					cmd.geAnalysisId = geAnalysis.id
-					cmd.groups = groups
+					cmd.geneExpGroups = groups
 					cmd.reporters = expValues.collect {
 						it.reporter
 					}
@@ -273,21 +273,24 @@ class KmController {
 			geInfo["currentReporter"] = cmd.currentReporter
 			geInfo["foldChange"] = cmd.foldChange
 			geInfo["geGroups"] = []
-			cmd.groups.each{ ids ->
+			log.debug "GROUPS: ${cmd.geneExpGroups}"
+			cmd.geneExpGroups.each{ ids ->
+				log.debug "GROUP ${ids}"
 				def cleanedIds = []
 				if(ids){
-					ids.tokenize(",").each{
+/*					ids.split(",").each{
 						it = it.replace('[','');
 						it = it.replace(']','');
 						cleanedIds << it
-					}
+					}*/
+					geInfo["geGroups"] << ids
 				}
-				geInfo["geGroups"] << cleanedIds		
 			}
 			groups["geneExpressionInfo"] = geInfo
 			log.debug "GE INFO: "
 			log.debug groups["geneExpressionInfo"]
 			pvalue = computeMultiplePvalues(groupHash)
+			groups["study"] = cmd.study
 		} else {
 			if(sampleGroups[0] && sampleGroups[1]) {
 				pvalue = kmService.getLogRankPValue(sampleGroups[0], sampleGroups[1])

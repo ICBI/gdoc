@@ -166,7 +166,7 @@ class ClinicalController {
 		}
 		log.debug "PATIENT IDS: $patientIds"
 		def cleanedIds = patientIds.collect {
-			def temp = it.replace("\"", "")
+			def temp = it.toString().replace("\"", "")
 			temp.trim()
 			return temp
 		}
@@ -174,8 +174,9 @@ class ClinicalController {
 		def results = clinicalService.getPatientsForGdocIds(cleanedIds)
 		log.debug "RESULTS: $results"
 		processResults(results)
-		returnVal['url'] = '/gdoc/clinical/viewPatientReport'
-		render returnVal as JSON
+		//returnVal['url'] = '/gdoc/clinical/viewPatientReport'
+		render(view:"search")
+		//render returnVal as JSON
 		
 	}
 	

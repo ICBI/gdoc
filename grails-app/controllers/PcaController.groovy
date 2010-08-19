@@ -58,25 +58,19 @@ class PcaController {
 	
 	def view = {
 		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
-		def results = analysisResult.analysis.item
-		
-		session.results = results
-		session.analysis = analysisResult
-		def attributes = []
 		analysisResult.studySchemas().each { study ->
 			log.debug "STUDY $study"
 			StudyContext.setStudy(study)
 			def sds = StudyDataSource.findBySchemaName(study)
 			session.study = sds
-			attributes.addAll(AttributeType.findAll())
 		}
 		StudyContext.setStudy(analysisResult.query["study"])
 		loadCurrentStudy()
-		session.dataTypes = attributes
 	}
 	
 	def results = {
-		def results = session.results
+		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+		def results = analysisResult.analysis.item
 		def resultEntries = results.resultEntries
 		def pcaResults = [:]
 		def samples = []
@@ -102,31 +96,42 @@ class PcaController {
 		
 		samples.each {
 			def patient = patientDataHash[it.sampleId]
-			patient.clinicalData.each {key, value ->
+			patient.clinicalDataValues.each {key, value ->
 				it[key] = value
 			}
 			it["patientId"] = patient.gdocId
 		}
-		
+		def dataTypes = []
+		analysisResult.studySchemas().each { study ->
+			log.debug "STUDY $study"
+			StudyContext.setStudy(study)
+			def sds = StudyDataSource.findBySchemaName(study)
+			session.study = sds
+			dataTypes.addAll(AttributeType.findAll())
+		}
 		def clinicalTypes = []
-		session.dataTypes.each {
-			def itemType
-			def values = []
-			if(it.vocabulary) {
-				itemType = "vocab"
-				it.vocabs.each { vocab ->
-					values << vocab.term
+		dataTypes.each {
+			if(it.target == 'PATIENT') {
+				def itemType
+				def values = []
+				if(it.vocabulary) {
+					itemType = "vocab"
+					it.vocabs.each { vocab ->
+						values << vocab.term
+					}
+					values.sort { it }
+				} else if(it.upperRange)  {
+					itemType = "range"
+					values << it.lowerRange
+					values << it.upperRange
 				}
-			} else if(it.upperRange)  {
-				itemType = "range"
-				values << it.lowerRange
-				values << it.upperRange
+				def type = [shortName: it.shortName, longName: it.longName, type: itemType, values: values]
+				clinicalTypes << type
 			}
-			def type = [shortName: it.shortName, longName: it.longName, type: itemType, values: values]
-			clinicalTypes << type
 		}
 		def schemName = StudyContext.getStudy()
 		def study = StudyDataSource.findBySchemaName(schemName)
+		clinicalTypes.sort { it.longName }
 		pcaResults["study"] = study.shortName
 		pcaResults["clinicalTypes"] = clinicalTypes
 		pcaResults["samples"] = samples

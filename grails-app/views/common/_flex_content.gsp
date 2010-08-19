@@ -43,6 +43,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"bgcolor", "#869ca7",
 			"name", "${it.attrs.component}",
 			"allowScriptAccess","always",
+			"flashvars", "${it.attrs.flashvars}",
 			"type", "application/x-shockwave-flash",
 			"pluginspage", "http://www.adobe.com/go/getflashplayer"
 	);
@@ -70,6 +71,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 				width="100%" 
 				height="100%" 
 				name="${it.attrs.component}" 
+				flashvars="${it.attrs.flashvars}"
 				align="middle"
 				play="true"
 				loop="false"

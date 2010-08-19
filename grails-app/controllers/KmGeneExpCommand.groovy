@@ -11,6 +11,7 @@ class KmGeneExpCommand {
 	String dataFile
 	def annotationService
 	String study
+	List geneExpGroups
 	
 	static constraints = {
 		groups(blank:false)

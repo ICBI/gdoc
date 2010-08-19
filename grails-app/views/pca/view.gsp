@@ -20,7 +20,7 @@
 		--%>
 		<br/>
 		<br/>
-		<g:flex component="PCAPlot" width="620px" height="540px" />
+		<g:flex component="PCAPlot" width="620px" height="540px" flashvars="analysisId=${params.id}"/>
 	</div>
 	<br/>
 	<br/>
