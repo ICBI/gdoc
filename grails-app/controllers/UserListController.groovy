@@ -13,7 +13,7 @@ class UserListController {
     def list = {
 		log.debug params
 		def lists = []
-		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"hide shared lists",all:"show all"]
+		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"show my lists only",all:"show all"]
 		def filteredLists = []
 		def pagedLists = []
         lists = userListService.getAllLists(session.userId, session.sharedListIds)
@@ -38,7 +38,7 @@ class UserListController {
 				filteredListIds = filteredLists.collect{it.id}
 			}
 			else{
-				session.listFilter = "all"
+				session.listFilter = "hideShared"
 				//filteredLists = userListService.filterLists(session.listFilter,lists)
 				filteredListIds = ids
 			}
@@ -502,6 +502,19 @@ class UserListController {
 	
 	def saveList = {
 		//TODO: Validate list
+		if(!params.listName){
+			log.debug "List needs to be named"
+			flash["message"]= "please name this list"
+			redirect(action:upload,params:[failure:true])
+			return
+		}
+		if(!request.getFile("file").inputStream.text){
+			log.debug "List needs a file associated with it"
+			flash["message"]= "please select a file to be uploaded and verify the file contains data"
+			redirect(action:upload,params:[failure:true])
+			return
+		}
+		
 		if(request.getFile("file").inputStream.text) {
 			def author = GDOCUser.findByLoginName(session.userId)
 			def listDup = author.lists().find {

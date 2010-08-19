@@ -81,12 +81,13 @@ class StudyDataSourceController {
 	
 	def show = {
 		def currStudy = StudyDataSource.get(params.id)
-		session.study = currStudy
-		StudyContext.setStudy(session.study.schemaName)
 		if(currStudy.hasClinicalData()){
+			StudyContext.setStudy(currStudy.schemaName)
 			clinicalElements = AttributeType.findAll()
+			log.debug clinicalElements
+			session.study = currStudy
 		}
-		log.debug clinicalElements
+		[currStudy:currStudy,clinicalElements:clinicalElements]
 	}
 	
 	def loadRemoteSources() {

@@ -12,9 +12,7 @@
 		</script>
     </head>
     <body>
-		<g:if test="${params.failure}">
-		<div class="errorMessage" style="color:red">${flash.message}</div><br />
-		</g:if>
+		
 		<g:if test="${params.success}">
 			<div class="successMessage" style="color:#007000">${flash.message}</div><br />
 			<script>refreshListPage();</script>
@@ -26,7 +24,7 @@
 					<p>(*requires .txt format & will be read as line-delimited)
 					</p>
 					<div class="clinicalSearch">
-						<br/>
+						
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
