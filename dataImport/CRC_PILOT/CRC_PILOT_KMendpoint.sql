@@ -2,7 +2,7 @@
 --indivumed (crc_pilot)
 --SURGERY_TO_RECUR/FU_DAYS
 --RECURRENCE_ANY
-insert into indivumed.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into CRC_PILOT.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'SURGERY_TO_RECUR/FU_DAYS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'RECURRENCE_ANY'), 

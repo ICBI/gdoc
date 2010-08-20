@@ -2,7 +2,7 @@
 --DESMEDT7390
 --TIME: DISEASE_FREE_SURVIVAL_DAYS
 --end point: EVENT_DFS
-insert into DESMEDT7390.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_DESMEDT_2007_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DISEASE_FREE_SURVIVAL_DAYS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_DFS'), 
@@ -11,7 +11,7 @@ values (
 
 --TIME: OVERALL_SURVIVAL_DAYS
 --end point: EVENT_OS
-insert into DESMEDT7390.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_DESMEDT_2007_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'OVERALL_SURVIVAL_DAYS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_OS'), 
@@ -20,7 +20,7 @@ values (
 
 --DMFS_DAYS
 --EVENT_DMFS
-insert into DESMEDT7390.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_DESMEDT_2007_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DMFS_DAYS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_DMFS'), 
@@ -29,7 +29,7 @@ values (
 
 --TDM_DAYS
 --EVENT_TDM
-insert into DESMEDT7390.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_DESMEDT_2007_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'TDM_DAYS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_TDM'), 

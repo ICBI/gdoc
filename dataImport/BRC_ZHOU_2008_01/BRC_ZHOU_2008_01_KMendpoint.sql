@@ -3,7 +3,7 @@
 --ZHOU
 --TIME: DISEASE_FREE_SURVIVAL_YEARS
 --end point: RELAPSE
-insert into zhou.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_ZHOU_2008_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DISEASE_FREE_SURVIVAL_YEARS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'RELAPSE'), 

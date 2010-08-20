@@ -2,7 +2,7 @@
 --WANG
 -- Time: time to relapse/fu in months
 -- end point:: relapse
-insert into wang.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_WANG_2005_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'TIME_TO_RELAPSE/FU_MONTHS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'RELAPSE'), 

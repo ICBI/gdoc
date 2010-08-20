@@ -2,7 +2,7 @@
 --ZHANG
 -- tIME: Disease free survival in months
 -- END PIONT: Event indicator for Disease Free SurvivaL
-insert into zhang.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_ZHANG_2009_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DISEASE_FREE_SURVIVAL_MON'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_DFS'), 

@@ -3,7 +3,7 @@
 
 --TIME: DISEASE_FREE_SURVIVAL_YEARS
 -- END POINT: EVENT_dfs
-insert into sotiriou.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_SOTIRIOU_2006_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DISEASE_FREE_SURVIVAL_YEARS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_DFS'), 
@@ -12,7 +12,7 @@ values (
 
 --TIME:DMFS_YEARS
 -- END POINT: EVENT_DMFS
-insert into sotiriou.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_SOTIRIOU_2006_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DMFS_YEARS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_DMFS'), 

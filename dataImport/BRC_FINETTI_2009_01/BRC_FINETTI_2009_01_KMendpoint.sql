@@ -2,7 +2,7 @@
 
 --TIME: DMFS_MONTHS
 --end point: EVENT_DMFS
-insert into GSE17907.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_FINETTI_2009_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DMFS_MONTHS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_DMFS'), 
