@@ -1,8 +1,4 @@
--- to be run as gdocadin
 
--------------------
------- Roles ------
--------------------
 CREATE ROLE read_${projectName};
 CREATE ROLE insert_${projectName};
 CREATE ROLE edit_${projectName};
@@ -39,7 +35,7 @@ GRANT insert_${projectName} to mcgdoc;
 
 GRANT read_common to ${projectName};
 GRANT READ_${projectName} to guidoc;
--- cannot do the following grants to a role:
+
 GRANT REFERENCES ON COMMON.PROTOCOL to ${projectName}; 
 GRANT REFERENCES ON COMMON.ATTRIBUTE_TYPE to ${projectName};
 GRANT REFERENCES ON COMMON.ATTRIBUTE_VOCABULARY to ${projectName};
@@ -71,6 +67,4 @@ GRANT SELECT ON COMMON.FILE_FORMAT_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.ALL_DESIGNS to ${projectName} with grant option;
 GRANT SELECT ON COMMON.DSC_SEQUENCE to ${projectName} with grant option;
 
-
--- not sure why i need this here....would it not be covered by read_common
 grant select on common.attribute_type to ${projectName};
