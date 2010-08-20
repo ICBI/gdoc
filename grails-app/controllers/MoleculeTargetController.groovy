@@ -15,13 +15,14 @@ class MoleculeTargetController {
 			search = true;
 			ligands = chainModel["ligands"]
 			if(ligands.results){
-				ligands.results = Molecule.getAll(ligands.results.collect{it.id})
-				log.debug "results found, $ligands.results.size()"
+				def molIds = ligands.results.collect{it.id}
+				//ligands.results = Molecule.getAll(molIds)
+				log.debug "results found, results are $ligands.results"
 				def filteredMols = []
 				filteredMols = filterLigands(ligands.results)
 				log.debug "filtered: $filteredMols"
 				if(filteredMols){
-					//ligands.total = filteredMols.size()
+					ligands.total = filteredMols.size()
 					ligands.results = Molecule.getAll(filteredMols.collect{it.id})
 					log.debug "my new results: $ligands.results"
 				}
@@ -41,13 +42,16 @@ class MoleculeTargetController {
 		def userMemberships = user.memberships
 		def collabGroups = []
 		userMemberships.each{
+			log.debug it.collaborationGroup.id
 			collabGroups << it.collaborationGroup.id
 		}
 		def results = []
 		  ligandResults.each{
-				if(it.protectionGroup)
-				if(it.protectionGroup && collabGroups.contains(it.protectionGroup.id)){
-					results << it
+				if(it.protectionGroup){
+					log.debug "$it.id has a protection group of $it.protectionGroup.id"
+					if(it.protectionGroup && collabGroups.contains(it.protectionGroup.id)){
+						results << it
+					}
 				}
 		  }
 		log.debug "filtered: $results"

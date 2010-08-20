@@ -80,7 +80,7 @@
 	<g:panel id="myVennPanel" title="Save intersection as list?" styleClass="prefs" panelColor="userLogPanelTitle" contentClass="myPanelContent">
 	<g:formRemote name="vennIntersectForm" update="message" onLoading="showToolsSpinner(true)"
 	    onComplete="showToolsSpinner(false)" url="${[action:'saveListFromExistingLists']}">
-	<span>List Name: <g:textField name="name" /></span><br />
+	<span>List Name: <g:textField name="name" size="15" maxlength="15"/></span><br />
 	<g:hiddenField name="author.username" value="${session.userId}" />
 	<g:hiddenField name="ids" value="${intersectedIds.allCircles.items.flatten()}" />
 	<g:hiddenField name="studies" value="${intersectedIds.allCircles.studies.flatten()}" />

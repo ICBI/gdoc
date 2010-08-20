@@ -7,6 +7,12 @@ class MoleculeTargetCommand {
 	String affinity
 	
 	static constraints = {
+		entity(validator: {val, obj ->
+			def invalidChars = ['*','?','~']
+			if(val && invalidChars.contains(val.trim())){
+				return "custom.val"
+			}
+		})
 		molWeightLow(validator: {val, obj ->
 			if(val && !val.isDouble()) {
 				return "custom.number"

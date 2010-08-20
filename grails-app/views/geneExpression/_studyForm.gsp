@@ -19,6 +19,7 @@ $(document).ready(function() {
 });
 </g:javascript>
 <br/>
+<g:if test="${session.study.hasGenomicData() && session.dataSetType.contains('GENE EXPRESSION')}">
 <g:form name="searchForm" action="search">
 		<div class="clinicalSearch">
 			<br/>
@@ -91,7 +92,10 @@ $(document).ready(function() {
 	<br/>
 	<g:submitButton name="submit" value="Search"/>
 </g:form>
-
+</g:if>
+<g:else>
+	No expression data available for ${session.study.shortName}
+</g:else>
 </g:if>
 
 <g:else>

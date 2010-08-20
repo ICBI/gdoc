@@ -164,7 +164,7 @@
 
 					<div style="margin:5px 5px 5px 50px;">
 						<span style="vertical-align:5px"> <label for="list_name">List Name:</label>
-							<g:textField name="list_name" size="15"/>
+							<g:textField name="list_name" size="15" maxlength="15"/>
 						</span>
 						<span class="bla" id="listAdd">Save Selected ⇣
 								<ul>

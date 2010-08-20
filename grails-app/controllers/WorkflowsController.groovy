@@ -19,7 +19,8 @@ class WorkflowsController {
 				}
 			}
 			session.myStudies = myStudies
-			def myCollaborationGroups = securityService.getCollaborationGroups(session.userId)
+			def myCollaborationGroups = []
+			myCollaborationGroups = securityService.getCollaborationGroups(session.userId)
 			def sharedListIds = userListService.getSharedListIds(session.userId)
 			session.sharedListIds = sharedListIds
 			//get shared anaylysis and places them in session scope

@@ -1,6 +1,6 @@
 <g:if test="${session.study}">
 <g:javascript src="dataSet.js"/>
-
+<g:if test="${session.study.hasGenomicData() && session.dataSetType.contains('GENE EXPRESSION')}">
 <div id="searchForm">
 		<div class="clinicalSearch">	
 			<g:form name="reporterForm" action="drawHeatMap">
@@ -87,5 +87,8 @@
 		</g:form>
 		</div>
 </div>
-
+</g:if>
+<g:else>
+	No expression data available for ${session.study.shortName}
+</g:else>
 </g:if>

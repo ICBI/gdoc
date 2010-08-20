@@ -49,6 +49,7 @@ class CollaborationGroupsController {
 				def pg = securityService.createCollaborationGroup(session.userId, cmd.collaborationGroupName, cmd.description)
 				if(pg){
 					flash.message = cmd.collaborationGroupName + " has been created. To invite users, select the invite users tab."
+					session.myCollaborationGroups << cmd.collaborationGroupName
 					redirect(action:"index")
 				}
 			}catch(DuplicateCollaborationGroupException de){

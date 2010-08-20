@@ -32,7 +32,7 @@
 							List Type: <br/>
 							<g:select name="listType" from="${['patient','gene','reporter']}" /><br /><br />
 							List Name: <br/>
-							<g:textField name="listName" /><br /><br/>
+							<g:textField name="listName" size="15" maxlength="15"/><br /><br/>
 							File: <br/>
 							<input type="file" name="file"/>
 							<br /><br />
