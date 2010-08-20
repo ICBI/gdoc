@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td class="label" >Cancer Type</td>
-				<td>${session.study.cancerSite}</td>
+				<td>${currStudy.cancerSite}</td>
 			</tr>			
 			<tr>
 				<td class="label" >Point(s) of Contact</td>
