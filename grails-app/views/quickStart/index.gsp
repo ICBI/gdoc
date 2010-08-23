@@ -7,9 +7,9 @@
     <body>
 	<br/>
 	<p style="font-size:14pt">G-DOC Quick Start</p>
-	<div id="centerContent"  width="950px" >
+	<div id="centerContent"  width="1200px" >
 		<br/>	
-				<g:flex component="QuickStart" width="950px" height="660px" />
+				<g:flex component="QuickStart" width="1200px" height="660px" />
 	</div>
 	</body>
 	

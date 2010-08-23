@@ -83,8 +83,12 @@
 			 <div id="fragment-4">
 
 			<g:form url='[controller: "moleculeTarget", action: "searchLigands"]' id="searchableForm" name="searchableForm" method="get">
-			    <table class="formTable">
-				<tr><td>Enter name for a gene, protein or molecule:	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
+			<div class="errorDetail">
+				<g:renderErrors bean="${flash.cmd?.errors}" field="entity" />
+			</div>    
+			<table class="formTable">
+				<tr><td>
+					Enter name for a gene, protein or molecule:	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
 				<tr><td>Ligand Affinity: </td><td><g:textField disabled="true" name="ligandAffinity" value="${params.ligandAffinity}" size="10"/> </td></tr>
 				<tr><td colspan="2">
 					<div class="errorDetail">
