@@ -2,6 +2,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
+		<meta http-equiv="refresh" content="2">
 		<g:javascript library="jquery" />
         <title>Search Clinical Data</title>         
     </head>

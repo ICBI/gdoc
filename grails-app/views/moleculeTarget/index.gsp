@@ -213,28 +213,32 @@
 					<td>Chiral</td>
 					<td>${molecule.chiral}</td>
 				</tr>
-			</table><br />
-			<div style="float:left;padding:10px">
-				<img src="${createLinkTo(dir:'images',file:'target.png')}" border="0" />
-				Targets:
-				<g:if test="${molecule.bindings}">
-					<g:each in="${molecule.bindings}" var="target">
-						<g:link action="show" id="${target.id}">
-							<g:set var="targetProt" value="${target.protein.gene?.geneAliases?.toArray().collect{it.symbol}}" />
-								${targetProt.join(",")}
-						</g:link>
-					</g:each>
-				</g:if>
-				<g:else>
-					No targets currently found for this compound
-				</g:else>
 				
-			</div>
+			</table><br />
 		</td>
 		<td style="text-align:right">
 			<img src="/gdoc/moleculeTarget/display?inputFile=${ligandImg}&dimension=2D" />
 			</td>
 		
+	</tr>
+	<tr><td colspan="2">
+		<div style="float:left;padding:10px">
+			<img src="${createLinkTo(dir:'images',file:'target.png')}" border="0" />
+			Targets:
+			<g:if test="${molecule.bindings}">
+				<g:each in="${molecule.bindings}" var="target">
+					<g:link action="show" id="${target.id}">
+						<g:set var="targetProt" value="${target.protein.gene?.geneAliases?.toArray().collect{it.symbol}}" />
+							${targetProt.join(",")}
+					</g:link>
+				</g:each>
+			</g:if>
+			<g:else>
+				No targets currently found for this compound
+			</g:else>
+
+		</div>
+		</td>
 	</tr>
 	</g:if>
 	</g:each>
