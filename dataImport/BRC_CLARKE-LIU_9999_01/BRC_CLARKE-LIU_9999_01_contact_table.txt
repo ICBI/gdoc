@@ -1,3 +1,0 @@
-NETID	LAST_NAME	FIRST_NAME	SUFFIX	EMAIL	NOTES	TYPE
-clarker	Clarke	Robert	PHD,DSC	clarker@georgetown.edu	PI	PI
-rbr7	Riggins	Rebecca	PHD	rbr7@georgetown.edu	POINT_OF_CONTACT	POINT_OF_CONTACT
