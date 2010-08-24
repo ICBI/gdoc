@@ -135,7 +135,7 @@ class SearchableTests extends GroovyTestCase {
 			def searchTerm = "EGFR"
 			def targets = []
 				//is it a gene symbol?
-				def alias = annotationService.findGeneByAlias(searchTerm)
+				def alias// = annotationService.findGeneByAlias(searchTerm)
 				if(alias){
 					println "its a gene symbol"
 					def proteinNames = []
@@ -149,8 +149,8 @@ class SearchableTests extends GroovyTestCase {
 						searchTerm = queryStringToCall.substring(0,queryStringToCall.lastIndexOf('OR'))
 						println searchTerm
 						targets = Molecule.search{
-							queryString("EGFR")
-							//must(between("weight",430.00,435.00,true))
+							//queryString("EGFR")
+							must(between("weight",600.00,900.00,true))
 						}
 					}
 					else{
@@ -159,26 +159,26 @@ class SearchableTests extends GroovyTestCase {
 				}
 				else{
 				//it must be a protein name or molecule name
-				println "it must be a protein name or molecule name -- search with string"
-				targets = Molecule.search{
-					queryString(searchTerm)
-				}
+				println "filter"
+					def myStudies = ["DDG_COLLAB","PUBLIC"]
+					def orString = myStudies.join(" OR ")
+					println  "my search string is $orString"
+					targets = Molecule.search{
+						must(between("weight",0.0,90.00,true))
+						must(queryString(orString))
+					}
 					
 				}
-		def myStudies = [new Long(4),new Long(125),new Long(2)]
-		def results = []
-		  targets.results.each{
-			    println it.protectionGroup
-			    if(it.protectionGroup){
-					println myStudies
-					println it.protectionGroup.id.class
+				println "filtered results -> $targets.total"
+				targets.results.each{
+					    if(it.protectionGroup){
+							println it.protectionGroup.name
+							println it.weight
+						}else{
+							println "none"
+						}
 				}
-				if(it.protectionGroup && myStudies.contains(it.protectionGroup.id)){
-					println "got result for $it.protectionGroup.id"
-					results << it
-				}
-			}
-		println "filtered results -> $results"	
+		
 			}catch (SearchEngineQueryParseException ex) { 
 				 	println ex
 			}

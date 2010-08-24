@@ -82,7 +82,7 @@
 			
 			 <div id="fragment-4">
 
-			<g:form url='[controller: "moleculeTarget", action: "searchLigands"]' id="searchableForm" name="searchableForm" method="get">
+			<g:form url='[controller: "moleculeTarget", action: "searchLigands",method:"post"]' id="searchableForm" name="searchableForm" method="get">
 			<div class="errorDetail">
 				<g:renderErrors bean="${flash.cmd?.errors}" field="entity" />
 			</div>    

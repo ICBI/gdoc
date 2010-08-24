@@ -204,6 +204,7 @@ p
 	font-size: 1em;
 	border: 1px solid #CCCCCC;
 	border-collapse: collapse;
+	width:500px;
 }
 .resultTable th {
 	padding: 5px;

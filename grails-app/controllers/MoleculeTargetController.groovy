@@ -16,47 +16,14 @@ class MoleculeTargetController {
 			ligands = chainModel["ligands"]
 			if(ligands.results){
 				def molIds = ligands.results.collect{it.id}
-				//ligands.results = Molecule.getAll(molIds)
-				log.debug "results found, results are $ligands.results"
-				def filteredMols = []
-				filteredMols = filterLigands(ligands.results)
-				log.debug "filtered: $filteredMols"
-				if(filteredMols){
-					ligands.total = filteredMols.size()
-					ligands.results = Molecule.getAll(filteredMols.collect{it.id})
-					log.debug "my new results: $ligands.results"
-				}
-				else{
-					ligands.results = []
-					ligands.total = 0
-				}
+				log.debug "results found, results are $ligands.results.size()"
+				ligands.results = Molecule.getAll(ligands.results.collect{it.id})
 			}
 		}
 		[ligands:ligands,search:search,params:[params.page,params.offset,params.entityName]]
 	
 	}
 	
-	def filterLigands(ligandResults){
-		log.debug "unfiltered: $ligandResults"
-		def user = GDOCUser.findByLoginName(session.userId)
-		def userMemberships = user.memberships
-		def collabGroups = []
-		userMemberships.each{
-			log.debug it.collaborationGroup.id
-			collabGroups << it.collaborationGroup.id
-		}
-		def results = []
-		  ligandResults.each{
-				if(it.protectionGroup){
-					log.debug "$it.id has a protection group of $it.protectionGroup.id"
-					if(it.protectionGroup && collabGroups.contains(it.protectionGroup.id)){
-						results << it
-					}
-				}
-		  }
-		log.debug "filtered: $results"
-		return results
-	}
 	
 	def page = {
 		def targets = []
@@ -102,18 +69,25 @@ class MoleculeTargetController {
 			chain(action:searchLigandsFromSketch,params:[page:'sketch',smiles:session.smiles,offset:params])
 			return
 		}
+		//grab my studies to filter
+		def userMemberships = session.myCollaborationGroups
+		def orString = userMemberships.join(" OR ")
+		
 		def targets = []
 		if(cmd.entity || cmd.molWeightLow || cmd.molWeightHigh || cmd.affinity){
 			
 			if(!cmd.entity && (cmd.molWeightLow || cmd.molWeightHigh)){
 				if(!cmd.molWeightLow){
-					cmd.molWeightLow = 0
+					cmd.molWeightLow = new Float(0.0)
 				}
 				if(!cmd.molWeightHigh){
-					cmd.molWeightHigh = 99999
+					cmd.molWeightHigh = new Float(99999.0)
 				}
+				println "search gt " + cmd.molWeightLow.toFloat() + " and lt " + cmd.molWeightHigh.toFloat()
 				targets = Molecule.search(params,{
-					must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
+					must(ge("weight",cmd.molWeightLow.toFloat()))
+					must(le("weight",cmd.molWeightHigh.toFloat()))
+					must(queryString(orString))
 				})
 				chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:cmd.entity,offset:params.offset])
 				return
@@ -132,12 +106,14 @@ class MoleculeTargetController {
 					targets = Molecule.search(params,{
 						must(queryString(searchTerm))
 						must(between("weight",cmd.molWeightLow.toDouble(),cmd.molWeightHigh.toDouble(),true))
+						must(queryString(orString))
 					})
 					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:cmd.entity,offset:params.offset])
 					return
 				}else{
 					targets = Molecule.search(params,{
-						queryString(searchTerm)
+						must(queryString(searchTerm))
+						must(queryString(orString))
 					})
 					log.debug targets
 					chain(action:index,model:[ligands:targets],params:[molWeightLow:params.molWeightLow,molWeightHigh:params.molWeightHigh,entityName:cmd.entity,offset:params.offset])

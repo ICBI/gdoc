@@ -7,7 +7,7 @@ class Molecule {
 	String name
 	String formula
 	String smiles
-	Float weight
+	Double weight
 	String idnumber
 	Long mCluster
 	Long clSize
@@ -82,7 +82,8 @@ class Molecule {
 		alias "molecule"
 	    bindings component: true
 		structures component: true
-		protectionGroup component: true
+		weight index: "not_analyzed", format: "000000000"
+		protectionGroup component: [prefix:'collaborationGroup',maxDepth:2]
 		dateCreated index: 'no'
 		lastUpdated index: 'no'
 		refractivity index: 'no'
