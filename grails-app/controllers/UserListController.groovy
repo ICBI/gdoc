@@ -3,6 +3,7 @@ import grails.orm.PagedResultList
 
 
 class UserListController {
+	private static Integer MAX_LIST_SIZE = 2000
     def securityService
 	def userListService
 	def exportService
@@ -337,6 +338,7 @@ class UserListController {
 				session.results.each {
 					ids << it.gdocId
 				}
+				
 			}
 			//if gene symbol list, look up gene symbols from reporters straight from result
 			else if(params["tags"].indexOf("gene") > -1){
@@ -356,6 +358,10 @@ class UserListController {
 						ids << ccEntry.reporterId
 					}
 				}
+			}
+			if(ids.size > MAX_LIST_SIZE) {
+				render "List cannot be larger than ${MAX_LIST_SIZE} items."
+				return
 			}
 		} else if(params['ids']){
 			log.debug "just save selected ids"
@@ -452,6 +458,10 @@ class UserListController {
 				ids << it.trim()
 			}
 		}
+		if(ids.size > MAX_LIST_SIZE) {
+			flash.message = "List cannot be larger than ${MAX_LIST_SIZE} items."
+			return
+		}
 		def userListInstance = userListService.createList(session.userId, params.name, ids, [StudyContext.getStudy()], [])
 		 if(userListInstance) {
 			flash.message = "UserList ${userListInstance.name} created"
@@ -541,6 +551,11 @@ class UserListController {
 					//log.debug value
 					if(value.trim())
 						userList.addToListItems(new UserListItem(value:value.trim()))
+				}
+				if(userList.listItems.size() > MAX_LIST_SIZE) {
+					flash.message = "List cannot be larger than ${MAX_LIST_SIZE} items."
+					redirect(action:upload,params:[failure:true])
+					return
 				}
 	        	if(!userList.hasErrors() && userList.save()) {
 
