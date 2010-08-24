@@ -13,6 +13,6 @@
 </span><br><div align="center">
 
 <span size="6" style="vertical-align:20px;margin-right:50px;margin-left:50px;font-size: 11px; font-family: arial,helvetica,sans-serif; color: #1c2674">
-&copy; 2009 Georgetown University. All rights reserved.</span>
+&copy; 2010 Georgetown University. All rights reserved.</span>
 
 </div></div>

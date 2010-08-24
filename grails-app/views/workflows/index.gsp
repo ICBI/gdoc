@@ -65,7 +65,7 @@
 
 							<input type="submit" value="search gdoc" />
 							</g:form>
-							<span style="font-size:.8em;margin-top:8px;">(enter published findings<img class="info" title="info about finding here" src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />
+							<span style="font-size:.8em;margin-top:8px;">(enter published findings<img class="info" title="findings are hand-curated scientific results from the literature" src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />
 					 genes, proteins, cancer type, studies, investigators, authors ...)</span>
 						</div>
 						<br/>
@@ -76,7 +76,7 @@
 				<div style="float:left;width:45%;padding-right:5px">
 						<table border="0">
 							<tr>
-								<td colspan="2" style="height:29px;background: #00ff00 url('/gdoc/images/bgTitles.png') repeat;">
+								<td colspan="2" style="height:29px;background: url('/gdoc/images/bgTitles.png') repeat;">
 									<p style="margin-top:4px;color:#336699">Getting Started with G-DOC</p>
 								</td>
 							</tr>
@@ -105,7 +105,7 @@
 				<div style="float:right;width:45%">
 						<table border="0">
 							<tr>
-								<td colspan="2" style="height:29px;background: #00ff00 url('/gdoc/images/bgTitles.png') repeat;">
+								<td colspan="2" style="height:29px;background: url('/gdoc/images/bgTitles.png') repeat;">
 									<p style="margin-top:4px;color:#336699">Features</p>
 								</td>
 							</tr>
