@@ -1,6 +1,5 @@
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<title>Genome Browser</title>  
 	<link rel="stylesheet" href="${createLinkTo(dir: 'css/genomeBrowser',  file: 'genome.css')}"/>
 	<link rel="stylesheet" href="${createLinkTo(dir: 'css/genomeBrowser',  file: 'tundra.css')}"/>
