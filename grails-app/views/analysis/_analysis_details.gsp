@@ -8,20 +8,16 @@
 	});
 </g:javascript>
 <div class="ui-widget" style="font-size: .8em; width: 250px">
-	<table class="ui-jqgrid-htable" width="100%" >
-		<tr class="ui-widget-header">
-			<th style="padding: 2px">
-				Analysis Details
-			</th>
-			<th>
-				<div align="right">
-				<a id="analysisDetailsCollapse" class="ui-jqgrid-titlebar-close" href="#">
-					<span id="detailsIcon" class="ui-icon ui-icon-circle-triangle-n"/>
+	<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all">
+		<div class="ui-jqgrid-view">
+			<div class="ui-jqgrid-titlebar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix">
+				<a id="analysisDetailsCollapse" href="#" class="ui-jqgrid-titlebar-close">
+					<span id="detailsIcon" class="ui-icon ui-icon-circle-triangle-n"></span>
 				</a>
-				</div>
-			</th>
-		</tr>
-	</table>
+				<span class="ui-jqgrid-title">Analysis Results</span>
+			</div>
+		</div>
+	</div>
 	<div id="analysisTableDetails" >
 	<table width="100%" >
 		<g:each in="${it.query}" var="data">
