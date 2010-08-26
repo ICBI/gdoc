@@ -4,12 +4,16 @@ class WorkflowsController {
 	def userListService
 	def middlewareService
 	def quickStartService
+	def cleanupService
 	
     def index = { 
 		if(!session.profileLoaded){
 			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
 			log.debug studyNames
 			def myStudies = []
+		
+		    //cleanup any temporary artifacts left from last session
+			cleanup(session.userId)
 			session.tempLists = new HashSet()
 			session.tempAnalyses = new HashSet()
 			studyNames.each{
@@ -18,6 +22,9 @@ class WorkflowsController {
 					myStudies << foundStudy
 				}
 			}
+			def isGdocAdmin = securityService.isUserGDOCAdmin(session.userId)
+			session.isGdocAdmin = isGdocAdmin
+			log.debug "show $session.userId admin options? $session.isGdocAdmin"
 			session.myStudies = myStudies
 			def myCollaborationGroups = []
 			myCollaborationGroups = securityService.getCollaborationGroups(session.userId)
@@ -34,6 +41,38 @@ class WorkflowsController {
 			session.profileLoaded = true
 			log.debug session.myCollaborationGroups
 		}
+	}
+	
+	def cleanup(userId){
+		def user = GDOCUser.findByLoginName(userId)
+		def myLists = []
+		myLists = userListService.getUserLists(userId)
+		def listsTBD = []
+		def analysesTBD = []
+		if(myLists){
+			listsTBD = gatherTempArtifacts(myLists)
+		}
+		def myAnalyses = user.analysis
+		if(myAnalyses){
+			analysesTBD = gatherTempArtifacts(myAnalyses)
+		}
+		if(listsTBD || analysesTBD){
+			cleanupService.cleanupAtLogin(user,listsTBD,analysesTBD)
+		}
+		
+	}
+	
+	def gatherTempArtifacts(artifactList){
+		def artifactsTBD = []
+		if(artifactList){
+			artifactList.each{ artifact ->
+				if(artifact.tags?.contains(Constants.TEMPORARY)){
+					log.debug "found $artifact marked as temporary"
+					artifactsTBD << artifact.id
+				}
+			}
+		}
+		return artifactsTBD
 	}
 	
 	def loadRemoteSources() {

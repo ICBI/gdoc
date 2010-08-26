@@ -6,7 +6,7 @@
 <a href="http://lombardi.georgetown.edu/" target="_blank">LOMBARDI CCC</a>  &nbsp; |&nbsp;&nbsp; 
 <a href="#">PUBLICATION POLICY</a> &nbsp;&nbsp; |&nbsp;&nbsp; 
 <a href="#">DATA ACCESS POLICY</a>  &nbsp; |&nbsp;&nbsp; 
-<a href="#">CONTACT US</a>
+<g:link controller="contact">CONTACT US</g:link>
 </span>
 <span>	<img src="${createLinkTo(dir:'images',file:'GU_logo.png')}" border="0" /></span>
 <span class="Bottom_nav" style="font-family: arial,helvetica,sans-serif"><br />

@@ -27,11 +27,21 @@ class SecurityFilters {
 						}
 						println "user token authenticated"
 			  } 
-              else if(!session.userId && !controllerName.equals('home') && !controllerName.equals('login') && !controllerName.equals('registration')) {
-				  println "$actionName access denied"                  
+              else if(!session.userId && !controllerName.equals('home') 
+						&& !controllerName.equals('login')
+						 && !controllerName.equals('registration')
+							&& !controllerName.equals('contact')) {
+				  //println "$actionName access denied"                  
 				  redirect(controller:'home', action:'index')
                   return false
               }
+			else if(session.userId && controllerName.equals('admin')){
+				if(!session.isGdocAdmin){
+					redirect(controller:'home', action:'index')
+					println "$session.userId tried to access the admin panel but is not a GDOC Administrator" 
+	                return false
+				}
+			}
            }
 		}
 		listCheck(controller:'userList', action:'*'){

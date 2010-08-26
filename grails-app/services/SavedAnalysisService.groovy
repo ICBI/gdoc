@@ -156,47 +156,55 @@ class SavedAnalysisService {
 	
 	def filterAnalysis(timePeriod, allAnalysis, userId){
 		def filteredAnalysis = []
-		if(timePeriod == "all"){
-			return allAnalysis
-		}
-		else if(timePeriod == "hideShared"){
-			log.debug "hide all shared lists"
-			allAnalysis.each{ analysis ->
-				if(analysis.author.loginName == userId){
-					filteredAnalysis << analysis
-				}
+		if(allAnalysis){
+			if(timePeriod == "all"){
+				return allAnalysis
 			}
+			else if(timePeriod == "hideShared"){
+				log.debug "hide all shared lists"
+				allAnalysis.each{ analysis ->
+					if(analysis.author.loginName == userId){
+						filteredAnalysis << analysis
+					}
+				}
+				return filteredAnalysis
+			}
+			else{
+				def tp = Integer.parseInt(timePeriod)
+				def today = new Date()
+				allAnalysis.each{ analysis ->
+					if(today.minus(analysis.dateCreated) <= tp){
+						filteredAnalysis << analysis
+					}
+				}
+				return filteredAnalysis
+			}
+			
+		}else{
 			return filteredAnalysis
 		}
-		else{
-			def tp = Integer.parseInt(timePeriod)
-			def today = new Date()
-			allAnalysis.each{ analysis ->
-				if(today.minus(analysis.dateCreated) <= tp){
-					filteredAnalysis << analysis
-				}
-			}
-			return filteredAnalysis
-		}
+		
 	}
 	
 	def getPaginatedAnalyses(ids,offset){
-		def idsString = ids.toString().replace("[","")
-		idsString = idsString.replace("]","")
-		def query = "from SavedAnalysis as sa where sa.id in ("+idsString+") order by sa.dateCreated desc"
-		def al = []
-		def pagedAnalyses =
-		SavedAnalysis.createCriteria().list(
-			max:10,
-			offset:offset)
-			{
-			'in'('id',ids)
-			}
-		
-		al = SavedAnalysis.findAll(query,[max:10,offset:offset])
-		pagedAnalyses.clear()
-		pagedAnalyses.addAll(al)
-		log.debug "myAnalyses -> $pagedAnalyses as Paged set"
+		def pagedAnalyses = []
+		if(ids){
+			def idsString = ids.toString().replace("[","")
+			idsString = idsString.replace("]","")
+			def query = "from SavedAnalysis as sa where sa.id in ("+idsString+") order by sa.dateCreated desc"
+			def al = []
+			pagedAnalyses = SavedAnalysis.createCriteria().list(
+				max:10,
+				offset:offset)
+				{
+				'in'('id',ids)
+				}
+
+			al = SavedAnalysis.findAll(query,[max:10,offset:offset])
+			pagedAnalyses.clear()
+			pagedAnalyses.addAll(al)
+			log.debug "myAnalyses -> $pagedAnalyses as Paged set"
+		}
 		return pagedAnalyses
 	}
 	

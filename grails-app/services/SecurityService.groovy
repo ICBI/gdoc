@@ -19,6 +19,7 @@ import LoginException
 class SecurityService {
 	static scope = "session"
 	public static String GROUP_MANAGER = 'COLLABORATION_GROUP_MANAGER'
+	public static String GDOC_ADMIN = 'GDOC_ADMIN'
 	public static String USER = 'USER'
 	
 	def jdbcTemplate
@@ -298,6 +299,24 @@ class SecurityService {
 			else return false
 		}
 		return false
+	}
+	
+	def isUserGDOCAdmin(userId){
+		def isUserGDOCAdmin = false
+		def user = GDOCUser.findByLoginName(userId)
+		def userMemberships = user.memberships
+		userMemberships.each{ membership->
+			if(membership.collaborationGroup &&
+				 membership.collaborationGroup.name == 'PUBLIC' &&
+					membership.role){
+						if(membership.role.name == GDOC_ADMIN){
+							log.debug "$userId is a GDOC Administrator"
+							isUserGDOCAdmin = true
+						}
+			}
+			
+		}
+		return isUserGDOCAdmin
 	}
 	
 	private findProtectionGroup(groupName) {

@@ -34,15 +34,10 @@
 	</g:javascript>
 	<g:javascript>
 	$(document).ready( function () {
-			  
-			
 			$("[class*='_name']").each(function(index){
 				$(this).contentEditable="true";
 			});
-			  
-			
-			
-			
+
 	} );
 	
 	</g:javascript>
@@ -80,14 +75,14 @@
 							
 					</div>
 					<g:if test="${userListInstance.listItems.size() <= 100}">
-					<div id="${userListInstance.id}_toggleContainer" style="border:0px solid black;float:left; vertical-align: top">
-						<div id="${userListInstance.id}_tog" style="border:0px solid black;height: 20px; cursor: pointer;"
+					<div id="${userListInstance.id}_toggleContainer" style="border:0px solid black;margin-left:45px;float:left;vertical-align: top">
+						<div id="${userListInstance.id}_tog" style="border:0px solid black;height:20px; cursor: pointer;"
 						onclick="toggle('${userListInstance.id}');">
 						<img class="${userListInstance.id}_toggle"src="${createLinkTo(dir: 'images', file: 'expand.gif')}"
 						width="13"
 						height="14" border="0" alt="Show/Hide" title="Show/Hide" 
 		onclick="if($('#${userListInstance.id}_listItems').length == 0){var classn = this.className;
-{${remoteFunction(action:'getListItems', id:userListInstance.id,onLoading:'showPageSpinner(true,classn)',onComplete:'showPageSpinner(false,classn)', update:userListInstance.id+'_content')}return false;}}"/>
+{${remoteFunction(action:'getListItems',id:userListInstance.id,onLoading:'showPageSpinner(true,classn)',onComplete:'showPageSpinner(false,classn)',update:userListInstance.id+'_content')}return false;}}"/>
 						
 						<img class="${userListInstance.id}_toggle" src="${createLinkTo(dir: 'images', file: 'collapse.gif')}"
 						width="13"

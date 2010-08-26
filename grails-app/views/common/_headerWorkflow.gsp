@@ -55,7 +55,13 @@
 
 <div style="float:right;color:#f2f2f2">
 	<div>Logged in as: ${session.userId}</div>
-	<div><g:link style="color:#f2f2f2" action="logout" controller="login" update="success">Logout</g:link></div>
+	<div>
+		<g:if test="${session.isGdocAdmin}">
+		<g:link style="color:#f2f2f2" controller="admin">Admin</g:link>
+		<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span>
+		</g:if>
+		<g:link style="color:#f2f2f2" action="logout" controller="login" update="success">Logout</g:link>
+	</div>
 </div>
 </g:else>
 

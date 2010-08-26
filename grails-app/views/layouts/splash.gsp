@@ -21,30 +21,30 @@
 		<g:layoutHead/>
 		<jq:plugin name="curvycorners"/>
 		
-		
+		<g:javascript>
+			$(document).ready(function(){
+				$('.c').corner();
+				
+				});
+		</g:javascript>
 </head>
 <body style="background-color:#334477">
 	
-	<g:javascript>
-	jQuery(document).ready(function()
-	{
-		
-		$('.c').corner();
 	
-	});
-	</g:javascript>
+	
+	
 <g:set var="activePage" value="${params.controller}" /> 
-<div id="doc2" class="yui-t1">
+<div id="doc2" class="yui-t1" style="border:0px solid black;">
 	<div id="hd">
 		<!-- Header start -->
     <g:render template="/common/header"/>
     <!-- Header end -->
 	</div>
-	<div class="c" style="background:#fff;border:.5px solid #000;padding:3px 0;">
+	<div class="c" style="border:1px solid #000;padding:3px 0px;">
 	<div id="bd" style="min-height:400px;">
 		<div id="yui-main">
 			
-						<g:layoutBody/><br />
+						<g:layoutBody/>
 					
 		</div>
 	</div>
@@ -56,8 +56,10 @@
 	</div>
 </div>
 <g:javascript>
+$('.c').css('background-color', '#ffffff');
 // code to set height of left bar
 jQuery(document).ready(function() {
+	
 	$('#navigation').height($('#yui-main').height());
 });
 </g:javascript>

@@ -161,6 +161,22 @@ class MoleculeTargetController {
 		}
 	}
 	
+	def filterLigands(ligandResults){
+			//log.debug "unfiltered: $ligandResults"
+			//def user = GDOCUser.findByLoginName(session.userId)
+			def userMemberships = session.myCollaborationGroups
+			
+			def results = []
+			  ligandResults.each{
+					if(it.protectionGroup)
+					if(it.protectionGroup.name && userMemberships.contains(it.protectionGroup.name)){
+						results << it
+					}
+			  }
+			//log.debug "filtered: $results"
+			return results
+	}
+	
 	def show = {
 			log.debug params
 			def moleculeTarget
