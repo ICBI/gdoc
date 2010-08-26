@@ -185,7 +185,11 @@ environments {
 		    ).absolutePath
 		}
 	}
-
+	stage_load {
+		searchable {
+			bulkIndexOnStartup = false
+		}
+	}
     production {
         searchable {
             // add your production settings here
