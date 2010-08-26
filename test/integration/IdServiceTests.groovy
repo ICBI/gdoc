@@ -3,6 +3,13 @@ class IdServiceTests extends GroovyTestCase {
 
 	def idService
 	
+	def benchmark = { closure ->  
+	  def start = System.currentTimeMillis()  
+	  closure.call()  
+	  def now = System.currentTimeMillis()  
+	  return now - start  
+	}
+	
     void testSampleNamesForGdocIds() {
 		StudyContext.setStudy("EDIN")
 		def samples = idService.sampleNamesForGdocIds([100000L, 100002L, 100004L])
@@ -31,5 +38,15 @@ class IdServiceTests extends GroovyTestCase {
 			}
 		}
 		
+	}
+	
+	void testSampleNamesForList() {
+		StudyContext.setStudy("EDIN")
+		
+		def duration = benchmark {
+			def ids = idService.samplesForListName("dr_no_clarke")
+			println ids
+		}
+		println "execution took ${duration} ms"  
 	}
 }
