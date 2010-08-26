@@ -66,12 +66,12 @@ target(main: "Load data into the DB") {
 		return
 	}
 	def jmxService =  appCtx.getBean('jmxService')
-	jmxService.flushConnectionPool()
 	println "is public $isPublic"
 	if(isPublic) {
 		println "Adding $projectName as a public study."
 		addPublicStudy(projectName)
 	}
+	jmxService.flushConnectionPool()
 	println "Data loading for $projectName was successful"
 }
 
