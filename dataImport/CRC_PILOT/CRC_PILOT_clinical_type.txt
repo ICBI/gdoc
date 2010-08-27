@@ -12,7 +12,7 @@ neoadjuvant chemotherapies	new	NEOADJ_CT	Neoadjuvant chemotherapies	Neoadjuvant 
 neoadjuvant radiations	new	NEOADJ_RADIATION	Neoadjuvant radiations	Neoadjuvant radiation received	CLINICAL					1	0	1	varchar			
 neoadjuvant hormone therapies	new	NEOADJ_HORMONE_TH	Neoadjuvant hormone therapies	Neoadjuvant hormone therapy received	CLINICAL					1	0	1	varchar			
 Surgical findings-localization	ATTRIBUTE_TYPE_ID=228	DISEASE_LOCALIZATION	The local of the disease/tumor	The local of the disease/tumor	CLINICAL					1	0	1	VARCHAR2(20)			
-tumor size [cm]	ATTRIBUTE_TYPE_ID=199	TUMOR_SIZE	Tumor size	The tumor size in centimeters	PATHOLOGY					0	0	0	NUMBER(3,1)   	cm	0	9.9
+tumor size [cm]	ATTRIBUTE_TYPE_ID=199	TUMOR_SIZE	Tumor size	The tumor size in centimeters	PATHOLOGY					0	0	0	NUMBER(2,1)   	cm	0	9.9
 Classification-histological type	new	HIST_TUMOR_GRADE	Histological tumor grade	Histological tumor grade	PATHOLOGY					1	0	1	VARCHAR(1)			
 Classification-histological type	ATTRIBUTE_TYPE_ID=362	HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	CLINICAL					1	0	1	VARCHAR			
 classification PTNM_T	ATTRIBUTE_TYPE_ID=229	PTNM_T	Primary Tumor Site (pTNM-T)	Primary Tumor Site in pTNM Classification	PATHOLOGY					1	0	1	VARCHAR2(5)			
