@@ -31,7 +31,7 @@
 						clearInterval(refreshId);
 					}
 				});
-		  }, 2000);
+		  }, 5000);
 			addClickHandler();
 		});
 		

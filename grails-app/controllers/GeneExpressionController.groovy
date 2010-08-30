@@ -43,8 +43,6 @@ class GeneExpressionController {
 				tags << Constants.TEMPORARY
 			}
 		
-			def files = MicroarrayFile.findByNameLike('%.Rda')
-			cmd.dataFile = files.name
 			def taskId = analysisService.sendRequest(session.id, cmd, tags)
 			redirect(controller:'notification')
 		}
@@ -57,14 +55,11 @@ class GeneExpressionController {
 
 		log.debug session.results
 		def sampleReporter = [:]
-		log.debug "VECTORS: " + session.results.analysis.item
 		session.results.analysis.item.dataVectors.each { data ->
 			log.debug data.name
 			sampleReporter[data.name] = [:]
 			data.dataPoints.each { point ->
-				log.debug "POINT: " +  point.id + " : " + point.x
 				sampleReporter[data.name][point.id] = point.x
-				log.debug "REPORTER: " +  sampleReporter[data.name]
 			}
 		}
 		log.debug session.results.query.groups
@@ -78,7 +73,8 @@ class GeneExpressionController {
 			sampleReporter.each { key, value ->
 				valueHash[key] = []
 				samples.each { sample ->
-					valueHash[key] << sampleReporter[key][sample]
+					if(sampleReporter[key][sample])
+						valueHash[key] << sampleReporter[key][sample]
 				}
 				if(valueHash[key]) {
 					valueHash[key] = median.evaluate((Double[])valueHash[key].toArray())
