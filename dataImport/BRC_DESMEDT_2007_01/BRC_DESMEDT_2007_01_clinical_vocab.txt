@@ -20,5 +20,5 @@ EVENT_DMFS	1	EVENT		1 stands for EVENT indicating distant metastasis
 EVENT_DMFS	0	CENSORING		0 stands for CENSORING meaning no record of distant metastasis
 EVENT_TDM	1	EVENT		1 stands for EVENT Indicating a distant metastatis 
 EVENT_TDM	0	CENSORING		0 stands for CENSORING indicating no record of distant metastasis
-RISK_NPI	POOR	POOR		High risk (poor prognosis)
-RISK_NPI	GOOD	GOOD		Low risk (good prognosis)
+RISK_NPI	Poor	HIGH RISK		High risk (poor prognosis)
+RISK_NPI	Good	LOW RISK		Low risk (good prognosis)
