@@ -10,8 +10,8 @@ ER_STATUS_PRE_TRE	Cat 5	Category 5		The Allred score for estrogen receptor alpha
 ER_STATUS_PRE_TRE	Cat 6	Category 6		The Allred score for estrogen receptor alpha
 ER_STATUS_PRE_TRE	Cat 7	Category 7		The Allred score for estrogen receptor alpha
 ER_STATUS_PRE_TRE	Cat 8	Category 8		The Allred score for estrogen receptor alpha
-NODAL_STATUS	NEGATIVE	Negative		Lymph Node negative for tumor cells
-NODAL_STATUS	POSITIVE	Positive		Lymph Nodes positive for tumor cells
+NODAL_STATUS	NEGATIVE	NEGATIVE		Lymph Node negative for tumor cells
+NODAL_STATUS	POSITIVE	POSITIVE		Lymph Nodes positive for tumor cells
 TUMOR_GRADE_PRE_TRE	Not formally graded	Not formally graded		Not formally graded
 TUMOR_GRADE_PRE_TRE	Grade 2	Grade 2		Grade 2
 TUMOR_GRADE_PRE_TRE	Grade 3	Grade 3		Grade 3
