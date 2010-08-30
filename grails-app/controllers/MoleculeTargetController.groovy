@@ -83,7 +83,6 @@ class MoleculeTargetController {
 				if(!cmd.molWeightHigh){
 					cmd.molWeightHigh = new Float(99999.0)
 				}
-				println "search gt " + cmd.molWeightLow.toFloat() + " and lt " + cmd.molWeightHigh.toFloat()
 				targets = Molecule.search(params,{
 					must(ge("weight",cmd.molWeightLow.toFloat()))
 					must(le("weight",cmd.molWeightHigh.toFloat()))

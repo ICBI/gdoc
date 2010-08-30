@@ -80,7 +80,6 @@ def drugDiscoveryService
 	
 	def getPaginatedLists(ids,offset){
 		def pagedLists = []
-		println "my ids are $ids and offset is $offset"
 		if(ids){
 			def idsString = ids.toString().replace("[","")
 			idsString = idsString.replace("]","")

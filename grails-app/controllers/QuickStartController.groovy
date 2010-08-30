@@ -36,7 +36,6 @@ class QuickStartController {
 			params.keySet().removeAll( ['action','diseases','controller','timestamp'] as Set )
 			outcome["outcomeType"] = SemanticHelper.determineOutcomeLabel(params.outcome)
 			def queryOutcome = SemanticHelper.determineOutcomeQuery(params.outcome)
-			println "query for $queryOutcome"
 			def da
 			if(session.dataAvailability){
 				da = session.dataAvailability['dataAvailability']
@@ -48,8 +47,7 @@ class QuickStartController {
 			}
 			results = quickStartService.queryOutcomes(queryOutcome,studiesToSearch,da)
 			results << outcome
-			println " resultZZ: $results"
-		
+			
 			/**REFACTORED to use canned queries above
 			iterate over each study and run run clinical query with 'equivalent' attributes
 			studiesToSearch.each{ study ->
