@@ -145,19 +145,20 @@ class GenomeBrowserController {
 		}
 			
 		def patients = analysis.collect {
-			it.biospecimen.patient
+			[it.biospecimen.patient, it.name]
 		}
-		
-		patients.each {
+		log.debug "PATIENTSS: " + patients
+		patients.each { reduction ->
+			log.debug "${reduction[0].clinicalData}, ${reduction[1]}"
 			def patientTrack = [:]
-			patientTrack.url = "/content/data/tracks/{refseq}/patient_${it.id}.wig.json"
-			patientTrack.label = "patient_${it.id}.wig"
+			patientTrack.url = "/content/data/tracks/{refseq}/${reduction[1]}.wig.json"
+			patientTrack.label = "${reduction[1]}.wig"
 			patientTrack.type = "ImageTrack"
 			def clinicalDataString = ""
-			it.clinicalData.keySet().sort().each{ key ->
-				clinicalDataString += "${key}: ${it.clinicalData[key]}<br/>"
+			reduction[0].clinicalData.keySet().sort().each{ key ->
+				clinicalDataString += "${key}: ${reduction[0].clinicalData[key]}<br/>"
 			}
-			patientTrack.key = "<div class=\"patientTooltip\" title=\"${clinicalDataString}\">Patient ${it.id}</div>"
+			patientTrack.key = "<div class=\"patientTooltip\" title=\"${clinicalDataString}\">${reduction[1]}</div>"
 
 			tracks << patientTrack
 		}

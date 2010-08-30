@@ -11,7 +11,7 @@ class Patient {
 	static fetchMode = [values:"eager", biospecimens: "eager"]
 	static transients = ['clinicalData', 'clinicalDataValues']
 	
-	//String dataSourceInternalId
+	String dataSourceInternalId
 	Long gdocId
 	Map clinicalData
 	Map clinicalDataValues
