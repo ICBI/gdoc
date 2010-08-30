@@ -38,12 +38,17 @@
 			); // end getJSON
 		}
 		function reload(){
-			$("#searchDiv").load('/gdoc/${controllerName}/_studyForm.gsp',{limit: 25}, function(){
-				if(typeof bindBehaviour == 'function')
-					bindBehaviour();
-				});
-			$("#changeStudy").css("display","block");
-			$("#studyPageSpinner").css("visibility","hidden");
+			if(${remote ?: false}) {
+				$("#searchDiv").load('/gdoc/${controllerName}/_studyForm.gsp',{limit: 25}, function(){
+					if(typeof bindBehaviour == 'function')
+						bindBehaviour();
+					});
+				$("#changeStudy").css("display","block");
+				$("#studyPageSpinner").css("visibility","hidden");
+			} else {
+				location.reload(true);
+			}
+			
 		}
 		
 	
@@ -63,7 +68,7 @@
 					<a href="#" id="changeStudy" style="display:block;margin-left:26px" onclick="showStudyChange();">change study?</a>
 				</g:if>
 				<g:else>
-					<a href="#" id="changeStudy" style="display:none;margin-left:26px" onclick="showStudyChange();">choose study</a>
+					<a href="#" id="changeStudy" style="display:none;margin-left:26px" onclick="showStudyChange();">change study?</a>
 				</g:else>
 			</span>
 		</p>
@@ -89,9 +94,8 @@
 		<%--from="${myStudies}"
 		value="${session.study?.id}"
 		optionKey="id" optionValue="shortName"--%>
-			<div style="float:right;padding:5px">
+		
 		    <g:submitButton name="update" value="set study" disabled="true"/>
-			</div>
 			<span id="studyPageSpinner" style="visibility:hidden;display:inline-table"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 		</g:formRemote>
 		
