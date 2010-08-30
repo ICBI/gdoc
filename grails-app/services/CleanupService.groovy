@@ -1,4 +1,5 @@
 class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
+	def savedAnalysisService
 	
 	def void cleanup(String userId, HashSet lists, HashSet analyses){
 		log.debug "cleanup temporary artifacts for $userId"
@@ -24,14 +25,15 @@ class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
 			}
 		}**/
 		if(analyses){
+			log.debug "delete analyses $analyses"
 			def tbSize = analyses.size()
 			analyses.each{
-				log.debug "delete analysis $it"
-				def sa = SavedAnalysis.get(it)
-				if(sa)
-					sa.delete(flush: true)
+				def analysis = SavedAnalysis.get(it)
+				author.removeFromAnalysis(analysis)
+				if(savedAnalysisService.deleteAnalysis(analysis.id))
+				log.debug "deleted $tbSize temp analyses for $author.loginName";
 			}
-			log.debug "deleted $tbSize temp analyses for $author.loginName";
+			
 		}
 	}
 	

@@ -28,8 +28,8 @@ public class GDOCSessionListener implements HttpSessionListener {
 		if(service != null && userId != null && (tempLists !=null) && (tempAnalyses!=null)){
 			System.out.println(userId + " has destroyed session, cleanup temp data");
 			if(!(tempLists.isEmpty()) || !(tempAnalyses.isEmpty())){
-				System.out.println(userId + " found temporary data");
-				service.cleanup(userId,tempLists,tempAnalyses);
+				//System.out.println(userId + " found temporary data");
+				//service.cleanup(userId,tempLists,tempAnalyses);
 			}	
 		}
 	}

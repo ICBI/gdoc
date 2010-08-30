@@ -8,15 +8,14 @@ class UserList implements Taggable{
 		cache true
 	}
 
-	String name
-	GDOCUser author
+	String name 
 	Date dateCreated
 	Date lastUpdated
 	
 	static searchable = {
 	    listItems component: true
 	}
-	
+	static belongsTo = [author:GDOCUser]
 	static hasMany = [listItems:UserListItem,listComments:Comments, studies:StudyDataSource, evidence:Evidence]
 	static fetchMode = [listItems: 'eager',tags:'eager', studies: 'eager']
 	static constraints = {

@@ -30,7 +30,7 @@ class SavedAnalysis implements Taggable {
 	String queryData
 	String status
 	String taskId
-	GDOCUser author
+	static belongsTo = [author:GDOCUser]
 	Date dateCreated
 	Date lastUpdated
 	
