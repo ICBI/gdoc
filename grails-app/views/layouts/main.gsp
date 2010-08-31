@@ -40,7 +40,7 @@
     <g:render template="/common/header"/>
     <!-- Header end -->
 	</div>
-	<div class="c" style="background:#fff;border:.5px solid #000;padding:3px 0;">
+	<div class="c" style="background:#fff;border:1px solid #000;padding:3px 0;">
 	<div id="bd">
 		<div id="yui-main" style="min-height:400px;">
 			<div class="yui-b">

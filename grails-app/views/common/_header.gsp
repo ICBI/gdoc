@@ -29,6 +29,11 @@
 					}
 	});
 	
+	$("#loginName").click(function(){
+		$(this).val("");
+		$(this).css("color","black");
+	})
+	
 	
   });
 
@@ -46,8 +51,8 @@
 <div align="right" id="success" style="color:white">${flash.message}</div>
 </g:if>
 <g:form name="loginForm" url="[controller:'login',action:'login']" update="[success:'message',failure:'error']">
-       <input name="loginName" type="text" size="10"></input>
-       <input name="password" type="password" size="10"></input>
+       <input name="loginName" id="loginName" type="text" style="color:gray" size="10" onclick="clear()" value="net-Id"></input>
+       <input name="password" id="password" type="password" size="10"></input>
        <input type="submit" value="login" />
 </g:form >
 <span style="color:white;padding-top:8px;font-size:.9em">Not registered? <g:link controller="registration" style="color:white">register now</g:link> (NetId required)</span>

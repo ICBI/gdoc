@@ -150,6 +150,12 @@ environments {
 			bulkIndexOnStartup = false
         }
     }
+	local {
+        searchable {
+            // development is default; inherits from above
+			bulkIndexOnStartup = false
+        }
+    }
     sandbox {
         searchable {
 			bulkIndexOnStartup = false

@@ -10,6 +10,9 @@
 				if($("#disease").val()) {
 					queryForDisease();
 				}
+				$("#changeStudy").click(function() {
+				  	showStudyChange();
+				});
 			});
 		function queryForDisease() {
 			jQuery.getJSON("/gdoc/studyDataSource/findStudiesForDisease", { disease: $("#disease").val() },
@@ -53,7 +56,16 @@
 		
 	
 		function showStudyChange(){
-			$("#studyFieldset").css("display","block");
+			var visSelector = $("#studyFieldset").css("display");
+			console.log(visSelector);
+			if(visSelector == 'none'){
+				$("#studyFieldset").css("display","block");
+				$("#changeStudy").html("hide study selector");
+			}
+			else{
+				$("#studyFieldset").css("display","none");
+				$("#changeStudy").html("change study?");	
+			}
 		}
 		function showSpinner(){
 			$("#studyPageSpinner").css("visibility","visible");
@@ -65,10 +77,10 @@
 				${session.study?.shortName}</span>
 			<span style="display:inline-table;font-size:.8em">
 				<g:if test="${session.study}">
-					<a href="#" id="changeStudy" style="display:block;margin-left:26px" onclick="showStudyChange();">change study?</a>
+					<a href="#" id="changeStudy" style="display:block;margin-left:26px">change study?</a>
 				</g:if>
 				<g:else>
-					<a href="#" id="changeStudy" style="display:none;margin-left:26px" onclick="showStudyChange();">change study?</a>
+					<a href="#" id="changeStudy" style="display:none;margin-left:26px">change study?</a>
 				</g:else>
 			</span>
 		</p>
@@ -94,8 +106,9 @@
 		<%--from="${myStudies}"
 		value="${session.study?.id}"
 		optionKey="id" optionValue="shortName"--%>
-		
+			<br /><span style="float:right">
 		    <g:submitButton name="update" value="set study" disabled="true"/>
+			</span>
 			<span id="studyPageSpinner" style="visibility:hidden;display:inline-table"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 		</g:formRemote>
 		

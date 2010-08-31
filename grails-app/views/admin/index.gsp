@@ -3,7 +3,15 @@
         <title>GDOC - Administration</title>
 		<meta name="layout" content="main" />
 		<g:javascript library="jquery"/>
-		
+		<g:javascript>
+			function success(){
+					$("#spinner").css("visibility","hidden");
+			}
+			function loading(){
+					$("#spinner").css("visibility","visible");
+					$("#status").html("Status: loading")
+			}
+		</g:javascript>
     </head>
     <body>
 	
@@ -17,13 +25,14 @@
 					<td>
 						<div>
 						<div style="padding:7px;background-color:seashell;">
-						* <a href="#">reload data availability</a> (disabled)
-						<span id="status" style="margin-left:75%">Status</span>
-						<span id="spinner" style="float:right">spinner</span>
+				<g:link action="reload" onclick="loading()">reload data availability</g:link><br />
+						<span id="status">Status: 
+							<g:if test="${loadedStudies}">${loadedStudies.size()} studies loaded</g:if>
+							<g:else> there are no studies loaded at this time</g:else>
+						</span>
+						<span id="spinner" style="visibility:hidden;display:inline-table"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 						</div>
 						
-						<div style="padding:5px;" id="loaded">
-						Currently loaded studies:<g:if test="${loadedStudies}">${loadedStudies.size()}</g:if></div>
 								<div style="padding:5px;background-color:#f2f2f2;">
 								<g:if test="${loadedStudies}">
 								${loadedStudies}

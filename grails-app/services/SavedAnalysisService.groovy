@@ -138,7 +138,6 @@ class SavedAnalysisService {
 	}
 	
 	def deleteAnalysis(analysisId) {
-		log.debug "delete analysis: " + analysisId
 		def analysis = SavedAnalysis.get(analysisId)
 		if(analysis) {
 			if(analysis.type == AnalysisType.KM_GENE_EXPRESSION){
