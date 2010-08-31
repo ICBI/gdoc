@@ -164,7 +164,7 @@ environments {
 
 	demo {
 		searchable {
-			bulkIndexOnStartup = true
+			bulkIndexOnStartup = false
 		}
 	}
 	
