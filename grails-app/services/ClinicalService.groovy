@@ -36,9 +36,10 @@ class ClinicalService {
 		}
 		log.debug "BIO PATIENT IDS $bioPatientIds"
 		if(!criteria || criteria.size() == 0) {
-			def patients = Patient.executeQuery("select p.id from Patient p")
+			def patients = []
 			// filter out patients that did not match biopecimens
 			if(bioPatientIds && bioPatientIds.size() > 0) {
+				patients = Patient.executeQuery("select p.id from Patient p")
 				patients = patients.findAll {
 					log.debug "COMPARING ${it}"
 					bioPatientIds.count(it) > 0

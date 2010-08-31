@@ -57,7 +57,6 @@
 	
 		function showStudyChange(){
 			var visSelector = $("#studyFieldset").css("display");
-			console.log(visSelector);
 			if(visSelector == 'none'){
 				$("#studyFieldset").css("display","block");
 				$("#changeStudy").html("hide study selector");
