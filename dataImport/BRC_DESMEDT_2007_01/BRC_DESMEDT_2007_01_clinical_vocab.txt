@@ -3,13 +3,13 @@ BREAST_CONSERVING_SURGERY	NO	NO		Patient did not undergo  Breast Conserving Surg
 BREAST_CONSERVING_SURGERY	YES	YES		Patient underwent Breast Conserving Surgery
 MASTECTOMY	NO	NO		Patient did not undergo Mastectomy
 MASTECTOMY	YES	YES		Patient underwent Mastectomy
-HIST_TUMOR_TYPE	1	1		IDC- Invasive Ductal Carcinoma
-HIST_TUMOR_TYPE	2	2		ILC -Invasive lobular Carcinoma
-HIST_TUMOR_TYPE	3	3		IDC/ILC
-HIST_TUMOR_TYPE	4	4		mucinous
-HIST_TUMOR_TYPE	5	5		metaplastic
-HIST_TUMOR_TYPE	6	6		medular
-HIST_TUMOR_TYPE	7	7		tubular/lobular
+HIST_TUMOR_TYPE	1	1 - IDC- Invasive Ductal Carcinoma		1 - IDC- Invasive Ductal Carcinoma
+HIST_TUMOR_TYPE	2	2 - ILC -Invasive lobular Carcinoma		2 - ILC -Invasive lobular Carcinoma
+HIST_TUMOR_TYPE	3	3 - IDC/ILC		3 - IDC/ILC
+HIST_TUMOR_TYPE	4	4 - mucinous		4 - mucinous
+HIST_TUMOR_TYPE	5	5 - metaplastic		5 - metaplastic
+HIST_TUMOR_TYPE	6	6 - medular		6 - medular
+HIST_TUMOR_TYPE	7	7 - tubular/lobular		7 - tubular/lobular
 ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
 ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
 EVENT_DFS	1	EVENT		1 stands for EVENT indicating recurrence of disease  

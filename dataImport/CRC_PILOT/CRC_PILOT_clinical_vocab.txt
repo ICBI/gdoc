@@ -33,7 +33,7 @@ DISEASE_LOCALIZATION	ILEOCAECAL	ileocaecal		ileocaecal
 DISEASE_LOCALIZATION	RECTUM	rectum		rectum
 HIST_TUMOR_GRADE	MODERATELY_DIFF	Moderately differentiated		Moderately differentiated
 HIST_TUMOR_GRADE	POORLY_DIFF	Poorly differentiated		Poorly differentiated
-HIST_TUMOR_TYPE	8	Adenocarcinoma		Adenocarcinoma
+HIST_TUMOR_TYPE	8	8 - Adenocarcinoma		8 - Adenocarcinoma
 PTNM_T	T4	T4 - Size and/or extent of the primary tumor		T4 - Size and/or extent of the primary tumor
 PTNM_T	T3	T3 - Size and/or extent of the primary tumor		T3 - Size and/or extent of the primary tumor
 PTNM_T	T2	T2 - Size and/or extent of the primary tumor		T2 - Size and/or extent of the primary tumor

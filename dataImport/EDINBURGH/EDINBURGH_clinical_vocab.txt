@@ -17,11 +17,11 @@ TUMOR_GRADE_PRE_TRE	Grade 2	Grade 2		Grade 2
 TUMOR_GRADE_PRE_TRE	Grade 3	Grade 3		Grade 3
 TUMOR_GRADE_PRE_TRE	Grade 6	Grade 6		Grade 6
 TUMOR_GRADE_PRE_TRE	Grade 8	Grade 8		Grade 8
-HIST_TUMOR_TYPE	0	0		No significant tumor
-HIST_TUMOR_TYPE	1	1		IDC- Invasive Ductal Carcinoma
-HIST_TUMOR_TYPE	2	2		ILC -Invasive lobular Carcinoma
-HIST_TUMOR_TYPE	3	3		IDC/ILC
-HIST_TUMOR_TYPE	4	4		mucinous
+HIST_TUMOR_TYPE	0	0 - No significant tumor		0 - No significant tumor
+HIST_TUMOR_TYPE	1	1 - IDC- Invasive Ductal Carcinoma		1 - IDC- Invasive Ductal Carcinoma
+HIST_TUMOR_TYPE	2	2 - ILC -Invasive lobular Carcinoma		2 - ILC -Invasive lobular Carcinoma
+HIST_TUMOR_TYPE	3	3 - IDC/ILC		3 - IDC/ILC
+HIST_TUMOR_TYPE	4	4 - mucinous		4 - mucinous
 TAMOXIFEN_TREATMENT	NO	NO		The patient was not treated with tamoxifen
 TAMOXIFEN_TREATMENT	YES	YES		The patient was treated with tamoxifen
 ARIMIDEX_TREATMENT	NO	NO		The patient was not treated with Arimidex
