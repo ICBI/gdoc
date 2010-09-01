@@ -17,6 +17,10 @@
 				checkBrowser();
 				checkFlash();
 				checkJava();
+				$('#javaLink').click(function() {
+					deployJava.installLatestJRE();
+					return false;
+				});
 			});
 			function checkBrowser() {
 				var browser = ""
@@ -74,15 +78,19 @@
 					
 						
 					<br/>
-					<h1>System Requirements Check</h1>
+					<div align="center" style="font-size: 1.8em; font-weight:bold;">
+						G-DOC System Requirements Check
+					</div>
 					<br/>
 					<br/>
-					
+					<br/>
+					<br/>					
 					<table class="checkTable" border="1" style="margin:auto; font-size: 1.0em">
 						<tr style="padding:4px 4px 4px 4px;background-color:#f2f2f2">
 							<td>Required</td>
 							<td>Your Computer</td>
 							<td>Pass?</td>
+							<td>Download</td>
 						</tr>
 						<tr>
 							<td>Internet Explorer 8.0+ or Mozilla Firefox 3.5+</td>
@@ -93,6 +101,10 @@
 									<img src="${createLinkTo(dir: 'images', file: 'cancel.png')}" alt="Fail" class="fail"/>
 								</div>
 							</td>
+							<td>
+								<a href="http://www.mozilla.com/firefox" target="_blank">Firefox</a><br/>
+								<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx" target="_blank">Internet Explorer</a>
+							</td>
 						</tr>
 						<tr>
 							<td>Flash 10.0+</td>
@@ -101,6 +113,7 @@
 								<img src="${createLinkTo(dir: 'images', file: 'accept.png')}" alt="Pass" style="display:none" class="pass"/>
 								<img src="${createLinkTo(dir: 'images', file: 'cancel.png')}" alt="Fail" class="fail"/>
 							</div></td>
+							<td><a href="http://get.adobe.com/flashplayer/" target="_blank">Flash</a></td>
 						</tr>	
 						<tr>
 							<td>Java 1.6+</td>
@@ -109,6 +122,7 @@
 								<img src="${createLinkTo(dir: 'images', file: 'accept.png')}" alt="Pass" style="display:none" class="pass"/>
 								<img src="${createLinkTo(dir: 'images', file: 'cancel.png')}" alt="Fail" class="fail"/>
 							</div></td>
+							<td><a href="#" id="javaLink" target="_blank">Java</a></td>
 						</tr>
 						</table>	
 							
