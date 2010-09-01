@@ -5,8 +5,9 @@
 	<img src="${createLinkTo(dir:'images',file:'lombardi_logo.png')}" border="0" />
 </span>
 
-<span size="6" style="vertical-align:40px;margin-right:100px;margin-left:100px;font-size: 10px; font-family: arial,helvetica,sans-serif; color: #1c2674;border:0px solid black">
+<span size="6" style="vertical-align:40px;margin-right:70px;margin-left:70px;font-size: 10px; font-family: arial,helvetica,sans-serif; color: #1c2674;border:0px solid black">
 	<a href="http://lombardi.georgetown.edu/" target="_blank">LOMBARDI CCC</a>  &nbsp; |&nbsp;&nbsp; 
+	<a href="${createLink(controller: 'home', action: 'requirementCheck')}" target="_blank">SYSTEM REQUIREMENTS</a>  &nbsp; |&nbsp;&nbsp; 
 	<a href="#">PUBLICATION POLICY</a> &nbsp;&nbsp; |&nbsp;&nbsp; 
 	<a href="#">DATA ACCESS POLICY</a>  &nbsp; |&nbsp;&nbsp; 
 	<g:link controller="contact">CONTACT US</g:link>

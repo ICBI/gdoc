@@ -95,4 +95,8 @@ class HomeController {
 		
 	}
 	
+	def requirementCheck = {
+		
+	}
+	
 }

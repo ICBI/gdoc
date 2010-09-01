@@ -225,6 +225,16 @@ p
 	padding: 5px;
 	border: 0px solid #CCCCCC;
 }
+
+.checkTable {
+	font-size: .8em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+}
+.checkTable td {
+	padding: 5px;
+	border: 1px solid #CCCCCC;
+}
 .sourceTable{
 	font-size: .8em;
 	border: 1px solid #CCCCCC;
