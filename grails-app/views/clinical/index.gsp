@@ -39,7 +39,22 @@
 						}
 					});
 				});
+				
+				$(":input").each(function(index){
+					$(this).keypress(function(e){
+			      		if(e.which == 13){
+							//alert($('#searchForm') + "  submit");
+							$(this).blur();
+							e.preventDefault();
+			       			$('#submit').focus().click();
+							
+			       		}
+			      	});
+				});
+					
+				
 			});
+			
 			
 		</g:javascript>
 	<p style="font-size:14pt">Search for Clinical Data</p>

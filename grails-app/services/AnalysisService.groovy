@@ -59,7 +59,8 @@ class AnalysisService {
 			request.dataFileName = cmd.dataFile
 			def sampleGroup = new SampleGroup()
 			def allIds = idService.sampleIdsForFile(cmd.dataFile)
-			if(!cmd.groups == 'ALL') {
+			log.debug "group sent in = $cmd.groups"
+			if(cmd.groups != 'ALL') {
 				def sampleIds = idService.samplesForListName(cmd.groups)
 				log.debug "SAMPLEIDS: $sampleIds"
 				allIds = allIds.intersect(sampleIds)

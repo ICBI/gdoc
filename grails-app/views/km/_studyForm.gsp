@@ -48,7 +48,7 @@ if(geneExpression) {
 			geneExpression = true;
 		</g:javascript>
 	</g:if>
-	<div class="tabDiv" style="border:1px solid black">
+	<div class="tabDiv" style="border:0px solid black">
 		
 		<div id="centerTabs" class="tabDiv">
 		    <ul>

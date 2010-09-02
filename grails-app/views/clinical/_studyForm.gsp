@@ -4,6 +4,8 @@
 	var count = 0;
 
 	function bindBehaviour(){
+		
+		
 		$("[class*='info']").each(function(index){
 			$(this).tooltip({showURL: false});
 		});
