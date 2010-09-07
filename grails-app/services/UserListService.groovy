@@ -48,6 +48,41 @@ def drugDiscoveryService
 		return lists
 	}
 	
+	def getFilteredLists(timePeriod, userId, sharedIds){
+		
+		def filteredLists = []
+		
+			if(timePeriod == "all"){
+				log.debug "show ALL user's lists"
+				filteredLists = getAllLists(userId, sharedIds)
+				return filteredLists
+			}
+			else if(timePeriod == "hideShared"){
+				log.debug "only show user's lists"
+				def user = GDOCUser.findByLoginName(userId)
+				user.refresh()
+				filteredLists = user.lists
+				return filteredLists
+			}
+			else{
+				def tp = Integer.parseInt(timePeriod)
+				def today = new Date()
+				def allLists = []
+				def user = GDOCUser.findByLoginName(userId)
+				allLists = user.lists
+				allLists.each{ list ->
+					if(today.minus(list.dateCreated) <= tp){
+						filteredLists << list
+					}
+				}
+				return filteredLists
+			}
+			
+		return filteredLists
+		
+		
+	}
+	
 	def filterLists(timePeriod, allLists, userId){
 		def filteredLists = []
 		if(allLists){

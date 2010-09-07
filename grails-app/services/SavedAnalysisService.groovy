@@ -169,6 +169,43 @@ class SavedAnalysisService {
 		}
 	}
 	
+	def getFilteredAnalysis(timePeriod, userId, sharedIds){
+		
+		def filteredAnalysis = []
+		
+			if(timePeriod == "all"){
+				log.debug "show ALL user's analyses"
+				filteredAnalysis = getAllSavedAnalysis(userId, sharedIds)
+				return filteredAnalysis
+			}
+			else if(timePeriod == "hideShared"){
+				log.debug "only show user's analyses"
+				def user = GDOCUser.findByLoginName(userId)
+				user.refresh()
+				filteredAnalysis = user.analysis
+				return filteredAnalysis
+			}
+			else{
+				def tp = Integer.parseInt(timePeriod)
+				def today = new Date()
+				def allAnalysis = []
+				def user = GDOCUser.findByLoginName(userId)
+				allAnalysis = user.analysis
+				allAnalysis.each{ analysis ->
+					if(today.minus(analysis.dateCreated) <= tp){
+						filteredAnalysis << analysis
+					}
+				}
+				return filteredAnalysis
+			}
+			
+		return filteredAnalysis
+		
+		
+	}
+	
+
+	
 	def filterAnalysis(timePeriod, allAnalysis, userId){
 		def filteredAnalysis = []
 		if(allAnalysis){

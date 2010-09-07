@@ -17,11 +17,20 @@ class UserListController {
 		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"show my lists only",all:"show all"]
 		def filteredLists = []
 		def pagedLists = []
-        lists = userListService.getAllLists(session.userId, session.sharedListIds)
-		if(lists){
-			def ids = lists.collect{it.id}
-			def filteredListIds = []
-
+			if(params.listFilter){
+				session.listFilter = params.listFilter
+				lists = userListService.getFilteredLists(params.listFilter,session.userId,session.sharedListIds)
+			}
+			else if (session.listFilter){
+				lists = userListService.getFilteredLists(session.listFilter,session.userId,session.sharedListIds)
+			}else{
+				session.listFilter = "hideShared"
+				lists = userListService.getFilteredLists("hideShared",session.userId,session.sharedListIds)
+			}
+        if(lists){
+			def filteredListIds = lists.collect{it.id}
+			//def filteredListIds = []
+			/**
 			if(params.listFilter){
 				if(params.listFilter == 'all'){
 					session.listFilter = "all"
@@ -42,7 +51,7 @@ class UserListController {
 				session.listFilter = "all"
 				//filteredLists = userListService.filterLists(session.listFilter,lists)
 				filteredListIds = ids
-			}
+			}**/
 
 			if(params.offset){
 				pagedLists = userListService.getPaginatedLists(filteredListIds,params.offset.toInteger())

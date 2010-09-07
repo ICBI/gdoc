@@ -8,6 +8,7 @@
 <g:if test="${analysis.type == AnalysisType.KM_GENE_EXPRESSION && analysis.query.geAnalysisId.toString() == 'null'}">
 </g:if>
 <g:else>
+<g:if test="${analysis.status == 'Complete'}">
 <tr>
 	<td style="background-color:white;">
 		<g:if test="${savedAnalysis.size()>0}">
@@ -87,6 +88,7 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 	</g:if>
 	</td>
 	</tr>
+	</g:if>
 	</g:else>
 </g:each>
 </table>

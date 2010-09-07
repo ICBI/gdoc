@@ -17,10 +17,7 @@ class GDOCUser {
 	String department
 	
 	static mappedBy = [invitations:'invitee']	
-	static hasMany = [memberships:Membership,comments:Comments, analysis:SavedAnalysis, invitations:Invitation]
+	static hasMany = [memberships:Membership,comments:Comments, analysis:SavedAnalysis, invitations:Invitation, lists:UserList]
 	
-	def lists(){
-		return UserList.findAllByAuthor(this)
-	}
     
 }

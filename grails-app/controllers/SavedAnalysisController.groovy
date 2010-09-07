@@ -10,8 +10,16 @@ class SavedAnalysisController{
 		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"hide shared lists",all:"show all"]
 		def filteredAnalysis = []
 		def pagedAnalyses = []
-		myAnalyses = savedAnalysisService.getAllSavedAnalysis(session.userId,session.sharedAnalysisIds)
-		
+		if(params.analysisFilter){
+			session.analysisFilter = params.analysisFilter
+			myAnalyses = savedAnalysisService.getFilteredAnalysis(params.analysisFilter,session.userId,session.sharedAnalysisIds)
+		}
+		else if (session.analysisFilter){
+			myAnalyses = savedAnalysisService.getFilteredAnalysis(session.analysisFilter,session.userId,session.sharedAnalysisIds)
+		}else{
+			session.analysisFilter = "hideShared"
+			myAnalyses = savedAnalysisService.getFilteredAnalysis("hideShared",session.userId,session.sharedAnalysisIds)
+		}
 		//remove special cases
 		if(myAnalyses){
 			def specialCases = []
@@ -29,9 +37,9 @@ class SavedAnalysisController{
 			if(specialCases)
 				myAnalyses.removeAll(specialCases)
 
-			def ids = myAnalyses.collect{it.id}
-			def filteredAnalysisIds = []
-
+			//def ids = myAnalyses.collect{it.id}
+			def filteredAnalysisIds = myAnalyses.collect{it.id}
+			/**
 			if(params.analysisFilter){
 				if(params.analysisFilter == 'all'){
 					session.analysisFilter = "all"
@@ -51,7 +59,7 @@ class SavedAnalysisController{
 			else{
 				session.analysisFilter = "all"
 				filteredAnalysisIds = ids
-			}
+			}**/
 
 
 			if(params.offset){
