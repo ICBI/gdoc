@@ -32,7 +32,7 @@
 <g:elseif test="${notification.status == 'Error'}">
 	<div style="float: left;">${notification.type} (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 	</div>
-	<div class="status" style="float: right;text-decoration:underline;cursor:pointer" title='${notification.analysis.item.errorMessage}'>${notification.status.toUpperCase()}</div>
+	<div class="status" style="float: right;text-decoration:underline;cursor:pointer" title='TEST'>${notification.status.toUpperCase()}</div>
 </g:elseif>		
 <g:else>
 	<div style="float: left;">${notification.type} (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 

@@ -45,6 +45,22 @@ class SavedAnalysisService {
 		return analyses
 	}
 	
+	def checkSavedAnalysis(userId) {
+		def criteria = GDOCUser.createCriteria()
+		def savedAnalysis = criteria {
+			projections {
+				analysis {
+					property('id')
+					property('type')
+					property('status')
+					property('dateCreated')
+				}
+			}
+			eq("loginName", userId)
+		}
+		return savedAnalysis
+	}
+	
 	def addSavedAnalysis(userId, notification, command, tags) {
 		def user = GDOCUser.findByLoginName(userId)
 		log.debug "GOT NOTIFICATION $notification"
@@ -208,12 +224,13 @@ class SavedAnalysisService {
 	}
 	
 	def getSavedAnalysis(userId, taskId) {
-		def user = GDOCUser.findByLoginName(userId, ['fetch':[analysis:'eager']])
+/*		def user = GDOCUser.findByLoginName(userId, ['fetch':[analysis:'eager']])
 		def analysis=[]
-		analysis = user.analysis
-		def item =  analysis.find{
+		analysis = user.analysis*/
+/*		def item =  analysis.find{
 			it.analysis.item!=null && it.analysis.item.taskId == taskId
-		}
+		}*/
+		def item = SavedAnalysis.findByTaskId(taskId)
 		if(item){
 			item.refresh()
 			item.studies

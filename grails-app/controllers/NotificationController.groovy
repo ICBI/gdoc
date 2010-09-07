@@ -8,22 +8,26 @@ class NotificationController {
 	def invitationService
 	
     def index = { 
-		buildNotifications()
-		log.debug session.notifications
-		log.debug session.invitations
+		checkNotifications()
 	}
 	
 	def check = {
-		buildNotifications()
+		checkNotifications()
+		render(template:"/notification/notificationTable")
+	}
+	
+	def checkNotifications = {
+		def analysis = savedAnalysisService.checkSavedAnalysis(session.userId)
 		def statusList = []
-		session.notifications.each{
+		analysis.each{
 			def statusMap = [:]
-			statusMap["id"] = it.id
-			statusMap["status"] = it.status
+			statusMap["id"] = it[0]
+			statusMap["type"] = it[1]
+			statusMap["status"] = it[2]
+			statusMap["dateCreated"] = it[3]
 			statusList << statusMap
 		}
-		//render statusList as JSON
-		render(template:"/notification/notificationTable")
+		session.notifications = statusList.sort { it.dateCreated }.reverse()
 	}
 	
 	def delete = {
@@ -37,22 +41,9 @@ class NotificationController {
 		def savedAnalysis = []
 		def invitations = []
 		savedAnalysis = savedAnalysisService.getAllSavedAnalysis(session.userId)
-		//invitations = invitationService.findAllInvitationsForUser(session.userId)
-		//session.invitations = invitations
-		
-/*		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
-*/		if(savedAnalysis){
+		if(savedAnalysis){
 			notifications.addAll(savedAnalysis)
-			savedAnalysis.each{
-				if(savedAnalysisService.analysisIsTemporary(it.id)){
-					//if(!session.tempAnalyses?.contains(it.id)){
-						session.tempAnalyses << it.id
-					//}
-				}
-			}
 		}
-/*		if(gpJobs)
-			notifications.addAll(gpJobs)*/
 		
 		//remove analysis that are more than 2 days old
 		def today = new Date()
