@@ -7,7 +7,7 @@ def drugDiscoveryService
 
 	def getAllLists(userId,sharedIds){
 		def user = GDOCUser.findByLoginName(userId)
-		user.refresh()
+		//user.refresh()
 		def lists = []
 		lists = getUserLists(user.loginName)
 		def listIds = []
@@ -60,7 +60,6 @@ def drugDiscoveryService
 			else if(timePeriod == "hideShared"){
 				log.debug "only show user's lists"
 				def user = GDOCUser.findByLoginName(userId)
-				user.refresh()
 				filteredLists = user.lists
 				return filteredLists
 			}
@@ -141,7 +140,7 @@ def drugDiscoveryService
 	def getUserLists(userId){
 		def lists = []
 		def author = GDOCUser.findByLoginName(userId)
-		author.refresh()
+		//author.refresh()
 		lists = UserList.findAllByAuthor(author)
 		return lists
 	}
