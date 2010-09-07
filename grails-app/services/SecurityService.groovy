@@ -23,8 +23,8 @@ class SecurityService {
 	public static String USER = 'USER'
 	
 	def jdbcTemplate
-	List studies
-	def sharedItems
+	//List studies
+	def sharedItems = [:]
 	
 	AuthenticationManager authenticationManager
 	AuthorizationManager authorizationManager
@@ -340,8 +340,8 @@ class SecurityService {
 	}
 	
 	def getSharedItemIds(loginName, itemType) {
-		if(itemType == 'StudyDataSource' && studies) {
-			return studies
+		if(sharedItems[itemType] != null) {
+			return sharedItems[itemType]
 		}
 		def authManager = this.getAuthorizationManager()
 		def user = authManager.getUser(loginName)
@@ -362,9 +362,9 @@ class SecurityService {
 				}
 			}
 		}
-		if(itemType == 'StudyDataSource' && !studies) {
-			log.debug "CACHING STUDIES $ids"
-			studies = ids
+		if(sharedItems[itemType] == null) {
+			log.debug "CACHING ${itemType} $ids"
+			sharedItems[itemType] = ids
 		}
 		
 		return ids
@@ -377,7 +377,7 @@ class SecurityService {
 	private userCanAccess(user, objectId, type) {
 		def studyNames = this.getSharedItemIds(user.loginName, StudyDataSource.class.name)
 		def klazz = Thread.currentThread().contextClassLoader.loadClass(type)
-		//log.debug "LOOKING UP $objectId for $type"
+		log.debug "LOOKING UP $objectId for $type"
 		def item = klazz.get(objectId)
 		if(!item)
 			return false
