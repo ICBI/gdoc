@@ -39,6 +39,11 @@ class ClinicalController {
 				if(biospecimenCriteria && biospecimenCriteria.size() > 0) {
 					biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
 					log.debug "GOT IDS ${biospecimenIds.size()}"
+					if(!biospecimenIds){
+						log.debug "no biospecimens found for criteria, return no results"
+						searchResults = []
+						return processResults(searchResults)
+					}
 				}
 			}
 			//log.debug criteria
