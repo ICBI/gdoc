@@ -37,8 +37,8 @@ class NotificationController {
 		def savedAnalysis = []
 		def invitations = []
 		savedAnalysis = savedAnalysisService.getAllSavedAnalysis(session.userId)
-		invitations = invitationService.findAllInvitationsForUser(session.userId)
-		session.invitations = invitations
+		//invitations = invitationService.findAllInvitationsForUser(session.userId)
+		//session.invitations = invitations
 		
 /*		def gpJobs = genePatternService.checkJobs(session.userId, session.genePatternJobs)
 */		if(savedAnalysis){

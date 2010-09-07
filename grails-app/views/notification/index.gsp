@@ -48,10 +48,10 @@
 	<g:panel title="My Running Analysis" styleClass="notifications" contentClass="myPanelContent" id="notifications">
 		<g:render template="/notification/notificationTable" />
 	</g:panel>
-	<g:panel title="Invitations and Messages" styleClass="invitations" contentClass="myPanelContent" id="invitations">
+	<%--g:panel title="Invitations and Messages" styleClass="invitations" contentClass="myPanelContent" id="invitations">
 		(<span style='font-style:italic'>last 30 days</span>)
 		<g:render template="/notification/invitationTable" />
-	</g:panel>
+	</g:panel--%>
 	<br/>
 		<form id="gpForm" action="${grailsApplication.config.genePatternUrl}/gp/pages/index.jsf" method="POST" target="genepattern">
 			<input type="hidden" name="workspaceId" value="${genePatternId()}" />
