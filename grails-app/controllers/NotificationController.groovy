@@ -36,6 +36,14 @@ class NotificationController {
 		render(template:"/notification/notificationTable")
 	}
 	
+	def error = {
+		def notification = SavedAnalysis.get(params.id)
+		if(notification) {
+			def errorMessage = notification.analysis.item.errorMessage.replace(",", ", ")
+			def words = wrapntab(errorMessage)
+			render words.join("<br/>")
+		}
+	}
 	def buildNotifications = {
 		def notifications = []
 		def savedAnalysis = []
@@ -63,5 +71,22 @@ class NotificationController {
 			return dateTwo.compareTo(dateOne)
 		}
 		session.notifications = notifications
+	}
+	
+	private def wrapntab(input, linewidth = 50, indent = 0) throws IllegalArgumentException {
+
+		def olines = []
+		def oline = " " * indent
+
+		input.split(" ").each() { wrd ->
+			if( (oline.size() + wrd.size()) <= linewidth ) {
+				oline <<= wrd <<= " "
+			}else{
+				olines += oline
+				oline = wrd + " "
+			}
+		}
+		olines += oline
+		return olines
 	}
 }

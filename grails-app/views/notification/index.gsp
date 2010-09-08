@@ -2,11 +2,13 @@
 <head>
 	<meta name="layout" content="main" />
 	<g:javascript library="jquery"/>
+	<jq:plugin name="tooltip"/>
 	<title>Notifications</title>         
 </head>
 <body>
 	<g:javascript>
 		jQuery(document).ready(function() {
+			addToolTips();
 			var refreshId = setInterval(function() {
 		  	jQuery.ajax({
 					type: "POST",
@@ -26,6 +28,7 @@
 							clearInterval(refreshId);
 						}
 						addClickHandler();
+						addToolTips();
 					},
 					error: function(data) {
 						clearInterval(refreshId);
@@ -40,6 +43,20 @@
 				jQuery('#gpForm').submit();
 				return false;
 			})
+		}
+		
+		function addToolTips() {
+			jQuery('.status').tooltip({
+				bodyHandler: function() { 
+					return jQuery.ajax({
+						type: "POST",
+						async: false,
+						data: {id: this.id},
+						url: "${createLink(controller: 'notification', action: 'error')}"
+					}).responseText;
+				}, 
+				showURL: false
+			});
 		}
 		
 	</g:javascript>
