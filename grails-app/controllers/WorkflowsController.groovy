@@ -52,12 +52,7 @@ class WorkflowsController {
 		if(myLists){
 			listsTBD = gatherTempArtifacts(myLists)
 		}
-		def myAnalyses = user.analysis
-		if(myAnalyses){
-			analysesTBD = gatherTempArtifacts(myAnalyses)
-			//log.debug "set analyses to null"
-			myAnalyses = null
-		}
+		analysesTBD = savedAnalysisService.getTempAnalysisIds(userId)
 		if(listsTBD || analysesTBD){
 			cleanupService.cleanupAtLogin(user,listsTBD,analysesTBD)
 		}

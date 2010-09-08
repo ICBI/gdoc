@@ -141,18 +141,6 @@ class SavedAnalysisService {
 		return notifications
 	}
 	
-	def deleteSavedAnalysis(userId, taskId) {
-		def user = GDOCUser.findByLoginName(userId)
-		def analysis = user.analysis
-		def toDelete = analysis.find {
-			it.taskId == taskId
-		}
-		if(toDelete) {
-			user.analysis.remove(toDelete)
-			toDelete.delete(flush: true)
-		}
-	}
-	
 	def deleteAnalysis(analysisId) {
 		def analysis = SavedAnalysis.get(analysisId)
 		if(analysis) {
@@ -261,18 +249,24 @@ class SavedAnalysisService {
 	}
 	
 	def getSavedAnalysis(userId, taskId) {
-/*		def user = GDOCUser.findByLoginName(userId, ['fetch':[analysis:'eager']])
-		def analysis=[]
-		analysis = user.analysis*/
-/*		def item =  analysis.find{
-			it.analysis.item!=null && it.analysis.item.taskId == taskId
-		}*/
 		def item = SavedAnalysis.findByTaskId(taskId)
 		if(item){
 			item.refresh()
 			item.studies
 		}
 		return item
+	}
+	
+	def getTempAnalysisIds(userId) {
+		def savedAnalysisIds = SavedAnalysis.findAllByTagWithCriteria(Constants.TEMPORARY) {
+			projections {
+				property('id')
+			}
+			author {
+				eq("loginName", userId)
+			}
+		}
+		return savedAnalysisIds	
 	}
 	
 	def getSharedAnalysisIds(userId){

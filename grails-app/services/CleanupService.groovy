@@ -16,20 +16,11 @@ class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
 	
 	
 	def removeTemporaryAnalyses(analyses, author){
-		/**def analyses = []
-		def analysesTBD = []
-		analyses = SavedAnalysis.findAllByAuthor(author,[fetch:[tags:"eager"]])
-		analyses.each{ analysis ->
-			if(analysis.tags?.contains(Constants.TEMPORARY)){
-				analysesTBD << analysis
-			}
-		}**/
 		if(analyses){
 			log.debug "delete analyses $analyses"
 			def tbSize = analyses.size()
 			analyses.each{
 				def analysis = SavedAnalysis.get(it)
-				author.removeFromAnalysis(analysis)
 				if(savedAnalysisService.deleteAnalysis(analysis.id))
 				log.debug "deleted $tbSize temp analyses for $author.loginName";
 			}
