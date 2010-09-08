@@ -415,7 +415,7 @@ def gatherTags(ids){
 
 def createList(userName, listName, listItems, studies, tags) {
 		def author = GDOCUser.findByLoginName(userName)
-		def listDup = author.lists().find {
+		def listDup = author.lists.find {
 			it.name == listName
 		}
 		if(listDup) {
@@ -448,7 +448,7 @@ def createList(userName, listName, listItems, studies, tags) {
 	
 	def createAndReturnList(userName, listName, listItems, studies, tags) {
 			def author = GDOCUser.findByLoginName(userName)
-			def listDup = author.lists().find {
+			def listDup = author.lists.find {
 				it.name == listName
 			}
 			if(listDup) {

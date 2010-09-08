@@ -331,7 +331,7 @@ class UserListController {
 		}
 		
 		params["author.id"] = author.id
-		def listDup = author.lists().find {
+		def listDup = author.lists.find {
 			it.name == params["name"]
 		}
 		if(listDup) {
@@ -420,7 +420,7 @@ class UserListController {
 		}
 		
 		params["author.id"] = author.id
-		def listDup = author.lists().find {
+		def listDup = author.lists.find {
 			it.name == params["name"]
 		}
 		if(listDup) {
@@ -501,7 +501,7 @@ class UserListController {
 		def message = ""
 		if(params.newNameValue && params.id){
 			def author = GDOCUser.findByLoginName(session.userId)
-			def listDup = author.lists().find {
+			def listDup = author.lists.find {
 				it.name == params.newNameValue.trim()
 			}
 			if(listDup) {
@@ -536,7 +536,7 @@ class UserListController {
 		
 		if(request.getFile("file").inputStream.text) {
 			def author = GDOCUser.findByLoginName(session.userId)
-			def listDup = author.lists().find {
+			def listDup = author.lists.find {
 				it.name == params["listName"]
 			}
 			if(request.getFile("file").getOriginalFilename().lastIndexOf(".txt") == -1){
