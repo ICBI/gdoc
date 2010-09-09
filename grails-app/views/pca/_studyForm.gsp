@@ -5,8 +5,8 @@
 <g:if test="${session.study}">
 <g:javascript>
 $(document).ready( function () {
-	 	$('#submit').click(function() {
-			$(this).attr("disabled", "true");
+	 	$('#analysisForm').submit(function() {
+			$('#submit').attr("disabled", "true");
  		});
 	});
 

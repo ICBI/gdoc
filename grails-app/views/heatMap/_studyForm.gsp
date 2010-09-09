@@ -2,8 +2,8 @@
 <g:javascript src="dataSet.js"/>
 <g:javascript>
 $(document).ready( function () {
-	 	$('#search').click(function() {
-			$(this).attr("disabled", "true");
+	 	$('#reporterForm').submit(function() {
+			$('#search').attr("disabled", "true");
  		});
 	});
 

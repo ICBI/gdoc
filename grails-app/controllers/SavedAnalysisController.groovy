@@ -114,7 +114,7 @@ class SavedAnalysisController{
 							log.debug "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
 							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
 						}else{
-			            	analysis.delete(flush:true)
+			            	savedAnalysisService.deleteAnalysis(analysis.id)
 							log.debug "deleted " + analysis
 							message += "analysis $analysis.id has been deleted."
 						}
@@ -127,7 +127,7 @@ class SavedAnalysisController{
 							log.debug "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
 							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
 						}else{
-			            	analysis.delete(flush:true)
+			            	savedAnalysisService.deleteAnalysis(analysis.id)
 							message += "analysis $analysis.id has been deleted."
 						}
 				}

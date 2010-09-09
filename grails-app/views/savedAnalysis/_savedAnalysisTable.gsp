@@ -33,7 +33,7 @@
 					<g:link controller="km" action="repopulateKM" id="${analysis.id}">${analysis.type}</g:link> 
 				</g:if>
 				<g:else>
-					** GENE EXPRESSION supporting KM_GENE_EXPRESSION plot (to be removed if KM Plot is deleted). <br />
+					** GENE EXPRESSION supporting KM_GENE_EXPRESSION plot. <br />
 				</g:else>
 			</g:elseif>
 			<g:elseif test="${analysis.type == AnalysisType.PCA}">
@@ -52,15 +52,14 @@
 			</div>
 				<g:if test="${session.userId.equals(analysis.author.loginName)}">
 				<div style="border:0px solid black;width:20%;float:right">	
-					<g:if test="${(!analysis.tags.contains('_temporary')) || (analysis.query?.geAnalysisId?.toString() != 'null')}">
+					<g:if test="${(!analysis.tags.contains('_temporary')) && (analysis.query?.geAnalysisId?.toString() != 'null')}">
 					<g:link class="thickbox" name="Share &nbsp; analysis &nbsp; with collaboration groups?" action="share" controller="share" 
 params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" style="height: 18px;padding-right:20px" src="${createLinkTo(dir: 'images', file: 'share.png')}"/></a></g:link>
-					</g:if>
-				<g:if test="${(analysis.query?.geAnalysisId?.toString() != 'null')}">	
+					</g:if>	
 				<g:link onclick="return confirm('Are you sure?');" action="delete" id="${analysis.id}">
 				
 				<img alt="Delete Analysis" title="Delete Analysis" style="vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></g:link>
-				</g:if>
+				
 				</div>
 				</g:if>
 				<g:else>

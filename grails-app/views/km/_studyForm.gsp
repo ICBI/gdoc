@@ -24,6 +24,9 @@ $(document).ready(function() {
 	move_bottom_button: 'move_bottom' //Id of Move bottom ,,          ,,  
 });  
 
+$('#reporterForm').submit(function() {
+	$('#searchGE').attr("disabled", "true");
+});
 $('#searchForm').submit(function() {
 	$('#right :option').attr("selected", "selected");
 });
@@ -139,7 +142,6 @@ if(geneExpression) {
 						<g:javascript>
 						function showGESpinner() {
 							document.getElementById("GEspinner").style.visibility="visible" 
-							$("#searchGE").attr("disabled", "true");
 						}
 						</g:javascript>
 					
