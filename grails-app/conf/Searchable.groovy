@@ -196,9 +196,17 @@ environments {
 			bulkIndexOnStartup = false
 		}
 	}
+	prod_load {
+		searchable {
+			bulkIndexOnStartup = false
+		}
+	}
     production {
         searchable {
-            // add your production settings here
-        }
+			bulkIndexOnStartup = true
+			compassConnection = new File(
+		        "/opt/gdoc-data/searchable/gdoc-compassindex"
+		    ).absolutePath        
+		}
     }
 }

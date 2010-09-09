@@ -36,14 +36,6 @@ gdoc.appPropertiesFile="/local/content/gdoc/gdocApp.properties"
 
 // set per-environment serverURL stem for creating absolute links
 environments {
-    production {
-        grails.serverURL = "http://www.changeme.com"
-		jmsserver = "jnp://localhost:1099"
-		responseQueue = "AnalysisResponse"
-		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
-		tempDir = "/opt/gdoc-temp"
-		middlewareUrl = "http://localhost/gdoc-middleware"
-    }
     devserver {
         grails.serverURL = "https://dev.gdoc.georgetown.edu"
 		jmsserver = "jnp://localhost:1099"
@@ -133,6 +125,38 @@ environments {
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://nitrogen.uis.georgetown.edu/gdoc-middleware"
+		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
+		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		log4j = {
+			root {
+			    error 'stdout'
+			    additivity = true
+			}
+		}
+    }
+	production {
+        grails.serverURL = "https://neon.uis.georgetown.edu"
+		jmsserver = "jnp://localhost:1099"
+		responseQueue = "AnalysisResponse"
+		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
+		tempDir = "/opt/gdoc-temp"
+		middlewareUrl = "https://neon.uis.georgetown.edu/gdoc-middleware"
+		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
+		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		log4j = {
+			root {
+			    error 'stdout'
+			    additivity = true
+			}
+		}
+    }
+	prod_load {
+        grails.serverURL = "https://neon.uis.georgetown.edu"
+		jmsserver = "jnp://neon.uis.georgetown.edu:1099"
+		responseQueue = "AnalysisResponse"
+		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
+		tempDir = "/opt/gdoc-temp"
+		middlewareUrl = "https://neon.uis.georgetown.edu/gdoc-middleware"
 		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
 		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
 		log4j = {

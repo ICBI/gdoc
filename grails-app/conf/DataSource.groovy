@@ -69,4 +69,12 @@ environments {
 			logSql = false
 		}
 	}
+	prod_load {
+		dataSource {
+			url = "jdbc:oracle:thin:@//ohs-prod-1.uis.georgetown.edu:1521/gdocp_portal.svcs.gu"
+			username = "mcgdoc"
+			password = "m#gd0c!"
+			logSql = true
+		}
+	}
 }
