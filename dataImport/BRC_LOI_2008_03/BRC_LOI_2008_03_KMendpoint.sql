@@ -3,7 +3,7 @@
 
 --TIME: DISEASE_FREE_SURVIVAL_DAYS
 --end point: EVENT_DFS
-insert into BRC_LOI_2008_COMBINED.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_LOI_2008_03.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DISEASE_FREE_SURVIVAL_DAYS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_DFS'), 
@@ -12,7 +12,7 @@ values (
 
 --TIME: DMFS_DAYS
 --end point: EVENT_DMFS
-insert into BRC_LOI_2008_COMBINED.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into BRC_LOI_2008_03.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'DMFS_DAYS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'EVENT_DMFS'), 
