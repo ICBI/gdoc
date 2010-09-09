@@ -139,6 +139,7 @@ if(geneExpression) {
 						<g:javascript>
 						function showGESpinner() {
 							document.getElementById("GEspinner").style.visibility="visible" 
+							$("#searchGE").attr("disabled", "true");
 						}
 						</g:javascript>
 					
@@ -219,7 +220,7 @@ if(geneExpression) {
 									</td>			
 									<tr>
 										<td style="align:right" colspan="2">
-											<g:submitButton name="search" value="Plot" onclick="showGESpinner();"/>
+											<g:submitButton name="searchGE" value="Plot" onclick="showGESpinner();"/>
 										 <input type="reset" name="reset" value="reset" />
 										</td>
 										<td>

@@ -47,6 +47,9 @@
 		var currPage = 1;
 		
 		$(document).ready(function(){
+			$('#search').click(function() {
+				$(this).attr("disabled", "true");
+	 		});
 			jQuery("#searchResults").jqGrid({ 
 				url:'<%= createLink(action:"results",controller:"analysis") %>', 
 				datatype: "json", 

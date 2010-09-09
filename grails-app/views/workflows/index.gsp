@@ -134,7 +134,7 @@
 									</td>
 									<td style="padding-bottom:5px">
 											<p style="font-size:.8em;margin-top:10px">
-											<g:link controller="analysis" style="color:#336699;">Group Comparison</g:link> / 
+											<g:link controller="analysis" style="color:#336699;">Group Comparison</g:link><br /><br />
 											<g:link controller="km" style="color:#336699;">KM Plots</g:link><br /><br />
 											<g:link controller="heatMap" style="color:#336699;">HeatMap Viewer</g:link><br /><br />
 											<g:link controller="pca" style="color:#336699;">Classification</g:link><br /><br />

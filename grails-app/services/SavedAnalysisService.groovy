@@ -141,10 +141,12 @@ class SavedAnalysisService {
 		def analysis = SavedAnalysis.get(analysisId)
 		if(analysis) {
 			if(analysis.type == AnalysisType.KM_GENE_EXPRESSION){
-				if(analysis.query.geAnalysisId.toString() != null){
-					log.debug "deleted the related analysis: " + analysis.query.geAnalysisId
-					def relatedAnalysis = SavedAnalysis.get(analysis.query.geAnalysisId)
-					relatedAnalysis.delete(flush: true)
+				if(analysis.query.geAnalysisId.toString() != 'null'){
+					log.debug "deleting the related analysis: " + analysis.query.geAnalysisId
+					def id = new Long(analysis.query.geAnalysisId)
+					def relatedAnalysis = SavedAnalysis.get(id)
+					if(relatedAnalysis)
+						relatedAnalysis.delete(flush: true)
 				}
 				analysis.delete(flush: true)
 			}else{

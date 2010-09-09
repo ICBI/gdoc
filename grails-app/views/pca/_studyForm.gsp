@@ -3,6 +3,14 @@
 <p>Select a patient list, optional reporter list, classification method, and datatype/dataset</p>
 
 <g:if test="${session.study}">
+<g:javascript>
+$(document).ready( function () {
+	 	$('#submit').click(function() {
+			$(this).attr("disabled", "true");
+ 		});
+	});
+
+</g:javascript>
 	
 	<g:form name="analysisForm" action="submit">
 	<div class="clinicalSearch">

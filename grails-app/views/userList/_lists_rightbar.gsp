@@ -34,7 +34,7 @@
 	<g:if test="${userListInstanceList.size()>0}">
 		<div>
  		<g:form name="listToolForm" update="allLists" onLoading="showToolsSpinner(true)"
-		    onComplete="showToolsSpinner(false)" action="tools" url="${[action:'tools']}">
+		    onComplete="showToolsSpinner(false)" action="tools" url="${[action:'tools']}" method="post">
 		<span style="margin-bottom:5px;">List Action: <br />
 		<g:select name="listAction" from="${['Venn Diagram','Intersect Lists','Join Lists', 'Difference']}" 
 				keys="${['venn','intersect','join','diff']}" onchange="showOption(this)" /></span><br />

@@ -1,5 +1,13 @@
 <g:if test="${session.study}">
 <g:javascript src="dataSet.js"/>
+<g:javascript>
+$(document).ready( function () {
+	 	$('#search').click(function() {
+			$(this).attr("disabled", "true");
+ 		});
+	});
+
+</g:javascript>
 <g:if test="${session.study.hasGenomicData() && session.dataSetType.contains('GENE EXPRESSION')}">
 <div id="searchForm">
 		<div class="clinicalSearch">	

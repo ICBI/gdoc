@@ -150,34 +150,30 @@ class QuickStartController {
 			group1Ids = ParamsHelper.itemsToList(params.group1Ids)
 			def existingList = UserList.findByName(params.group1Name)
 			if(existingList){
-				if(session.tempLists?.contains(existingList.id)){
-					session.tempLists.remove(existingList.id)
-					log.debug "removed " + existingList + " from session"
-				}
-				existingList.delete(flush:true)
-				log.debug "deleted " + existingList
+				list1 = existingList
+				log.debug "retain existing 1st list, $list1.name by same name"
+			}else{
+				list1 = userListService.createAndReturnList(session.userId,params.group1Name,group1Ids,studies,tags)
+				log.debug "created 1st list, $list1"
 			}
-			list1 = userListService.createAndReturnList(session.userId,params.group1Name,group1Ids,studies,tags)
-			log.debug "created 1st list, $list1"
+			
 		}
 		if(params.group2Ids){
 			group2Ids = ParamsHelper.itemsToList(params.group2Ids)
 			def existingList2 = UserList.findByName(params.group2Name)
 			if(existingList2){
-				if(session.tempLists?.contains(existingList2.id)){
-					session.tempLists.remove(existingList2.id)
-					log.debug "removed " + existingList2 + " from session"
-				}
-				existingList2.delete(flush:true)
-				log.debug "deleted " + existingList2
+				list2 = existingList2
+				log.debug "retain existing 2nd list, $list2.name by same name"
+			}else{
+				list2 = userListService.createAndReturnList(session.userId,params.group2Name,group2Ids,studies,tags)
+				log.debug "created 2nd list, $list2"
 			}
-			list2 = userListService.createAndReturnList(session.userId,params.group2Name,group2Ids,studies,tags)
-			log.debug "created 2nd list, $list2"
+			
 		}
 		if(list1 && list2){
 			session.tempLists << list1.id
 			session.tempLists << list2.id
-			log.debug "created both lists, $list1.name, $list2.name successfully, and added ids to session: $session.tempLists"
+			log.debug "created or retained both lists, $list1.name, $list2.name successfully, and added ids to session: $session.tempLists"
 			redirect(controller:"analysis", action:"index", params:[baselineGroup:list1.name,groups:list2.name]) 
 		}
 		else{

@@ -37,16 +37,17 @@ jQuery(document).ready(function()
 			<a class="sf-with-ul" href="#">Analyze<span class="sf-sub-indicator"> »</span></a>
 			<ul style="display: none; visibility: hidden;">
 					<li>
-						<a href="${createLink(controller: 'analysis')}">Group Comparison / KM Plots</a>
+						<a href="${createLink(controller: 'analysis')}">Group Comparison</a>
+						<a href="${createLink(controller: 'km')}">KM Plots</a>
 						<a href="${createLink(controller: 'pca')}">Classification</a>
 						<%--a href="#">Correlations/Multi Omics</a--%>
 						<%--a href="#">Pathways and Networks</a--%>
 						<g:link controller="heatMap">HeatMap Viewer</g:link>
 					</li>
 			</ul>
-		<li>
+		<%--li>
 			<a href="https://demotisu.gdoc.georgetown.edu/catissuecore" target="_blank">Tissue Banking (caTissue)</a>
-		</li>
+		</li--%>
 		
 		<li>
 			<a href="#">Help</a>

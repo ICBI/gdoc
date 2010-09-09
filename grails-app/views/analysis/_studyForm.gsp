@@ -1,5 +1,13 @@
 <g:if test="${session.study}">
 <g:javascript src="dataSet.js"/>
+<g:javascript>
+$(document).ready( function () {
+	 	$('#submit').click(function() {
+			$(this).attr("disabled", "true");
+ 		});
+	});
+
+</g:javascript>
 
 <p>Select a baseline group and a comparison group(s)</p>
 <g:if test="${flash.message}">
@@ -74,7 +82,7 @@
 	<g:hiddenField name="study" value="${session.study.schemaName}" />
 </div>
 <br/>
-<g:submitButton name="submit" value="Submit Analysis"/>
+<g:submitButton name="submit" value="Submit Analysis" />
 </g:form>
 </g:if>
 

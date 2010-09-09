@@ -1,4 +1,13 @@
 <g:javascript library="jquery"/>
+<g:javascript>
+$(document).ready( function () {
+	 	$('#search').click(function() {
+			$(this).attr("disabled", "true");
+			showSpinner();
+ 		});
+	});
+
+</g:javascript>
 
 <g:javascript>
 function showSpinner() {
@@ -62,7 +71,7 @@ function showSpinner() {
 			</tr>			
 			<tr>
 				<td style="align:right" colspan="2">
-					<g:submitButton name="search" value="Plot" onclick="showSpinner();"/>
+					<g:submitButton name="search" value="Plot"/>
 				 <input type="reset" name="reset" value="reset" />
 				</td>
 				<td>
