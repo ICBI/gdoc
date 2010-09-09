@@ -27,7 +27,6 @@
 						if(allStats && allStats.length == 0) {
 							clearInterval(refreshId);
 						}
-						addClickHandler();
 						addToolTips();
 					},
 					error: function(data) {
@@ -35,7 +34,6 @@
 					}
 				});
 		  }, 5000);
-			addClickHandler();
 		});
 		
 		function addClickHandler() {
@@ -46,7 +44,7 @@
 		}
 		
 		function addToolTips() {
-			jQuery('.status').tooltip({
+			jQuery('.errorStatus').tooltip({
 				bodyHandler: function() { 
 					return jQuery.ajax({
 						type: "POST",

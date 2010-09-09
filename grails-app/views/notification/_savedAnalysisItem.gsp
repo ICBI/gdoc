@@ -25,19 +25,19 @@
 			<g:link controller="geneExpression" action="view" id="${notification.id}">${notification.type}</g:link> (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 		</g:else>
 	</div>
-	<div style="float: right; ">
+	<div class="status" style="float: right; ">
 		${notification.status}
 	</div>
 </g:if>
 <g:elseif test="${notification.status == 'Error'}">
 	<div style="float: left;">${notification.type} (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 	</div>
-	<div class="status" style="float: right;text-decoration:underline;cursor:pointer" id="${notification.id}">${notification.status.toUpperCase()}</div>
+	<div class="status errorStatus" style="float: right;text-decoration:underline;cursor:pointer" id="${notification.id}">${notification.status.toUpperCase()}</div>
 </g:elseif>		
 <g:else>
 	<div style="float: left;">${notification.type} (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 	</div>
-	<div style="float: right;">${notification.status} <img style="height: 12px" src="${createLinkTo(dir:'images',file:'indicator.gif')}" border="0" />
+	<div class="status" style="float: right;">${notification.status} <img style="height: 12px" src="${createLinkTo(dir:'images',file:'indicator.gif')}" border="0" />
 	
 	<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'delete', id:notification.id, update:'notifications')}return false;}">
 	<img alt="Delete Analysis" title="Delete Analysis" style="vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>
