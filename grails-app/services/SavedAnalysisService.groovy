@@ -165,7 +165,6 @@ class SavedAnalysisService {
 			else if(timePeriod == "hideShared"){
 				log.debug "only show user's analyses"
 				def user = GDOCUser.findByLoginName(userId)
-				user.refresh()
 				filteredAnalysis = user.analysis
 				return filteredAnalysis
 			}
@@ -185,7 +184,108 @@ class SavedAnalysisService {
 			
 		return filteredAnalysis
 		
+	}
+	
+	def getPaginatedAnalyses(filter,sharedIds,offset,userId){
+		def pagedAnalyses = []
+		def user = GDOCUser.findByLoginName(userId)
+		if(filter == "all"){
+			pagedAnalyses = getAllAnalyses(sharedIds,offset,user)
+		}else if(filter == "hideShared"){
+			pagedAnalyses = getUsersAnalyses(offset,user)
+		}else{
+			pagedAnalyses = getUsersAnalysesByTimePeriod(filter,offset,user)
+		}
+		return pagedAnalyses
+	}
 		
+	
+	def getAllAnalyses(sharedIds,offset,user){
+		def pagedAnalyses = []
+		if(sharedIds){
+			def ids =[]
+			sharedIds.each{
+				ids << new Long(it)
+			}
+			pagedAnalyses = SavedAnalysis.createCriteria().list(
+				max:10,
+				offset:offset)
+				{
+					and{
+						'ne'('status', "Running")
+						'order'("dateCreated", "desc")
+					}
+					or {
+						eq("author", user)
+						'in'('id',ids)
+					}
+				}
+			/**	pagedAnalyses["count"] = SavedAnalysis.withCriteria(
+						)
+						{
+							projections {
+									rowCount()
+							}
+							and
+							{
+							'ne'('status', "Running")
+							'eq'("author", user)
+							}
+						}**/
+			log.debug "all analysis -> $pagedAnalyses as Paged set"
+		}
+		return pagedAnalyses
+	}
+	
+	def getUsersAnalyses(offset,user) {
+		def userAnalysis = [:]
+		def pagedAnalyses = [:]
+		def total
+		pagedAnalyses = SavedAnalysis.createCriteria().list(
+			max:10,
+			offset:offset)
+			{
+				and{
+					'ne'('status', "Running")
+					'order'("dateCreated", "desc")
+					'eq'("author", user)
+				}
+			}
+		/**	pagedAnalyses["count"] = SavedAnalysis.withCriteria(
+					)
+					{
+						projections {
+								rowCount()
+						}
+						and
+						{
+						'ne'('status', "Running")
+						'eq'("author", user)
+						}
+					}**/
+		log.debug "user analysis only-> $pagedAnalyses as Paged set"
+		return pagedAnalyses
+	}
+	
+	def getUsersAnalysesByTimePeriod(timePeriod,offset,user) {
+		def pagedAnalyses = []
+		def now = new Date()
+		def tp = Integer.parseInt(timePeriod)
+		pagedAnalyses = SavedAnalysis.createCriteria().list(
+			max:10,
+			offset:offset)
+			{
+				and{
+					'ne'('status', "Running")
+					'between'('dateCreated',now-tp,now)
+					'order'("dateCreated", "desc")
+				}
+				or {
+					eq("author", user)
+				}
+			}
+		log.debug "user analysis only over past $timePeriod days-> $pagedAnalyses as Paged set"
+		return pagedAnalyses
 	}
 	
 
@@ -222,27 +322,7 @@ class SavedAnalysisService {
 		
 	}
 	
-	def getPaginatedAnalyses(ids,offset){
-		def pagedAnalyses = []
-		if(ids){
-			def idsString = ids.toString().replace("[","")
-			idsString = idsString.replace("]","")
-			def query = "from SavedAnalysis as sa where sa.id in ("+idsString+") order by sa.dateCreated desc"
-			def al = []
-			pagedAnalyses = SavedAnalysis.createCriteria().list(
-				max:10,
-				offset:offset)
-				{
-				'in'('id',ids)
-				}
-
-			al = SavedAnalysis.findAll(query,[max:10,offset:offset])
-			pagedAnalyses.clear()
-			pagedAnalyses.addAll(al)
-			log.debug "myAnalyses -> $pagedAnalyses as Paged set"
-		}
-		return pagedAnalyses
-	}
+	
 	
 	def getSavedAnalysis(userId, taskId) {
 		def item = SavedAnalysis.findByTaskId(taskId)

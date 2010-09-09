@@ -5,10 +5,9 @@
 	
 
 <g:each in="${savedAnalysis}" var="analysis">
-<g:if test="${analysis.type == AnalysisType.KM_GENE_EXPRESSION && analysis.query.geAnalysisId.toString() == 'null'}">
-</g:if>
-<g:else>
-<g:if test="${analysis.status == 'Complete'}">
+
+
+
 <tr>
 	<td style="background-color:white;">
 		<g:if test="${savedAnalysis.size()>0}">
@@ -19,7 +18,7 @@
 			<div style="border:0px solid black;width:2%;float:left;padding-right:20px"><g:checkBox class="the_checkbox" name="deleteAnalyses"
 				 value="${analysis.id}" checked="false"/></div>
 			</g:if>
-			<g:if test="${analysis.status == 'Complete'}">
+			
 			<g:if test="${analysis.type == AnalysisType.CLASS_COMPARISON}">
 				<g:link controller="analysis" action="view"  id="${analysis.id}">${analysis.type}</g:link>
 			</g:if>
@@ -52,8 +51,8 @@
 					<g:link class="thickbox" name="Share &nbsp; analysis &nbsp; with collaboration groups?" action="share" controller="share" 
 params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" style="height: 18px;padding-right:20px" src="${createLinkTo(dir: 'images', file: 'share.png')}"/></a></g:link>
 					</g:if>
-				<a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){${remoteFunction(action:'delete', id:analysis.id, update:'analysisContainer')}return false;}">
-				<img alt="Delete Analysis" title="Delete Analysis" style="vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></a>
+				<g:link onclick="return confirm('Are you sure?');" action="delete" id="${analysis.id}">
+				<img alt="Delete Analysis" title="Delete Analysis" style="vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></g:link>
 				
 				</div>
 				</g:if>
@@ -79,7 +78,7 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 		<g:else>
 		Tags: ${analysis.tags.join(", ")}
 		</g:else>
-		</g:if>
+	
 		
 		
 	</div>
@@ -88,7 +87,7 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 	</g:if>
 	</td>
 	</tr>
-	</g:if>
-	</g:else>
+
+	
 </g:each>
 </table>
