@@ -63,14 +63,11 @@ class SavedAnalysisService {
 	
 	def addSavedAnalysis(userId, notification, command, tags) {
 		def user = GDOCUser.findByLoginName(userId)
-		log.debug "GOT NOTIFICATION $notification"
 		log.debug notification.item.taskId
 		def params = command.properties
 		log.debug params
 		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType', 'idService'] as Set )
-		log.debug "PARAMS: $params"
 		def json = params as JSON
-		log.debug "COMMAND $json" 
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user, status: notification.status, taskId: notification.item.taskId)
 		def study = StudyDataSource.findBySchemaName(command.study)
 		newAnalysis.addToStudies(study)
@@ -123,7 +120,6 @@ class SavedAnalysisService {
 	def updateSavedAnalysis(userId, notification) {
 		def runningAnalysis = getSavedAnalysis(userId, notification.item.taskId)
 		if(runningAnalysis) {
-			log.debug "UPDATING ANALYSIS $notification"
 			runningAnalysis.analysis = notification
 			runningAnalysis.status = notification.status
 			runningAnalysis.taskId = notification.item.taskId
