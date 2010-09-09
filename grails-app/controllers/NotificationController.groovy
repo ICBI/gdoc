@@ -32,7 +32,7 @@ class NotificationController {
 	
 	def delete = {
 		savedAnalysisService.deleteAnalysis(params.id)
-		buildNotifications()
+		checkNotifications()
 		render(template:"/notification/notificationTable")
 	}
 	
