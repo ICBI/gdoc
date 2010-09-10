@@ -21,8 +21,10 @@ class CleanupService implements serviceinterfaces.SessionCleanerServiceInt {
 			def tbSize = analyses.size()
 			analyses.each{
 				def analysis = SavedAnalysis.get(it)
-				if(savedAnalysisService.deleteAnalysis(analysis.id))
-				log.debug "deleted $tbSize temp analyses for $author.loginName";
+				if(analysis) {
+					if(savedAnalysisService.deleteAnalysis(analysis.id))
+						log.debug "deleted $tbSize temp analyses for $author.loginName";
+				}
 			}
 			
 		}

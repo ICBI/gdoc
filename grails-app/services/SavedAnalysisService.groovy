@@ -336,14 +336,18 @@ class SavedAnalysisService {
 	}
 	
 	def getTempAnalysisIds(userId) {
-		def savedAnalysisIds = SavedAnalysis.findAllByTagWithCriteria(Constants.TEMPORARY) {
-			projections {
-				property('id')
-			}
-			author {
-				eq("loginName", userId)
-			}
-		}
+		
+		String findByTagHQL = """
+		   SELECT DISTINCT analysis.id
+		   FROM SavedAnalysis analysis, TagLink tagLink
+		   JOIN analysis.author author
+		   WHERE analysis.id = tagLink.tagRef
+		   AND author.loginName = :loginName
+		   AND tagLink.type = 'savedAnalysis'
+		   AND tagLink.tag.name = :tag
+		"""
+		
+		def savedAnalysisIds = SavedAnalysis.executeQuery(findByTagHQL, [tag: Constants.TEMPORARY, loginName: userId])
 		return savedAnalysisIds	
 	}
 	
