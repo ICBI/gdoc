@@ -22,6 +22,8 @@ class NotificationController {
 		def today = new Date()
 		analysis.each{
 			def statusMap = [:]
+			if(!it[0])
+				return
 			if(today.minus(it[3]) < 2){
 				statusMap["id"] = it[0]
 				statusMap["type"] = it[1]
