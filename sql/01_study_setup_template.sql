@@ -23,7 +23,7 @@ GRANT insert_${projectName} TO edit_${projectName};
 
 
 CREATE USER ${projectName} 
-  IDENTIFIED BY change_me
+  IDENTIFIED BY cur34c4nc3r
   DEFAULT TABLESPACE USERS
   TEMPORARY TABLESPACE TEMP
   QUOTA UNLIMITED ON USERS;
