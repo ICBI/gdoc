@@ -103,14 +103,14 @@ environments {
 		}
 	}
 	stage {
-        grails.serverURL = "https://nitrogen.uis.georgetown.edu"
-		jmsserver = "jnp://localhost:1099"
+        grails.serverURL = "https://gdoc-stage.georgetown.edu"
+		jmsserver = "jnp://gdoc-stage.georgetown.edu:1099"
 		responseQueue = "AnalysisResponse"
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
-		middlewareUrl = "https://nitrogen.uis.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
-		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		middlewareUrl = "https://gdoc-stage.georgetown.edu/gdoc-middleware"
+		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
+		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -119,14 +119,14 @@ environments {
 		}
     }
 	stage_load {
-        grails.serverURL = "https://nitrogen.uis.georgetown.edu"
-		jmsserver = "jnp://nitrogen.uis.georgetown.edu:1099"
+        grails.serverURL = "https://gdoc-stage.georgetown.edu"
+		jmsserver = "jnp://gdoc-stage.georgetown.edu:1099"
 		responseQueue = "AnalysisResponse"
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
-		middlewareUrl = "https://nitrogen.uis.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
-		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		middlewareUrl = "https://gdoc-stage.georgetown.edu/gdoc-middleware"
+		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
+		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -135,14 +135,14 @@ environments {
 		}
     }
 	production {
-        grails.serverURL = "https://neon.uis.georgetown.edu"
-		jmsserver = "jnp://localhost:1099"
+        grails.serverURL = "https://gdoc-prod.georgetown.edu"
+		jmsserver = "jnp://gdoc-prod.georgetown.edu:1099"
 		responseQueue = "AnalysisResponse"
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
-		middlewareUrl = "https://neon.uis.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
-		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		middlewareUrl = "https://gdoc-prod.georgetown.edu/gdoc-middleware"
+		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
+		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -151,14 +151,14 @@ environments {
 		}
     }
 	prod_load {
-        grails.serverURL = "https://neon.uis.georgetown.edu"
-		jmsserver = "jnp://neon.uis.georgetown.edu:1099"
+        grails.serverURL = "https://gdoc-prod.georgetown.edu"
+		jmsserver = "jnp://gdoc-prod.georgetown.edu:1099"
 		responseQueue = "AnalysisResponse"
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://neon.uis.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
-		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
+		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
 		log4j = {
 			root {
 			    error 'stdout'
