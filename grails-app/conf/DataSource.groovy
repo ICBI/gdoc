@@ -52,7 +52,7 @@ environments {
 	stage {
 		dataSource {
 			jndiName="java:gdoc"
-			logSql = true
+			logSql = false
 		}
 	}
 	stage_load {
