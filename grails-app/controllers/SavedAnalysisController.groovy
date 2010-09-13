@@ -7,7 +7,7 @@ class SavedAnalysisController{
 	
 	def index = {
 		def myAnalyses = []
-		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",180:"past 6 months",hideShared:"hide shared lists",all:"show all"]
+		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",180:"past 6 months",hideShared:"show all of my analyses",all:"include shared analyses"]
 		def pagedAnalyses = [:]
 		
 		if(params.analysisFilter){

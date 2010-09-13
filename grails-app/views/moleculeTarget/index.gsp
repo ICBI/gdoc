@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-
+		
 	<g:javascript library="jquery"/>
 	<%--script type="text/javascript" src="/gdoc/applets/marvin/marvin.js"></script--%>
 	<jq:plugin name="ui"/>
@@ -9,8 +9,11 @@
 	<g:javascript>
 	
 	function exportMol() {
+		alert('uo');
 		var ffmt = "smiles:";
-		var s = document.Editor.getSmiles();//document.Editor.getMolFile();//document.MSketch.getMol(ffmt);
+		var s = document.Editor.getSmiles();
+		alert(s);
+		//document.Editor.getMolFile();//document.MSketch.getMol(ffmt);
 		//s = unix2local(s);
 		if(s != "") {
 			document.MolForm.smiles.value = s; 
@@ -70,10 +73,10 @@
 			var page = "sketch"
 		</g:javascript>
 	</g:if>
-<div id="centerContent" style="border:0px solid black">
+<div id="centerContent">
 	
-	<div class="tabDiv">
-		<div id="centerTabs" class="tabDiv">
+	<div class="tabDiv" style="border:1px solid silver">
+		<div id="centerTabs" class="tabDiv" style="width:550px;height:450px;border:0px solid black">
 		    <ul>
 		        <li><a href="#fragment-4"><span>Input Search</span></a></li>
 		        <li><a href="#fragment-5"><span>Sketch Search (beta)</span></a></li>
@@ -87,7 +90,7 @@
 			</div>    
 			<table class="formTable">
 				<tr><td>
-					Enter name for a gene, protein or molecule:	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
+					Enter name for a gene, protein, molecule (or SMILES):	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
 				<tr><td>Ligand Affinity: </td><td><g:textField disabled="true" name="ligandAffinity" value="${params.ligandAffinity}" size="10"/> </td></tr>
 				<tr><td colspan="2">
 					<div class="errorDetail">
@@ -113,7 +116,7 @@
 				</script--%>
 				<span class="applet">
 				<applet code="org.openscience.jchempaint.applet.JChemPaintEditorApplet" archive="/gdoc/applets/jchemPaint/jchempaint-applet-core.jar"
-						name="Editor"
+						id="Editor"
 				        width="500" height="400">
 				<!--param name="load" value="applettests/big.mol"-->
 				<param name="impliciths" value="true">
@@ -124,14 +127,20 @@
 				<PARAM NAME="boxborder" VALUE="false">
 				<PARAM NAME="centerimage" VALUE="true">
 				</applet>
-				</span>
-				<br><br>
-				
 				<g:form name="MolForm" url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
 				<input value="Write SMILES String" onclick="exportMol()" type="button" style="display:none">
 				<g:textField name="smiles" style="display:none"/>
 				<g:submitButton name="search_molecules" value="search molecules" onclick="exportMol();return false;"/>
-				</g:form>
+				
+				<a href="javascript:alert(document.Editor.getSmiles())">show smiles</a>
+				
+				</g:form><br /><br />
+				
+				
+				</span>
+				<br><br>
+				
+				
 			</div>	
 		</div>
 	</div>
@@ -141,8 +150,18 @@
 <span>
 	<g:if test="${search}">
     <g:if test="${ligands?.results}"><br />
+	
 	<div class="title"
-     <span style="padding:15px"> Showing <strong>${ligands.offset + 1}</strong> - <strong>${ligands.results.size() + ligands.offset}</strong> of <strong>${ligands.total}</strong></span>
+     <div class="paging">
+	      Page:
+	      <g:set var="totalPages" value="${Math.ceil(ligands.total / ligands.max)}" />
+	      <g:if test="${totalPages == 1}"><span class="currentStep">1</span></g:if>
+	      <g:else>
+			<g:paginate controller="moleculeTarget" action="page" total="${ligands.total}" prev="&lt; previous" next="next &gt;"/>
+		  </g:else>
+	          
+	      
+	    </div>
 	</div>
   </span>
 <div>
@@ -150,6 +169,7 @@
 
 
 <g:if test="${ligands?.results}">
+	
 	<table class="resultTable">
 	<g:each in="${ligands.results}" var="molecule">
 	<g:if test="${molecule}">
@@ -239,7 +259,8 @@
 			<g:else>
 				No targets currently found for this compound
 			</g:else>
-
+			<br />
+			SMILES: ${molecule.smiles}
 		</div>
 		</td>
 	</tr>

@@ -38,8 +38,20 @@ class MoleculeTargetController {
 	def searchLigandsFromSketch = {
 		session.molCommand = null
 		session.smiles = params.smiles
-		def targets = Molecule.search(params.smiles,params)
-		log.debug targets
+		//grab my studies to filter
+		def userMemberships = session.myCollaborationGroups
+		def orString = userMemberships.join(" OR ")
+		def smiles
+		if(params.smiles){
+			smiles = params.smiles
+			log.debug "search smiles for $smiles"
+		}
+		def targets = []
+		targets = Molecule.search(params,{
+			must(queryString(smiles), 'escape:true')
+			must(queryString(orString))
+		})
+		log.debug targets 
 		if(!params.offset){
 			chain(action:index,model:[ligands:targets],params:[page:'sketch',smiles:params.smiles])
 			return
