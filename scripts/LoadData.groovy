@@ -41,7 +41,7 @@ target(main: "Load data into the DB") {
 		executeScript("sql/02_study_schema_template.sql", [projectName: projectName])
 
 		def sql = groovy.sql.Sql.newInstance(CH.config.dataSource.url, projectName,
-		                     "change_me", CH.config.dataSource.driverClassName)
+		                     "cur34c4nc3r", CH.config.dataSource.driverClassName)
 	
 		def engine = new groovy.text.SimpleTemplateEngine() 
 		def template = engine.createTemplate(new File("sql/03_study_grants_template.sql").text) 
