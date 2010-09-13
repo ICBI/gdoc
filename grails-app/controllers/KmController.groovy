@@ -125,9 +125,6 @@ class KmController {
 					if(list1IsTemp){
 						tags << Constants.TEMPORARY
 					}
-					def files = MicroarrayFile.findByNameLike('%.Rda')
-						log.debug "BEFORE"
-					cmd.dataFile = files.name
 					def taskId = analysisService.sendRequest(session.id, cmd, tags)
 					def geAnalysis = savedAnalysisService.getSavedAnalysis(session.userId, taskId)
 					log.debug "CHECKING status ${geAnalysis.id} ${taskId}"
