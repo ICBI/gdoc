@@ -49,7 +49,7 @@ class AnalysisService {
 			def sampleGroup = new SampleGroup()
 			sampleGroup.addAll(idService.sampleIdsForFile(cmd.dataFile))
 			def reporterGroup = new ReporterGroup()
-			reporterGroup.addAll(annotationService.findReportersForGeneAndFile(cmd.geneName, cmd.dataFile))
+			reporterGroup.addAll(cmd.reporters)
 			request.reporters = reporterGroup
 			request.samples = sampleGroup
 			return request

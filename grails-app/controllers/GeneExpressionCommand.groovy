@@ -3,6 +3,7 @@ class GeneExpressionCommand {
 	String[] groups
 	String geneName
 	String dataFile
+	List reporters
 	AnalysisType requestType = (AnalysisType.GENE_EXPRESSION)
 	def annotationService
 	String study
@@ -15,8 +16,8 @@ class GeneExpressionCommand {
 			return true
 		})
 		geneName(blank:false, validator: {val, obj ->
-			def reporters = obj.annotationService.findReportersForGeneAndFile(val, obj.dataFile)
-			if(!reporters) {
+			obj.reporters = obj.annotationService.findReportersForGeneAndFile(val, obj.dataFile)
+			if(!obj.reporters) {
 				return "custom.gene"
 			}
 			return true
