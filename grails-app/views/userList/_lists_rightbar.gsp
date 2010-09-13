@@ -39,12 +39,13 @@
 		<g:select name="listAction" from="${['Venn Diagram','Intersect Lists','Join Lists', 'Difference']}" 
 				keys="${['venn','intersect','join','diff']}" onchange="showOption(this)" /></span><br />
 		<span id="name" style="display:none;margin-top:5px;">List Name: <g:textField name="listName" size="15" maxlength="15"/></span><br />
+		${toolsList}
 		<g:select style="margin-top:5px;width:180px" name="userListIds"
-				  from="${allLists}"
+				  from="${toolsLists}"
 		          optionKey="id" 
 				  optionValue="name"
 				  multiple="true"
-				  size="5"
+				  size="12"
 				  />
 		<br /><br />
 		<g:actionSubmit value="Submit"  action="tools" onclick="return validate()"/>

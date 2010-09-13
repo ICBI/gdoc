@@ -14,54 +14,26 @@ class UserListController {
     def list = {
 		log.debug params
 		def lists = []
-		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"show my lists only",all:"show all"]
+		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",hideShared:"show all of my lists",all:"include shared lists"]
 		def filteredLists = []
 		def pagedLists = []
 			if(params.listFilter){
 				session.listFilter = params.listFilter
-				lists = userListService.getFilteredLists(params.listFilter,session.userId,session.sharedListIds)
 			}
 			else if (session.listFilter){
-				lists = userListService.getFilteredLists(session.listFilter,session.userId,session.sharedListIds)
+				log.debug "current session list filter is $session.listFilter"
 			}else{
 				session.listFilter = "hideShared"
-				lists = userListService.getFilteredLists("hideShared",session.userId,session.sharedListIds)
 			}
-        if(lists){
-			def filteredListIds = lists.collect{it.id}
-			//def filteredListIds = []
-			/**
-			if(params.listFilter){
-				if(params.listFilter == 'all'){
-					session.listFilter = "all"
-					filteredLists = lists
-					filteredListIds = filteredLists.collect{it.id}
-				}
-				else{
-					session.listFilter = params.listFilter
-					filteredLists = userListService.filterLists(params.listFilter,lists,session.userId)
-					filteredListIds = filteredLists.collect{it.id}
-				}
-			}
-			else if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-				filteredListIds = filteredLists.collect{it.id}
-			}
-			else{
-				session.listFilter = "all"
-				//filteredLists = userListService.filterLists(session.listFilter,lists)
-				filteredListIds = ids
-			}**/
-
 			if(params.offset){
-				pagedLists = userListService.getPaginatedLists(filteredListIds,params.offset.toInteger())
+				pagedLists = userListService.getPaginatedLists(session.listFilter,session.sharedListIds,params.offset.toInteger(),session.userId)
 			}
 			else{
-				pagedLists = userListService.getPaginatedLists(filteredListIds,0)	
+				pagedLists = userListService.getPaginatedLists(session.listFilter,session.sharedListIds,0,session.userId)	
 			}
-		}
-		
-       [ userListInstanceList: pagedLists, allLists: lists, timePeriods: timePeriods]
+		def listSnapShots = []
+		listSnapShots = userListService.getAllListsNoPagination(session.userId,session.sharedListIds)
+       [ userListInstanceList: pagedLists["results"], allLists: pagedLists["count"][0], timePeriods: timePeriods, toolsLists:listSnapShots]
     }
 
     def show = {
@@ -146,33 +118,15 @@ class UserListController {
 			}
 			if(userListInstance){
 				flash.message = "UserList ${listName} created"
-				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-				def filteredLists = []
-				if(session.listFilter){
-					filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-				}
 				redirect(action:list)
-				//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 			}else{
 				flash.message = "no items present in resulting list"
-				def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-				def filteredLists = []
-				if(session.listFilter){
-					filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-				}
 				redirect(action:list)
-				//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 			}
 		}else{
 			log.debug "no lists have been selected"
 			flash.message = "no lists have been selected"
-			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-			def filteredLists = []
-			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-			}
 			redirect(action:list)
-			//render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
 		}
 	}
 
@@ -182,21 +136,11 @@ class UserListController {
             userListInstance.delete(flush:true)
 			log.debug "deleted " + userListInstance
 			flash.message = userListInstance.name + " has been deleted"
-			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-			def filteredLists = []
-			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-			}
-           	render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
+			redirect(action:list)
         }
         else {
             flash.message = "UserList not found with id ${params.id}"
-			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-			def filteredLists = []
-			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-			}
-			render(template:"/userList/userListTable",model:[ userListInstanceList: filteredLists ])
+			redirect(action:list)
         }
     }
 
@@ -257,12 +201,7 @@ class UserListController {
         }
         else {
             flash.message = "UserList item not found with id ${params.id}"
-			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-			def filteredLists = []
-			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-			}
-            render(view:"list",model:[ userListInstanceList: filteredLists ])
+			redirect(action:list)
         }
     }
 
@@ -276,12 +215,7 @@ class UserListController {
         }
         else {
             flash.message = "UserList not found with id ${params.id}"
-			def lists = userListService.getAllLists(session.userId, session.sharedListIds)
-			def filteredLists = []
-			if(session.listFilter){
-				filteredLists = userListService.filterLists(session.listFilter,lists,session.userId)
-			}
-            render(view:"list",model:[ userListInstanceList: filteredLists ])
+			redirect(action:list)
         }
     }
 

@@ -4,145 +4,179 @@ class UserListService{
 
 def securityService
 def drugDiscoveryService
-
-	def getAllLists(userId,sharedIds){
-		def user = GDOCUser.findByLoginName(userId)
-		//user.refresh()
-		def lists = []
-		lists = getUserLists(user.loginName)
-		def listIds = []
-		def sharedListIds = []
-		sharedListIds = sharedIds
-		if(!sharedListIds){
-			sharedListIds = getSharedListIds(userId)
-		}else{
-			log.debug "use shared lists ids previously retrieved"
-		}
-		if(lists.metaClass.respondsTo(lists, "size")) {
-				lists.each{
-					listIds << it.id.toString()
-				}
-		} else {
-				listIds << lists.id.toString()
-		}
-		
-			
-		def sharedLists = []
-		//until we modify ui, just add shared lists to 'all' lists
-		sharedListIds.each{
-			if(!(listIds.contains(it))){
-			def foundList = UserList.get(it.toString())
-			if(foundList){
-				lists << foundList
-			}
-		   }
-		}
-		if(lists){
-			lists = lists.sort { one, two ->
-				def dateOne = one.dateCreated
-				def dateTwo = two.dateCreated
-				return dateTwo.compareTo(dateOne)
-			}
-		}
-		
-		return lists
-	}
 	
-	def getFilteredLists(timePeriod, userId, sharedIds){
-		
-		def filteredLists = []
-		
-			if(timePeriod == "all"){
-				log.debug "show ALL user's lists"
-				filteredLists = getAllLists(userId, sharedIds)
-				return filteredLists
-			}
-			else if(timePeriod == "hideShared"){
-				log.debug "only show user's lists"
-				def user = GDOCUser.findByLoginName(userId)
-				filteredLists = user.lists
-				return filteredLists
-			}
-			else{
-				def tp = Integer.parseInt(timePeriod)
-				def today = new Date()
-				def allLists = []
-				def user = GDOCUser.findByLoginName(userId)
-				allLists = user.lists
-				allLists.each{ list ->
-					if(today.minus(list.dateCreated) <= tp){
-						filteredLists << list
-					}
-				}
-				return filteredLists
-			}
-			
-		return filteredLists
-		
-		
-	}
-	
-	def filterLists(timePeriod, allLists, userId){
-		def filteredLists = []
-		if(allLists){
-			if(timePeriod == "all"){
-				return allLists
-			}
-			else if(timePeriod == "hideShared"){
-				log.debug "hide all shared lists"
-				allLists.each{ list ->
-					if(list.author.loginName == userId){
-						filteredLists << list
-					}
-				}
-				return filteredLists
-			}
-			else{
-				def tp = Integer.parseInt(timePeriod)
-				def today = new Date()
-				allLists.each{ list ->
-					if(today.minus(list.dateCreated) <= tp){
-						filteredLists << list
-					}
-				}
-				return filteredLists
-			}
-		}else{
-			return filteredLists
-		}
-	}
-	
-	def getPaginatedLists(ids,offset){
+	def getPaginatedLists(filter,sharedIds,offset,userId){
 		def pagedLists = []
-		if(ids){
-			def idsString = ids.toString().replace("[","")
-			idsString = idsString.replace("]","")
-			def query = "from UserList as ul where ul.id in ("+idsString+") order by ul.dateCreated desc"
-			def al = []
-			pagedLists =
-			UserList.createCriteria().list(
-				max:10,
-				offset:offset)
-				{
-				'in'('id',ids)
-				}
-
-			al = UserList.findAll(query,[max:10,offset:offset])
-			pagedLists.clear()
-			pagedLists.addAll(al)
-			log.debug "myLists -> $pagedLists as Paged set"
+		if(filter == "all"){
+			pagedLists = getAllLists(sharedIds,offset,userId)
+		}else if(filter == "hideShared"){
+			pagedLists = getUsersLists(offset,userId)
 		}else{
-			log.debug "no paginated lists"
+			pagedLists = getUsersListsByTimePeriod(filter,offset,userId)
 		}
 		return pagedLists
 	}
 	
-	def getUserLists(userId){
-		def lists = []
-		def author = GDOCUser.findByLoginName(userId)
-		//author.refresh()
-		lists = UserList.findAllByAuthor(author)
-		return lists
+	def getUsersLists(offset,user){
+		def pagedLists = [:]
+		def results = []
+		def count = 0
+		String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
+		"WHERE author.loginName = :loginName " +
+		"ORDER BY list.dateCreated desc"
+		results = UserList.executeQuery(listHQL,[loginName:user, max:10, offset:offset])
+		pagedLists["results"] = results
+		String listHQL2 = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
+		"WHERE author.loginName = :loginName " 
+		count = UserList.executeQuery(listHQL2,[loginName:user])
+		pagedLists["count"] = count
+		/**def c = UserList.createQuery()
+		pagedLists = c.listDistinct
+			{
+				eq("author", user)
+				order("dateCreated", "desc")
+			}**/
+		return pagedLists
+	}
+	
+	def getAllLists(sharedIds,offset,user){
+		def pagedLists = [:]
+		def results = []
+		def count = 0
+		if(sharedIds){
+			def ids =[]
+			sharedIds.each{
+				ids << new Long(it)
+			}
+			String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
+			"WHERE author.loginName = :loginName OR list.id IN (:ids) " +
+			"ORDER BY list.dateCreated desc"
+			results = UserList.executeQuery(listHQL,[loginName:user, ids:ids, max:10, offset:offset])
+			pagedLists["results"] = results
+			String listHQL2 = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
+			"WHERE author.loginName = :loginName OR list.id IN (:ids) "
+			count = UserList.executeQuery(listHQL2,[loginName:user,ids:ids])
+			pagedLists["count"] = count
+			/**def c = UserList.createCriteria()
+			pagedLists = c.list(
+				max:10,
+				offset:offset)
+				{	
+					or {
+						eq("author", user)
+						'in'('id',ids)
+					}
+					'order'("dateCreated", "desc")
+				}**/
+			log.debug "all lists -> $pagedLists as Paged set"
+		}
+		return pagedLists
+	}
+	
+	def getAllListsNoPagination(userId,sharedIds){
+		def user = GDOCUser.findByLoginName(userId)
+		def pagedLists = []
+		def pagedListsMaps = []
+		if(sharedIds){
+			def ids =[]
+			sharedIds.each{
+				ids << new Long(it)
+			}
+			pagedLists = UserList.createCriteria().list()
+				{
+					projections{
+						property('id')
+						property('name')
+					}
+					and{
+						'order'("dateCreated", "desc")
+					}
+					or {
+						eq("author", user)
+						'in'('id',ids)
+					}
+				}
+		}
+		pagedLists.each{
+			def pagedListsMap = [:]
+			pagedListsMap["id"] = it[0]
+			pagedListsMap["name"] = it[1]
+			pagedListsMaps << pagedListsMap
+		}
+		log.debug "all lists snapsot -> $pagedListsMaps "
+		return pagedListsMaps
+	}
+	
+	def getUsersListsByTimePeriod(timePeriod,offset,user) {
+		def pagedLists = [:]
+		def results = []
+		def count = 0
+		def now = new Date()
+		def tp = Integer.parseInt(timePeriod)
+		def range = now-tp
+		String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
+		"WHERE author.loginName = :loginName " +
+		"AND list.dateCreated BETWEEN :range and :now "
+		"ORDER BY list.dateCreated desc"
+		results = UserList.executeQuery(listHQL,[loginName:user, now:now, range:range, max:10, offset:offset])
+		pagedLists["results"] = results
+		String listHQL2 = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
+		"WHERE author.loginName = :loginName " +
+		"AND list.dateCreated BETWEEN :range and :now "
+		count = UserList.executeQuery(listHQL2,[loginName:user, now:now, range:range])
+		pagedLists["count"] = count
+		/**pagedLists = UserList.createCriteria().list(
+			max:10,
+			offset:offset)
+			{
+				and{
+					'between'('dateCreated',now-tp,now)
+					'order'("dateCreated", "desc")
+				}
+				or {
+					eq("author", user)
+				}
+			}**/
+		log.debug "user lists only over past $timePeriod days-> $pagedLists as Paged set"
+		return pagedLists
+	}
+	
+	def getListsByTag(tag,userName){
+		String listHQL = "SELECT list FROM UserList list,TagLink tagLink JOIN list.author author " + 
+		"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+		"AND tagLink.tag.name = :tag " +
+		"AND author.loginName = :loginName " +
+		"ORDER BY list.name"
+		def taggedLists = []
+		taggedLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName])
+	}
+	
+	def getListsByTagAndStudy(tag,study,userName){
+		def sids =[]
+		sids << study
+		String listHQL = "SELECT list FROM UserList list,TagLink tagLink JOIN list.studies studies " + 
+		"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+		"AND tagLink.tag.name = :tag " +
+		"AND list.author.loginName = :loginName " +
+		"AND studies IN (:sids) " + 
+		"ORDER BY list.name"
+		def patientLists = []
+		patientLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName, sids:sids])
+	}
+	
+	def getTempListIds(userId) {
+		String findByTagHQL = """
+		   SELECT DISTINCT list.id
+		   FROM UserList list, TagLink tagLink
+		   JOIN list.author author
+		   WHERE list.id = tagLink.tagRef
+		   AND author.loginName = :loginName
+		   AND tagLink.type = 'userList'
+		   AND tagLink.tag.name = :tag
+		"""
+		
+		def listIds = UserList.executeQuery(findByTagHQL, [tag: Constants.TEMPORARY, loginName: userId])
+		return listIds	
 	}
 	
 	def getSharedListIds(userId){

@@ -84,10 +84,11 @@
 	<div class="body">
 		<p class="pageHeading">
 			Manage Lists  
+			
 			<span style="display:none" class="ajaxController">userList</span>	
 			
 			<g:if test="${session.listFilter}">
-				<span style="font-size:12px">total: ${allLists.size()}&nbsp;&nbsp; |filter: ${session.listFilter} |</span>
+				<span style="font-size:12px">total: ${allLists}&nbsp;&nbsp; |filter: ${session.listFilter} |</span>
 			</g:if>
 			<br/>
 			<span id="message" class="message" style="display:none"></span>
@@ -119,18 +120,17 @@
 			<g:submitButton name="del" value="Delete List (s)" style="font-size: 12px;color:black;text-decoration:none;padding: 3px 8px;background-color:#E6E6E6;border: 1px solid #a0a0a0;margin: 5px 3px 3px 5px;" onclick="return confirm('Are you sure?');" /></span></td>
 			</tr>
 			</table>
-			
-			<g:if test="${allLists.size() > 0 && userListInstanceList.size() >0}">
+			<g:if test="${allLists > 0 && userListInstanceList.size() >0}">
 			<div id="pager1" style="text-align:right;padding:2px 10px 3px 0px">
-			<g:set var="totalPages" value="${Math.ceil(allLists.size() / userListInstanceList.size())}" />
+			<g:set var="totalPages" value="${Math.ceil(allLists / userListInstanceList.size())}" />
 
 		    <g:if test="${totalPages == 1}">
 		        <span class="currentStep">1</span>
 		    </g:if>
-		    <g:else>
-		        <g:paginate controller="userList" action="list" 
-		                    total="${userListInstanceList.totalCount}" prev="&lt; previous" next="next &gt;"/>
-		    </g:else>
+		   	<g:else>
+    			<g:paginate controller="userList" action="list" 
+                total="${allLists}" prev="&lt; previous" next="next &gt;"/>
+			</g:else>
 			</div>
 	
 			<div class="list" id="allLists">
@@ -138,14 +138,14 @@
 			</div>
 	
 			<div id="pager2" style="text-align:right;padding:2px 10px 3px 0px">
-				<g:set var="totalPages" value="${Math.ceil(allLists.size() / userListInstanceList.size())}" />
+				<g:set var="totalPages" value="${Math.ceil(allLists/ userListInstanceList.size())}" />
 
     			<g:if test="${totalPages == 1}">
         			<span class="currentStep">1</span>
     			</g:if>
     			<g:else>
         			<g:paginate controller="userList" action="list" 
-                    total="${userListInstanceList.totalCount}" prev="&lt; previous" next="next &gt;"/>
+                    total="${allLists}" prev="&lt; previous" next="next &gt;"/>
     			</g:else>
 			</div>
 			</g:if>

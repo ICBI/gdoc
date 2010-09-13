@@ -8,33 +8,26 @@ class ControllerMixin {
 	static loadPatientLists(self) {
 		if(self.session.study){
 			StudyContext.setStudy(self.session.study.schemaName)
-			def lists = self.userListService.getAllLists(self.session.userId, self.session.sharedListIds)
-			def patientLists = lists.findAll { item ->
-				(item.tags.contains("patient") && item.schemaNames().contains(StudyContext.getStudy()))
-			}
-
-			self.session.patientLists = patientLists.sort {it.name}
+			def lists = []
+			lists = self.userListService.getListsByTagAndStudy(Constants.PATIENT_LIST,self.session.study,self.session.userId)
+			self.session.patientLists = lists
 		}
 	}
 	
 	static loadReporterLists(self) {
 		if(self.session.study) {
 			def reporterLists = []
-			def lists = self.userListService.getAllLists(self.session.userId, self.session.sharedListIds)
-			lists.each { item ->
-				if(item.tags.contains("reporter"))
-					reporterLists << item
-			}
-			self.session.reporterLists = reporterLists.sort {it.name}
+			reporterLists = self.userListService.getListsByTag(Constants.REPORTER_LIST,self.session.userId)
+			self.session.reporterLists = reporterLists
 		}
 	}
 	
 	static loadGeneLists(self) {
-		def lists = self.userListService.getAllLists(self.session.userId,self.session.sharedListIds)
-		def geneLists = lists.findAll { item ->
-			item.tags.contains("gene")
+		if(self.session.study) {
+			def geneLists = []
+			geneLists = self.userListService.getListsByTag(Constants.GENE_LIST,self.session.userId)
+			self.session.geneLists = geneLists
 		}
-		self.session.geneLists = geneLists.sort {it.name}
 	}
 	
 	static loadCurrentStudy(self) {

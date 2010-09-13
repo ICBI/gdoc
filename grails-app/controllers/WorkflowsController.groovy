@@ -28,10 +28,12 @@ class WorkflowsController {
 			session.myStudies = myStudies
 			def myCollaborationGroups = []
 			myCollaborationGroups = securityService.getCollaborationGroups(session.userId)
-			def sharedListIds = userListService.getSharedListIds(session.userId)
+			def sharedListIds = []
+			sharedListIds = userListService.getSharedListIds(session.userId)
 			session.sharedListIds = sharedListIds
 			//get shared anaylysis and places them in session scope
-			def sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
+			def sharedAnalysisIds = []
+			sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
 			session.sharedAnalysisIds = sharedAnalysisIds
 			session.dataAvailability = quickStartService.getMyDataAvailability(session.myStudies)
 			
@@ -46,12 +48,9 @@ class WorkflowsController {
 	def cleanup(userId){
 		def user = GDOCUser.findByLoginName(userId)
 		def myLists = []
-		myLists = userListService.getUserLists(userId)
 		def listsTBD = []
 		def analysesTBD = []
-		if(myLists){
-			listsTBD = gatherTempArtifacts(myLists)
-		}
+		listsTBD = userListService.getTempListIds(userId)
 		analysesTBD = savedAnalysisService.getTempAnalysisIds(userId)
 		if(listsTBD || analysesTBD){
 			cleanupService.cleanupAtLogin(user,listsTBD,analysesTBD)
