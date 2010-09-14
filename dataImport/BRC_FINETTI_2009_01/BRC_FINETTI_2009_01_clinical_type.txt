@@ -18,6 +18,6 @@ egfr ihc status:	new	EGFR_IHC_STATUS	EGFR IHC Status	Protein EGFR positivity tes
 top2a ihc status:	new	TOP2A_IHC_STATUS	TOP2A IHC Status	Protein TOP2A positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
 foxa1 ihc status	new	FOXA1_IHC_STATUS	FOXA1 IHC Status	Protein FOXA1 positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR			
 mfs	318	EVENT_DMFS	Event indicator for Distant Metastasis Free Survival	Indicates that distant metastasis occurred and was recorded OR no distant metastasis was recorded	CLINICAL					0	0	1	NUMBER(1)		0	1
-mfsdel (month)	new	DMFS_MONTHS	Distant metastasis free survival in months	Tracks the distant metastasis free survival time from diagnosis or surgery of the patient till the event or last follow up 	CLINICAL					0	0	0	NUMBER(4,1)	months	1	60
+mfsdel (month)	new	DMFS_MONTHS	Distant metastasis free survival in months	Tracks the distant metastasis free survival time from diagnosis or surgery of the patient till the event or last follow up 	CLINICAL					0	0	0	NUMBER(4,1)	months	0	600
 age	147	AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	NUMBER(4, 1)	years	0	120
 breast tumor or normal tumor	343	CASE_OR_CONTROL	Case or Control	Case or control	OTHER					1	0	1	VARCHAR			
