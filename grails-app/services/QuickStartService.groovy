@@ -17,6 +17,7 @@ class QuickStartService implements ApplicationContextAware{
 		log.debug "get all study availability"
 		def studies = []
 		studies = StudyDataSource.list();
+		log.debug " geting snapshot for data for all $studies.size studies " + studies.collect{it.shortName}
 		def vocabList = [:]
 		def attList = [""]
 		def results = []

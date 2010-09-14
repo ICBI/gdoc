@@ -31,7 +31,7 @@
 </g:javascript>
 
 <g:panel id="myPanel" title="List Tools" styleClass="prefs" panelColor="userLogPanelTitle" contentClass="myPanelContent">
-	<g:if test="${userListInstanceList.size()>0}">
+	<g:if test="${toolsLists.size()>0}">
 		<div>
  		<g:form name="listToolForm" update="allLists" onLoading="showToolsSpinner(true)"
 		    onComplete="showToolsSpinner(false)" action="tools" url="${[action:'tools']}" method="post">
@@ -39,7 +39,6 @@
 		<g:select name="listAction" from="${['Venn Diagram','Intersect Lists','Join Lists', 'Difference']}" 
 				keys="${['venn','intersect','join','diff']}" onchange="showOption(this)" /></span><br />
 		<span id="name" style="display:none;margin-top:5px;">List Name: <g:textField name="listName" size="15" maxlength="15"/></span><br />
-		${toolsList}
 		<g:select style="margin-top:5px;width:180px" name="userListIds"
 				  from="${toolsLists}"
 		          optionKey="id" 

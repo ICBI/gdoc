@@ -8,6 +8,7 @@ class AdminController {
 		dataAvail['dataAvailability'].each{elm ->
 			def studyName = elm.find{ key, value ->
 				if(key == 'STUDY'){
+					log.debug "load $value"
 					loadedStudies << value
 				}
 			}

@@ -9,10 +9,8 @@
 	<g:javascript>
 	
 	function exportMol() {
-		alert('uo');
 		var ffmt = "smiles:";
 		var s = document.Editor.getSmiles();
-		alert(s);
 		//document.Editor.getMolFile();//document.MSketch.getMol(ffmt);
 		//s = unix2local(s);
 		if(s != "") {
