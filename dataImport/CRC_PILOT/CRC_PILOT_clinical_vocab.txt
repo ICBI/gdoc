@@ -58,7 +58,6 @@ TUMOR_DIGNITY	MALIGNANT	MALIGNANT		Malignant Tumor
 METASTASIS_LOCATION	LUNG	LUNG		Metastasis occurred in the Lung
 METASTASIS_LOCATION	LIVER	LIVER		Metastasis occurred in the Liver
 RADIATION	YES	YES		Patient underwent radiation
-RADIATION	NO	NO		Patient did not undergo radiation
 RECURRENCE_ANY	NO	NO		Recurrence did not occur
 RECURRENCE_ANY	YES	YES		Recurrence occurred
 VITAL_STATUS	ALIVE	ALIVE		Patient was alive at last follow-up
