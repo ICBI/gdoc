@@ -121,6 +121,17 @@ FUP_CT_AGENT	5-Fluorouracil	5-Fluorouracil		Patient had 5-Fluorouracil as his fo
 FUP_CT_AGENT	Irinotecan	Irinotecan		Patient had Irinotecan as his follow up chemotherapy agent
 FUP_CT_AGENT	Xelodan	Xelodan		Patient had Xelodan as his follow up chemotherapy agent
 FUP_CT_AGENT	Oxaliplatin	Oxaliplatin		Patient had Oxaliplatin as his follow up chemotherapy agent
-TIMEPOINT	11	11		Time point 11
-TIMEPOINT	12	12		Time point 12
+TIMEPOINT	1	1		Timepoint 1
+TIMEPOINT	2	2		Timepoint 2
+TIMEPOINT	3	3		Timepoint 3
+TIMEPOINT	4	4		Timepoint 4
+TIMEPOINT	5	5		Timepoint 5
+TIMEPOINT	6	6		Timepoint 6
+TIMEPOINT	7	7		Timepoint 7
+TIMEPOINT	8	8		Timepoint 8
+TIMEPOINT	9	9		Timepoint 9
+TIMEPOINT	10	10		Timepoint 10
+TIMEPOINT	11	11		Timepoint 11
+TIMEPOINT	12	12		Timepoint 12
+TIMEPOINT	13	13		Timepoint 13
 SOURCE	CLINICAL	Clinical 		Clinical data
