@@ -36,7 +36,7 @@
 		       });
 		   });
 		
-	}
+	});
 	</g:javascript>
 	<table id="${userListInstance.id}_listItems">
 		
