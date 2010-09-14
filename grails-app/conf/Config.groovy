@@ -128,10 +128,15 @@ environments {
 		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
 		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
 		log4j = {
+			appenders {
+				file name:'file', file:'dataLoad.log', append: true
+			}
 			root {
-			    error 'stdout'
+			    error 'stdout', 'file'
 			    additivity = true
 			}
+			debug "grails.app"
+			debug "org.hibernate.SQL"
 		}
     }
 	production {
@@ -160,10 +165,15 @@ environments {
 		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
 		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
 		log4j = {
+			appenders {
+				file name:'file', file:'dataLoad.log', append: true
+			}
 			root {
-			    error 'stdout'
+			    error 'stdout', 'file'
 			    additivity = true
 			}
+			debug "grails.app"
+			debug "org.hibernate.SQL"
 		}
     }
 	test {
