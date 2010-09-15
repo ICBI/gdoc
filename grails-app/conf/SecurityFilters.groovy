@@ -9,36 +9,35 @@ class SecurityFilters {
 						String decryptedToken = EncryptionUtil.decrypt(token);
 						String[] info = decryptedToken.split("\\|\\|");
 						String username = info[0];
-						println "$username accessing gdoc" 
+						log.debug "$username accessing gdoc" 
 						Long timeRequested = Long.parseLong(info[1]);
 						Long currentTime = System.currentTimeMillis();
 						Long diff = currentTime - timeRequested;
 						Long hours = diff / (60 * 60 * 1000);
 						if(hours > 24L) {
-							println "time has expired" 
+							log.debug "time has expired" 
 							redirect(controller:'home')
 			                return false
 						}
 						def user = GDOCUser.findByLoginName(username)
 						if(!user) {
-							println "no valid user" 
+							log.debug "no valid user" 
 							redirect(controller:'home')
 			                return false
 						}
-						println "user token authenticated"
+						log.debug "user token authenticated"
 			  } 
               else if(!session.userId && !controllerName.equals('home') 
 						&& !controllerName.equals('login')
 						 && !controllerName.equals('registration')
 							&& !controllerName.equals('contact')) {
-				  //println "$actionName access denied"                  
 				  redirect(controller:'home', action:'index')
                   return false
               }
 			else if(session.userId && controllerName.equals('admin')){
 				if(!session.isGdocAdmin){
 					redirect(controller:'home', action:'index')
-					println "$session.userId tried to access the admin panel but is not a GDOC Administrator" 
+					log.debug "$session.userId tried to access the admin panel but is not a GDOC Administrator" 
 	                return false
 				}
 			}
@@ -46,12 +45,12 @@ class SecurityFilters {
 		}
 		listCheck(controller:'userList', action:'*'){
 			before = {
-				println params
-				println session.userId
+				log.debug params
+				log.debug session.userId
 				if((params["action"].equals("create")|| params["action"].equals("save")
 					|| params["_action_Update"] || params["_action_Edit"] ||
 						params["_action_Delete"]) && session.userId==null){
-					println "user not logged in"
+					log.debug "user not logged in"
 					flash.message = "you must be logged in to create or modify lists"
 					redirect(action:'list')
 					return false;
@@ -61,13 +60,13 @@ class SecurityFilters {
 							def list = UserList.findById(params["id"])
 							def user = GDOCUser.findByLoginName(session.userId)
 							if(user!=null && list!=null){
-								 println "user and list are in request"
+								 log.debug "user and list are in request"
 								if(user.id == list.author.id){
-									 println "user is also author"
+									 log.debug "user is also author"
 									return true;
 								}
 								else{
-									 println "user is not the author"
+									 log.debug "user is not the author"
 									flash.message = "you must be the author of this list to perform this action."
 									redirect(action:'list')
 									return false;
@@ -80,7 +79,7 @@ class SecurityFilters {
 					
 				}
 			    else{
-				println ""
+				log.debug ""
 				return true;
 			}
 			}

@@ -9,11 +9,11 @@ class IndexDatabaseJob {
     def execute() {
 		Thread.start {
 		    def begin = (System.currentTimeMillis()/1000)/60
-	        println "-------begin forked thread that re-Indexes database------------ at " + System.nanoTime()
+	        log.info "-------begin forked thread that re-Indexes database------------ at " + System.nanoTime()
 		    searchableService.index()
 		    def end = (System.currentTimeMillis()/1000)/60
 			def elapsed = end - begin
-			println "-------end re-Indexing database------------ took $elapsed minutes"
+			log.info "-------end re-Indexing database------------ took $elapsed minutes"
 		}
     }
 }

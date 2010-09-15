@@ -59,7 +59,7 @@ class InvitationService {
 		securityService.removeUserFromCollaborationGroup(loginName, targetUser, groupName)
 		def request = findRequest(loginName, targetUser, groupName)
 		if(request) {
-			println "found original invite, now withdraw"
+			log.debug "found original invite, now withdraw"
 			request.status = InviteStatus.WITHDRAWN
 			request.save(flush:true)
 		}
