@@ -133,6 +133,7 @@ class QuickStartController {
 	def analysis = {
 		log.debug params
 		def study = StudyDataSource.findByShortName(params.study)
+		def author = GDOCUser.findByLoginName(session.userId)
 		session.study = study
 		StudyContext.setStudy(study.schemaName)
 		def studies = []
@@ -148,7 +149,7 @@ class QuickStartController {
 		}
 		if(params.group1Ids){
 			group1Ids = ParamsHelper.itemsToList(params.group1Ids)
-			def existingList = UserList.findByName(params.group1Name)
+			def existingList = UserList.findByAuthorAndName(author,params.group1Name)
 			if(existingList){
 				list1 = existingList
 				log.debug "retain existing 1st list, $list1.name by same name"
@@ -160,7 +161,7 @@ class QuickStartController {
 		}
 		if(params.group2Ids){
 			group2Ids = ParamsHelper.itemsToList(params.group2Ids)
-			def existingList2 = UserList.findByName(params.group2Name)
+			def existingList2 = UserList.findByAuthorAndName(author,params.group2Name)
 			if(existingList2){
 				list2 = existingList2
 				log.debug "retain existing 2nd list, $list2.name by same name"

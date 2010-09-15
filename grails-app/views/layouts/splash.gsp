@@ -26,6 +26,7 @@
 				$('.c').corner();
 				
 				});
+			$('#c').height(600);
 		</g:javascript>
 </head>
 <body style="background-color:#334477">
@@ -60,7 +61,7 @@ $('.c').css('background-color', '#ffffff');
 // code to set height of left bar
 jQuery(document).ready(function() {
 	
-	$('#navigation').height($('#yui-main').height());
+	$('#c').height($('#yui-main').height());
 });
 </g:javascript>
 </body>
