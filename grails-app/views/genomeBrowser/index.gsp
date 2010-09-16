@@ -14,7 +14,7 @@
 	$(document).ready(function() {
 		toggleFeature();
 		toggleBlock($('#omicsData'));
-		$('#omicsData').change(function() {
+		$('#omicsData').click(function() {
 			toggleBlock(this);
 		});
 		$('#submit').click(function() {
@@ -23,8 +23,8 @@
 			else
 				$('#browseForm').submit();
 		})
-		$('.searchRadio').change(function() {
-			$('.search').toggle();
+		$('.searchRadio').click(function() {
+			toggleFeature();
 		})
 	});
 	
