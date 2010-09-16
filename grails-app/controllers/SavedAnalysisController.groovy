@@ -43,7 +43,7 @@ class SavedAnalysisController{
 			log.debug "Requesting deletion of: $params.deleteAnalyses"
 			if(params.deleteAnalyses.metaClass.respondsTo(params.deleteAnalyses, "max")){
 				params.deleteAnalyses.each{ analysisIdToBeRemoved ->
-					print analysisIdToBeRemoved + " "
+					log.debug analysisIdToBeRemoved 
 					def analysis = SavedAnalysis.get(analysisIdToBeRemoved)
 			        if(analysis) {
 			            if(analysis.evidence){

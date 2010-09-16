@@ -43,8 +43,7 @@ class SecurityService {
 				throw new LoginException("error in authentication");
 			}
 			}catch (CSException cse){
-				log.error("ERROR IN LOGIN -- CS Exception");
-				cse.printStackTrace(System.out);
+				log.error("ERROR IN LOGIN -- CS Exception", cse);
 				throw new LoginException("error in authentication");
 		}
 		
@@ -187,7 +186,7 @@ class SecurityService {
 					}
 				}
 		}catch(CSObjectNotFoundException csoe){
-			csoe.printStackTrace(System.out);
+			log.error("object not found", csoe)
 			throw new SecurityException("object not found");
 		}
 			return groupNames

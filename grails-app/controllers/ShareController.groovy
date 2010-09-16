@@ -10,11 +10,11 @@ def shareItem = {
 		                redirect(controller:'share',action:'share',params:[id:params.itemId,name:params.name,
 																	type:params.type,failure:true])
 	}else{
-	print params
+	log.debug params
 	def item
 	def groups = []
 	def alreadySharedGroups = []
- 	print groups
+ 	log.debug groups
 	
 	if(params.groups instanceof String[]){
 		params.groups.each{
@@ -25,11 +25,11 @@ def shareItem = {
 	}
 	
 	if(params.type.equals(Constants.SAVED_ANALYSIS)){
-		print 'share saved analysis: ' + params.itemId
+		log.debug 'share saved analysis: ' + params.itemId
 		item = SavedAnalysis.get(params.itemId)
 	}
 	if(params.type.equals(Constants.USER_LIST)){
-		print 'share user list: ' + params.itemId
+		log.debug 'share user list: ' + params.itemId
 		item = UserList.get( params.itemId )
 	}
 	if(item){
@@ -47,7 +47,7 @@ def shareItem = {
 			securityService.share(item, groups)
 			}
 		}catch(SecurityException se){
-				se.printStackTrace(System.out);
+				log.error("error with sharing item", se)
 				flash['message'] = 'Sorry, there has been a problem sharing this item'
 				redirect(action:share,params:[success:false,groups:groups,name:params.name])
 		}
