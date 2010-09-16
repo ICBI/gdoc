@@ -8,7 +8,7 @@
 		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
 		<g:javascript src="jquery/scrollTable/jscrolltable.js"/>
 		<jq:plugin name="tooltip" />
-		<jq:plugin name="curvycorners"/>
+		
 		<!-- styling -->
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'scrollable-navig.css')}"/>
 		<g:javascript>
@@ -52,7 +52,7 @@
 							});
 							
 						});
-						$('.partDiv').corner();
+						
 						<!-- For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
 			            var swfVersionStr = "10.0.45";
 			            <!-- To use express install, set to playerProductInstall.swf, otherwise the empty string. -->

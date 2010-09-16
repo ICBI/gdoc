@@ -35,29 +35,67 @@ class MoleculeTargetController {
 		//chain(action:index,model:[ligands:targets])
 	}
 	
+	def sketchSearch = {
+		log.debug params
+		def ligands
+		def count = new Long(0)
+		def search = false
+		if(chainModel){
+			search = true;
+			ligands = chainModel["ligands"]
+			count = chainModel["count"]
+			ligands.each{
+				it.refresh()
+			}
+			log.debug "results for sketch found, results are $ligands.size with a total count of $count"
+		}
+		[ligands:ligands,count:count,search:search,params:[params.page,params.offset,params.smiles]]
+	}
+	
 	def searchLigandsFromSketch = {
 		session.molCommand = null
 		session.smiles = params.smiles
+		def offset = 0
 		//grab my studies to filter
 		def userMemberships = session.myCollaborationGroups
-		def orString = userMemberships.join(" OR ")
 		def smiles
 		if(params.smiles){
 			smiles = params.smiles
-			log.debug "search smiles for $smiles"
+			log.debug "search for smiles for $smiles in groups, $userMemberships"
+		}
+		if(params.offset){
+			offset = params.offset.toLong()
 		}
 		def targets = []
-		targets = Molecule.search(params,{
+		def count = []
+		def groups = []
+		String groupHQL = "SELECT distinct collaborationGroup FROM CollaborationGroup collaborationGroup " + 
+		"WHERE collaborationGroup.name in (:groupNames) "
+		groups = CollaborationGroup.executeQuery(groupHQL,[groupNames:userMemberships])
+		if(groups){
+			String listHQL = "SELECT distinct molecule FROM Molecule molecule " + 
+			"WHERE molecule.smiles like '%" + smiles + "%' " + 
+			"AND molecule.protectionGroup in (:groups) " + 
+			"ORDER BY molecule.weight desc"
+			targets = Molecule.executeQuery(listHQL,[groups:groups, max:10, offset:offset])
+			String listHQL2 = "SELECT count(distinct molecule.id) FROM Molecule molecule " + 
+			"WHERE molecule.smiles like '%" + smiles + "%' " +
+			"AND molecule.protectionGroup in (:groups) "
+			count = Molecule.executeQuery(listHQL2,[groups:groups])
+		}
+		
+		/**targets = Molecule.search(params,{
 			must(queryString(smiles), 'escape:true')
 			must(queryString(orString))
-		})
+		})**/
 		log.debug targets 
+		log.debug "count is $count"
 		if(!params.offset){
-			chain(action:index,model:[ligands:targets],params:[page:'sketch',smiles:params.smiles])
+			chain(action:sketchSearch,model:[ligands:targets,count:count[0]],params:[page:'sketch',smiles:params.smiles,offset:0])
 			return
 		}
 		else{
-			chain(action:index,model:[ligands:targets],params:[page:'sketch',smiles:params.smiles,offset:params.offset])
+			chain(action:sketchSearch,model:[ligands:targets,count:count[0]],params:[page:'sketch',smiles:params.smiles,offset:params.offset])
 			return
 		}
 	}

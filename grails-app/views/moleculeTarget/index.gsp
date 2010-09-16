@@ -3,7 +3,6 @@
         <meta name="layout" content="main" />
 		
 	<g:javascript library="jquery"/>
-	<%--script type="text/javascript" src="/gdoc/applets/marvin/marvin.js"></script--%>
 	<jq:plugin name="ui"/>
 	<jq:plugin name="autocomplete"/>
 	<g:javascript>
@@ -12,7 +11,6 @@
 		var ffmt = "smiles:";
 		var s = document.Editor.getSmiles();
 		//document.Editor.getMolFile();//document.MSketch.getMol(ffmt);
-		//s = unix2local(s);
 		if(s != "") {
 			document.MolForm.smiles.value = s; 
 			document.MolForm.submit();
@@ -62,7 +60,7 @@
         <title>Molecule Target - Search</title>         
     </head>
     <body>
-	<p style="font-size:14pt">Search for Compounds</p><br />
+	<p style="font-size:14pt">Input Search | <g:link action="sketchSearch">Molecule 'Sketch' Search</g:link></p><br />
 	<g:if test="${flash.message}">
 	<span class="message">${flash.message}</span>
 	</g:if>
@@ -73,22 +71,14 @@
 	</g:if>
 <div id="centerContent">
 	
-	<div class="tabDiv" style="border:1px solid silver">
-		<div id="centerTabs" class="tabDiv" style="width:550px;height:450px;border:0px solid black">
-		    <ul>
-		        <li><a href="#fragment-4"><span>Input Search</span></a></li>
-		        <li><a href="#fragment-5"><span>Sketch Search (beta)</span></a></li>
-		    </ul>
-			
-			 <div id="fragment-4">
 
 			<g:form url='[controller: "moleculeTarget", action: "searchLigands",method:"post"]' id="searchableForm" name="searchableForm" method="get">
 			<div class="errorDetail">
 				<g:renderErrors bean="${flash.cmd?.errors}" field="entity" />
 			</div>    
-			<table class="formTable">
+			<table class="formTable" style="background-color:#f2f2f2;width:85%">
 				<tr><td>
-					Enter name for a gene, protein, molecule (or SMILES):	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
+					Enter name for a gene, protein, molecule:	</td><td><g:textField id="entity" name="entity" value="${params.entity}" size="10"/> </td></tr>
 				<tr><td>Ligand Affinity: </td><td><g:textField disabled="true" name="ligandAffinity" value="${params.ligandAffinity}" size="10"/> </td></tr>
 				<tr><td colspan="2">
 					<div class="errorDetail">
@@ -104,52 +94,12 @@
 
 			</div>
 		
-			<div id="fragment-5">
-				<%--script LANGUAGE="JavaScript1.1">
-				msketch_name = "MSketch";
-				msketch_begin("/gdoc/applets/marvin/", 540, 400);
-				msketch_param("molbg", "#ffffff");
-				msketch_end();
-
-				</script--%>
-				<span class="applet">
-				<applet code="org.openscience.jchempaint.applet.JChemPaintEditorApplet" archive="/gdoc/applets/jchemPaint/jchempaint-applet-core.jar"
-						id="Editor"
-				        width="500" height="400">
-				<!--param name="load" value="applettests/big.mol"-->
-				<param name="impliciths" value="true">
-				<param name="codebase_lookup" value="false" />
-
-				<PARAM name="onLoadTarget" value="statusFrame">
-				<PARAM NAME="image" VALUE="hourglass.gif">
-				<PARAM NAME="boxborder" VALUE="false">
-				<PARAM NAME="centerimage" VALUE="true">
-				</applet>
-				<g:form name="MolForm" url='[controller: "moleculeTarget", action: "searchLigandsFromSketch"]'>
-				<input value="Write SMILES String" onclick="exportMol()" type="button" style="display:none">
-				<g:textField name="smiles" style="display:none"/>
-				<g:submitButton name="search_molecules" value="search molecules" onclick="exportMol();return false;"/>
-				
-				<a href="javascript:alert(document.Editor.getSmiles())">show smiles</a>
-				
-				</g:form><br /><br />
-				
-				
-				</span>
-				<br><br>
-				
-				
-			</div>	
-		</div>
-	</div>
-</div>
-
 
 <span>
 	<g:if test="${search}">
     <g:if test="${ligands?.results}"><br />
 	
-	<div class="title"
+	<div class="title">
      <div class="paging">
 	      Page:
 	      <g:set var="totalPages" value="${Math.ceil(ligands.total / ligands.max)}" />
@@ -167,16 +117,16 @@
 
 
 <g:if test="${ligands?.results}">
-	
+
 	<table class="resultTable">
 	<g:each in="${ligands.results}" var="molecule">
 	<g:if test="${molecule}">
 	<g:set var="moleculePaths" value="${molecule.structures?.toArray().collect{it.structureFile.relativePath}}" />
 		
 		<g:set var="ligandImg" value="${moleculePaths.find{it.contains('.png')}}" />
-	<tr><td style="border-bottom:1px solid orange" colspan="2"><div style="font-size:1em;"><strong>${molecule.name}</strong></div></td></tr>
+	<tr><td style="border-bottom:1px solid orange;border-top:1px solid orange;background-color:#EBF1FF" colspan="3"><div style="width:400px;font-size:1em;border:0px solid black;text-wrap:suppress"><strong><u>NAME</u>: ${molecule.name}</strong></div></td></tr>
 	<g:if test="${molecule.protectionGroup}">
-		<tr><td colspan="2"><div style="font-size:.9em;">This compound is accessible to ${molecule.protectionGroup.name}</div></td></tr>
+		<tr><td colspan="3"><div style="font-size:.9em;">This compound is accessible to ${molecule.protectionGroup.name}</div></td></tr>
 	</g:if>	
 	<tr>
 	
@@ -243,7 +193,7 @@
 		
 	</tr>
 	<tr><td colspan="2">
-		<div style="float:left;padding:10px">
+		<div style="float:left;padding:10px;width:400px;text-wrap:suppress;">
 			<img src="${createLinkTo(dir:'images',file:'target.png')}" border="0" />
 			Targets:
 			<g:if test="${molecule.bindings}">
@@ -258,7 +208,7 @@
 				No targets currently found for this compound
 			</g:else>
 			<br />
-			SMILES: ${molecule.smiles}
+			
 		</div>
 		</td>
 	</tr>

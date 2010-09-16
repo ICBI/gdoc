@@ -71,7 +71,9 @@ You do not manage any groups
 		<g:form name="${otherMembership.id}_removeMyselfForm" action="deleteUsersFromGroup">
 		<g:hiddenField name="collaborationGroupName" value="${otherMembership.name}" />
 		<g:hiddenField name="users" value="${session.userId}" />
+		<g:if test="${otherMembership.name != 'PUBLIC'}">
 		<g:submitButton name="deleteMyself" class="actionButton" style="float:right" onclick="return confirm('Are you sure?');" value="Leave group" />
+		</g:if>
 		</g:form>
 	</td>
 	<td style="width:75%" valign="top">

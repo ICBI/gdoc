@@ -19,34 +19,45 @@
 		<g:javascript library="jquery"/>
 		<g:javascript src="gdoc.js"/>
 		<g:layoutHead/>
-		<jq:plugin name="curvycorners"/>
 		
-		<g:javascript>
-			$(document).ready(function(){
-				$('.c').corner();
-				
-				});
-			
-		</g:javascript>
+		
 </head>
 <body style="background-color:#334477">
 	
-	
-	
-	
+	<g:javascript>
+	jQuery(document).ready(function()
+	{
+		if(!$.browser.msie) {
+		    $("<script type='text/javascript' src='/gdoc/js/jquery/jquery.curvycorners.min.js' />").appendTo($('head').get());
+			$('.c').corner();
+		 }
+	});
+	</g:javascript>
 <g:set var="activePage" value="${params.controller}" /> 
-<div id="doc2" class="yui-t1" style="border:0px solid black;">
+<div id="doc2" class="yui-t1">
 	<div id="hd">
 		<!-- Header start -->
     <g:render template="/common/header"/>
     <!-- Header end -->
 	</div>
-	<div class="c" style="border:1px solid #000;padding:3px 0px;height:1100px">
-	<div id="bd" style="min-height:400px;">
-		<div id="yui-main">
-			
-						<g:layoutBody/>
-					
+	<div class="c" style="background:#fff;border:1px solid #000;padding:3px 0;">
+	<div id="bd">
+		<div id="yui-main" style="min-height:400px;">
+			<div class="yui-b">
+				<div class="yui-gc">
+					<div class="yui-u first">
+						<g:layoutBody/><br />
+					</div>
+					<div class="yui-u">
+						<g:render template="/common/rightbar"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="c" style="padding:5px">
+		<div id="navigation" class="yui-b first">
+			<g:render template="/common/leftbar"/>
+		</div>
 		</div>
 	</div>
 	<div id="ft">
@@ -57,11 +68,9 @@
 	</div>
 </div>
 <g:javascript>
-$('.c').css('background-color', '#ffffff');
 // code to set height of left bar
 jQuery(document).ready(function() {
-	
-	$('#c').height($('#yui-main').height());
+	$('#navigation').height($('#yui-main').height());
 });
 </g:javascript>
 </body>
