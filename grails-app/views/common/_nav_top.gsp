@@ -10,7 +10,7 @@ jQuery(document).ready(function()
 <jq:plugin name="hoverIntent"/>
 <jq:plugin name="superfish"/>
 
-<div id="top-navigation-block" width="100%">
+<div id="top-navigation-block" width="100%" style="position: absolute; z-index: 100;">
 	<ul id="gdocNavigation" class="sf-menu sf-vertical sf-js-enabled sf-shadow">
 		<li>
 			<g:navigationLink name="Home" controller="workflows" />
