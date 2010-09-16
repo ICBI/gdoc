@@ -29,10 +29,12 @@
 					}
 	});
 	
-	$("#loginName").click(function(){
-		$(this).val("");
-		$(this).css("color","black");
-	})
+	if($('#loginName')) {
+		$("#loginName").click(function(){
+			$(this).val("");
+			$(this).css("color","black");
+		})
+	}
 	
 	
   });
