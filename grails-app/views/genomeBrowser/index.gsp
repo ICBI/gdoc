@@ -112,7 +112,7 @@
 		</div>
 	</g:form>
 		
-		<div class="clinicalSearch" id="omicsDiv">
+		<div class="clinicalSearch" id="omicsDiv" style="height: 200px">
 			<div id="studyPicker">
 				<g:render template="/studyDataSource/studyPicker" model="[remote:true]"/>
 			</div>
