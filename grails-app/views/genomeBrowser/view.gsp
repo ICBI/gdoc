@@ -129,13 +129,14 @@
 	<div id="hd" style="overflow:hidden;">
 	    <!-- Header start -->
 	    <g:render template="/common/header"/>
-
+		
 	    <!-- Header end -->
 	</div>
 	<div class="c" style="background:#fff;border:.5px solid #000;">
 		<div>
 		<g:render template="/common/nav_top" />
-
+		<br/>
+		<br/>
 	<br/>
     <div id="GenomeBrowser" style="height: 100%; width: 100%; padding: 0; border: 0;"></div>
 	</div>
