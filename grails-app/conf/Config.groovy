@@ -50,6 +50,7 @@ environments {
 			    error 'stdout'
 			    additivity = true
 			}
+			debug "grails.app", "listener"
 		}
     }
     demo {
@@ -83,7 +84,7 @@ environments {
 			    error 'stdout'
 			    additivity = true
 			}
-			debug "grails.app"
+			debug "grails.app", "listener"
 		}
 	}
 	sandbox {
