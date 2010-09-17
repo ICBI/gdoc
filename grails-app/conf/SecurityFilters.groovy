@@ -30,7 +30,8 @@ class SecurityFilters {
               else if(!session.userId && !controllerName.equals('home') 
 						&& !controllerName.equals('login')
 						 && !controllerName.equals('registration')
-							&& !controllerName.equals('contact')) {
+							&& !controllerName.equals('contact')
+								&& !controllerName.equals('policies')) {
 				  redirect(controller:'home', action:'index')
                   return false
               }

@@ -1,0 +1,8 @@
+class HelpController {
+	
+	def index = {
+		
+	}
+	
+	
+}

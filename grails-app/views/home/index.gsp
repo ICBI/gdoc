@@ -224,7 +224,10 @@
 												
 												<div id="pub" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:1px solid #334477;height:330px;border-top:1px solid #334477;height:330px;overflow: scroll;display:none">
 													<div class="partDiv">
-													future publications will be listed here...
+									The first of several anticipated G-DOC publications, describing the tool and its use, is expected to go
+									to press in the first half of 2011. In addition, we anticipate numerous publications and presentations
+									to arise from the use of G-DOC by the scientific community. These will be provided as they become
+									available.
 													</div>
 												</div>
 											</td>

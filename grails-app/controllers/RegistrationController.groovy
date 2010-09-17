@@ -11,7 +11,7 @@ class RegistrationController {
 		[departmentList:departmentList]
 	}
 	
-	/**def register = { RegistrationCommand cmd ->
+	def register = { RegistrationCommand cmd ->
 		log.debug "netId : " + cmd.netId
 		log.debug "department:" + cmd.department 
 		log.debug cmd.errors
@@ -70,6 +70,6 @@ class RegistrationController {
 			redirect(action:'index')
 		}
 
-	}**/
+	}
 	
 }
