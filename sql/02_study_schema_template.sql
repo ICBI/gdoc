@@ -944,11 +944,6 @@ alter table ${projectName}.location_value add (
 	foreign key (reduction_analysis_id) 
   	references ${projectName}.reduction_analysis);
 
-alter table ${projectName}.reduction_analysis add (
- 	constraint ra_biospecimen_link_fk 
-	foreign key (biospecimen_id) 
-  	references ${projectName}.BIOSPECIMEN);
-
 Insert into ${projectName}.ATTRIBUTE_TIMEPOINT (ATTRIBUTE_TIMEPOINT_ID,SERIES_ID,TIMEPOINT,TAG,INSERT_USER,INSERT_DATE,INSERT_METHOD) values (0,0,0,'DEFAULT TIMEPOINT','USER',(SELECT SYSDATE FROM dual) ,'manual');
 
 commit;
