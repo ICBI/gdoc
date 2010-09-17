@@ -151,7 +151,10 @@ class QuickStartService implements ApplicationContextAware{
 					biospecimensWithRA = Biospecimen.getAll(bsRids)
 					//get patients
 					def patientWithRA = []
-					patientWithRA = biospecimensWithRA.collect{it.patient.id}
+					patientWithRA = biospecimensWithRA.collect{
+						if(it)
+							return it.patient.id
+					}
 					//log.debug patientWithRA
 					if(patientWithRA){
 						pw = Patient.getAll(patientWithRA) as Set

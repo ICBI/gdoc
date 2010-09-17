@@ -38,6 +38,9 @@
 						browserPass = false;
 					}
 					browser = "Mozilla Firefox " + BrowserDetect.version;
+				} else if (BrowserDetect.browser == 'Chrome') {
+					browserPass = true
+					browser = BrowserDetect.browser + " " + BrowserDetect.version;
 				} else { 
 					browser = BrowserDetect.browser + " " + BrowserDetect.version;
 					browserPass = false;
@@ -93,7 +96,7 @@
 							<td>Download</td>
 						</tr>
 						<tr>
-							<td>Internet Explorer 8.0+ or Mozilla Firefox 3.5+</td>
+							<td>Mozilla Firefox 3.5+, Google Chrome or Internet Explorer 8.0+</td>
 							<td><div id="browserVersion"></div></td>
 							<td>
 								<div id="browserPass" align="center">
@@ -103,6 +106,7 @@
 							</td>
 							<td>
 								<a href="http://www.mozilla.com/firefox" target="_blank">Firefox</a><br/>
+								<a href="http://www.google.com/chrome/" target="_blank">Chrome</a><br/>
 								<a href="http://www.microsoft.com/windows/internet-explorer/default.aspx" target="_blank">Internet Explorer</a>
 							</td>
 						</tr>
