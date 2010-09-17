@@ -402,7 +402,7 @@ create table  ${projectName}.reduction_analysis
   version number(19,0), 
   algorithm varchar2(255), 
   algorithm_type varchar2(255),
-  biospecimen_id number(19,0) not null,
+  biospecimen_id number(19,0),
   date_created date not null, 
   name varchar2(255),
   design_type varchar2(255) not null
