@@ -157,8 +157,8 @@ class GenomeBrowserController {
 			patientTrack.label = "${reduction[1]}.wig"
 			patientTrack.type = "ImageTrack"
 			def clinicalDataString = ""
-			if(reduction[0].metaClass.respondsTo(reduction[0], "clinicalData")) {
-				log.debug "${reduction[0].clinicalData}, ${reduction[1]}"
+			if(reduction[0].metaClass.hasProperty(reduction[0], "clinicalData")) {
+				log.debug "IN ${reduction[0].clinicalData}, ${reduction[1]}"
 				reduction[0].clinicalData.keySet().sort().each{ key ->
 					clinicalDataString += "${key}: ${reduction[0].clinicalData[key]}<br/>"
 				}
