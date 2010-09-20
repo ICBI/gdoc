@@ -185,6 +185,35 @@ class ClinicalController {
 		
 	}
 	
+	def qsPatientReport = {
+		def returnVal = [:]
+		log.debug "GOT REQUEST: " + request.JSON
+		log.debug "GOT PARAMS: " + params
+		
+		def patientIds = request.JSON['ids']
+		if(request.JSON['study']){
+			def shortName = request.JSON['study']
+			log.debug "set study to $shortName"
+			def study = StudyDataSource.findByShortName(shortName)
+			session.study = study
+			StudyContext.setStudy(study.schemaName)
+		}
+		log.debug "PATIENT IDS: $patientIds"
+		def cleanedIds = patientIds.collect {
+			def temp = it.toString().replace("\"", "")
+			temp.trim()
+			return temp
+		}
+		log.debug "CLEANED : $cleanedIds"
+		def results = clinicalService.getPatientsForGdocIds(cleanedIds)
+		log.debug "RESULTS: $results"
+		processResults(results)
+		returnVal['url'] = '/gdoc/clinical/viewPatientReport'
+		//render(view:"search")
+		render returnVal as JSON
+		
+	}
+	
 	private void setupBiospecimens() {
 		session.subgridModel = [:]
 		def values = AttributeType.findAllByTarget("BIOSPECIMEN")
