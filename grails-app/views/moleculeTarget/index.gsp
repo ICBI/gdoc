@@ -188,7 +188,7 @@
 			</table><br />
 		</td>
 		<td style="text-align:right">
-			<img src="/gdoc/moleculeTarget/display?inputFile=${ligandImg}&dimension=2D" />
+			<img src="${grailsApplication.config.molecule2DstructuresPath}/${ligandImg}" />
 			</td>
 		
 	</tr>

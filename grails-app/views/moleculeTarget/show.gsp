@@ -51,7 +51,7 @@
 			<td valign="top" rowspan="4">
 				<g:javascript>
 					  jmolInitialize("/gdoc/applets/jmol","JmolAppletSigned0.jar");
-				      jmolApplet([400,400], "load ${basePath}/moleculeTarget/display?inputFile=${moleculeTargetPath}&dimension=3D;spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
+				      jmolApplet([400,400], "load ${grailsApplication.config.molecule3DstructuresPath}/${moleculeTargetPath};spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
 				</g:javascript>
 				<br />
 				<b>View Options</b><br />
@@ -66,7 +66,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><b>Ligand</b>: ${moleculeTarget.molecule.name} (below)</td>
+			<td><b>Ligand</b>: <div style="width:300px;font-size:1em;border:0px solid black;text-wrap:suppress">${moleculeTarget.molecule.name} (below)</div></td>
 		</tr>
 		
 		<tr>
@@ -74,7 +74,7 @@
 	<g:set var="moleculePaths" value="${moleculeTarget.molecule.structures?.toArray().collect{it.structureFile.relativePath}}" />
 	
 	<g:set var="moleculePath" value="${moleculePaths.find{it.contains('.png')}}" />	
-				<img src="/gdoc/moleculeTarget/display?inputFile=${moleculePath}&dimension=2D" />
+				<img src="${grailsApplication.config.molecule2DstructuresPath}/${moleculePath}" />
 				<%--g:javascript>
 				// marvin_jvm = "builtin"; // "builtin" or "plugin"
 				mview_begin("/gdoc/applets/marvin/", 200, 200); //arguments: codebase, width, height

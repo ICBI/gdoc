@@ -50,7 +50,7 @@ jQuery(document).ready(function()
 		</li--%>
 		
 		<li>
-			<a href="#">Help</a>
+			<g:link controller="help">Help</g:link>
 		</li>		
 	</ul>
 	<form id="gpForm" action="${grailsApplication.config.genePatternUrl}/gp/pages/index.jsf" method="POST" target="genepattern">

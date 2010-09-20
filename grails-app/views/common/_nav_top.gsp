@@ -45,7 +45,7 @@ jQuery(document).ready(function()
 		<li><g:link controller="userList">Saved Lists</g:link></li>
 		<li><g:navigationLink name="Saved Analysis" controller="savedAnalysis">Saved Analysis</g:navigationLink></li>
 		<li>
-			<a href="#">Help</a>
+			<g:link controller="help">Help</g:link>
 		</li>		
 	</ul>
 

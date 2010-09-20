@@ -23,7 +23,7 @@
 				We also would like to provide presentations and links that further keep our users informed of 
 				the latest developments and general information. 
 				<ul>
-					<li style="list-style-type:square;margin-left:15px"><a href="${grailsApplication.config.grails.serverURL}/content/documents/G-DOC.introduction.pdf" />G-DOC Introduction</a></li>
+					<li style="list-style-type:square;margin-left:15px"><a href="${grailsApplication.config.documentsPath}/G-DOC.introduction.pdf" />G-DOC Introduction</a></li>
 				</ul>
 			</div>
 			

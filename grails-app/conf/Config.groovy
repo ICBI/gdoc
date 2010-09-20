@@ -43,8 +43,10 @@ environments {
 		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://dev.gdoc.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
-		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		molecule3DstructuresPath = "https://dev.gdoc.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://dev.gdoc.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://dev.gdoc.georgetown.edu/content/documents"
+		videosPath = "https://dev.gdoc.georgetown.edu/content/video"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -60,8 +62,10 @@ environments {
 		genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://demo.gdoc.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
-		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		molecule3DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://demo.gdoc.georgetown.edu/content/documents"
+		videosPath = "https://demo.gdoc.georgetown.edu/content/video"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -77,8 +81,10 @@ environments {
 		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/local/content/gdoc"
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
-		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		molecule3DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://demo.gdoc.georgetown.edu/content/documents"
+		videosPath = "https://demo.gdoc.georgetown.edu/content/video"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -93,8 +99,10 @@ environments {
 		genePatternUrl = "https://devcomp.gdoc.georgetown.edu"
 		tempDir = "/local/content/gdoc"
 		middlewareUrl = "http://localhost:9090/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/gdoc-data/molecule3D/"
-		molecule2DstructuresPath = "/opt/gdoc-data/molecule2D/"
+		molecule3DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://demo.gdoc.georgetown.edu/content/documents"
+		videosPath = "https://demo.gdoc.georgetown.edu/content/video"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -110,8 +118,10 @@ environments {
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://gdoc-stage.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
-		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
+		molecule3DstructuresPath = "https://gdoc-stage.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://gdoc-stage.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://gdoc-stage.georgetown.edu/content/documents"
+		videosPath = "https://gdoc-stage.georgetown.edu/content/video"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -126,8 +136,10 @@ environments {
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://gdoc-stage.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
-		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
+		molecule3DstructuresPath = "https://gdoc-stage.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://gdoc-stage.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://gdoc-stage.georgetown.edu/content/documents"
+		videosPath = "https://gdoc-stage.georgetown.edu/content/video"
 		log4j = {
 			appenders {
 				file name:'file', file:'dataLoad.log', append: true
@@ -147,8 +159,10 @@ environments {
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://gdoc-prod.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
-		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
+		molecule3DstructuresPath = "https://gdoc-prod.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://gdoc-prod.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://gdoc-prod.georgetown.edu/content/documents"
+		videosPath = "https://gdoc-prod.georgetown.edu/content/video"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -163,8 +177,10 @@ environments {
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://neon.uis.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "/opt/nfsdata/targets/molecule3D/"
-		molecule2DstructuresPath = "/opt/nfsdata/targets/molecule2D/"
+		molecule3DstructuresPath = "https://gdoc-prod.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://gdoc-prod.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://gdoc-prod.georgetown.edu/content/documents"
+		videosPath = "https://gdoc-prod.georgetown.edu/content/video"
 		log4j = {
 			appenders {
 				file name:'file', file:'dataLoad.log', append: true

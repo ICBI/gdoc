@@ -59,10 +59,7 @@
 <g:javascript>
 $('.c').css('background-color', '#ffffff');
 // code to set height of left bar
-jQuery(document).ready(function() {
-	
-	$('#c').height($('#yui-main').height());
-});
+
 </g:javascript>
 </body>
 </html>

@@ -96,7 +96,7 @@
 									</td>
 									<td style="color:#336699">
 										<p style="font-size:1.1em;text-decoration:underline;padding-top:0px">
-											<a href="#" style="color:#336699;">Tutorials</a></p>
+											<g:link controller="tutorials" style="color:#336699;">Tutorials</g:link></p>
 										<p style="font-size:.8em">Watch step-by-step movies of workflows that are available within the G-DOC application. </p>
 									</td>
 								</tr>
