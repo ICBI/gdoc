@@ -8,7 +8,7 @@
 		<td align="top">User(s):</td>
 		<td>
 			<g:select name="users"
-					  from="${GDOCUser.list()}"
+					  from="${gdocUsers}"
 					  noSelection="['':'-Choose one or more users-']"
 		          	  optionValue="${{it?.lastName?.toString() + ', ' + it?.firstName?.toString()}}"
 				      optionKey="loginName" 

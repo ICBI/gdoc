@@ -57,17 +57,17 @@ def drugDiscoveryService
 			"WHERE author.loginName = :loginName OR list.id IN (:ids) "
 			count = UserList.executeQuery(listHQL2,[loginName:user,ids:ids])
 			pagedLists["count"] = count
-			/**def c = UserList.createCriteria()
-			pagedLists = c.list(
-				max:10,
-				offset:offset)
-				{	
-					or {
-						eq("author", user)
-						'in'('id',ids)
-					}
-					'order'("dateCreated", "desc")
-				}**/
+			log.debug "all lists -> $pagedLists as Paged set"
+		}else{
+			String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
+			"WHERE author.loginName = :loginName " +
+			"ORDER BY list.dateCreated desc"
+			results = UserList.executeQuery(listHQL,[loginName:user, max:10, offset:offset])
+			pagedLists["results"] = results
+			String listHQL2 = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
+			"WHERE author.loginName = :loginName "
+			count = UserList.executeQuery(listHQL2,[loginName:user])
+			pagedLists["count"] = count
 			log.debug "all lists -> $pagedLists as Paged set"
 		}
 		return pagedLists
@@ -94,6 +94,21 @@ def drugDiscoveryService
 					or {
 						eq("author", user)
 						'in'('id',ids)
+					}
+				}
+		}
+		else {
+			pagedLists = UserList.createCriteria().list()
+				{
+					projections{
+						property('id')
+						property('name')
+					}
+					and{
+						'order'("dateCreated", "desc")
+					}
+					or {
+						eq("author", user)
 					}
 				}
 		}

@@ -10,16 +10,22 @@
 		<div id="centerContent" style="margin:0pt auto;width:65%">
 			<p style="font-size:14pt">GDOC Contact</p>
 			<p style="font-size:12pt;text-decoration:underline">Email:</p>
-			<div>
+			<div style="padding:5px">
 				We appreciate your feedback for this release of the G-DOC application. Please send
 				an email with any technical and/or data related questions to the following address:
 				<a href="mailto:gdoc-help@georgetown.edu?subject=Feedback for 
 				G-DOC application">gdoc-help@georgetown.edu</a>
 				
 			</div><br />
-			<p style="font-size:12pt;text-decoration:underline">Info:</p>
-			<div>
-				website: <a href="http://lombardi.georgetown.edu/gdoc" target="_blank">http://lombardi.georgetown.edu/gdoc</a>
+			<p style="font-size:12pt;text-decoration:underline">Phone:</p>
+			<div style="padding:5px">
+				UIS Helpdesk <br />
+				(202) 687-4949, press 1 <br />
+				Hours: Monday-Friday 8:30a.m.-5:00p.m.
+			</div><br />
+			<p style="font-size:12pt;text-decoration:underline">Website and other info:</p>
+			<div style="padding:5px">
+				Feel free to visit <a href="http://lombardi.georgetown.edu/gdoc" target="_blank">http://lombardi.georgetown.edu/gdoc</a>.
 				We also would like to provide presentations and links that further keep our users informed of 
 				the latest developments and general information. 
 				<ul>

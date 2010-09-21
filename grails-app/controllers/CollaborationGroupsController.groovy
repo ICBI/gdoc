@@ -8,6 +8,9 @@ class CollaborationGroupsController {
 		def managedMemberships =  []
 		def otherMemberships =  []
 		def allMemberships = []
+		def gdocUsers = GDOCUser.list()
+		if (gdocUsers)
+			gdocUsers = gdocUsers.sort{it.lastName}
 		memberships = collaborationGroupService.getUserMemberships(session.userId)
 		managedMemberships = memberships[0]
 		otherMemberships = memberships[1]
@@ -36,7 +39,7 @@ class CollaborationGroupsController {
 		if(allMem)
 			allMem = allMem as Set
 		log.debug manMem
-		[managedMemberships:manMem,otherMemberships:otherMem,allMemberships:allMem]
+		[gdocUsers:gdocUsers,managedMemberships:manMem,otherMemberships:otherMem,allMemberships:allMem]
 	}
 	
 	def createCollaborationGroup = {CreateCollabCommand cmd ->
