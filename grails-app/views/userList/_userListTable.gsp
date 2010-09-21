@@ -67,7 +67,7 @@
 						 value="${userListInstance.id}" checked="false"/></div>
 					</g:if>
 					
-					<div id="${userListInstance.id}_title" style="border:0px solid black;height: 20px;">
+					<div id="${userListInstance.id}_title" style="border:0px solid black;height: 30px;">
 					<div style="border:0px solid black;width:40%;float:left">	
 	<span class="${userListInstance.id}_name" id="${userListInstance.id}_name" style="font-weight:bold;padding-left:5px;padding-right:5px">${fieldValue(bean:userListInstance, field:'name')} </span>
 	<span>(${userListInstance.listItems.size()} items)</span>
