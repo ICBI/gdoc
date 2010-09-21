@@ -8,7 +8,7 @@
 	<p style="font-size:14pt">Study Data Sources</p>
 	<br/>
 	
-	<div id="centerContent" class="welcome" style="width: 80%">
+	<div id="centerContent" class="welcome" style="width: 90%">
 		<g:panel id="studyPanel" title="My Studies" styleClass="welcome" collapse="true">
 				<table class="studyTable">
 					<tr>
@@ -17,7 +17,7 @@
 						<th>Principal Investigator</th>
 						<th>Cancer Type</th>
 						<th>Point of Contact</th>
-						<th>Contact Email</th>
+						<th style="width: 25%">Contact Email</th>
 					</tr>
 					<g:each in="${myStudies}" var="study">
 					<tr>
@@ -52,7 +52,7 @@
 				<th>Principal Investigator</th>
 				<th>Cancer Type</th>
 				<th>Point of Contact</th>
-				<th>Contact Email</th>
+				<th style="width: 25%">Contact Email</th>
 			</tr>
 			<g:each in="${otherStudies}" var="study">
 			<tr>
