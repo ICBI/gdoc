@@ -128,7 +128,7 @@
 		        <span class="currentStep">1</span>
 		    </g:if>
 		   	<g:else>
-    			<g:paginate controller="userList" action="list" 
+    			<g:paginate controller="userList" action="list"
                 total="${allLists}" prev="&lt; previous" next="next &gt;"/>
 			</g:else>
 			</div>

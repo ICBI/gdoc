@@ -8,8 +8,11 @@ class MoleculeTargetCommand {
 	
 	static constraints = {
 		entity(validator: {val, obj ->
-			def invalidChars = ['*','?','~']
-			if(val && invalidChars.contains(val.trim())){
+			def invalidChars = ['*','?','~','[',']']
+			if(val && (invalidChars.contains(val.trim()) 
+					|| val.trim().contains('[')
+					|| val.trim().contains(']'))
+				){
 				return "custom.val"
 			}
 		})

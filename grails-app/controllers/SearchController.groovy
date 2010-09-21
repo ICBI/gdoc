@@ -6,9 +6,10 @@ class SearchController {
 	def searchableService
 	
 	def index = {
-		
-		 if (!params.q?.trim()) { 
-			log.debug "no params"
+		 def invalidChars = ['*','?','~','[',']']
+		 if (!(params.q?.trim()) || invalidChars.contains(params.q)) { 
+			log.debug "no params or invalid params"
+			//flash.message = "no params or invalid params"
 			return [:] 
 		 } 
 		else{
