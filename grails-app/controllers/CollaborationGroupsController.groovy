@@ -57,8 +57,7 @@ class CollaborationGroupsController {
 				}
 			}catch(DuplicateCollaborationGroupException de){
 				log.debug "DUPLICATE! " + de
-				flash.message = cmd.collaborationGroupName + " already exists as a collaboration group. Contact the " + 
-					"collaboration manager of that group for access, or rename your group."
+				flash.message = cmd.collaborationGroupName + " already exists as a collaboration group."
 				redirect(action:"index")
 			}
 		}

@@ -76,9 +76,10 @@ class KmController {
 			foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,meanExpression,foldChange,geAnalysisId)
 			def kmCommand = new KmGeneExpCommand()
 			def groups = []
-			groups.add(foldChangeGroups['&gt;' + foldChange])
-			groups.add(foldChangeGroups['&lt;' +"-" + foldChange])
-			groups.add(foldChangeGroups['between'])
+			groups.add(["gt":foldChangeGroups['&gt;' + foldChange]])
+			groups.add(["lt":foldChangeGroups['&lt;' +"-" + foldChange]])
+			groups.add(["int":foldChangeGroups['between']])
+			"ADDING $groups to command"
 			kmCommand.geAnalysisId = Integer.parseInt(geAnalysisId)
 			def savedAnalysis = SavedAnalysis.get(kmCommand.geAnalysisId)
 			kmCommand.geneExpGroups = groups
@@ -146,11 +147,11 @@ class KmController {
 					def foldChange = 2
 					foldChangeGroups = kmService.calculateFoldChangeGroupings(reporter,highestMean,foldChange,geAnalysis.id)
 					def groups = []
-					groups.add(foldChangeGroups['&gt;' + foldChange])
+					groups.add(["gt":foldChangeGroups['&gt;' + foldChange]])
 					//log.debug foldChangeGroups['greater'].size()
-					groups.add(foldChangeGroups['&lt;' +"-" + foldChange])
+					groups.add(["lt":foldChangeGroups['&lt;' +"-" + foldChange]])
 					//log.debug foldChangeGroups['less'].size()
-					groups.add(foldChangeGroups['between'])
+					groups.add(["int":foldChangeGroups['between']])
 					//log.debug foldChangeGroups['less'].size()
 					
 					cmd.geAnalysisId = geAnalysis.id

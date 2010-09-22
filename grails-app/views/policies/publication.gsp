@@ -7,13 +7,13 @@
     </head>
     <body>
 	
-		<div id="centerContent" style="margin:0pt auto;width:65%">
+		<div id="centerContent" style="margin:0pt auto;width:65%;padding:15px">
 			<p style="font-size:14pt">GDOC Publication Policy</p>
 				<p>
 				If results from the Georgetown Database of Cancer (G-DOC) are used in a scientific publication or presentation, we request that researchers include the following acknowledgment:</p>
 				
-				<blockquote style="width:400px;text-wrap:suppress;margin-left:22%">
-				"The data/analytic tools utilized in this study were provided by the Georgetown Database of Cancer (G-DOC), an internally funded project of the Georgetown Lombardi Comprehensive Cancer Center designed to provide advanced translational research tools to the scientific community."</blockquote>
+				<p style="font-size:1em;font-style:italic">
+				"The data/analytic tools utilized in this study were provided by the Georgetown Database of Cancer (G-DOC), an internally funded project of the Georgetown Lombardi Comprehensive Cancer Center designed to provide advanced translational research tools to the scientific community."</p>
 
 				<p>
 				This statement will be modified upon publication of the first G-DOC paper in 2011.</p>

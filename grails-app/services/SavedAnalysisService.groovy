@@ -235,6 +235,17 @@ class SavedAnalysisService {
 							}
 						}**/
 			log.debug "all analysis -> $pagedAnalyses as Paged set"
+		}else{
+			pagedAnalyses = SavedAnalysis.createCriteria().list(
+				max:10,
+				offset:offset)
+				{
+					and{
+						'ne'('status', "Running")
+						'order'("dateCreated", "desc")
+						'eq'("author", user)
+					}
+				}
 		}
 		return pagedAnalyses
 	}

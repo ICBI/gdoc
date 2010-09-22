@@ -147,9 +147,7 @@
 					   
 				
 				
-				<g:if test="${flash.message}">
-					<div class="message" style="width:75%">${flash.message}</div>
-				</g:if>
+				
 				
 				<div id="centerContent" class="welcomeTitle" style="margin:20px">
 					

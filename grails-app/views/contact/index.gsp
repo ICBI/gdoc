@@ -7,8 +7,8 @@
     </head>
     <body>
 	
-		<div id="centerContent" style="margin:0pt auto;width:65%">
-			<p style="font-size:14pt">GDOC Contact</p>
+		<div id="centerContent" style="margin:0pt auto;width:65%;padding-bottom:20px">
+			<p style="font-size:14pt">Contact</p>
 			<p style="font-size:12pt;text-decoration:underline">Email:</p>
 			<div style="padding:5px">
 				- Do you have feedback for this release of the G-DOC application? <br />

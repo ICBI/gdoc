@@ -122,7 +122,7 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 					</div>
 					</g:if>
 					<g:else>
-					<div style="border:0px solid black;width:50%;float:right">	
+					<div style="border:0px solid black;width:60%;float:right">	
 						Shared by: ${userListInstance.author.firstName}&nbsp;${userListInstance.author.lastName}&nbsp;(author)
 						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
 						<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
