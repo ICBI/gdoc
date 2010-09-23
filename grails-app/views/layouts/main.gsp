@@ -19,20 +19,13 @@
 		<g:javascript library="jquery"/>
 		<g:javascript src="gdoc.js"/>
 		<g:layoutHead/>
-		<jq:plugin name="curvycorners"/>
+		
 		
 		
 </head>
 <body style="background-color:#334477">
 	
-	<g:javascript>
-	jQuery(document).ready(function()
-	{
-		
-		$('.c').corner();
 	
-	});
-	</g:javascript>
 <g:set var="activePage" value="${params.controller}" /> 
 <div id="doc2" class="yui-t1">
 	<div id="hd">

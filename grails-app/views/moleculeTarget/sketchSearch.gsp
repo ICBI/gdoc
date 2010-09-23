@@ -1,6 +1,6 @@
 <html>
     <head>
-        <meta name="layout" content="molSketch" />
+        <meta name="layout" content="main" />
 		
 	
 	<g:javascript library="jquery"/>

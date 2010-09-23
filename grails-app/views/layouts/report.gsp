@@ -14,17 +14,10 @@
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<g:javascript library="jquery"/>
 		<g:layoutHead/>
-		<jq:plugin name="curvycorners"/>
+		
 </head>
 <body style="background-color:#334477">
-	<g:javascript>
-	jQuery(document).ready(function()
-	{
-		
-		jQuery('.c').corner();
 	
-	});
-	</g:javascript>
 <div id="doc3" class="yui-t1">
 <div id="hd" style="overflow:hidden;">
     <!-- Header start -->

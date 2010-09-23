@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>GDOC - Data Access Policy</title>
-		<meta name="layout" content="marketing" />
+		<meta name="layout" content="splash" />
 		<g:javascript library="jquery"/>
 		
     </head>

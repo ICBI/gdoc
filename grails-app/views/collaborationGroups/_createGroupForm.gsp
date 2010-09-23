@@ -1,7 +1,7 @@
 <g:javascript library="jquery"/>
 <g:form action="createCollaborationGroup">
 <g:if test="${flash.cmd instanceof CreateCollabCommand}">
-	<div class="errorDetail"><g:renderErrors bean="${flash.cmd?.errors}" field="collaborationGroupName" /></div>
+	<div class="errorDetail" ><g:renderErrors bean="${flash.cmd?.errors}" field="collaborationGroupName" /></div>
 </g:if>
 <table class="studyTable" style="font-size:1.05em;width:400px">
 	<tr>

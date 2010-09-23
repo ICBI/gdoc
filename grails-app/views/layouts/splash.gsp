@@ -19,15 +19,7 @@
 		<g:javascript library="jquery"/>
 		<g:javascript src="gdoc.js"/>
 		<g:layoutHead/>
-		<jq:plugin name="curvycorners"/>
 		
-		<g:javascript>
-			$(document).ready(function(){
-				$('.c').corner();
-				
-				});
-			
-		</g:javascript>
 </head>
 <body style="background-color:#334477">
 	
@@ -41,7 +33,7 @@
     <g:render template="/common/header"/>
     <!-- Header end -->
 	</div>
-	<div class="c" style="border:1px solid #000;padding:3px 0px;height:1100px">
+	<div class="c" style="border:1px solid #000;padding:3px 0px;">
 	<div id="bd" style="min-height:400px;">
 		<div id="yui-main">
 			
