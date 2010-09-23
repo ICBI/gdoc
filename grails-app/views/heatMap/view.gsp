@@ -3,10 +3,6 @@
         <meta name="layout" content="main" />
         <title>G-DOC HeatMap Viewer</title>  
        <g:javascript library="jquery" />
-			<jq:plugin name="curvycorners"/>
-			<g:javascript>
-				$(document).ready(function(){$('#hm').corner();	});
-			</g:javascript>
     </head>
     <body>
 	

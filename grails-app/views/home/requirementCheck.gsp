@@ -8,7 +8,6 @@
 		
 		<meta name="layout" content="splash" />
 		<g:javascript library="jquery"/>
-		<jq:plugin name="curvycorners"/>
 		
 		<!-- styling -->
 		<g:javascript>
