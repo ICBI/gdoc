@@ -379,3 +379,8 @@ p
 .step {
 	padding: 2px 3px;
 }
+
+.c {
+	-moz-border-radius:12px; 
+	-webkit-border-radius:12px;
+}
