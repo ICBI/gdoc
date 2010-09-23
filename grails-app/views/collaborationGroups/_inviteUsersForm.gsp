@@ -1,4 +1,5 @@
 <g:javascript library="jquery"/>
+<g:if test="${managedMemberships}">
 <g:form action="inviteUsers">
 <g:if test="${flash.cmd instanceof InviteCollabCommand}">
 	<div class="errorDetail"><g:renderErrors bean="${flash.cmd?.errors}" as="list" /></div>
@@ -32,3 +33,7 @@
 	</tr>
 </table>
 </g:form>
+</g:if>
+<g:else>
+You currently do not manage any collaboration groups of your own.
+</g:else>

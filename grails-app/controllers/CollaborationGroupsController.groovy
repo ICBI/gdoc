@@ -8,9 +8,20 @@ class CollaborationGroupsController {
 		def managedMemberships =  []
 		def otherMemberships =  []
 		def allMemberships = []
-		def gdocUsers = GDOCUser.list()
-		if (gdocUsers)
-			gdocUsers = gdocUsers.sort{it.lastName}
+		def gdocUsers = []
+		gdocUsers = GDOCUser.list()
+		if (gdocUsers){
+			def myself = gdocUsers.find{
+					it.loginName == session.userId
+			}
+			if(myself){
+					log.debug "remove $myself"
+					gdocUsers.remove(myself)
+			}
+		gdocUsers = gdocUsers.sort{it.lastName}
+		}
+			
+		
 		memberships = collaborationGroupService.getUserMemberships(session.userId)
 		managedMemberships = memberships[0]
 		otherMemberships = memberships[1]
