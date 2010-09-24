@@ -21,11 +21,17 @@ class HeatMapController {
 	}
 	
 	def view = {
-		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
-		StudyContext.setStudy(analysisResult.query["study"])
-		loadCurrentStudy()
-		session.results = analysisResult.analysis.item
-		session.analysis = analysisResult
+		if(isAccessible(params.id)){
+			def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+			StudyContext.setStudy(analysisResult.query["study"])
+			loadCurrentStudy()
+			session.results = analysisResult.analysis.item
+			session.analysis = analysisResult
+		}
+		else{
+			log.debug "user CANNOT access analysis $params.id"
+			redirect(controller:'policies', action:'deniedAccess')
+		}
 	}
 	
 	def drawHeatMap = { HeatMapCommand cmd ->

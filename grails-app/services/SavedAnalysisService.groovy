@@ -222,18 +222,6 @@ class SavedAnalysisService {
 						'in'('id',ids)
 					}
 				}
-			/**	pagedAnalyses["count"] = SavedAnalysis.withCriteria(
-						)
-						{
-							projections {
-									rowCount()
-							}
-							and
-							{
-							'ne'('status', "Running")
-							'eq'("author", user)
-							}
-						}**/
 			log.debug "all analysis -> $pagedAnalyses as Paged set"
 		}else{
 			pagedAnalyses = SavedAnalysis.createCriteria().list(
@@ -264,18 +252,6 @@ class SavedAnalysisService {
 					'eq'("author", user)
 				}
 			}
-		/**	pagedAnalyses["count"] = SavedAnalysis.withCriteria(
-					)
-					{
-						projections {
-								rowCount()
-						}
-						and
-						{
-						'ne'('status', "Running")
-						'eq'("author", user)
-						}
-					}**/
 		log.debug "user analysis only-> $pagedAnalyses as Paged set"
 		return pagedAnalyses
 	}
@@ -299,6 +275,26 @@ class SavedAnalysisService {
 			}
 		log.debug "user analysis only over past $timePeriod days-> $pagedAnalyses as Paged set"
 		return pagedAnalyses
+	}
+	
+	def getAllAnalysesIds(sharedIds,userId){
+		def savedAnalysisIds = []
+		def analysisHQL
+		if(sharedIds){
+			def ids =[]
+			sharedIds.each{
+				ids << new Long(it)
+			}
+			analysisHQL = "SELECT distinct analysis.id FROM SavedAnalysis analysis JOIN analysis.author author " + 
+			"WHERE author.loginName = :loginName OR analysis.id IN (:ids) "
+			savedAnalysisIds = UserList.executeQuery(analysisHQL,[loginName:userId, ids:ids])
+		}else{
+			analysisHQL = "SELECT distinct analysis.id FROM SavedAnalysis analysis JOIN analysis.author author " + 
+			"WHERE author.loginName = :loginName "
+			savedAnalysisIds = SavedAnalysis.executeQuery(analysisHQL,[loginName:userId])
+		}
+		log.debug "got savedAnalysis ids $savedAnalysisIds"
+		return savedAnalysisIds
 	}
 	
 

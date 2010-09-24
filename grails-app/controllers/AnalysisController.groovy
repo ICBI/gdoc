@@ -71,25 +71,33 @@ class AnalysisController {
 	}
 	
 	def view = {
-		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
-		StudyContext.setStudy(analysisResult.query["study"])
-		loadCurrentStudy()
-		session.results = analysisResult.analysis.item
-		session.analysis = analysisResult
-		def columns = []
-		def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
-		columns << [index: "reporterId", name: "Reporter ID", sortable: true, width: '100']
-		columns << [index: "geneSymbol", name: "Gene Symbol", sortable: false, width: '100', formatter: 'genecard', formatoptions: formatOptions]
-		columns << [index: "pvalue", name: "p-value", sortable: true, width: '100']
-		columns << [index: "foldChange", name: "Fold Change", sortable: true, width: '100']
-		columns << [index: "meanBaselineGrp", name: "Mean Baseline", sortable: true, width: '100']
-		columns << [index: "meanGrp1", name: "Mean Group", sortable: true, width: '100']
-		columns << [index: "meanBaselineGrp", name: "Std Baseline", sortable: true, width: '100']
-		columns << [index: "meanGrp1", name: "Std Group", sortable: true, width: '100']
-		columns << [index: "target", name: "Target Data", sortable: true, width: '100']
-		def colNames = ["Reporter ID", "Gene Symbol", "p-value", "Fold Change", "Mean Baseline", "Mean Group", "Std Baseline", "Std Group", "Target Data"]
-		session.columnJson = columns as JSON
-		session.columnNames = colNames as JSON
+		if(isAccessible(params.id)){
+			log.debug "user can access analysis $params.id"
+			def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+			StudyContext.setStudy(analysisResult.query["study"])
+			loadCurrentStudy()
+			session.results = analysisResult.analysis.item
+			session.analysis = analysisResult
+			def columns = []
+			def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
+			columns << [index: "reporterId", name: "Reporter ID", sortable: true, width: '100']
+			columns << [index: "geneSymbol", name: "Gene Symbol", sortable: false, width: '100', formatter: 'genecard', formatoptions: formatOptions]
+			columns << [index: "pvalue", name: "p-value", sortable: true, width: '100']
+			columns << [index: "foldChange", name: "Fold Change", sortable: true, width: '100']
+			columns << [index: "meanBaselineGrp", name: "Mean Baseline", sortable: true, width: '100']
+			columns << [index: "meanGrp1", name: "Mean Group", sortable: true, width: '100']
+			columns << [index: "meanBaselineGrp", name: "Std Baseline", sortable: true, width: '100']
+			columns << [index: "meanGrp1", name: "Std Group", sortable: true, width: '100']
+			columns << [index: "target", name: "Target Data", sortable: true, width: '100']
+			def colNames = ["Reporter ID", "Gene Symbol", "p-value", "Fold Change", "Mean Baseline", "Mean Group", "Std Baseline", "Std Group", "Target Data"]
+			session.columnJson = columns as JSON
+			session.columnNames = colNames as JSON
+		}
+		else{
+			log.debug "user CANNOT access analysis $params.id"
+			redirect(controller:'policies', action:'deniedAccess')
+		}
+		
 	}
 	
 	def results = {

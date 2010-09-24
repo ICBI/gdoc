@@ -40,7 +40,7 @@ class RegistrationController {
 							//add to PUBLIC collab group
 							def managerPublic = securityService.findCollaborationManager("PUBLIC")
 							securityService.addUserToCollaborationGroup(managerPublic.loginName, newUser.getLoginName(), "PUBLIC")
-							flash.message = "Your account has been created in G-DOC!" +  
+							flash.message = "Welcome ... your account has been created in G-DOC!" +  
 							" Please login above with your NET ID credentials. " + 
 							"Your current permissions allow you to view public data sets. Once logged in you may gain access to " +
 							"other data sets by emailing the POC directly from the 'Study DataSource' page. You can also request " + 

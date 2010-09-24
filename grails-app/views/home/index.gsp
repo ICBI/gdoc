@@ -150,7 +150,9 @@
 				
 				
 				<div id="centerContent" class="welcomeTitle" style="margin:20px">
-					
+					<g:if test="${flash.cmd instanceof RegistrationCommand && flash.message}">
+						<div class="message" style="width:65%;margin:0 auto;">${flash.message}</div>
+					</g:if>
 						
 					<br/>
 					
@@ -200,7 +202,7 @@
 											</td>
 
 											<td rowspan="3" valign="top">
-												<div id="findings" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:0px solid #334477;height:330px;border-top:1px solid #334477;height:330px;;overflow: scroll;">
+												<div id="findings" class="parts" style="padding:15px;border-bottom:1px solid #334477;height:330px;border-right:0px solid #334477;height:330px;border-top:1px solid #334477;height:330px;overflow: scroll;">
 													<div class="partDiv">
 													<g:if test="${findings}">
 													<g:each in="${findings}" var="finding">

@@ -15,7 +15,7 @@
 </div--%>
 
 
-<div class="clinicalSearch">
+<div class="clinicalSearch" style="width:85%;margin:0 auto">
 	
 <fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
     <legend style="padding:7px">Georgetown NET ID required:</legend>
@@ -34,5 +34,4 @@
 		</g:form>
 	</div>
 </fieldset>
-</div>
 </div>

@@ -24,8 +24,17 @@ class CollaborationGroupsController {
 		
 		memberships = collaborationGroupService.getUserMemberships(session.userId)
 		managedMemberships = memberships[0]
+		if(managedMemberships){
+			managedMemberships.sort{it.collaborationGroup.name}
+		}
 		otherMemberships = memberships[1]
+		if(otherMemberships){
+			otherMemberships.sort{it.collaborationGroup.name}
+		}
 		allMemberships = memberships[2]
+		if(allMemberships){
+			allMemberships.sort{it.collaborationGroup.name}
+		}
 		def toDelete = []
 		otherMemberships.each{ memGroup ->
 			def isAlreadyListed = managedMemberships.find {

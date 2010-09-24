@@ -65,22 +65,20 @@ You do not manage any groups
 		</tr>
 <g:if test="${otherMemberships}">						
 <g:each in="${otherMemberships}" var="otherMembership">
-	
+	<g:if test="${otherMembership.name != 'PUBLIC'}">
 	<tr>
 	<td valign="top">${otherMembership.name}<br /><br />
 		<g:form name="${otherMembership.id}_removeMyselfForm" action="deleteUsersFromGroup">
 		<g:hiddenField name="collaborationGroupName" value="${otherMembership.name}" />
 		<g:hiddenField name="users" value="${session.userId}" />
-		<g:if test="${otherMembership.name != 'PUBLIC'}">
 		<g:submitButton name="deleteMyself" class="actionButton" style="float:right" onclick="return confirm('Are you sure?');" value="Leave group" />
-		</g:if>
 		</g:form>
 	</td>
 	<td style="width:75%" valign="top">
 		<g:if test="${otherMembership.users}">
 <a href="#" id="${otherMembership.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${otherMembership.id}_usersDiv','${otherMembership.id}_showHide');return false;">Show users</a></g:if>
 		<g:else>no users have been added to this group</g:else>
-		<div id="${otherMembership.id}_usersDiv" style="display:none">
+		<div id="${otherMembership.id}_usersDiv" style="display:none;height:130px;overflow: scroll;">
 			<g:if test="${otherMembership.users}">
 			<ul>
 				<g:each in="${otherMembership.users}" var="user">
@@ -96,6 +94,7 @@ You do not manage any groups
 		</div>
 	</td>
 	</tr>
+	</g:if>
 </g:each>
 </g:if>
 <g:else>

@@ -1,4 +1,14 @@
 class ControllerMixin {
+	
+	static isAccessible(self, id){
+		def accessible = false
+		def analysisId = new Long(id)
+		def allAnalysisIds = self.savedAnalysisService.getAllAnalysesIds(self.session.sharedAnalysisIds,self.session.userId)
+		if (allAnalysisIds && allAnalysisIds.contains(analysisId))
+			accessible = true
+		return accessible
+	}
+	
     static getDiseases(self) {
 		def diseases = self.session.myStudies.collect{it.cancerSite}.unique().sort()
 		diseases.remove("N/A")

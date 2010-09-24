@@ -57,15 +57,21 @@ class PcaController {
 	}
 	
 	def view = {
-		def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
-		analysisResult.studySchemas().each { study ->
-			log.debug "STUDY $study"
-			StudyContext.setStudy(study)
-			def sds = StudyDataSource.findBySchemaName(study)
-			session.study = sds
+		if(isAccessible(params.id)){
+			def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+			analysisResult.studySchemas().each { study ->
+				log.debug "STUDY $study"
+				StudyContext.setStudy(study)
+				def sds = StudyDataSource.findBySchemaName(study)
+				session.study = sds
+			}
+			StudyContext.setStudy(analysisResult.query["study"])
+			loadCurrentStudy()
 		}
-		StudyContext.setStudy(analysisResult.query["study"])
-		loadCurrentStudy()
+		else{
+			log.debug "user CANNOT access analysis $params.id"
+			redirect(controller:'policies', action:'deniedAccess')
+		}
 	}
 	
 	def results = {

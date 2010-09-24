@@ -81,13 +81,23 @@ class StudyDataSourceController {
 	
 	def show = {
 		def currStudy = StudyDataSource.get(params.id)
+		def allowAccess = false
 		if(currStudy.hasClinicalData()){
 			StudyContext.setStudy(currStudy.schemaName)
 			clinicalElements = AttributeType.findAll()
-			log.debug clinicalElements
-			session.study = currStudy
+			//log.debug clinicalElements
+			if(session.myStudies){
+				def mysid = session.myStudies.find{
+					 it.id == params.id.toLong()
+				}
+				if(mysid){
+					session.study = currStudy
+					allowAccess = true
+				}
+			}
+				
 		}
-		[currStudy:currStudy,clinicalElements:clinicalElements]
+		[currStudy:currStudy,clinicalElements:clinicalElements,allowAccess:allowAccess]
 	}
 	
 	def loadRemoteSources() {

@@ -61,7 +61,14 @@
 				<g:if test="${clinicalElements}">
 					<td>Clinical Data</td>
 					<td>${clinicalElements.size} Clinical Elements</td>
-					<td><g:link controller="clinical">Search</g:link></td>
+					<td>
+						<g:if test="${allowAccess}">
+							<g:link controller="clinical">Search</g:link>
+						</g:if>
+						<g:else>
+							You currently do not have access to search within this study
+						</g:else>
+					</td>
 				</g:if>
 				<g:else>
 					<td colspan="2">This Study DataSource currently has no Clinical Elements</td>

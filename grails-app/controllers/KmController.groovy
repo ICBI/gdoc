@@ -189,8 +189,13 @@ class KmController {
 	//there is no need to grab the lists from database and recalc the results,
 	//as this has already been done. 
 	def repopulateKM = {
-		log.debug "IN REPOPULATE"
-		session.savedKM = params.id
+		if(isAccessible(params.id)){
+			log.debug "IN REPOPULATE"
+			session.savedKM = params.id
+		}else{
+			log.debug "user CANNOT access analysis $params.id"
+			redirect(controller:'policies', action:'deniedAccess')
+		}
 	}
 	
 	def view = { 

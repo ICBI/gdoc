@@ -11,6 +11,10 @@ class PoliciesController {
 		
 	}
 	
+	def deniedAccess = {
+		
+	}
+	
 	
 	
 }
