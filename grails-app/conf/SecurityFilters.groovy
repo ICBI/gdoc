@@ -94,6 +94,13 @@ class SecurityFilters {
 				}
 			}
 		}
+		// Added mapping to override searchable controller
+		searchableCheck(controller: 'searchable', action:'*') {
+			before = {
+				redirect(controller:'search')
+				return false
+			}
+		}
 		//removed this filter as there may be public compounds / targets
 		/**structureRetriever(controller:'moleculeTarget', action:'*') {
 			before = {
