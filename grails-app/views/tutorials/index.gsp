@@ -13,15 +13,26 @@
     <body>
 	
 		<div id="centerContent" style="margin:0pt auto;">
-			<p style="font-size:14pt">GDOC Tutorials</p>
-			<p style="font-size:12pt;text-decoration:underline">Click to Download Videos:</p>
+			<p style="font-size:14pt">GDOC Tutorials (downloads)</p>
 			<div>
+				<p style="font-size:12pt">Using Quick Start</p>
 			   	<ul>
-					<li style="list-style-type:square;margin-left:25px"><a href="#"/>Tutorial #1</a></li>
-					<li style="list-style-type:square;margin-left:25px"><a href="#"/>Tutorial #2</a></li>
+					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/usingQS1.avi"/>Using Quick Start Part #1</a></li>
+					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/usingQS2.avi"/>Using Quick Start Part #2</a></li>
+					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/usingQS3.avi"/>Using Quick Start Part #3</a></li>
 				</ul>
 				
-			</div><br />
+			</div>
+			<br />
+			<div>
+				<p style="font-size:12pt">Example Analysis</p>
+			   	<ul>
+					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/exampleAnalysis1.avi" />Example Analysis Part #1</a></li>
+					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/exampleAnalysis2.avi" />Example Analysis Part #2</li>
+					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/exampleAnalysis3.avi" />Example Analysis Part #3</a></li>
+				</ul>
+				
+			</div>
 			
 			
 		</div>
