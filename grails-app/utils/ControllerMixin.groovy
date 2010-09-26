@@ -9,6 +9,26 @@ class ControllerMixin {
 		return accessible
 	}
 	
+	static isAnalysisAuthor(self, id){
+		def isAuthor = false
+		self.log.debug "LOOKING UP author of analysis $id"
+		def item = SavedAnalysis.get(id)
+		if(self.session.userId == item.author.loginName){
+			isAuthor = true
+		}
+		return isAuthor
+	}
+	
+	static isListAuthor(self, id){
+		def isAuthor = false
+		self.log.debug "LOOKING UP author of list $id"
+		def item = UserList.get(id)
+		if(self.session.userId == item.author.loginName){
+			isAuthor = true
+		}
+		return isAuthor
+	}
+	
     static getDiseases(self) {
 		def diseases = self.session.myStudies.collect{it.cancerSite}.unique().sort()
 		diseases.remove("N/A")

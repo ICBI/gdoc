@@ -170,7 +170,7 @@ class MoleculeTargetController {
 				}
 			}catch (SearchEngineQueryParseException ex) { 
 				 	log.debug ex
-					flash.message = "Error ocurred during search"
+					flash.message = "Invalid character, $cmd.entity found during search"
 					redirect(action:index)
 					return 
 			}

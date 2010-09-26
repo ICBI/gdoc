@@ -1,5 +1,6 @@
 import grails.converters.*
 
+@Mixin(ControllerMixin)
 class SavedAnalysisController{
 	def securityService
 	def savedAnalysisService
@@ -31,10 +32,17 @@ class SavedAnalysisController{
     }
 
 	def delete = {
-		savedAnalysisService.deleteAnalysis(params.id)
-		def myAnalyses = []
-		redirect(action:index)
-		return
+		if(isAnalysisAuthor(params.id)){
+			log.debug "user is permitted to delete analysis"
+			savedAnalysisService.deleteAnalysis(params.id)
+			def myAnalyses = []
+			redirect(action:index)
+			return
+		}else{
+			log.debug "user is NOT permitted to delete analysis"
+			redirect(controller:'policies',action:'deniedAccess')
+		}	
+	
 	}
 	
 	def deleteMultipleAnalyses ={
@@ -49,7 +57,12 @@ class SavedAnalysisController{
 			            if(analysis.evidence){
 							log.debug "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
 							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
-						}else{
+						}
+						else if(analysis.author.loginName != session.userId){
+							log.debug "did not delete " + analysis + ", you are not the author."
+							message += "did not delete $analysis.id , you are not the author."
+						}
+						else{
 			            	savedAnalysisService.deleteAnalysis(analysis.id)
 							log.debug "deleted " + analysis
 							message += "analysis $analysis.id has been deleted."
@@ -62,7 +75,12 @@ class SavedAnalysisController{
 		             if(analysis.evidence){
 							log.debug "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
 							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
-						}else{
+						}
+						else if(analysis.author.loginName != session.userId){
+							log.debug "did not delete " + analysis + ", you are not the author."
+							message += "did not delete $analysis.id , you are not the author."
+						}
+						else{
 			            	savedAnalysisService.deleteAnalysis(analysis.id)
 							message += "analysis $analysis.id has been deleted."
 						}
@@ -118,12 +136,14 @@ class SavedAnalysisController{
 	def removeTag = {
 		log.debug params
 		if(params.id && params.tag){
-			def analysis = tagService.removeTag(SavedAnalysis.class.name,params.id,params.tag.trim())
-			if(analysis){
-				render analysis.tags
-			}
-			else{
-				render ""
+			if(isAnalysisAuthor(params.id)){
+				def analysis = tagService.removeTag(SavedAnalysis.class.name,params.id,params.tag.trim())
+				if(analysis){
+					render analysis.tags
+				}
+				else{
+					render ""
+				}
 			}
 		}
 	}

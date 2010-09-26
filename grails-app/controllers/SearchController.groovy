@@ -1,12 +1,14 @@
 import grails.converters.*
 import org.springframework.util.ClassUtils
 import org.compass.core.engine.SearchEngineQueryParseException
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 class SearchController {
 	def searchableService
 	
 	def index = {
-		 def invalidChars = ['*','?','~','[',']','"']
+		 def invalidChars = ['*','?','~','[',']','"','+','-']
 		 if (!(params.q?.trim()) || invalidChars.contains(params.q)) { 
 			log.debug "no params or invalid params"
 			//flash.message = "no params or invalid params"

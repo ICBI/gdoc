@@ -1,7 +1,7 @@
 import grails.converters.*
 import grails.orm.PagedResultList
 
-
+@Mixin(ControllerMixin)
 class UserListController {
 	private static Integer MAX_LIST_SIZE = 2000
     def securityService
@@ -36,15 +36,6 @@ class UserListController {
        [ userListInstanceList: pagedLists["results"], allLists: pagedLists["count"][0], timePeriods: timePeriods, toolsLists:listSnapShots]
     }
 
-    def show = {
-        def userListInstance = UserList.get( params.id )
-
-        if(!userListInstance) {
-            flash.message = "UserList not found with id ${params.id}"
-            redirect(action:list)
-        }
-        else { return [ userListInstance : userListInstance ] }
-    }
 	
 	def checkName(name){
 		def listName
@@ -71,14 +62,20 @@ class UserListController {
 	
 	def removeTag = {
 		log.debug params
-		if(params.id && params.tag){
-			def list = tagService.removeTag(UserList.class.name,params.id,params.tag.trim())
-			if(list){
-				render list.tags
+		if(isListAuthor(params.id)){
+			if(params.id && params.tag){
+				def list = tagService.removeTag(UserList.class.name,params.id,params.tag.trim())
+				if(list){
+					render list.tags
+				}
+				else{
+					render ""
+				}
 			}
-			else{
-				render ""
-			}
+		}
+		else{
+			log.debug "user is NOT permitted to remove tag from list"
+			redirect(controller:policies,action:deniedAccess)
 		}
 	}
 	
@@ -131,17 +128,15 @@ class UserListController {
 	}
 
     def deleteList = {
-        def userListInstance = UserList.get( params.id )
-        if(userListInstance) {
-            userListInstance.delete(flush:true)
-			log.debug "deleted " + userListInstance
-			flash.message = userListInstance.name + " has been deleted"
+		if(isListAuthor(params.id)){
+			log.debug "user is permitted to delete list"
+			userListService.deleteList(params.id)
 			redirect(action:list)
-        }
-        else {
-            flash.message = "UserList not found with id ${params.id}"
-			redirect(action:list)
-        }
+		}
+		else{
+			log.debug "user is NOT permitted to delete list"
+			redirect(controller:'policies',action:'deniedAccess')
+		}
     }
 
 	
@@ -158,7 +153,12 @@ class UserListController {
 			            if(userListInstance.evidence){
 							log.debug "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
 							message += " $userListInstance.name could not be deleted because it represents a piece of evidence in a G-DOC finding."
-						}else{
+						}
+						else if(userListInstance.author.loginName != session.userId){
+							log.debug "did not delete " + userListInstance + ", you are not the author."
+							message += "did not delete $userListInstance.id , you are not the author."
+						}
+						else{
 			            	userListInstance.delete(flush:true)
 							log.debug "deleted " + userListInstance
 							message += " $userListInstance.name has been deleted."
@@ -171,7 +171,12 @@ class UserListController {
 					if(userListInstance.evidence){
 						log.debug "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
 						message = "$userListInstance.name could not be deleted because it represents a piece of evidence in a G-DOC finding."
-					}else{
+					}
+					else if(userListInstance.author.loginName != session.userId){
+						log.debug "did not delete " + userListInstance + ", you are not the author."
+						message += "did not delete $userListInstance.id , you are not the author."
+					}
+					else{
 		            	userListInstance.delete(flush:true)
 						log.debug "deleted " + userListInstance
 						message = "$userListInstance.name has been deleted."
@@ -194,15 +199,18 @@ class UserListController {
         def userListItemInstance = UserListItem.findById(params["id"])
         if(userListItemInstance) {
 			def list = UserList.findById(userListItemInstance.list.id)
-			list.listItems.remove(userListItemInstance);
-			userListItemInstance.delete(flush:true)	
-            list.save();
-			render(template:"/userList/userListDiv",model:[ userListInstance: list, listItems:list.listItems ])
+			if(list.author.loginName == session.userId){
+				list.listItems.remove(userListItemInstance);
+				userListItemInstance.delete(flush:true)	
+	            list.save();
+				render(template:"/userList/userListDiv",model:[ userListInstance: list, listItems:list.listItems ])
+			}
+			else {
+	            flash.message = "UserList item not found with id ${params.id} or you are not the author"
+				redirect(action:list)
+	        }
         }
-        else {
-            flash.message = "UserList item not found with id ${params.id}"
-			redirect(action:list)
-        }
+        
     }
 
 	def getListItems = {
@@ -217,43 +225,6 @@ class UserListController {
             flash.message = "UserList not found with id ${params.id}"
 			redirect(action:list)
         }
-    }
-
-    def edit = {
-        def userListInstance = UserList.get( params.id )
-
-        if(!userListInstance) {
-            flash.message = "UserList not found with id ${params.id}"
-            redirect(action:list)
-        }
-        else {
-            return [ userListInstance : userListInstance ]
-        }
-    }
-
-    def update = {
-        def userListInstance = UserList.get( params.id )
-        if(userListInstance) {
-            userListInstance.properties = params
-            if(!userListInstance.hasErrors() && userListInstance.save()) {
-                flash.message = "UserList ${params.id} updated"
-                redirect(action:show,id:userListInstance.id)
-            }
-            else {
-                render(view:'edit',model:[userListInstance:userListInstance])
-            }
-        }
-        else {
-            flash.message = "UserList not found with id ${params.id}"
-            redirect(action:edit,id:params.id)
-        }
-    }
-
-    def create = {
-        def userListInstance = new UserList()
-        def userInstance = GDOCUser.findByLoginName(session.userId)
-        userListInstance.properties = params
-        return ['userListInstance':userListInstance,"userInstance":userInstance]
     }
 
 

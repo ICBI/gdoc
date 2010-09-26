@@ -17,6 +17,17 @@ def drugDiscoveryService
 		return pagedLists
 	}
 	
+	def deleteList(listId){
+        def userListInstance = UserList.get(listId)
+        if(userListInstance) {
+            userListInstance.delete(flush:true)
+			log.debug "deleted " + userListInstance
+        }
+        else {
+            log.debug "did not delete list $listId"
+        }
+    }
+	
 	def getUsersLists(offset,user){
 		def pagedLists = [:]
 		def results = []
