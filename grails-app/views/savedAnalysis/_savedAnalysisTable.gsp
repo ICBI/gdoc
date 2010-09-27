@@ -10,7 +10,7 @@
 
 <tr>
 	<td style="background-color:white;">
-		<g:if test="${savedAnalysis.size()>0}">
+		
 <div class="notificationContainer" style="height: 10px">
 		<div style="float: left;">
 			
@@ -19,6 +19,12 @@
 				 value="${analysis.id}" checked="false"/></div>
 			</g:if>
 			
+			<g:if test="${analysis.status == 'Error'}">
+				<div style="float: left;">${analysis.type} (<g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
+				</div>
+				<div class="status" style="float: right;text-decoration:underline;cursor:pointer" title='${analysis.analysis.item.errorMessage}'>${analysis.status.toUpperCase()}</div>
+			</g:if>
+			<g:else>
 			<g:if test="${analysis.type == AnalysisType.CLASS_COMPARISON}">
 				<g:link controller="analysis" action="view"  id="${analysis.id}">${analysis.type}</g:link>
 			</g:if>
@@ -43,12 +49,7 @@
 				<g:link controller="heatMap" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>
 				&nbsp;&nbsp;<span><g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/></span>
-			</g:if>
-			<g:elseif test="${analysis.status == 'Error'}">
-				<div style="float: left;">${analysis.type} (<g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
-				</div>
-				<div class="status" style="float: right;text-decoration:underline;cursor:pointer" title='${analysis.analysis.item.errorMessage}'>${analysis.status.toUpperCase()}</div>
-			</g:elseif>
+			
 			</div>
 				<g:if test="${session.userId.equals(analysis.author.loginName)}">
 				<div style="border:0px solid black;width:20%;float:right">	
@@ -58,6 +59,7 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 					</g:if>	
 				<g:link onclick="return confirm('Are you sure?');" action="delete" id="${analysis.id}">
 				
+				
 				<img alt="Delete Analysis" title="Delete Analysis" style="vertical-align: bottom;" src="${createLinkTo(dir: 'images', file: 'cross.png')}"/></g:link>
 				
 				</div>
@@ -66,8 +68,9 @@ params="[id:analysis.id,name:'analysis',type:'SAVED_ANALYSIS',keepThis:'true',TB
 				<div style="border:0px solid black;width:50%;float:right">	
 					Shared by: ${analysis.author.firstName}&nbsp;${analysis.author.lastName}&nbsp;(author)
 				</div>
-				
 				</g:else>
+				</g:else>
+				
 				
 		</div>	
 		</div>

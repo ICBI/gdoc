@@ -54,7 +54,7 @@
 		<div id="centerContent">
 			<br/>
 			<g:if test="${flash.message}">
-				<span class="message" style="font-size:.9em">${flash.message}</span>
+				<div class="message" style="font-size:.8em;width:85%">${flash.message}</div>
 			</g:if>
 			<div class="tabDiv">
 				<div id="centerTabs" class="tabDiv">

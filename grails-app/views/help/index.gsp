@@ -104,7 +104,7 @@
 		The bar diagram on G-DOC Quick Start is color-coded and shows the criteria of data availability for each data source as well as number of patients in each criterion.</p>
 		<p>X-axis shows the various study names / data sources whereas Y-axis shows the number of patients.</p>
 		<p>Each study / data source will have up to four different types of data criteria: clinical, metabolomics, gene expression & copy number. These are color-coded on the bar diagram. If you place your cursor on any colored bar in the bar diagram a pop-up box displaying all details will appear.</p>
-		<p>Currently, not all studies have all four data categories but this area is constantly being updated as and when data becomes available.</p
+		<p>Currently, not all studies have all four data categories but this area is constantly being updated as and when data becomes available.</p>
 	</div>
 	
 	<div class="answer">
@@ -468,6 +468,7 @@
 	G-DOC application">gdoc-help@georgetown.edu</a>
 	
 </div><br />
+
 
 </body>
 </html>

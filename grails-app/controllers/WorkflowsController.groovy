@@ -22,6 +22,10 @@ class WorkflowsController {
 					myStudies << foundStudy
 				}
 			}
+			log.debug "sort studies"
+			if(myStudies){
+				myStudies.sort{it.shortName}
+			}
 			def isGdocAdmin = securityService.isUserGDOCAdmin(session.userId)
 			session.isGdocAdmin = isGdocAdmin
 			log.debug "show $session.userId admin options? $session.isGdocAdmin"

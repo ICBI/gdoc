@@ -2,6 +2,35 @@ class CollaborationGroupsController {
 	def collaborationGroupService
 	def securityService
 	def invitationService
+	def userListService
+	def quickStartService
+	def savedAnalysisService
+	
+	def reloadMembershipAndStudyData(){
+			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
+			def myStudies = []
+		
+			studyNames.each{
+				def foundStudy = StudyDataSource.findByShortName(it)
+				if(foundStudy){
+					myStudies << foundStudy
+				}
+			}
+			session.myStudies = []
+			session.myStudies = myStudies
+			def myCollaborationGroups = []
+			myCollaborationGroups = securityService.getCollaborationGroups(session.userId)
+			def sharedListIds = []
+			sharedListIds = userListService.getSharedListIds(session.userId)
+			session.sharedListIds = sharedListIds
+			//get shared anaylysis and places them in session scope
+			def sharedAnalysisIds = []
+			sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
+			session.sharedAnalysisIds = sharedAnalysisIds
+			session.dataAvailability = quickStartService.getMyDataAvailability(session.myStudies)
+			session.myCollaborationGroups = myCollaborationGroups
+			log.debug "reloaded all membership data"
+	}
 	
 	def index = {
 		def memberships = []
@@ -15,7 +44,7 @@ class CollaborationGroupsController {
 					it.loginName == session.userId
 			}
 			if(myself){
-					log.debug "remove $myself"
+					//log.debug "remove $myself"
 					gdocUsers.remove(myself)
 			}
 		gdocUsers = gdocUsers.sort{it.lastName}
@@ -24,17 +53,10 @@ class CollaborationGroupsController {
 		
 		memberships = collaborationGroupService.getUserMemberships(session.userId)
 		managedMemberships = memberships[0]
-		if(managedMemberships){
-			managedMemberships.sort{it.collaborationGroup.name}
-		}
+		
 		otherMemberships = memberships[1]
-		if(otherMemberships){
-			otherMemberships.sort{it.collaborationGroup.name}
-		}
+		
 		allMemberships = memberships[2]
-		if(allMemberships){
-			allMemberships.sort{it.collaborationGroup.name}
-		}
 		def toDelete = []
 		otherMemberships.each{ memGroup ->
 			def isAlreadyListed = managedMemberships.find {
@@ -49,16 +71,32 @@ class CollaborationGroupsController {
 		def invitations = []
 		invitations = invitationService.findAllInvitationsForUser(session.userId)
 		session.invitations = invitations
-		def manMem = managedMemberships.collect{it.collaborationGroup}
-		if(manMem)
+		def manMem = []
+		manMem = managedMemberships.collect{it.collaborationGroup}
+		if(manMem){
 			manMem = manMem as Set
-		def otherMem = otherMemberships.collect{it.collaborationGroup}
-		if(otherMem)
+			manMem = manMem as List
+			manMem.sort{it.name}	
+		}
+			
+		def otherMem = []
+		otherMem = otherMemberships.collect{it.collaborationGroup}
+		if(otherMem){
 			otherMem = otherMem as Set
-		def allMem = allMemberships.collect{it.collaborationGroup}
-		if(allMem)
+			otherMem = otherMem as List
+			otherMem.sort{it.name}	
+		}
+			
+		def allMem = []
+		allMem = allMemberships.collect{it.collaborationGroup}
+		if(allMem){
 			allMem = allMem as Set
-		log.debug manMem
+			allMem = allMem as List
+			allMem.sort{it.name}	
+		}
+			
+		otherMem.sort{it.name}
+		log.debug otherMem
 		[gdocUsers:gdocUsers,managedMemberships:manMem,otherMemberships:otherMem,allMemberships:allMem]
 	}
 	
@@ -150,7 +188,8 @@ class CollaborationGroupsController {
 				log.debug "$user has been removed from " + cmd.collaborationGroupName 
 				delString += user + ", "
 			}
-			flash.message = delString + " removed from " + cmd.collaborationGroupName 
+			flash.message = delString + " has been marked for removal from " + cmd.collaborationGroupName + ". Subsequent logins will prevent user from accessing this group"
+			reloadMembershipAndStudyData()
 			redirect(action:'index')
 		}
 	}
