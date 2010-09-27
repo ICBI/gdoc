@@ -48,11 +48,7 @@ class SavedAnalysis implements Taggable {
 	
 	public void setAnalysis(Object data) {
 		def temp
-		try {
-			temp = data as AnalysisJSON
-		} catch(Exception e) {
-			log.error("error setting analysis", e)
-		}
+		temp = data as AnalysisJSON
 		this.@analysisData = temp
 	}
 	
