@@ -1,6 +1,6 @@
 <html>
     <head>
-        <meta name="layout" content="workflowsLayout" />
+        <meta name="layout" content="maxSpaceLayout" />
 		</script>
         <title>Study DataSource</title>         
     </head>
@@ -56,7 +56,7 @@
 			</tr>
 			<g:each in="${otherStudies}" var="study">
 			<tr>
-				<td>${study.shortName}</td>
+				<td><g:link action="show" id="${study.id}">${study.shortName}</g:link></td>
 				<td>${study.longName}</td>
 				<td>
 					<g:each in="${study.pis}" var="pi">

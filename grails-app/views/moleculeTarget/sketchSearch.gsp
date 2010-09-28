@@ -46,7 +46,7 @@
 	<br />
 	<g:submitButton name="search_molecules" value="search molecules" onclick="exportMol();return false;"/>
 	
-	<input type="button" onclick="javascript:alert(document.Editor.getSmiles())" value="show smiles" />
+	<%--input type="button" onclick="javascript:alert(document.Editor.getSmiles())" value="show smiles" /--%>
 	<input type="button" onclick="javascript:document.Editor.clear()" value="clear sketch area" />
 	
 	</g:form><br />

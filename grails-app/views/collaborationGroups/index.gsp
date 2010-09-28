@@ -1,6 +1,6 @@
 <html>
     <head>
-        <meta name="layout" content="main" />
+        <meta name="layout" content="maxSpaceLayout" />
 
 	<g:javascript library="jquery"/>
 	<jq:plugin name="ui"/>
@@ -56,7 +56,7 @@
 			<g:if test="${flash.message}">
 				<div class="message" style="font-size:.8em;width:85%">${flash.message}</div>
 			</g:if>
-			<div class="tabDiv">
+			<div class="tabDiv" style="width:85%">
 				<div id="centerTabs" class="tabDiv">
 				    <ul>
 				        <li><a href="#fragment-4"><span>My Collaboration Groups</span></a></li>

@@ -1,12 +1,13 @@
 import SecurityException
 
+@Mixin(ControllerMixin)
 class ShareController {
     def securityService
 //def index = { redirect(action:share,params:params) }
 
 def shareItem = {
-	if(!params.groups) {
-						flash.message = "no groups have been selected. Please select groups."
+	if(!params.groups || !params.type) {
+						flash.message = "no groups or no type has been selected. Please select groups."
 		                redirect(controller:'share',action:'share',params:[id:params.itemId,name:params.name,
 																	type:params.type,failure:true])
 	}else{
@@ -25,14 +26,28 @@ def shareItem = {
 	}
 	
 	if(params.type.equals(Constants.SAVED_ANALYSIS)){
-		log.debug 'share saved analysis: ' + params.itemId
-		item = SavedAnalysis.get(params.itemId)
+		if(isAnalysisAuthor(params.itemId)){
+			log.debug 'share saved analysis: ' + params.itemId
+			item = SavedAnalysis.get(params.itemId)
+		}
+		else{
+			log.debug "user is NOT permitted to share analysis"
+			redirect(controller:'policies',action:'deniedAccess')
+			return
+		}
 	}
 	if(params.type.equals(Constants.USER_LIST)){
-		log.debug 'share user list: ' + params.itemId
-		item = UserList.get( params.itemId )
+		if(isListAuthor(params.itemId)){
+			log.debug 'share user list: ' + params.itemId
+			item = UserList.get( params.itemId )
+		}
+		else{
+			log.debug "user is NOT permitted to share list"
+			redirect(controller:'policies',action:'deniedAccess')
+			return
+		}
 	}
-	if(item){
+	if(item && params.type){
 		try{
 			alreadySharedGroups = securityService.groupsShared(item)
 			if(alreadySharedGroups){

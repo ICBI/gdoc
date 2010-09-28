@@ -35,19 +35,26 @@ class StudyDataSourceController {
 	}
 	
 	def setStudy = {
-		if(params.study){
-			log.debug "set study to $params.study"
-			def currStudy = StudyDataSource.get(params.study)
-			session.study = currStudy
-			StudyContext.setStudy(session.study.schemaName)
-			session.dataTypes = AttributeType.findAll().sort { it.longName }
-			loadPatientLists()
-			loadReporterLists()
-			loadGeneLists()
-			session.endpoints = KmAttribute.findAll()
-			session.files = htDataService.getHTDataMap()
-			session.dataSetType = session.files.keySet()
-			render session.study.shortName
+		if(params.study && session.myStudies){
+			def studyid = new Long(params.study)
+			def allowedStudyAccess = session.myStudies.find{it.id == studyid}
+			if(allowedStudyAccess){
+				log.debug "set study to $params.study"
+				def currStudy = StudyDataSource.get(params.study)
+				session.study = currStudy
+				StudyContext.setStudy(session.study.schemaName)
+				session.dataTypes = AttributeType.findAll().sort { it.longName }
+				loadPatientLists()
+				loadReporterLists()
+				loadGeneLists()
+				session.endpoints = KmAttribute.findAll()
+				session.files = htDataService.getHTDataMap()
+				session.dataSetType = session.files.keySet()
+				render session.study.shortName
+			}else{
+				log.debug "user is NOT permitted to access this study"
+				redirect(controller:'policies',action:'deniedAccess')
+			}
 		}
 		else render ""
 	}
