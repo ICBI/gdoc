@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
     <title><g:layoutTitle /></title>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'grids.css')}"/>
@@ -15,7 +16,6 @@
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styledButton.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'tags.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'editableText.css')}"/>
-    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<g:javascript library="jquery"/>
 		<g:javascript src="gdoc.js"/>
 		<g:layoutHead/>
