@@ -26,8 +26,9 @@ end
 set :war, "gdoc.war"
 # TOMCAT SERVERS
 set :jboss_home, "/opt/jboss-4.2.3.GA"
-set :jboss_start, "nohup #{jboss_home}/bin/startJboss.sh"
-set :jboss_stop, "#{jboss_home}/bin/shutdown.sh -S"
+set :jboss_start, "/sbin/service jboss start"
+set :jboss_stop, "/sbin/service jboss stop"
+set :jboss_restart, "/sbin/service jboss restart"
 
 # USER / SHELL
 set :user, "jboss" # the user to run remote commands as
@@ -54,19 +55,17 @@ namespace :jboss do
 
   desc "start JBoss"
   task :start do
-    run "#{jboss_start}"
+    sudo "#{jboss_start}"
   end
 
   desc "stop JBoss"
   task :stop do
-    run "#{jboss_stop}"
+    sudo "#{jboss_stop}"
   end
 
   desc "stop and start JBoss"
   task :restart do
-    jboss.stop rescue nil
-    sleep 30
-    jboss.start
+	sudo "#{jboss_restart}"
   end
   
   desc "tail JBoss server log"
