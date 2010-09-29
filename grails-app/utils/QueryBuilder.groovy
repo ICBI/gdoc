@@ -28,6 +28,7 @@ class QueryBuilder {
 						criteria[key.replace(formKey, "")] = minMax
 					}
 				} else {
+					value = value.replace("'", "")
 					criteria[key.replace(formKey, "")] = value
 				}
 			}
