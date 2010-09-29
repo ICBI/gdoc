@@ -140,8 +140,8 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 					<%--g:render template="/userList/userListDiv" model="${['userListInstance':userListInstance,'listItems':userListInstance.listItems]}"/--%>
 				</div>
 				<div style="border-bottom:1px solid grey;background-color:#f3f3f3;padding-bottom:5px;">
-					Studies: 
 					<g:if test="${userListInstance.studies.size()>0}">
+					Studies: 
 						${userListInstance.studyNames().join(", ")}
 					</g:if><br/>
 					<g:if test="${userListInstance.tags.size()>0}">

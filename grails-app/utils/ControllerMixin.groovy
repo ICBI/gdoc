@@ -39,7 +39,7 @@ class ControllerMixin {
 		if(self.session.study){
 			StudyContext.setStudy(self.session.study.schemaName)
 			def lists = []
-			lists = self.userListService.getListsByTagAndStudy(Constants.PATIENT_LIST,self.session.study,self.session.userId)
+			lists = self.userListService.getListsByTagAndStudy(Constants.PATIENT_LIST,self.session.study,self.session.sharedListIds, self.session.userId)
 			self.session.patientLists = lists
 		}
 	}
@@ -47,7 +47,7 @@ class ControllerMixin {
 	static loadReporterLists(self) {
 		if(self.session.study) {
 			def reporterLists = []
-			reporterLists = self.userListService.getListsByTag(Constants.REPORTER_LIST,self.session.userId)
+			reporterLists = self.userListService.getListsByTag(Constants.REPORTER_LIST,self.session.sharedListIds,self.session.userId)
 			self.session.reporterLists = reporterLists
 		}
 	}
@@ -55,7 +55,7 @@ class ControllerMixin {
 	static loadGeneLists(self) {
 		if(self.session.study) {
 			def geneLists = []
-			geneLists = self.userListService.getListsByTag(Constants.GENE_LIST,self.session.userId)
+			geneLists = self.userListService.getListsByTag(Constants.GENE_LIST,self.session.sharedListIds,self.session.userId)
 			self.session.geneLists = geneLists
 		}
 	}

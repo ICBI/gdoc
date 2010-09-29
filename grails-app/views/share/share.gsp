@@ -26,7 +26,14 @@
 	    action="shareItem" url="${[controller:'share',action:'shareItem']}"
 		onComplete="alert(${flash.message})">
 	  	<g:each in="${session.myCollaborationGroups}" var="group">
-		<input type="checkbox" name="groups" value="${group}" />${group}<br />
+			<g:if test="${group != 'PUBLIC'}">
+				<input type="checkbox" name="groups" value="${group}" />${group}<br />
+			</g:if>
+			<g:else>
+				<g:if test="${session.isGdocAdmin}">
+					<input type="checkbox" name="groups" value="${group}" />${group}<br />
+				</g:if>
+			</g:else>
 		</g:each>
 	  <g:hiddenField name="type" value="${params.type}" />
 	  <g:hiddenField name="name" value="${params.name}" />

@@ -151,43 +151,73 @@ def drugDiscoveryService
 		"AND list.dateCreated BETWEEN :range and :now "
 		count = UserList.executeQuery(listHQL2,[loginName:user, now:now, range:range])
 		pagedLists["count"] = count
-		/**pagedLists = UserList.createCriteria().list(
-			max:10,
-			offset:offset)
-			{
-				and{
-					'between'('dateCreated',now-tp,now)
-					'order'("dateCreated", "desc")
-				}
-				or {
-					eq("author", user)
-				}
-			}**/
+
 		log.debug "user lists only over past $timePeriod days-> $pagedLists as Paged set"
 		return pagedLists
 	}
 	
-	def getListsByTag(tag,userName){
-		String listHQL = "SELECT list FROM UserList list,TagLink tagLink JOIN list.author author " + 
-		"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
-		"AND tagLink.tag.name = :tag " +
-		"AND author.loginName = :loginName " +
-		"ORDER BY list.name"
+	def getListsByTag(tag,sharedIds, userName){
+		println "get $tag lists"
+		def ids = []
 		def taggedLists = []
-		taggedLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName])
+		if(sharedIds){
+			sharedIds.each{
+				ids << new Long(it)
+			}
+		}
+		String listHQL
+		if(ids){
+			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND (author.loginName = :loginName " +
+			"OR list.id IN (:ids)) " + 
+			"AND tagLink.tag.name = :tag " +
+			"ORDER BY list.name"
+			taggedLists = UserList.executeQuery(listHQL, [tag: tag, ids:ids, loginName: userName])
+		}
+		else{
+			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND tagLink.tag.name = :tag " +
+			"AND author.loginName = :loginName " +
+			"ORDER BY list.name"
+			taggedLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName])
+		}
+		return taggedLists
+		
 	}
 	
-	def getListsByTagAndStudy(tag,study,userName){
+	def getListsByTagAndStudy(tag,study,sharedIds,userName){
 		def sids =[]
+		def ids = []
+		def patientLists = [] 
 		sids << study
-		String listHQL = "SELECT list FROM UserList list,TagLink tagLink JOIN list.studies studies " + 
-		"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
-		"AND tagLink.tag.name = :tag " +
-		"AND list.author.loginName = :loginName " +
-		"AND studies IN (:sids) " + 
-		"ORDER BY list.name"
-		def patientLists = []
-		patientLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName, sids:sids])
+		if(sharedIds){
+			sharedIds.each{
+				ids << new Long(it)
+			}
+		}
+		String listHQL
+		if(ids){
+			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.studies studies " + 
+			"WHERE list.id = tagLink.tagRef AND tagLink.type = 'userList' " +
+			"AND tagLink.tag.name = :tag " +
+			"AND (list.author.loginName = :loginName " +
+			"OR list.id IN (:ids)) " + 
+			"AND studies IN (:sids) " + 
+			"ORDER BY list.name"
+			patientLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName, ids:ids, sids:sids])
+		}else{
+			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.studies studies " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND tagLink.tag.name = :tag " +
+			"AND list.author.loginName = :loginName " +
+			"AND studies IN (:sids) " + 
+			"ORDER BY list.name"
+			patientLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName, sids:sids])
+		}
+		return patientLists
+		
 	}
 	
 	def getTempListIds(userId) {
