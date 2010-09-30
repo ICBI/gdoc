@@ -181,16 +181,32 @@ class CollaborationGroupsController {
 			redirect(action:'index')
 		} else{
 			flash['cmd'] = cmd
-			def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
-			def delString = ""
-			cmd.users.each{ user ->
-				invitationService.revokeAccess(manager.loginName, user, cmd.collaborationGroupName)
-				log.debug "$user has been removed from " + cmd.collaborationGroupName 
-				delString += user + ", "
+			log.debug("request deletion of $cmd.users from $cmd.collaborationGroupName")
+			def permitted = false
+			if(securityService.isUserGroupManager(session.userId, cmd.collaborationGroupName)){
+				permitted = true
 			}
-			flash.message = delString + " has been marked for removal from " + cmd.collaborationGroupName + ". Subsequent logins will prevent user from accessing this group"
-			reloadMembershipAndStudyData()
-			redirect(action:'index')
+			if(cmd.users.size() == 1 && cmd.users[0] == session.userId){
+				permitted = true
+			}
+			
+			if(permitted){
+				log.debug("permission granted to delete $cmd.users from $cmd.collaborationGroupName")
+				def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
+				def delString = ""
+				cmd.users.each{ user ->
+					invitationService.revokeAccess(manager.loginName, user, cmd.collaborationGroupName)
+					log.debug "$user has been removed from " + cmd.collaborationGroupName 
+					delString += user + ", "
+				}
+				flash.message = delString + " has been marked for removal from " + cmd.collaborationGroupName + ". Subsequent logins will prevent user from accessing this group"
+				reloadMembershipAndStudyData()
+				redirect(action:'index')
+			}
+			else{
+				log.debug "user CANNOT delete users from the $cmd.collaborationGroupName"
+				redirect(controller:'policies', action:'deniedAccess')
+			}
 		}
 	}
 	

@@ -258,6 +258,7 @@ class SecurityService {
 	
 	def isUserGroupManager(loginName, groupName) {
 		def pg = findProtectionGroup(groupName)
+		def isCollaborationManager
 		if(!pg)
 			throw new Exception("Collaboration group does not exist.")
 		def authManager = this.getAuthorizationManager()
@@ -267,12 +268,24 @@ class SecurityService {
 			log.debug "${it.protectionGroup.protectionGroupName} and ${groupName}"
 			it.protectionGroup.protectionGroupName == groupName
 		}
-		if(!toDelete)
-			throw new Exception("User1 $loginName does not have permission to delete this group")
-		def isCollaborationManager = toDelete.roles.find {
-			it.name == GROUP_MANAGER
+		if(!toDelete){
+			log.debug("user, $loginName does is not member of $groupName")
+			return false
 		}
-		return isCollaborationManager
+		else{
+			isCollaborationManager = toDelete.roles.find {
+				it.name == GROUP_MANAGER
+			}
+			if(isCollaborationManager){
+				log.debug("user, $loginName is THE manager of $groupName")
+				return true
+			}
+			else{
+				log.debug("user, $loginName is not manager of $groupName")
+				return false
+			}
+		}	
+			
 	}
 	
 	def findCollaborationManager(groupName){
