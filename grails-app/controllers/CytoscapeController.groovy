@@ -1,11 +1,12 @@
 import java.net.URLEncoder
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 class CytoscapeController {
 	
 	
 	def index = {
 			log.debug params
-			def baseUrl = request.getRequestURL().toString().split(request.getContextPath())[0]
+			def baseUrl = CH.config.grails.serverURL
 			def token = session.userId + "||" + System.currentTimeMillis()
 			def sifUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.sifFile
 			def edgeUrl = baseUrl+"/gdoc/cytoscape/display?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")+"&inputFile="+params.edgeAttributeFile

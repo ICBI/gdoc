@@ -27,7 +27,7 @@
     <g:form url='[controller: "search", action: "index"]' id="searchableForm" name="searchableForm" method="get">
         <g:textField name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
     </g:form--%>
-    <div style="clear: both; display: none;" class="hint">See <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html">Lucene query syntax</a> for advanced queries</div>
+    
   </div>
   <div id="main">
     <g:set var="haveQuery" value="${params.q?.trim()}" />
@@ -36,7 +36,7 @@
       <span>
         <g:if test="${haveQuery && haveResults}">
           Showing <strong>${searchResult.offset + 1}</strong> - <strong>${searchResult.results.size() + searchResult.offset}</strong> of <strong>${searchResult.total}</strong>
-          results for <strong>${params.q}</strong>
+          results for <strong>${params.q.encodeAsHTML()}</strong>
         </g:if>
         <g:else>
         &nbsp;
@@ -45,7 +45,8 @@
     </div>
 
     <g:if test="${haveQuery && !haveResults && !parseException}">
-      <p>Nothing matched your query - <strong>${params.q}</strong></p>
+	
+      <p>Nothing matched your recent query - <strong>${params.q.replaceAll("<(.|\n)*?>", '-');}</strong></p>
       <g:if test="${!searchResult?.suggestedQuery}">
         <g:if test="${suggs}">
 		  <%--p>Suggestions:</p>
@@ -61,15 +62,8 @@
     
 
     <g:if test="${parseException}">
-      <p>Your query - <strong>${params.q}</strong> - is not valid.</p>
-      <p>Suggestions:</p>
-      <ul>
-        <%--li>Fix the query: see <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html">Lucene query syntax</a> for examples</li--%>
-        <g:if test="${LuceneUtils.queryHasSpecialCharacters(params.q)}">
-          <li>Remove special characters like <strong>" - [ ]</strong>, before searching, eg, <em><strong>${LuceneUtils.cleanQuery(params.q)}</strong></em><br />
-             
-        </g:if>
-      </ul>
+      <p>Your query - <strong>${params.q.encodeAsHTML()}</strong> - is not valid.</p>
+      
     </g:if>
 
     <g:if test="${haveResults}">

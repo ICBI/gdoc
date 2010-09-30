@@ -489,7 +489,7 @@ class UserListController {
 	}
 	
 	def export = {
-		if(isListAuthor(params.id)){
+		if(isListAccessible(params.id)){
 			log.debug "EXPORTING LIST ${params.id}"
 			response.setHeader("Content-disposition", "attachment; filename=${params.id}-export.txt")  
 			response.contentType = "text/plain"
@@ -503,7 +503,7 @@ class UserListController {
 	}
 	
 	def exportToCytoscape = {
-		if(isListAuthor(params.id)){
+		if(isListAccessible(params.id)){
 			log.debug "BUILDING AND EXPORTING TO CYTOSCAPE ${params.id}"
 			def cytoscapeFiles = exportService.buildCytoscapeFiles(params.id)
 			redirect(controller:"cytoscape",action:"index",params:[sifFile:cytoscapeFiles['sifFile'],edgeAttributeFile:cytoscapeFiles['edgeAttributeFile'],nodeAttributeFile:cytoscapeFiles['nodeAttributeFile'],geneAttributeFile:cytoscapeFiles['geneAttributeFile']])

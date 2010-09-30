@@ -8,7 +8,7 @@ class SearchController {
 	def searchableService
 	
 	def index = {
-		 def invalidChars = ['*','?','~','[',']','"','+','-']
+		 def invalidChars = ['*','?','~','[',']','"','+','-','<','>']
 		 if (!(params.q?.trim()) || invalidChars.contains(params.q)) { 
 			log.debug "no params or invalid params"
 			//flash.message = "no params or invalid params"
@@ -56,7 +56,9 @@ class SearchController {
 			return [searchResult:searchResult,suggs:suggs] 
 		 } catch (SearchEngineQueryParseException ex) { 
 			return [parseException: true] 
-		 } 
+		 } 	catch (RuntimeException ex) { 
+				return [parseException: true] 
+		}
 		}
 
 	}

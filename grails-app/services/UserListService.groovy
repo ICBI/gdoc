@@ -50,6 +50,26 @@ def drugDiscoveryService
 		return pagedLists
 	}
 	
+	def getAllListIds(sharedIds,userId){
+		def listIds = []
+		def listHQL
+		if(sharedIds){
+			def ids =[]
+			sharedIds.each{
+				ids << new Long(it)
+			}
+			listHQL = "SELECT distinct list.id FROM UserList list JOIN list.author author " + 
+			"WHERE author.loginName = :loginName OR list.id IN (:ids) "
+			listIds = UserList.executeQuery(listHQL,[loginName:userId, ids:ids])
+		}else{
+			listHQL = "SELECT distinct list.id FROM UserList list JOIN list.author author " + 
+			"WHERE author.loginName = :loginName "
+			listIds = UserList.executeQuery(listHQL,[loginName:userId])
+		}
+		log.debug "got list ids $listIds"
+		return listIds
+	}
+	
 	def getAllLists(sharedIds,offset,user){
 		def pagedLists = [:]
 		def results = []

@@ -9,6 +9,15 @@ class ControllerMixin {
 		return accessible
 	}
 	
+	static isListAccessible(self, id){
+		def accessible = false
+		def listId = new Long(id)
+		def allListIds = self.userListService.getAllListIds(self.session.sharedListIds,self.session.userId)
+		if (allListIds && allListIds.contains(listId))
+			accessible = true
+		return accessible
+	}
+	
 	static isAnalysisAuthor(self, id){
 		def isAuthor = false
 		self.log.debug "LOOKING UP author of analysis $id"
