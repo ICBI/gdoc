@@ -4,8 +4,7 @@
   response.setDateHeader( "Expires", 0 );%>
 <%@ page import="java.io.*" %>
 
-<g:set var="basepath" value="${request.getRequestURL().toString().split(request.getContextPath())[0]}" />
-<g:set var="filepath" value="${request.getRequestURL().toString().split(request.getContextPath())[0]}" />
+<g:set var="basepath" value="${grailsApplication.config.grails.serverURL}" />
 
 
 <?xml version="1.0" encoding="UTF-8"?>
