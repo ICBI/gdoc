@@ -153,16 +153,16 @@ environments {
 		}
     }
 	production {
-        grails.serverURL = "https://gdoc-prod.georgetown.edu"
-		jmsserver = "jnp://gdoc-prod.georgetown.edu:1099"
+        grails.serverURL = "https://gdoc.georgetown.edu"
+		jmsserver = "jnp://gdoc.georgetown.edu:1099"
 		responseQueue = "AnalysisResponse"
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
-		middlewareUrl = "https://gdoc-prod.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "https://gdoc-prod.georgetown.edu/content/targets/molecule3D"
-		molecule2DstructuresPath = "https://gdoc-prod.georgetown.edu/content/targets/molecule2D"
-		documentsPath = "https://gdoc-prod.georgetown.edu/content/documents"
-		videosPath = "https://gdoc-prod.georgetown.edu/content/video"
+		middlewareUrl = "https://gdoc.georgetown.edu/gdoc-middleware"
+		molecule3DstructuresPath = "https://gdoc.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://gdoc.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://gdoc.georgetown.edu/content/documents"
+		videosPath = "https://gdoc.georgetown.edu/content/video"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -171,16 +171,16 @@ environments {
 		}
     }
 	prod_load {
-        grails.serverURL = "https://gdoc-prod.georgetown.edu"
-		jmsserver = "jnp://gdoc-prod.georgetown.edu:1099"
+        grails.serverURL = "https://gdoc.georgetown.edu"
+		jmsserver = "jnp://gdoc.georgetown.edu:1099"
 		responseQueue = "AnalysisResponse"
 		//genePatternUrl = "https://democomp.gdoc.georgetown.edu"
 		tempDir = "/opt/gdoc-temp"
 		middlewareUrl = "https://neon.uis.georgetown.edu/gdoc-middleware"
-		molecule3DstructuresPath = "https://gdoc-prod.georgetown.edu/content/targets/molecule3D"
-		molecule2DstructuresPath = "https://gdoc-prod.georgetown.edu/content/targets/molecule2D"
-		documentsPath = "https://gdoc-prod.georgetown.edu/content/documents"
-		videosPath = "https://gdoc-prod.georgetown.edu/content/video"
+		molecule3DstructuresPath = "https://gdoc.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://gdoc.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://gdoc.georgetown.edu/content/documents"
+		videosPath = "https://gdoc.georgetown.edu/content/video"
 		log4j = {
 			appenders {
 				file name:'file', file:'dataLoad.log', append: true
