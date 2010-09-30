@@ -157,7 +157,6 @@ def drugDiscoveryService
 	}
 	
 	def getListsByTag(tag,sharedIds, userName){
-		println "get $tag lists"
 		def ids = []
 		def taggedLists = []
 		if(sharedIds){
