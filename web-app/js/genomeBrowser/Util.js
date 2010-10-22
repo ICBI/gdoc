@@ -1,16 +1,5 @@
 var Util = {};
 
-function $(element) {
-  if (arguments.length > 1) {
-    for (var i = 0, elements = [], length = arguments.length; i < length; i++)
-      elements.push($(arguments[i]));
-    return elements;
-  }
-  if (typeof element == 'string')
-    element = document.getElementById(element);
-  return element;
-}
-
 Util.is_ie = navigator.appVersion.indexOf('MSIE') >= 0;
 Util.is_ie6 = navigator.appVersion.indexOf('MSIE 6') >= 0;
 Util.addCommas = function(nStr)
@@ -30,7 +19,7 @@ Util.wheel = function(event){
     var delta = 0;
     if (!event) event = window.event;
     if (event.wheelDelta) {
-        delta = event.wheelDelta/120; 
+        delta = event.wheelDelta/120;
         if (window.opera) delta = -delta;
     } else if (event.detail) { delta = -event.detail/3;	}
     return Math.round(delta); //Safari Round
@@ -76,7 +65,7 @@ Util.findNearest = function(numArray, num) {
     for (var i = 0; i < numArray.length; i++) {
         if (Math.abs(num - numArray[i]) < min) {
             minIndex = i;
-            min = Math.abs(num - numArray[0]);
+            min = Math.abs(num - numArray[i]);
         }
     }
     return minIndex;
@@ -126,9 +115,27 @@ if (!Array.prototype.reduce)
   };
 }
 
+function Finisher(fun) {
+    this.fun = fun;
+    this.count = 0;
+}
+
+Finisher.prototype.inc = function() {
+    this.count++;
+};
+
+Finisher.prototype.dec = function() {
+    this.count--;
+    this.finish();
+};
+
+Finisher.prototype.finish = function() {
+    if (this.count <= 0) this.fun();
+};
+
 /*
 
-Copyright (c) 2007-2009 The Evolutionary Software Foundation
+Copyright (c) 2007-2010 The Evolutionary Software Foundation
 
 Created by Mitchell Skinner <mitch_skinner@berkeley.edu>
 

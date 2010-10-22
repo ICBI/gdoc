@@ -34,8 +34,8 @@ var Browser = function(params) {
     else
         dataRoot = "";
 
-    this.names = new LazyTrie("/content/data/names/lazy-",
-			      "/content/data/names/root.json");
+    this.names = new LazyTrie("/content/jbrowse/names/lazy-",
+			      "/content/jbrowse/names/root.json");
     this.tracks = [];
     var brwsr = this;
     brwsr.isInitialized = false;
@@ -103,8 +103,6 @@ var Browser = function(params) {
                                          + (((newRef.start + newRef.end) * 0.4) | 0)
                                          + " .. "
                                          + (((newRef.start + newRef.end) * 0.6) | 0));
-					brwsr.view.updateTrackList();
-					brwsr.view.showVisibleBlocks(true)
                         });
 
             //hook up GenomeView
@@ -118,6 +116,7 @@ var Browser = function(params) {
                     gv.sizeInit();
 
                     brwsr.view.locationTrapHeight = dojo.marginBox(navbox).h;
+                    gv.showVisibleBlocks();
                     gv.showFine();
                     gv.showCoarse();
                 });
@@ -205,7 +204,8 @@ Browser.prototype.createTrackList = function(parent, params) {
     var trackListDiv = document.createElement("div");
     trackListDiv.id = "tracksAvail";
     trackListDiv.className = "container handles";
-    trackListDiv.style.cssText = "width: 100%; height: 100%;";
+    trackListDiv.style.cssText =
+        "width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto;";
     trackListDiv.innerHTML =
         "Available Tracks:<br/>(Drag <img src=\""
         + (params.browserRoot ? params.browserRoot : "")
@@ -258,7 +258,7 @@ Browser.prototype.createTrackList = function(parent, params) {
         }
         return {node: node, data: track, type: ["track"]};
     };
-    this.viewDndWidget = new dojo.dnd.Source(this.view.container,
+    this.viewDndWidget = new dojo.dnd.Source(this.view.zoomContainer,
                                        {
                                            creator: trackCreate,
                                            accept: ["track"],
@@ -295,7 +295,6 @@ Browser.prototype.onVisibleTracksChanged = function() {
                 {expires: 60});
     this.view.showVisibleBlocks();
 	dojo.publish("tracksChanged", [trackLabels]);
-
 };
 
 /**
@@ -348,7 +347,6 @@ Browser.prototype.navigateTo = function(loc) {
     //matches[3] = chromosome (optional)
     //matches[4] = start base (optional)
     //matches[6] = end base (or center base, if it's the only one)
-
     if (matches) {
 	if (matches[3]) {
 	    var refName;
@@ -386,6 +384,7 @@ Browser.prototype.navigateTo = function(loc) {
 					  parseInt(matches[6].replace(/[,.]/g, "")));
 
                     this.viewDndWidget.insertNodes(false, curTracks);
+                    this.onVisibleTracksChanged();
 		}
 		return;
 	    }

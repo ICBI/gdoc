@@ -10,18 +10,19 @@
     <script type="text/javascript" src="${createLinkTo(dir: 'js/dojo',  file: 'dojo.js')}" djConfig="isDebug: false"></script>
     <script type="text/javascript" src="${createLinkTo(dir: 'js/dojo',  file: 'jbrowse_dojo.js')}" ></script>
 
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Browser.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Util.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'NCList.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'LazyPatricia.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Track.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'SequenceTrack.js')}" ></script>
- 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'FeatureTrack.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'StaticTrack.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'ImageTrack.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'GenomeView.js')}" ></script>
-    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Layout.js')}" ></script>
+    <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'jbrowse.js')}" ></script>
 
+    <!-- <script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Browser.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Track.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'UITracks.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'GenomeView.js')}" ></script>
+	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Util.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'NCList.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'LazyPatricia.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'SequenceTrack.js')}" ></script>
+	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'FeatureTrack.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'ImageTrack.js')}" ></script>
+ 	<script type="text/javascript" src="${createLinkTo(dir: 'js/genomeBrowser',  file: 'Layout.js')}" ></script> -->
 	<g:javascript library="jquery"/>
 	<jq:plugin name="tooltip"/>
 	<jq:plugin name="blockui" />

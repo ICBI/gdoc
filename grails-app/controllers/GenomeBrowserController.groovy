@@ -47,7 +47,7 @@ class GenomeBrowserController {
 			def sequence = [:]
 			sequence.length = chromosome.endPosition
 			sequence.name = "chr${it}"
-			sequence.seqDir = "/content/data/seq/${it}"
+			sequence.seqDir = "/content/jbrowse/seq/${it}"
 			sequence.seqChunkSize = 20000
 			sequence.end = chromosome.endPosition
 			sequence.start = 0
@@ -60,14 +60,14 @@ class GenomeBrowserController {
 		
 		def args = [:]
 		args.args = ["chunkSize" : 20000]
-		args.url = "/content/data/seq/{refseq}/"
+		args.url = "/content/jbrowse/seq/{refseq}/"
 		args.type = "SequenceTrack"
 		args.label = "DNA"
 		args.key = "DNA"
 		tracks << args
 		
 		def chr = [:]
-		chr.url = "/content/data/tracks/{refseq}/ChromosomeBand/trackData.json"
+		chr.url = "/content/jbrowse/tracks/{refseq}/ChromosomeBand/trackData.json"
 		chr.type = "FeatureTrack"
 		chr.label = "ChromosomeBand"
 		chr.key = "Cytobands"
@@ -75,7 +75,7 @@ class GenomeBrowserController {
 		tracks << chr
 		
 		def geneSymbols = [:]
-		geneSymbols.url = "/content/data/tracks/{refseq}/genes/trackData.json"
+		geneSymbols.url = "/content/jbrowse/tracks/{refseq}/genes/trackData.json"
 		geneSymbols.type = "FeatureTrack"
 		geneSymbols.label = "genes"
 		geneSymbols.key = "Genes"
@@ -92,7 +92,7 @@ class GenomeBrowserController {
 		tracks << gwas*/
 		
 		def omim = [:]
-		omim.url = "/content/data/tracks/{refseq}/omim/trackData.json"
+		omim.url = "/content/jbrowse/tracks/{refseq}/omim/trackData.json"
 		omim.type = "FeatureTrack"
 		omim.label = "omim"
 		omim.key = "OMIM Genes"
@@ -108,7 +108,7 @@ class GenomeBrowserController {
 		tracks << mrna*/
 		
 		def snp = [:]
-		snp.url = "/content/data/tracks/{refseq}/snp/trackData.json"
+		snp.url = "/content/jbrowse/tracks/{refseq}/snp/trackData.json"
 		snp.type = "FeatureTrack"
 		snp.label = "snp"
 		snp.key = "SNPs (130)"
@@ -116,7 +116,7 @@ class GenomeBrowserController {
 		tracks << snp
 		
 		def mirna = [:]
-		mirna.url = "/content/data/tracks/{refseq}/mirna/trackData.json"
+		mirna.url = "/content/jbrowse/tracks/{refseq}/mirna/trackData.json"
 		mirna.type = "FeatureTrack"
 		mirna.label = "mirna"
 		mirna.key = "sno/miRNA"
@@ -124,7 +124,7 @@ class GenomeBrowserController {
 		tracks << mirna
 		
 		def genes = [:]
-		genes.url = "/content/data/tracks/{refseq}/refseq/trackData.json"
+		genes.url = "/content/jbrowse/tracks/{refseq}/refseq/trackData.json"
 		genes.type = "FeatureTrack"
 		genes.label = "refseq"
 		genes.key = "RefSeq Genes"
@@ -176,7 +176,7 @@ class GenomeBrowserController {
 
 	def data = {
 		log.debug "got request for: ${request.forwardURI}"
-		def link = request.forwardURI.replace("/gdoc/genomeBrowser", "/content")
+		def link = request.forwardURI.replace("/gdoc/genomeBrowser", "/content/jbrowse")
 		redirect(url: link)
 
 	}

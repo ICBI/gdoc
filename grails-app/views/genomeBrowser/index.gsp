@@ -9,8 +9,8 @@
 </head>
 <body>
 <g:javascript>
-	var names = new LazyTrie("/content/data/names/lazy-",
-			      "/content/data/names/root.json");
+	var names = new LazyTrie("/content/jbrowse/names/lazy-",
+			      "/content/jbrowse/names/root.json");
 	$(document).ready(function() {
 		toggleFeature();
 		toggleBlock($('#omicsData'));

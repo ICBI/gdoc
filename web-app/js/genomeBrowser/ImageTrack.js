@@ -6,6 +6,12 @@ function ImageTrack(trackMeta, url, refSeq, browserParams) {
     this.zoomCache = {};
     this.baseUrl = (browserParams.baseUrl ? browserParams.baseUrl : "");
     this.load(this.baseUrl + url);
+
+    this.imgErrorHandler = function(ev) {
+        var img = ev.target || ev.srcElement;
+        img.style.display = "none";
+        dojo.stopEvent(ev);
+    };
 }
 
 ImageTrack.prototype = new Track("");
@@ -55,8 +61,10 @@ ImageTrack.prototype.getImages = function(zoom, startBase, endBase) {
 	im = this.tileToImage[i];
 	if (!im) {
 	    im = document.createElement("img");
+            dojo.connect(im, "onerror", this.imgErrorHandler);
             //prepend this.baseUrl if zoom.urlPrefix is relative
-            im.src = (zoom.urlPrefix.match(/^(([^/]+:)|\/)/) ? "" : this.baseUrl)
+            var absUrl = new RegExp("^(([^/]+:)|\/)");
+            im.src = (zoom.urlPrefix.match(absUrl) ? "" : this.baseUrl)
                      + zoom.urlPrefix + i + ".png";
             //TODO: need image coord systems that don't start at 0?
 	    im.startBase = (i * zoom.basesPerTile); // + this.refSeq.start;
@@ -72,7 +80,8 @@ ImageTrack.prototype.getImages = function(zoom, startBase, endBase) {
 ImageTrack.prototype.fillBlock = function(blockIndex, block,
                                           leftBlock, rightBlock,
                                           leftBase, rightBase,
-                                          scale, stripeWidth) {
+                                          scale, stripeWidth,
+                                          containerStart, containerEnd) {
     var zoom = this.getZoom(scale);
     var blockWidth = rightBase - leftBase;
     var images = this.getImages(zoom, leftBase, rightBase);
@@ -81,7 +90,11 @@ ImageTrack.prototype.fillBlock = function(blockIndex, block,
     for (var i = 0; i < images.length; i++) {
 	im = images[i];
 	if (!(im.parentNode && im.parentNode.parentNode)) {
-	    im.style.cssText = "position: absolute; left: " + (100 * ((im.startBase - leftBase) / blockWidth)) + "%; width: " + (100 * (im.baseWidth / blockWidth)) + "%; top: 0px; height: " + zoom.height + "px;";
+            im.style.position = "absolute";
+            im.style.left = (100 * ((im.startBase - leftBase) / blockWidth)) + "%";
+            im.style.width = (100 * (im.baseWidth / blockWidth)) + "%";
+            im.style.top = "0px";
+            im.style.height = zoom.height + "px";
             block.appendChild(im);
 	}
     }
@@ -104,7 +117,8 @@ ImageTrack.prototype.clear = function() {
     this.tileToImage = {};
 };
 
-ImageTrack.prototype.transfer = function(sourceBlock, destBlock) {
+ImageTrack.prototype.transfer = function(sourceBlock, destBlock, scale,
+                                         containerStart, containerEnd) {
     if (!(sourceBlock && destBlock)) return;
 
     var children = sourceBlock.childNodes;

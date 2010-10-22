@@ -29,8 +29,8 @@
 					}
 	});
 	
-	if($('#loginName')) {
-		$("#loginName").click(function(){
+	if(jQuery('#loginName')) {
+		jQuery("#loginName").click(function(){
 			$(this).val("");
 			$(this).css("color","black");
 		})
