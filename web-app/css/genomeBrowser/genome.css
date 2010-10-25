@@ -579,7 +579,7 @@ div.transcript-hist {
     margin-top: -4px;
     width: 12px;
     height: 12px;
-    background-image: url('img/plus-transcript-head.png');
+    background-image: url('../../img/plus-transcript-head.png');
     background-repeat: no-repeat;
 }
 
@@ -595,7 +595,7 @@ div.transcript-hist {
     margin-top: -4px;
     width: 12px;
     height: 12px;
-    background-image: url('img/minus-transcript-head.png');
+    background-image: url('../../img/minus-transcript-head.png');
     background-repeat: no-repeat;
 }
 
@@ -783,6 +783,38 @@ div.ucsc-genes-hist {
     cursor: pointer;
 }
 
+.plus-refseq_genes-arrowhead {
+    position: absolute;
+/*  border stuff seems slow
+    height: 0px;
+    width: 0px;
+    margin-top: -4px;
+    border-style: solid;
+    border-color: white white white #999;
+    border-width: 6px 0px 6px 10px; */
+    margin-top: -4px;
+    width: 12px;
+    height: 12px;
+    background-image: url('../../img/plus-transcript-head.png');
+    background-repeat: no-repeat;
+}
+
+.minus-refseq_genes-arrowhead {
+    position: absolute;
+/*  border stuff seems slow
+    height: 0px;
+    width: 0px;
+    margin-top: -4px;
+    border-style: solid;
+    border-color: white #999 white white;
+    border-width: 6px 10px 6px 0px; */
+    margin-top: -4px;
+    width: 12px;
+    height: 12px;
+    background-image: url('../../img/minus-transcript-head.png');
+    background-repeat: no-repeat;
+}
+
 div.refseq_genes-hist {
     position: absolute;
     background-color: #ddd;
@@ -803,6 +835,38 @@ div.refseq_genes-hist {
     z-index: 6;
     min-width: 1px;
     cursor: pointer;
+}
+
+.plus-genes-arrowhead {
+    position: absolute;
+/*  border stuff seems slow
+    height: 0px;
+    width: 0px;
+    margin-top: -4px;
+    border-style: solid;
+    border-color: white white white #999;
+    border-width: 6px 0px 6px 10px; */
+    margin-top: -4px;
+    width: 12px;
+    height: 12px;
+    background-image: url('../../img/plus-transcript-head.png');
+    background-repeat: no-repeat;
+}
+
+.minus-genes-arrowhead {
+    position: absolute;
+/*  border stuff seems slow
+    height: 0px;
+    width: 0px;
+    margin-top: -4px;
+    border-style: solid;
+    border-color: white #999 white white;
+    border-width: 6px 10px 6px 0px; */
+    margin-top: -4px;
+    width: 12px;
+    height: 12px;
+    background-image: url('../../img/minus-transcript-head.png');
+    background-repeat: no-repeat;
 }
 
 div.genes-hist {
