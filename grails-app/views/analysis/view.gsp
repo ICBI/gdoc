@@ -47,9 +47,6 @@
 		var currPage = 1;
 		
 		$(document).ready(function(){
-			$('#reporterForm').submit(function() {
-				$('#search').attr("disabled", "true");
-	 		});
 			jQuery("#searchResults").jqGrid({ 
 				url:'<%= createLink(action:"results",controller:"analysis") %>', 
 				datatype: "json", 
@@ -124,6 +121,7 @@
 					}, 2500);
 					return false;
 				} else {
+					$('#search').attr("disabled", "true");
 					jQuery('#selectAll').val(selectAll);
 					jQuery('#reporterIds').val(selected);
 				}
