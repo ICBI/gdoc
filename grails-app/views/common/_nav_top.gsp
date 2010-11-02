@@ -41,9 +41,18 @@ jQuery(document).ready(function()
 						<g:link controller="heatMap">HeatMap Viewer</g:link>
 					</li>
 			</ul>
-		
-		<li><g:link controller="userList">Saved Lists</g:link></li>
-		<li><g:navigationLink name="Saved Analysis" controller="savedAnalysis">Saved Analysis</g:navigationLink></li>
+		</li>
+			<li>
+				<a class="sf-with-ul" href="#">My G-DOC<span class="sf-sub-indicator"> »</span></a>
+				<ul style="display: none; visibility: hidden;">
+						<li>
+							<a href="${createLink(controller: 'notification')}">Notifications</a>
+							<a href="${createLink(controller: 'userList')}">Saved Lists</a>
+							<a href="${createLink(controller: 'savedAnalysis')}">Saved Analysis</a>
+							<g:link controller="collaborationGroups">Manage My Groups</g:link>
+						</li>
+				</ul>
+			</li>
 		<li>
 			<g:link controller="help">Help</g:link>
 		</li>		

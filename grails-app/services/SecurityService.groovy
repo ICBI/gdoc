@@ -51,8 +51,37 @@ class SecurityService {
 		
 	}
 	
+	def setLastLogin(userId){
+		def authManager = this.getAuthorizationManager()
+		def csmUser = authManager.getUser(userId)
+		if(csmUser){
+			csmUser.setEndDate(new Date())
+			authManager.modifyUser(csmUser)
+			log.debug("set user's last login");
+		}
+	}
+	
 	def logout(session){
 		session.invalidate()
+	}
+	
+	def validateToken(token){
+		log.debug "prepare to decrypt token $token"
+		String decryptedToken = EncryptionUtil.decrypt(token);
+		String[] info = decryptedToken.split("\\|\\|");
+		String username = info[0];
+		log.debug "$username accessing gdoc" 
+		Long timeRequested = Long.parseLong(info[1]);
+		Long currentTime = System.currentTimeMillis();
+		Long diff = currentTime - timeRequested;
+		Long hours = diff / (60 * 60 * 1000);
+		if(hours > 24L) {
+			log.debug "time has expired" 
+            return false
+		}
+		else{
+			return username
+		}
 	}
 	
 	
@@ -132,17 +161,77 @@ class SecurityService {
 		return true
 	}
 	
+	def populateNewUserAttributes(loginName, password, firstName,lastName,emailId,organization){
+		def newUser = new User()
+		if(loginName && firstName &&
+			lastName && organization && emailId){
+			newUser.setLoginName(loginName)
+			newUser.setPassword(password)
+			newUser.setFirstName(firstName)
+			newUser.setLastName(lastName)
+			newUser.setOrganization(organization)
+			newUser.setEmailId(emailId)
+		}
+		else {
+			throw new SecurityException("one or more required user attributes were not included");
+		}
+		return newUser
+	}
+	
+	def changeUserPassword(userId, newPassword){
+		if(userId && newPassword){
+			def authManager = this.getAuthorizationManager()
+			try{
+				log.debug "enable encryption"
+				authManager.setEncryptionEnabled(true)
+				def user = authManager.getUser(userId)
+				user.setPassword(newPassword)
+				authManager.modifyUser(user)
+				log.debug "$userId password was $user.password"
+				log.debug "successfully changed password for $userId"
+				log.debug "$userId password is now $user.password"
+				return true
+			}catch(CSTransactionException cste){
+				log.debug cste
+				return false
+			}
+			
+		}else{
+			return false
+		}
+		
+	}
+	
 	/**if deleting a user from using the UPT web app, remember to delete 
 	any invitations associated with this user**/
 	def removeUser(userId){
-		def authManager = this.getAuthorizationManager()
+		def user = GDOCUser.get(userId)
+		def managedGroups = []
 		try{
-			authManager.removeUser(userId)
-		}catch(CSTransactionException cste){
-			log.debug cste
+			if(user.memberships){
+				user.memberships.each{
+					if(it.collaborationGroup){
+						if(isUserGroupManager(user.loginName, it.collaborationGroup.name)) {
+							log.debug "user is manager of $it.collaborationGroup.name, mark it for deletion"
+							managedGroups << it.collaborationGroup.name
+						}
+					}
+				}		
+			}
+			Invitation.executeUpdate("delete Invitation invitation where invitation.invitee = :user", [user:user])
+			log.debug "deleted requestee invitations of " + user.loginName
+			managedGroups.each{ groupName ->
+				deleteCollaborationGroup(user.loginName,groupName)
+			}
+			log.debug "deleted all groups managed by $user.loginName"
+			user.delete()
+			log.debug "deleted all other objects held by $userId"
+		}
+		catch(Exception e){
+			log.debug e
 			return false
 		}
-		log.debug "deleted user " + userId
+		log.debug "deleted the user " + userId
 		return true
 	}
 	

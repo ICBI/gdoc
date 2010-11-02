@@ -39,7 +39,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
 <a href="/gdoc"><img src="${createLinkTo(dir:'images',file:'gdocHeader.png')}" border="0" alt="G-DOC logo" /></a>
 </td><td valign="bottom" style="text-align:right;padding:7px">
-
+<span style="color:white"><g:formatDate format="EEE MMM d, yyyy" date="${new Date()}"/></span><br />
 
 <g:if test="${!session.userId}">
 <g:if test="${flash.cmd instanceof LoginCommand && flash.message}">
@@ -60,6 +60,8 @@
 		<g:link style="color:#f2f2f2" controller="admin">Admin</g:link>
 		<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span>
 		</g:if>
+		<g:link controller="registration" action="passwordReset" style="color:#f2f2f2">change password</g:link>
+		<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span>
 		<g:link style="color:#f2f2f2" action="logout" controller="login" update="success">Logout</g:link>
 	</div>
 </div>

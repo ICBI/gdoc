@@ -7,6 +7,7 @@ class GDOCUser {
 		firstName column: "first_name"
 		lastName column: "last_name"
 		email column: "email_id"
+		lastLogin column: "end_date"
 	}
 	
 	String loginName
@@ -15,9 +16,15 @@ class GDOCUser {
 	String password
 	String email
 	String department
+	String organization
+	Date lastLogin
 	
-	static mappedBy = [invitations:'invitee']	
-	static hasMany = [memberships:Membership,comments:Comments, analysis:SavedAnalysis, invitations:Invitation, lists:UserList]
+	static constraints = {
+	        department(nullable: true)
+	}
+	
+	static mappedBy = [invitations:'invitee',requestorInvites:'requestor']	
+	static hasMany = [memberships:Membership,comments:Comments, analysis:SavedAnalysis, invitations:Invitation, requestorInvites:Invitation, lists:UserList]
 	
     
 }

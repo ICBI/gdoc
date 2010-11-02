@@ -150,10 +150,12 @@
 				
 				
 				<div id="centerContent" class="welcomeTitle" style="margin:20px">
-					<g:if test="${flash.cmd instanceof RegistrationCommand && flash.message}">
+					<g:if test="${((flash.cmd instanceof RegistrationCommand) || (flash.cmd instanceof ActivationCommand) || (flash.cmd instanceof ResetPasswordCommand)) && flash.message}">
 						<div class="message" style="width:65%;margin:0 auto;">${flash.message}</div>
 					</g:if>
-						
+					<g:if test="${!(flash.cmd instanceof LoginCommand) && flash.error}">
+						<div class="errorDetail" style="width:65%;margin:0 auto;">${flash.error}</div>
+					</g:if>
 					<br/>
 					
 					<table border="0" style="width:900px;margin:auto">
@@ -206,7 +208,7 @@
 													<div class="partDiv">
 													<g:if test="${findings}">
 													<g:each in="${findings}" var="finding">
-														<p style="border-bottom:1px dashed black;padding:2px">${finding.title}&nbsp;</p>
+														<p style="border-bottom:1px dashed black;padding:2px">${finding.title}&nbsp; - <span style="color:blue">loaded on: <g:formatDate format="EEE MMM d, yyyy" date="${finding.dateCreated}"/></span></p>
 													</g:each>
 													</g:if>
 													</div>

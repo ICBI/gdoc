@@ -17,6 +17,11 @@
 	
 		<div id="centerContent">
 			<p style="font-size:14pt">GDOC Admin Panel</p><br />
+			
+			<g:if test="${flash.message}">
+				<span class="message">${flash.message}</span>
+			</g:if>
+			
 			<table style="border:1px solid black;width:85%">
 				<tr>
 					<th style="background-color:silver">Data-Loading Tasks</th>
@@ -40,6 +45,28 @@
 								<g:else>
 								no studies loaded
 								</g:else>
+								</div>
+						</div>
+					</td>
+				</tr>
+				</table>
+				<br />
+				<table style="border:1px solid black;width:85%">
+				<tr>
+					<th style="background-color:silver">User Admin</th>
+				</tr>
+				<tr>
+					<td>
+						<div>
+						<div style="padding:7px;background-color:seashell;">Find a user<br />
+						
+						</div>
+						
+								<div style="padding:5px;background-color:#f2f2f2;">
+							     <g:form action="searchUsers">
+									User Id (email OR netId): <g:textField name="userId" id="userIdField" /><br /><br />
+									<g:submitButton name="search" value="Search Users" />
+								</g:form>
 								</div>
 						</div>
 					</td>

@@ -1,15 +1,122 @@
 import grails.converters.*
-
+import com.megatome.grails.RecaptchaService
+import java.net.URLEncoder
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 class RegistrationController {
 
 	def securityService
+	def mailService
+	RecaptchaService recaptchaService
 	
     def index = {
+		def categoryList = ["Public User","Georgetown User"]
 		def departmentList = ["Oncology","Pathology","Radiation Medicine","Biostatistics","Bioinformatics",
 		"Biomathmatics","Student"]
-		[departmentList:departmentList]
+		[departmentList:departmentList,categoryList:categoryList]
 	}
+	
+	def publicRegistration = {
+		
+	}
+	
+	def passwordReset = {
+		log.debug "preparing to send account change request"
+		if(session.userId){
+			log.debug "$session.userId is logged in, requesting password change"
+		}
+		else{
+			log.debug "user is noit logged in, requesting password change"
+		}
+		
+	}
+	
+	def resetLoginCredentials = {
+		RegistrationPublicCommand cmd ->
+			log.debug "userId : " + cmd.userId
+			log.debug "captcha - " + params
+			if(cmd.hasErrors()) {
+				flash['cmd'] = cmd
+				log.debug cmd.errors
+				redirect(action:'passwordReset')
+				return
+			}else{
+				def recaptchaOK = true
+				if (!recaptchaService.verifyAnswer(session, request.getRemoteAddr(), params)) {
+				    recaptchaOK = false
+					flash.error = "incorrect code verification"
+					log.debug "incorrect code verification"
+					redirect(action:'passwordReset')
+					return
+				}
+				recaptchaService.cleanUp(session)
+				def existingUser = GDOCUser.findByLoginName(cmd.userId)
+				if(!existingUser){
+					log.debug cmd.userId + " user was not found in the G-DOC system."
+					flash.error = cmd.userId + " user was not found in the G-DOC system."
+					redirect(action:'passwordReset')
+					return
+				}else{
+					log.debug cmd.userId + " passed reset validation"
+					def baseUrl = CH.config.grails.serverURL
+					def token = cmd.userId + "||" + System.currentTimeMillis()
+					def resetUrl = baseUrl+"/gdoc/activation/reset?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")
+					mailService.sendMail {
+					   to "$cmd.userId"
+					   from "gdoc-help@georgetown.edu"
+					   subject "Reset your G-DOC password"
+					   body 'reset your account password by clicking this link (or pasting into browser url window): '+ resetUrl + '. If you did not make this request, please notify gdoc-help@georgetown.edu via email.'
+					}
+					flash.message = cmd.userId + " Thanks for your request, you will receive instructions to complete a password reset for your account"
+					redirect(action:'passwordReset')
+					return
+				}
+			}
+	}
+	
+	def registerPublic = {
+		RegistrationPublicCommand cmd ->
+			log.debug "userId : " + cmd.userId
+			log.debug "captcha - " + params
+			if(cmd.hasErrors()) {
+				flash['cmd'] = cmd
+				log.debug cmd.errors
+				redirect(action:'publicRegistration')
+				return
+			}else{
+				def recaptchaOK = true
+				if (!recaptchaService.verifyAnswer(session, request.getRemoteAddr(), params)) {
+				    recaptchaOK = false
+					flash.error = "incorrect code verification"
+					log.debug "incorrect code verification"
+					redirect(action:'publicRegistration')
+					return
+				}
+				recaptchaService.cleanUp(session)
+				def existingUser = GDOCUser.findByLoginName(cmd.userId)
+				if(existingUser){
+					log.debug cmd.userId + " already exists as a user in the G-DOC system."
+					flash.error = cmd.userId + " already exists as a user in the G-DOC system."
+					redirect(action:'publicRegistration')
+					return
+				}else{
+					log.debug cmd.userId + " passed registration validation"
+					def baseUrl = CH.config.grails.serverURL
+					def token = cmd.userId + "||" + System.currentTimeMillis()
+					def activateUrl = baseUrl+"/gdoc/activation/newAccount?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")
+					mailService.sendMail {
+					   to "$cmd.userId"
+					   from "gdoc-help@georgetown.edu"
+					   subject "Your G-DOC access: activate now!"
+					   body 'activate your account by clicking this link (or pasting into browser url window): '+ activateUrl + '. If you did not make this request, please notify gdoc-help@georgetown.edu via email.'
+					}
+					flash.message = cmd.userId + " Thanks for your request, you will receive instructions to complete activation of your account"
+					redirect(action:'publicRegistration')
+					return
+				}
+			}
+	}
+	
 	
 	def register = { RegistrationCommand cmd ->
 		log.debug "netId : " + cmd.netId

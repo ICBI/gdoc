@@ -8,6 +8,7 @@ class WorkflowsController {
 	
     def index = { 
 		if(!session.profileLoaded){
+			def thisUser = GDOCUser.findByLoginName(session.userId)
 			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
 			log.debug studyNames
 			def myStudies = []
@@ -40,6 +41,16 @@ class WorkflowsController {
 			sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
 			session.sharedAnalysisIds = sharedAnalysisIds
 			session.dataAvailability = quickStartService.getMyDataAvailability(session.myStudies)
+			//last login
+			Date lastLogin = thisUser.lastLogin
+			if(lastLogin){
+				def formattedDate = lastLogin.format('EEE MMM d, yyyy')
+				log.debug "users last login was $formattedDate"
+				flash.message = "your last login was $formattedDate"
+				//retrieve any/all notifications from last login???
+			}
+			
+			securityService.setLastLogin(session.userId)
 			
 			session.myCollaborationGroups = myCollaborationGroups
 		

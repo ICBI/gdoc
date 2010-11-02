@@ -27,7 +27,9 @@
 </div>
 <div class="c" style="background:#fff;border:.5px solid #000;padding:3px 0;">
 	<div style="padding:5px">
-	<g:render template="/common/nav_top" />
+	<g:if test="${controllerName != 'admin'}">
+		<g:render template="/common/nav_top" />
+	</g:if>
 	
 <br/>
 <div id="bd" class="reportBody" style="clear: both;">		

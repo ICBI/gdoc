@@ -4,7 +4,7 @@ class SecurityFilters {
    def filters = {
         loginCheck(controller:'*', action:'*') {
 		 before = {
-			if(params.token) {
+			if(params.token && !controllerName.equals('activation')) {
 						String token = new String(params.token.getBytes(), "UTF-8");
 						String decryptedToken = EncryptionUtil.decrypt(token);
 						String[] info = decryptedToken.split("\\|\\|");
@@ -26,10 +26,11 @@ class SecurityFilters {
 			                return false
 						}
 						log.debug "user token authenticated"
+						return true
 			  } 
               else if(!session.userId && !controllerName.equals('home') 
 						&& !controllerName.equals('login')
-						 && !controllerName.equals('registration')
+						 && !controllerName.equals('registration') && !controllerName.equals('activation')
 							&& !controllerName.equals('contact')
 								&& !controllerName.equals('policies')) {
 				  redirect(controller:'home', action:'index')
