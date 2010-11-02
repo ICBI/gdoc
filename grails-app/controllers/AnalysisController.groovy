@@ -81,17 +81,18 @@ class AnalysisController {
 			def columns = []
 			def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
 			columns << [index: "reporterId", name: "Reporter ID", sortable: true, width: '100']
-			columns << [index: "geneSymbol", name: "Gene Symbol", sortable: false, width: '100', formatter: 'genecard', formatoptions: formatOptions]
+			columns << [index: "geneName", name: "Gene Symbol", sortable: true, width: '100', formatter: 'genecard', formatoptions: formatOptions]
 			columns << [index: "pvalue", name: "p-value", sortable: true, width: '100']
 			columns << [index: "foldChange", name: "Fold Change", sortable: true, width: '100']
 			columns << [index: "meanBaselineGrp", name: "Mean Baseline", sortable: true, width: '100']
 			columns << [index: "meanGrp1", name: "Mean Group", sortable: true, width: '100']
-			columns << [index: "meanBaselineGrp", name: "Std Baseline", sortable: true, width: '100']
-			columns << [index: "meanGrp1", name: "Std Group", sortable: true, width: '100']
+			columns << [index: "stdBaselineGrp", name: "Std Baseline", sortable: true, width: '100']
+			columns << [index: "stdGrp1", name: "Std Group", sortable: true, width: '100']
 			columns << [index: "target", name: "Target Data", sortable: true, width: '100']
 			def colNames = ["Reporter ID", "Gene Symbol", "p-value", "Fold Change", "Mean Baseline", "Mean Group", "Std Baseline", "Std Group", "Target Data"]
 			session.columnJson = columns as JSON
 			session.columnNames = colNames as JSON
+			session.resultTable = null
 		}
 		else{
 			log.debug "user CANNOT access analysis $params.id"
@@ -110,25 +111,67 @@ class AnalysisController {
 		if(endIndex > analysisResults.resultEntries.size()) {
 			endIndex = analysisResults.resultEntries.size()
 		}
-		def results = []
-		def sortedEntries = analysisResults.resultEntries.sort { r1, r2 ->
+		
+		
+		def tempResults = []
+		if(!session.resultTable) {
+			analysisResults.resultEntries.each { item ->
+				def tempItem = [:]
+				def geneName = annotationService.findGeneForReporter(item.reporterId)
+				def targetData = ""
+				if(geneName){
+					targetData = drugDiscoveryService.findTargetsFromAlias(geneName)
+					if(!targetData)
+					targetData = ""
+				}
+				tempItem.reporterId = item.reporterId
+				tempItem.geneName = geneName
+				tempItem.pvalue = item.pvalue
+				tempItem.foldChange = item.foldChange
+				tempItem.meanBaselineGrp = item.meanBaselineGrp
+				tempItem.meanGrp1 = item.meanGrp1
+				tempItem.stdBaselineGrp = item.stdBaselineGrp
+				tempItem.stdGrp1 = item.stdGrp1
+			
+				def targetLinks = []
+				if(!targetData.equals("")){
+					targetData.each{ target ->
+						def link = "<a href='/gdoc/moleculeTarget/show/"+target.id+"'>"+target+"</a>"
+						targetLinks << link
+					}
+				}
+				if(targetLinks)
+					tempItem.targetLinks = targetLinks.toString()
+				else 
+					tempItem.targetLinks = targetData
+				tempResults << tempItem
+			}
+			session.resultTable = tempResults
+		}
+		def sortedResults = session.resultTable.sort { r1, r2 ->
 			if(params.sord != 'asc') {
-				return r1[sortColumn].compareTo(r2[sortColumn])
+				if(!r1[sortColumn])
+					return -1
+				if(!r2[sortColumn])
+					return 1
+				else 
+					return r1[sortColumn].compareTo(r2[sortColumn])
 			} else {
-				return r2[sortColumn].compareTo(r1[sortColumn])
+				if(!r1[sortColumn])
+					return 1
+				if(!r2[sortColumn])
+					return -1
+				else
+					return r2[sortColumn].compareTo(r1[sortColumn])
 			}
 		}
-		sortedEntries.getAt(startIndex..<endIndex).each { result ->
+		
+		def results = []
+		
+		sortedResults.getAt(startIndex..<endIndex).each { result ->
 			def cells = []
-			def geneName = annotationService.findGeneForReporter(result.reporterId)
-			def targetData = ""
-			if(geneName){
-				targetData = drugDiscoveryService.findTargetsFromAlias(geneName)
-				if(!targetData)
-				targetData = ""
-			}
 			cells << result.reporterId
-			cells << geneName
+			cells << result.geneName
 			def sciFormatter = new DecimalFormat("0.000E0")
 			def formatter = new DecimalFormat("0.000")
 			cells << sciFormatter.format(result.pvalue).replace('E', ' x 10<sup>') + '</sup>'
@@ -137,18 +180,10 @@ class AnalysisController {
 			cells << formatter.format(result.meanGrp1)
 			cells << formatter.format(result.stdBaselineGrp)
 			cells << formatter.format(result.stdGrp1)
-			def targetLinks = []
-			if(!targetData.equals("")){
-				targetData.each{ target ->
-					def link = "<a href='/gdoc/moleculeTarget/show/"+target.id+"'>"+target+"</a>"
-					targetLinks << link
-				}
-			}
-			if(targetLinks)
-				cells << targetLinks.toString()
-			else cells << targetData
+			cells << result.targetLinks
 			results << [id: result.reporterId, cell: cells]
 		}
+
 		def jsonObject = [
 			page: currPage,
 			total: Math.ceil(analysisResults.resultEntries.size() / rows),
