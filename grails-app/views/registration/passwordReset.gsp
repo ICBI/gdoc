@@ -22,6 +22,10 @@
 <g:if test="${flash.error}">
 		<div class="errorDetail">${flash.error}</div>
 </g:if>
+
+<g:if test="${netId}">
+		<div class="errorDetail">It appears you have a netId, you cannot change your password using this page, and will need to do so via the Georgetown Help Desk</div>
+</g:if>
 	
 <fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
     <legend style="padding:7px">Password reset:</legend>

@@ -24,9 +24,13 @@ class RegistrationController {
 		log.debug "preparing to send account change request"
 		if(session.userId){
 			log.debug "$session.userId is logged in, requesting password change"
+			def netId = securityService.validateNetId(session.userId.trim(), null)
+			if(netId){
+				[netId:true]
+			}
 		}
 		else{
-			log.debug "user is noit logged in, requesting password change"
+			log.debug "user is not logged in, requesting password change"
 		}
 		
 	}
@@ -65,7 +69,7 @@ class RegistrationController {
 					   to "$cmd.userId"
 					   from "gdoc-help@georgetown.edu"
 					   subject "Reset your G-DOC password"
-					   body 'reset your account password by clicking this link (or pasting into browser url window): '+ resetUrl + '. If you did not make this request, please notify gdoc-help@georgetown.edu via email.'
+					   body 'reset your account password by clicking this link (or pasting into browser url window): \n'+ resetUrl + '. \nIf you did not make this request, please notify gdoc-help@georgetown.edu via email.'
 					}
 					flash.message = cmd.userId + " Thanks for your request, you will receive instructions to complete a password reset for your account"
 					redirect(action:'passwordReset')
@@ -108,7 +112,7 @@ class RegistrationController {
 					   to "$cmd.userId"
 					   from "gdoc-help@georgetown.edu"
 					   subject "Your G-DOC access: activate now!"
-					   body 'activate your account by clicking this link (or pasting into browser url window): '+ activateUrl + '. If you did not make this request, please notify gdoc-help@georgetown.edu via email.'
+					   body 'activate your account by clicking this link (or pasting into browser url window):\n '+ activateUrl + '. \nIf you did not make this request, please notify gdoc-help@georgetown.edu via email.'
 					}
 					flash.message = cmd.userId + " Thanks for your request, you will receive instructions to complete activation of your account"
 					redirect(action:'publicRegistration')
