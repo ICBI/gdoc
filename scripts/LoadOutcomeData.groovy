@@ -61,9 +61,15 @@ def loadOutcomeData(study, outcomeFile) {
 			def query = outcomeData[1].replaceAll('"'," ")
 			def description = outcomeData[2] 
 			if(name && query && description){
-				outcomeService.addQueryOutcome(study,name, query, description)
+				def outcomeClass = classLoader.loadClass('Outcome')
+				def results = outcomeClass.findAll("from Outcome as outcome where outcome.outcomeType = :type and outcome.studyDataSource = :study", [type:name, study:study])
+				if(results){
+					println "found existing $name data for $study.schemaName study...this run will skip loading this data."
+				}else{
+					outcomeService.addQueryOutcome(study,name, query, description)
+					println "finished loading $name data"
+				}
 			}
-			println "finished loading $name data"
 		}
 	}
 	trans.commit()	
