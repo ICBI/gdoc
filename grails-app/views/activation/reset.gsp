@@ -12,21 +12,19 @@ $(document).ready(function() {
 </g:javascript>
 
 <div class="clinicalSearch" style="width:85%;margin:0 auto">
-	
+
+<div style="width:55%;">	
 <g:if test="${flash.message}">
 		<div class="message">${flash.message}</div>
 </g:if>
-<g:if test="${params.invalidPassword}">
-		<div class="errorDetail">${params.invalidPassword}</div>
-</g:if>
+<div class="errorDetail"><g:renderErrors bean="${flash.cmd?.errors}"/></div>
+</div>
 	
 <fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
     <legend style="padding:7px">Reset password for G-DOC account:</legend>
 	<div style="padding:10px;float:left">
 		<g:form name="resetPasswordForm" action="resetPassword">
-		<div class="errorDetail">
-			<g:renderErrors bean="${flash.cmd?.errors}"/>
-		</div>
+		
 		User ID: ${userId}
 		<g:hiddenField name="userId" value="${userId}"/><br /><br />
 		Enter password: <g:passwordField name="password" id="passwordField" /><br /><br />

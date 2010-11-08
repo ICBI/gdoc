@@ -104,8 +104,12 @@
 	</target>
 	
 	<target name="signjar">
-	<signjar keystore="/opt/certificate/guGdoc2.store" alias="guGdocCert2" storepass="changeit">
-        <fileset dir="/Users/kmr75/dev/gdoc/web-app/cytoscapeJnlp" includes="*.jar"/>
+	<signjar keystore="/opt/certificate/gdocKeystore.jks" alias="gdocApp" storepass="gdocLCCC">
+		<fileset dir="/Users/kmr75/dev/gdoc/web-app/cytoscapeJnlp" includes="*.jar"/>
+        <!--fileset dir="/Users/kmr75/dev/gdoc/web-app/cytoscapeJnlp/lib" includes="*.jar"/>
+		<fileset dir="/Users/kmr75/dev/gdoc/web-app/cytoscapeJnlp/lib/build-libs" includes="*.jar"/>
+		<fileset dir="/Users/kmr75/dev/gdoc/web-app/cytoscapeJnlp/lib/build-libs/jalopy" includes="*.jar"/>
+		<fileset dir="/Users/kmr75/dev/gdoc/web-app/cytoscapeJnlp/plugins/core" includes="*.jar"/-->
     </signjar>
 	</target>
 

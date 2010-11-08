@@ -22,15 +22,28 @@
 <g:select id="userCat" from="${categoryList}" noSelection="${['null':'Select One...']}" />
 </div>
 
-<g:if test="${flash.cmd instanceof RegistrationCommand && flash.message}">
-	<div class="errorDetail">${flash.message}</div>
-</g:if>
+
 <%--div style="margin:0px auto;text-align:center;width:50%;border:1px solid gray">
 	<p style="font-size:14pt">Registration Form</p><br />
 	<span>
 		G-DOC registration has been restricted to beta-testers for the G-DOC application as of July 26, 2010. It will reopen when G-DOC formally released. 
 	</span>
 </div--%>
+
+
+<g:if test="${flash.cmd instanceof RegistrationCommand && flash.message}">
+	<div class="errorDetail" style="width:85%;margin:0 auto;">${flash.message}</div>
+</g:if>
+<g:if test="${flash.cmd instanceof RegistrationCommand && flash.error}">
+	<div class="errorDetail" style="width:85%;margin:0 auto;">${flash.message}</div>
+</g:if>
+<g:if test="${flash.cmd instanceof RegistrationPublicCommand && flash.message}">
+	<div class="errorDetail" style="width:85%;margin:0 auto;">${flash.message}</div>
+</g:if>
+<g:if test="${flash.cmd instanceof RegistrationPublicCommand && flash.error}">
+	<div class="errorDetail" style="width:85%;margin:0 auto;">${flash.message}</div>
+</g:if>
+
 
 
 <div class="clinicalSearch" id="netIdReg" style="width:85%;margin:0 auto;display:none">
@@ -40,7 +53,7 @@
 	<div style="padding:10px">
 		<g:form name="registrationForm" action="register">
 		<div class="errorDetail">
-			<g:renderErrors bean="${flash.cmd?.errors}" field="netId" />
+			<g:renderErrors bean="${flash.cmd?.errors}" />
 		</div>
 		Enter a valid Georgetown Net-Id: <g:textField name="netId" /><br /><br />
 		Select a department (optional): 
@@ -55,22 +68,13 @@
 </div>
 
 <div class="clinicalSearch" id="publicReg" style="width:85%;margin:0 auto;display:none">
-	
-	<g:if test="${flash.message}">
-			<div class="message">${flash.message}</div>
-	</g:if>
-	<g:if test="${flash.error}">
-			<div class="errorDetail">${flash.error}</div>
-	</g:if>
+
 
 	<fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
 	    <legend style="padding:7px">Request access to G-DOC:</legend>
 		<div style="padding:10px;float:left">
 			<g:form name="registrationPublicForm" action="registerPublic">
-			<div class="errorDetail">
-				<g:renderErrors bean="${flash.cmd?.errors}"/>
-			</div>
-			Enter a valid email address (userId): <g:textField name="userId" value="${flash.cmd?.userId}" /><br /><br />
+			Enter a valid email address (userId): <g:textField name="userId" /><br /><br />
 
 			<recaptcha:ifEnabled>
 			    <recaptcha:recaptcha theme="blackglass"/>
