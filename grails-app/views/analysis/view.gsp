@@ -3,10 +3,15 @@
         <meta name="layout" content="report" />
         <title>Analysis Results</title>      
 <g:javascript library="jquery"/>   
+
     </head>
     <body>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'jquery.contextmenu.css')}"/>
 	<jq:plugin name="ui"/>
 	<jq:plugin name="styledButton"/>
+	<jq:plugin name="contextmenu"/>
+	<g:javascript src="geneLink.js"/>
+	
 	<g:javascript>
 	$(document).ready( function () {
 		 // this is unfortunately needed due to a race condition in safari
@@ -45,7 +50,7 @@
 		var selectedIds = [];
 		var selectAll = false;
 		var currPage = 1;
-		
+		var kmData = ${session.endpoints};
 		$(document).ready(function(){
 			jQuery("#searchResults").jqGrid({ 
 				url:'<%= createLink(action:"results",controller:"analysis") %>', 
@@ -84,12 +89,14 @@
 											jQuery("#cb_jqg").attr('checked', true);
 										}
 									}
+									$('.linkMenu').geneLink({'advancedMenu': true, 'kmData': kmData, 'spinner': $('#GEspinner')});
 				},
 				onSortCol: function() {
 									selectAll = false;
 									selectedIds = [];
 				}
 			});
+
 			jQuery("#listAdd li").click( function() { 			
 				var s; 
 				var author = '${session.userId}'
@@ -181,7 +188,21 @@
 								<g:hiddenField name="selectAll" value="false"/>
 								<g:hiddenField name="study" value="${session.analysis.studySchemas()[0]}"/>
 								<g:submitButton name="search" value="View HeatMap for selected reporters" />
+							</g:form>
+							<g:form name="geneExpressionKm" action="submitGEPlot" controller="km">
+								<g:hiddenField name="groups" value="ALL"/>
+								<g:hiddenField name="geneName" class="geneName"/>
+								<g:hiddenField name="endpoint"/>
+								<g:hiddenField name="dataFile" value="${session.analysis.query.dataFile}" />
+								<g:hiddenField name="study" value="${session.analysis.studySchemas()[0]}"/>
 							</g:form>	
+							<g:form name="geneExpression" action="search" controller="geneExpression">
+							
+								<g:hiddenField name="groups" value="${session.analysis.query.baselineGroup + ',' + session.analysis.query.groups}"/>
+								<g:hiddenField name="geneName" class="geneName"/>
+								<g:hiddenField name="dataFile" value="${session.analysis.query.dataFile}" />
+								<g:hiddenField name="study" value="${session.analysis.studySchemas()[0]}"/>
+							</g:form>
 							<br/>
 							
 						<span id="message" class="message" style="display:none">
@@ -190,6 +211,7 @@
 							<span id="message" class="message">	${flash.reporterError}</span><br/>
 						</g:if>
 						<span id="saveSpinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
+						<span id="GEspinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/>  Submitting analysis.  Please wait....<br/><br/></span>
 				</g:if>
 				<table id="searchResults" class="scroll" cellpadding="0" cellspacing="0" style="position:absolute; z-index: 1000;"></table>
 				<div id="pager" class="scroll" style="text-align:center;height: 45px"></div>

@@ -76,12 +76,17 @@ class AnalysisController {
 			def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
 			StudyContext.setStudy(analysisResult.query["study"])
 			loadCurrentStudy()
+			def endpoints = KmAttribute.findAll()
+			def jsonEndpoints = endpoints.collect {
+				return [it.attributeDescription, it.attribute]
+			}
+			session.endpoints = jsonEndpoints as JSON
 			session.results = analysisResult.analysis.item
 			session.analysis = analysisResult
 			def columns = []
-			def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
+			//def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
 			columns << [index: "reporterId", name: "Reporter ID", sortable: true, width: '100']
-			columns << [index: "geneName", name: "Gene Symbol", sortable: true, width: '100', formatter: 'genecard', formatoptions: formatOptions]
+			columns << [index: "geneName", name: "Gene Symbol", sortable: true, width: '100']
 			columns << [index: "pvalue", name: "p-value", sortable: true, width: '100']
 			columns << [index: "foldChange", name: "Fold Change", sortable: true, width: '100']
 			columns << [index: "meanBaselineGrp", name: "Mean Baseline", sortable: true, width: '100']
@@ -125,7 +130,10 @@ class AnalysisController {
 					targetData = ""
 				}
 				tempItem.reporterId = item.reporterId
-				tempItem.geneName = geneName
+				if(geneName)
+					tempItem.geneName = "<a href='#' class='linkMenu'>" + geneName + "</a>"
+				else
+					tempItem.geneName = ''
 				tempItem.pvalue = item.pvalue
 				tempItem.foldChange = item.foldChange
 				tempItem.meanBaselineGrp = item.meanBaselineGrp

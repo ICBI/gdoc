@@ -1,8 +1,10 @@
 <g:javascript library="jquery"/>
+<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'jquery.contextmenu.css')}"/>
+<jq:plugin name="contextmenu"/>
+<g:javascript src="geneLink.js"/>
 <script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'jquery.editableText.js')}"></script>
 	<g:javascript>
 	$(document).ready(function() {
-		
 		$("[class*='_name']").each(function(index){
 			$(this).editableText({
 			          // default value
@@ -35,7 +37,6 @@
 		          }
 		       });
 		   });
-		
 	});
 	</g:javascript>
 	<table id="${userListInstance.id}_listItems">
@@ -44,7 +45,7 @@
 			<tr>
 				<td>
 					<g:if test="${userListInstance.tags.contains('gene')}">
-						<a href="http://www.genecards.org/cgi-bin/carddisp.pl?gene=${list_item.value}" target="_blank">${list_item.value}</a>
+						<a href="#" class="geneLink">${list_item.value}</a>
 						&nbsp;&nbsp;&nbsp;
 						<g:if test="${metadata}">
 							<g:if test="${metadata[list_item.id]}">
@@ -101,5 +102,4 @@
 				          }
 				       });
 				   });
-
 </g:javascript>
