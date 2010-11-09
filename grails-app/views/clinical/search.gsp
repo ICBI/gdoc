@@ -111,6 +111,13 @@
 					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
 				}
 			}); 
+			jQuery("#searchResults").jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:false, refresh: false});
+			jQuery("#searchResults").jqGrid('navButtonAdd','#pager',{
+			       caption:"Export results", 
+			       onClickButton : function () { 
+				       $('#download').submit();
+			       } 
+			});
 		});
 		
 		function selectAllItems() {
@@ -146,6 +153,8 @@
 				<g:if test="${session.study}">
 					<span id="Study" style="display:none">${session.study.schemaName}</span>
 				</g:if>
+				<g:form name="download" action="download">
+				</g:form>
 				<div style="margin:5px 5px 5px 50px">
 					<span style="vertical-align:5px"> <label for="list_name">List Name:</label>
 						<g:textField name="list_name" size="15" maxlength="15"/>

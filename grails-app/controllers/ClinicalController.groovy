@@ -289,5 +289,32 @@ class ClinicalController {
 		return errors
 	}
 	
+	def download = {
+		response.setHeader("Content-disposition", "attachment; filename=data_export.csv")
+		response.contentType = "application/octet-stream" 
+
+		def outs = response.outputStream 
+		def cols = [:] 
+		def columns = session.columns
+		
+		outs << columns.join(",") + "\n"
+		session.results.each { data ->
+			def tempData = []
+			columns.each {
+				if(it == 'GDOC ID')
+					tempData << data.id
+				else {
+					if(!data.clinicalData[it])
+						tempData << ''
+					else
+						tempData << data.clinicalData[it]
+				}
+			}
+			outs << tempData.join(",")
+		    outs << "\n"
+		}
+		outs.flush()
+		outs.close()
+	}
 	
 }

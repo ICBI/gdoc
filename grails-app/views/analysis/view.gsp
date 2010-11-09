@@ -100,7 +100,6 @@
 			jQuery("#searchResults").jqGrid('navButtonAdd','#pager',{
 			       caption:"Export results", 
 			       onClickButton : function () { 
-			           console.log("Exporting");
 				       $('#download').submit();
 			       } 
 			});
