@@ -3,14 +3,16 @@
 	var settings = {
 		'advancedMenu': false,
 		'kmForm': "#geneExpressionKm",
-		'geneExpressionForm': "#geneExpression"
+		'geneExpressionForm': "#geneExpression",
+		'multiple': false
 	};
 	var methods = {
 		init : function( options ) { 
 			if ( options ) { 
 				$.extend( settings, options );
 			}
-			$('#contextmenu').remove();
+			if(options.multiple)
+				$('#contextmenu').remove();
 			var menu = "<ul id='contextmenu' class='jqcontextmenu'>";
 			if(settings.advancedMenu) {
 				if(settings.kmData.length > 1) {

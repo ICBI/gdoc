@@ -89,14 +89,21 @@
 											jQuery("#cb_jqg").attr('checked', true);
 										}
 									}
-									$('.linkMenu').geneLink({'advancedMenu': true, 'kmData': kmData, 'spinner': $('#GEspinner')});
+									$('a[href*="geneLink"]').geneLink({'advancedMenu': true, 'kmData': kmData, 'spinner': $('#GEspinner')});
 				},
 				onSortCol: function() {
 									selectAll = false;
 									selectedIds = [];
 				}
 			});
-
+			jQuery("#searchResults").jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:false, refresh: false});
+			jQuery("#searchResults").jqGrid('navButtonAdd','#pager',{
+			       caption:"Export results", 
+			       onClickButton : function () { 
+			           console.log("Exporting");
+				       $('#download').submit();
+			       } 
+			});
 			jQuery("#listAdd li").click( function() { 			
 				var s; 
 				var author = '${session.userId}'
@@ -147,6 +154,7 @@
 				jQuery('#message').empty().hide();
 			}, 2500);
 		}
+		
 	</g:javascript>
 	<br/>
 	<p style="font-size:14pt">Analysis Results</p>
@@ -202,6 +210,8 @@
 								<g:hiddenField name="geneName" class="geneName"/>
 								<g:hiddenField name="dataFile" value="${session.analysis.query.dataFile}" />
 								<g:hiddenField name="study" value="${session.analysis.studySchemas()[0]}"/>
+							</g:form>
+							<g:form name="download" action="download">
 							</g:form>
 							<br/>
 							

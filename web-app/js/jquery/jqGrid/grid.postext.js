@@ -5,9 +5,9 @@
  * 
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
+ * http://www.gnu.org/licenses/gpl-2.0.html
 **/ 
-$.fn.extend({
+$.jgrid.extend({
 	getPostData : function(){
 		var $t = this[0];
 		if(!$t.grid) { return; }

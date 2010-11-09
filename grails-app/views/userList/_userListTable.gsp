@@ -15,7 +15,7 @@
 			$("#"+pageSpinner).css("visibility","visible");
 		}else{
 			$("#"+pageSpinner).css("visibility","hidden");
-			$('.geneLink').geneLink({'advancedMenu': false});
+			$('.geneLink').geneLink({'advancedMenu': false, 'multiple': true});
 		}
 	}
 	

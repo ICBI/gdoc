@@ -84,9 +84,9 @@ class AnalysisController {
 			session.results = analysisResult.analysis.item
 			session.analysis = analysisResult
 			def columns = []
-			//def formatOptions = [target: '_blank', baseLinkUrl: 'http://www.genecards.org/cgi-bin/carddisp.pl', showAction: '', addParam: '']
+			def formatOptions = [baseLinkUrl: 'geneLink']
 			columns << [index: "reporterId", name: "Reporter ID", sortable: true, width: '100']
-			columns << [index: "geneName", name: "Gene Symbol", sortable: true, width: '100']
+			columns << [index: "geneName", name: "Gene Symbol", sortable: true, width: '100', formatter: 'showlink', formatoptions: formatOptions]
 			columns << [index: "pvalue", name: "p-value", sortable: true, width: '100']
 			columns << [index: "foldChange", name: "Fold Change", sortable: true, width: '100']
 			columns << [index: "meanBaselineGrp", name: "Mean Baseline", sortable: true, width: '100']
@@ -130,10 +130,10 @@ class AnalysisController {
 					targetData = ""
 				}
 				tempItem.reporterId = item.reporterId
-				if(geneName)
-					tempItem.geneName = "<a href='#' class='linkMenu'>" + geneName + "</a>"
-				else
-					tempItem.geneName = ''
+				if(!geneName)
+					tempItem.geneName = ""
+				else 
+					tempItem.geneName = geneName
 				tempItem.pvalue = item.pvalue
 				tempItem.foldChange = item.foldChange
 				tempItem.meanBaselineGrp = item.meanBaselineGrp
@@ -199,5 +199,31 @@ class AnalysisController {
 			rows:results
 		]
 		render jsonObject as JSON
+	}
+	
+	def download = {
+		response.setHeader("Content-disposition", "attachment; filename=data_export.csv")
+		response.contentType = "application/octet-stream" 
+
+		def outs = response.outputStream 
+		def cols = [:] 
+		def columns = JSON.parse(session.columnJson.toString())
+		def columnData = columns.collect {
+			it.index
+		}
+		outs << JSON.parse(session.columnNames.toString()).join(",") + "\n"
+		session.resultTable.each { data ->
+			def temp = []
+			columnData.each {
+				if(!data[it])
+					temp << ''
+				else
+					temp << data[it]
+			}
+			outs << temp.join(",")
+		    outs << "\n"
+		}
+		outs.flush()
+		outs.close()
 	}
 }

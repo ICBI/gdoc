@@ -11,7 +11,7 @@
 	<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all">
 		<div class="ui-jqgrid-view">
 			<div class="ui-jqgrid-titlebar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix">
-				<a id="analysisDetailsCollapse" href="#" class="ui-jqgrid-titlebar-close">
+				<a id="analysisDetailsCollapse" href="#" class="ui-jqgrid-titlebar-close HeaderButton" style="right: 0px;">
 					<span id="detailsIcon" class="ui-icon ui-icon-circle-triangle-n"></span>
 				</a>
 				<span class="ui-jqgrid-title">Analysis Results</span>

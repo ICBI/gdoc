@@ -5,36 +5,186 @@
  * http://trirand.com/blog/ 
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
+ * http://www.gnu.org/licenses/gpl-2.0.html
 **/
-$.fn.extend({
-addSubGrid : function(t,row,pos,rowelem, iRow) {
+$.jgrid.extend({
+setSubGrid : function () {
+	return this.each(function (){
+		var $t = this, cm;
+		$t.p.colNames.unshift("");
+		$t.p.colModel.unshift({name:'subgrid',width: $.browser.safari ?  $t.p.subGridWidth+$t.p.cellLayout : $t.p.subGridWidth,sortable: false,resizable:false,hidedlg:true,search:false,fixed:true});
+		cm = $t.p.subGridModel;
+		if(cm[0]) {
+			cm[0].align = $.extend([],cm[0].align || []);
+			for(var i=0;i<cm[0].name.length;i++) { cm[0].align[i] = cm[0].align[i] || 'left';}
+		}
+	});
+},
+addSubGridCell :function (pos,iRow) {
+	var prp='',gv,sid;
+	this.each(function(){
+		prp = this.formatCol(pos,iRow);
+		gv = this.p.gridview;
+		sid= this.p.id;
+	});
+	if( gv === false ){
+		return "<td role=\"grid\" aria-describedby=\""+sid+"_subgrid\" class=\"ui-sgcollapsed sgcollapsed\" "+prp+"><a href='javascript:void(0);'><span class='ui-icon ui-icon-plus'></span></a></td>";
+	} else  {
+		return "<td role=\"grid\" aria-describedby=\""+sid+"_subgrid\" " +prp +"></td>";
+	}
+},
+addSubGrid : function(t,pos) {
 	return this.each(function(){
 		var ts = this;
 		if (!ts.grid ) { return; }
-		var td, res,_id, pID,atd, nhc, subdata, bfsc;
-		td = document.createElement("td");
-		$(td,t).html("<a href='javascript:void(0);'><span class='ui-icon ui-icon-plus'></span></a>").addClass("ui-sgcollapsed sgcollapsed")
-		.click( function(e) {
+		//-------------------------
+		var subGridCell = function(trdiv,cell,pos){
+			var tddiv = $("<td align='"+ts.p.subGridModel[0].align[pos]+"'></td>").html(cell);
+			$(trdiv).append(tddiv);
+		};
+		var subGridXml = function(sjxml, sbid){
+			var tddiv, i,  sgmap,
+			dummy = $("<table cellspacing='0' cellpadding='0' border='0'><tbody></tbody></table>"),
+			trdiv = $("<tr></tr>");
+			for (i = 0; i<ts.p.subGridModel[0].name.length; i++) {
+				tddiv = $("<th class='ui-state-default ui-th-subgrid ui-th-column ui-th-"+ts.p.direction+"'></th>");
+				$(tddiv).html(ts.p.subGridModel[0].name[i]);
+				$(tddiv).width( ts.p.subGridModel[0].width[i]);
+				$(trdiv).append(tddiv);
+			}
+			$(dummy).append(trdiv);
+			if (sjxml){
+				sgmap = ts.p.xmlReader.subgrid;
+				$(sgmap.root+" "+sgmap.row, sjxml).each( function(){
+					trdiv = $("<tr class='ui-widget-content ui-subtblcell'></tr>");
+					if(sgmap.repeatitems === true) {
+						$(sgmap.cell,this).each( function(i) {
+							subGridCell(trdiv, $(this).text() || '&#160;',i);
+						});
+					} else {
+						var f = ts.p.subGridModel[0].mapping || ts.p.subGridModel[0].name;
+						if (f) {
+							for (i=0;i<f.length;i++) {
+								subGridCell(trdiv, $(f[i],this).text() || '&#160;',i);
+							}
+						}
+					}
+					$(dummy).append(trdiv);
+				});
+			}
+			var pID = $("table:first",ts.grid.bDiv).attr("id")+"_";
+			$("#"+pID+sbid).append(dummy);
+			ts.grid.hDiv.loading = false;
+			$("#load_"+ts.p.id).hide();
+			return false;
+		};
+		var subGridJson = function(sjxml, sbid){
+			var tddiv,result , i,cur, sgmap,j,
+			dummy = $("<table cellspacing='0' cellpadding='0' border='0'><tbody></tbody></table>"),
+			trdiv = $("<tr></tr>");
+			for (i = 0; i<ts.p.subGridModel[0].name.length; i++) {
+				tddiv = $("<th class='ui-state-default ui-th-subgrid ui-th-column ui-th-"+ts.p.direction+"'></th>");
+				$(tddiv).html(ts.p.subGridModel[0].name[i]);
+				$(tddiv).width( ts.p.subGridModel[0].width[i]);
+				$(trdiv).append(tddiv);
+			}
+			$(dummy).append(trdiv);
+			if (sjxml){
+				sgmap = ts.p.jsonReader.subgrid;
+				result = sjxml[sgmap.root];
+				if ( typeof result !== 'undefined' ) {
+					for (i=0;i<result.length;i++) {
+						cur = result[i];
+						trdiv = $("<tr class='ui-widget-content ui-subtblcell'></tr>");
+						if(sgmap.repeatitems === true) {
+							if(sgmap.cell) { cur=cur[sgmap.cell]; }
+							for (j=0;j<cur.length;j++) {
+								subGridCell(trdiv, cur[j] || '&#160;',j);
+							}
+						} else {
+							var f = ts.p.subGridModel[0].mapping || ts.p.subGridModel[0].name;
+							if(f.length) {
+								for (j=0;j<f.length;j++) {
+									subGridCell(trdiv, cur[f[j]] || '&#160;',j);
+								}
+							}
+						}
+						$(dummy).append(trdiv);
+					}
+				}
+			}
+			var pID = $("table:first",ts.grid.bDiv).attr("id")+"_";
+			$("#"+pID+sbid).append(dummy);
+			ts.grid.hDiv.loading = false;
+			$("#load_"+ts.p.id).hide();
+			return false;
+		};
+		var populatesubgrid = function( rd ) {
+			var sid,dp, i, j;
+			sid = $(rd).attr("id");
+			dp = {nd_: (new Date().getTime())};
+			dp[ts.p.prmNames.subgridid]=sid;
+			if(!ts.p.subGridModel[0]) { return false; }
+			if(ts.p.subGridModel[0].params) {
+				for(j=0; j < ts.p.subGridModel[0].params.length; j++) {
+					for(i=0; i<ts.p.colModel.length; i++) {
+						if(ts.p.colModel[i].name == ts.p.subGridModel[0].params[j]) {
+							dp[ts.p.colModel[i].name]= $("td:eq("+i+")",rd).text().replace(/\&#160\;/ig,'');
+						}
+					}
+				}
+			}
+			if(!ts.grid.hDiv.loading) {
+				ts.grid.hDiv.loading = true;
+				$("#load_"+ts.p.id).show();
+				if(!ts.p.subgridtype) { ts.p.subgridtype = ts.p.datatype; }
+				if($.isFunction(ts.p.subgridtype)) {
+					ts.p.subgridtype.call(ts, dp);
+				} else {
+					ts.p.subgridtype = ts.p.subgridtype.toLowerCase();
+				}
+				switch(ts.p.subgridtype) {
+					case "xml":
+					case "json":
+					$.ajax($.extend({
+						type:ts.p.mtype,
+						url: ts.p.subGridUrl,
+						dataType:ts.p.subgridtype,
+						data: $.isFunction(ts.p.serializeSubGridData)? ts.p.serializeSubGridData(ts, dp) : dp,
+						complete: function(sxml) {
+							if(ts.p.subgridtype == "xml") {
+								subGridXml(sxml.responseXML, sid);
+							} else {
+								subGridJson($.jgrid.parse(sxml.responseText),sid);
+							}
+							sxml=null;
+						}
+					}, $.jgrid.ajaxOptions, ts.p.ajaxSubgridOptions || {}));
+					break;
+				}
+			}
+			return false;
+		};
+		var res,_id, pID,atd, nhc, subdata, bfsc;
+		$("td:eq("+pos+")",t).click( function(e) {
 			if($(this).hasClass("sgcollapsed")) {
 				pID = ts.p.id;
 				res = $(this).parent();
-				atd= pos ==1 ? '<td></td>':'';
+				atd = pos >=1 ? "<td colspan='"+pos+"'>&#160;</td>":"";
 				_id = $(res).attr("id");
 				bfsc =true;
 				if($.isFunction(ts.p.subGridBeforeExpand)) {
-					bfsc = ts.p.subGridBeforeExpand(pID+"_"+_id,_id);
+					bfsc = ts.p.subGridBeforeExpand.call(ts, pID+"_"+_id,_id);
 				}
 				if(bfsc === false) {return false;}
 				nhc = 0;
 				$.each(ts.p.colModel,function(i,v){
-					if(this.hidden === true) {nhc++;}
+					if(this.hidden === true || this.name == 'rn' || this.name == 'cb') {nhc++;}
 				});
-				subdata = "<tr class='ui-subgrid'>"+atd+"<td><span class='ui-icon ui-icon-carat-1-sw'/></td><td colspan='"+parseInt(ts.p.colNames.length-1-nhc)+"'><div id="+pID+"_"+_id+" class='tablediv'>";
+				subdata = "<tr role='row' class='ui-subgrid'>"+atd+"<td class='ui-widget-content subgrid-cell'><span class='ui-icon ui-icon-carat-1-sw'/></td><td colspan='"+parseInt(ts.p.colNames.length-1-nhc,10)+"' class='ui-widget-content subgrid-data'><div id="+pID+"_"+_id+" class='tablediv'>";
 				$(this).parent().after( subdata+ "</div></td></tr>" );
-				//$(".tablediv",ts).css("width", "98%");
 				if( $.isFunction(ts.p.subGridRowExpanded)) {
-					ts.p.subGridRowExpanded(pID+"_"+ _id,_id);
+					ts.p.subGridRowExpanded.call(ts, pID+"_"+ _id,_id);
 				} else {
 					populatesubgrid(res);
 				}
@@ -44,140 +194,14 @@ addSubGrid : function(t,row,pos,rowelem, iRow) {
 				if( $.isFunction(ts.p.subGridRowColapsed)) {
 					res = $(this).parent();
 					_id = $(res).attr("id");
-					bfsc = ts.p.subGridRowColapsed(pID+"_"+_id,_id );
-				};
+					bfsc = ts.p.subGridRowColapsed.call(ts, pID+"_"+_id,_id );
+				}
 				if(bfsc===false) {return false;}
 				$(this).parent().next().remove(".ui-subgrid");
 				$(this).html("<a href='javascript:void(0);'><span class='ui-icon ui-icon-plus'></span></a>").removeClass("sgexpanded").addClass("sgcollapsed");
 			}
 			return false;
-			});
-			row.appendChild(td);
-		ts.formatCol($(td),pos,iRow);
-		//-------------------------
-		var populatesubgrid = function( rd ) {
-			var res,sid,dp, i, j;
-			sid = $(rd).attr("id");
-			dp = {id:sid, nd_: (new Date().getTime())};
-			if(!ts.p.subGridModel[0]) { return false; }
-			if(ts.p.subGridModel[0].params) {
-				for(j=0; j < ts.p.subGridModel[0].params.length; j++) {
-					for(i=0; i<ts.p.colModel.length; i++) {
-						if(ts.p.colModel[i].name == ts.p.subGridModel[0].params[j]) {
-							dp[ts.p.colModel[i].name]= $("td:eq("+i+")",rd).text().replace(/\&nbsp\;/ig,'');
-						}
-					}
-				}
-			}
-			if(!ts.grid.hDiv.loading) {
-				ts.grid.hDiv.loading = true;
-				$("div.loading",ts.grid.hDiv).fadeIn("fast");
-				if(!ts.p.subgridtype) ts.p.subgridtype = ts.p.datatype;
-				if($.isFunction(ts.p.subgridtype)) {ts.p.subgridtype(dp);}
-				switch(ts.p.subgridtype) {
-					case "xml":
-					$.ajax({type:ts.p.mtype, url: ts.p.subGridUrl, dataType:"xml",data: dp, complete: function(sxml) { subGridXml(sxml.responseXML, sid); } });
-					break;
-					case "json":
-					$.ajax({type:ts.p.mtype, url: ts.p.subGridUrl, dataType:"json",data: dp, complete: function(JSON) { subGridJson(eval("("+JSON.responseText+")"),sid); } });
-					break;
-				}
-			}
-			return false;
-		};
-		var subGridCell = function(trdiv,cell,pos){
-			var tddiv;
-			tddiv = document.createElement("td");
-			//tddiv.className ='ui-subtblcell';
-			$(tddiv).html(cell);
-			trdiv.appendChild(tddiv);
-		};
-		var subGridXml = function(sjxml, sbid){
-			var tbl, trdiv, tddiv,result = "", i,cur, sgmap,
-			dummy = document.createElement("table");
-			tbl = document.createElement("tbody");
-			$(dummy).attr({cellSpacing:"0",cellPadding:"0",border:"0"});
-			trdiv = document.createElement("tr");
-			for (i = 0; i<ts.p.subGridModel[0].name.length; i++) {
-				tddiv = document.createElement("th");
-				tddiv.className = "ui-state-default ui-th-column";
-				$(tddiv).html(ts.p.subGridModel[0].name[i]);
-				$(tddiv).width( ts.p.subGridModel[0].width[i]);
-				trdiv.appendChild(tddiv);
-			}
-			tbl.appendChild(trdiv);
-			if (sjxml){
-				sgmap = ts.p.xmlReader.subgrid;
-				$(sgmap.root+" "+sgmap.row, sjxml).each( function(){
-					trdiv = document.createElement("tr");
-					trdiv.className="ui-widget-content ui-subtblcell";
-					if(sgmap.repeatitems === true) {
-						$(sgmap.cell,this).each( function(i) {
-							subGridCell(trdiv, $(this).text() || '&nbsp;',i);
-						});
-					} else {
-						var f = ts.p.subGridModel[0].mapping;
-						if (f) {
-							for (i=0;i<f.length;i++) {
-								subGridCell(trdiv, $(f[i],this).text() || '&nbsp;',i);
-							}
-						}
-					}
-					tbl.appendChild(trdiv);
-				});
-				var pID = $("table:first",ts.grid.bDiv).attr("id")+"_";
-				$(dummy).append(tbl);
-				$("#"+pID+sbid).append(dummy);
-				sjxml = null;
-				ts.grid.hDiv.loading = false;
-				$("div.loading",ts.grid.hDiv).fadeOut("fast");
-			}
-			return false;
-		};
-		var subGridJson = function(sjxml, sbid){
-			var tbl, trdiv, tddiv,result = "", i,cur, sgmap,
-			dummy = document.createElement("table");
-			tbl = document.createElement("tbody");
-			$(dummy).attr({cellSpacing:"0",cellPadding:"0",border:"0"});
-			trdiv = document.createElement("tr");
-			for (i = 0; i<ts.p.subGridModel[0].name.length; i++) {
-				tddiv = document.createElement("th");
-				tddiv.className = "ui-state-default ui-th-column";
-				$(tddiv).html(ts.p.subGridModel[0].name[i]);
-				$(tddiv).width( ts.p.subGridModel[0].width[i]);
-				trdiv.appendChild(tddiv);
-			}
-			tbl.appendChild(trdiv);
-			if (sjxml){
-				sgmap = ts.p.jsonReader.subgrid;
-				for (i=0;i<sjxml[sgmap.root].length;i++) {
-					cur = sjxml[sgmap.root][i];
-					trdiv = document.createElement("tr");
-					trdiv.className="ui-widget-content ui-subtblcell";
-					if(sgmap.repeatitems === true) {
-						if(sgmap.cell) { cur=cur[sgmap.cell]; }
-						for (var j=0;j<cur.length;j++) {
-							subGridCell(trdiv, cur[j] || '&nbsp;',j);
-						}
-					} else {
-						var f = ts.p.subGridModel[0].mapping;
-						if(f.length) {
-							for (var j=0;j<f.length;j++) {
-								subGridCell(trdiv, cur[f[j]] || '&nbsp;',j);
-							}
-						}
-					}
-					tbl.appendChild(trdiv);
-				}
-				var pID = $("table:first",ts.grid.bDiv).attr("id")+"_";
-				$(dummy).append(tbl);
-				$("#"+pID+sbid).append(dummy);
-				sjxml = null;
-				ts.grid.hDiv.loading = false;
-				$("div.loading",ts.grid.hDiv).fadeOut("fast");
-			}
-			return false;
-		};
+		});
 		ts.subGridXml = function(xml,sid) {subGridXml(xml,sid);};
 		ts.subGridJson = function(json,sid) {subGridJson(json,sid);};
 	});
@@ -187,7 +211,7 @@ expandSubGridRow : function(rowid) {
 		var $t = this;
 		if(!$t.grid && !rowid) {return;}
 		if($t.p.subGrid===true) {
-			var rc = $(this).getInd($t.rows,rowid,true);
+			var rc = $(this).jqGrid("getInd",rowid,true);
 			if(rc) {
 				var sgc = $("td.sgcollapsed",rc)[0];
 				if(sgc) {
@@ -202,7 +226,7 @@ collapseSubGridRow : function(rowid) {
 		var $t = this;
 		if(!$t.grid && !rowid) {return;}
 		if($t.p.subGrid===true) {
-			var rc = $(this).getInd($t.rows,rowid,true);
+			var rc = $(this).jqGrid("getInd",rowid,true);
 			if(rc) {
 				var sgc = $("td.sgexpanded",rc)[0];
 				if(sgc) {
@@ -217,7 +241,7 @@ toggleSubGridRow : function(rowid) {
 		var $t = this;
 		if(!$t.grid && !rowid) {return;}
 		if($t.p.subGrid===true) {
-			var rc = $(this).getInd($t.rows,rowid,true);
+			var rc = $(this).jqGrid("getInd",rowid,true);
 			if(rc) {
 				var sgc = $("td.sgcollapsed",rc)[0];
 				if(sgc) {
