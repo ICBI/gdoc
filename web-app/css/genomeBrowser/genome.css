@@ -604,7 +604,7 @@ div.transcript-hist {
     position: absolute;
     height: 12px;
     margin-top: -4px;
-    background-image: url('img/cds.png');
+    background-image: url('../../img/cds.png');
     background-repeat: repeat-x;
 /*  border-width: 2px 0px 3px 0px;
     border-style: solid;
