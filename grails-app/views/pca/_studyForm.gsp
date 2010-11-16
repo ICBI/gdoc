@@ -1,14 +1,38 @@
 <g:javascript src="dataSet.js"/>
-
+<jq:plugin name="flydisk" />
 <p>Select a patient list, optional reporter list, classification method, and datatype/dataset</p>
 
 <g:if test="${session.study}">
 <g:javascript>
-$(document).ready( function () {
+	$(document).ready( function () {
+		jQuery().flydisk({ selectedColor:"#eee",                       //BgColor of selected items(Default: white) 
+			left_disk:'left',                 //Id of left drop down list (Mandatory)
+			right_disk:'right',               //Id of right drop down list(Mandatory)
+			add_button: 'Add',                //Id of Add button            ,, 
+			remove_button: 'Remove',          //Id of Remove ,,           (Mandatory)  
+			up_button : 'Up',                 //Id of Up     ,,           (Optional)
+			down_button: 'Down',              //Id of Down   ,,    
+			move_all_button :'move_all',      //Id of Move  all button        ,,     
+			remove_all_button :'remove_all',  //Id of Remove  ,,              ,,
+			move_top_button   : 'move_top',   //Id of Move top button         ,,
+			move_bottom_button: 'move_bottom' //Id of Move bottom ,,          ,,
+		});
 	 	$('#analysisForm').submit(function() {
 			$('#submit').attr("disabled", "true");
  		});
+		$('.patientRadio').change(function() {
+			showGroups();
+		});
+		showGroups();
 	});
+	function showGroups() {
+		var selected = $("#patientCriteria:checked").val();
+		if(selected == 'ALL') {
+			$('#patientListCriteria').hide();
+		} else {
+			$('#patientListCriteria').show();
+		}
+	}
 
 </g:javascript>
 	
@@ -16,9 +40,8 @@ $(document).ready( function () {
 	<div class="clinicalSearch">
 		<b>Patient Criteria</b>
 		<br/>
-
-		<g:radio name="patientCriteria" checked="true"/> All Patients <br/>
-		<g:radio name="patientCriteria" disabled="true"/> Select Groups:
+		<g:radio name="patientCriteria" class="patientRadio" checked="${!flash.cmd || (flash.cmd?.patientCriteria == 'ALL')}" value="ALL"/> All Patients <br/>
+		<g:radio name="patientCriteria" class="patientRadio" checked="${flash.cmd?.patientCriteria == 'GROUPS'}" value="GROUPS" /> Select Groups:
 		<div id="patientListCriteria" style="display:none;">
 		<br/>
 		<table width="400px;">

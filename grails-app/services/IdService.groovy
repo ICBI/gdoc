@@ -3,11 +3,7 @@ class IdService {
 	def patientService
 	
 	def samplesForListName(listName) {
-		def list = UserList.findByName(listName)
-		
-		def listValues = list.listItems.collect {item ->
-			item.value.toLong()
-		}
+		def listValues = getGdocIdsForList(listName)
 		
 		return sampleNamesForGdocIds(listValues)
 	}
@@ -48,6 +44,15 @@ class IdService {
 			return gdocIds.flatten()
 		}
 		return samples
+	}
+	
+	def getGdocIdsForList(listName) {
+		def list = UserList.findByName(listName)
+		
+		def listValues = list.listItems.collect {item ->
+			item.value.toLong()
+		}
+		return listValues
 	}
 	
 	def sampleIdsForFile(fileName) {

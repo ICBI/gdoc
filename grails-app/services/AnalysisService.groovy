@@ -77,13 +77,16 @@ class AnalysisService {
 			def request = new PrincipalComponentAnalysisRequest(sess, "PCA_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
-			def allIds = idService.sampleIdsForFile(cmd.dataFile)
-			group1.addAll(allIds)
-			log.debug "group 1: " + allIds
-/*			if(cmd.reporterCriteria == 'variance' && cmd.variance)
-				request.varianceFilterValue = cmd.variance.toDouble() / 100.0
-			else if(cmd.reporterCriteria == 'foldChange' && cmd.foldChange)
-				request.foldChangeFilterValue = cmd.foldChange.toDouble()*/
+			if(cmd.patientCriteria == 'ALL') {
+				def allIds = idService.sampleIdsForFile(cmd.dataFile)
+				group1.addAll(allIds)
+			} else {
+				def ids = []
+				cmd.groups.each {
+					ids.addAll(idService.samplesForListName(it))
+				}
+				group1.addAll(ids)
+			}
 			request.sampleGroup = group1
 			if(cmd.reporterList) {
 				def reporterGroup = new ReporterGroup()

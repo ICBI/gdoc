@@ -11,6 +11,7 @@ class PcaController {
 	def userListService
 	def patientService
 	def htDataService
+	def idService
 	
     def index = {
 		if(session.study){
@@ -82,6 +83,15 @@ class PcaController {
 		def samples = []
 		def sampleHash = [:]
 		def sampleIds = []
+		def groupHash = [:]
+		
+		if(analysisResult.query.patientCriteria != 'ALL') {
+			analysisResult.query.groups.each {
+				idService.getGdocIdsForList(it).each { patientId ->
+					groupHash[patientId] = it
+				}
+			}
+		}
 		resultEntries.each {
 			def sample = [sampleId : it.sampleId, pc1: it.pc1, pc2: it.pc2, pc3: it.pc3]
 			samples << sample
@@ -106,6 +116,9 @@ class PcaController {
 				it[key] = value
 			}
 			it["patientId"] = patient.gdocId
+			if(analysisResult.query.patientCriteria != 'ALL') {
+				it["PATIENT_GROUP"] = groupHash[patient.gdocId]
+			}
 		}
 		def dataTypes = []
 		analysisResult.studySchemas().each { study ->
@@ -139,7 +152,11 @@ class PcaController {
 		def study = StudyDataSource.findBySchemaName(schemName)
 		clinicalTypes.sort { it.longName }
 		pcaResults["study"] = study.shortName
-		pcaResults["clinicalTypes"] = clinicalTypes
+		pcaResults["clinicalTypes"] = []
+		if(analysisResult.query.patientCriteria != 'ALL') {
+			pcaResults["clinicalTypes"] << [shortName: "PATIENT_GROUP", longName: "Patient Group", type: "vocab", values: analysisResult.query.groups]
+		}
+		pcaResults["clinicalTypes"].addAll(clinicalTypes)
 		pcaResults["samples"] = samples
 		log.debug pcaResults as JSON
 		render pcaResults as JSON

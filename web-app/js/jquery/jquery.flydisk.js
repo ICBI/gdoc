@@ -23,6 +23,7 @@ jQuery.fn.flydisk=function(options){
 	var remove_all_button=settings['remove_all_button'];
 	var move_top_button=settings['move_top_button'];
 	var move_bottom_button=settings['move_bottom_button'];
+		$.removeDupes('#'+left_disk, '#'+right_disk)
 	$('#'+left_disk).dblclick(function(){
 		return!$('#'+left_disk+' option:selected').remove().appendTo('#'+right_disk)
 	});
@@ -82,9 +83,15 @@ jQuery.fn.flydisk=function(options){
 			return!$('#'+right_disk+' option:selected').insertAfter($('#'+right_disk+' option:last'))
 		})
 	}
+
 };
 jQuery.sortOptions=function(selectToSort) {
 	$(selectToSort).find('option').sort(function(a,b){ 
         return a.value > b.value ? 1 : -1; 
     }).remove().appendTo(selectToSort);
+}
+jQuery.removeDupes=function(options1, options2) {
+	$(options2).find('option').each(function() {
+		$(options1).find('option[value=' + this.value + ']').remove();
+	});
 }
