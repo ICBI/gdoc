@@ -29,7 +29,7 @@ class SecurityFilters {
 						return true
 			  } 
               else if(!session.userId && !controllerName.equals('home') 
-						&& !controllerName.equals('login')
+						&& !controllerName.equals('login') && !controllerName.equals('public')
 						 && !controllerName.equals('registration') && !controllerName.equals('activation')
 							&& !controllerName.equals('contact')
 								&& !controllerName.equals('policies')) {

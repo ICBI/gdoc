@@ -4,6 +4,9 @@ import org.hibernate.criterion.Projections
 
 class UserListTests extends GroovyTestCase {
 	
+	def userListService
+	def vennService
+	
 	void testNothing(){
 		
 	}
@@ -109,40 +112,84 @@ class UserListTests extends GroovyTestCase {
 		diff.removeAll(tmp)
 		println "Difference: " + diff
 		
-	}
+	}**/
 	
 	void testVenn(){
-		def listComp1= ['VEGF','EB','Ez-','FCR','HGI']
-		println "list one: " + listComp1
-		def listComp2 = []
-		listComp2.addAll(listComp1)
-		def list2= ['VEGF','EB','SOM1','XYZ','UTY']
-		println "list two: " + list2
-		def list3= ['VEGF','EGFR','ER+','5t5t']
-		println "list three: " + list3
-		def last = []
-		last.addAll(listComp1)
+		def list1Items= ['VEGF','EB','Ez-','FCR','HGI','HER2','BRCA1','GEF']
+		def userlist1 = new UserList(name:"listA")
+		userlist1.listItems = []
+		list1Items.each{
+			def item1 = new UserListItem(value:it,list:userlist1)
+			userlist1.addToListItems(item1)
+			//println item1.value
+		}
+		//a_b = 4
+		//a_c = 3
+		//a_d = 6
 		
-		//compare 1 and 2
-		def tmp = listComp1 as Set
-		listComp1.retainAll( list2 )
-		def pct1and2 = (listComp1.size() / tmp.size())*100
-		println "pct of 1 and 2: " + pct1and2.intValue()
-		//compare 1 and 3
-		def tmp2 = listComp2 as Set
-		listComp2.retainAll( list3 )
-		def pct1and3 = (listComp2.size() / tmp2.size())*100
-		println "pct of 1 and 3: " + pct1and3.intValue()
-		//compare 2 and 3
-		def tmp3 = list2 as Set
-		list2.retainAll( list3 )
-		println "retained list2= " + list2.size() + " untouched list2 ="+ tmp3.size()
-		def pct2and3 = (list2.size() / tmp3.size())*100
-		println "pct of 2 and 3: " + pct2and3.intValue()
-		//compare 1 and 2 and 3 30,25,20,10
-		def tmp4 = last as Set
-		last.retainAll( list2 )
-		def pct1and2and3 = (last.size() / tmp4.size())*100
-		println "pct of 1 and 2 and 3: " + pct1and2and3.intValue()
-	}*/
+		def list2Items= ['VEGF','EB','SOM1','XYZ','UTY','HER2','GEF']
+		def userlist2 = new UserList(name:"list_B")
+		userlist2.listItems = []
+		list2Items.each{
+			def item2 = new UserListItem(value:it,list:userlist2)
+			userlist2.addToListItems(item2)
+			//println item2.value
+		}
+		//b_c = 2
+		//b_d = 5
+		
+		def list3Items= ['VEGF','EGFR','ER+','5t5t','HER2','BRCA1']
+		def userlist3 = new UserList(name:"listC")
+		userlist3.listItems = []
+		list3Items.each{
+			def item3 = new UserListItem(value:it,list:userlist3)
+			userlist3.addToListItems(item3)
+			//println item3.value
+		}
+		
+		//c_d= 5
+		
+		def list4Items= ['VEGF','EB','ER+','5t5t','HER2','BRCA1','SOM1','RED4','GEF','HER2','FCR']
+		def userlist4 = new UserList(name:"listD")
+		userlist4.listItems = []
+		list4Items.each{
+			def item4 = new UserListItem(value:it,list:userlist4)
+			userlist4.addToListItems(item4)
+			//println item3.value
+		}
+		
+		//a_b_c=2
+		//a_b_c_d = 2
+		
+		def allLists = []
+		allLists << userlist1
+		allLists << userlist2
+		//allLists << userlist3
+		//allLists << userlist4
+		//get intersection of a&b&c
+		def vennContainer = vennService.createIntersection2ListDictionary(allLists)
+		println vennContainer.dictionary
+		println vennContainer.vennData
+		println vennContainer.graphData
+		
+	}
+	/**
+	void testRetain(){
+		def list3Items= ['VEGF','EGFR']
+		def list4Items= ['VEGF1','EGFR1','EB','ER+','5t5t','HER2','BRCA1','SOM1','RED4','GEF','HER2','FCR']
+		if(list3Items.retainAll(list4Items)){
+			if(list3Items.size() > 0){
+				println "found intersection beetween lists"
+			}else{
+				println "no intersection beetween lists, it was set to 0"
+			}
+		}
+		else{
+			if(list3Items.size() > 0){
+				println "found intersection beetweenlists, even though no change"
+			}else{
+				println "no intersection, no change beetween lists"
+			}
+		}
+	}**/
 }

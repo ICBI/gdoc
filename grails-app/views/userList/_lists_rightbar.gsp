@@ -19,8 +19,8 @@
 				return false;
 			}
 		}else if($("#listAction option:selected").val()=='venn'){
-			if($("#userListIds option:selected").size() != 2){
-				alert("Please select 2 lists to view Venn diagram");
+			if($("#userListIds option:selected").size() > 4){
+				alert("Please select no more than 4 lists to view Venn diagram");
 				return false;
 			}else{
 				$("#listToolForm").submit();

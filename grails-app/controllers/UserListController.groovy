@@ -8,7 +8,9 @@ class UserListController {
 	def userListService
 	def exportService
 	def annotationService
+	def vennService
 	def tagService
+	def htDataService
     def index = { redirect(action:list,params:params) }
 
     def list = {
@@ -79,10 +81,57 @@ class UserListController {
 		}
 	}
 	
+	def venn = {
+		log.debug params
+		def author = GDOCUser.findByLoginName(session.userId)
+		def sortedLists = []
+		def unitedStudies = []
+		def allListsNames = []
+		sortedLists = vennService.organizeVennLists(params.ids)
+		def tags = userListService.gatherTags(params.ids)
+		def tagsString = tags.toString()
+		tagsString = tagsString.replace("[","")
+		tagsString = tagsString.replace("]","")
+		//if this is a patient list, set study
+		sortedLists.each{
+			allListsNames << it.name
+			
+		}
+		if(tags && tags.contains(Constants.PATIENT_LIST)){
+			sortedLists.each{ list ->
+				if(list.studies){
+					list.studies.each{
+						unitedStudies << it.schemaName
+					}
+				 }
+			}
+			if(unitedStudies){
+				StudyContext.setStudy(unitedStudies[0])
+				loadCurrentStudy(); 
+			}
+		}
+		else{
+			session.study = null
+		}
+		def results
+		if(sortedLists.size() == 2){
+			results = vennService.createIntersection2ListDictionary(sortedLists)
+		}
+		else if(sortedLists.size() == 3){
+			results = vennService.createIntersection3ListDictionary(sortedLists)
+		}
+		else if(sortedLists.size() == 4){
+			results = vennService.createIntersection4ListDictionary(sortedLists)
+		}
+	
+		def names = results.dictionary["names"]
+		[dictionary:results.dictionary as JSON,compartments:names as JSON,vennNumbers:results.vennData,graphData:results.graphData,allListsNames:allListsNames as JSON,tags: tagsString]
+	}
+	
 	def vennDiagram = {
 		log.debug params
 		def author = GDOCUser.findByLoginName(params.author)
-		def vennJSON = userListService.vennDiagram(params.listName,author,params.ids);
+		def vennJSON = vennService.vennDiagram(params.listName,author,params.ids);
 		def tags = userListService.gatherTags(params.ids)
 		def tagsString = tags.toString()
 		tagsString = tagsString.replace("[","")
@@ -91,7 +140,8 @@ class UserListController {
 		log.debug vennJSON
 		flash.message = null
 		def intersectedIds = parsedJSON
-		[ vennJSON: vennJSON, intersectedIds: intersectedIds, tags: tagsString]
+		//intersectedIds: intersectedIds, 
+		[ vennJSON: vennJSON, tags: tagsString]
 	}
 
 	def tools = {
@@ -110,7 +160,7 @@ class UserListController {
 			}else if(params.listAction == 'diff'){
 				userListInstance = userListService.diffLists(listName,session.userId,ids);
 			}else if(params.listAction == 'venn'){
-					redirect(action:"vennDiagram",params:[listName:listName,author:session.userId,ids:ids])
+					redirect(action:"venn",params:[listName:listName,author:session.userId,ids:ids])
 					return
 			}
 			if(userListInstance){
@@ -240,7 +290,7 @@ class UserListController {
 			it.name == params["name"]
 		}
 		if(listDup) {
-			render "List $params.name already exists"
+			render "<span class='errorDetail'>List $params.name already exists</span>"
 			return
 		}
 		log.debug "save list"
@@ -274,7 +324,7 @@ class UserListController {
 				}
 			}
 			if(ids.size > MAX_LIST_SIZE) {
-				render "List cannot be larger than ${MAX_LIST_SIZE} items."
+				render "<span class='errorDetail'>List cannot be larger than ${MAX_LIST_SIZE} items.</span>"
 				return
 			}
 		} else if(params['ids']){
@@ -311,9 +361,9 @@ class UserListController {
 		}
 		def userListInstance = userListService.createList(session.userId, params.name, ids, [StudyContext.getStudy()], tags)
         if(userListInstance) {
-				render "$params.name created succesfully"
+				render "<span class='message'>$params.name created succesfully</span>"
         } else {
-				render "Error creating $params.name list"
+				render "<span class='errorDetail'>Error creating $params.name list</span>"
         }
     }
 

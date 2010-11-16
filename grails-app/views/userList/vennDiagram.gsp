@@ -44,7 +44,7 @@
 	<br/>
 	<p style="font-size:14pt">Venn Diagram Results</p>
 	
-		<br/>	
+		<!--br/>	
 				<g:flex component="VennDiagram" width="500px" height="300px" />
 		<br /><br />
 		<g:if test="${intersectedIds.circle1.circleInt1.get(0) > 0 || !(intersectedIds.circle1.circleInt2.get(0)) ||
@@ -63,7 +63,7 @@
 			</g:if>
 			</span
 			<span class="info"style="cursor:pointer;text-decoration:underline" title="${intersectedIds.allCircles.items.flatten()}" border="0" />view</span-->
-		<p>intersection: <br />
+		<!--p>intersection: <br />
 			-all lists: ${intersectedIds.allCircles.circleInt.get(0).intValue()}% 
 			<span class="info"style="cursor:pointer;text-decoration:underline;padding-left:5px" title="${intersectedIds.allCircles.items.flatten()}" border="0" />view...</span>
 			<br />
@@ -93,7 +93,7 @@
 	</td>
 	
 	</tr></table>
-	</g:if>
+	</g:if-->
 	</body>
 	
 </hmtl>
