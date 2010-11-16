@@ -16,10 +16,26 @@ target(main: "Load High Throughput Data") {
 	
 	println "Please specify a project name:"
 	def projectName = new InputStreamReader(System.in).readLine().toUpperCase()
-	def mappingFile = new File("dataImport/${projectName}/${projectName}_biospecimen_mapping.txt")
+	
+	def optionMap = [scripts: []] 
+
+	args?.tokenize().each {  token -> 
+		def nameValue = token =~ "--?(.*)=(.*)" 
+		if (nameValue.matches()) { // this token is a name/value pair 
+			optionMap[nameValue[0][1]] = nameValue[0][2] 
+		} else { // single item token, only expecting scriptName 
+			optionMap["scripts"] << token 
+		} 
+	}
+	
+	def mappingFile
+	if(!optionMap.file)
+		mappingFile = new File("dataImport/${projectName}/${projectName}_biospecimen_mapping.txt")
+	else
+		mappingFile = new File("dataImport/${projectName}/${optionMap.file}")
 	
 	if(!mappingFile.exists()) {
-		println "Cannot find high throughput metadata file at dataImport/${projectName}/${projectName}_biospecimen_mapping.txt.  Please check the study name and try again."
+		println "Cannot find high throughput metadata file at ${mappingFile.absoluteFile}.  Please check the study name and try again."
 		return
 	}
 	def dataSourceClass = classLoader.loadClass('StudyDataSource')
