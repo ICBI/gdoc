@@ -1,5 +1,5 @@
 original_name		conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-age		staging attribute type=368	AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	"NUMBER(3,1)"	years	0	120
+age		staging attribute type=368	AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	NUMBER(3,1)	years	0	120
 gender		staging attribute type=421	GENDER	Gender	The classification of the sex or gender role of the patient.	DEMOGRAPHICAL		1	62	 C17357	1	0	1	VARCHAR2(6)			
 type		staging attribute type=362	HIST_TUMOR_TYPE	Histological tumor type	Histological tumor type	CLINICAL					1	0	1	VARCHAR			
 Lauren		new	LAUREN_CLASS	Tumor type according to Lauren Histological Classification	Tumor type according to Lauren Histological Classification	CLINICAL					1	0	1	VARCHAR2(24)			
