@@ -31,7 +31,7 @@
 			</g:if>
 			<g:else>
 				<g:if test="${session.isGdocAdmin}">
-					<input type="checkbox" name="groups" value="${group.toUpperCase}" />${group.toUpperCase()}<br />
+					<input type="checkbox" name="groups" value="${group.toUpperCase()}" />${group.toUpperCase()}<br />
 				</g:if>
 			</g:else>
 		</g:each>

@@ -269,6 +269,7 @@ class UserListController {
 		def metadata = userListService.decorateListItems(userListInstance)
        	if(userListInstance) {
 			def listItems = userListInstance.listItems
+			listItems = listItems.sort{it.value}
 			render(template:"/userList/userListDiv",model:[ userListInstance: userListInstance, listItems:listItems, metadata:metadata])
         }
         else {

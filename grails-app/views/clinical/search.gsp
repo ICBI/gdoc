@@ -161,7 +161,7 @@
 					</span>
 				<span class="bla" id="listAdd">Save Selected
 					</span><br />
-				<span id="message" class="message" style="display:none"></span>
+				<span id="message" style="display:none"></span>
 				<span id="saveSpinner" style="visibility:hidden"><img src='/gdoc/images/spinner.gif' alt='Wait'/></span>
 				</div>
 				</div>
