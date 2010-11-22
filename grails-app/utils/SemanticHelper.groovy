@@ -334,6 +334,8 @@ class SemanticHelper {
 							break;
 			case 'Mortality': labels = ["Survival past predetermined period","No Survival"]
 							  break;
+			case 'Metastasis': labels = ["No metastasis within predetermined period","Had metastasis"]
+							  break;
 			default: labels = ["No outcome defined", "No outcome defined"]
 		}
 		return labels
@@ -343,6 +345,8 @@ class SemanticHelper {
 		def labels = []
 		switch (attribute) {
 			case 'Relapse': labels = ["Relapse","No Relapse"]
+							break;
+			case 'Metastasis': labels = ["Metastasis","No Metastasis"]
 							break;
 			case 'Mortality': labels = ["Mortality","No Mortality"]
 							  break;

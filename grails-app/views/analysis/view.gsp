@@ -214,7 +214,7 @@
 							</g:form>
 							<br/>
 							
-						<span id="message" class="message" style="display:none">
+						<span id="message" style="display:none">
 						</span>
 						<g:if test="${flash.reporterError}">
 							<span id="message" class="message">	${flash.reporterError}</span><br/>
