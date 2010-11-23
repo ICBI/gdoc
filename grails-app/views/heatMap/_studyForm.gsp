@@ -26,9 +26,9 @@ $(document).ready( function () {
 	function showGroups() {
 		var selected = $("#patientList:checked").val();
 		if(selected == 'ALL') {
-			$('#patientListCriteria').hide();
+			$('#patientListCriteria').fadeOut();
 		} else {
-			$('#patientListCriteria').show();
+			$('#patientListCriteria').fadeIn();
 		}
 	}
 </g:javascript>
