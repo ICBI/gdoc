@@ -189,6 +189,7 @@
 							</div>	
 							<br/>
 							<g:form name="reporterForm" action="drawHeatMap" controller="heatMap">
+								<g:hiddenField name="groups" value="${session.analysis.query.baselineGroup + ',' + session.analysis.query.groups}"/>
 								<g:hiddenField name="dataFile" value="${session.analysis.query.dataFile}" />
 								<g:hiddenField name="reporterIds" />
 								<g:hiddenField name="fromComparison" value="true"/>

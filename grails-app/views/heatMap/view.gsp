@@ -16,6 +16,18 @@
 		<div style="padding:10px;border:1px solid black;margin:5px;background-color:#FFF9EB;width:350px;" id="hm">
 			To open the heatmap viewer, please click the button below. The viewer will open in a new window,
 			but all data interaction will still occur within your current session. <br /><br />
+			<g:if test="${session.groupLegend}">
+				<b>Legend</b>
+				<table>
+					<g:each in="${session.groupLegend}" var="item">
+						<tr>
+							<td bgcolor="${item.value}" width="20px">&nbsp;</td>
+							<td style="padding-left: 5px;">${item.key}</td>
+						</tr>
+					</g:each>
+				</table>
+				<br/>
+			</g:if>
 			<div style="margin-left:100px">
 			<APPLET CODE="edu/stanford/genetics/treeview/applet/ButtonApplet.class"
 			  archive="/gdoc/applets/treeview/TreeViewApplet.jar,/gdoc/applets/treeview/nanoxml-2.2.2.jar,/gdoc/applets/treeview/Dendrogram.jar" width=150 height=40

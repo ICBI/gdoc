@@ -10,6 +10,7 @@ class HeatMapCommand {
 	Boolean fromComparison
 	Boolean selectAll
 	String reporterIds
+	String[] groups
 	AnalysisType requestType = (AnalysisType.HEATMAP)
 	def annotationService
 	def idService
@@ -51,6 +52,14 @@ class HeatMapCommand {
 			}
 		})
 		dataFile(blank:false)
+		groups(validator: { val, obj ->
+			if(obj.patientList == 'ALL')
+				return true
+			if(!val) {
+				return "custom.size"
+			}
+			return true
+		})
 	}
 	
 }

@@ -106,15 +106,16 @@ class AnalysisService {
 			log.debug "idService: $idService"
 			request.dataFileName = cmd.dataFile
 			def group1 = new SampleGroup()
-			def allIds = idService.sampleIdsForFile(request.dataFileName)
-			log.debug "ALLIDS: $allIds"
-			if(!cmd.fromComparison && !cmd.patientList == 'ALL') {
-				def sampleIds = idService.samplesForListName(cmd.patientList)
-				allIds = allIds.intersect(sampleIds)
+			if(cmd.patientList == 'ALL') {
+				def allIds = idService.sampleIdsForFile(cmd.dataFile)
+				group1.addAll(allIds)
+			} else {
+				def ids = []
+				cmd.groups.each {
+					ids.addAll(idService.samplesForListName(it))
+				}
+				group1.addAll(ids)
 			}
-			
-			group1.addAll(allIds)
-			log.debug "group 1: " + allIds
 			request.sampleGroup = group1
 			if(cmd.geneList) {
 				def reporterGroup = new ReporterGroup()
