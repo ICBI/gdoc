@@ -8,7 +8,7 @@ ER pre treatment	new	ER_STATUS_PRE_TRE	ER status pre-treatment	ER status determi
 Nodes clinically	ATTRIBUTE_TYPE_ID=202	NODAL_STATUS	Nodal Status	Lymph node positivity for tumor cells	PATHOLOGY					1	0	1	VARCHAR2(8)			
 Grade pre treatment	new	TUMOR_GRADE_PRE_TRE	Tumor grade pre-treatment	Tumor grade determined prior to treatment	PATHOLOGY					1	0	1	VARCHAR2(20)			
 Grade post treatment	new	TUMOR_GRADE	Tumor grade 	Tumor grade 	PATHOLOGY					0	0	0	NUMBER(1)		1	8
-Size cancer pathologically	ATTRIBUTE_TYPE_ID=199	TUMOR_SIZE	Tumor size	The tumor size in centimeters	PATHOLOGY					0	0	0	NUMBER(2,1)	cm	0	9.9
+Size cancer pathologically	ATTRIBUTE_TYPE_ID=199	TUMOR_SIZE	Tumor size	The tumor size in centimeters	PATHOLOGY					0	0	0	NUMBER(2,1)	cm	0	99.9
 Lymph nodes involved	new	NODES_INVOLVED	Nodes involved	Number of nodes detected as having mets in them	PATHOLOGY					0	0	0	NUMBER(1)		0	20
 Lymph nodes involved	new	TOTAL_NODES_TESTED	Nodes tested	Total number of nodes tested	PATHOLOGY					0	0	0	NUMBER(1)		0	20
 Type of cancer	ATTRIBUTE_TYPE_ID=362	HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	CLINICAL					1	0	1	VARCHAR			
