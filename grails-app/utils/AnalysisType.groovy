@@ -4,7 +4,8 @@ public enum AnalysisType {
 	GENE_EXPRESSION,
 	KM_GENE_EXPRESSION,
 	HEATMAP,
-	PCA;
+	PCA,
+	CIN;
 
 	public String value() {
 		return name();
