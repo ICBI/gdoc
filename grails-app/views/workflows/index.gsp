@@ -138,6 +138,7 @@
 											<g:link controller="km" style="color:#336699;">KM Plots</g:link><br /><br />
 											<g:link controller="heatMap" style="color:#336699;">HeatMap Viewer</g:link><br /><br />
 											<g:link controller="pca" style="color:#336699;">Classification</g:link><br /><br />
+											<g:link controller="cin" style="color:#336699;">Chromosomal Instability Index</g:link><br /><br />
 											<span style="color:gray;text-decoration:underline">Correlations/Multi-Omics (future feature)</span><br /><br />
 											<span style="color:gray;text-decoration:underline">Pathways/Networks (future feature)</span><br />
 											

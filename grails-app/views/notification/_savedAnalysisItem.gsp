@@ -12,7 +12,11 @@
 		<g:elseif test="${notification.type == AnalysisType.HEATMAP}">
 			<g:link controller="heatMap" action="view" id="${notification.id}">${notification.type}</g:link>
 			 (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
-		</g:elseif>		
+		</g:elseif>	
+		<g:elseif test="${notification.type == AnalysisType.CIN}">
+			<g:link controller="cin" action="view" id="${notification.id}">${notification.type}</g:link>
+			 (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
+		</g:elseif>	
 		<g:else>
 			<g:link controller="geneExpression" action="view" id="${notification.id}">${notification.type}</g:link> (<g:formatDate date="${notification.dateCreated}" format="h:mm M/dd/yyyy"/> ) 
 		</g:else>

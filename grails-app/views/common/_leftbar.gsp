@@ -43,6 +43,7 @@ jQuery(document).ready(function()
 						<%--a href="#">Correlations/Multi Omics</a--%>
 						<%--a href="#">Pathways and Networks</a--%>
 						<g:link controller="heatMap">HeatMap Viewer</g:link>
+						<g:link controller="cin">Chromosomal Instability Index</g:link>
 					</li>
 			</ul>
 		<%--li>
