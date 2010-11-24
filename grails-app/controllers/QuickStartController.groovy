@@ -175,10 +175,41 @@ class QuickStartController {
 			session.tempLists << list1.id
 			session.tempLists << list2.id
 			log.debug "created or retained both lists, $list1.name, $list2.name successfully, and added ids to session: $session.tempLists"
-			redirect(controller:"analysis", action:"index", params:[baselineGroup:list1.name,groups:list2.name]) 
+			if(params.type == 'group'){
+				log.debug "do group comparison analysis from qs"
+				redirect(controller:"analysis", action:"index", params:[baselineGroup:list1.name,groups:list2.name]) 
+			}	
+			else if(params.type == 'km'){
+				log.debug "do km plot from quickstart"
+				redirect(controller:"km", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
+			}
+			else if(params.type == 'pca'){
+				log.debug "do pca plot from quickstart"
+				redirect(controller:"pca", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
+			}
+			else if(params.type == 'heatMap'){
+				log.debug "do heatmp plot from quickstart"
+				redirect(controller:"heatMap", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
+			}
+			
 		}
 		else{
-			redirect(controller:"analysis", action:"index", params:[quickstart:'true']) 
+			if(params.type == 'group'){
+				log.debug "do group comparison analysis from qs"
+				redirect(controller:"analysis", action:"index", params:[baselineGroup:list1.name,groups:list2.name]) 
+			}	
+			else if(params.type == 'km'){
+				log.debug "do km plot from quickstart"
+				redirect(controller:"km", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
+			}
+			else if(params.type == 'pca'){
+				log.debug "do pca plot from quickstart"
+				redirect(controller:"pca", action:"index", params:[baselineGroup:list1.name,grouppca:list2.name])
+			}
+			else if(params.type == 'heatMap'){
+				log.debug "do heatmp plot from quickstart"
+				redirect(controller:"heatMap", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
+			}
 		}
 		
 		return 

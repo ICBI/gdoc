@@ -15,9 +15,23 @@ class PcaController {
 	
     def index = {
 		if(session.study){
+			if(params.baselineGroup && params.groups){
+				PcaCommand cmd  = new PcaCommand();
+ 				def pcagroups = []
+			 	pcagroups << params.baselineGroup
+				pcagroups << params.groups
+				cmd.groups = pcagroups
+				cmd.patientCriteria = 'GROUPS'
+				flash.cmd = cmd
+				flash.message = " Your 2 lists, $cmd.groups have been prepopulated below for pca"
+			}
+			StudyContext.setStudy(session.study.schemaName)
+
 			session.files = htDataService.getHTDataMap()
+			session.dataSetType = session.files.keySet()
+			log.debug "my ht files for $session.study = $session.files"
 		}
-		
+		loadPatientLists()
 		loadReporterLists()
 		[diseases:getDiseases()]
 	}

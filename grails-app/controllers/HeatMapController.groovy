@@ -16,6 +16,19 @@ class HeatMapController {
 	def colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00"]
 	
     def index = {
+		if(session.study) {
+			if(params.baselineGroup && params.groups){
+				HeatMapCommand cmd  = new HeatMapCommand();
+ 				def hmgroups = []
+			 	hmgroups << params.baselineGroup
+				hmgroups << params.groups
+				cmd.groups = hmgroups
+				cmd.patientList = 'GROUPS'
+				flash.cmd = cmd
+				flash.message = " Your 2 lists, $cmd.groups have been prepopulated below for heatmap viewer"
+			}
+			StudyContext.setStudy(session.study.schemaName)
+		}
 		loadPatientLists()
 		loadReporterLists()
 		loadGeneLists()

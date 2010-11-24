@@ -11,12 +11,26 @@ class KmController {
 	def analysisService
 	def sessionFactory
 	def userListService
+	def htDataService
 	
     def index = {
 		//clinical km setup
 		def endpoints = []
 		if(session.study) {
+			if(params.baselineGroup && params.groups){
+				KmCommand cmd  = new KmCommand();
+ 				def kmgroups = []
+			 	kmgroups << params.baselineGroup
+				kmgroups << params.groups
+				cmd.groups = kmgroups
+				flash.cmd = cmd
+				flash.message = " Your 2 lists, $cmd.groups have been prepopulated below for km plot"
+			}
 			StudyContext.setStudy(session.study.schemaName)
+
+			session.files = htDataService.getHTDataMap()
+			session.dataSetType = session.files.keySet()
+			log.debug "my ht files for $session.study = $session.files"
 			session.endpoints = KmAttribute.findAll()
 			
 		}

@@ -19,11 +19,17 @@
 		});
 	 	$('#analysisForm').submit(function() {
 			$('#submit').attr("disabled", "true");
+			$('#right :option').attr("selected", "selected");
  		});
 		$('.patientRadio').change(function() {
 			showGroups();
 		});
+		$('#right :option').each(function() {
+			$("#left option[value='"+ this.value +  "']").remove();
+		});
+		$.sortOptions('#left');
 		showGroups();
+		
 	});
 	function showGroups() {
 		var selected = $("#patientCriteria:checked").val();
@@ -35,7 +41,7 @@
 	}
 
 </g:javascript>
-	
+
 	<g:form name="analysisForm" action="submit">
 	<div class="clinicalSearch">
 		<b>Patient Criteria</b>

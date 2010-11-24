@@ -18,9 +18,14 @@ $(document).ready( function () {
 	$('.patientRadio').change(function() {
 		showGroups();
 	});
+	$('#right :option').each(function() {
+			$("#left option[value='"+ this.value +  "']").remove();
+	});
+	$.sortOptions('#left');
 	showGroups();
 	 	$('#reporterForm').submit(function() {
 			$('#search').attr("disabled", "true");
+			$('#right :option').attr("selected", "selected");
  		});
 	});
 	function showGroups() {
