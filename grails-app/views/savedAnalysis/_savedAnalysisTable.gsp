@@ -44,6 +44,9 @@
 			</g:elseif>
 			<g:elseif test="${analysis.type == AnalysisType.PCA}">
 					<g:link controller="pca" action="view" id="${analysis.id}">${analysis.type}</g:link> 
+			</g:elseif>
+			<g:elseif test="${analysis.type == AnalysisType.CIN}">
+					<g:link controller="cin" action="view" id="${analysis.id}">${analysis.type}</g:link> 
 			</g:elseif>			
 			<g:elseif test="${analysis.type == AnalysisType.HEATMAP}">
 				<g:link controller="heatMap" action="view" id="${analysis.id}">${analysis.type}</g:link> 
