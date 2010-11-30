@@ -41,6 +41,15 @@ class AnnotationService {
 		return findAllReportersForGenes(listValues)
 	}
 	
+	def getReportersForGeneList(listName) {
+		def list = UserList.findByName(listName)
+		
+		def listValues = list.listItems.collect {item ->
+			item.value
+		}
+		return getAllReportersForGenes(listValues)
+	}
+	
 	def findReportersForReporterList(listName) {
 		def list = UserList.findByName(listName)
 
@@ -48,6 +57,11 @@ class AnnotationService {
 			item.value
 		}
 		return listValues
+	}
+	
+	def getReportersForReporterList(listName) {
+		def reporterIds = findReportersForReporterList(listName)
+		return findReportersByName(reporterIds)
 	}
 	
 	def findGeneByAlias(alias) {
@@ -84,6 +98,30 @@ class AnnotationService {
 			}
 		}
 		def results = QueryUtils.paginateResults(genes, queryClosure)
+		log.debug "GOT ${results.size} reporters"
+		return results
+	}
+	
+	def getAllReportersForGenes(genes) {
+		def queryClosure = { tempIds -> 
+			def c = Reporter.createCriteria()
+			return c.listDistinct {
+				'in'("geneSymbol", tempIds)
+			}
+		}
+		def results = QueryUtils.paginateResults(genes, queryClosure)
+		log.debug "GOT ${results.size} reporters"
+		return results
+	}
+	
+	def findReportersByName(reporters) {
+		def queryClosure = { tempIds -> 
+			def c = Reporter.createCriteria()
+			return c.listDistinct {
+				'in'("name", tempIds)
+			}
+		}
+		def results = QueryUtils.paginateResults(reporters, queryClosure)
 		log.debug "GOT ${results.size} reporters"
 		return results
 	}

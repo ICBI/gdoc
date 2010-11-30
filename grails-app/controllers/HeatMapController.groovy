@@ -2,6 +2,7 @@ import grails.converters.*
 import java.text.*
 import java.math.*
 import gov.nih.nci.caintegrator.analysis.messaging.HeatMapResult
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 @Mixin(ControllerMixin)
 class HeatMapController {
@@ -123,41 +124,66 @@ class HeatMapController {
 			if(params.name){
 				byte[] fileBytes
 				if(params.name.indexOf('.cdt') > 1) {
+					def colorPatients = false
+					def dataRow = 3
 					def groups = session.analysis.query.groups
+					def idColorMap = [:]
 					if(session.analysis.query.patientList != 'ALL' && groups && groups.size() > 0) {
-						def idColorMap = [:]
+						dataRow = 4
+						colorPatients = true
 						groups.each { group ->
 							def samples = idService.samplesForListName(group)
 							samples.each { sample ->
 								idColorMap[sample] = session.groupLegend[group]
 							}
 						}
-						byte[] bytes  = result.cdtFile
-						InputStream inputStream = new ByteArrayInputStream(bytes);
-						def input  = new BufferedReader(new InputStreamReader(inputStream))
-						def byteOut = new ByteArrayOutputStream() 
-						def columns
-						def colors
-						input.eachLine { line, number ->
-							if(number == 1) {
-								columns = line.split("\t")
-								colors = new String[columns.length]
-							}
-							if(number == 3) {
-								colors[0] = "BGCOLOR"
-								(4..<columns.length).each {
-									colors[it] = idColorMap[columns[it]]
-								}
-								def colorLine = colors.join('\t') + "\n"
-								byteOut << colorLine.getBytes()
-							}
-							def temp = line + "\n"
-							byteOut << temp.getBytes()
-						}
-						fileBytes = byteOut.toByteArray()
+					}	
+					def reporters
+					if(session.analysis.query.reporterIds != JSONObject.NULL) {
+						def reporterIds = cleanIds(session.analysis.query.reporterIds)
+						reporters = annotationService.findReportersByName(reporterIds)
 					} else {
-						fileBytes = result.cdtFile
+						log.debug "QUERY ${session.analysis.query}"
+						if(session.analysis.query.reporterList && session.analysis.query.reporterList != JSONObject.NULL) {
+							reporters = annotationService.getReportersForReporterList(session.analysis.query.reporterList)
+						} else {
+							reporters = annotationService.getReportersForGeneList(session.analysis.query.geneList)
+						}
 					}
+					def reporterMap = [:]
+					reporters.each {
+						reporterMap[it.name] = it.geneSymbol
+					}
+					log.debug "REPORTERS ${reporterMap}"
+					byte[] bytes  = result.cdtFile
+					InputStream inputStream = new ByteArrayInputStream(bytes);
+					def input  = new BufferedReader(new InputStreamReader(inputStream))
+					def byteOut = new ByteArrayOutputStream() 
+					def columns
+					def colors
+					input.eachLine { line, number ->
+						if(number == 1) {
+							columns = line.split("\t")
+							colors = new String[columns.length]
+						}
+						if(colorPatients && (number == 3)) {
+							colors[0] = "BGCOLOR"
+							(4..<columns.length).each {
+								colors[it] = idColorMap[columns[it]]
+							}
+							def colorLine = colors.join('\t') + "\n"
+							byteOut << colorLine.getBytes()
+						}
+						if(number >= dataRow) {
+							def tempLine = line.split("\t")
+							if(reporterMap[tempLine[1]])
+								tempLine[2] = reporterMap[tempLine[1]]
+							line = tempLine.join("\t")
+						}
+						def temp = line + "\n"
+						byteOut << temp.getBytes()
+					}
+					fileBytes = byteOut.toByteArray()
 				}
 				if(params.name.indexOf('.gtr') > 1)
 					fileBytes = result.gtrFile
@@ -177,5 +203,15 @@ class HeatMapController {
 	}
 	
 	
-	
+	private List cleanIds(ids) {
+		def cleanedIds = []
+		if(ids){
+			ids.tokenize(",").each{
+				it = it.replace('[','');
+				it = it.replace(']','');
+				cleanedIds << it
+			}
+		}
+		return cleanedIds		
+	}
 }
