@@ -190,7 +190,7 @@ class HeatMapController {
 				if(params.name.indexOf('.atr') > 1)
 					fileBytes = result.atrFile
 				if(params.name.indexOf('.jtv') > 1)
-					fileBytes = "<DocumentConfig></DocumentConfig>".getBytes()
+					fileBytes = '<DocumentConfig><UrlExtractor/><ArrayUrlExtractor/><MainView><ColorExtractor><ColorSet/></ColorExtractor><ArrayDrawer/><GlobalXMap><FixedMap type="Fixed"/><FillMap type="Fill"/><NullMap type="Null"/></GlobalXMap><GlobalYMap><FixedMap type="Fixed"/><FillMap type="Fill"/><NullMap type="Null"/></GlobalYMap><ZoomXMap><FixedMap type="Fixed"/><FillMap type="Fill"/><NullMap type="Null"/></ZoomXMap><ZoomYMap><FixedMap type="Fixed"/><FillMap type="Fill"/><NullMap type="Null"/></ZoomYMap><TextView><TextView><GeneSummary/></TextView><TextView><GeneSummary/></TextView><TextView><GeneSummary/></TextView><TextView><GeneSummary included="1,2"/></TextView><Selection index="1"/><Selection index="2"/><Dividers Position0="79" Position1="50" Position2="50"/></TextView></MainView><GeneListMaker/></DocumentConfig>'.getBytes()
 				response.outputStream << fileBytes
 			}
 		}catch(java.io.FileNotFoundException fnf){
