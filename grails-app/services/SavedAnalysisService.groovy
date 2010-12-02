@@ -66,7 +66,7 @@ class SavedAnalysisService {
 		log.debug notification.item.taskId
 		def params = command.properties
 		log.debug params
-		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType', 'idService'] as Set )
+		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType', 'idService', 'userListService'] as Set )
 		def json = params as JSON
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user, status: notification.status, taskId: notification.item.taskId)
 		def study = StudyDataSource.findBySchemaName(command.study)
