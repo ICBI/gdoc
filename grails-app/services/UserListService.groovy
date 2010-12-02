@@ -428,5 +428,14 @@ def listIsTemporary(listName,author){
 	return false
 }	
 
+	def doListsOverlap(listOne, listTwo) {
+		def one = UserList.findByName(listOne) 
+		def two = UserList.findByName(listTwo)
+		def itemsOne = one.listItems.collect { it.value }
+		def itemsTwo = two.listItems.collect { it.value }
+		itemsOne.retainAll(itemsTwo)
+		log.debug("ITEMS: ${itemsOne}")
+		return !itemsOne.isEmpty()
+	}
 
 }

@@ -1,3 +1,4 @@
+@Mixin(ValidatorMixin)
 class AnalysisCommand {
 	
 	String baselineGroup
@@ -9,10 +10,14 @@ class AnalysisCommand {
 	String statisticalMethod
 	String adjustment
 	AnalysisType requestType = (AnalysisType.CLASS_COMPARISON)
+	def userListService
 	
 	static constraints = {
 		baselineGroup(blank:false)
-		groups(blank:false)
+		groups(blank:false, validator: {val, obj ->
+			if(obj.baselineGroup && doListsOverlap(obj.userListService, obj.baselineGroup, val))
+				return "custom.overlap"
+		})
 		dataFile(blank:false)
 		pvalue(blank:false, validator: {val, obj ->
 			if(!val.isDouble()) {
