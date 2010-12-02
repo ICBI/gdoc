@@ -1,4 +1,3 @@
-@Mixin(ValidatorMixin)
 class AnalysisCommand {
 	
 	String baselineGroup
@@ -15,7 +14,7 @@ class AnalysisCommand {
 	static constraints = {
 		baselineGroup(blank:false)
 		groups(blank:false, validator: {val, obj ->
-			if(obj.baselineGroup && doListsOverlap(obj.userListService, obj.baselineGroup, val))
+			if(obj.baselineGroup && obj.userListService.doListsOverlap(obj.baselineGroup, val))
 				return "custom.overlap"
 		})
 		dataFile(blank:false)
