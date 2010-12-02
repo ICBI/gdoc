@@ -12,5 +12,5 @@ class Sample {
 	static belongsTo = Biospecimen
 	Biospecimen biospecimen
 	String designType
-	HtDesign design
+	ArrayDesign design
 }

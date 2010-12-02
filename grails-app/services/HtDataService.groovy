@@ -101,7 +101,7 @@ class HtDataService {
 		def htTypes = []
 		def arrayTypes = []
 		htTypes << "CLINICAL"
-		arrayTypes = HtDesign.findAll()
+		arrayTypes = ArrayDesign.findAll()
 		if(arrayTypes){
 			if(arrayTypes.metaClass.respondsTo(arrayTypes,"max")){
 				htTypes.addAll(arrayTypes.collect{it.arrayType} as Set)

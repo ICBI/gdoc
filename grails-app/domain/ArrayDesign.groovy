@@ -9,4 +9,5 @@ class ArrayDesign {
 	static hasMany = [reporters:Reporter]
 
 	String platform
+	String arrayType
 }
