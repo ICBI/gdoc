@@ -160,4 +160,26 @@ class HtDataService {
 				log.debug peak.errors
 		}
 	}
+	
+	def loadArrayDesign(params) {
+		def design = new ArrayDesign(params)
+		if(!design.save())
+			log.error design.errors
+		return design
+	}
+	
+	def loadReportersForDesign(platformName, reporters) {
+		def design = ArrayDesign.findByPlatform(platformName)
+		if(!design)
+			throw new Exception("Platform not found")
+		reporters.each {
+			def reporter = new Reporter(it)
+			reporter.addToArrayDesigns(design)
+			design.addToReporters(reporter)
+			if(!reporter.save()) {
+				log.error reporter.errors
+				throw new Exception("Error saving reporters.")
+			}
+		}
+	}
 }

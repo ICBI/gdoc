@@ -1,0 +1,3 @@
+REPORTER ID	GENE SYMBOL
+test_reporter_1	EGFR
+test_reporter_22333	RECA
