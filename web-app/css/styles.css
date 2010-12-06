@@ -384,3 +384,60 @@ p
 	-moz-border-radius:12px; 
 	-webkit-border-radius:12px;
 }
+
+#cin-heatmap-view-container {
+	position: relative;
+}
+
+#cin-heatmap-container {
+	float: left;
+}
+
+#cin-heatmap-view-container img.map {
+	position: relative;
+	z-index: 100;
+}
+
+#cin-heatmap-view-container img.chr {
+	display: none;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	z-index: 20;
+}		
+
+#cin-heatmap-view-container img.chrBg {
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	z-index: 19;
+}
+
+#cin-cytobands-container {
+	float: left;
+}
+
+#cin-cytobands-container ul {
+	display: none;
+}
+
+#cin-cytobands-container ul.selected {
+	display: inline;
+}
+
+#cin-cytobands-container ul li {
+	list-style-type: none;
+}
+
+#cin-cytobands-container .selected-list ul li {
+	list-style-type: none;
+}
+
+#cin-chr-selector{
+position:absolute;
+top:0;
+left:0;
+border:#FBB917 solid 5px;
+display:none;
+z-index:21;
+}
