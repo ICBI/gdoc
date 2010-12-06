@@ -176,10 +176,10 @@ class HtDataService {
 			def reporter = new Reporter(it)
 			reporter.addToArrayDesigns(design)
 			design.addToReporters(reporter)
-			if(!reporter.save()) {
-				log.error reporter.errors
-				throw new Exception("Error saving reporters.")
-			}
+		}
+		if(!design.save()) {
+			log.error design.errors
+			throw new Exception("Error saving reporters.")
 		}
 	}
 }

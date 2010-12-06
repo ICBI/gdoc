@@ -75,7 +75,10 @@ def loadReporters(arrayName, reporterFile) {
 			def data = line.split('\t')
 			def params = [:]
 			params.name = data[0]
-			params.geneSymbol = data[1]
+			if(data.length < 2)
+				params.geneSymbol = ""
+			else 
+				params.geneSymbol = data[1]
 			params.insertUser = "load user"
 			params.insertMethod = "load-array-design"
 			params.insertDate = new Date()
