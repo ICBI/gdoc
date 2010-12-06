@@ -7,6 +7,7 @@ class PublicController {
 	def summaryService
 	
     def findings = { 
+	    log.debug "accessing findings"
 		def findings = findingService.getAllFindings()
 		def abbrFindings = []
 		findings.each{finding ->
@@ -28,6 +29,7 @@ class PublicController {
 	}
 	
 	def dataAvailable = {
+		log.debug "accessing da"
 		def diseaseBreakdown = [:]
 		def dataBreakdown = [:]
 		def totalPatient = 0

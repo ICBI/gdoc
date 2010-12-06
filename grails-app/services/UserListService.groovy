@@ -5,14 +5,31 @@ class UserListService{
 def securityService
 def drugDiscoveryService
 	
-	def getPaginatedLists(filter,sharedIds,offset,userId){
-		def pagedLists = []
-		if(filter == "all"){
-			pagedLists = getAllLists(sharedIds,offset,userId)
-		}else if(filter == "hideShared"){
+	def getPaginatedLists(filter,sharedIds,offset,userId,searchTerm){
+		def pagedLists = [:]
+		log.debug "get paginated lists"
+		switch (filter) {
+		   case "hideShared":
 			pagedLists = getUsersLists(offset,userId)
-		}else{
-			pagedLists = getUsersListsByTimePeriod(filter,offset,userId)
+		   break;
+		   case "all":
+			pagedLists = getAllLists(sharedIds,offset,userId)
+		   break;
+		   case ['1','7','30','90','180']:
+            pagedLists = getUsersListsByTimePeriod(filter,offset,userId)
+		   break;
+		   case ['gene','patient','reporter']:
+			pagedLists = filterByType(filter,sharedIds,userId,offset)
+		    break;
+		   case ['my_gene','my_patient','my_reporter']:
+		    filter = filter.split("_")
+			pagedLists = filterByType(filter[1],null,userId,offset)
+			break;
+		   case "onlyShared":
+			pagedLists = getSharedListsOnly(sharedIds,offset)
+		  	log.debug "only shared"
+		    break;
+		   default: pagedLists = getUsersLists(offset,userId)
 		}
 		return pagedLists
 	}
@@ -27,6 +44,31 @@ def drugDiscoveryService
             log.debug "did not delete list $listId"
         }
     }
+
+	def getSharedListsOnly(sharedIds,offset){
+		def pagedLists = [:]
+		def results = []
+		def count = 0
+		if(sharedIds){
+			def ids =[]
+			sharedIds.each{
+				ids << new Long(it)
+			}
+			String listHQL = "SELECT distinct list FROM UserList list " + 
+			"WHERE list.id IN (:ids) " +
+			"ORDER BY list.dateCreated desc"
+			results = UserList.executeQuery(listHQL,[ids:ids, max:10, offset:offset])
+			pagedLists["results"] = results
+			String listHQL2 = "SELECT count(distinct list.id) FROM UserList list " + 
+			"WHERE list.id IN (:ids) "
+			count = UserList.executeQuery(listHQL2,[ids:ids])
+			pagedLists["count"] = count
+			log.debug "only shared lists -> $pagedLists as Paged set"
+		}else{
+			log.debug "no shared lists"
+		}
+		return pagedLists
+	}
 	
 	def getUsersLists(offset,user){
 		def pagedLists = [:]
@@ -176,9 +218,57 @@ def drugDiscoveryService
 		return pagedLists
 	}
 	
+	def filterByType(tag,sharedIds, userName,offset){
+		def pagedLists = [:]
+		def ids = []
+		def results = []
+		def count = 0
+		if(sharedIds){
+			sharedIds.each{
+				ids << new Long(it)
+			}
+		}
+		if(ids){
+			log.debug "FILTER! pulling offset is $offset"
+			def listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND (author.loginName = :loginName " +
+			"OR list.id IN (:ids)) " + 
+			"AND tagLink.tag.name = :tag " +
+			"ORDER BY list.name"
+			results = UserList.executeQuery(listHQL, [tag: tag, ids:ids, loginName: userName,max:10, offset:offset])
+			pagedLists["results"] = results
+			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,TagLink tagLink JOIN list.author author " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND (author.loginName = :loginName " +
+			"OR list.id IN (:ids)) " + 
+			"AND tagLink.tag.name = :tag "
+			count = UserList.executeQuery(listCountHQL,[tag: tag, ids:ids, loginName: userName])
+			pagedLists["count"] = count
+			log.debug "paged lists $pagedLists"
+		}
+		else{
+			def listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND tagLink.tag.name = :tag " +
+			"AND author.loginName = :loginName " +
+			"ORDER BY list.name"
+			results = UserList.executeQuery(listHQL, [tag: tag, loginName: userName,max:10, offset:offset])
+			pagedLists["results"] = results
+			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,TagLink tagLink JOIN list.author author " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND author.loginName = :loginName " + 
+			"AND tagLink.tag.name = :tag "
+			count = UserList.executeQuery(listCountHQL,[tag: tag, loginName: userName])
+			pagedLists["count"] = count
+		}
+		return pagedLists
+	}
+	
 	def getListsByTag(tag,sharedIds, userName){
 		def ids = []
 		def taggedLists = []
+		def pagedLists = [:]
 		if(sharedIds){
 			sharedIds.each{
 				ids << new Long(it)
@@ -203,7 +293,6 @@ def drugDiscoveryService
 			taggedLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName])
 		}
 		return taggedLists
-		
 	}
 	
 	def getListsByTagAndStudy(tag,study,sharedIds,userName){

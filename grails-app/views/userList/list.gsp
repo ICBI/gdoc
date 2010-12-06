@@ -88,7 +88,7 @@
 			<span style="display:none" class="ajaxController">userList</span>	
 			
 			<g:if test="${session.listFilter}">
-				<span style="font-size:12px">total: ${allLists}&nbsp;&nbsp; |filter: ${session.listFilter} |</span>
+				<span style="font-size:12px">total: ${allLists}&nbsp;&nbsp; </span>
 			</g:if>
 			<br/>
 			<span id="message" class="message" style="display:none"></span>
