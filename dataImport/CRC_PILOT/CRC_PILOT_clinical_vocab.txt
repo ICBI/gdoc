@@ -25,7 +25,7 @@ NEOADJ_RADIATION	YES	YES		Neoadjuvant radiation received
 NEOADJ_RADIATION	NO	NO		Neoadjuvant radiation not received
 NEOADJ_HORMONE_TH	YES	YES		Neoadjuvant hormone therapy received
 NEOADJ_HORMONE_TH	NO	NO		Neoadjuvant hormone therapy not received
-DISEASE_LOCALIZATION	LEFT_FIXTURE	Left fixture		Left fixture
+DISEASE_LOCALIZATION	LEFT_FLEXURE	Left fixture		Left fixture
 DISEASE_LOCALIZATION	SIGMOID_COLON	sigmoid colon		sigmoid colon
 DISEASE_LOCALIZATION	TRANSVERSE_COLON	transverse colon		transverse colon
 DISEASE_LOCALIZATION	ASCENDING_COLON	ascending colon		ascending colon
