@@ -142,6 +142,7 @@ class AnalysisService {
 			def request = new ChromosomalInstabilityIndexRequest(sess, "CIN_" + System.currentTimeMillis())
 			request.dataFileName = cmd.dataFile
 			request.cytobandsDataFileName = cmd.cytobandsDataFile
+			request.cytobandsAnnotationFileName = cmd.cytobandsAnnotationFile
 			def group1 = new SampleGroup(cmd.groups)
 			log.debug "my baselineGroup is $cmd.groups"
 			def samples = idService.samplesForListName(cmd.groups)

@@ -16,13 +16,11 @@ class CinController {
             if (session.study.hasCopyNumberData()) {
 				session.files = htDataService.getCINDataMap()
 				session.dataSetType = session.files.keySet()
-				//session.df = new ArrayList(session.files.values()).get(0)
 				session.df = session.files.values().toArray()[0][1]
 				session.cdf = session.files.values().toArray()[0][0]
 				log.debug "my ht files for $session.study = $session.files $session.df $session.cdf"
 			}
 		}
-		//loadPatientLists()
 		return [diseases:getDiseases(),myStudies:session.myStudies, params:params]
 	}
 	
@@ -75,7 +73,6 @@ class CinController {
 					fileBytes = result.cinFiles.get(chr)
 				}
 				if(params.name.indexOf('heatmap') >= 0)
-					//fileBytes = result.heatMapFile
 					fileBytes = result.cinFiles.get('heatmap')
 				response.outputStream << fileBytes
 			}

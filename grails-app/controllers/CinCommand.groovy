@@ -3,6 +3,7 @@ class CinCommand {
 	String study
 	String dataFile
 	String cytobandsDataFile
+	String cytobandsAnnotationFile = "hg18_annot.Rda"
 	String baselineGroup
 	String groups
 	AnalysisType requestType = (AnalysisType.CIN)
