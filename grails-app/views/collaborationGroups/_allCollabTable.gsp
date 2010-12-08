@@ -3,7 +3,7 @@
 	To request access, select the option under the group you wish to join.</span>
 <table class="studyTable" style="font-size:1.05em;width:450px">
 	<tr><th>Group Name</th>
-		<th>Members</th>
+		<!--th>Members</th-->
 	</tr>
 <g:if test="${allMemberships}">						
 <g:each in="${allMemberships}" var="allMembership">
@@ -12,7 +12,7 @@
 <td valign="top">${allMembership.name}<br />
 <span style="padding-bottom:8px"><g:link action="requestAccess" controller="collaborationGroups" onclick="return confirm('Are you sure?');" params="[collaborationGroupName:allMembership.name]">request access?</g:link></span>
 </td>
-<td style="width:55%" valign="top">
+<!--td style="width:55%" valign="top">
 	<g:if test="${allMembership.users}">
 <a href="#" id="${allMembership.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${allMembership.id}_usersDiv','${allMembership.id}_showHide');return false;">Show users</a></g:if>
 	<g:else>no users have been added to this group</g:else>
@@ -28,7 +28,7 @@
 			no users in this group
 		</g:else>
 	</div>
-</td>
+</td-->
 </tr>
 </g:each>
 </g:if>

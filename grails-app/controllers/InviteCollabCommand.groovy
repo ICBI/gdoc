@@ -5,7 +5,7 @@ class InviteCollabCommand {
 	
 	static constraints = {
 		users(validator: { val, obj ->
-			if(!val) {
+			if(!val || val[0] == "") {
 				return "custom.size"
 			}
 			else{

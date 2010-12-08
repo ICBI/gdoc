@@ -1,6 +1,6 @@
 <html>
     <head>
-        <meta name="layout" content="maxSpaceLayout" />
+        <meta name="layout" content="workflowsLayout" />
 
 	<g:javascript library="jquery"/>
 	<jq:plugin name="ui"/>

@@ -81,6 +81,32 @@ class SearchController {
 		
 	}
 	
+	def userAutocomplete = {
+		log.debug params
+		def searchResult = []
+		if (!params.q?.trim()) { 
+			render ""
+		}else{
+			 try { 
+				def terms = []
+				terms << GDOCUser.termFreqs("firstName")
+				terms << GDOCUser.termFreqs("lastName")
+				terms << GDOCUser.termFreqs("loginName")
+				terms.flatten().each{
+					if(it.term.contains(params.q.trim()))
+						searchResult << it.term
+				}
+				log.debug searchResult
+				render searchResult as JSON
+			 } catch (SearchEngineQueryParseException ex) { 
+				log.debug ex
+				render ""
+			 }
+		}
+		
+	}
+	
+	
 	def gatherTermFreqs(query){
 		def searchResult = []
 		try { 

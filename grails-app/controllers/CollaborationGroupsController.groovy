@@ -1,3 +1,5 @@
+import grails.converters.*
+
 class CollaborationGroupsController {
 	def collaborationGroupService
 	def securityService
@@ -5,6 +7,7 @@ class CollaborationGroupsController {
 	def userListService
 	def quickStartService
 	def savedAnalysisService
+	def searchResults
 	
 	def reloadMembershipAndStudyData(){
 			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
@@ -76,7 +79,8 @@ class CollaborationGroupsController {
 		if(manMem){
 			manMem = manMem as Set
 			manMem = manMem as List
-			manMem.sort{it.name}	
+			manMem.sort{it.name}
+			session.managedMemberships	= manMem
 		}
 			
 		def otherMem = []
@@ -111,6 +115,7 @@ class CollaborationGroupsController {
 				if(pg){
 					flash.message = cmd.collaborationGroupName + " has been created. To invite users, select the invite users tab."
 					session.myCollaborationGroups << cmd.collaborationGroupName
+					session.managedMemberships << cmd.collaborationGroupName
 					redirect(action:"index")
 				}
 			}catch(DuplicateCollaborationGroupException de){
@@ -129,7 +134,8 @@ class CollaborationGroupsController {
 	def inviteUsers = {InviteCollabCommand cmd ->
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
-			redirect(action:'index')
+			redirect(action:'showUsers')
+			return
 		} else{
 			flash['cmd'] = cmd
 			def existingUsers = []
@@ -141,20 +147,157 @@ class CollaborationGroupsController {
 				}
 				log.debug "$exUserString already exist(s) in the group" + cmd.collaborationGroupName 
 				flash.message = "$exUserString already exists in the " + cmd.collaborationGroupName  + " group. No users added to group."
-				redirect(uri:"/collaborationGroups/index")
+				redirect(uri:"/collaborationGroups/showUsers")
+				return;
 			}
 			else{
+				def usrs = []
+				if(cmd.users[0] == 'allUsers'){
+					session.uresults.each {
+						usrs << it.loginName
+					}
+					flash.message = "An invitation has been sent to all users to join the " + cmd.collaborationGroupName + " collaboration group."
+				}else{
+					usrs = cmd.users
+					flash.message = "An invitation has been sent to $usrs to join the " + cmd.collaborationGroupName + " collaboration group."
+				}
 				def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
 				if(manager && (manager.loginName == session.userId)){
-					cmd.users.each{ user ->
+					usrs.each{ user ->
 						if(invitationService.requestAccess(manager.loginName,user,cmd.collaborationGroupName))
 							log.debug session.userId + " invited user $user to " + cmd.collaborationGroupName 
 						}
 				}
-				flash.message = "An invitation has been sent to join the " + cmd.collaborationGroupName + " collaboration group."
-				redirect(action:"index")
+				redirect(action:"showUsers")
+				return;
 			}
 		}
+		redirect(action:"showUsers")
+		return;
+	}
+	
+	
+	def showUsers = {
+		log.debug params.userId
+		def users
+		if(params.userId){
+			 users = GDOCUser.createCriteria().list()
+				{
+					projections{
+						property('loginName')
+						property('firstName')
+						property('lastName')
+						property('email')
+						property('organization')
+					}
+					and{
+						'order'("loginName", "asc")
+					}
+					or {
+						ilike("loginName", "%"+params.userId+"%")
+						ilike("lastName", params.userId)
+					}
+				}
+		}else{
+			users = GDOCUser.createCriteria().list()
+				{
+					projections{
+						property('loginName')
+						property('firstName')
+						property('lastName')
+						property('email')
+						property('organization')
+					}
+					and{
+						'order'("loginName", "asc")
+					}
+				}
+		}
+		def columns = []
+		columns << [index: "loginName", name: "User Id", sortable: true, width: '70']
+		def columnNames = ["firstName","lastName","email","organization"]
+		def userListings = []
+		users.each{
+			def userMap = [:]
+			userMap["loginName"] = it[0]
+			userMap["firstName"] = it[1]
+			userMap["lastName"] = it[2]
+			userMap["email"] = it[3]
+			userMap["organization"] = it[4]
+			userListings << userMap
+		}
+		columnNames.each {
+			def column = [:]
+			column["index"] = it
+			column["name"] = it
+			column["width"] = '160'
+			column["sortable"] = true
+			columns << column
+		}
+		session.ucolumnJson = columns as JSON
+		def sortedColumns = ["User ID"]//, "PATIENT ID"]
+		sortedColumns.addAll(columnNames)
+		session.uresults = userListings
+		session.ucolumns = sortedColumns
+		session.ucolumnNames = sortedColumns as JSON
+	}
+	
+	def viewUsers = {
+		searchResults = session.uresults
+		def columns = session.ucolumns
+		def results = []
+		def rows = params.rows.toInteger()
+		def currPage = params.page.toInteger()
+		def startIndex = ((currPage - 1) * rows)
+		def endIndex = (currPage * rows)
+		def sortColumn = params.sidx
+		if(endIndex > searchResults.size()) {
+			endIndex = searchResults.size()
+		}
+		def sortedResults = searchResults.sort { r1, r2 ->
+			def val1 
+			def val2
+			val1 = r1[sortColumn]
+			val2 = r2[sortColumn]
+			def comparison
+			if(val1 == val2) {
+				return 0
+			}
+			if(params.sord != 'asc') {
+				if(val2 == null) {
+					return -1
+				} else if (val1 == null) {
+					return 1
+				}
+				comparison =  val2.compareTo(val1)
+			} else {
+				if(val1 == null) {
+					return -1
+				} else if(val2 == null) {
+					return 1
+				}
+				comparison =  val1.compareTo(val2)
+			}
+			return comparison
+		}
+		session.uresults = sortedResults
+		sortedResults.getAt(startIndex..<endIndex).each { user ->
+			def cells = []
+			cells << user.loginName
+			cells << user.firstName
+			cells << user.lastName
+			cells << user.email
+			cells << user.organization
+			results << [id: user.loginName, cell: cells]
+		}
+		//log.debug "results rows:" + results
+		def jsonObject = [
+			page: currPage,
+			total: Math.ceil(searchResults.size() / rows),
+			records: searchResults.size(),
+			rows:results
+		]
+		render jsonObject as JSON
 	}
 	
 	/**requests access to a collaboration group**/

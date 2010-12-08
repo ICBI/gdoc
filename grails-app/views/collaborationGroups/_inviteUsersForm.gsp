@@ -1,39 +1,46 @@
 <g:javascript library="jquery"/>
+<g:javascript src="jquery/scrollTable/scrolltable.js"/>
+<g:javascript src="jquery/scrollTable/jscrolltable.js"/>
+<jq:plugin name="ui"/>
+<jq:plugin name="autocomplete"/>
+<g:javascript>
+$(document).ready(function(){
+   	$("#q").autocomplete("/gdoc/search/userAutocomplete",{
+			max: 130,
+			scroll: true,
+			multiple:false,
+			matchContains: true,
+			dataType:'json',
+			parse: function(data){
+				var array = jQuery.makeArray(data);
+				for(var i=0;i < data.length;i++) {
+ 					var tempValue = data[i];
+					var tempResult = data[i];
+					array[i] = { data:data[i], value: tempValue, result: tempResult};
+			    }
+				return array;
+			},
+            formatItem: function(data, i, max) {
+						return data;
+					},
+
+			formatResult: function(data) {
+						return data;
+					}
+	});
+
+
+  });
+</g:javascript>
 <g:if test="${managedMemberships}">
-<g:form action="inviteUsers">
-<g:if test="${flash.cmd instanceof InviteCollabCommand}">
-	<div class="errorDetail"><g:renderErrors bean="${flash.cmd?.errors}" as="list" /></div>
-</g:if>
-<table class="studyTable" style="font-size:1.05em;width:400px">
-	<tr>
-		<td align="top">User(s):</td>
-		<td>
-			<g:select name="users"
-					  from="${gdocUsers}"
-					  noSelection="['':'-Choose one or more users-']"
-		          	  optionValue="${{it?.lastName?.toString() + ', ' + it?.firstName?.toString()}}"
-				      optionKey="loginName" 
-					  multiple="true"
-					  size="3"/>
-		</td>
-	</tr>
-	<tr>
-		<td>Group:</td>
-		<td>
-			<g:if test="${managedMemberships}">
-			<g:select name="collaborationGroupName" from="${managedMemberships}"
-		          noSelection="['':'-Choose group-']"
-				  optionValue="name"
-				  optionKey="name" />
-			</g:if>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2"><g:submitButton class="actionButton" style="float:right" name="inviteButton" value="Send Invite" /></td>
-	</tr>
-</table>
+<div style="padding:5px;background-color:#f2f2f2;">
+ <g:form action="showUsers" autocomplete="off">
+	Enter user last name or loginName: <g:textField name="userId" id="q" /><br /><br />
+	<g:submitButton name="search" value="Search Users" />
 </g:form>
+</div>
 </g:if>
 <g:else>
 You currently do not manage any collaboration groups of your own.
 </g:else>
+

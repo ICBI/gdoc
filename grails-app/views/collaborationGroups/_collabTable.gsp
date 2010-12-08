@@ -18,7 +18,7 @@
 		<g:if test="${manMembership.users}">
 <a href="#" id="${manMembership.id}_showHide" style="color:#FF6F0F;text-decoration:underline;font-weight:normal"        				onClick="toggleUsers('${manMembership.id}_usersDiv','${manMembership.id}_showHide');return false;">Show users</a></g:if>
 		<g:else>no users have been added to this group</g:else>
-		<div id="${manMembership.id}_usersDiv" style="display:none">
+		<div id="${manMembership.id}_usersDiv" style="display:none;height:130px;overflow: scroll;">
 			<g:if test="${manMembership.users}">
 			<g:form name="${manMembership.id}_removeUserForm" action="deleteUsersFromGroup">
 			<g:hiddenField name="collaborationGroupName" value="${manMembership.name}" />

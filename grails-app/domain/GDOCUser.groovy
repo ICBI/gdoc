@@ -10,6 +10,8 @@ class GDOCUser {
 		lastLogin column: "end_date"
 	}
 	
+	static searchable = [except: 'lastLogin']
+	
 	String loginName
 	String firstName
 	String lastName
