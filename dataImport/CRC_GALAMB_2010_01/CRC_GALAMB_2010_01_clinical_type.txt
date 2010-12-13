@@ -6,6 +6,6 @@ PTNM	staging attribute type=233	PTNM_M	Presence of metastasis (pTNM-M)	In pTNM C
 PTNM	staging attribute type=229	PTNM_T	Primary Tumor Site (pTNM-T)	Primary Tumor Site in pTNM Classification	PATHOLOGY					1	0	1	VARCHAR2(5)			
 Histology	staging attribute type=564	SAMPLE_TYPE	Sample Type	Indicates from which neoplastic stage the tissue sample was taken	PATHOLOGY					1	0	1	VARCHAR2(24)			
 PTNM	staging attribute type=230	PTNM_N	Lymph Node Involvement (pTNM-N)	Degree of lymph node involvement in pTNM Classification. N staging determines whether or not the cancer has spread into nearby lymph nodes 	PATHOLOGY					1	0	1	VARCHAR2(5)			
-Dukes	new	DUKES_CLASS	Dukes Classification	Dukes Classification	PATHOLOGY					1		1	VARCHAR2(2)			
+Dukes	new	DUKES_CLASS	Dukes Classification	Dukes Classification	PATHOLOGY					1	0	1	VARCHAR2(2)			
 DYSPLASIA	new	DYSPLASIA	Dysplasia	Dysplasia classification/grade	PATHOLOGY					1	0	1	VARCHAR2(32)			
 grade	staging attribute type=563	AJCC_TUMOR_GRADE	Tumor Grade based on AJCC Grading System	Tumor Grade based on AJCC Grading System	PATHOLOGY					1	0	1	VARCHAR2(2)			

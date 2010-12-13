@@ -45,22 +45,22 @@ SAMPLE_TYPE	NORMAL	Normal		The sample is from Normal Tissue
 SAMPLE_TYPE	TUMOR	Tumor		The sample is from Tumor Tissue
 SAMPLE_TYPE	VERY_ADVANCED_HCC	Very Advanced HCC		Very Advanced HCC
 SAMPLE_TYPE	VERY_EARLY_HCC	Very Early HCC		Very Early HCC
-SAMPLE_TYPE	ADENOCARCINOMA	adenocarcinoma		adenocarcinoma
-SAMPLE_TYPE	ADENOMA_TUBULOVILLOUS	adenoma tubulovillous		adenoma tubulovillous
-SAMPLE_TYPE	ADENOMA_VILLOUS	adenoma villous		adenoma villous
-SAMPLE_TYPE	SEVERE_ACTIVE_CROHNS	severe active crohns		severe active crohns
-SAMPLE_TYPE	SEV_ACT_ULCERATIVE_COLITIS	severe active ulcerative colitis		severe active ulcerative colitis
-SAMPLE_TYPE	SEV_ACT_ULCERATIVE_PANCOLITIS	severe active ulcerative pancolitis		severe active ulcerative pancolitis
+SAMPLE_TYPE	ADENOCARCINOMA	Adenocarcinoma		Aadenocarcinoma
+SAMPLE_TYPE	ADENOMA_TUBULOVILLOUS	Adenoma Tubulovillous		Adenoma Tubulovillous
+SAMPLE_TYPE	ADENOMA_VILLOUS	Adenoma Villous		Aadenoma Villous
+SAMPLE_TYPE	SEVERE_ACTIVE_CROHNS	Severe Active Crohn's disease		Severe Active Crohn's disease
+SAMPLE_TYPE	SEV_ACT_ULCERATIVE_COLITIS	Severe Active Ulcerative Colitis		Severe Active Ulcerative Colitis
+SAMPLE_TYPE	SEV_ACT_ULCERATIVE_PANCOLITIS	Severe Active Ulcerative Pancolitis		Severe Active Ulcerative Pancolitis
 DYSPLASIA	LOW-GRADE	Low grade		Low grade
 DYSPLASIA	HIGH-GRADE	High grade		High grade
 DYSPLASIA	NO	No dysplasia		No dysplasia
 DYSPLASIA	MILD	Mild 		Mild 
 DYSPLASIA	MILD_MODERATE	Mild to Moderate		Mild to Moderate
 DUKES_CLASS	A	Dukes A		Dukes A: Invasion into but not through the bowel wall
-DUKES_CLASS	B1	Dukes B		Dukes B: Invasion through the bowel wall but not involving lymph nodes
-DUKES_CLASS	B2	Dukes B		Dukes B: Invasion through the bowel wall but not involving lymph nodes
-DUKES_CLASS	B3	Dukes B		Dukes B: Invasion through the bowel wall but not involving lymph nodes
-DUKES_CLASS	C1	Dukes C		Dukes C: Involvement of lymph nodes
-DUKES_CLASS	C2	Dukes C		Dukes C: Involvement of lymph nodes
-DUKES_CLASS	C3	Dukes C		Dukes D: Widespread/distant metastases
-DUKES_CLASS	D	Dukes D		
+DUKES_CLASS	B1	Dukes B1		Dukes B: Invasion through the bowel wall but not involving lymph nodes
+DUKES_CLASS	B2	Dukes B2		Dukes B: Invasion through the bowel wall but not involving lymph nodes
+DUKES_CLASS	B3	Dukes B3		Dukes B: Invasion through the bowel wall but not involving lymph nodes
+DUKES_CLASS	C1	Dukes C1		Dukes C: Involvement of lymph nodes
+DUKES_CLASS	C2	Dukes C2		Dukes C: Involvement of lymph nodes
+DUKES_CLASS	C3	Dukes C3		Dukes C: Involvement of lymph nodes
+DUKES_CLASS	D	Dukes D		Dukes D: Widespread/distant metastases
