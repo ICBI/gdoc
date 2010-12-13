@@ -16,23 +16,23 @@ PTNM_N	N3	N3 - Involvement of regional lymph nodes		N3 - Involvement of regional
 PTNM_N	NX	NX - Regional lymph nodes cannot be evaluated		NX - Regional lymph nodes cannot be evaluated
 AJCC_TUMOR_GRADE	G1	G1 - Well Differentiated (Low Grade)		Cells look almost like normal ones.
 AJCC_TUMOR_GRADE	G2	G2 - Moderately differentiated		Cells look somewhat abnormal
-AJCC_TUMOR_GRADE	G3	G3- Poorly differentiated (High grade)		Cells are very quickly growing and look very abnormal
+AJCC_TUMOR_GRADE	G3	G3 - Poorly differentiated (High grade)		Cells are very quickly growing and look very abnormal
 AJCC_TUMOR_GRADE	G4	G4 - Undifferentiated (High grade)		Cells are very quickly growing and look very abnormal
-DISEASE_LOCALIZATION	LEFT_FLEXURE	Left flexure		Left flexure
-DISEASE_LOCALIZATION	SIGMOID_COLON	sigmoid colon		sigmoid colon
-DISEASE_LOCALIZATION	TRANSVERSE_COLON	transverse colon		transverse colon
-DISEASE_LOCALIZATION	ASCENDING_COLON	ascending colon		ascending colon
-DISEASE_LOCALIZATION	ILEOCAECAL	ileocaecal		ileocaecal
-DISEASE_LOCALIZATION	RECTUM	rectum		rectum
-DISEASE_LOCALIZATION	COLON_DESC	Descendent Colon		Descendent Colon
+AJCC_TUMOR_GRADE	G1-2	G1-2 - Moderately to Well Differentiated		Cells look somewhat abnormal
+DISEASE_LOCALIZATION	LEFT_FLEXURE	Left Flexure		Left Flexure
+DISEASE_LOCALIZATION	SIGMOID_COLON	Sigmoid Colon		Sigmoid Colon
+DISEASE_LOCALIZATION	TRANSVERSE_COLON	Transverse Colon		Transverse Colon
+DISEASE_LOCALIZATION	ASCENDING_COLON	Ascending Colon		Ascending Colon
+DISEASE_LOCALIZATION	ILEOCAECAL	Ileocaecal		Ileocaecal
+DISEASE_LOCALIZATION	RECTUM	Rectum		Rectum
+DISEASE_LOCALIZATION	COLON_DESC	Descending Colon		Descending Colon
 DISEASE_LOCALIZATION	LIENIC_FLEXURE	Lienic Flexure		Lienic Flexure
-DISEASE_LOCALIZATION	COLON_ASC	Ascendent Colon		Ascendent Colon
 DISEASE_LOCALIZATION	HEPATIC_FLEXURE	Hepatic Flexure		Hepatic Flexure
 DISEASE_LOCALIZATION	SIGMA	Sigma		Sigma
 DISEASE_LOCALIZATION	COECUM	Coecum		Coecum
 DISEASE_LOCALIZATION	TOTAL_COLON	Total Colon		Total Colon
-DISEASE_LOCALIZATION	RIGHTSIDE	Right side		Right side
-DISEASE_LOCALIZATION	SIGMA_COLON_DESC	Sigma and Descendent Colon		Sigma and Descendent Colon
+DISEASE_LOCALIZATION	RIGHTSIDE	Right Side		Right Side
+DISEASE_LOCALIZATION	SIGMA_COLON_DESC	Sigma and Descending Colon		Sigma and Descending Colon
 DISEASE_LOCALIZATION	COECUM_ RECTUM	Coecum and Rectum		Coecum and Rectum
 DISEASE_LOCALIZATION	SIGMA_RECTUM	Sigma and Rectum		Sigma and Rectum
 SAMPLE_TYPE	ADVANCED_HCC	Advanced HCC		Advanced HCC
