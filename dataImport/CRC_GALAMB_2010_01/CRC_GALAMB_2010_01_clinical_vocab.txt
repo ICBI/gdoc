@@ -47,7 +47,7 @@ SAMPLE_TYPE	VERY_ADVANCED_HCC	Very Advanced HCC		Very Advanced HCC
 SAMPLE_TYPE	VERY_EARLY_HCC	Very Early HCC		Very Early HCC
 SAMPLE_TYPE	ADENOCARCINOMA	Adenocarcinoma		Aadenocarcinoma
 SAMPLE_TYPE	ADENOMA_TUBULOVILLOUS	Adenoma Tubulovillous		Adenoma Tubulovillous
-SAMPLE_TYPE	ADENOMA_VILLOUS	Adenoma Villous		Aadenoma Villous
+SAMPLE_TYPE	ADENOMA_VILLOUS	Adenoma Villous		Adenoma Villous
 SAMPLE_TYPE	SEVERE_ACTIVE_CROHNS	Severe Active Crohn's disease		Severe Active Crohn's disease
 SAMPLE_TYPE	SEV_ACT_ULCERATIVE_COLITIS	Severe Active Ulcerative Colitis		Severe Active Ulcerative Colitis
 SAMPLE_TYPE	SEV_ACT_ULCERATIVE_PANCOLITIS	Severe Active Ulcerative Pancolitis		Severe Active Ulcerative Pancolitis
