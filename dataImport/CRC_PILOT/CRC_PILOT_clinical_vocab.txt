@@ -25,12 +25,12 @@ NEOADJ_RADIATION	YES	YES		Neoadjuvant radiation received
 NEOADJ_RADIATION	NO	NO		Neoadjuvant radiation not received
 NEOADJ_HORMONE_TH	YES	YES		Neoadjuvant hormone therapy received
 NEOADJ_HORMONE_TH	NO	NO		Neoadjuvant hormone therapy not received
-DISEASE_LOCALIZATION	LEFT_FLEXURE	Left flexure		Left flexure
-DISEASE_LOCALIZATION	SIGMOID_COLON	sigmoid colon		sigmoid colon
-DISEASE_LOCALIZATION	TRANSVERSE_COLON	transverse colon		transverse colon
-DISEASE_LOCALIZATION	ASCENDING_COLON	ascending colon		ascending colon
-DISEASE_LOCALIZATION	ILEOCAECAL	ileocaecal		ileocaecal
-DISEASE_LOCALIZATION	RECTUM	rectum		rectum
+DISEASE_LOCALIZATION	LEFT_FLEXURE	Left Flexure		Left Flexure
+DISEASE_LOCALIZATION	SIGMOID_COLON	Sigmoid Colon		Sigmoid Colon
+DISEASE_LOCALIZATION	TRANSVERSE_COLON	Transverse Colon		Transverse Colon
+DISEASE_LOCALIZATION	ASCENDING_COLON	Ascending Colon		Ascending Colon
+DISEASE_LOCALIZATION	ILEOCAECAL	Ileocaecal		Ileocaecal
+DISEASE_LOCALIZATION	RECTUM	Rectum		Rectum
 HIST_TUMOR_GRADE	MODERATELY_DIFF	Moderately differentiated		Moderately differentiated
 HIST_TUMOR_GRADE	POORLY_DIFF	Poorly differentiated		Poorly differentiated
 HIST_TUMOR_TYPE	8	8 - Adenocarcinoma		8 - Adenocarcinoma
