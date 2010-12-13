@@ -51,15 +51,3 @@ GSM95522	FEMALE	35	SIGMA_RECTUM	SEV_ACT_ULCERATIVE_COLITIS	NO
 GSM95523	FEMALE	35	TOTAL_COLON	SEV_ACT_ULCERATIVE_COLITIS	NO											
 GSM95524	MALE	66	TOTAL_COLON	SEV_ACT_ULCERATIVE_COLITIS	MILD-MODERATE											
 GSM95517	FEMALE	39	TOTAL_COLON	SEV_ACT_ULCERATIVE_PANCOLITIS	NO											
-																
-																
-																
-																
-																
-																
-																
-																
-																
-																
-																
-																-2
