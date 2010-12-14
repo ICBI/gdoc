@@ -135,6 +135,12 @@ environments {
 			    additivity = true
 			}
 		}
+		grails {
+		   mail {
+		     host = "nitrogen.uis.georgetown.edu"
+		     port = 25
+		   }
+		}
     }
 	stage_load {
         grails.serverURL = "https://gdoc-stage.georgetown.edu"
@@ -175,6 +181,12 @@ environments {
 			    error 'stdout'
 			    additivity = true
 			}
+		}
+		grails {
+		   mail {
+		     host = "neon.uis.georgetown.edu"
+		     port = 25
+		   }
 		}
     }
 	prod_load {
