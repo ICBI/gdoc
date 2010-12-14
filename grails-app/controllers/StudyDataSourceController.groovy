@@ -13,7 +13,7 @@ class StudyDataSourceController {
 	def htDataService
 	
     def index = { 
-		def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
+		def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name,false)
 		log.debug studyNames
 		myStudies = []
 		studyNames.each{

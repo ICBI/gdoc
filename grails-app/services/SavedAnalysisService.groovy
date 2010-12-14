@@ -13,7 +13,7 @@ class SavedAnalysisService {
 		sharedAnalysisIds = sharedIds
 		
 		if(!sharedAnalysisIds){
-			sharedAnalysisIds = getSharedAnalysisIds(userId)
+			sharedAnalysisIds = getSharedAnalysisIds(userId,false)
 		}
 		if(analyses){
 			if(analyses.metaClass.respondsTo(analyses, "size")) {
@@ -132,7 +132,7 @@ class SavedAnalysisService {
 	
 	def getAllSavedAnalysis(userId) {
 		def user = GDOCUser.findByLoginName(userId)
-		//def groupAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name)
+		//def groupAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name,false)
 		def notifications = user.analysis
 		return notifications
 	}
@@ -358,9 +358,9 @@ class SavedAnalysisService {
 		return savedAnalysisIds	
 	}
 	
-	def getSharedAnalysisIds(userId){
+	def getSharedAnalysisIds(userId,refresh){
 		def sharedAnalysisIds = []
-		sharedAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name)
+		sharedAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name,refresh)
 		return sharedAnalysisIds
 	}
 	

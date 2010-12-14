@@ -71,6 +71,13 @@ environments {
 			    error 'stdout'
 			    additivity = true
 			}
+			debug "grails.app", "listener"
+		}
+		grails {
+		   mail {
+		     host = "nitrogen.uis.georgetown.edu"
+		     port = 25
+		   }
 		}
     }
 	development {

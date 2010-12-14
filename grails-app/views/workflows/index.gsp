@@ -55,6 +55,16 @@
 				<g:if test="${flash.message}">
 					<div class="message" style="width:75%">${flash.message}</div>
 				</g:if>
+				<g:if test="${inviteMessage && requestMessage}">
+					<div class="taskMessage" style="width:75%">You have <g:link controller="collaborationGroups">${inviteMessage} and ${requestMessage}</g:link> requiring your attention</div>
+				</g:if>
+				<g:if test="${inviteMessage && !requestMessage}">
+					<div class="taskMessage" style="width:75%">You have <g:link controller="collaborationGroups">${inviteMessage}</g:link> requiring your attention</div>
+				</g:if>
+				<g:if test="${!inviteMessage && requestMessage}">
+					<div class="taskMessage" style="width:75%">You have <g:link controller="collaborationGroups">${requestMessage}</g:link> requiring your attention</div>
+				</g:if>
+				
 				
 				
 				<div id="centerContent">

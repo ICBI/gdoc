@@ -120,13 +120,23 @@ class SecurityService {
 						log.debug "found givenname " + attr.get("givenname").get()
 						user.setFirstName(attr.get("givenname").get())
 					}
+					else{
+						log.debug "didn't find first name, set to netid "
+						user.setFirstName(attr.get("uid").get())
+					}
 					if(attr.get("sn")){
 						log.debug "found sn " + attr.get("sn").get()
 						user.setLastName(attr.get("sn").get())
+					}else{
+						log.debug "didn't find lasr name, set to netid "
+						user.setLastName(attr.get("uid").get())
 					}
 					if(attr.get("ou")){
 						log.debug "found ou " + attr.get("ou").get()
 						user.setOrganization(attr.get("ou").get())
+					}else{
+						log.debug "didn't find ou, set to GU or affiliate "
+						user.setOrganization("Georgetown University or affiliate")
 					}
 					if(attr.get("mail")){
 						log.debug "found mail " + attr.get("mail").get()
@@ -135,6 +145,7 @@ class SecurityService {
 					if(department){
 						user.setDepartment(department)
 					}
+					user.setPassword("gdocLCCC")
 					return user
 				}
 				else{
@@ -187,9 +198,7 @@ class SecurityService {
 				def user = authManager.getUser(userId)
 				user.setPassword(newPassword)
 				authManager.modifyUser(user)
-				log.debug "$userId password was $user.password"
 				log.debug "successfully changed password for $userId"
-				log.debug "$userId password is now $user.password"
 				return true
 			}catch(CSTransactionException cste){
 				log.debug cste
@@ -440,8 +449,8 @@ class SecurityService {
 		return groupNames
 	}
 	
-	def getSharedItemIds(loginName, itemType) {
-		if(sharedItems[itemType] != null) {
+	def getSharedItemIds(loginName, itemType, refresh) {
+		if(sharedItems[itemType] != null && !refresh) {
 			return sharedItems[itemType]
 		}
 		def authManager = this.getAuthorizationManager()
@@ -476,7 +485,7 @@ class SecurityService {
 	* user has access to the associated studies.
 	*/
 	private userCanAccess(user, objectId, type) {
-		def studyNames = this.getSharedItemIds(user.loginName, StudyDataSource.class.name)
+		def studyNames = this.getSharedItemIds(user.loginName, StudyDataSource.class.name,null)
 		def klazz = Thread.currentThread().contextClassLoader.loadClass(type)
 		log.debug "LOOKING UP $objectId for $type"
 		def item = klazz.get(objectId)

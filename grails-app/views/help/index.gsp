@@ -167,7 +167,7 @@
 		
 		<p class="answerText"><span>A: </span>
 		After logging in if you wish to access a specific data source, you’ll need to request access from the point of contact listed for that particular study.</p>
-		<p>To do this, click on <b><i>Studies</i></b> on the homepage. A table displaying the various study sources along with a brief description of the study, principal investigator(s), type of cancer, the name and contact details of the point of contact is presented. Note down the name and email id of the person in charge of the required database to request access.</p>
+		<p>To do this, click on <b><i>Manage Groups/Request Access</i></b> tab in the sidebar. On the Manage Groups page, select the tab titled, 'Request Access to Other Groups'. Upon finding the Collaboration and/or Study Group you wish to join, click the link that reads 'request access'. Allow for a few days before requiring further action on this request. If your request has not been answered on subsequent logins, contact gdoc-help@georgetown.edu</p>
 	</div>
 	
 	<div class="answer">

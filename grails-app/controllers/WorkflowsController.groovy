@@ -5,11 +5,14 @@ class WorkflowsController {
 	def middlewareService
 	def quickStartService
 	def cleanupService
+	def invitationService
 	
     def index = { 
+		def thisUser = GDOCUser.findByLoginName(session.userId)
+		//last login
+		Date lastLogin = thisUser.lastLogin
 		if(!session.profileLoaded){
-			def thisUser = GDOCUser.findByLoginName(session.userId)
-			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
+			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name,false)
 			log.debug studyNames
 			def myStudies = []
 		
@@ -24,6 +27,8 @@ class WorkflowsController {
 				}
 			}
 			log.debug "sort studies"
+			
+			securityService.setLastLogin(session.userId)
 			if(myStudies){
 				myStudies.sort{it.shortName}
 			}
@@ -34,31 +39,50 @@ class WorkflowsController {
 			def myCollaborationGroups = []
 			myCollaborationGroups = securityService.getCollaborationGroups(session.userId)
 			def sharedListIds = []
-			sharedListIds = userListService.getSharedListIds(session.userId)
+			sharedListIds = userListService.getSharedListIds(session.userId,true)
 			session.sharedListIds = sharedListIds
-			//get shared anaylysis and places them in session scope
-			def sharedAnalysisIds = []
-			sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
-			session.sharedAnalysisIds = sharedAnalysisIds
-			session.dataAvailability = quickStartService.getMyDataAvailability(session.myStudies)
-			//last login
-			Date lastLogin = thisUser.lastLogin
+			flash.message = ""
+			
 			if(lastLogin){
 				def formattedDate = lastLogin.format('EEE MMM d, yyyy')
 				log.debug "users last login was $formattedDate"
-				flash.message = "your last login was $formattedDate"
-				//retrieve any/all notifications from last login???
+				def count = userListService.newListsAvailable(sharedListIds,lastLogin)
+				if(count > 0){
+					log.debug "user has new lists available"
+					flash.message += " \n You have new <a href='/gdoc/userList'>lists</a> available"
+				}
+				
+			}
+			if(params.firstLogin){
+				log.debug "this is the user's first login"
+				flash.message = "Welcome ... your account has been created in G-DOC! " +  
+				"Your current permissions allow you to view public data sets. Once logged in you may gain access to " +
+				"other data sets requesting " + 
+				"access to the study group via the 'Collaboration Groups' page."
 			}
 			
-			securityService.setLastLogin(session.userId)
+			
+			//get shared anaylysis and places them in session scope
+			def sharedAnalysisIds = []
+			sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId,true)
+			session.sharedAnalysisIds = sharedAnalysisIds
+			session.dataAvailability = quickStartService.getMyDataAvailability(session.myStudies)
+
 			
 			session.myCollaborationGroups = myCollaborationGroups
-		
 			loadRemoteSources()
 			session.profileLoaded = true
 			log.debug session.myCollaborationGroups
+			
 		}
+		def pendingInvites = invitationService.getInvitesThatRequireAction(session.userId,lastLogin)
+		if(pendingInvites["statusUpdates"]){
+			log.debug "user has status updates available"
+			flash.message += " \n You have status updates in your collabortion <a href='/gdoc/collaborationGroups'>groups</a>"
+		}
+		[inviteMessage:pendingInvites["inviteMessage"],requestMessage:pendingInvites["requestMessage"]]
 	}
+	
 	
 	def cleanup(userId){
 		def user = GDOCUser.findByLoginName(userId)

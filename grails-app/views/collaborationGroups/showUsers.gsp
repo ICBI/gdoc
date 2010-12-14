@@ -127,12 +127,14 @@
 			</g:if>
 			<g:else>
 				<g:if test="${session.managedMemberships}">
-				
+				<g:if test="${flash.error}">
+					<div class="errorDetail" style="font-size:.8em;width:85%;">${flash.error}</div>
+				</g:if>
 				<g:if test="${flash.cmd instanceof InviteCollabCommand}">
 					<div class="errorDetail"><g:renderErrors bean="${flash.cmd?.errors}" as="list" /></div>
 				</g:if>
-				<g:if test="${flash.message}">
-					<span id="message">${flash.message}</span>
+				<g:if test="${flash.message}"><br />
+					<span id="message" class="message">${flash.message}</span>
 				</g:if>
 				
 				<table class="studyTable" style="font-size:1.05em;width:400px">

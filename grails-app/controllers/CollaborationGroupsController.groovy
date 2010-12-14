@@ -10,7 +10,7 @@ class CollaborationGroupsController {
 	def searchResults
 	
 	def reloadMembershipAndStudyData(){
-			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name)
+			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name,true)
 			def myStudies = []
 		
 			studyNames.each{
@@ -24,11 +24,11 @@ class CollaborationGroupsController {
 			def myCollaborationGroups = []
 			myCollaborationGroups = securityService.getCollaborationGroups(session.userId)
 			def sharedListIds = []
-			sharedListIds = userListService.getSharedListIds(session.userId)
+			sharedListIds = userListService.getSharedListIds(session.userId,true)
 			session.sharedListIds = sharedListIds
 			//get shared anaylysis and places them in session scope
 			def sharedAnalysisIds = []
-			sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId)
+			sharedAnalysisIds = savedAnalysisService.getSharedAnalysisIds(session.userId,true)
 			session.sharedAnalysisIds = sharedAnalysisIds
 			session.dataAvailability = quickStartService.getMyDataAvailability(session.myStudies)
 			session.myCollaborationGroups = myCollaborationGroups
@@ -156,17 +156,28 @@ class CollaborationGroupsController {
 					session.uresults.each {
 						usrs << it.loginName
 					}
-					flash.message = "An invitation has been sent to all users to join the " + cmd.collaborationGroupName + " collaboration group."
+					//flash.message = "An invitation has been sent to all users to join the " + cmd.collaborationGroupName + " collaboration group."
 				}else{
-					usrs = cmd.users
-					flash.message = "An invitation has been sent to $usrs to join the " + cmd.collaborationGroupName + " collaboration group."
+					usrs = cmd.users[0].split(",")
+					//flash.message = "An invitation has been sent to $usrs to join the " + cmd.collaborationGroupName + " collaboration group."
 				}
 				def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
+				def inv
 				if(manager && (manager.loginName == session.userId)){
 					usrs.each{ user ->
-						if(invitationService.requestAccess(manager.loginName,user,cmd.collaborationGroupName))
-							log.debug session.userId + " invited user $user to " + cmd.collaborationGroupName 
+						inv = invitationService.findSimilarRequest(manager.loginName,user,cmd.collaborationGroupName)
+						if(inv){
+							flash.error = "A similar invitation exists for $user invited. No invitations sent... please try again."
+							log.debug "A similar invitation exists for $user invited."
 						}
+					}
+					if(!inv){
+						usrs.each{ user ->
+							if(invitationService.requestAccess(manager.loginName,user,cmd.collaborationGroupName))
+							log.debug session.userId + " invited user $user to " + cmd.collaborationGroupName
+							flash.message = session.userId + " invited user(s) to " + cmd.collaborationGroupName
+						}
+					}
 				}
 				redirect(action:"showUsers")
 				return;
@@ -187,7 +198,7 @@ class CollaborationGroupsController {
 						property('loginName')
 						property('firstName')
 						property('lastName')
-						property('email')
+						//property('email')
 						property('organization')
 					}
 					and{
@@ -205,7 +216,7 @@ class CollaborationGroupsController {
 						property('loginName')
 						property('firstName')
 						property('lastName')
-						property('email')
+						//property('email')
 						property('organization')
 					}
 					and{
@@ -215,15 +226,15 @@ class CollaborationGroupsController {
 		}
 		def columns = []
 		columns << [index: "loginName", name: "User Id", sortable: true, width: '70']
-		def columnNames = ["firstName","lastName","email","organization"]
+		def columnNames = ["firstName","lastName","organization"]
 		def userListings = []
 		users.each{
 			def userMap = [:]
 			userMap["loginName"] = it[0]
 			userMap["firstName"] = it[1]
 			userMap["lastName"] = it[2]
-			userMap["email"] = it[3]
-			userMap["organization"] = it[4]
+			//userMap["email"] = it[3]
+			userMap["organization"] = it[3]
 			userListings << userMap
 		}
 		columnNames.each {
@@ -286,7 +297,7 @@ class CollaborationGroupsController {
 			cells << user.loginName
 			cells << user.firstName
 			cells << user.lastName
-			cells << user.email
+			//cells << user.email
 			cells << user.organization
 			results << [id: user.loginName, cell: cells]
 		}
@@ -362,6 +373,7 @@ class CollaborationGroupsController {
 			else
 				flash.message = "$params.user user has NOT been added to the $params.group"
 		}
+		reloadMembershipAndStudyData()
 		redirect(action:index)
 	}
 	
@@ -374,6 +386,7 @@ class CollaborationGroupsController {
 			else
 				flash.message = "$params.user user has NOT been added to the $params.group"
 		}
+		reloadMembershipAndStudyData()
 		redirect(action:index)
 	}
 	

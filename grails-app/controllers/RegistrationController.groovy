@@ -69,10 +69,10 @@ class RegistrationController {
 					   to "$cmd.userId"
 					   from "gdoc-help@georgetown.edu"
 					   subject "Reset your G-DOC password"
-					   body 'reset your account password by clicking this link (or pasting into browser url window): \n'+ resetUrl + '. \nIf you did not make this request, please notify gdoc-help@georgetown.edu via email.'
+					   body 'Hello '+ cmd.userId + ',\nYou can reset your G-DOC account password by clicking this link (or pasting into browser url window): \n'+ resetUrl + '. \n\nIf you did not make this request, please notify gdoc-help@georgetown.edu via email. \nThanks, \nThe G-DOC team'
 					}
 					flash.message = cmd.userId + " Thanks for your request, you will receive instructions to complete a password reset for your account"
-					redirect(action:'passwordReset')
+					redirect(action:'confirmation')
 					return
 				}
 			}
@@ -80,14 +80,13 @@ class RegistrationController {
 	
 	def registerPublic = {
 		RegistrationPublicCommand cmd ->
-			log.debug "userId : " + cmd.userId
-			log.debug "captcha - " + params
 			if(cmd.hasErrors()) {
 				flash['cmd'] = cmd
 				log.debug cmd.errors
 				redirect(action:'publicRegistration')
 				return
 			}else{
+				flash['cmd'] = cmd
 				def recaptchaOK = true
 				if (!recaptchaService.verifyAnswer(session, request.getRemoteAddr(), params)) {
 				    recaptchaOK = false
@@ -112,13 +111,17 @@ class RegistrationController {
 					   to "$cmd.userId"
 					   from "gdoc-help@georgetown.edu"
 					   subject "Your G-DOC access: activate now!"
-					   body 'activate your account by clicking this link (or pasting into browser url window):\n '+ activateUrl + '. \nIf you did not make this request, please notify gdoc-help@georgetown.edu via email.'
+					   body 'Hello '+ cmd.userId + ', \nYou can activate your G-DOC account by clicking this link (or pasting into browser url window):\n'+ activateUrl + '. \n\nIf you did not make this request, please notify gdoc-help@georgetown.edu via email. \nThanks, \nThe G-DOC team'
 					}
 					flash.message = cmd.userId + " Thanks for your request, you will receive instructions to complete activation of your account"
-					redirect(action:'publicRegistration')
+					redirect(action:'confirmation')
 					return
 				}
 			}
+	}
+	
+	def confirmation = {
+		
 	}
 	
 	
@@ -151,12 +154,9 @@ class RegistrationController {
 							//add to PUBLIC collab group
 							def managerPublic = securityService.findCollaborationManager("PUBLIC")
 							securityService.addUserToCollaborationGroup(managerPublic.loginName, newUser.getLoginName(), "PUBLIC")
-							flash.message = "Welcome ... your account has been created in G-DOC!" +  
-							" Please login above with your NET ID credentials. " + 
-							"Your current permissions allow you to view public data sets. Once logged in you may gain access to " +
-							"other data sets by emailing the POC directly from the 'Study DataSource' page. You can also request " + 
-							"access to the study group via the 'Collaboration Groups' page."
-							redirect(controller:'home', action:'index')
+							session.profileLoaded = false
+							session.userId = cmd.netId
+							redirect(controller:'workflows',params:[firstLogin:true])
 							return
 						}else{
 							log.debug "system error adding the user to G-DOC"

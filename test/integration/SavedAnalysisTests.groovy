@@ -9,7 +9,7 @@ class SavedAnalysisTests extends GroovyTestCase {
 	
 	void testGetAllSavedAnalysis(){
 		def user = GDOCUser.findByLoginName("kmr75")
-		//def groupAnalysisIds = securityService.getSharedItemIds("kmr75", SavedAnalysis.class.name)
+		//def groupAnalysisIds = securityService.getSharedItemIds("kmr75", SavedAnalysis.class.name,true)
 		def notifications = []
 		notifications = user.analysis
 		def today = new Date()

@@ -7,6 +7,9 @@ class HomeController {
 	def findingService
 	
     def index = { 
+	    if(params.register){
+		
+	     }
 		if(session.userId){
 			redirect(controller:'workflows')
 			return

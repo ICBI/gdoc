@@ -1,6 +1,67 @@
 class InvitationService {
 
 	def securityService
+	
+	
+	def getInvitesThatRequireAction(userId, lastLogin){
+		def itra = [:]
+		def inviteMessage =""
+		def requestMessage=""
+		def statusUpdates=false
+		def invitations = []
+		invitations = findAllInvitationsForUser(userId)
+		if(invitations){
+			def requestingPermissionFromYou = []
+			def inviteYouToJoin = []
+			def youRequestToJoin = []
+			def youInviteSomeone = []
+			if(invitations['inv']){
+				requestingPermissionFromYou = invitations['inv'].findAll{it.status == InviteStatus.PENDING}
+				if(requestingPermissionFromYou && requestingPermissionFromYou.size() > 1 ){
+					requestMessage += requestingPermissionFromYou.size() + " requests"
+				}
+				else if(requestingPermissionFromYou && requestingPermissionFromYou.size() == 1 ){
+					requestMessage += requestingPermissionFromYou.size() + " request"
+				}
+			}
+				
+			if(invitations['invNotMan']){
+
+				inviteYouToJoin = invitations['invNotMan'].findAll{it.status == InviteStatus.PENDING}
+				if(inviteYouToJoin && inviteYouToJoin.size() > 1 ){
+					inviteMessage += inviteYouToJoin.size() + " invitations"
+				}
+				else if(inviteYouToJoin && inviteYouToJoin.size() == 1 ){
+					inviteMessage += inviteYouToJoin.size() + " invitation"
+				}
+			}
+			
+			if(invitations['reqAndMan']){
+				def rm = []
+				rm = invitations['reqAndMan'].findAll{
+					lastLogin > it.lastUpdated 
+				}
+				if(rm)
+					statusUpdates = true
+			}
+			if(invitations['req']){
+				def rm = []
+				rm = invitations['req'].findAll{
+					lastLogin > it.lastUpdated 
+				}
+				if(rm)
+					statusUpdates = true
+			}
+			
+		}
+		itra["inviteMessage"] = inviteMessage
+		itra["requestMessage"] = requestMessage
+		itra["statusUpdates"] = statusUpdates
+		return itra
+	}
+	
+	
+	
 	/**
 	 * Allows a user to request access to a group, or allows a collaboration manager
 	 * to invite a user to the group.
@@ -11,13 +72,40 @@ class InvitationService {
 		def collabGroup = CollaborationGroup.findByName(groupName)
 		def invite = findRequest(requestor,invitee,groupName)
 		if(invite){
+			log.debug "found invite, do not create new invitation"
 			invite.status = InviteStatus.PENDING
-			invite.save()
+			invite.save(flush:true)
 		}else{
+			log.debug "create new invite"
 			invite = new Invitation(invitee:userInvited, requestor:userRequested, group:collabGroup, status: InviteStatus.PENDING)
-			invite.save()
+			invite.save(flush:true)
 		}
 		return invite
+	}
+	
+	def findSimilarRequest(requestorName, inviteeName, groupName) {
+		def c = Invitation.createCriteria()
+		def results = c {
+			and {
+				requestor {
+					or{
+						eq("loginName", requestorName)
+						eq("loginName", inviteeName)
+					}
+				}
+				invitee {
+					or{
+						eq("loginName", requestorName)
+						eq("loginName", inviteeName)
+					}
+				}
+				group {
+					eq("name", groupName)
+				}
+				eq("status", InviteStatus.PENDING)
+			}
+		}
+		return (results.size() > 0) ? results[0] : null
 	}
 	
 	/**
@@ -125,12 +213,12 @@ class InvitationService {
 		return invitations
 	}
 	
-	/**sorts invitations by date and removes invites(not deleted) that are older than 30 days old**/
+	/**sorts invitations by date and removes invites(not deleted) that are older than 3 months, or 90 days old**/
 	def sortAndFilterInvites(invitations){
 		def today = new Date()
 		def removeable = []
 		invitations.each{ i ->
-			if(today.minus(i.dateCreated) > 30){
+			if(today.minus(i.dateCreated) > 90){
 				//println "remove " + n
 				removeable << i
 			}

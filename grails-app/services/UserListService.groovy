@@ -235,7 +235,7 @@ def drugDiscoveryService
 			"AND (author.loginName = :loginName " +
 			"OR list.id IN (:ids)) " + 
 			"AND tagLink.tag.name = :tag " +
-			"ORDER BY list.name"
+			"ORDER BY list.dateCreated desc"
 			results = UserList.executeQuery(listHQL, [tag: tag, ids:ids, loginName: userName,max:10, offset:offset])
 			pagedLists["results"] = results
 			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,TagLink tagLink JOIN list.author author " + 
@@ -263,6 +263,24 @@ def drugDiscoveryService
 			pagedLists["count"] = count
 		}
 		return pagedLists
+	}
+	
+	def newListsAvailable(sharedIds, lastLogin){
+		def count = 0
+		def ids = []
+		if(sharedIds){
+			sharedIds.each{
+				ids << new Long(it)
+			}
+		String listHQL
+		if(ids){
+			listHQL = "SELECT count(distinct list.id) FROM UserList list " + 
+			"WHERE list.dateCreated >= :lastLogin " +
+			"AND list.id IN (:ids) "
+			count = UserList.executeQuery(listHQL,[ids:ids, lastLogin: lastLogin])
+		}
+		}
+		return count[0]
 	}
 	
 	def getListsByTag(tag,sharedIds, userName){
@@ -343,10 +361,10 @@ def drugDiscoveryService
 		return listIds	
 	}
 	
-	def getSharedListIds(userId){
+	def getSharedListIds(userId,refresh){
 		log.debug "get $userId shared lists"
 		def sharedListIds = []
-		sharedListIds = securityService.getSharedItemIds(userId, UserList.class.name)
+		sharedListIds = securityService.getSharedItemIds(userId, UserList.class.name,refresh)
 		return sharedListIds
 	}
 	

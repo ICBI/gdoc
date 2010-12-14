@@ -22,16 +22,18 @@ $(document).ready(function() {
 	
 <fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
     <legend style="padding:7px">Activate G-DOC account:</legend>
-	<div style="padding:10px;float:left">
+	<div style="padding:10px;float:left;">
 		<g:form name="activateAccountForm" action="activateAccount">
 		User ID: ${userId}
 		<g:hiddenField name="userId" value="${userId}"/><br /><br />
-		Enter password: <g:passwordField name="password" id="passwordField" /><br /><br />
-		First Name: <g:textField name="firstName" id="firstNameField" /><br /><br />
-		Last Name: <g:textField name="lastName" id="lastNameField" /><br /><br />
-		Organization: <g:textField name="organization" id="organizationField" /><br /><br />
+		<span style="font-weight:bold">*Enter password:</span> <g:passwordField name="password" id="passwordField" /><br /><br />
+		<span style="font-weight:bold">*First Name:</span> <g:textField name="firstName" id="firstNameField" /><br /><br />
+		<span style="font-weight:bold">*Last Name:</span> <g:textField name="lastName" id="lastNameField" /><br /><br />
+		<span style="font-weight:bold">*Organization/Affiliation:</span> <g:textField name="organization" id="organizationField" /><br /><br />
 		
-		<br /><br/>
+		<br />
+		<div style="font-style:italic;"><span style="font-weight:bold">*</span> Required field</div>
+		<br/>
 		<g:submitButton name="activateAccount" value="Activate account" />
 		</g:form>
 	</div>

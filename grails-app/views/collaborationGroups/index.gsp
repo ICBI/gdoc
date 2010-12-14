@@ -1,6 +1,6 @@
 <html>
     <head>
-        <meta name="layout" content="workflowsLayout" />
+        <meta name="layout" content="collabLayout" />
 
 	<g:javascript library="jquery"/>
 	<jq:plugin name="ui"/>
@@ -54,15 +54,18 @@
 		<div id="centerContent">
 			<br/>
 			<g:if test="${flash.message}">
-				<div class="message" style="font-size:.8em;width:85%">${flash.message}</div>
+				<div class="message" style="font-size:.8em;width:85%;">${flash.message}</div>
 			</g:if>
-			<div class="tabDiv" style="width:85%">
+			<g:if test="${flash.error}">
+				<div class="errorDetail" style="font-size:.8em;width:85%;">${flash.error}</div>
+			</g:if>
+			<div class="tabDiv">
 				<div id="centerTabs" class="tabDiv">
 				    <ul>
-				        <li><a href="#fragment-4"><span>My Collaboration Groups</span></a></li>
+				        <li><a href="#fragment-4"><span>My Groups</span></a></li>
 				        <li><a href="#fragment-5"><span>Create Group</span></a></li>
 						<li><a href="#fragment-6"><span>Invite Users</span></a></li>
-						<li><a href="#fragment-7"><span>View Other Groups</span></a></li>
+						<li><a href="#fragment-7"><span>Request Access to Other Groups</span></a></li>
 				    </ul>
 					
 					 <div id="fragment-4">

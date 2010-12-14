@@ -13,11 +13,11 @@
 				<table class="studyTable">
 					<tr>
 						<th>Study Name</th>
-						<th>Description</th>
+						<th style="width:25%">Description</th>
 						<th>Principal Investigator</th>
 						<th>Cancer Type</th>
 						<th>Point of Contact</th>
-						<th style="width: 25%">Contact Email</th>
+						<!--th style="width: 25%">Contact Email</th-->
 					</tr>
 					<g:each in="${myStudies}" var="study">
 					<tr>
@@ -34,11 +34,11 @@
 								${poc.firstName} ${poc.lastName}<br/><br/>
 							</g:each>
 						</td>
-						<td>
+						<%--td>
 							<g:each in="${study.pocs}" var="poc">
 								${poc.email}<br/>
 							</g:each>	
-						</td>
+						</td--%>
 					</tr>
 					</g:each>
 				</table>
@@ -48,11 +48,11 @@
 		<table class="studyTable">
 			<tr>
 				<th>Study Name</th>
-				<th>Description</th>
+				<th style="width: 25%">Description</th>
 				<th>Principal Investigator</th>
 				<th>Cancer Type</th>
 				<th>Point of Contact</th>
-				<th style="width: 25%">Contact Email</th>
+				<!--th style="width: 25%">Contact Email</th-->
 			</tr>
 			<g:each in="${otherStudies}" var="study">
 			<tr>
@@ -69,11 +69,11 @@
 						${poc.firstName} ${poc.lastName}<br/><br/>
 					</g:each>
 				</td>
-				<td>
+				<!--td>
 					<g:each in="${study.pocs}" var="poc">
 						${poc.email}<br/>
 					</g:each>	
-				</td>
+				</td-->
 			</tr>
 			</g:each>
 		</table>

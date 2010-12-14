@@ -87,8 +87,6 @@ class ActivationController {
 	
 	def activateAccount = {
 		ActivationCommand cmd ->
-		log.debug "userId : " + cmd.userId
-		log.debug "password : " + cmd.password
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
 			log.debug cmd.errors
@@ -120,13 +118,28 @@ class ActivationController {
 				def managerPublic = securityService.findCollaborationManager("PUBLIC")
 				securityService.addUserToCollaborationGroup(managerPublic.loginName, newUser.getLoginName(), "PUBLIC")
 			}
-			flash.message = "Welcome ... your account has been created in G-DOC!" +  
-			" Please login above with your credentials. " + 
-			"Your current permissions allow you to view public data sets. Once logged in you may gain access to " +
-			"other data sets by emailing the POC directly from the 'Study DataSource' page. You can also request " + 
-			"access to the study group via the 'Collaboration Groups' page."
-			redirect(controller:'home', action:'index')
-			return
+			try{
+				def params = [:]
+				params["loginName"] = cmd.userId
+				params["password"] = cmd.password
+				def user = securityService.login(params)
+				if (user) {
+					session.profileLoaded = false
+					session.userId = cmd.userId
+					redirect(controller:'workflows',params:[firstLogin:true])
+					return
+				}
+				else {
+					flash['message'] = 'Please enter a valid user ID and password'
+					redirect(controller:'home')
+					return
+				}
+			}catch(LoginException le){
+				log.debug "login invalid in activation controller"
+				flash['message'] = 'Please enter a valid user ID and password'
+				redirect(controller:'home')
+				return
+			}
 		}
 	}
 	
