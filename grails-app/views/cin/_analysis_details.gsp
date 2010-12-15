@@ -7,7 +7,7 @@
 		});
 	});
 </g:javascript>
-<div class="ui-widget" style="font-size: .8em; width: 250px">
+<div class="ui-widget" style="font-size: .8em; width: 430px">
 	<div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all">
 		<div class="ui-jqgrid-view">
 			<div class="ui-jqgrid-titlebar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix">
