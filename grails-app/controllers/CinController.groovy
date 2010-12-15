@@ -21,6 +21,7 @@ class CinController {
 				log.debug "my ht files for $session.study = $session.files $session.df $session.cdf"
 			}
 		}
+		loadPatientLists()
 		return [diseases:getDiseases(),myStudies:session.myStudies, params:params]
 	}
 	
