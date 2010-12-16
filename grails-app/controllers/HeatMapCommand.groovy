@@ -53,7 +53,6 @@ class HeatMapCommand {
 		})
 		dataFile(blank:false)
 		groups(validator: { val, obj ->
-			println "VALUE: ${val.length}"
 			if(obj.patientList == 'ALL')
 				return true
 			if(!val || val.length > 2) {
