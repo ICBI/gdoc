@@ -29,6 +29,8 @@ class HeatMapController {
 				flash.message = " Your 2 lists, $cmd.groups have been prepopulated below for heatmap viewer"
 			}
 			StudyContext.setStudy(session.study.schemaName)
+			session.files = htDataService.getHTDataMap()
+			session.dataSetType = session.files.keySet()
 		}
 		loadPatientLists()
 		loadReporterLists()
@@ -166,6 +168,10 @@ class HeatMapController {
 							columns = line.split("\t")
 							colors = new String[columns.length]
 						}
+						//Ignore clustering information
+						if(number == 2) {
+							return
+						}
 						if(colorPatients && (number == 3)) {
 							colors[0] = "BGCOLOR"
 							(4..<columns.length).each {
@@ -188,7 +194,7 @@ class HeatMapController {
 				if(params.name.indexOf('.gtr') > 1)
 					fileBytes = result.gtrFile
 				if(params.name.indexOf('.atr') > 1)
-					fileBytes = result.atrFile
+					fileBytes = ''
 				if(params.name.indexOf('.jtv') > 1)
 					fileBytes = '<DocumentConfig><UrlExtractor/><ArrayUrlExtractor/><MainView><ColorExtractor><ColorSet/></ColorExtractor><ArrayDrawer/><GlobalXMap><FixedMap type="Fixed"/><FillMap type="Fill"/><NullMap type="Null"/></GlobalXMap><GlobalYMap><FixedMap type="Fixed"/><FillMap type="Fill"/><NullMap type="Null"/></GlobalYMap><ZoomXMap><FixedMap type="Fixed"/><FillMap type="Fill"/><NullMap type="Null"/></ZoomXMap><ZoomYMap><FixedMap type="Fixed"/><FillMap type="Fill"/><NullMap type="Null"/></ZoomYMap><TextView><TextView><GeneSummary/></TextView><TextView><GeneSummary/></TextView><TextView><GeneSummary/></TextView><TextView><GeneSummary included="1,2"/></TextView><Selection index="1"/><Selection index="2"/><Dividers Position0="79" Position1="50" Position2="50"/></TextView></MainView><GeneListMaker/></DocumentConfig>'.getBytes()
 				response.outputStream << fileBytes

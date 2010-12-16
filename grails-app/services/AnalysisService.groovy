@@ -111,11 +111,14 @@ class AnalysisService {
 				def allIds = idService.sampleIdsForFile(cmd.dataFile)
 				group1.addAll(allIds)
 			} else {
-				def ids = []
-				cmd.groups.each {
-					ids.addAll(idService.samplesForListName(it))
+				if(cmd.groups.length > 0) {
+					group1.addAll(idService.samplesForListName(cmd.groups[0]))
 				}
-				group1.addAll(ids)
+				if(cmd.groups.length > 1) {
+					def group2 = new SampleGroup()
+					group2.addAll(idService.samplesForListName(cmd.groups[1]))
+					request.comparisonGroup = group2
+				}
 			}
 			request.sampleGroup = group1
 			if(cmd.geneList) {

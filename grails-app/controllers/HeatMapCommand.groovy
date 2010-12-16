@@ -53,9 +53,10 @@ class HeatMapCommand {
 		})
 		dataFile(blank:false)
 		groups(validator: { val, obj ->
+			println "VALUE: ${val.length}"
 			if(obj.patientList == 'ALL')
 				return true
-			if(!val) {
+			if(!val || val.length > 2) {
 				return "custom.size"
 			}
 			return true
