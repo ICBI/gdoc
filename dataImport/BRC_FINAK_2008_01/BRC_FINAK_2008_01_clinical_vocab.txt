@@ -1,0 +1,11 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+NODAL_STATUS	NEGATIVE	NEGATIVE		Lymph Node negative for tumor cells
+NODAL_STATUS	POSITIVE	POSITIVE		Lymph Nodes positive for tumor cells
+ERBB2_IHC_STATUS	POSITIVE	POSITIVE		Protein ERBB2 tested by immunochemistry shows positivity
+ERBB2_IHC_STATUS	NEGATIVE	NEGATIVE		Protein ERBB2 tested by immunochemistry shows negativity
+PGR_STATUS	NEGATIVE	NEGATIVE		Progesteron Receptor negative
+PGR_STATUS	POSITIVE	POSITIVE		Progesteron Receptor positive
+ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
+ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
+RELAPSE	NO	NO		The patient has not had relapse
+RELAPSE	YES	YES		The patient has had relapse
