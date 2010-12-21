@@ -49,8 +49,10 @@ class InvitationService {
 				rm = invitations['req'].findAll{
 					lastLogin > it.lastUpdated 
 				}
-				if(rm)
+				if(rm){
 					statusUpdates = true
+				}
+					
 			}
 			
 		}

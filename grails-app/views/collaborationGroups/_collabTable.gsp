@@ -32,7 +32,7 @@
 						</g:if>
 				</g:each>
 			</ul>
-			<g:submitButton class="actionButton" style="float:right" onclick="return confirm('Are you sure?');" name="deleteUser" value="Remove Users" />
+			<g:submitButton class="actionButton" style="float:center;width:105px" onclick="return confirm('Are you sure?');" name="deleteUser" value="Remove Users" />
 			</g:form>
 			</g:if>			
 		</div>

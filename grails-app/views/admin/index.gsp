@@ -55,9 +55,9 @@
 			<p style="font-size:14pt">GDOC Admin Panel</p><br />
 			
 			<g:if test="${flash.message}">
-				<span class="message">${flash.message}</span>
+				<span class="message" style="margin-botton:10px">${flash.message}</span><br />
 			</g:if>
-			
+			<br />
 			<table style="border:1px solid black;width:85%">
 				<tr>
 					<th style="background-color:silver">Data-Loading Tasks</th>
@@ -108,6 +108,28 @@
 					</td>
 				</tr>
 			</table>
+			
+			<br />
+			<table style="border:1px solid black;width:85%">
+			<tr>
+				<th style="background-color:silver">Collaboration Admin</th>
+			</tr>
+			<tr>
+				<td>
+					<div>
+					<div style="padding:7px;background-color:seashell;">Groups/Invitations<br />
+					
+					</div>
+					
+							<div style="padding:5px;background-color:#f2f2f2;">
+							<g:link action="searchGroups">View All Groups</g:link><br /><br />
+							<g:link action="pendingInvites">Pending Invites</g:link>
+							
+							</div>
+					</div>
+				</td>
+			</tr>
+		</table>
 			
 			
 		</div>

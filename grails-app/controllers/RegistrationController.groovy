@@ -65,15 +65,22 @@ class RegistrationController {
 					def baseUrl = CH.config.grails.serverURL
 					def token = cmd.userId + "||" + System.currentTimeMillis()
 					def resetUrl = baseUrl+"/gdoc/activation/reset?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")
-					mailService.sendMail {
-					   to "$cmd.userId"
-					   from "gdoc-help@georgetown.edu"
-					   subject "Reset your G-DOC password"
-					   body 'Hello '+ cmd.userId + ',\nYou can reset your G-DOC account password by clicking this link (or pasting into browser url window): \n'+ resetUrl + '. \n\nIf you did not make this request, please notify gdoc-help@georgetown.edu via email. \nThanks, \nThe G-DOC team'
+					if(existingUser.email){
+						mailService.sendMail {
+						   to "$existingUser.email"
+						   from "gdoc-help@georgetown.edu"
+						   subject "Reset your G-DOC password"
+						   body 'Hello '+ cmd.userId + ',\nYou can reset your G-DOC account password by clicking this link (or pasting into browser url window): \n'+ resetUrl + '. \n\nIf you did not make this request, please notify gdoc-help@georgetown.edu via email. \nThanks, \nThe G-DOC team'
+						}
+						flash.message = cmd.userId + " Thanks for your request, you will receive instructions to complete a password reset for your account"
+						redirect(action:'confirmation')
+						return
+					}else{
+						flash.message = cmd.userId + " no email address was listed in you account, please contact gdoc-help@georgetown.edu for further assistance."
+						redirect(action:'confirmation')
+						return
 					}
-					flash.message = cmd.userId + " Thanks for your request, you will receive instructions to complete a password reset for your account"
-					redirect(action:'confirmation')
-					return
+					
 				}
 			}
 	}

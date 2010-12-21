@@ -55,6 +55,7 @@
 </g:if>
 <g:form name="loginForm" url="[controller:'login',action:'login']" update="[success:'message',failure:'error']">
        <input name="loginName" id="loginName" type="text" style="color:gray" size="20" onclick="clear()" value="email or net-Id"></input>
+		<g:hiddenField name="desiredPage" value="${params.desiredPage}" />
        <input name="password" id="password" type="password" size="15"></input>
        <input type="submit" value="login" />
 </g:form >

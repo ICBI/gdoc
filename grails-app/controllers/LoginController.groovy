@@ -20,8 +20,14 @@ class LoginController {
 							def user = securityService.login(params)
 							if (user) {
 								session.userId = user.loginName
-								//log.debug (user.loginName)
-								redirect(controller:'workflows')
+								if(cmd.desiredPage){
+									log.debug "user wished to go to $cmd.desiredPage view"
+									redirect(controller:'workflows',params:[desiredPage:cmd.desiredPage])
+								}
+								else{
+									redirect(controller:'workflows')
+								}
+								
 							}
 							else {
 								flash['message'] = 'Please enter a valid user ID and password'

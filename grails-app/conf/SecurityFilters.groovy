@@ -26,7 +26,15 @@ class SecurityFilters {
 			                return false
 						}
 						log.debug "user token authenticated"
-						return true
+						if(session.userId){
+							log.debug "session exists, continue"
+							return true
+						}
+						else{
+							log.debug "NO user session exists, take to login page"
+							redirect(controller:'home', action:'index',params:[desiredPage:controllerName])
+			                return false
+						}
 			  } 
               else if(!session.userId && !controllerName.equals('home') 
 						&& !controllerName.equals('login') && !controllerName.equals('public')

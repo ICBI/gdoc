@@ -266,21 +266,26 @@ def drugDiscoveryService
 	}
 	
 	def newListsAvailable(sharedIds, lastLogin){
-		def count = 0
+		def count = 0 
 		def ids = []
 		if(sharedIds){
 			sharedIds.each{
 				ids << new Long(it)
 			}
-		String listHQL
-		if(ids){
-			listHQL = "SELECT count(distinct list.id) FROM UserList list " + 
-			"WHERE list.dateCreated >= :lastLogin " +
-			"AND list.id IN (:ids) "
-			count = UserList.executeQuery(listHQL,[ids:ids, lastLogin: lastLogin])
+			String listHQL
+			if(ids){
+				listHQL = "SELECT count(distinct list.id) FROM UserList list " + 
+				"WHERE list.dateCreated >= :lastLogin " +
+				"AND list.id IN (:ids) "
+				count = UserList.executeQuery(listHQL,[ids:ids, lastLogin: lastLogin])
+				return count[0]
+			}
 		}
+		else{
+			log.debug "no new shared lists"
+			return count
 		}
-		return count[0]
+		return count
 	}
 	
 	def getListsByTag(tag,sharedIds, userName){

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>GDOC - Administration</title>
+        <title>GDOC - User Search</title>
 		<meta name="layout" content="report" />
 		<g:javascript library="jquery"/>   
 		<jq:plugin name="ui"/>
@@ -133,10 +133,11 @@
 				<g:if test="${flash.cmd instanceof InviteCollabCommand}">
 					<div class="errorDetail"><g:renderErrors bean="${flash.cmd?.errors}" as="list" /></div>
 				</g:if>
-				<g:if test="${flash.message}"><br />
-					<span id="message" class="message">${flash.message}</span>
+				<g:if test="${flash.message}">
+					<br />
+					<span id="message" class="message" style="margin-top:10px">${flash.message}</span>
 				</g:if>
-				
+				<br /><br />
 				<table class="studyTable" style="font-size:1.05em;width:400px">
 					<tr>
 						<td>Group:

@@ -136,7 +136,7 @@ class SecurityService {
 						user.setOrganization(attr.get("ou").get())
 					}else{
 						log.debug "didn't find ou, set to GU or affiliate "
-						user.setOrganization("Georgetown University or affiliate")
+						user.setOrganization("Georgetown_University")
 					}
 					if(attr.get("mail")){
 						log.debug "found mail " + attr.get("mail").get()
@@ -341,9 +341,11 @@ class SecurityService {
 		if(isUserGroupManager(loginName, groupName)) {
 			def pg = findProtectionGroup(groupName)
 			this.getAuthorizationManager().removeProtectionGroup(pg.protectionGroupId.toString())
+			return true
 		} else {
 			throw new Exception("User $loginName does not have permission to delete this group")
 		}
+		return false
 	}
 	
 	private addUserRoleToProtectionGroup(loginName, protectionGroup, roleName) {

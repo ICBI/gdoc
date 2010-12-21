@@ -53,7 +53,7 @@
 		<p style="font-size:14pt">Collaboration Groups</p>
 		<div id="centerContent">
 			<br/>
-			<g:if test="${flash.message}">
+			<g:if test="${controllerName != 'workflows' && flash.message}">
 				<div class="message" style="font-size:.8em;width:85%;">${flash.message}</div>
 			</g:if>
 			<g:if test="${flash.error}">

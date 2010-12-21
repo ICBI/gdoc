@@ -41,7 +41,6 @@ class WorkflowsController {
 			def sharedListIds = []
 			sharedListIds = userListService.getSharedListIds(session.userId,true)
 			session.sharedListIds = sharedListIds
-			flash.message = ""
 			
 			if(lastLogin){
 				def formattedDate = lastLogin.format('EEE MMM d, yyyy')
@@ -49,7 +48,8 @@ class WorkflowsController {
 				def count = userListService.newListsAvailable(sharedListIds,lastLogin)
 				if(count > 0){
 					log.debug "user has new lists available"
-					flash.message += " \n You have new <a href='/gdoc/userList'>lists</a> available"
+					session.listFilter = "all"
+					flash.message = "You have new <a href='/gdoc/userList'>lists</a> available"
 				}
 				
 			}
@@ -76,10 +76,11 @@ class WorkflowsController {
 			
 		}
 		def pendingInvites = invitationService.getInvitesThatRequireAction(session.userId,lastLogin)
-		if(pendingInvites["statusUpdates"]){
-			log.debug "user has status updates available"
-			flash.message += " \n You have status updates in your collabortion <a href='/gdoc/collaborationGroups'>groups</a>"
+		if(params.desiredPage){
+			log.debug "done with profile loading, user has requested another view"
+			redirect(controller:params.desiredPage)
 		}
+		
 		[inviteMessage:pendingInvites["inviteMessage"],requestMessage:pendingInvites["requestMessage"]]
 	}
 	

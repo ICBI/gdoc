@@ -1,4 +1,6 @@
 import grails.converters.*
+import java.net.URLEncoder
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 class CollaborationGroupsController {
 	def collaborationGroupService
@@ -8,6 +10,7 @@ class CollaborationGroupsController {
 	def quickStartService
 	def savedAnalysisService
 	def searchResults
+	def mailService
 	
 	def reloadMembershipAndStudyData(){
 			def studyNames = securityService.getSharedItemIds(session.userId, StudyDataSource.class.name,true)
@@ -115,7 +118,13 @@ class CollaborationGroupsController {
 				if(pg){
 					flash.message = cmd.collaborationGroupName + " has been created. To invite users, select the invite users tab."
 					session.myCollaborationGroups << cmd.collaborationGroupName
-					session.managedMemberships << cmd.collaborationGroupName
+					if(session.managedMemberships)
+					 	session.managedMemberships << cmd.collaborationGroupName
+					else{
+						session.managedMemberships = []
+						session.managedMemberships << cmd.collaborationGroupName
+					}
+						
 					redirect(action:"index")
 				}
 			}catch(DuplicateCollaborationGroupException de){
@@ -146,21 +155,27 @@ class CollaborationGroupsController {
 					exUserString += u + " ,"
 				}
 				log.debug "$exUserString already exist(s) in the group" + cmd.collaborationGroupName 
-				flash.message = "$exUserString already exists in the " + cmd.collaborationGroupName  + " group. No users added to group."
+				flash.error = "$exUserString already exists in the " + cmd.collaborationGroupName  + " group. No users added to group."
 				redirect(uri:"/collaborationGroups/showUsers")
 				return;
 			}
 			else{
 				def usrs = []
 				if(cmd.users[0] == 'allUsers'){
-					session.uresults.each {
-						usrs << it.loginName
-					}
-					//flash.message = "An invitation has been sent to all users to join the " + cmd.collaborationGroupName + " collaboration group."
+					log.debug "$session.userId attempted to invite all users, return false"
+					flash.error = "You are not permitted to invite all users at one time to this group. No users added to group, please make a selection of 10 users or less."
+					redirect(uri:"/collaborationGroups/showUsers")
+					return;
 				}else{
 					usrs = cmd.users[0].split(",")
-					//flash.message = "An invitation has been sent to $usrs to join the " + cmd.collaborationGroupName + " collaboration group."
+					if(usrs.size() > 10){
+						log.debug "$session.userId attempted to invite more than 10 users, return false"
+						flash.error = "You are not permitted to invite more than 10 users at a time, to this group. No users added to group, please make a selection of 10 users or less."
+						redirect(uri:"/collaborationGroups/showUsers")
+						return;
+					}
 				}
+				
 				def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
 				def inv
 				if(manager && (manager.loginName == session.userId)){
@@ -176,9 +191,23 @@ class CollaborationGroupsController {
 							if(invitationService.requestAccess(manager.loginName,user,cmd.collaborationGroupName))
 							log.debug session.userId + " invited user $user to " + cmd.collaborationGroupName
 							flash.message = session.userId + " invited user(s) to " + cmd.collaborationGroupName
+							def th = Thread.start {
+							    def u = GDOCUser.findByLoginName(user)
+									if(u.email){
+										def subject = "$manager.loginName has invited you to join the group, $cmd.collaborationGroupName"
+										sendEmail(u,subject)
+									}
+									else{
+										log.debug "no email address was listed for $u.email account, invitation will only be seen on login."
+										redirect(action:"showUsers")
+										return
+									}
+							}
+							
 						}
 					}
 				}
+				
 				redirect(action:"showUsers")
 				return;
 			}
@@ -203,6 +232,7 @@ class CollaborationGroupsController {
 					}
 					and{
 						'order'("loginName", "asc")
+						ne("loginName","CSM")
 					}
 					or {
 						ilike("loginName", "%"+params.userId+"%")
@@ -221,6 +251,7 @@ class CollaborationGroupsController {
 					}
 					and{
 						'order'("loginName", "asc")
+						ne("loginName","CSM")
 					}
 				}
 		}
@@ -317,13 +348,32 @@ class CollaborationGroupsController {
 			def manager = securityService.findCollaborationManager(params.collaborationGroupName)
 			if(invitationService.requestAccess(session.userId,manager.loginName,params.collaborationGroupName)){
 				log.debug session.userId + " is requesting access to " + params.collaborationGroupName 
-				flash.message = "An access request has been sent to join the " + params.collaborationGroupName + " collaboration group."
+				if(manager.email){
+					def subject = session.userId + " has requested access to join your group, $params.collaborationGroupName"
+					def th = Thread.start {
+						sendEmail(manager,subject)
+					}
+				}
+				flash.message = "An access request has been created to join the " + params.collaborationGroupName + " collaboration group."
 				redirect(action:"index")
 			}
 		}else{
 			flash.message = "No collaboration group specified. Try again."
 			redirect(action:"index")
 		}
+	}
+	
+	def sendEmail(sendTo,subjectText){
+		def baseUrl = CH.config.grails.serverURL
+		def token = sendTo.loginName + "||" + System.currentTimeMillis()
+		def collabUrl = baseUrl+"/gdoc/collaborationGroups?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")
+		mailService.sendMail{
+			to sendTo.email
+			from "gdoc-help@georgetown.edu"
+			subject "$subjectText"
+			body "To view this request, click this link  (or paste in a browser):\n"+collabUrl+"\n.*Note: This link will expire within 24 hours*"
+		}
+		log.debug "email has been sent to $sendTo.email account"	
 	}
 	
 	/*

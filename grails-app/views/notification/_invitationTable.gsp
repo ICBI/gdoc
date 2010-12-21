@@ -1,7 +1,7 @@
 <g:javascript library="jquery"/>
-<div style="padding-top:50px;padding-right:10px">
+<div style="padding-right:10px">
 <table class="studyTable" style="font-size:.85em;">
-<tr><th style="background-color:#FFFFCC">Invitations and Messages (<span style="font-style:italic">last 30 days</span>)</th></tr>
+<tr><th style="background-color:#FFFFCC">Invitations and Messages (<span style="font-style:italic">last 90 days</span>)</th></tr>
 <tr><td>
 	<g:set var="availableInvites" value="false" />
 	<g:if test="${session.invitations}">
