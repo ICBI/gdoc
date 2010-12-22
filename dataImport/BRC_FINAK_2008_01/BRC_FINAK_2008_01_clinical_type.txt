@@ -13,4 +13,5 @@ TUMOR_SIZE	199	TUMOR_SIZE	Tumor size	The tumor size in centimeters	PATHOLOGY				
 TIME_TO_RELAPSE/FU_MONTHS	341	TIME_TO_RELAPSE/FU_MONTHS	Time to relapse or last follow-up in months	Time to relapse or last follow-up in months	CLINICAL					0	0	0	NUMBER(4,1)	Months	0	600
 RADIOTHERAPY	349	RADIOTHERAPY	Radiotherapy	Patient recieved Radiotherapy	CLINICAL					1	0	1	varchar			
 HORMONE_THERAPY	new	HORMONE_THERAPY	Hormone Therapy received	The patient received hormone therapy	CLINICAL					1	0	1	VARCHAR2(3)			
-CHEMOTHERAPY	240	CHEMOTHERAPY	Chemotherapy received	The patient received chemotherapy	CLINICAL					1	0	1	VARCHAR2(3)															
+CHEMOTHERAPY	240	CHEMOTHERAPY	Chemotherapy received	The patient received chemotherapy	CLINICAL					1	0	1	VARCHAR2(3)			
+SURGERY_TO_DEATH/FU	114	SURGERY_TO_DEATH/FU	Years between Surgery and Death or Last Followup	The number of years between a patient's surgery and death.  If no death has occurred, then the number of years between the surgery and the last followup (last time seen).   Formula: (((Year of Death or FollowUp - Year of surgery)*12)+(Month of Death or FollowUp - Month of surgery))/12	CLINICAL		0			0	0	0	NUMBER(4,1)	years	0	50
