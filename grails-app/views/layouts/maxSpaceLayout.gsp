@@ -4,7 +4,7 @@
 <html>
 <head>
     <title><g:layoutTitle /></title>
-		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/>
+		<!--link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/-->
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'grids.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'thickbox.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
@@ -32,7 +32,7 @@
     <g:render template="/common/header"/>
     <!-- Header end -->
 	</div>
-	<div class="c" style="background:#fff;border:1px solid #000;padding:3px 0;">
+	<div class="c" style="background:#fff;border:1px solid #000;padding:3px;">
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">

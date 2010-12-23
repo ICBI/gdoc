@@ -338,6 +338,18 @@ class SecurityService {
 	
 	def deleteCollaborationGroup(loginName, groupName) {
 		groupName = groupName.toUpperCase()
+		def invites = []
+		def cg = CollaborationGroup.findByName(groupName)
+		invites= Invitation.findAllByGroup(cg)
+		if(invites){
+			def ids = []
+			ids = invites.collect{it.id}
+			log.debug "delete all invitations for group $groupName, $ids"
+			ids.each{
+				def i = Invitation.get(it)
+				i.delete(flush:true)
+			}
+		}
 		if(isUserGroupManager(loginName, groupName)) {
 			def pg = findProtectionGroup(groupName)
 			this.getAuthorizationManager().removeProtectionGroup(pg.protectionGroupId.toString())

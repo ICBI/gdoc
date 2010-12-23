@@ -9,6 +9,7 @@ class UserListController {
 	def exportService
 	def annotationService
 	def vennService
+	def searchableService
 	def tagService
 	def htDataService
     def index = { redirect(action:list,params:params) }
@@ -291,7 +292,7 @@ class UserListController {
 			it.name == params["name"]
 		}
 		if(listDup) {
-			render "<span class='errorDetail'>List $params.name already exists</span>"
+			render "List $params.name already exists. Please choose different name and try again."
 			return
 		}
 		log.debug "save list"
@@ -325,7 +326,7 @@ class UserListController {
 				}
 			}
 			if(ids.size > MAX_LIST_SIZE) {
-				render "<span class='errorDetail'>List cannot be larger than ${MAX_LIST_SIZE} items.</span>"
+				render "List cannot be larger than ${MAX_LIST_SIZE} items. Please select a subset and try again."
 				return
 			}
 		} else if(params['ids']){
@@ -361,10 +362,11 @@ class UserListController {
 			}
 		}
 		def userListInstance = userListService.createList(session.userId, params.name, ids, [StudyContext.getStudy()], tags)
-        if(userListInstance) {
-				render "<span class='message'>$params.name created succesfully</span>"
-        } else {
-				render "<span class='errorDetail'>Error creating $params.name list</span>"
+        if(userListInstance){
+			render "$params.name created succesfully"
+		}
+		else {
+				render "Error creating $params.name list"
         }
     }
 
@@ -566,5 +568,6 @@ class UserListController {
 			return
 		}
 	}
+
 	
 }

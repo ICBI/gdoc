@@ -52,9 +52,9 @@
 					rowList:[25,50], 
 					//imgpath: gridimgpath, 
 					pager: jQuery('#pager'), 
-					sortname: 'loginName', 
+					sortname: 'User ID', 
 					viewrecords: true, 
-					sortorder: "desc", 
+					sortorder: "asc", 
 					multiselect: true, 
 					caption: "User Search Results",
 					onSelectAll: function(all, checked) {

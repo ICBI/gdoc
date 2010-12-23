@@ -80,15 +80,14 @@
 			    <recaptcha:recaptcha theme="blackglass"/>
 			</recaptcha:ifEnabled>
 			<br /><br/>
+			<div class="c" style="border:1px solid silver;padding:10px;margin-right:10px;width:50%">
+				*NOTE:<span style="font-size:.85em">A registration link will be sent your email address after submission
+				 If you do not receive a registration email in a timely manner,
+				 check your 'spam' box and verify your filter does not block future email from gdoc-help@georgetown.edu</span><br />
+			</div><br />
 			<g:submitButton name="registerPublic" value="Register" />
 			</g:form>
 		</div>
-		<div class="c" style="float:right;border:1px solid silver;padding:10px;margin-right:10px">
-			<span style="font-size:1.05em">Your password must meet the following requirements:</span><br />
-			 * It must be at least eight characters long.<br />
-			 * It must have at least one number.<br />
-			 * It must have at least one letter.<br />
-			 * It must have at least one symbol (!,@,#,$,^).
-		</div>
+		
 	</fieldset>
 </div>

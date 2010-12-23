@@ -135,6 +135,46 @@ class CollaborationGroupsController {
 		}
 	}
 	
+	def deleteGroup = {
+				if(params.group){
+					log.debug "requesting deletion of group $params.group"
+					def id = params.group.toLong()
+					def group = CollaborationGroup.get(id)
+					def groupName = group.name
+					def manager = securityService.findCollaborationManager(groupName)
+					if(manager && (manager.loginName == session.userId)){
+						if(securityService.deleteCollaborationGroup(session.userId,groupName)){
+							log.debug "collaboration group, $groupName has been deleted"
+							flash.message = "collaboration group, $groupName has been deleted"
+							redirect(action:index)
+							return
+						}
+						else{
+							log.debug "collaboration group, $groupName has NOT been deleted"
+							flash.error = "collaboration group, $groupName has NOT been deleted"
+							redirect(action:index)
+							return
+						}
+					}
+					else{
+						log.debug "collaboration group, $groupName has NOT been deleted, no manager found"
+						flash.error = "collaboration group, $groupName has NOT been deleted, no manager found"
+						redirect(action:index)
+						return
+					}
+					
+				}
+	}
+	
+	def buildUserNameForInvite(user){
+		if(user.firstName && user.lastName){
+			return user.firstName + " " + user.lastName
+		}
+		else{
+			return user.loginName
+		}
+	}
+	
 	/**
 	A collab manager invites users to join a group, thus making him the requestor and they the invitees. They
 	would then act as the the invitee in confirm access to a group. Works opposite if they 'wish' to be added
@@ -147,87 +187,99 @@ class CollaborationGroupsController {
 			return
 		} else{
 			flash['cmd'] = cmd
-			def existingUsers = []
-			existingUsers = collaborationGroupService.getExistingUsers(cmd.users,cmd.collaborationGroupName)
-			if(existingUsers){
-				def exUserString = ""
-				existingUsers.each{ u ->
-					exUserString += u + " ,"
-				}
-				log.debug "$exUserString already exist(s) in the group" + cmd.collaborationGroupName 
-				flash.error = "$exUserString already exists in the " + cmd.collaborationGroupName  + " group. No users added to group."
+			def usrs = []
+			if(cmd.users == 'allUsers'){
+				log.debug "$session.userId attempted to invite all users, return false"
+				flash.error = "You are not permitted to invite all users at one time to this group. No users added to group, please make a selection of 10 users or less."
 				redirect(uri:"/collaborationGroups/showUsers")
 				return;
 			}
 			else{
-				def usrs = []
-				if(cmd.users[0] == 'allUsers'){
-					log.debug "$session.userId attempted to invite all users, return false"
-					flash.error = "You are not permitted to invite all users at one time to this group. No users added to group, please make a selection of 10 users or less."
+				usrs = cmd.users.split(",")
+				log.debug "$session.userId attempting to invite the $usrs"
+				if(usrs.size() > 10){
+					log.debug "$session.userId attempted to invite more than 10 users, return false"
+					flash.error = "You are not permitted to invite more than 10 users at a time, to this group. No users added to group, please make a selection of 10 users or less."
 					redirect(uri:"/collaborationGroups/showUsers")
 					return;
-				}else{
-					usrs = cmd.users[0].split(",")
-					if(usrs.size() > 10){
-						log.debug "$session.userId attempted to invite more than 10 users, return false"
-						flash.error = "You are not permitted to invite more than 10 users at a time, to this group. No users added to group, please make a selection of 10 users or less."
-						redirect(uri:"/collaborationGroups/showUsers")
-						return;
-					}
 				}
-				
-				def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
-				def inv
-				if(manager && (manager.loginName == session.userId)){
-					usrs.each{ user ->
-						inv = invitationService.findSimilarRequest(manager.loginName,user,cmd.collaborationGroupName)
-						if(inv){
-							flash.error = "A similar invitation exists for $user invited. No invitations sent... please try again."
-							log.debug "A similar invitation exists for $user invited."
-						}
+				def gdocUsers = []
+				def loginNames = []
+				usrs.each{ 
+					def id = it.toLong()
+					def gu = GDOCUser.get(id)
+					gdocUsers << gu
+					loginNames << gu.loginName
+				}
+				def existingUsers = []
+				existingUsers = collaborationGroupService.getExistingUsers(loginNames,cmd.collaborationGroupName)
+				if(existingUsers){
+					def exUserString = ""
+					existingUsers.each{ u ->
+						exUserString += u + " ,"
 					}
-					if(!inv){
-						usrs.each{ user ->
-							if(invitationService.requestAccess(manager.loginName,user,cmd.collaborationGroupName))
-							log.debug session.userId + " invited user $user to " + cmd.collaborationGroupName
-							flash.message = session.userId + " invited user(s) to " + cmd.collaborationGroupName
-							def th = Thread.start {
-							    def u = GDOCUser.findByLoginName(user)
-									if(u.email){
-										def subject = "$manager.loginName has invited you to join the group, $cmd.collaborationGroupName"
-										sendEmail(u,subject)
-									}
-									else{
-										log.debug "no email address was listed for $u.email account, invitation will only be seen on login."
-										redirect(action:"showUsers")
-										return
-									}
+					log.debug "$exUserString already exist(s) in the group" + cmd.collaborationGroupName 
+					flash.error = "$exUserString already exists in the " + cmd.collaborationGroupName  + " group. No users added to group."
+					redirect(uri:"/collaborationGroups/showUsers")
+					return;
+				}
+				else{
+					def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
+					def inv
+					def exists = false
+					if(manager && (manager.loginName == session.userId)){
+						loginNames.each{ u ->
+							inv = invitationService.findSimilarRequest(manager.loginName,u,cmd.collaborationGroupName)
+							if(inv){
+								flash.error = "A similar invitation exists for $u invited. No invitations sent... please try again."
+								log.debug "A similar invitation exists for $u invited, do not send invites."
+								exists = true
 							}
-							
+						}
+						if(!exists){
+							gdocUsers.each{ user ->
+								if(invitationService.requestAccess(manager.loginName,user.loginName,cmd.collaborationGroupName))
+								log.debug session.userId + " invited user $user.loginName to " + cmd.collaborationGroupName
+								flash.message = session.userId + " invited user(s) to " + cmd.collaborationGroupName
+								def managerName = buildUserNameForInvite(manager)
+								def th = Thread.start {
+								    	if(user.email){
+											def subject = "$managerName has invited you to join the group, $cmd.collaborationGroupName"
+											sendEmail(user,subject)
+										}
+										else{
+											log.debug "no email address was listed for $user.email account, invitation will only be seen on login."
+											redirect(action:"showUsers")
+											return
+										}
+								}
+
+							}
+						}
+						else{
+							redirect(action:"showUsers")
+							return;
 						}
 					}
+					redirect(action:"showUsers")
+					return;
 				}
-				
-				redirect(action:"showUsers")
-				return;
 			}
+			redirect(action:"showUsers")
+			return;
 		}
-		redirect(action:"showUsers")
-		return;
 	}
 	
 	
 	def showUsers = {
-		log.debug params.userId
 		def users
 		if(params.userId){
 			 users = GDOCUser.createCriteria().list()
 				{
 					projections{
-						property('loginName')
-						property('firstName')
+						property('id')
 						property('lastName')
-						//property('email')
+						property('firstName')
 						property('organization')
 					}
 					and{
@@ -243,28 +295,26 @@ class CollaborationGroupsController {
 			users = GDOCUser.createCriteria().list()
 				{
 					projections{
-						property('loginName')
-						property('firstName')
+						property('id')
 						property('lastName')
-						//property('email')
+						property('firstName')
 						property('organization')
 					}
 					and{
-						'order'("loginName", "asc")
+						'order'("lastName", "asc")
 						ne("loginName","CSM")
 					}
 				}
 		}
 		def columns = []
-		columns << [index: "loginName", name: "User Id", sortable: true, width: '70']
-		def columnNames = ["firstName","lastName","organization"]
+		columns << [index: "id", name: "User ID", sortable: true, width: '0']
+		def columnNames = ["lastName","firstName","organization"]
 		def userListings = []
 		users.each{
 			def userMap = [:]
-			userMap["loginName"] = it[0]
-			userMap["firstName"] = it[1]
-			userMap["lastName"] = it[2]
-			//userMap["email"] = it[3]
+			userMap["id"] = it[0]
+			userMap["lastName"] = it[1]
+			userMap["firstName"] = it[2]
 			userMap["organization"] = it[3]
 			userListings << userMap
 		}
@@ -325,12 +375,11 @@ class CollaborationGroupsController {
 		session.uresults = sortedResults
 		sortedResults.getAt(startIndex..<endIndex).each { user ->
 			def cells = []
-			cells << user.loginName
-			cells << user.firstName
+			cells << user.id
 			cells << user.lastName
-			//cells << user.email
+			cells << user.firstName
 			cells << user.organization
-			results << [id: user.loginName, cell: cells]
+			results << [id: user.id, cell: cells]
 		}
 		//log.debug "results rows:" + results
 		def jsonObject = [
@@ -348,8 +397,10 @@ class CollaborationGroupsController {
 			def manager = securityService.findCollaborationManager(params.collaborationGroupName)
 			if(invitationService.requestAccess(session.userId,manager.loginName,params.collaborationGroupName)){
 				log.debug session.userId + " is requesting access to " + params.collaborationGroupName 
+				def sessUser = GDOCUser.findByLoginName(session.userId)
+				def userName = buildUserNameForInvite(sessUser)
 				if(manager.email){
-					def subject = session.userId + " has requested access to join your group, $params.collaborationGroupName"
+					def subject = "$userName has requested access to join your group, $params.collaborationGroupName"
 					def th = Thread.start {
 						sendEmail(manager,subject)
 					}

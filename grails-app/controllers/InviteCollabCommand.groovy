@@ -1,11 +1,11 @@
 class InviteCollabCommand {
 
 	String collaborationGroupName
-	String[] users
+	String users
 	
 	static constraints = {
 		users(validator: { val, obj ->
-			if(!val || val[0] == "") {
+			if(!val) {
 				return "custom.size"
 			}
 			else{

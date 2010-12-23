@@ -3,7 +3,7 @@ class Invitation {
     static mapping = {
 		table 'INVITATION'
 	}
-	static belongsTo = [requestor:GDOCUser]
+	static belongsTo = [requestor:GDOCUser, group:CollaborationGroup]
 	
 	Date dateCreated
 	Date lastUpdated

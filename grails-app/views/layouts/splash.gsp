@@ -5,7 +5,7 @@
 <head>
 	    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
     <title><g:layoutTitle /></title>
-		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/>
+		<!--link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'reset.css')}"/-->
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'grids.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'thickbox.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styles.css')}"/>
@@ -33,7 +33,7 @@
     <g:render template="/common/header"/>
     <!-- Header end -->
 	</div>
-	<div class="c" style="border:1px solid #000;padding:3px 0px;">
+	<div class="c" style="border:1px solid #000;padding:3px">
 	<div id="bd" style="min-height:400px;">
 		<div id="yui-main">
 			
@@ -47,6 +47,7 @@
     <!-- Footer end -->
 	</div>
 	</div>
+	<br />
 </div>
 <g:javascript>
 $('.c').css('background-color', '#ffffff');

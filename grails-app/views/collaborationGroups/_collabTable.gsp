@@ -34,7 +34,11 @@
 			</ul>
 			<g:submitButton class="actionButton" style="float:center;width:105px" onclick="return confirm('Are you sure?');" name="deleteUser" value="Remove Users" />
 			</g:form>
-			</g:if>			
+			</g:if>	
+			<g:form action="deleteGroup" method="post">
+				<g:hiddenField name="group" value="${manMembership.id}" />
+				<g:submitButton name="deleteGroup" class="actionButton" style="width:150px" onclick="return confirm('Are you sure?');" value="Delete this group" />
+			</g:form>		
 		</div>
 	</td>
 	</tr>

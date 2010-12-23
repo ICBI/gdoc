@@ -5,15 +5,6 @@
 	<g:javascript library="jquery" />
 </head>
 
-
-<%--div style="margin:0px auto;text-align:center;width:50%;border:1px solid gray">
-	<p style="font-size:14pt">Registration Form</p><br />
-	<span>
-		G-DOC registration has been restricted to Georgetown users with valid NetIds for the G-DOC application. Public registration will begin in the next G-DOC release.
-	</span>
-</div--%>
-
-
 <div class="clinicalSearch" style="width:85%;margin:0 auto">
 	
 <g:if test="${flash.message}">
@@ -40,11 +31,9 @@
 		</g:form>
 	</div>
 	<div class="c" style="float:right;border:1px solid silver;padding:10px;margin-right:10px">
-		<span style="font-size:1.05em">Your password must meet the following requirements:</span><br />
-		 * It must be at least eight characters long.<br />
-		 * It must have at least one number.<br />
-		 * It must have at least one letter.<br />
-		 * It must have at least one symbol (!,@,#,$,^).
+		<span style="font-size:1.05em">A registration link will be sent your email address after submission</span><br />
+		 If you do not receive a registration email in a timely manner, <br />
+		 check your 'spam' box and verify your filter does not block future email from gdoc-help@georgetown.edu<br />
 	</div>
 </fieldset>
 </div>
