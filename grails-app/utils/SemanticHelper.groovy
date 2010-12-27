@@ -334,6 +334,8 @@ class SemanticHelper {
 							break;
 			case 'Mortality': labels = ["Survival past predetermined period","No Survival"]
 							  break;
+			case 'Tumor vs. Non-Tumor': labels = ["Tumor","Non-Tumor"]
+								break;
 			case 'Metastasis': labels = ["No metastasis within predetermined period","Had metastasis"]
 							  break;
 			default: labels = ["No outcome defined", "No outcome defined"]
@@ -347,6 +349,8 @@ class SemanticHelper {
 			case 'Relapse': labels = ["Relapse","No Relapse"]
 							break;
 			case 'Metastasis': labels = ["Metastasis","No Metastasis"]
+							break;
+			case 'Tumor vs. Non-Tumor': labels = ["Tumor","Non-Tumor"]
 							break;
 			case 'Mortality': labels = ["Mortality","No Mortality"]
 							  break;
