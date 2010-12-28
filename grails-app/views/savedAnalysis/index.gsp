@@ -25,7 +25,16 @@
 				}
 	 		});
 		});
+		
+		$(document).ready( function () {
+				$('.checkall').click(function () {
+						$(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
+					});
 
+
+		} );
+
+		
 	</g:javascript>
 	
 	
@@ -62,6 +71,10 @@
 		</tr>
 		</table>
 		<g:if test="${savedAnalysis.size() > 0}">
+		<fieldset style="border:0px solid black">
+
+		<div><input type="checkbox" class="checkall"> Check all</div>
+		
 		<div id="pager1" style="text-align:right;padding:2px 10px 3px 0px">
 		<g:set var="totalPages" value="${Math.ceil(allAnalysesSize / savedAnalysis.size())}" />
 
@@ -92,6 +105,7 @@
 	                    total="${savedAnalysis.totalCount}" prev="&lt; previous" next="next &gt;"/>
 	    </g:else>
 		</div>
+		</fieldset>
 		</g:if>
 		<g:else>
 			<p>Currrently, you have no saved analyses</p>

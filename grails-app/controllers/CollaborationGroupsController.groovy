@@ -195,14 +195,20 @@ class CollaborationGroupsController {
 				return;
 			}
 			else{
-				usrs = cmd.users.split(",")
-				log.debug "$session.userId attempting to invite the $usrs"
+				usrs = cmd.users.tokenize(",")
+				if(usrs.size() == 0 ){
+					log.debug "$session.userId attempted to invite 0 users, return false"
+					flash.error = "You must slect at least one user."
+					redirect(uri:"/collaborationGroups/showUsers")
+					return;
+				}
 				if(usrs.size() > 10){
 					log.debug "$session.userId attempted to invite more than 10 users, return false"
 					flash.error = "You are not permitted to invite more than 10 users at a time, to this group. No users added to group, please make a selection of 10 users or less."
 					redirect(uri:"/collaborationGroups/showUsers")
 					return;
 				}
+				log.debug "$session.userId attempting to invite $usrs"
 				def gdocUsers = []
 				def loginNames = []
 				usrs.each{ 
@@ -307,7 +313,7 @@ class CollaborationGroupsController {
 				}
 		}
 		def columns = []
-		columns << [index: "id", name: "User ID", sortable: true, width: '0']
+		columns << [index: "id", name: "User ID", sortable: true, width:'0',resizable:false]
 		def columnNames = ["lastName","firstName","organization"]
 		def userListings = []
 		users.each{
@@ -322,7 +328,7 @@ class CollaborationGroupsController {
 			def column = [:]
 			column["index"] = it
 			column["name"] = it
-			column["width"] = '160'
+			column["width"] = '170'
 			column["sortable"] = true
 			columns << column
 		}

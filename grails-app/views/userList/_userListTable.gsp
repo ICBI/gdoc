@@ -37,6 +37,10 @@
 			$("[class*='_name']").each(function(index){
 				$(this).contentEditable="true";
 			});
+			$('.checkall').click(function () {
+					$(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
+				});
+			
 
 	} );
 	
@@ -49,7 +53,9 @@
 	
 	<g:if test="${userListInstanceList.size()>0}">
 	
+	<fieldset style="border:0px solid black">
 	
+	<div><input type="checkbox" class="checkall"> Check all</div>
 	
  	<g:panel title="My Lists" styleClass="welcome" >
 	
@@ -102,19 +108,19 @@
 					<g:if test="${session.userId.equals(userListInstance.author.loginName)}">
 					<div style="border:0px solid black;width:20%;float:right">	
 						<a href="javascript:void(0)" style="padding-right:5px">
-						<img alt="edit list" title="Rename list" src="${createLinkTo(dir: 'images', file: 'pencil.png')}" onclick="makeEditable(${userListInstance.id});" /></a>
+						<img alt="edit list" title="Rename list" src="${createLinkTo(dir: 'images', file: 'pencil.png')}" onclick="makeEditable(${userListInstance.id});" border="0" /></a>
 						
 						<g:if test="${!userListInstance.tags.contains('_temporary')}">
 						<g:link class="thickbox" name="Share &nbsp; ${userListInstance.name} &nbsp; with collaboration groups?" action="share" controller="share" 
-params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" title="Share list" style="height: 18px;padding-right:5px" src="${createLinkTo(dir: 'images', file: 'share.png')}"/></a></g:link>
+params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" title="Share list" style="height: 18px;padding-right:5px" src="${createLinkTo(dir: 'images', file: 'share.png')}" border="0"/></a></g:link>
 						</g:if>
 						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
-							<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
+							<img alt="export list" border="0" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
 						</g:link>
 						
 						<g:if test="${userListInstance.tags.contains('gene')}">
 						<g:link action="exportToCytoscape" style="padding-right:5px;" id="${userListInstance.id}">
-							<img alt="View Cancer-Gene Index network" title="View Cancer-Gene Index network" src="${createLinkTo(dir: 'images', file: 'chart_line.png')}" />
+							<img alt="View Cancer-Gene Index network" title="View Cancer-Gene Index network" src="${createLinkTo(dir: 'images', file: 'chart_line.png')}" border="0" />
 						</g:link>
 						</g:if>
 		<%--a href="javascript:void(0)" onclick="if(confirm('Are you sure?')){var classn ='${userListInstance.id}_toggle';${remoteFunction(action:'deleteList',onLoading:'showPageSpinner(true,classn)',onComplete:'showPageSpinner(false,classn)', id:userListInstance.id,update:'allLists',onSuccess:'finishDelete(\''+userListInstance.id+'\')')}return false;}">
@@ -125,11 +131,11 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 					<div style="border:0px solid black;width:60%;float:right">	
 						Shared by: ${userListInstance.author.firstName}&nbsp;${userListInstance.author.lastName}&nbsp;(author)
 						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
-						<img alt="export list" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
+						<img alt="export list" border="0" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />
 						</g:link>
 						<g:if test="${userListInstance.tags.contains('gene')}">
 						<g:link action="exportToCytoscape" style="padding-right:5px;" id="${userListInstance.id}">
-							<img alt="View Cancer-Gene Index network" title="View Cancer-Gene Index network" src="${createLinkTo(dir: 'images', file: 'chart_line.png')}" />
+							<img border="0" alt="View Cancer-Gene Index network" title="View Cancer-Gene Index network" src="${createLinkTo(dir: 'images', file: 'chart_line.png')}" />
 						</g:link>
 						</g:if>
 					</div>
@@ -164,7 +170,7 @@ params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keep
 </g:panel>
 
 <g:javascript library="jquery"/>
-
+</fieldset>
 </g:if>
 <g:else>
 <p>Currently, you have no saved lists during the time period of 

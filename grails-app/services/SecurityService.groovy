@@ -217,7 +217,12 @@ class SecurityService {
 		def user = GDOCUser.get(userId)
 		def managedGroups = []
 		try{
+			if(!user.lastLogin){
+				log.debug "set lastLoginFor this user before deletion"
+				setLastLogin(user.loginName)
+			}
 			if(user.memberships){
+				log.debug "delete all groups $user.loginName is a member of..." + user.memberships
 				user.memberships.each{
 					if(it.collaborationGroup){
 						if(isUserGroupManager(user.loginName, it.collaborationGroup.name)) {
@@ -232,7 +237,6 @@ class SecurityService {
 			managedGroups.each{ groupName ->
 				deleteCollaborationGroup(user.loginName,groupName)
 			}
-			log.debug "deleted all groups managed by $user.loginName"
 			user.delete()
 			log.debug "deleted all other objects held by $userId"
 		}

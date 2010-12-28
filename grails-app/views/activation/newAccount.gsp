@@ -15,7 +15,21 @@ $(document).ready(function() {
 	      $("#consentSpan").text("Please agree to Legal Term of Use").show().fadeOut(5000);
 	      return false;
 	 });
+	$("#showAg").click(function() {
+		  	showAgreement();
+	});
 });	
+function showAgreement(){
+	var visSelector = $("#agreement").css("display");
+	if(visSelector == 'none'){
+		$("#agreement").css("display","block");
+		return false;
+	}
+	else{
+		$("#agreement").css("display","none");
+		return false;	
+	}
+}
 </g:javascript>
 
 <div class="clinicalSearch" style="width:85%;margin:0 auto">
@@ -52,8 +66,12 @@ $(document).ready(function() {
 		<br />
 		<div style="font-style:italic;"><span style="font-weight:bold">*</span> Required field</div>
 		<br/>
-		<span id="consentSpan" style="color:red"></span><br />
-		<g:checkBox name="consent" id="consent" class="consent" value="${false}" />&nbsp;&nbsp;&nbsp;I agree to legal terms of use<br />
+		<span id="consentSpan" style="color:red;"></span><br />
+		<g:checkBox name="consent" id="consent" class="consent" value="${false}" />&nbsp;&nbsp;&nbsp;I agree to legal terms of <a href="#" id="showAg" >use</a><br />
+			
+		<div id="agreement" style="display:none;width:65%;border:1px solid black">
+			The agreement text goes here
+		</div>
 		<br />
 		<g:submitButton name="activateAccount" value="Activate account" />
 		</g:form>

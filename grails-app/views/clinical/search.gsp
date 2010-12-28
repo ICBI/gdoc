@@ -69,8 +69,6 @@
 					if(jQuery("#searchResults").getGridParam('selarrrow')) {
 							selectedIds[currPage] = jQuery("#searchResults").getGridParam('selarrrow');
 					}
-				
-					
 				},
 				gridComplete: function() {
 					currPage = jQuery("#searchResults").getGridParam("page");
@@ -95,8 +93,11 @@
 			});
 			jQuery("#listAdd").click( function() { 
 				var s; 
-				var author = '${session.userId}'
-				s = jQuery("#searchResults").getGridParam('selarrrow'); 
+				var author = '${session.userId}';
+				if(jQuery("#searchResults").getGridParam('selarrrow')) {
+						selectedIds[currPage] = jQuery("#searchResults").getGridParam('selarrrow');
+				}
+				s = selectedIds;//jQuery("#searchResults").getGridParam('selarrrow'); 
 				if(s.length == 0) {
 					jQuery('#message').html("No IDs selected.")
 					jQuery('#message').css("display","block");

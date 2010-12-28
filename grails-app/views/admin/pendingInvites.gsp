@@ -2,13 +2,15 @@
     <head>
         <title>GDOC - Administration</title>
 		<meta name="layout" content="report" />
+		<jq:plugin name="ui"/>
+		<jq:plugin name="jqgrid"/>
 		<g:javascript>
 			var selectedIds = [];
 			var selectAll = false;
 			var currPage = 1;
 			$(document).ready(function(){
 				
-				jQuery("#searchResults").jqGrid({ 
+				$("#searchResults").jqGrid({ 
 					url:'viewInvites', 
 					datatype: "json", 
 					colNames:${session.ucolumnNames}, 
@@ -17,7 +19,7 @@
 					rowNum:25, 
 					rowList:[25,50], 
 					//imgpath: gridimgpath, 
-					pager: jQuery('#pager'), 
+					pager: $('#pager'), 
 					sortname: 'id', 
 					viewrecords: true, 
 					sortorder: "desc", 
@@ -28,8 +30,8 @@
 						selectedIds = [];
 					},
 					onPaging: function(direction) {
-						if(jQuery("#searchResults").getGridParam('selarrrow')) {
-								selectedIds[currPage] = jQuery("#searchResults").getGridParam('selarrrow');
+						if($("#searchResults").getGridParam('selarrrow')) {
+								selectedIds[currPage] = $("#searchResults").getGridParam('selarrrow');
 						}
 
 
@@ -38,17 +40,17 @@
 							$("#userField").val(rowid);
 					},
 					gridComplete: function() {
-						currPage = jQuery("#searchResults").getGridParam("page");
+						currPage = $("#searchResults").getGridParam("page");
 						var ids = selectedIds[currPage];
 						if(selectAll) {
 							selectAllItems();
 						} else if(ids) {
 							for(var i = 0; i < ids.length; i++) {
-								jQuery("#searchResults").setSelection(ids[i]);
+								$("#searchResults").setSelection(ids[i]);
 							}
 
-							if(ids.length == jQuery("#searchResults").getGridParam("rowNum")) {
-								jQuery("#cb_jqg").attr('checked', true);
+							if(ids.length == $("#searchResults").getGridParam("rowNum")) {
+								$("#cb_jqg").attr('checked', true);
 							}
 						}
 
@@ -62,8 +64,7 @@
 			</g:javascript>
     </head>
     <body>
-		<jq:plugin name="ui"/>
-		<jq:plugin name="jqgrid"/>
+		
 		<div id="centerContent">
 			<p style="font-size:14pt">GDOC Admin Panel - Pending Invite Search</p><br />
 			<g:if test="${!session.uresults}">

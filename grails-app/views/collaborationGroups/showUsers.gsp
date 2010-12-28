@@ -42,7 +42,7 @@
 			var currPage = 1;
 			$(document).ready(function(){
 				var users = "";
-				jQuery("#searchResults").jqGrid({ 
+				$("#searchResults").jqGrid({ 
 					url:'viewUsers', 
 					datatype: "json", 
 					colNames:${session.ucolumnNames}, 
@@ -51,7 +51,7 @@
 					rowNum:25, 
 					rowList:[25,50], 
 					//imgpath: gridimgpath, 
-					pager: jQuery('#pager'), 
+					pager: $('#pager'), 
 					sortname: 'User ID', 
 					viewrecords: true, 
 					sortorder: "asc", 
@@ -63,30 +63,25 @@
 						$("#users").val("allUsers");
 					},
 					onPaging: function(direction) {
-						if(jQuery("#searchResults").getGridParam('selarrrow')) {
-								selectedIds[currPage] = jQuery("#searchResults").getGridParam('selarrrow');
+						if($("#searchResults").getGridParam('selarrrow')) {
+								selectedIds[currPage] = $("#searchResults").getGridParam('selarrrow');
 						}
 					},
 					gridComplete: function() {
-						currPage = jQuery("#searchResults").getGridParam("page");
+						currPage = $("#searchResults").getGridParam("page");
 						var ids = selectedIds[currPage];
 						if(selectAll) {
 							selectAllItems();
 						} else if(ids) {
 							for(var i = 0; i < ids.length; i++) {
-								jQuery("#searchResults").setSelection(ids[i]);
+								$("#searchResults").setSelection(ids[i]);
 							}
 
 							if(ids.length == jQuery("#searchResults").getGridParam("rowNum")) {
-								jQuery("#cb_jqg").attr('checked', true);
+								$("#cb_jqg").attr('checked', true);
 							}
 						}
 
-					},
-					onSelectRow: function(rowid) {
-							var sb = "";
-							sb = jQuery("#searchResults").getGridParam('selarrrow');
-							$("#users").val(sb);
 					},
 					onSortCol: function() {
 						selectAll = false;
@@ -94,20 +89,28 @@
 					}
 				});
 				
-				jQuery("#searchResults").jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:false, refresh: false});
-				
+				$("#searchResults").jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:false, refresh: false});
+				$("#inviteButton").click( function() { 
+					var s; 
+					if($("#searchResults").getGridParam('selarrrow')) {
+							selectedIds[currPage] = $("#searchResults").getGridParam('selarrrow');
+					}
+					s = selectedIds;
+					$("#users").val(s);
+					return true;
+				});
 			});
 			
 			function selectAllItems() {
-				jQuery('#searchResults tbody tr').each(function() {
-					jQuery("#searchResults").setSelection(this.id);
+				$('#searchResults tbody tr').each(function() {
+					$("#searchResults").setSelection(this.id);
 				});
-				jQuery("#cb_jqg").attr('checked', true);
+				$("#cb_jqg").attr('checked', true);
 			}
 			function success() {
-				jQuery('#list_name').val("");
+				$('#list_name').val("");
 				window.setTimeout(function() {
-				  jQuery('#message').empty().hide();
+				  $('#message').empty().hide();
 				}, 2500);
 
 
@@ -116,8 +119,7 @@
 			</g:javascript>
     </head>
     <body>
-		<jq:plugin name="ui"/>
-		<jq:plugin name="jqgrid"/>
+		
 		<div id="centerContent" style="padding:25px">
 			<p style="font-size:14pt;">GDOC User Search</p>
 			<span>Select a group, choose user(s) and click the 'Send Invite' button below.</span>
@@ -158,7 +160,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><g:submitButton class="actionButton" style="float:right" name="inviteButton" value="Send Invite" /></g:form></td>
+						<td colspan="2"><g:submitButton class="actionButton" id="inviteButton" style="float:right" name="inviteButton" value="Send Invite" /></g:form></td>
 					</tr>
 					</table>
 					</g:if>	
