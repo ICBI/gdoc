@@ -1,4 +1,7 @@
 import org.springframework.web.context.request.RequestContextHolder as RCH
+import java.text.NumberFormat
+import java.text.ParseException
+import java.text.ParsePosition
 
 class GenomeBrowserCommand {
 	String searchType
@@ -21,8 +24,17 @@ class GenomeBrowserCommand {
 			if((obj.searchType == 'location')) {
 				if(val == '')
 					return "custom.blank"
-				if(!val.isLong())
+				NumberFormat nf = NumberFormat.getInstance()
+				nf.setParseIntegerOnly(true)
+				ParsePosition position = new ParsePosition(0);
+				try {
+					nf.parse(val, position)
+					if (position.getIndex() != val.length()) {
+					    return "custom.long"
+					}
+				} catch (ParseException e) {
 					return "custom.long"
+				}
 			}
 			return true
 		})

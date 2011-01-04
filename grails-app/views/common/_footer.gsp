@@ -5,12 +5,13 @@
 	<img src="${createLinkTo(dir:'images',file:'lombardi_logo.png')}" border="0" alt="Lombardi Comprehensive Cancer Center logo" />
 </span>
 
-<span size="6" style="vertical-align:40px;margin-right:70px;margin-left:70px;font-size: 10px; font-family: arial,helvetica,sans-serif; color: #1c2674;border:0px solid black">
+<span size="6" style="vertical-align:40px;margin-right:20px;margin-left:20px;font-size: 10px; font-family: arial,helvetica,sans-serif; color: #1c2674;border:0px solid black">
 	<a href="http://lombardi.georgetown.edu/" target="_blank">LOMBARDI CCC</a>  &nbsp; |&nbsp;&nbsp; 
 	<a href="${createLink(controller: 'home', action: 'requirementCheck')}" target="_blank">SYSTEM REQUIREMENTS</a>  &nbsp; |&nbsp;&nbsp; 
 	<a href="${createLink(controller: 'policies', action: 'publication')}">PUBLICATION POLICY</a> &nbsp;&nbsp; |&nbsp;&nbsp; 
 	<a href="${createLink(controller: 'policies', action: 'dataAccess')}">DATA ACCESS POLICY</a>  &nbsp; |&nbsp;&nbsp; 
-	<g:link controller="contact">CONTACT US</g:link>
+	<g:link controller="contact">CONTACT US</g:link> &nbsp; |&nbsp;&nbsp; 
+	<g:link controller="home" action="team">G-DOC TEAM</g:link>
 </span>
 
 <span style="border:0px solid black">	

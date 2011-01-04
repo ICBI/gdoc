@@ -102,4 +102,7 @@ class HomeController {
 		
 	}
 	
+	def team = {
+		
+	}
 }
