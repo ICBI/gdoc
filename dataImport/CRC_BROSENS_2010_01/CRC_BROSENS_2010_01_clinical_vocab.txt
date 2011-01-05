@@ -14,8 +14,8 @@ EVENT_DFS	1	EVENT		1 stands for EVENT indicating recurrence of disease
 EVENT_DFS	0	CENSORING		0 stands for CENSORING meaning no recurrence was recorded
 EVENT_OS	1	EVENT		1 stands for EVENT indicating death of patient
 EVENT_OS	0	CENSORING		0 stands for CENSORING meaning there was no record of death
-CANCER_DEATH	0	Death caused by other reasons		Patient's death caused by other reasons
-CANCER_DEATH	1	Death caused by cancer		Patient's death caused by cancer
+CANCER_DEATH	0	NO		NO
+CANCER_DEATH	1	YES		YES
 DISEASE_LOCALIZATION	TRANSVERSE_COLON	transverse colon		transverse colon
 DISEASE_LOCALIZATION	COECUM	Coecum		Coecum
 DISEASE_LOCALIZATION	LEFT_FLEXURE	Left flexure		Left flexure

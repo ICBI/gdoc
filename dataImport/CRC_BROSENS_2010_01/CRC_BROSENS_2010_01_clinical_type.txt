@@ -7,7 +7,7 @@ e.os	staging attribute type=374	EVENT_OS	Event indicator for overall survival	In
 e.rfs	staging attribute type=365	EVENT_DFS	Event indicator for Disease Free Survival	Indicates recurrence OR that no recurrence was recorded	CLINICAL					0	0	1	NUMBER(1)		0	1		
 t.os		OVERALL_SURVIVAL_MONTHS	Overall survival in months	Tracks the time from diagnosis or surgery to event(death) or last follow up in months	CLINICAL					0	0	0	"NUMBER(4,1)"	months	0	600		
 t.dfs	364	DISEASE_FREE_SURVIVAL_MON	Disease free survival in months	Disease free survival in months	CLINICAL					0	0	0	"NUMBER(4,1)"	months	0	600		
-	new	CANCER_DEATH	Death related to cancer	Whether or not the patient died due to cancer	CLINICAL					1	0	1	VARCHAR2(7)					
+	new	CANCER_DEATH	Death caused by cancer	Whether or not the patient died due to cancer	CLINICAL					1	0	1	VARCHAR2(7)					
 	228	DISEASE_LOCALIZATION	The local of the disease/tumor	The local of the disease/tumor	CLINICAL					1	0	1	VARCHAR2(20)					
 	229	PTNM_T	Primary Tumor Site (pTNM-T)	Primary Tumor Site in pTNM Classification	PATHOLOGY					1	0	1	VARCHAR2(5)					
 	230	PTNM_N	Lymph Node Involvement (pTNM-N)	Degree of lymph node involvement in pTNM Classification. N staging determines whether or not the cancer has spread into nearby lymph nodes 	PATHOLOGY					1	0	1	VARCHAR2(5)					
