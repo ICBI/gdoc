@@ -13,12 +13,3 @@ t.dfs	364	DISEASE_FREE_SURVIVAL_MON	Disease free survival in months	Disease free
 	230	PTNM_N	Lymph Node Involvement (pTNM-N)	Degree of lymph node involvement in pTNM Classification. N staging determines whether or not the cancer has spread into nearby lymph nodes 	PATHOLOGY					1	0	1	VARCHAR2(5)					
 	233	PTNM_M	Presence of metastasis (pTNM-M)	"In pTNM Classification, M staging determines if the cancer has metastasized , or spread, beyond the lymph nodes into other parts of the body (also known as distant metastasis, or distant spreading)"	PATHOLOGY					1	0	1	VARCHAR2(5)					
 	new	MSI_STATUS	Microsatellite Instability status	The appearance of abnormally long or short microsatellites in an individual's DNA is referred to as microsatellite instability (MSI). It is a condition manifested by damaged DNA due to defects in the normal DNA repair process.	CLINICAL					1	0	1	VARCHAR(2)					
-																		
-																		
-																		
-																		
-																		
-																		
-																		
-																		
-																		
