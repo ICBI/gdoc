@@ -65,7 +65,6 @@
 				<g:each in="${userListInstanceList}" status="i" var="userListInstance">
 				
 				
-				
 				<div id="${userListInstance.id}_div" style="collapse:true;border:0px solid red;margin-bottom:5px;padding:3px 3px 3px 3px">
 					
 					<g:if test="${session.userId.equals(userListInstance.author.loginName)}">
@@ -111,8 +110,8 @@
 						<img alt="edit list" title="Rename list" src="${createLinkTo(dir: 'images', file: 'pencil.png')}" onclick="makeEditable(${userListInstance.id});" border="0" /></a>
 						
 						<g:if test="${!userListInstance.tags.contains('_temporary')}">
-						<g:link class="thickbox" name="Share &nbsp; ${userListInstance.name} &nbsp; with collaboration groups?" action="share" controller="share" 
-params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'250',width:'400',title:'someTitle']"><img alt="share list" title="Share list" style="height: 18px;padding-right:5px" src="${createLinkTo(dir: 'images', file: 'share.png')}" border="0"/></a></g:link>
+						<g:link class="thickbox" name="Share &nbsp; ${userListInstance.name}" action="share" controller="share" 
+params="[id:userListInstance.id,name:userListInstance.name,type:'USER_LIST',keepThis:'true',TB_iframe:'true',height:'375',width:'450',title:'someTitle']"><img alt="share list or view groups previously shared to" title="Share list" style="height: 18px;padding-right:5px" src="${createLinkTo(dir: 'images', file: 'share.png')}" border="0"/></a></g:link>
 						</g:if>
 						<g:link action="export" style="padding-right:5px;" id="${userListInstance.id}">
 							<img alt="export list" border="0" title="Export list" src="${createLinkTo(dir: 'images', file: 'export.png')}" />

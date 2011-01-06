@@ -11,7 +11,7 @@
 </head>
 <div class="body">
 			<p class="pageHeading">
-    Share ${params.name}
+    Share ${params.name}?
 			</p>
 			<div class="clinicalSearch">
 	<g:if test="${params.failure}">
@@ -19,6 +19,9 @@
 	</g:if>
 	<g:if test="${params.success}">
 		<div class="successMessage" style="color:#007000">${flash.message}</div><br />
+	</g:if>
+	<g:if test="${groups}">
+		<div class="taskMessage" style="width:85%;font-size:.9em">${params.name} is currently shared with ${groups}</div><br />
 	</g:if>
 	<g:if test="${params.id}">
 	<div>Select the collaboration groups you would like to share '<span style="color:blue">${params.name}</span>' with:</div><br />

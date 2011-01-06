@@ -112,13 +112,19 @@
 					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
 				}
 			}); 
-			jQuery("#searchResults").jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:false, refresh: false});
+			jQuery("#searchResults").jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:false, refresh: false,position:'left'});
 			jQuery("#searchResults").jqGrid('navButtonAdd','#pager',{
 			       caption:"Export results", 
 			       onClickButton : function () { 
 				       $('#download').submit();
-			       } 
+			       },
+				   position:"last"
 			});
+			
+			if($("#searchResults").width() < 300){
+				$("#searchResults").setGridWidth(700);
+			}
+			
 		});
 		
 		function selectAllItems() {
@@ -173,6 +179,7 @@
 			<br/>
 			<br/>
 	</div>
+
 	</body>
 	
 </html>

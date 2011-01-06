@@ -94,7 +94,45 @@ def shareItem = {
 }
 
 def share = {
-	
+	def item
+	if(params.id && params.type){
+		item = getItem(params.id, params.type)
+		def alreadySharedGroups = []
+		alreadySharedGroups = securityService.groupsShared(item)
+		if(alreadySharedGroups){
+			flash.message = alreadySharedGroups
+			[groups:alreadySharedGroups]
+		}
+	}
+}
+
+def getItem(id,type){
+	def item
+	if(type.equals(Constants.SAVED_ANALYSIS)){
+		if(isAnalysisAuthor(id)){
+			log.debug 'attempting to share saved analysis: ' + id
+			item = SavedAnalysis.get(id)
+			return item
+		}
+		else{
+			log.debug "user is NOT permitted to share analysis"
+			redirect(controller:'policies',action:'deniedAccess')
+			return
+		}
+	}
+	if(type.equals(Constants.USER_LIST)){
+		if(isListAuthor(id)){
+			log.debug 'attempting to share user list: ' + id
+			item = UserList.get(id)
+			return item
+		}
+		else{
+			log.debug "user is NOT permitted to share list"
+			redirect(controller:'policies',action:'deniedAccess')
+			return
+		}
+	}
+	return item
 }
 
 }
