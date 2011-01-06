@@ -34,10 +34,23 @@
 	<g:javascript>
 	$(document).ready( function () {
 				$('#listFilter').change(function() {
-					if($('#listFilter').val()) {
+					if($('#listFilter').val() && $('#listFilter').val() == 'search') {
+						$('#listFilter').val("search");
+						showSearchForm(true);
+					}
+					if($('#listFilter').val() && $('#listFilter').val() != 'search'){
 						$('#filterForm').submit();
 					}
 		 		});
+		
+				$('#filterSearchForm').submit(function() {
+					if($('#searchTerm').val() == ""){
+						alert("please enter a search term");
+						return false;
+					}else{
+						return true;
+					}
+				});
 				
 				$("[class*='_name']").each(function(index){
 					$(this).editableText({
@@ -74,7 +87,14 @@
 				
 			
 	} );
-	
+	function showSearchForm(show){
+		if(show){
+			$("#searchBox").css("display","block");
+		}
+		else{
+			$("#searchBox").css("display","none");
+		}
+	}
 		
 	
 	
@@ -92,6 +112,7 @@
 			</g:if>
 			<br/>
 			<span id="message" class="message" style="display:none"></span>
+			
 			<table style="margin:5px 5px 5px 5px;border:1px solid gray;background-color:#f2f2f2"><tr>
 				
 
@@ -104,8 +125,20 @@
 				from="${timePeriods}"
 				optionKey="key" optionValue="value">
 			</g:select>
+			
+			</span>
+			<g:if test="${session.listFilter!='search'}">
+			<div id="searchBox" style="display:none;padding-top:8px">
+			</g:if>
+			<g:else>
+			<div id="searchBox" style="padding-top:8px">
+			</g:else>
+			Search by list name or list item<br />
+			<g:textField name="searchTerm" id="searchTerm" size="15" />
+			<g:submitButton value="search" name="searchButton"/>
+			</div>
 			</g:form>
-			</span></td>
+			</td>
 			
 			<td>
 			<span class="controlBarUpload" id="controlBarUpload">
@@ -117,9 +150,10 @@
 
 			<td><g:form name="delListForm" action="deleteMultipleLists">
 			<span class="controlBarUpload" id="controlBarDelete">
-			<g:submitButton name="del" value="Delete List (s)" style="font-size: 12px;color:black;text-decoration:none;padding: 3px 8px;background-color:#E6E6E6;border: 1px solid #a0a0a0;margin: 5px 3px 3px 5px;" onclick="return confirm('Are you sure?');" /></span></td>
+			<g:submitButton name="del" value="Delete List (s)" style="font-size: 12px;color:black;text-decoration:none;padding: 4px 10px;background-color:#E6E6E6;border: 1px solid #a0a0a0;margin: 5px 3px 3px 5px;" onclick="return confirm('Are you sure?');" /></span></td>
 			</tr>
-			</table>
+		</table>
+			
 			<g:if test="${allLists > 0 && userListInstanceList.size() >0}">
 			<div id="pager1" style="text-align:right;padding:2px 10px 3px 0px">
 			<g:set var="totalPages" value="${Math.ceil(allLists / userListInstanceList.size())}" />

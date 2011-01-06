@@ -103,7 +103,7 @@
 					jQuery('#message').css("display","block");
 					window.setTimeout(function() {
 					  jQuery('#message').empty().hide();
-					}, 3000);
+					}, 8000);
 				} else {
 					var tags = new Array();
 					tags.push("clinical");

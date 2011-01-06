@@ -7,8 +7,9 @@ class UserListTests extends GroovyTestCase {
 	def userListService
 	def vennService
 	
-	void testNothing(){
-		
+	void testSearch(){
+		def pagedLists = userListService.searchListsByTerm("desMin",null,"kmr75",0)
+		println pagedLists
 	}
 /*
 	void testCreateTempUserListsForKM(){
@@ -112,7 +113,7 @@ class UserListTests extends GroovyTestCase {
 		diff.removeAll(tmp)
 		println "Difference: " + diff
 		
-	}**/
+	}
 	
 	void testVenn(){
 		def list1Items= ['VEGF','EB','Ez-','FCR','HGI','HER2','BRCA1','GEF']
@@ -173,7 +174,7 @@ class UserListTests extends GroovyTestCase {
 		println vennContainer.graphData
 		
 	}
-	/**
+
 	void testRetain(){
 		def list3Items= ['VEGF','EGFR']
 		def list4Items= ['VEGF1','EGFR1','EB','ER+','5t5t','HER2','BRCA1','SOM1','RED4','GEF','HER2','FCR']

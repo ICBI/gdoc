@@ -17,8 +17,10 @@ class UserListController {
     def list = {
 		log.debug params
 		def lists = []
-		def timePeriods = [hideShared:"My Lists",my_gene:"-my gene lists",my_reporter:"-my reporter lists",my_patient:"-my patient lists",1:"-1 day",7:"-1 week",30:"-past 30 days",90:"-past 90 days",180:"-past 6 months",all:"All Lists(includes shared)",gene:"-gene lists",reporter:"-reporter list",patient:"-patient",onlyShared:"show only shared"]
+		//removed : 1:"-1 day",7:"-1 week",
+		def timePeriods = [hideShared:"Show all my Lists",search:"Search my lists",my_gene:"-my gene lists",my_reporter:"-my reporter lists",my_patient:"-my patient lists",30:"-past 30 days",90:"-past 90 days",180:"-past 6 months",all:"Show all Lists(includes shared)",gene:"-gene lists",reporter:"-reporter list",patient:"-patient",onlyShared:"show only shared"]
 		def filteredLists = []
+		def searchTerm = params.searchTerm
 		def pagedLists = []
 			if(params.listFilter){
 				session.listFilter = params.listFilter
@@ -29,17 +31,16 @@ class UserListController {
 				session.listFilter = "hideShared"
 			}
 			if(params.offset){
-				pagedLists = userListService.getPaginatedLists(session.listFilter,session.sharedListIds,params.offset.toInteger(),session.userId,null)
+				pagedLists = userListService.getPaginatedLists(session.listFilter,session.sharedListIds,params.offset.toInteger(),session.userId,searchTerm)
 			}
 			else{
-				pagedLists = userListService.getPaginatedLists(session.listFilter,session.sharedListIds,0,session.userId,null)	
+				pagedLists = userListService.getPaginatedLists(session.listFilter,session.sharedListIds,0,session.userId,searchTerm)	
 			}
 		def listSnapShots = []
 		listSnapShots = userListService.getAllListsNoPagination(session.userId,session.sharedListIds)
        [ userListInstanceList: pagedLists["results"], allLists: pagedLists["count"][0], timePeriods: timePeriods, toolsLists:listSnapShots]
     }
 
-	
 	def checkName(name){
 		def listName
 		if(name){

@@ -29,7 +29,67 @@ def drugDiscoveryService
 			pagedLists = getSharedListsOnly(sharedIds,offset)
 		  	log.debug "only shared"
 		    break;
+		   case "search":
+			if(!searchTerm){
+				pagedLists = getUsersLists(offset,userId)
+			}
+			else{
+				pagedLists = searchListsByTerm(searchTerm,sharedIds,userId,offset)
+			}
+			break;
 		   default: pagedLists = getUsersLists(offset,userId)
+		}
+		return pagedLists
+	}
+	
+	def searchListsByTerm(term,sharedIds, userName,offset){
+		def pagedLists = [:]
+		def ids = []
+		def results = []
+		def count = 0
+		if(sharedIds){
+			sharedIds.each{
+				ids << new Long(it)
+			}
+		}
+		if(ids){
+			log.debug "search by term $term"
+			def listHQL = "SELECT distinct list FROM UserList list,UserListItem item JOIN list.author author " + 
+			"WHERE list = item.list " +
+			"AND (author.loginName = :loginName " +
+			"OR list.id IN (:ids)) " + 
+			"AND (item.value like :term " +
+			"OR list.name like :term)"
+			"ORDER BY list.dateCreated desc"
+			results = UserList.executeQuery(listHQL, [term:"%"+term+"%", ids:ids, loginName: userName,max:10, offset:offset])
+			pagedLists["results"] = results
+			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,UserListItem item JOIN list.author author " + 
+			"WHERE list = item.list " +
+			"AND (author.loginName = :loginName " +
+			"OR list.id IN (:ids)) " + 
+			"AND (item.value like :term " +
+			"OR list.name like :term)"
+			"AND item.value like :term "
+			count = UserList.executeQuery(listCountHQL,[term:"%"+term+"%", ids:ids, loginName: userName])
+			pagedLists["count"] = count
+			log.debug "paged lists $pagedLists"
+		}
+		else{
+			def listHQL = "SELECT distinct list FROM UserList list,UserListItem item JOIN list.author author " + 
+			"WHERE list = item.list " +
+			"AND author.loginName = :loginName " +
+			"AND (item.value like :term " +
+			"OR list.name like :term)"
+			"ORDER BY list.name"
+			results = UserList.executeQuery(listHQL, [term:'%'+term+'%', loginName: userName,max:10, offset:offset])
+			pagedLists["results"] = results
+			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,UserListItem item JOIN list.author author " + 
+			"WHERE list = item.list " +
+			"AND author.loginName = :loginName " + 
+			"AND (item.value like :term " +
+			"OR list.name like :term)"
+			count = UserList.executeQuery(listCountHQL,[term:'%'+term+'%', loginName: userName])
+			pagedLists["count"] = count
 		}
 		return pagedLists
 	}
