@@ -454,3 +454,10 @@ border:#FBB917 solid 5px;
 display:none;
 z-index:21;
 }
+
+.errorBox {
+	border: 2px solid red;
+	background-color: #E77471;
+	text-align: center;
+	width: 60%;
+}

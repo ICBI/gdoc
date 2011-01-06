@@ -8,6 +8,9 @@
 		<g:javascript src="jquery/scrollTable/scrolltable.js"/>
 		<g:javascript src="jquery/scrollTable/jscrolltable.js"/>
 		<jq:plugin name="tooltip" />
+		<g:javascript src="deployJava.js" base="http://java.com/js/"/>
+		<g:javascript src="BrowserDetect.js"/>
+		<g:javascript src="detect.js"/>
 		
 		<!-- styling -->
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'scrollable-navig.css')}"/>
@@ -75,6 +78,14 @@
 						<!-- JavaScript enabled so display the flashContent div in case it is not replaced with a swf object. -->
 						swfobject.createCSS("#flashContent", "display:block;text-align:left;");
 						
+						var browserData = checkBrowser();
+						var flashData = checkFlash();
+						var javaData = checkJava();
+						
+						if(!(browserData[0] && flashData[0] && javaData[0])) {
+							$("#reqMessage").show();
+						}
+						
 			});
 		
 		</g:javascript>
@@ -107,6 +118,13 @@
 				<jq:plugin name="ui"/>
 				
 				<br/>
+				<div align="center">
+					<div id="reqMessage" class="errorBox" style="display: none;">
+						Your system does not meet the minimum system requirements.  <br/>
+						Please visit the <a href="${createLink(controller: 'home', action: 'requirementCheck')}" target="_blank">System Requirements</a> page to download the necessary requirements.<br/>
+					</div>
+					<br/>
+				</div>
 				<div style="width:900px;border:1px solid silver;margin:0pt auto; text-align: center;height:350" align="center">
 					<div id="flashContent"></div>
 				</div>

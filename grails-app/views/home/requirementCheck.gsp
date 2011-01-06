@@ -5,7 +5,7 @@
 		<g:javascript src="swfobject.js"/>
 		<g:javascript src="deployJava.js" base="http://java.com/js/"/>
 		<g:javascript src="BrowserDetect.js"/>
-		
+		<g:javascript src="detect.js"/>
 		<meta name="layout" content="splash" />
 		<g:javascript library="jquery"/>
 		
@@ -13,54 +13,21 @@
 		<g:javascript>
 			$(document).ready(function() {
 
-				checkBrowser();
-				checkFlash();
-				checkJava();
+				var browserData = checkBrowser();
+				passCheck($('#browserPass'), browserData[0]);
+				$('#browserVersion').text(browserData[1]);
+				var flashData = checkFlash();
+				passCheck($('#flashPass'), flashData[0]);
+				$('#flashVersion').text(flashData[1]);
+				var javaData = checkJava();
+				passCheck($('#javaPass'), javaData[0]);
+				$('#javaVersion').text(javaData[1]);
 				$('#javaLink').click(function() {
 					deployJava.installLatestJRE();
 					return false;
 				});
 			});
-			function checkBrowser() {
-				var browser = ""
-				var browserPass = false;
-				if(BrowserDetect.browser == 'Explorer') {
-					if(jQuery.browser.version >= 8)
-						browserPass = true
-					else 
-						browserPass = false
-					browser = "Internet Explorer " + jQuery.browser.version;
-				} else if(BrowserDetect.browser == 'Firefox') {
-					if(BrowserDetect.version >= 3.5) {
-						browserPass = true;
-					} else { 
-						browserPass = false;
-					}
-					browser = "Mozilla Firefox " + BrowserDetect.version;
-				} else if (BrowserDetect.browser == 'Chrome') {
-					browserPass = true
-					browser = BrowserDetect.browser + " " + BrowserDetect.version;
-				} else { 
-					browser = BrowserDetect.browser + " " + BrowserDetect.version;
-					browserPass = false;
-				}
-				$('#browserVersion').text(browser);
-				passCheck($('#browserPass'), (browserPass));
-			}
-			
-			function checkFlash() {
-				var flashPass = false;
-				$('#flashVersion').text("Flash " + swfobject.getFlashPlayerVersion().major + "." + swfobject.getFlashPlayerVersion().minor);
-				if(swfobject.getFlashPlayerVersion().major >= 10)
-					flashPass = true;
-				passCheck($('#flashPass'), flashPass);
-			}
-			
-			function checkJava() {
-				$('#javaVersion').text("Java version(s): " + deployJava.getJREs().join(", "));
-				var javaPass = deployJava.versionCheck("1.6.0+");
-				passCheck($('#javaPass'), javaPass);
-			}
+
 			
 			function passCheck(item, pass) {
 				if(pass) {
