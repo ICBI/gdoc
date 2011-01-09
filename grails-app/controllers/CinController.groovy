@@ -12,6 +12,13 @@ class CinController {
 	
     def index = { 
 		if(session.study){
+			if(params.baselineGroup && params.groups){
+				CinCommand cmd  = new CinCommand();
+				cmd.baselineGroup = params.baselineGroup 
+				cmd.groups = params.groups
+				flash.cmd = cmd
+				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups have been prepopulated below for group comparison"
+			}
 			StudyContext.setStudy(session.study.schemaName)
             if (session.study.hasCopyNumberData()) {
 				session.files = htDataService.getCINDataMap()

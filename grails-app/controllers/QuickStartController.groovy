@@ -191,6 +191,10 @@ class QuickStartController {
 				log.debug "do heatmp plot from quickstart"
 				redirect(controller:"heatMap", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
 			}
+			else if(params.type == 'cin'){
+				log.debug "do cin from quickstart"
+				redirect(controller:"cin", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
+			}
 			
 		}
 		else{
@@ -209,6 +213,10 @@ class QuickStartController {
 			else if(params.type == 'heatMap'){
 				log.debug "do heatmp plot from quickstart"
 				redirect(controller:"heatMap", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
+			}
+			else if(params.type == 'cin'){
+				log.debug "do cin from quickstart"
+				redirect(controller:"cin", action:"index", params:[baselineGroup:list1.name,groups:list2.name])
 			}
 		}
 		
