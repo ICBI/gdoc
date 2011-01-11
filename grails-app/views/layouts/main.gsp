@@ -42,7 +42,7 @@
 						<g:layoutBody/><br />
 					</div>
 					<div class="yui-u">
-						<g:render template="/common/rightbar"/>
+						
 					</div>
 				</div>
 			</div>

@@ -8,7 +8,7 @@ $(document).ready( function () {
 	});
 
 </g:javascript>
-
+<g:if test="${session.files}">
 <p>Select a baseline group and a comparison group(s)</p>
 <g:if test="${flash.message}">
 <div class="message" style="width:75%">
@@ -84,6 +84,11 @@ $(document).ready( function () {
 <br/>
 <g:submitButton name="submit" value="Submit Analysis" />
 </g:form>
+</g:if>
+<g:else>
+	<p>This study currently does not contain supporting data files which can be used for this type of analysis</p>
+</g:else>
+
 </g:if>
 
 <g:else>

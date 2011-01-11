@@ -2,11 +2,13 @@
 <div style="background: #f2f2f2 url(/gdoc/images/border_bottom.gif) top repeat-x;height:100%;" align="center"><br />
 
 <span style="border:0px solid black">	
-	<img src="${createLinkTo(dir:'images',file:'lombardi_logo.png')}" border="0" alt="Lombardi Comprehensive Cancer Center logo" />
+		<a href="http://lombardi.georgetown.edu/" target="_blank">
+			<img src="${createLinkTo(dir:'images',file:'lombardi_logo.png')}" border="0" alt="Lombardi Comprehensive Cancer Center logo" />
+		</a>
 </span>
 
 <span size="6" style="vertical-align:40px;margin-right:20px;margin-left:20px;font-size: 10px; font-family: arial,helvetica,sans-serif; color: #1c2674;border:0px solid black">
-	<a href="http://lombardi.georgetown.edu/" target="_blank">LOMBARDI CCC</a>  &nbsp; |&nbsp;&nbsp; 
+	<a href="http://lombardi.georgetown.edu/gdoc/" target="_blank">G-DOC at LCCC</a>  &nbsp; |&nbsp;&nbsp; 
 	<a href="${createLink(controller: 'home', action: 'requirementCheck')}" target="_blank">SYSTEM REQUIREMENTS</a>  &nbsp; |&nbsp;&nbsp; 
 	<a href="${createLink(controller: 'policies', action: 'publication')}">PUBLICATION POLICY</a> &nbsp;&nbsp; |&nbsp;&nbsp; 
 	<a href="${createLink(controller: 'policies', action: 'dataAccess')}">DATA ACCESS POLICY</a>  &nbsp; |&nbsp;&nbsp; 

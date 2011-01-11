@@ -46,7 +46,7 @@
 
     <g:if test="${haveQuery && !haveResults && !parseException}">
 	
-      <p>Nothing matched your recent query - <strong>${params.q.replaceAll("<(.|\n)*?>", '-');}</strong></p>
+      <p>Nothing matched your recent query. </p>
       <g:if test="${!searchResult?.suggestedQuery}">
         <g:if test="${suggs}">
 		  <%--p>Suggestions:</p>

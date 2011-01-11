@@ -49,7 +49,8 @@
 				$("#changeStudy").css("display","block");
 				$("#studyPageSpinner").css("visibility","hidden");
 			} else {
-				location.reload(true);
+				//location.reload(true);
+				location.replace('/gdoc/${controllerName}');
 			}
 			
 		}

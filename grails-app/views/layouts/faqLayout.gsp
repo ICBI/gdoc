@@ -13,9 +13,9 @@
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'superfish.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'superfish-vertical.css')}"/>
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css/cupertino',  file: 'jquery-ui-1.7.1.custom.css')}" />	
-		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styledButton.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'styledButton.css')}" />
 		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'tags.css')}"/>
-		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'editableText.css')}"/>
+		<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'jquery.autocomplete.css')}"/>
 		<g:javascript library="jquery"/>
 		<g:javascript src="gdoc.js"/>
 		<g:layoutHead/>
@@ -29,19 +29,22 @@
 <div id="doc2" class="yui-t1">
 	<div id="hd">
 		<!-- Header start -->
-    <g:render template="/common/header"/>
+    <g:render template="/common/headerWorkflow"/>
     <!-- Header end -->
 	</div>
 	<div class="c" style="background:#fff;border:1px solid #000;padding:3px;">
-	<div id="bd" style="min-height:400px;">
+	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
 				<div class="yui-gc">
 					<div class="yui-u first">
-						<g:layoutBody/>
+						<g:layoutBody/><br />
 					</div>
 					<div class="yui-u">
-						<g:render template="/userList/lists_rightbar"/>
+						<br /><br /><br />
+						<div>
+						<g:render template="/help/faq_rightBar"/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -52,7 +55,7 @@
 		</div>
 		</div>
 	</div>
-	<div id="ft" >
+	<div id="ft">
 		<!-- Footer start -->
     <g:render template="/common/footer"/>
     <!-- Footer end -->
