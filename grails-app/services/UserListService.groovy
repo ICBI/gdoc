@@ -80,7 +80,7 @@ def drugDiscoveryService
 			"AND author.loginName = :loginName " +
 			"AND (item.value like :term " +
 			"OR list.name like :term)"
-			"ORDER BY list.name"
+			"ORDER BY list.dateCreated desc"
 			results = UserList.executeQuery(listHQL, [term:'%'+term+'%', loginName: userName,max:10, offset:offset])
 			pagedLists["results"] = results
 			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,UserListItem item JOIN list.author author " + 
@@ -312,7 +312,7 @@ def drugDiscoveryService
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
 			"AND tagLink.tag.name = :tag " +
 			"AND author.loginName = :loginName " +
-			"ORDER BY list.name"
+			"ORDER BY list.dateCreated desc"
 			results = UserList.executeQuery(listHQL, [tag: tag, loginName: userName,max:10, offset:offset])
 			pagedLists["results"] = results
 			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,TagLink tagLink JOIN list.author author " + 
@@ -364,7 +364,7 @@ def drugDiscoveryService
 			"AND (author.loginName = :loginName " +
 			"OR list.id IN (:ids)) " + 
 			"AND tagLink.tag.name = :tag " +
-			"ORDER BY list.name"
+			"ORDER BY list.dateCreated desc"
 			taggedLists = UserList.executeQuery(listHQL, [tag: tag, ids:ids, loginName: userName])
 		}
 		else{
@@ -372,7 +372,7 @@ def drugDiscoveryService
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
 			"AND tagLink.tag.name = :tag " +
 			"AND author.loginName = :loginName " +
-			"ORDER BY list.name"
+			"ORDER BY list.dateCreated desc"
 			taggedLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName])
 		}
 		return taggedLists
@@ -396,7 +396,7 @@ def drugDiscoveryService
 			"AND (list.author.loginName = :loginName " +
 			"OR list.id IN (:ids)) " + 
 			"AND studies IN (:sids) " + 
-			"ORDER BY list.name"
+			"ORDER BY list.dateCreated desc"
 			patientLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName, ids:ids, sids:sids])
 		}else{
 			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.studies studies " + 
@@ -404,7 +404,7 @@ def drugDiscoveryService
 			"AND tagLink.tag.name = :tag " +
 			"AND list.author.loginName = :loginName " +
 			"AND studies IN (:sids) " + 
-			"ORDER BY list.name"
+			"ORDER BY list.dateCreated desc"
 			patientLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName, sids:sids])
 		}
 		return patientLists

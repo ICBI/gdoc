@@ -20,6 +20,9 @@
 <div id="sect1Questions" class="section">
 	<ul>
 		<li><a href="#q1">What is G-DOC, and how can it help me?</a></li>
+		<li><a href="#q1a">Who contributed to the building of G-DOC?</a></li>
+		<li><a href="#q1b">How can I obtain training on G-DOC?</a></li>
+		<li><a href="#q1c">Are there example workflows that I can use to get more familiar with G-DOC?</a></li>
 		<li><a href="#q5">Where do I begin after logging into G-DOC?</a></li>
 		<li><a href="#q6">Help me understand the color-coded bar diagram on G-DOC Quick Start?</a></li>
 		<li><a href="#q7">What is the most effective way to use the Quick Start page?</a></li>
@@ -27,11 +30,13 @@
 		<li><a href="#q8">Are there different ways to search for data?</a></li>
 		<li><a href="#q9">What are the different kinds of scientific data available on G-DOC?</a></li>
 		<li><a href="#q10">Is all the data contained in G-DOC public?</a></li>
+		<li><a href="#q10a">Are investigators outside of Georgetown University allowed to access G-DOC Help by email, and if so, what services should be expected?</a></li>
 		<li><a href="#q11">How do I access a private study in G-DOC (assumes that they are not referring to their own private data)?</a></li>
 		
 		<li><a href="#q12">I'm not familiar with something I see in the G-DOC analysis section; can you help me understand it?</a></li>
 		<li><a href="#q13">How do I save my searches and analyses? </a></li>
 		<li><a href="#q14">What is "My G-DOC"?</a></li>
+		<li><a href="#q14a">What steps should I take before sharing my private data with the public on G-DOC?</a></li>
 		<li><a href="#q15">Help! I can't find my last search /data analysis!  What should I do?</a></li>
 		<li><a href="#q16">I wish to find more information about a chemical that binds to a gene of interest to me. How do I do that?</a></li>
 		<li><a href="#q17">How can I view the interaction between a protein of interest and the chemical(s) that bind to it?</a></li>
@@ -45,24 +50,29 @@
 		<li><a href="#q24">How do I export my saved lists from G-DOC?</a></li>
 		<li><a href="#q25">What is Cytoscape, and how can I use it to help me?</a></li>
 		<li><a href="#q26">What is a genome browser?</a></li>
+		<li><a href="#q26a">Are detailed transcript structures visible in the JBrowse window of G-DOC?</a></li>
 		<li><a href="#q27">What is a reporter list, and where/why do I need it?</a></li>
+		<li><a href="#q27a">What is the chromosomal instability index (CIN Index), and how can it help me understand cancer?</a></li>
+		<li><a href="#q27b">Does G-DOC have NGS (next generation sequencing) data?</a></li>
+		<li><a href="#q27c">What microarray formats are supported by G-DOC?</a></li>
 		<li><a href="#q28">The FLASH object on the pre-login page is giving me trouble ("looks weird") - what can I do?</a></li>
 		<li><a href="#q29">What if my Cytoscape graph contains no nodes - is something wrong?</a></li>
 		<li><a href="#q30">I am having trouble saving large lists - the site is slow - what can I do to make things better?</a></li>
-		<li><a href="#q31">I have 2 lists in "My lists" that I want to see in a Venn diagram, using the list tools. However, I am not able to see anything but a grey square on the screen when I try this function. What should I do?</a></li>
 		<li><a href="#q32">One of the features on my screen looks "weird" - what can I do to fix it?</a></li>
 		<li><a href="#q33">How secure is my private data?</a></li>
 		
 		<li><a href="#q34">How can I get my data into G-DOC?</a></li>
 		<li><a href="#q35">When will G-DOC be available to the outside community?</a></li>
 		<li><a href="#q36">How often will new data be loaded into G-DOC?</a></li>
-		<li><a href="#q37">Why is the first release of G-DOC so breast cancer-focused?</a></li>
+		<li><a href="#q37">Why is the data in the current release of G-DOC so heavily breast and GI cancer focused?</a></li>
 		<li><a href="#q38">How are "findings" generated?</a></li>
 		<li><a href="#q39">I need help getting started - are there video tutorials available?</a></li>
 		<li><a href="#q40">I represent a foundation or other organization that wishes to make a donation to support additional G-DOC development.  How can I give?</a></li>
 		<li><a href="#q41">I am new to using this tool, and I am unsure about how to make sure that my computer has the right settings and software to use G-DOC effectively.  Is there a way that I can check these?</a></li>
 		<li><a href="#q42">What is the publication policy for G-DOC?</a></li>
 		<li><a href="#q43">What publications exist for G-DOC?</a></li>
+		<li><a href="#q44">Will G-DOC ever be used for non-cancer data and analyses?</a></li>
+		<li><a href="#q45">Is there an IPhone app for G-DOC?</a></li>
 	</ul>
 	
 </div>
@@ -82,6 +92,29 @@
 		<p>From a clinician’s perspective, this integrated data portal of clinical, family history, pathology, and molecular data is designed to provide the oncologist/physician with all the information necessary to provide an informed decision with regard to the best treatment options for his/her new patient. By networking several aspects of the disease and exposing various data elements, such as outpatient lab workup, pathology, radiology, current treatments, molecular signatures and expected outcomes over a web interface, G-DOC will greatly enable the practice of systems medicine in the clinical setting in the future.</p>
 	</div>
 	
+	<div class="answer">
+		<a name="q1a">
+		<span>Q: </span>Who contributed to the building of G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>Please see this link to view the contributors:  <a href="${grailsApplication.config.grails.serverURL}/gdoc/home/team" />${grailsApplication.config.grails.serverURL}/home/team</a></p>
+	
+	</div>
+	
+	<div class="answer">
+		<a name="q1b">
+		<span>Q: </span>How can I obtain training on G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>The G-DOC team will provide periodic training sessions on the campus of Georgetown University, and over time these will also be made available online.  In addition, video tutorials and example workflows are available within the site itself on the Help page <a href="${grailsApplication.config.grails.serverURL}/gdoc/help" />${grailsApplication.config.grails.serverURL}/gdoc/help</a></p>
+	
+	</div>
+	
+	<div class="answer">
+		<a name="q1c">
+		<span>Q: </span>Are there example workflows that I can use to get more familiar with G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>Example workflows are provided on the right hand side of the Help page <a href="${grailsApplication.config.grails.serverURL}/gdoc/help" />${grailsApplication.config.grails.serverURL}/gdoc/help</a>.The videos on the Help page are also very illustrative.</p>
+	
+	</div>
 	
 	<div class="answer">
 		<a name="q5">
@@ -147,8 +180,9 @@
 		<p>(1) Biospecimens, where you can search for and obtain tissue / plasma samples of different disease types. </p>
 		<p>(2) Clinical data, where you can search for data such as clinical, family history, pathology, outpatient lab workup, age, gender, diagnosis, treatment, risk factors etc.</p>
 		<p>(3) Genome data gives info about chromosome location and the genomic features (such as genes, micro RNAs, etc.) located thereupon.</p>
-		<p>(4) Compounds & their drug targets: You can search for a ligand of desired affinity within a specific range of molecular weight targeting the gene, protein or molecule of your interest and obtain their physical, chemical and structural characteristics. Additionally, you can also view the interaction between the ligand and target in 3D viewer.</p>
+		<p>(4) Compounds & their drug targets: You can search for a ligand within a specific range of molecular weight targeting the gene, protein or molecule of your interest and obtain their physical, chemical and structural characteristics. Additionally, you can also view the interaction between the ligand and target in 3D viewer.</p>
 		<p>(5) Gene expression data allows you to search for microarray-based gene expression.</p>
+		<p>(6) Metabolomics data, which shows the metabolites (chemicals) present in the cell.</p>
 	</div>
 	
 	<div class="answer">
@@ -159,6 +193,14 @@
 	No.  G-DOC stores both public and private data, and what you can access will be determined by what permissions you have.  Note that private data can be made public through “sharing”, at the data owner’s discretion. </p>
 		<p>All the various kinds of data sources available are listed under the searchable <b><i>Features</i></b> section on G-DOC homepage. From there if you click on <b><i>Studies</i></b>, a table displaying the various study sources is presented. Each data source is accompanied by a brief description of the study, principal investigator(s), type of cancer, the name and contact details of the point of contact.</p>
 		<p>To get further details about each study, click on the <b><i>Study name</i></b> to get a detailed study abstract. This page also gives details of type of data available for that study, number of searchable parameters (elements) and the option to search.  </p>
+	</div>
+	
+	<div class="answer">
+		<a name="q10a">
+		<span>Q: </span>Are investigators outside of Georgetown University allowed to access G-DOC Help by email, and if so, what services should be expected?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	The Georgetown University Helpdesk (gdoc-help@georgetown.edu) can support a limited number of general IT issues for outside personnel, but only within the context of the use of G-DOC.</p>
 	</div>
 	
 	<div class="answer">
@@ -196,6 +238,14 @@
 		
 		<p class="answerText"><span>A: </span>
 		My G-DOC enables you to manage your data, analyses, and groups.  You can manage lists and analyses by renaming, deleting, exporting or sharing with other users.  You can also use this area to share data sets and analyses that you own via collaboration groups.  Please be aware that sharing a list or analysis from a private data set into a group will not permit those without appropriate permissions therein to see a data set for which they do not have access.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q14a">
+		<span>Q: </span>What steps should I take before sharing my private data with the public on G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		It is advisable to discuss IP (Intellectual Property) issues with your Legal, Commercialization, and Technology Transfer departments before sharing any unpublished data outside of your institute unless a non-disclosure agreement is in place.  Georgetown University personnel are required to obtain the approval of the Legal Department before making any such disclosure (please contact Kelly Blevins at kcb27@georgetown.edu).</p>
 	</div>
 	
 	<div class="answer">
@@ -311,11 +361,44 @@
 	</div>
 	
 	<div class="answer">
+		<a name="q26a">
+		<span>Q: </span>Are detailed transcript structures visible in the JBrowse window of G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Yes, they are available for viewing.  Users should be aware that build 36 is the current version of the genome in the first release of G-DOC.</p>
+	</div>
+	
+	<div class="answer">
 		<a name="q27">
 		<span>Q: </span>What is a reporter list, and where/why do I need it?</a><br />
 		
 		<p class="answerText"><span>A: </span>
 	Reporters are needed for microarray assays, which are used to generate gene expression profiles. A gene is represented on a microarray by one or more reporters, i. e. nucleotide sequences that are designed to uniquely match its transcript, or transcripts if different splice variants exist. Affymetrix GeneChips are the most widely used microarray platform (U133A, U133B or U133 AB), and a wealth of data measured on these arrays is publicly available. Affymetrix reporters are 25-mer oligonucleotides whose sequence is complementary to the intended target (your sample). Each target is represented by a set of reporters, called composite sequences or probe set. Probe set size varies between 11 and 20, depending on the type of array, but is the same for the majority of the probe sets within one array.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q27a">
+		<span>Q: </span>What is the chromosomal instability index (CIN Index), and how can it help me understand cancer?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	The Chromosomal Instability Index (CIN Index) is a method for identifying genomic regions that are likely to be subject to frequent gains and losses – a very important factor in understanding the nature of cancer genomes and their resulting biology.  To facilitate the quantification of sub-chromosomal copy number alterations, a prerequisite for the CIN Index, one can apply the Circular Binary Segmentation algorithm (Venkatraman & Olshen 2007) to count DNA copy number changes. </p>
+	<p>In a typical analysis, amplification is defined as a region with a copy number greater than 3 in at least 6 contiguous SNPs, while homozygous deletion is defined as a region with a copy number less than 0.5 in at least 6 contiguous SNPs.  Hemizygous deletions are often defined as regions where the copy number falls ell between 0.5 and 1.5 in at least 6 contiguous SNPs. One may also compute such an index for each chromosome at a genome-wide scale based on the total amount of gain and loss. A chromosome-specific index may be defined as the sum of amplitudes of all gain/loss segments divided by the total number of SNPs in the chromosome, and a genome-wide CIN index may be defined as log(C1+1) + … + log(Ci+1) + … + log(C23+1), where Ci is the CIN index of chromosome i. For a gain segment, the amplitude would be the average intensity of SNP signals within the segment. For a loss segment, if one wishes to match the effect of losses to the same scale of gains, the amplitude would be calculated by 2.5+(A-2.5)(1.5-a)/1.5, where "a" is the average intensity of SNP signals within the loss segment and "A" is the maximum gain amplitude across all cases on the same chromosome.  See also Kuo, et al. 2009 (PMID 19383911).  Note that G-DOC calculates the CIN Index on the scale of chromosomal bands.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q27b">
+		<span>Q: </span>Does G-DOC have NGS (next generation sequencing) data?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		At present, G-DOC does not have any NGS data sets.  It is anticipated that his data type will eventually be supported.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q27c">
+		<span>Q: </span>What microarray formats are supported by G-DO?C</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	We currently support modern versions of the Affymetrix and Aglient array platforms, and will soon support modern Illumina chip designs as well.  We are open to discussing other formats – please contact gdoc-help@georgetown.edu to initiate the conversation.</p>
 	</div>
 	
 	<div class="answer">
@@ -343,15 +426,6 @@
 		If you are using Internet Explorer (or any of the non-supported browsers) please consider trying Chrome or FireFox instead.  Internal testing has shown that Chrome and Firefox perform the best with this application.  It is also possible that the system is simply overloaded with users at this time – in which case it may be helpful to try again later.</p>
 	</div>
 	
-	<div class="answer">
-		<a name="q31">
-		<span>Q: </span>I have 2 lists in "My lists" that I want to see in a Venn diagram, using the list tools. However, I am not able to see anything but a grey square on the screen when I try this function. What should I do?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		If you are using Internet Explorer, this problem may come up if the browser cache is not cleared. To fix this, go to your Internet Explorer web page. Click on the Tools dropdown and select Internet Options. In the tab titled General, there is a section called Browsing History. Ensure that "Temporary Internet files", "Cookies" and "History" have been selected. Click on the DELETE button. Now, go back to the G-DOC page and try plotting the Venn diagram again. The problem should be resolved. </p>
-		<p>This problem was not seen in Firefox, so you may also consider switching to that browser to sidestep this issue.</p>
-		<p>Note that this Venn diagram feature works only for 2 lists in release 1 of G-DOC. Future releases may address this feature request.</p>
-	</div>
 	
 	<div class="answer">
 		<a name="q32">
@@ -375,7 +449,9 @@
 		
 		<p class="answerText"><span>A: </span>
 		The first release of G-DOC does not support self-entry of data.  Please email 	<a href="mailto:gdoc-help@georgetown.edu?subject=Data request for 
-			G-DOC application">gdoc-help@georgetown.edu</a> to seek assistance.  The informatics team will contact you to set up an appointment to discuss the relevant issues, including normalization, required data fields, and formatting requirements.  We are happy to work with you to help get your data into G-DOC.  The G-DOC team strongly requests that data made public in G-DOC be processed in the standard method used for all shared data sets, in addition to whatever method an individual investigator chooses to use.</p>
+			G-DOC application">gdoc-help@georgetown.edu</a> to seek assistance.  The informatics team will contact you to set up an appointment to discuss the relevant issues, including normalization, required data fields, and formatting requirements.  Prior to that meeting, please review the <a href="${grailsApplication.config.documentsPath}/GDOC_dataLoadingSOP.pdf" />Data Loading SOP</a> (Standard Operating Procedure) to see the optimal way to format data that you wish to have entered in G-DOC.  Note that following the SOP will greatly enhance the speed at which the G-DOC team can enter your data.</p>
+			<p>
+			Please also note that data entered into G-DOC will be processed according to the standard methods, allowing for maximum comparability between data sets.  We request that study owners make data loaded into G-DOC available to the public as soon as possible.</p>
 	</div>
 	
 	<div class="answer">
@@ -391,16 +467,16 @@
 		<span>Q: </span>How often will new data be loaded into G-DOC?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-		It is currently believed that this will occur at least quarterly, and probably monthly.</p>
+		New data will be released every other month, starting January 2011.</p>
 	</div>
 	
 	<div class="answer">
 		<a name="q37">
-		<span>Q: </span>Why is the first release of G-DOC so breast cancer-focused?</a><br />
+		<span>Q: </span>Why is the data in the current release of G-DOC so heavily breast and GI cancer focused?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-		Georgetown University is one of the leading academic centers in the U.S. for breast cancer research, and the first release of G-DOC plays to our strength. In addition, a large number of high-quality breast cancer data sets are available in the public domain.</p>
-		<p>Over time, G-DOC will grow to contain a much broader array of cancer types, including lung, liver, gastro-intestinal, and ovarian cancers. </p>
+	Breast and GI cancers are a consistent are of focus for the Lombardi Cancer Center, and as such the initial public release data sets are primarily related to these areas.</p> 
+	<p> Over time, the data collection will grow, and we welcome the input of the community of users to help identify the optimal new directions.</p>
 	</div>
 	
 	<div class="answer">
@@ -453,14 +529,30 @@
 		
 		<p class="answerText"><span>A: </span>
 	The first of several anticipated G-DOC publications, describing the tool and its use, are expected to go to press in the first half of 2011.  In addition, we anticipate numerous publications and presentations to arise from the use of G-DOC by the scientific community.  New publications will be provided as they become available.</p>
-	<p>This statement can be found in the “Publication Policy” link in the footer of any G-DOC page.</p>
+	<p>This statement can be found in the "Publication Policy" link in the footer of any G-DOC page.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q44">
+		<span>Q: </span>Will G-DOC ever be used for non-cancer data and analyses</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	It is anticipated that non-cancer versions of G-DOC will eventually be generated using portions of the software infrastructure that underlies this tool, but they will be re-named to convey their new area of focus.  Thus, there will never be a "non-cancer G-DOC", but there likely will be a set of non-cancer tools that rely, in part, on G-DOC’s codebase.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q45">
+		<span>Q: </span>Is there an iPhone app for G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	This is in development, along with a corresponding Android app, but not yet available.</p>
 	</div>
 	
 </div>
 
-<div>
+<!--div>
 	You can also download a version of the <a href="${grailsApplication.config.documentsPath}/GDOC.faq.1.1.pdf" />FAQ document</a> that we hope will answer any questions regarding the use of the G-DOC application
-</div><br />
+</div--><br />
 <p style="font-size:12pt;text-decoration:underline">Help Email:</p>
 <div>
    If you need assistance, please send detailed technical issues to the following address:

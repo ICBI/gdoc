@@ -78,7 +78,7 @@
 			<tr>
 				<g:if test="${currStudy.hasGenomicData()}">
 					<td colspan="2">Genomic Data</td>
-					<td>Select 'perform analysis' from menu</td>
+					<td>Select an analysis type from 'Analysis' tab in the menu</td>
 				</g:if>
 				<g:else>
 					<td colspan="2">This Study DataSource currently has no Genomic Data</td>
