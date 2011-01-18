@@ -101,7 +101,10 @@
 					noSelection="${['':'Select One...']}"
 					  from="${session.reporterLists}"
 					optionKey="name" optionValue="name" />
-		<br/>
+		<img class="info" title="Please select an appropriate list for the data-type and dataset of interest: gene reporters for GENE EXPRESSION, peaks for METABOLOMICS, cytobands for COPY_NUMBER - cytoband-level CIN and, chromosomes for COPY_NUMBER - chromosome-level CIN" src="${createLinkTo(dir:'images',file:'information.png')}" border="0" /> 
+		<div class="errorDetail">
+			<g:renderErrors bean="${flash.cmd?.errors}" field="reporterList" />
+		</div>
 		<br/>
 
 		Classification Method:
