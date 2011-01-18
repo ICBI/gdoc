@@ -18,61 +18,75 @@
 <p style="font-size:14pt;padding-bottom:20px">G-DOC Frequently Asked Questions (Version 1.0)</p>
 
 <div id="sect1Questions" class="section">
-	<ul>
+	<p style="font-size:1.1em;text-align:left;padding-bottom:10px;font-weight:bold">Getting Started</p>
+	<ul style="margin-left:15px">
 		<li><a href="#q1">What is G-DOC, and how can it help me?</a></li>
 		<li><a href="#q1a">Who contributed to the building of G-DOC?</a></li>
+		<li><a href="#q43">What publications exist for G-DOC?</a></li>
 		<li><a href="#q1b">How can I obtain training on G-DOC?</a></li>
+		<li><a href="#q20">What web browsers do you recommend for using G-DOC? </a></li>
+		<li><a href="#q41">I am new to using this tool, and I am unsure about how to make sure that my computer has the right settings and software to use G-DOC effectively.  Is there a way that I can check these?</a></li>
 		<li><a href="#q1c">Are there example workflows that I can use to get more familiar with G-DOC?</a></li>
 		<li><a href="#q5">Where do I begin after logging into G-DOC?</a></li>
-		<li><a href="#q6">Help me understand the color-coded bar diagram on G-DOC Quick Start?</a></li>
-		<li><a href="#q7">What is the most effective way to use the Quick Start page?</a></li>
-		<li><a href="#q2">How does the Quick Start "outcomes" feature work ? What does it compare ?
+		<li><a href="#q28">The FLASH object on the pre-login page is giving me trouble ("looks weird") - what can I do?</a></li>
+		<li><a href="#q32">One of the features on my screen looks "weird" - what can I do to fix it?</a></li>
+		<li><a href="#q38">How are "findings" generated?</a></li>
+		<li><a href="#q39">I need help getting started - are there video tutorials available?</a></li>
+	</ul>
+	<p style="font-size:1.1em;text-align:left;padding-bottom:10px;font-weight:bold">Search and Analysis in G-DOC</p>
+	<ul style="margin-left:15px">
 		<li><a href="#q8">Are there different ways to search for data?</a></li>
 		<li><a href="#q9">What are the different kinds of scientific data available on G-DOC?</a></li>
-		<li><a href="#q10">Is all the data contained in G-DOC public?</a></li>
-		<li><a href="#q10a">Are investigators outside of Georgetown University allowed to access G-DOC Help by email, and if so, what services should be expected?</a></li>
-		<li><a href="#q11">How do I access a private study in G-DOC (assumes that they are not referring to their own private data)?</a></li>
-		
-		<li><a href="#q12">I'm not familiar with something I see in the G-DOC analysis section; can you help me understand it?</a></li>
-		<li><a href="#q13">How do I save my searches and analyses? </a></li>
-		<li><a href="#q14">What is "My G-DOC"?</a></li>
-		<li><a href="#q14a">What steps should I take before sharing my private data with the public on G-DOC?</a></li>
-		<li><a href="#q15">Help! I can't find my last search /data analysis!  What should I do?</a></li>
+		<li><a href="#q18">I wish to search for specific clinical data.  How do I go about it?</a></li>
+		<li><a href="#q6">Help me understand the color-coded bar diagram on G-DOC Quick Start?</a></li>
+		<li><a href="#q7">What is the most effective way to use the Quick Start page?</a></li>
+		<li><a href="#q2">How does the Quick Start "outcomes" feature work ? What does it compare ?</a></li>
 		<li><a href="#q16">I wish to find more information about a chemical that binds to a gene of interest to me. How do I do that?</a></li>
 		<li><a href="#q17">How can I view the interaction between a protein of interest and the chemical(s) that bind to it?</a></li>
-		<li><a href="#q18">I wish to search for specific clinical data.  How do I go about it?</a></li>
-		<li><a href="#q19">Help! My gene expression query is not working - what should I do?</a></li>
-		<li><a href="#q20">What web browsers do you recommend for using G-DOC? </a></li>
-		<li><a href="#q21">Why did I not get any results from my attempted analysis?</a></li>
-		<li><a href="#q22">I got too many results from my analysis. How do I narrow it down to get a manageable number?</a></li>
-		
-		<li><a href="#q23">How can I upload a gene list to G-DOC?</a></li>
-		<li><a href="#q24">How do I export my saved lists from G-DOC?</a></li>
-		<li><a href="#q25">What is Cytoscape, and how can I use it to help me?</a></li>
 		<li><a href="#q26">What is a genome browser?</a></li>
 		<li><a href="#q26a">Are detailed transcript structures visible in the JBrowse window of G-DOC?</a></li>
+		<li><a href="#q19">Help! My gene expression query is not working - what should I do?</a></li>
+		<li><a href="#q21">Why did I not get any results from my attempted analysis?</a></li>
+		<li><a href="#q22">I got too many results from my analysis. How do I narrow it down to get a manageable number?</a></li>
 		<li><a href="#q27">What is a reporter list, and where/why do I need it?</a></li>
 		<li><a href="#q27a">What is the chromosomal instability index (CIN Index), and how can it help me understand cancer?</a></li>
 		<li><a href="#q27b">Does G-DOC have NGS (next generation sequencing) data?</a></li>
 		<li><a href="#q27c">What microarray formats are supported by G-DOC?</a></li>
-		<li><a href="#q28">The FLASH object on the pre-login page is giving me trouble ("looks weird") - what can I do?</a></li>
+		<li><a href="#q25">What is Cytoscape, and how can I use it to help me?</a></li>
 		<li><a href="#q29">What if my Cytoscape graph contains no nodes - is something wrong?</a></li>
+		<li><a href="#q12">I'm not familiar with something I see in the G-DOC analysis section; can you help me understand it?</a></li>
+		<li><a href="#q13">How do I save my searches and analyses? </a></li>
 		<li><a href="#q30">I am having trouble saving large lists - the site is slow - what can I do to make things better?</a></li>
-		<li><a href="#q32">One of the features on my screen looks "weird" - what can I do to fix it?</a></li>
-		<li><a href="#q33">How secure is my private data?</a></li>
+		<li><a href="#q15">Help! I can't find my last search /data analysis!  What should I do?</a></li>
 		
+		</ul>
+		<p style="font-size:1.1em;text-align:left;padding-bottom:10px;font-weight:bold">G-DOC Data & Privacy</p>
+		<ul style="margin-left:15px">
 		<li><a href="#q34">How can I get my data into G-DOC?</a></li>
-		<li><a href="#q35">When will G-DOC be available to the outside community?</a></li>
 		<li><a href="#q36">How often will new data be loaded into G-DOC?</a></li>
 		<li><a href="#q37">Why is the data in the current release of G-DOC so heavily breast and GI cancer focused?</a></li>
-		<li><a href="#q38">How are "findings" generated?</a></li>
-		<li><a href="#q39">I need help getting started - are there video tutorials available?</a></li>
-		<li><a href="#q40">I represent a foundation or other organization that wishes to make a donation to support additional G-DOC development.  How can I give?</a></li>
-		<li><a href="#q41">I am new to using this tool, and I am unsure about how to make sure that my computer has the right settings and software to use G-DOC effectively.  Is there a way that I can check these?</a></li>
+		<li><a href="#q10">Is all the data contained in G-DOC public?</a></li>
+		<li><a href="#q10a">Are investigators outside of Georgetown University allowed to access G-DOC Help by email, and if so, what services should be expected?</a></li>
+		<li><a href="#q11">How do I access a private study in G-DOC (assumes that they are not referring to their own private data)?</a></li>
+		<li><a href="#q14a">What steps should I take before sharing my private data with the public on G-DOC?</a></li>
+		<li><a href="#q33">How secure is my private data?</a></li>
+		<li><a href="#q35">When will G-DOC be available to the outside community?</a></li>
 		<li><a href="#q42">What is the publication policy for G-DOC?</a></li>
-		<li><a href="#q43">What publications exist for G-DOC?</a></li>
 		<li><a href="#q44">Will G-DOC ever be used for non-cancer data and analyses?</a></li>
+		</ul>
+		
+		<p style="font-size:1.1em;text-align:left;padding-bottom:10px;font-weight:bold">My G-DOC</p>
+		<ul style="margin-left:15px">
+		<li><a href="#q14">What is "My G-DOC"?</a></li>
+		<li><a href="#q23">How can I upload a gene list to G-DOC?</a></li>
+		<li><a href="#q24">How do I export my saved lists from G-DOC?</a></li>
+		</ul>
+		
+		<p style="font-size:1.1em;text-align:left;padding-bottom:10px;font-weight:bold">Miscellaneous</p>
+		<ul style="margin-left:15px">
+		<li><a href="#q40">I represent a foundation or other organization that wishes to make a donation to support additional G-DOC development.  How can I give?</a></li>
 		<li><a href="#q45">Is there an IPhone app for G-DOC?</a></li>
+		</ul>
 	</ul>
 	
 </div>
@@ -101,11 +115,36 @@
 	</div>
 	
 	<div class="answer">
+		<a name="q43">
+		<span>Q: </span>What publications exist for G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	The first of several anticipated G-DOC publications, describing the tool and its use, are expected to go to press in the first half of 2011.  In addition, we anticipate numerous publications and presentations to arise from the use of G-DOC by the scientific community.  New publications will be provided as they become available.</p>
+	<p>This statement can be found in the "Publication Policy" link in the footer of any G-DOC page.</p>
+	</div>
+	
+	<div class="answer">
 		<a name="q1b">
 		<span>Q: </span>How can I obtain training on G-DOC?</a><br />
 		
 		<p class="answerText"><span>A: </span>The G-DOC team will provide periodic training sessions on the campus of Georgetown University, and over time these will also be made available online.  In addition, video tutorials and example workflows are available within the site itself on the Help page <a href="${grailsApplication.config.grails.serverURL}/gdoc/help" />${grailsApplication.config.grails.serverURL}/gdoc/help</a></p>
 	
+	</div>
+	
+	<div class="answer">
+		<a name="q20">
+		<span>Q: </span>What web browsers do you recommend for using G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		G-DOC should be used with the most recent versions of either Chrome (version 6.0.472.62 or better), FireFox (version 3.5 or better), or Internet Explorer (version 8 or better).  We cannot guarantee proper functioning of all features with older versions of these three, or with any other browser (e.g., Safari).  Please update your browser, Java (to version 1.6 or better) and FLASH (to 10.0 or better) before starting to use G-DOC.  Chrome is the preferred browser, as it comes bundled with FLASH.  Internet Explorer showed the largest number of peculiarities in testing among the three supported browsers. </p>
+	</div>
+	
+	<div class="answer">
+		<a name="q41">
+		<span>Q: </span>I am new to using this tool, and I am unsure about how to make sure that my computer has the right settings and software to use G-DOC effectively.  Is there a way that I can check these?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	Please select the “SYSTEM REQUIREMENTS” link in the footer on the G-DOC homepage.  This will check the FLASH, Java, and internet browsers you have installed on your computer, and compare these to the G-DOC system requirements.  Getting a “pass” on all three means that your system is ready to use G-DOC.  If any of these fail, please take corrective action to bring your machine into compliance.  Contact <a href="mailto:gdoc-help@georgetown.edu?subject=Browser Issues with G-DOC application">gdoc-help@georgetown.edu</a> for assistance.  </p>
 	</div>
 	
 	<div class="answer">
@@ -127,6 +166,79 @@
 		<p>Other options to start are available, including clinical search – it depends on what you want to do.  The team that created G-DOC is available to help you get started – please send an email to <a href="mailto:gdoc-help@georgetown.edu?subject=Getting started with 
 		G-DOC application">gdoc-help@georgetown.edu</a> to get started with the process.
 		</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q28">
+		<span>Q: </span>The FLASH object on the pre-login page is giving me trouble (“looks weird”) – what can I do?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Please use the most recent versions of Chrome, FireFox, or Internet Explorer, and use the most up to date version of FLASH (must be version 10.0 or better).  Chrome is preferred for first time users, as it comes bundled with FLASH.  Additionally, this looks best if in a full-screen window, rather than a smaller one.  Also, sometimes the FLASH object can be resized independently of the rest of the page – this can sometimes be remedied by adjusting the View menu – Zoom function on the web browser window</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="answer">
+		<a name="q32">
+		<span>Q: </span>One of the features on my screen looks “weird” – what can I do to fix it?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Please try refreshing the window – this may solve the problem.</p>
+	</div>
+	
+	
+	
+	
+	<div class="answer">
+		<a name="q38">
+		<span>Q: </span>How are “findings” generated?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		For the first release, the “Findings” in G-DOC are all hand-curated by PhD-level scientists.  This may be supplemented with automated methods in future releases.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q39">
+		<span>Q: </span>I need help getting started – are there video tutorials available?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	Yes, video tutorials are available.  Please look in the “Tutorials” section, which can be accessed from the G-DOC homepage.  The link to the videos is on the left side of the page, near the icon the resembles a white light bulb inside a blue circle.  The collection of videos will increase over time. </p>
+	</div>
+	
+	<div class="answer">
+		<a name="q8">
+		<span>Q: </span>Are there different ways to search for data?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Yes, many. The open search at the top of the page ("Google-like") is perhaps the fastest way to <get started – just type what you want to know about, and you may get an answer that you can use.  Sometimes, however, this is not sufficient.  The <b><i>Quick Start</i></b> feature on the G-DOC homepage is also an effective way to get started quickly by viewing summaries all available data sets.  </p>
+	</div>
+	
+	<div class="answer">
+		<a name="q9">
+		<span>Q: </span>What are the different kinds of scientific data available on G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		The various kinds of data available are listed under Features on the G-DOC homepage and are as follows: </p>
+		<p>(1) Biospecimens, where you can search for and obtain tissue / plasma samples of different disease types. </p>
+		<p>(2) Clinical data, where you can search for data such as clinical, family history, pathology, outpatient lab workup, age, gender, diagnosis, treatment, risk factors etc.</p>
+		<p>(3) Genome data gives info about chromosome location and the genomic features (such as genes, micro RNAs, etc.) located thereupon.</p>
+		<p>(4) Compounds & their drug targets: You can search for a ligand within a specific range of molecular weight targeting the gene, protein or molecule of your interest and obtain their physical, chemical and structural characteristics. Additionally, you can also view the interaction between the ligand and target in 3D viewer.</p>
+		<p>(5) Gene expression data allows you to search for microarray-based gene expression.</p>
+		<p>(6) Metabolomics data, which shows the metabolites (chemicals) present in the cell.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q18">
+		<span>Q: </span>I wish to search for specific clinical data.  How do I go about it?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Click on <b><i>Search: Clinical Data</i></b> under <b><i>Features</i></b> on G-DOC homepage. Then, choose a disease/cancer type and the desired study. This will bring up multiple search parameters for that study. </p>
+		<p>If you place your cursor on the symbol <img src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />
+		  that appears by each search parameter a box pops up that gives a description of that search criterion. You can choose to skip any query specification by either clicking on the red 'X' enclosed within that box or just ignoring it. The query options or search parameters vary depending on the specific database, e.g., searching the Breast Cancer Databases will include criteria such as estrogen and progesterone receptor status, tamoxifen treatment, BRCA gene mutation, etc.  </p>
+		<p>Once you have selected your search parameters, clicking on Search at the bottom of the page will take you to the Clinical Search Results page. </p>
+		<p>You can then save these searches as lists. These lists can then be used to perform advanced analyses at any point of time.</p>
 	</div>
 	
 	<div class="answer">
@@ -164,101 +276,6 @@
 	</div>
 	
 	<div class="answer">
-		<a name="q8">
-		<span>Q: </span>Are there different ways to search for data?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		Yes, many. The open search at the top of the page ("Google-like") is perhaps the fastest way to <get started – just type what you want to know about, and you may get an answer that you can use.  Sometimes, however, this is not sufficient.  The <b><i>Quick Start</i></b> feature on the G-DOC homepage is also an effective way to get started quickly by viewing summaries all available data sets.  </p>
-	</div>
-	
-	<div class="answer">
-		<a name="q9">
-		<span>Q: </span>What are the different kinds of scientific data available on G-DOC?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		The various kinds of data available are listed under Features on the G-DOC homepage and are as follows: </p>
-		<p>(1) Biospecimens, where you can search for and obtain tissue / plasma samples of different disease types. </p>
-		<p>(2) Clinical data, where you can search for data such as clinical, family history, pathology, outpatient lab workup, age, gender, diagnosis, treatment, risk factors etc.</p>
-		<p>(3) Genome data gives info about chromosome location and the genomic features (such as genes, micro RNAs, etc.) located thereupon.</p>
-		<p>(4) Compounds & their drug targets: You can search for a ligand within a specific range of molecular weight targeting the gene, protein or molecule of your interest and obtain their physical, chemical and structural characteristics. Additionally, you can also view the interaction between the ligand and target in 3D viewer.</p>
-		<p>(5) Gene expression data allows you to search for microarray-based gene expression.</p>
-		<p>(6) Metabolomics data, which shows the metabolites (chemicals) present in the cell.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q10">
-		<span>Q: </span>Is all the data contained in G-DOC public?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-	No.  G-DOC stores both public and private data, and what you can access will be determined by what permissions you have.  Note that private data can be made public through “sharing”, at the data owner’s discretion. </p>
-		<p>All the various kinds of data sources available are listed under the searchable <b><i>Features</i></b> section on G-DOC homepage. From there if you click on <b><i>Studies</i></b>, a table displaying the various study sources is presented. Each data source is accompanied by a brief description of the study, principal investigator(s), type of cancer, the name and contact details of the point of contact.</p>
-		<p>To get further details about each study, click on the <b><i>Study name</i></b> to get a detailed study abstract. This page also gives details of type of data available for that study, number of searchable parameters (elements) and the option to search.  </p>
-	</div>
-	
-	<div class="answer">
-		<a name="q10a">
-		<span>Q: </span>Are investigators outside of Georgetown University allowed to access G-DOC Help by email, and if so, what services should be expected?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-	The Georgetown University Helpdesk (gdoc-help@georgetown.edu) can support a limited number of general IT issues for outside personnel, but only within the context of the use of G-DOC.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q11">
-		<span>Q: </span>How do I access a private study in G-DOC (assumes that they are not referring to their own private data)?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		After logging in if you wish to access a specific data source, you’ll need to request access from the point of contact listed for that particular study.</p>
-		<p>To do this, click on <b><i>Manage Groups/Request Access</i></b> tab in the sidebar. On the Manage Groups page, select the tab titled, 'Request Access to Other Groups'. Upon finding the Collaboration and/or Study Group you wish to join, click the link that reads 'request access'. Allow for a few days before requiring further action on this request. If your request has not been answered on subsequent logins, contact gdoc-help@georgetown.edu</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q12">
-		<span>Q: </span>I'm not familiar with something I see in the G-DOC analysis section; can you help me understand it?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		We have made every attempt to help you understand each feature and function, and guide you through the data analysis process by placing helpful pop-up boxes with a brief description of the method at <img src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />  symbols. These helpful “blurbs” include logic and reasoning for using one method over another as well as tips to set limits, if required for an assay.  Also, the appendix of this document may help.</p>
-		
-	</div>
-	
-	<div class="answer">
-		<a name="q13">
-		<span>Q: </span>How do I save my searches and analyses?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-	The clinical search results from <b><i>Search for Clinical Data</i></b> can be saved as a list.  To select the entire data/patient search results pulled up by your query click on the box on the top left hand corner in the top most row of the table. On the other hand, to select results from individual samples click on the specific boxes. </p>
-		<p>Give your search an easily identifiable name in the box <b><i>List Name</i></b> displayed above the Results Table and click on <b><i>Save Selected</i></b>. Make a note of the search parameters used to obtain the results.
-		This list will be saved under <b><i>Saved Lists</i></b> in <b><i>My G-DOC</i></b>. Now, these lists can be used to perform further analyses such as class comparison, KM plot, PCA etc.  
-		.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q14">
-		<span>Q: </span>What is "My G-DOC"?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		My G-DOC enables you to manage your data, analyses, and groups.  You can manage lists and analyses by renaming, deleting, exporting or sharing with other users.  You can also use this area to share data sets and analyses that you own via collaboration groups.  Please be aware that sharing a list or analysis from a private data set into a group will not permit those without appropriate permissions therein to see a data set for which they do not have access.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q14a">
-		<span>Q: </span>What steps should I take before sharing my private data with the public on G-DOC?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		It is advisable to discuss IP (Intellectual Property) issues with your Legal, Commercialization, and Technology Transfer departments before sharing any unpublished data outside of your institute unless a non-disclosure agreement is in place.  Georgetown University personnel are required to obtain the approval of the Legal Department before making any such disclosure (please contact Kelly Blevins at kcb27@georgetown.edu).</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q15">
-		<span>Q: </span>Help! I can't find my last search /data analysis!  What should I do?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		After pulling up the results of your query or data analysis, did you save them with easily identifiable names? If so, they’ll be saved under My G-DOC under "Saved lists" or "Saved analysis", respectively.</p>
-		<p>From G-DOC homepage, go to My G-DOC and click on "Saved lists" or "Saved analysis" to display the complete list.</p>
-		<p>You can also access them from the left sidebar on G-DOC.</p>
-	</div>
-	
-	<div class="answer">
 		<a name="q16">
 		<span>Q: </span>I wish to find more information about a chemical that binds to a gene of interest to me. How do I do that?</a><br />
 		
@@ -282,16 +299,21 @@
 	</div>
 	
 	<div class="answer">
-		<a name="q18">
-		<span>Q: </span>I wish to search for specific clinical data.  How do I go about it?</a><br />
+		<a name="q26">
+		<span>Q: </span>What is a genome browser?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-		Click on <b><i>Search: Clinical Data</i></b> under <b><i>Features</i></b> on G-DOC homepage. Then, choose a disease/cancer type and the desired study. This will bring up multiple search parameters for that study. </p>
-		<p>If you place your cursor on the symbol <img src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />
-		  that appears by each search parameter a box pops up that gives a description of that search criterion. You can choose to skip any query specification by either clicking on the red 'X' enclosed within that box or just ignoring it. The query options or search parameters vary depending on the specific database, e.g., searching the Breast Cancer Databases will include criteria such as estrogen and progesterone receptor status, tamoxifen treatment, BRCA gene mutation, etc.  </p>
-		<p>Once you have selected your search parameters, clicking on Search at the bottom of the page will take you to the Clinical Search Results page. </p>
-		<p>You can then save these searches as lists. These lists can then be used to perform advanced analyses at any point of time.</p>
+		A genome browser is a bioinformatics tool that allows visualization and exploration of the human genome, and features thereupon. It displays a physical map of an entire chromosome and can be used to search for location of genes or sequences of interest, genetic sequence variations, microRNA gene expression etc. The interactive feature allows you to scroll over the chromosome and zoom in at any location even up to the nucleotide level. In short, a genome browser allows you to look at specific genetic sequences in their larger context.</p>
 	</div>
+	
+	<div class="answer">
+		<a name="q26a">
+		<span>Q: </span>Are detailed transcript structures visible in the JBrowse window of G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Yes, they are available for viewing.  Users should be aware that build 36 is the current version of the genome in the first release of G-DOC.</p>
+	</div>
+	
 	
 	<div class="answer">
 		<a name="q19">
@@ -299,14 +321,6 @@
 		
 		<p class="answerText"><span>A: </span>
 		Please make sure that you used the standard nomenclature for the gene of your interest (HUGO gene symbol). Many genes have numerous alternate names in common use across the scientific literature posing a challenge. In addition to species-specific databases, approved gene names and symbols for many species can be located in the <a href="http://www.ncbi.nlm.nih.gov/sites/gquery" target="_blank">National Center for Biotechnology Information's Entrez Gene database</a>.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q20">
-		<span>Q: </span>What web browsers do you recommend for using G-DOC?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		G-DOC should be used with the most recent versions of either Chrome (version 6.0.472.62 or better), FireFox (version 3.5 or better), or Internet Explorer (version 8 or better).  We cannot guarantee proper functioning of all features with older versions of these three, or with any other browser (e.g., Safari).  Please update your browser, Java (to version 1.6 or better) and FLASH (to 10.0 or better) before starting to use G-DOC.  Chrome is the preferred browser, as it comes bundled with FLASH.  Internet Explorer showed the largest number of peculiarities in testing among the three supported browsers. </p>
 	</div>
 	
 	<div class="answer">
@@ -323,49 +337,6 @@
 		
 		<p class="answerText"><span>A: </span>
 		You’ll need to tighten the stringency of your search criteria by lowering the p value and/or increasing the fold change filter.  This should allow you to focus on the most differential components (genes, probes, etc.)</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q23">
-		<span>Q: </span>How can I upload a gene list to G-DOC?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-			Create your list in MS Excel and save it as a .txt file (tab delimited) on your computer.
-			Next, log into G-DOC and go to Saved Lists. At the top of the page is a bar that says Manage Lists, which gives you options to upload or delete lists. Click on Upload list and select your saved file from your PC and submit to upload your custom list.
-		</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q24">
-		<span>Q: </span>How do I export my saved lists from G-DOC?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		Log into G-DOC and go to Saved Lists. You’ll find that each list has 3 options – rename, share and export.   When you click on export a pop-up window opens giving you the option to open or save the file in a default Notepad format. Save it as a .txt file with an identifying title. </p>
-		<p>You may choose to open this using MS Excel, which provides good functionality for parsing text files. A text import wizard window opens allowing you to choose the file type that best describes your data.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q25">
-		<span>Q: </span>What is Cytoscape, and how can I use it to help me?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-	Cytoscape is an open source bioinformatics software platform for visualizing molecular interaction networks and biological pathways and integrating these networks with annotations, gene expression profiles and other state data.  The Cytoscape icon can be found on the saved lists page.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q26">
-		<span>Q: </span>What is a genome browser?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		A genome browser is a bioinformatics tool that allows visualization and exploration of the human genome, and features thereupon. It displays a physical map of an entire chromosome and can be used to search for location of genes or sequences of interest, genetic sequence variations, microRNA gene expression etc. The interactive feature allows you to scroll over the chromosome and zoom in at any location even up to the nucleotide level. In short, a genome browser allows you to look at specific genetic sequences in their larger context.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q26a">
-		<span>Q: </span>Are detailed transcript structures visible in the JBrowse window of G-DOC?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		Yes, they are available for viewing.  Users should be aware that build 36 is the current version of the genome in the first release of G-DOC.</p>
 	</div>
 	
 	<div class="answer">
@@ -402,11 +373,11 @@
 	</div>
 	
 	<div class="answer">
-		<a name="q28">
-		<span>Q: </span>The FLASH object on the pre-login page is giving me trouble (“looks weird”) – what can I do?</a><br />
+		<a name="q25">
+		<span>Q: </span>What is Cytoscape, and how can I use it to help me?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-		Please use the most recent versions of Chrome, FireFox, or Internet Explorer, and use the most up to date version of FLASH (must be version 10.0 or better).  Chrome is preferred for first time users, as it comes bundled with FLASH.  Additionally, this looks best if in a full-screen window, rather than a smaller one.  Also, sometimes the FLASH object can be resized independently of the rest of the page – this can sometimes be remedied by adjusting the View menu – Zoom function on the web browser window</p>
+	Cytoscape is an open source bioinformatics software platform for visualizing molecular interaction networks and biological pathways and integrating these networks with annotations, gene expression profiles and other state data.  The Cytoscape icon can be found on the saved lists page.</p>
 	</div>
 	
 	<div class="answer">
@@ -415,6 +386,26 @@
 		
 		<p class="answerText"><span>A: </span>
 		The most likely cause is that the list of genes you have input do not have any entries in the cancer gene index data set that underlies the G-DOC implementation of Cytoscape.  The gene “PTGES3” is a good test case, as it produces a good graph – upload it via a text file and see if you get good results.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q12">
+		<span>Q: </span>I'm not familiar with something I see in the G-DOC analysis section; can you help me understand it?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		We have made every attempt to help you understand each feature and function, and guide you through the data analysis process by placing helpful pop-up boxes with a brief description of the method at <img src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />  symbols. These helpful “blurbs” include logic and reasoning for using one method over another as well as tips to set limits, if required for an assay.  Also, the appendix of this document may help.</p>
+		
+	</div>
+	
+	<div class="answer">
+		<a name="q13">
+		<span>Q: </span>How do I save my searches and analyses?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	The clinical search results from <b><i>Search for Clinical Data</i></b> can be saved as a list.  To select the entire data/patient search results pulled up by your query click on the box on the top left hand corner in the top most row of the table. On the other hand, to select results from individual samples click on the specific boxes. </p>
+		<p>Give your search an easily identifiable name in the box <b><i>List Name</i></b> displayed above the Results Table and click on <b><i>Save Selected</i></b>. Make a note of the search parameters used to obtain the results.
+		This list will be saved under <b><i>Saved Lists</i></b> in <b><i>My G-DOC</i></b>. Now, these lists can be used to perform further analyses such as class comparison, KM plot, PCA etc.  
+		.</p>
 	</div>
 	
 	
@@ -426,21 +417,14 @@
 		If you are using Internet Explorer (or any of the non-supported browsers) please consider trying Chrome or FireFox instead.  Internal testing has shown that Chrome and Firefox perform the best with this application.  It is also possible that the system is simply overloaded with users at this time – in which case it may be helpful to try again later.</p>
 	</div>
 	
-	
 	<div class="answer">
-		<a name="q32">
-		<span>Q: </span>One of the features on my screen looks “weird” – what can I do to fix it?</a><br />
+		<a name="q15">
+		<span>Q: </span>Help! I can't find my last search /data analysis!  What should I do?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-		Please try refreshing the window – this may solve the problem.</p>
-	</div>
-	
-	<div class="answer">
-		<a name="q33">
-		<span>Q: </span>How secure is my private data?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		Private data is very secure in G-DOC.  In fact, all non-public data sets have strict access controls.  People with whom you share your private data cannot pass analyses or lists derived from it by attempting to share it with their group.  Only members of that group to whom you have given permission will be able to see either lists or analyses derived from your private data.  The G-DOC team will delete your private data from the site upon request.  Please also see our “Data Access Policy” link in the footer.</p>
+		After pulling up the results of your query or data analysis, did you save them with easily identifiable names? If so, they’ll be saved under My G-DOC under "Saved lists" or "Saved analysis", respectively.</p>
+		<p>From G-DOC homepage, go to My G-DOC and click on "Saved lists" or "Saved analysis" to display the complete list.</p>
+		<p>You can also access them from the left sidebar on G-DOC.</p>
 	</div>
 	
 	<div class="answer">
@@ -449,18 +433,11 @@
 		
 		<p class="answerText"><span>A: </span>
 		The first release of G-DOC does not support self-entry of data.  Please email 	<a href="mailto:gdoc-help@georgetown.edu?subject=Data request for 
-			G-DOC application">gdoc-help@georgetown.edu</a> to seek assistance.  The informatics team will contact you to set up an appointment to discuss the relevant issues, including normalization, required data fields, and formatting requirements.  Prior to that meeting, please review the <a href="${grailsApplication.config.documentsPath}/GDOC_dataLoadingSOP.pdf" />Data Loading SOP</a> (Standard Operating Procedure) to see the optimal way to format data that you wish to have entered in G-DOC.  Note that following the SOP will greatly enhance the speed at which the G-DOC team can enter your data.</p>
+			G-DOC application">gdoc-help@georgetown.edu</a> to seek assistance.  The informatics team will contact you to set up an appointment to discuss the relevant issues, including normalization, required data fields, and formatting requirements.  Prior to that meeting, please review the <a href="${grailsApplication.config.documentsPath}/GDOC_data_SOP.pdf" />Data Loading SOP</a> (Standard Operating Procedure) to see the optimal way to format data that you wish to have entered in G-DOC.  Note that following the SOP will greatly enhance the speed at which the G-DOC team can enter your data.</p>
 			<p>
 			Please also note that data entered into G-DOC will be processed according to the standard methods, allowing for maximum comparability between data sets.  We request that study owners make data loaded into G-DOC available to the public as soon as possible.</p>
 	</div>
 	
-	<div class="answer">
-		<a name="q35">
-		<span>Q: </span>When will G-DOC be available to the outside community?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-		The first release of G-DOC is accessible to everyone with a Georgetown University netID, whether a member of the GU community or an “affiliate”.  The second release of G-DOC is planned as the “public” release, wherein the tool will be made available to everyone.  The first release is scheduled for the Fall of 2010, while the second for the Winter of 2010/2011.</p>
-	</div>
 	
 	<div class="answer">
 		<a name="q36">
@@ -479,36 +456,56 @@
 	<p> Over time, the data collection will grow, and we welcome the input of the community of users to help identify the optimal new directions.</p>
 	</div>
 	
+	
 	<div class="answer">
-		<a name="q38">
-		<span>Q: </span>How are “findings” generated?</a><br />
+		<a name="q10">
+		<span>Q: </span>Is all the data contained in G-DOC public?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-		For the first release, the “Findings” in G-DOC are all hand-curated by PhD-level scientists.  This may be supplemented with automated methods in future releases.</p>
+	No.  G-DOC stores both public and private data, and what you can access will be determined by what permissions you have.  Note that private data can be made public through “sharing”, at the data owner’s discretion. </p>
+		<p>All the various kinds of data sources available are listed under the searchable <b><i>Features</i></b> section on G-DOC homepage. From there if you click on <b><i>Studies</i></b>, a table displaying the various study sources is presented. Each data source is accompanied by a brief description of the study, principal investigator(s), type of cancer, the name and contact details of the point of contact.</p>
+		<p>To get further details about each study, click on the <b><i>Study name</i></b> to get a detailed study abstract. This page also gives details of type of data available for that study, number of searchable parameters (elements) and the option to search.  </p>
 	</div>
 	
 	<div class="answer">
-		<a name="q39">
-		<span>Q: </span>I need help getting started – are there video tutorials available?</a><br />
+		<a name="q10a">
+		<span>Q: </span>Are investigators outside of Georgetown University allowed to access G-DOC Help by email, and if so, what services should be expected?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-	Yes, video tutorials are available.  Please look in the “Tutorials” section, which can be accessed from the G-DOC homepage.  The link to the videos is on the left side of the page, near the icon the resembles a white light bulb inside a blue circle.  The collection of videos will increase over time. </p>
+	The Georgetown University Helpdesk (gdoc-help@georgetown.edu) can support a limited number of general IT issues for outside personnel, but only within the context of the use of G-DOC.</p>
 	</div>
 	
 	<div class="answer">
-		<a name="q40">
-		<span>Q: </span>I represent a foundation or other organization that wishes to make a donation to support additional G-DOC development.  How can I give?</a><br />
+		<a name="q11">
+		<span>Q: </span>How do I access a private study in G-DOC (assumes that they are not referring to their own private data)?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-		Please see this link for further details: <a href="http://advancement.georgetown.edu/giving/lombardi/index.html" target="_blank">http://advancement.georgetown.edu/giving/lombardi/index.html</a></p>
+		After logging in if you wish to access a specific data source, you’ll need to request access from the point of contact listed for that particular study.</p>
+		<p>To do this, click on <b><i>Manage Groups/Request Access</i></b> tab in the sidebar. On the Manage Groups page, select the tab titled, 'Request Access to Other Groups'. Upon finding the Collaboration and/or Study Group you wish to join, click the link that reads 'request access'. Allow for a few days before requiring further action on this request. If your request has not been answered on subsequent logins, contact gdoc-help@georgetown.edu</p>
 	</div>
 	
 	<div class="answer">
-		<a name="q41">
-		<span>Q: </span>I am new to using this tool, and I am unsure about how to make sure that my computer has the right settings and software to use G-DOC effectively.  Is there a way that I can check these?</a><br />
+		<a name="q14a">
+		<span>Q: </span>What steps should I take before sharing my private data with the public on G-DOC?</a><br />
 		
 		<p class="answerText"><span>A: </span>
-	Please select the “SYSTEM REQUIREMENTS” link in the footer on the G-DOC homepage.  This will check the FLASH, Java, and internet browsers you have installed on your computer, and compare these to the G-DOC system requirements.  Getting a “pass” on all three means that your system is ready to use G-DOC.  If any of these fail, please take corrective action to bring your machine into compliance.  Contact <a href="mailto:gdoc-help@georgetown.edu?subject=Browser Issues with G-DOC application">gdoc-help@georgetown.edu</a> for assistance.  </p>
+		It is advisable to discuss IP (Intellectual Property) issues with your Legal, Commercialization, and Technology Transfer departments before sharing any unpublished data outside of your institute unless a non-disclosure agreement is in place.  Georgetown University personnel are required to obtain the approval of the Legal Department before making any such disclosure (please contact Kelly Blevins at kcb27@georgetown.edu).</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q33">
+		<span>Q: </span>How secure is my private data?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Private data is very secure in G-DOC.  In fact, all non-public data sets have strict access controls.  People with whom you share your private data cannot pass analyses or lists derived from it by attempting to share it with their group.  Only members of that group to whom you have given permission will be able to see either lists or analyses derived from your private data.  The G-DOC team will delete your private data from the site upon request.  Please also see our “Data Access Policy” link in the footer.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q35">
+		<span>Q: </span>When will G-DOC be available to the outside community?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		The first release of G-DOC is accessible to everyone with a Georgetown University netID, whether a member of the GU community or an “affiliate”.  The second release of G-DOC is planned as the “public” release, wherein the tool will be made available to everyone.  The first release is scheduled for the Fall of 2010, while the second for the Winter of 2010/2011.</p>
 	</div>
 	
 	<div class="answer">
@@ -523,14 +520,7 @@
 	<p>This statement can be found in the “Publication Policy” link in the footer of any G-DOC page.</p>
 	</div>
 	
-	<div class="answer">
-		<a name="q43">
-		<span>Q: </span>What publications exist for G-DOC?</a><br />
-		
-		<p class="answerText"><span>A: </span>
-	The first of several anticipated G-DOC publications, describing the tool and its use, are expected to go to press in the first half of 2011.  In addition, we anticipate numerous publications and presentations to arise from the use of G-DOC by the scientific community.  New publications will be provided as they become available.</p>
-	<p>This statement can be found in the "Publication Policy" link in the footer of any G-DOC page.</p>
-	</div>
+	
 	
 	<div class="answer">
 		<a name="q44">
@@ -539,6 +529,68 @@
 		<p class="answerText"><span>A: </span>
 	It is anticipated that non-cancer versions of G-DOC will eventually be generated using portions of the software infrastructure that underlies this tool, but they will be re-named to convey their new area of focus.  Thus, there will never be a "non-cancer G-DOC", but there likely will be a set of non-cancer tools that rely, in part, on G-DOC’s codebase.</p>
 	</div>
+	
+
+	
+	
+	
+	<div class="answer">
+		<a name="q14">
+		<span>Q: </span>What is "My G-DOC"?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		My G-DOC enables you to manage your data, analyses, and groups.  You can manage lists and analyses by renaming, deleting, exporting or sharing with other users.  You can also use this area to share data sets and analyses that you own via collaboration groups.  Please be aware that sharing a list or analysis from a private data set into a group will not permit those without appropriate permissions therein to see a data set for which they do not have access.</p>
+	</div>
+	
+	
+
+	
+	
+	
+	
+	
+
+	
+
+	
+	
+	
+	<div class="answer">
+		<a name="q23">
+		<span>Q: </span>How can I upload a gene list to G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+			Create your list in MS Excel and save it as a .txt file (tab delimited) on your computer.
+			Next, log into G-DOC and go to Saved Lists. At the top of the page is a bar that says Manage Lists, which gives you options to upload or delete lists. Click on Upload list and select your saved file from your PC and submit to upload your custom list.
+		</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q24">
+		<span>Q: </span>How do I export my saved lists from G-DOC?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Log into G-DOC and go to Saved Lists. You’ll find that each list has 3 options – rename, share and export.   When you click on export a pop-up window opens giving you the option to open or save the file in a default Notepad format. Save it as a .txt file with an identifying title. </p>
+		<p>You may choose to open this using MS Excel, which provides good functionality for parsing text files. A text import wizard window opens allowing you to choose the file type that best describes your data.</p>
+	</div>
+	
+	
+	
+
+	
+	
+	
+	
+	<div class="answer">
+		<a name="q40">
+		<span>Q: </span>I represent a foundation or other organization that wishes to make a donation to support additional G-DOC development.  How can I give?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Please see this link for further details: <a href="http://advancement.georgetown.edu/giving/lombardi/index.html" target="_blank">http://advancement.georgetown.edu/giving/lombardi/index.html</a></p>
+	</div>
+	
+	
+	
 	
 	<div class="answer">
 		<a name="q45">

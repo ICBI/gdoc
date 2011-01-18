@@ -157,9 +157,8 @@ class CollaborationGroupsController {
 						}
 					}
 					else{
-						log.debug "collaboration group, $groupName has NOT been deleted, no manager found"
-						flash.error = "collaboration group, $groupName has NOT been deleted, no manager found"
-						redirect(action:index)
+						log.debug "user is NOT permitted to delete list"
+						redirect(controller:'policies',action:'deniedAccess')
 						return
 					}
 					
