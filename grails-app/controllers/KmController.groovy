@@ -28,7 +28,9 @@ class KmController {
 			}
 			StudyContext.setStudy(session.study.schemaName)
 
-			session.files = htDataService.getHTDataMap()
+			//temporarily restricted to gene expression
+			//session.files = htDataService.getHTDataMap()
+			session.files = htDataService.getGEDataMap()
 			session.dataSetType = session.files.keySet()
 			log.debug "my ht files for $session.study = $session.files"
 			session.endpoints = KmAttribute.findAll()

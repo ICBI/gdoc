@@ -123,7 +123,8 @@ class HtDataService {
 	}
 	
 	def getHTDataMap() {
-		def files = Sample.executeQuery("select distinct s.file, s.designType from Sample s where s.designType != 'COPY_NUMBER'")
+		//def files = Sample.executeQuery("select distinct s.file, s.designType from Sample s where s.designType != 'COPY_NUMBER'")
+		def files = Sample.executeQuery("select distinct s.file, s.designType from Sample s")
 		def fileHash = [:]
 		files.each {
 			if(!fileHash[it[1]])
@@ -135,8 +136,20 @@ class HtDataService {
 		return fileHash
 	}
 	
+	def getGEDataMap() {
+		def files = Sample.executeQuery("select distinct s.file, s.designType from Sample s where s.designType  = 'GENE EXPRESSION'")
+		def fileHash = [:]
+		files.each {
+			if(!fileHash[it[1]])
+				fileHash[it[1]] = []
+			fileHash[it[1]] << MicroarrayFile.findByName(it[0])
+				
+		}
+		return fileHash
+	}
+	
 	def getCINDataMap() {
-		def files = Sample.executeQuery("select distinct s.file, s.designType from Sample s where s.designType = 'COPY_NUMBER'")
+		def files = Sample.executeQuery("select distinct s.file, s.designType from Sample s where s.designType = 'COPY_NUMBER' order by s.file")
 		def fileHash = [:]
 		files.each {
 			if(!fileHash[it[1]])

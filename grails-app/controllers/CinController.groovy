@@ -17,14 +17,14 @@ class CinController {
 				cmd.baselineGroup = params.baselineGroup 
 				cmd.groups = params.groups
 				flash.cmd = cmd
-				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups have been prepopulated below for group comparison"
+				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups have been prepopulated below for CIN analysis"
 			}
 			StudyContext.setStudy(session.study.schemaName)
             if (session.study.hasCopyNumberData()) {
 				session.files = htDataService.getCINDataMap()
 				session.dataSetType = session.files.keySet()
-				session.df = session.files.values().toArray()[0][1]
-				session.cdf = session.files.values().toArray()[0][0]
+				session.df = session.files.values().toArray()[0][0]
+				session.cdf = session.files.values().toArray()[0][1]
 				log.debug "my ht files for $session.study = $session.files $session.df $session.cdf"
 			}
 		}

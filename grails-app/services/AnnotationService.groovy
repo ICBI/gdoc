@@ -15,11 +15,19 @@ class AnnotationService {
 		return reporterNames
 	}
 	
-	def findReportersForGeneAndFile(gene, file) {
+	def findReportersForGeneAndFile(gene, file) { 
 		def platform = findPlatformForFile(file)
 		def platformReporters = findReportersByPlatform(platform)
 		def geneReporters = findReportersForGene(gene)
 		platformReporters.retainAll(geneReporters)
+		log.debug "GOT REPORTERS FOR PLATFORM $platformReporters"
+		return platformReporters
+	}
+	
+	def findReportersForFile(file) { 
+		def platform = findPlatformForFile(file)
+		log.debug "PLATFORM: $platform"
+		def platformReporters = findReportersByPlatform(platform)
 		log.debug "GOT REPORTERS FOR PLATFORM $platformReporters"
 		return platformReporters
 	}

@@ -7,12 +7,22 @@ class CinCommand {
 	String baselineGroup
 	String groups
 	AnalysisType requestType = (AnalysisType.CIN)
+	def userListService
+	def idService
 	
 	static constraints = {
 		dataFile(blank:false)
 		cytobandsDataFile(blank:false)
-		baselineGroup(blank:false)
-		groups(blank:false)
+		baselineGroup(blank:false, validator: {val, obj ->
+			if(obj.idService.getGdocIdsForList(val).size() <= 2)
+				return "custom.size"
+		})
+		groups(blank:false, validator: {val, obj ->
+			if(obj.baselineGroup && obj.userListService.doListsOverlap(obj.baselineGroup, val))
+				return "custom.overlap"
+			if(obj.idService.getGdocIdsForList(val).size() <= 2)
+				return "custom.size"
+		})
 	}
 	
 }

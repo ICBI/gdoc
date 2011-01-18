@@ -7,6 +7,7 @@ class HeatMapCommand {
 	String study
 	String statisticalMethod
 	String dataFile
+	String dataSetType
 	Boolean fromComparison
 	Boolean selectAll
 	String reporterIds
@@ -25,6 +26,9 @@ class HeatMapCommand {
 						return "custom.val"
 				} else {
 					if(val) {
+						if ("COPY_NUMBER"== obj.dataSetType || "METABOLOMICS" == obj.dataSetType) {
+							return "custom.datatype"
+						}
 						def reporters = obj.annotationService.findReportersForGeneList(val)
 						if(!reporters || reporters.size() <=2 || reporters.size() > MAX_REPORTERS) {
 							return "custom.reporters"
@@ -42,7 +46,19 @@ class HeatMapCommand {
 						return "custom.val"
 				} else {
 					if(val) {
+						def platformReporters 
+						if ("METABOLOMICS" == obj.dataSetType) {
+							def file = MicroarrayFile.findByName(obj.dataFile)
+							def peakNames = file.peaks.collect { peak ->
+								return peak.name
+							}
+							platformReporters = peakNames
+						} else {
+							platformReporters = obj.annotationService.findReportersForFile(obj.dataFile)
+						}
 						def reporters = obj.idService.reportersForListName(val)
+						platformReporters.retainAll(reporters)
+						reporters = platformReporters
 						if(!reporters || reporters.size() <=2 || reporters.size() > MAX_REPORTERS) {
 							return "custom.reporters"
 						}

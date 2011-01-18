@@ -57,4 +57,10 @@ class StudyDataSource {
 			it.type == "COPY_NUMBER"
 		}
 	}
+	
+	def hasMetabolomicsData() {
+		return content.find {
+			it.type == "METABOLOMICS"
+		}
+	}
 }
