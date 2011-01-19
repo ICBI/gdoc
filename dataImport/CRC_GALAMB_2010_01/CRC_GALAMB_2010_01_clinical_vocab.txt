@@ -1,14 +1,14 @@
 TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
-PTNM_M	M0	M0 - No distant metastasis	(null)	M0 - No distant metastasis (cancer has not spread to other parts of the body)
-PTNM_M	M1	M1 - Distant metastasis	(null)	M1 - Distant metastasis (cancer has spread to distant parts of the body)
-PTNM_M	MX	MX - Distant metastasis cannot be evaluated	(null)	MX - Distant metastasis cannot be evaluated
+PTNM_M	M0	M0 - No distant metastasis		M0 - No distant metastasis (cancer has not spread to other parts of the body)
+PTNM_M	M1	M1 - Distant metastasis		M1 - Distant metastasis (cancer has spread to distant parts of the body)
+PTNM_M	MX	MX - Distant metastasis cannot be evaluated		MX - Distant metastasis cannot be evaluated
 PTNM_T	T4	T4 - Size and/or extent of the primary tumor		T4 - Size and/or extent of the primary tumor
 PTNM_T	T3	T3 - Size and/or extent of the primary tumor		T3 - Size and/or extent of the primary tumor
 PTNM_T	T2	T2 - Size and/or extent of the primary tumor		T2 - Size and/or extent of the primary tumor
 PTNM_T	T1	T1 - Size and/or extent of the primary tumor		T1 - Size and/or extent of the primary tumor
 PTNM_T	TX	TX - Primary tumor cannot be evaluated		TX - Primary tumor cannot be evaluated
-GENDER	MALE	MALE	C46109	An individual who reports belonging to the cultural gender role distinction of male. 
-GENDER	FEMALE	FEMALE	C46110	An individual who reports belonging to the cultural gender role distinction of female.
+GENDER	MALE	MALE		An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
 PTNM_N	N0	N0 - No regional lymph node involvement		N0 - No regional lymph node involvement (no cancer found in the lymph nodes)
 PTNM_N	N1	N1 - Involvement of regional lymph nodes		N1 - Involvement of regional lymph nodes (number and/or extent of spread)
 PTNM_N	N2	N2 - Involvement of regional lymph nodes		N2 - Involvement of regional lymph nodes (number and/or extent of spread)
