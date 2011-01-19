@@ -4,9 +4,9 @@
 <div>
 <span>				
 	<div id="cin-heatmap-view-container" >
-		<div id="cin-heatmap-container">
+		<div id="cin-heatmap-container" >
 			<div id="cin-chr-selector"></div>
-			<img src="${createLinkTo(dir: 'images', file: 'transparentMap.gif')}" width='480' height='480' border='0' alt='' usemap='#chrMapView' class='map' />
+			<img src="${createLinkTo(dir: 'images', file: 'transparentMap.gif')}" width='480' height='80' border='0' alt='' usemap='#chrMapView' class='map' />
 			<map name='chrMapView' id='chrMapView'>
 				<area id='chr1' shape='rect' alt='Chromosome 1' coords='85,25, 101,105' href='#chr1' onmouseover="hovers(true, 85,29, 7,44)" onmouseout="hovers(false)" />
 				<area id='chr2' shape='rect' alt='Chromosome 2' coords='101,25, 118,105' href='#chr2' onmouseover="hovers(true, 101,29, 7,44)" onmouseout="hovers(false)" />

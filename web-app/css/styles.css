@@ -404,6 +404,7 @@ p
 
 #cin-heatmap-container {
 	float: left;
+	height:480px;
 }
 
 #cin-heatmap-view-container img.map {
