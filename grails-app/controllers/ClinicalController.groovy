@@ -12,6 +12,7 @@ class ClinicalController {
 		if(session.study) {
 			StudyContext.setStudy(session.study.schemaName)
 			session.dataTypes = AttributeType.findAll().sort { it.longName }
+			loadUsedVocabs()
 		}
 		[diseases:getDiseases(),myStudies:session.myStudies]
 		

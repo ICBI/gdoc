@@ -47,6 +47,7 @@ class StudyDataSourceController {
 				loadPatientLists()
 				loadReporterLists()
 				loadGeneLists()
+				loadUsedVocabs()
 				session.endpoints = KmAttribute.findAll()
 				session.files = htDataService.getHTDataMap()
 				session.dataSetType = session.files.keySet()

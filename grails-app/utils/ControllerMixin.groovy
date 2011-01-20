@@ -83,4 +83,21 @@ class ControllerMixin {
 		}
 			
 	}
+	
+	static loadUsedVocabs(self) {
+		def criteria = AttributeValue.createCriteria()
+		def results = criteria {
+			projections {
+				distinct(["type.id", "value"])
+			}
+		}
+		def usedVocabMap = [:]
+		results.each {
+			if(!usedVocabMap[it[0]])
+				usedVocabMap[it[0]] = []
+			usedVocabMap[it[0]] << it[1]
+				
+		}
+		self.session.usedVocabs = usedVocabMap
+	}
 }
