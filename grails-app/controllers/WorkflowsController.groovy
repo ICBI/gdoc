@@ -45,7 +45,7 @@ class WorkflowsController {
 			if(lastLogin){
 				def formattedDate = lastLogin.format('EEE MMM d, yyyy')
 				log.debug "users last login was $formattedDate"
-				def count = userListService.newListsAvailable(sharedListIds,lastLogin)
+				def count = userListService.newListsAvailable(sharedListIds,lastLogin,session.userId)
 				if(count > 0){
 					log.debug "user has new lists available"
 					session.listFilter = "all"

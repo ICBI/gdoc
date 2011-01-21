@@ -408,7 +408,7 @@ def drugDiscoveryService
 		return pagedLists
 	}
 	
-	def newListsAvailable(sharedIds, lastLogin){
+	def newListsAvailable(sharedIds, lastLogin,userName){
 		def count = 0 
 		def ids = []
 		if(sharedIds){
@@ -417,10 +417,11 @@ def drugDiscoveryService
 			}
 			String listHQL
 			if(ids){
-				listHQL = "SELECT count(distinct list.id) FROM UserList list " + 
-				"WHERE list.dateCreated >= :lastLogin " +
+				listHQL = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author  " + 
+				"WHERE list.dateCreated > :lastLogin " +
+				"AND author.loginName != :loginName " +
 				"AND list.id IN (:ids) "
-				count = UserList.executeQuery(listHQL,[ids:ids, lastLogin: lastLogin])
+				count = UserList.executeQuery(listHQL,[ids:ids, lastLogin: lastLogin,loginName: userName])
 				return count[0]
 			}
 		}

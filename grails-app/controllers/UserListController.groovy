@@ -152,9 +152,9 @@ class UserListController {
 		if(params.listAction == 'intersect' ||
 			params.listAction == 'join' || 
 				params.listAction == 'diff'){
-			if(!userListService.validListName(params.listName)){
-				log.debug "List did  not save, invalid characters were found in name, $params.listName"
-				flash.error = "List did  not save, invalid characters were found in name, $params.listName. Please try again."
+			if(!userListService.validListName(listName)){
+				log.debug "List did  not save, invalid characters were found in name, $listName"
+				flash.error = "List did  not save, invalid characters were found in name, $listName. Please try again."
 				redirect(action:list)
 				return
 			}
