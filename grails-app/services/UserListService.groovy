@@ -46,6 +46,7 @@ def drugDiscoveryService
 		def pagedLists = [:]
 		def ids = []
 		def results = []
+		def snapshotMaps = []
 		def count = 0
 		if(sharedIds){
 			sharedIds.each{
@@ -91,6 +92,9 @@ def drugDiscoveryService
 			count = UserList.executeQuery(listCountHQL,[term:'%'+term+'%', loginName: userName])
 			pagedLists["count"] = count
 		}
+		//add query to populate tools list with non-paginated snap-shot
+		snapshotMaps = getAllListsNoPagination(userName,sharedIds)
+		pagedLists["snapshot"] = snapshotMaps
 		return pagedLists
 	}
 	
@@ -108,6 +112,8 @@ def drugDiscoveryService
 	def getSharedListsOnly(sharedIds,offset){
 		def pagedLists = [:]
 		def results = []
+		def snapshots = []
+		def snapshotMaps = []
 		def count = 0
 		if(sharedIds){
 			def ids =[]
@@ -123,6 +129,18 @@ def drugDiscoveryService
 			"WHERE list.id IN (:ids) "
 			count = UserList.executeQuery(listHQL2,[ids:ids])
 			pagedLists["count"] = count
+			String listHQL3 = "SELECT distinct list.id,list.name FROM UserList list " + 
+			"WHERE list.id IN (:ids) "
+			snapshots = UserList.executeQuery(listHQL3,[ids:ids])
+			if(snapshots){
+				snapshots.each{
+					def snapMap = [:]
+					snapMap["id"] = it[0]
+					snapMap["name"] = it[1]
+					snapshotMaps << snapMap
+				}
+			}
+			pagedLists["snapshot"] = snapshotMaps
 			log.debug "only shared lists -> $pagedLists as Paged set"
 		}else{
 			log.debug "no shared lists"
@@ -134,6 +152,8 @@ def drugDiscoveryService
 		def pagedLists = [:]
 		def results = []
 		def count = 0
+		def snapshots = []
+		def snapshotMaps = [] 
 		String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
 		"WHERE author.loginName = :loginName " +
 		"ORDER BY list.dateCreated desc"
@@ -143,12 +163,20 @@ def drugDiscoveryService
 		"WHERE author.loginName = :loginName " 
 		count = UserList.executeQuery(listHQL2,[loginName:user])
 		pagedLists["count"] = count
-		/**def c = UserList.createQuery()
-		pagedLists = c.listDistinct
-			{
-				eq("author", user)
-				order("dateCreated", "desc")
-			}**/
+		//add query to populate tools list with non-paginated snap-shot
+		String listHQL3 = "SELECT distinct list.id, list.name, list.dateCreated FROM UserList list JOIN list.author author " + 
+		"WHERE author.loginName = :loginName " +
+		"ORDER BY list.dateCreated desc"
+		snapshots = UserList.executeQuery(listHQL3,[loginName:user])
+		if(snapshots){
+			snapshots.each{
+				def snapMap = [:]
+				snapMap["id"] = it[0]
+				snapMap["name"] = it[1]
+				snapshotMaps << snapMap
+			}
+		}
+		pagedLists["snapshot"] = snapshotMaps
 		return pagedLists
 	}
 	
@@ -175,6 +203,8 @@ def drugDiscoveryService
 	def getAllLists(sharedIds,offset,user){
 		def pagedLists = [:]
 		def results = []
+		def snapshots = []
+		def snapshotMaps = []
 		def count = 0
 		if(sharedIds){
 			def ids =[]
@@ -203,6 +233,9 @@ def drugDiscoveryService
 			pagedLists["count"] = count
 			log.debug "all lists -> $pagedLists as Paged set"
 		}
+		//add query to populate tools list with non-paginated snap-shot
+		snapshotMaps = getAllListsNoPagination(user,sharedIds)
+		pagedLists["snapshot"] = snapshotMaps
 		return pagedLists
 	}
 	
@@ -258,13 +291,15 @@ def drugDiscoveryService
 	def getUsersListsByTimePeriod(timePeriod,offset,user) {
 		def pagedLists = [:]
 		def results = []
+		def snapshots = []
+		def snapshotMaps = []
 		def count = 0
 		def now = new Date()
 		def tp = Integer.parseInt(timePeriod)
 		def range = now-tp
 		String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
 		"WHERE author.loginName = :loginName " +
-		"AND list.dateCreated BETWEEN :range and :now "
+		"AND list.dateCreated BETWEEN :range and :now " + 
 		"ORDER BY list.dateCreated desc"
 		results = UserList.executeQuery(listHQL,[loginName:user, now:now, range:range, max:10, offset:offset])
 		pagedLists["results"] = results
@@ -273,7 +308,21 @@ def drugDiscoveryService
 		"AND list.dateCreated BETWEEN :range and :now "
 		count = UserList.executeQuery(listHQL2,[loginName:user, now:now, range:range])
 		pagedLists["count"] = count
-
+		//add query to populate tools list with non-paginated snap-shot
+		String listHQL3 = "SELECT distinct list.id, list.name, list.dateCreated FROM UserList list JOIN list.author author " + 
+		"WHERE author.loginName = :loginName " +
+		"AND list.dateCreated BETWEEN :range and :now " +
+		"ORDER BY list.dateCreated desc"
+		snapshots = UserList.executeQuery(listHQL3,[loginName:user, now:now, range:range])
+		if(snapshots){
+			snapshots.each{
+				def snapMap = [:]
+				snapMap["id"] = it[0]
+				snapMap["name"] = it[1]
+				snapshotMaps << snapMap
+			}
+		}
+		pagedLists["snapshot"] = snapshotMaps
 		log.debug "user lists only over past $timePeriod days-> $pagedLists as Paged set"
 		return pagedLists
 	}
@@ -282,6 +331,8 @@ def drugDiscoveryService
 		def pagedLists = [:]
 		def ids = []
 		def results = []
+		def snapshots = []
+		def snapshotMaps = []
 		def count = 0
 		if(sharedIds){
 			sharedIds.each{
@@ -289,7 +340,6 @@ def drugDiscoveryService
 			}
 		}
 		if(ids){
-			log.debug "FILTER! pulling offset is $offset"
 			def listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
 			"AND (author.loginName = :loginName " +
@@ -305,6 +355,23 @@ def drugDiscoveryService
 			"AND tagLink.tag.name = :tag "
 			count = UserList.executeQuery(listCountHQL,[tag: tag, ids:ids, loginName: userName])
 			pagedLists["count"] = count
+			//add query to populate tools list with non-paginated snap-shot
+			def listHQL3 = "SELECT distinct list.id, list.name, list.dateCreated FROM UserList list,TagLink tagLink JOIN list.author author " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND (author.loginName = :loginName " +
+			"OR list.id IN (:ids)) " + 
+			"AND tagLink.tag.name = :tag "+
+			"ORDER BY list.dateCreated desc"
+			snapshots = UserList.executeQuery(listHQL3,[tag: tag, ids:ids,loginName:userName])
+			if(snapshots){
+				snapshots.each{
+					def snapMap = [:]
+					snapMap["id"] = it[0]
+					snapMap["name"] = it[1]
+					snapshotMaps << snapMap
+				}
+			}
+			pagedLists["snapshot"] = snapshotMaps
 			log.debug "paged lists $pagedLists"
 		}
 		else{
@@ -318,9 +385,25 @@ def drugDiscoveryService
 			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
 			"AND author.loginName = :loginName " + 
-			"AND tagLink.tag.name = :tag "
+			"AND tagLink.tag.name = :tag"
 			count = UserList.executeQuery(listCountHQL,[tag: tag, loginName: userName])
 			pagedLists["count"] = count
+			//add query to populate tools list with non-paginated snap-shot
+			def listHQL3 = "SELECT distinct list.id, list.name, list.dateCreated FROM UserList list,TagLink tagLink JOIN list.author author " + 
+			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
+			"AND author.loginName = :loginName " + 
+			"AND tagLink.tag.name = :tag "+
+			"ORDER BY list.dateCreated desc"
+			snapshots = UserList.executeQuery(listHQL3,[tag: tag, loginName:userName])
+			if(snapshots){
+				snapshots.each{
+					def snapMap = [:]
+					snapMap["id"] = it[0]
+					snapMap["name"] = it[1]
+					snapshotMaps << snapMap
+				}
+			}
+			pagedLists["snapshot"] = snapshotMaps
 		}
 		return pagedLists
 	}

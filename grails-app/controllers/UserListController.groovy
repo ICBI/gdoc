@@ -37,7 +37,7 @@ class UserListController {
 				pagedLists = userListService.getPaginatedLists(session.listFilter,session.sharedListIds,0,session.userId,searchTerm)	
 			}
 		def listSnapShots = []
-		listSnapShots = userListService.getAllListsNoPagination(session.userId,session.sharedListIds)
+		listSnapShots = pagedLists["snapshot"]//userListService.getAllListsNoPagination(session.userId,session.sharedListIds)
        [ userListInstanceList: pagedLists["results"], allLists: pagedLists["count"][0], timePeriods: timePeriods, toolsLists:listSnapShots]
     }
 
@@ -149,11 +149,15 @@ class UserListController {
 	def tools = {
 		def ids = []
 		def listName = checkName(params.listName)
-		if(!userListService.validListName(params.listName)){
-			log.debug "List did  not save, invalid characters were found in name, $params.listName"
-			flash.error = "List did  not save, invalid characters were found in name, $params.listName. Please try again."
-			redirect(action:list)
-			return
+		if(params.listAction == 'intersect' ||
+			params.listAction == 'join' || 
+				params.listAction == 'diff'){
+			if(!userListService.validListName(params.listName)){
+				log.debug "List did  not save, invalid characters were found in name, $params.listName"
+				flash.error = "List did  not save, invalid characters were found in name, $params.listName. Please try again."
+				redirect(action:list)
+				return
+			}
 		}
 		if (params.userListIds && params.listAction){
 			params.userListIds.each{
@@ -173,6 +177,7 @@ class UserListController {
 			}
 			if(userListInstance){
 				flash.message = "UserList ${listName} created"
+				session.listFilter = "hideShared"
 				redirect(action:list)
 			}else{
 				flash.error = "List not created. No items found"

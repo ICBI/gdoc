@@ -7,11 +7,17 @@ class UserListTests extends GroovyTestCase {
 	def userListService
 	def vennService
 	
-	void testSearch(){
+	void testSnapshot(){
+		def pagedLists = userListService.getUsersLists(10,"kmr75")
+		println pagedLists["results"]
+		println pagedLists["count"]
+		println pagedLists["snapshot"]
+	}
+	
+	/**void testSearch(){
 		def pagedLists = userListService.searchListsByTerm("desMin",null,"kmr75",0)
 		println pagedLists
 	}
-/*
 	void testCreateTempUserListsForKM(){
 		def templists = []
 		def tempIds = ['VEGF','EGFR','BRCA1','BRCA1','ER+','ER-','FCR','HGI']

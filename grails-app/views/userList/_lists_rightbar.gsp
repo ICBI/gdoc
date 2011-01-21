@@ -38,7 +38,7 @@
 		<span style="margin-bottom:5px;">List Action: <br />
 		<g:select name="listAction" from="${['Venn Diagram','Intersect Lists','Join Lists', 'Difference']}" 
 				keys="${['venn','intersect','join','diff']}" onchange="showOption(this)" /></span><br />
-		<span id="name" style="display:none;margin-top:5px;">List Name: <g:textField name="listName" size="15" maxlength="15"/></span><br />
+		<span id="name" style="display:none;margin-top:5px;">List Name: <br /><g:textField name="listName" size="17" maxlength="15"/></span><br />
 		<g:select style="margin-top:5px;width:180px" name="userListIds"
 				  from="${toolsLists}"
 		          optionKey="id" 
