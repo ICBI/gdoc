@@ -234,8 +234,8 @@
 </g:if>
 <g:else>
 No results found 
-<g:if test="${params.entityName}">
+<%--g:if test="${params.entityName}">
  for ${params.entityName.replaceAll("<(.|\n)*?>", '-');}
-</g:if>
+</g:if--%>
 </g:else>
 </g:if>

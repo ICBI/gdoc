@@ -8,9 +8,18 @@
 	<jq:plugin name="ui"/>
 	<jq:plugin name="styledButton"/>
 	<jq:plugin name="tagbox"/>
+	<jq:plugin name="tooltip"/>
+	<link rel="stylesheet" href="${createLinkTo(dir: 'css',  file: 'dialog.css')}"/>
 	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'thickbox-compressed.js')}"></script>
 	<script type="text/javascript" src="${createLinkTo(dir: 'js', file: 'jquery.editableText.js')}"></script>
-	
+	<STYLE type="text/css">
+	   #tooltip {
+	text-align:left;
+	font-size: 100%;
+	min-width: 90px;
+	max-width: 180px;
+	}
+	 </STYLE>
 	
 	<script type="text/javascript">
 		function toggle(element){
@@ -33,6 +42,7 @@
 	
 	<g:javascript>
 	$(document).ready( function () {
+				$('.info').tooltip({showURL: false});
 				$('#listFilter').change(function() {
 					if($('#listFilter').val() && $('#listFilter').val() == 'search') {
 						$('#listFilter').val("search");
@@ -61,14 +71,14 @@
 				});
 				
 				$("[class*='_name']").change(function(){
-				         var newValue = $(this).html();
+				         var newValue = $(this).text().trim();
 						 var id = $(this).attr("id").split("_name")[0];
 				         // do something
 				         // For example, you could place an AJAX call here:
 				        $.ajax({
 				          type: "POST",
 				          url: "/gdoc/userList/renameList",
-				          data: "newNameValue=" + newValue + "&id=" + id,
+				          data:{ newNameValue:newValue, id:id },//data: "newNameValue=" + newValue + "&id=" + id,
 				          success: function(msg){
 				            $('.message').html(msg);
 							$('.message').css("display","block");
@@ -80,7 +90,7 @@
 							}
 							window.setTimeout(function() {
 							  $('.message').remove();
-							}, 1500);
+							}, 10000);
 				          }
 				       });
 				   });
@@ -104,7 +114,8 @@
 	<div class="body">
 		<p class="pageHeading">
 			Manage Lists  
-			
+			<img class="info" title="In this section you can view list contents, upload lists and sort lists. In addition,
+			you can delete lists using the checkboxes to the left of the list name. Advanced list tools are available under the list tools section." style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:25px;cursor:pointer;" src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />
 			<span style="display:none" class="ajaxController">userList</span>	
 			
 			<g:if test="${session.listFilter}">

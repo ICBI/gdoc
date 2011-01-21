@@ -149,6 +149,12 @@ class UserListController {
 	def tools = {
 		def ids = []
 		def listName = checkName(params.listName)
+		if(!userListService.validListName(params.listName)){
+			log.debug "List did  not save, invalid characters were found in name, $params.listName"
+			flash.error = "List did  not save, invalid characters were found in name, $params.listName. Please try again."
+			redirect(action:list)
+			return
+		}
 		if (params.userListIds && params.listAction){
 			params.userListIds.each{
 				ids.add(it)
@@ -169,12 +175,12 @@ class UserListController {
 				flash.message = "UserList ${listName} created"
 				redirect(action:list)
 			}else{
-				flash.message = "no items present in resulting list"
+				flash.error = "List not created. No items found"
 				redirect(action:list)
 			}
 		}else{
 			log.debug "no lists have been selected"
-			flash.message = "no lists have been selected"
+			flash.error = "no lists have been selected"
 			redirect(action:list)
 		}
 	}
@@ -296,6 +302,10 @@ class UserListController {
 			render "List $params.name already exists. Please choose different name and try again."
 			return
 		}
+		if(!userListService.validListName(params["name"])){
+			render "List did  not save, invalid characters were found in name, $params.name. Please try again."
+			return
+		}
 		log.debug "save list"
 		def ids = []
 		if(params.selectAll == "true") {
@@ -386,6 +396,10 @@ class UserListController {
 			render "List $params.name already exists"
 			return
 		}
+		if(!userListService.validListName(params["name"])){
+			render "List did  not save, invalid characters were found in name, $params.name. Please try again."
+			return
+		}
 		def ids = []
 		if(params['ids']){
 			params['ids'].tokenize(",").each{
@@ -430,6 +444,10 @@ class UserListController {
 			flash.message = "List cannot be larger than ${MAX_LIST_SIZE} items."
 			return
 		}
+		if(!userListService.validListName(params["name"])){
+			render "List did  not save, invalid characters were found in name, $params.name. Please try again."
+			return
+		}
 		def userListInstance = userListService.createList(session.userId, params.name, ids, [StudyContext.getStudy()], [])
 		 if(userListInstance) {
 			flash.message = "UserList ${userListInstance.name} created"
@@ -464,9 +482,14 @@ class UserListController {
 				it.name == params.newNameValue.trim()
 			}
 			if(listDup) {
-				log.debug "List $params.newNameValue already exists"
-				message = "List $params.newNameValue already exists"
-				render(message)
+				log.debug "List not saved. $params.newNameValue already exists"
+				message = "List not saved. $params.newNameValue already exists."
+				render("<span class='errorDetail'>"+message+"</span")
+			}
+			else if(!userListService.validListName(params.newNameValue)){
+				log.debug "List $params.newNameValue contains invalid characters"
+				message = "List did not save because invalid characters found in $params.newNameValue. Please try again."
+				render("<span class='errorDetail'>"+message+"</span")	
 			}else{
 				def userListInstance = UserList.get( params.id )
 				userListInstance.name = params.newNameValue
@@ -477,6 +500,7 @@ class UserListController {
 			}
 		}
 	}
+	
 	
 	def saveList = {
 		//TODO: Validate list
@@ -508,7 +532,12 @@ class UserListController {
 			
 			if(listDup) {
 				log.debug "List $params.listName already exists"
-				flash["message"]= "List $params.listName already exists"
+				flash["error"]= "List $params.listName already exists"
+				redirect(action:upload,params:[failure:true])
+				return
+			}else if(!userListService.validListName(params["listName"])){
+				log.debug "List $params.listName contains invalid characters"
+				flash["error"]= "List did not save because invalid characters found in $params.listName. Please try again."
 				redirect(action:upload,params:[failure:true])
 				return
 			}else{
@@ -521,7 +550,7 @@ class UserListController {
 						userList.addToListItems(new UserListItem(value:value.trim()))
 				}
 				if(userList.listItems.size() > MAX_LIST_SIZE) {
-					flash.message = "List cannot be larger than ${MAX_LIST_SIZE} items."
+					flash.error = "List cannot be larger than ${MAX_LIST_SIZE} items."
 					redirect(action:upload,params:[failure:true])
 					return
 				}
@@ -533,7 +562,7 @@ class UserListController {
 						return
 
 		        } else {
-					flash["message"] =  "Error uploading $params.listName list"
+					flash["error"] =  "Error uploading $params.listName list"
 					redirect(action:upload,params:[failure:true])
 					return
 		        }

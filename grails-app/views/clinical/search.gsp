@@ -103,13 +103,14 @@
 					jQuery('#message').css("display","block");
 					window.setTimeout(function() {
 					  jQuery('#message').empty().hide();
-					}, 8000);
+					}, 10000);
 				} else {
 					var tags = new Array();
 					tags.push("clinical");
 					tags.push("patient");
 					var listName = jQuery('#list_name').val();
-					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
+					listName = encodeURIComponent(listName);
+					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll+\'&name=\'+listName')}
 				}
 			}); 
 			jQuery("#searchResults").jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:false, refresh: false,position:'left'});
@@ -137,7 +138,7 @@
 			jQuery('#list_name').val("");
 			window.setTimeout(function() {
 			  jQuery('#message').empty().hide();
-			}, 2500);
+			}, 10000);
 			
 		
 		}

@@ -47,16 +47,7 @@
     <g:if test="${haveQuery && !haveResults && !parseException}">
 	
       <p>Nothing matched your recent query. </p>
-      <g:if test="${!searchResult?.suggestedQuery}">
-        <g:if test="${suggs}">
-		  <%--p>Suggestions:</p>
-	      <p>Did you mean any of the following?<br />
-			<g:each in="${suggs}" var="suggestion" status="i">
-				<g:link controller="search" action="index" params="[q: suggs[i]]">${suggs[i]}</g:link><br />
-			</g:each>
-		  </p--%>
-	    </g:if>
-      </g:if>
+      
     </g:if>
 
     

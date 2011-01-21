@@ -49,13 +49,15 @@
 	<g:if test="${flash.message}">
 	<div class="message">${flash.message}</div>
 	</g:if>
-	
+	<g:if test="${flash.error}">
+	<div class="errorDetail">${flash.error}</div>
+	</g:if>
 	
 	<g:if test="${userListInstanceList.size()>0}">
 	
 	<fieldset style="border:0px solid black">
 	
-	<div><input type="checkbox" class="checkall"> Check all</div>
+	<div><input type="checkbox" class="checkall"> Check all for deletion</div>
 	
  	<g:panel title="My Lists" styleClass="welcome" >
 	

@@ -26,8 +26,8 @@ class SecurityFilters {
 			                return false
 						}
 						log.debug "user token authenticated"
-						if(session.userId){
-							log.debug "session exists, continue"
+						if(session.userId || controllerName.equals('cytoscape')){
+							log.debug "session exists or cytoscape, continue"
 							return true
 						}
 						else{

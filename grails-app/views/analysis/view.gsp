@@ -116,14 +116,15 @@
 					jQuery('#message').css("display","block");
 					window.setTimeout(function() {
 					  jQuery('#message').empty().hide();
-					}, 2500);
+					}, 10000);
 				} else {
 					var tags = new Array();
 					tags.push("analysis");
 					var selectedItem = this.title;
 					tags.push(selectedItem);
 					var listName = jQuery('#list_name').val();
-					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&name=\'+    listName+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll')}
+					listName = encodeURIComponent(listName);
+					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll+\'&name=\'+listName')}
 				}
 				
 			
@@ -135,7 +136,7 @@
 					jQuery('#message').css("display","block");
 					window.setTimeout(function() {
 					  jQuery('#message').empty().hide();
-					}, 2500);
+					}, 10000);
 					return false;
 				} else {
 					$('#search').attr("disabled", "true");
@@ -155,7 +156,7 @@
 			jQuery('#list_name').val("");
 			window.setTimeout(function() {
 				jQuery('#message').empty().hide();
-			}, 2500);
+			}, 10000);
 		}
 		
 	</g:javascript>
@@ -220,6 +221,7 @@
 							<br/>
 							
 						<span id="message" style="display:none">
+							
 						</span>
 						<g:if test="${flash.reporterError}">
 							<span id="message" class="message">	${flash.reporterError}</span><br/>

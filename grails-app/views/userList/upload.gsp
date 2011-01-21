@@ -28,6 +28,9 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+			<g:if test="${flash.error}">
+            <div class="errorDetail">${flash.error}</div>
+            </g:if>
             <g:form name="uploadListForm" action="saveList" method="post" enctype="multipart/form-data">
 							List Type: <br/>
 							<g:select name="listType" from="${['patient','gene','reporter']}" /><br /><br />

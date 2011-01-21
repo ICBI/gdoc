@@ -495,6 +495,20 @@ def gatherTags(ids){
 	return unitedTags as List
 }
 
+def validListName(listName){
+	def invalidChars = ['"','<','%']
+	def listAsChars = listName.toList()
+	def invalidFound = listAsChars.find{
+		invalidChars.contains(it)
+	}
+	if(!(listName.trim()) || invalidFound){
+		return false
+	}
+	else{
+		return true
+	}
+}
+
 
 def createList(userName, listName, listItems, studies, tags) {
 		def author = GDOCUser.findByLoginName(userName)
@@ -503,6 +517,9 @@ def createList(userName, listName, listItems, studies, tags) {
 		}
 		if(listDup) {
 			return [error: "List with name $listName already exists."]
+		}
+		if(!validListName(listName)){
+			return [error: "List did  not save, invalid characters were found in name, $listName. Please try again."]
 		}
 		def userListInstance = new UserList()
 		userListInstance.name = listName
