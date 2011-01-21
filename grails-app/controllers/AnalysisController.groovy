@@ -94,7 +94,11 @@ class AnalysisController {
 			columns << [index: "stdBaselineGrp", name: "Std Baseline", sortable: true, width: '100']
 			columns << [index: "stdGrp1", name: "Std Group", sortable: true, width: '100']
 			columns << [index: "target", name: "Target Data", sortable: true, width: '100']
-			def colNames = ["Reporter ID", "Gene Symbol", "p-value", "Fold Change", "Mean Baseline", "Mean Group", "Std Baseline", "Std Group", "Target Data"]
+			def annotation = "Gene Symbol"
+			if(session.analysis.tags.contains('microrna')) {
+				annotation = "microRNA"
+			}
+			def colNames = ["Reporter ID", annotation, "p-value", "Fold Change", "Mean Baseline", "Mean Group", "Std Baseline", "Std Group", "Target Data"]
 			session.columnJson = columns as JSON
 			session.columnNames = colNames as JSON
 			session.resultTable = null

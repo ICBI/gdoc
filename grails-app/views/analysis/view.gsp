@@ -89,7 +89,11 @@
 											jQuery("#cb_jqg").attr('checked', true);
 										}
 									}
-									$('a[href*="geneLink"]').geneLink({'advancedMenu': true, 'kmData': kmData, 'spinner': $('#GEspinner')});
+									if(${session.analysis?.tags?.contains('microrna')}){
+										$('a[href*="geneLink"]').geneLink({'menuType': 'microrna','advancedMenu': false, 'kmData': kmData, 'spinner': $('#GEspinner')});
+									} else {
+										$('a[href*="geneLink"]').geneLink({'advancedMenu': true, 'kmData': kmData, 'spinner': $('#GEspinner')});
+									}
 				},
 				onSortCol: function() {
 									selectAll = false;
@@ -156,6 +160,7 @@
 		
 	</g:javascript>
 	<br/>
+	
 	<p style="font-size:14pt">Analysis Results</p>
 	<p style="font-size:12pt">Current Study: 
 	<span id="label" style="display:inline-table">
@@ -172,7 +177,6 @@
 				No results found for this analysis. <br /><br />
 			</g:if>
 			<g:else>
-			
 				
 				<g:if test="${session.userId}">
 

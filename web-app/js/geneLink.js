@@ -4,7 +4,8 @@
 		'advancedMenu': false,
 		'kmForm': "#geneExpressionKm",
 		'geneExpressionForm': "#geneExpression",
-		'multiple': false
+		'multiple': false,
+		'menuType': 'gene'
 	};
 	var methods = {
 		init : function( options ) { 
@@ -14,28 +15,39 @@
 			if(options.multiple)
 				$('#contextmenu').remove();
 			var menu = "<ul id='contextmenu' class='jqcontextmenu'>";
-			if(settings.advancedMenu) {
-				if(settings.kmData.length > 1) {
-					menu += "<li><a>Perform Gene Expression KM</a><ul>";
-					$(settings.kmData).each(function() {
-						menu += "<li><a href='#' class='contextItem' id='KM'>Endpoint: " + this[0] + "</a></li>";
-					});
-					menu += "</ul></li>";
-				} else {
-					menu += "<li><a href='#' class='contextItem' id='KM'>Perform Gene Expression KM</a></li>";
-				}
+			switch(settings.menuType) {
+				case 'gene':
+					if(settings.advancedMenu) {
+						if(settings.kmData.length > 1) {
+							menu += "<li><a>Perform Gene Expression KM</a><ul>";
+							$(settings.kmData).each(function() {
+								menu += "<li><a href='#' class='contextItem' id='KM'>Endpoint: " + this[0] + "</a></li>";
+							});
+							menu += "</ul></li>";
+						} else {
+							menu += "<li><a href='#' class='contextItem' id='KM'>Perform Gene Expression KM</a></li>";
+						}
 
-				menu += "<li><a href='#' class='contextItem' id='GENEEXPRESSION'>Perform Gene Expression Search</a></li>";
+						menu += "<li><a href='#' class='contextItem' id='GENEEXPRESSION'>Perform Gene Expression Search</a></li>";
+					}
+					menu += "<li><a href='#' class='contextItem' id='ENTREZ'>Search in Entrez</a></li>	\
+						<li><a href='#' class='contextItem' id='IHOP'>Search in iHOP</a></li>	\
+						<li><a href='#' class='contextItem' id='PIR'>Search in PIR</a></li>	\
+						<li><a href='#' class='contextItem' id='ENSEMBL'>Search in Ensembl Gene View</a></li>	\
+						<li><a href='#' class='contextItem' id='REACTOME'>Search in Reactome</a></li>	\
+						<li><a href='#' class='contextItem' id='KEGG'>View at KEGG</a></li>	\
+						<li><a href='#' class='contextItem' id='QUICKGO'>View at QuickGO</a></li>	\
+						<li><a href='#' class='contextItem' id='GENECARDS'>View at GeneCards</a></li>	\
+						<li><a href='#' class='contextItem' id='STRING'>View at String DB</a></li></ul>";
+					break;
+				case 'microrna':
+					menu += "<li><a href='#' class='contextItem' id='MIRBASE'>View in miRBase</a></li> \
+						<li><a href='#' class='contextItem' id='ENTREZ'>Search in Entrez</a></li>	\
+						<li><a href='#' class='contextItem' id='IHOP'>Search in iHOP</a></li></ul>";
+					break;
+				default:
+					break;
 			}
-			menu += "<li><a href='#' class='contextItem' id='ENTREZ'>Search in Entrez</a></li>	\
-				<li><a href='#' class='contextItem' id='IHOP'>Search in iHOP</a></li>	\
-				<li><a href='#' class='contextItem' id='PIR'>Search in PIR</a></li>	\
-				<li><a href='#' class='contextItem' id='ENSEMBL'>Search in Ensembl Gene View</a></li>	\
-				<li><a href='#' class='contextItem' id='REACTOME'>Search in Reactome</a></li>	\
-				<li><a href='#' class='contextItem' id='KEGG'>View at KEGG</a></li>	\
-				<li><a href='#' class='contextItem' id='QUICKGO'>View at QuickGO</a></li>	\
-				<li><a href='#' class='contextItem' id='GENECARDS'>View at GeneCards</a></li>	\
-				<li><a href='#' class='contextItem' id='STRING'>View at String DB</a></li></ul>";
 			
 			$(menu).appendTo('body');
 			$(".contextItem").unbind('click', handler);
@@ -74,6 +86,9 @@
 				break;
 			case "STRING":
 				window.open('http://string81.embl.de/interactionsList/' + id + '&caller_identity=genecards&target_mode=proteins&network_flavor=evidence&input_query_species=9606');
+				break;
+			case "MIRBASE":
+				window.open("http://www.mirbase.org/cgi-bin/query.pl?terms=" + id);
 				break;
 			case "KM":
 				if(settings.spinner) {
