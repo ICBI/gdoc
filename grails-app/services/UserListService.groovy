@@ -525,7 +525,14 @@ def drugDiscoveryService
 	
 	def diffLists(name,author,ids){
 		return performOperation(name, author, ids, { items, list ->
-			items.removeAll(list.listItems.collect{it.value})
+			def tempItems = list.listItems.collect{it.value}
+			tempItems.removeAll(items)
+			
+			def tempIntersection = list.listItems.collect{it.value}
+			tempIntersection.retainAll(items)
+			
+			items.removeAll(tempIntersection)
+			items.addAll(tempItems)
 		})
 	}
 	
