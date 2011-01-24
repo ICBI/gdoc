@@ -93,7 +93,7 @@ class AnalysisController {
 			columns << [index: "meanGrp1", name: "Mean Group", sortable: true, width: '100']
 			columns << [index: "stdBaselineGrp", name: "Std Baseline", sortable: true, width: '100']
 			columns << [index: "stdGrp1", name: "Std Group", sortable: true, width: '100']
-			columns << [index: "target", name: "Target Data", sortable: true, width: '100']
+			columns << [index: "target", name: "Target Data", sortable: false, width: '100']
 			def annotation = "Gene Symbol"
 			if(session.analysis.tags.contains('microrna')) {
 				annotation = "microRNA"
@@ -124,15 +124,13 @@ class AnalysisController {
 		
 		def tempResults = []
 		if(!session.resultTable) {
+			def reporterIds = analysisResults.resultEntries.collect {
+				it.reporterId
+			}
+			def genes = annotationService.findAllGenesForReporters(reporterIds)
 			analysisResults.resultEntries.each { item ->
 				def tempItem = [:]
-				def geneName = annotationService.findGeneForReporter(item.reporterId)
-				def targetData = ""
-				if(geneName){
-					targetData = drugDiscoveryService.findTargetsFromAlias(geneName)
-					if(!targetData)
-					targetData = ""
-				}
+				def geneName = genes[item.reporterId]
 				tempItem.reporterId = item.reporterId
 				if(!geneName)
 					tempItem.geneName = ""
@@ -145,17 +143,6 @@ class AnalysisController {
 				tempItem.stdBaselineGrp = item.stdBaselineGrp
 				tempItem.stdGrp1 = item.stdGrp1
 			
-				def targetLinks = []
-				if(!targetData.equals("")){
-					targetData.each{ target ->
-						def link = "<a href='/gdoc/moleculeTarget/show/"+target.id+"'>"+target+"</a>"
-						targetLinks << link
-					}
-				}
-				if(targetLinks)
-					tempItem.targetLinks = targetLinks.toString()
-				else 
-					tempItem.targetLinks = targetData
 				tempResults << tempItem
 			}
 			session.resultTable = tempResults
@@ -192,7 +179,24 @@ class AnalysisController {
 			cells << formatter.format(result.meanGrp1)
 			cells << formatter.format(result.stdBaselineGrp)
 			cells << formatter.format(result.stdGrp1)
-			cells << result.targetLinks
+			
+			// lookup target data
+			def targetData = ""
+			if(result.geneName){
+				targetData = drugDiscoveryService.findTargetsFromAlias(result.geneName)
+				if(!targetData)
+				targetData = ""
+			}
+			def targetLinks = []
+			if(!targetData.equals("")){
+				targetData.each{ target ->
+					def link = "<a href='/gdoc/moleculeTarget/show/"+target.id+"'>"+target+"</a>"
+					targetLinks << link
+				}
+			}
+			if(targetLinks)
+				cells << targetLinks.toString()
+			else cells << targetData
 			results << [id: result.reporterId, cell: cells]
 		}
 

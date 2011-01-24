@@ -110,6 +110,24 @@ class AnnotationService {
 		return results
 	}
 	
+	def findAllGenesForReporters(reporters) {
+		def queryClosure = { tempIds -> 
+			def c = Reporter.createCriteria()
+			return c {
+				projections {
+					distinct(["name", "geneSymbol"])
+				}
+				'in'("name", tempIds)
+			}
+		}
+		def results = QueryUtils.paginateResults(reporters, queryClosure)
+		def resultMap = [:]
+		results.each {
+			resultMap[it[0]] = it[1]
+		}
+		return resultMap
+	}
+	
 	def getAllReportersForGenes(genes) {
 		def queryClosure = { tempIds -> 
 			def c = Reporter.createCriteria()
