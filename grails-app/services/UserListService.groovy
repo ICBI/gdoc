@@ -418,7 +418,7 @@ def drugDiscoveryService
 			String listHQL
 			if(ids){
 				listHQL = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author  " + 
-				"WHERE list.dateCreated > :lastLogin " +
+				"WHERE list.dateCreated >= :lastLogin " +
 				"AND author.loginName != :loginName " +
 				"AND list.id IN (:ids) "
 				count = UserList.executeQuery(listHQL,[ids:ids, lastLogin: lastLogin,loginName: userName])

@@ -18,7 +18,7 @@ class UserListController {
 		log.debug params
 		def lists = []
 		//removed : 1:"-1 day",7:"-1 week",
-		def timePeriods = [hideShared:"Show all my Lists",search:"Search my lists",my_gene:"-my gene lists",my_reporter:"-my reporter lists",my_patient:"-my patient lists",30:"-past 30 days",90:"-past 90 days",180:"-past 6 months",all:"Show all Lists(includes shared)",gene:"-gene lists",reporter:"-reporter list",patient:"-patient",onlyShared:"show only shared"]
+		def timePeriods = [hideShared:"Show my Lists",search:"Search my lists",my_gene:"-my gene lists",my_reporter:"-my reporter lists",my_patient:"-my patient lists",30:"-past 30 days",90:"-past 90 days",180:"-past 6 months",all:"Show all Lists (includes shared lists)",gene:"-gene lists",reporter:"-reporter list",patient:"-patient",onlyShared:"Show only shared"]
 		def filteredLists = []
 		def searchTerm = params.searchTerm
 		def pagedLists = []

@@ -42,6 +42,7 @@ class QuickStartService implements ApplicationContextAware{
 							StudyContext.setStudy(study.schemaName)
 							def result = queryStudyData(study,allDataTypes)
 							if(result){
+								println "result -> $result"
 								results << result
 							}
 						}
