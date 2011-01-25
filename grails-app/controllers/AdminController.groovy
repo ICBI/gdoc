@@ -24,8 +24,10 @@ class AdminController {
 	
 	def reload = {
 		log.debug("reload available data")
+	    quickStartService.loadDataAvailability()
 		def da = quickStartService.getDataAvailability()
 		servletContext.setAttribute("dataAvailability", da)
+		session.dataAvailability = quickStartService.getMyDataAvailability(session.myStudies)
 		log.debug("finished reloading data")
 		redirect(action:index)
 		return 

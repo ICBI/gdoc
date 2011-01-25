@@ -8,7 +8,7 @@ class SavedAnalysisController{
 	
 	def index = {
 		def myAnalyses = []
-		def timePeriods = [1:"1 day",7:"1 week",30:"past 30 days",90:"past 90 days",180:"past 6 months",hideShared:"show all of my analyses",all:"include shared analyses"]
+		def timePeriods = [30:"past 30 days",90:"past 90 days",180:"past 6 months",hideShared:"Show just MY analyses",all:"Show ALL (include shared analyses)"]
 		def pagedAnalyses = [:]
 		
 		if(params.analysisFilter){
@@ -18,7 +18,7 @@ class SavedAnalysisController{
 			log.debug "current session analysis filter is $session.analysisFilter"
 		}
 		else{
-			session.analysisFilter = "hideShared"
+			session.analysisFilter = "all"
 		}
 		if(params.offset){
 			pagedAnalyses = savedAnalysisService.getPaginatedAnalyses(session.analysisFilter,session.sharedAnalysisIds,params.offset.toInteger(),session.userId)

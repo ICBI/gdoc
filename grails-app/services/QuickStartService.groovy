@@ -14,13 +14,53 @@ class QuickStartService implements ApplicationContextAware{
 	void setApplicationContext(ApplicationContext context) { this.applicationContext = context.getServletContext() }
 	
 	def getDataAvailability(){
-		log.debug "get all study availability"
+		log.debug "get all study data availability"
 		def studies = []
 		studies = StudyDataSource.list();
 		if(studies){
 			studies.sort{it.shortName}
 		}
-		log.debug " sorted studies and getting snapshot for data for all $studies.size studies " + studies.collect{it.shortName}
+		log.debug "sorted studies and getting snapshot for data for all $studies.size studies " + studies.collect{it.shortName}
+		def vocabList = [:]
+		def attList = [""]
+		def results = []
+		if(studies) {
+			//get all diseases
+			def diseases = []
+			diseases = studies.collect{it.cancerSite}.sort{it}.unique()
+			diseases.remove("N/A")
+			log.debug "diseases are $diseases"
+			vocabList["diseases"] = diseases
+			//get all datatypes
+			def allDataTypes = []
+			allDataTypes = htDataService.getAllHTDataTypes()
+			vocabList["allDataTypes"] = allDataTypes as Set
+			vocabList["dataAvailability"] = results
+			studies.each{ study ->
+				def result = [:]
+				result['STUDY'] = study.shortName
+				result['CANCER'] = study.cancerSite
+				log.debug "find data available for $study.shortName"
+				def studyDA = []
+				studyDA = DataAvailable.findAllByStudyName(study.shortName)
+				studyDA.each{ da->
+					result[da.dataType] = da.count
+				}
+				results << result
+			}
+			vocabList["dataAvailability"] = results
+		}
+		println "data available " + vocabList["dataAvailability"]
+		return vocabList
+	}
+	
+	def loadDataAvailability(){
+		log.debug "load all study availability"
+		def studies = []
+		studies = StudyDataSource.list();
+		if(studies){
+			studies.sort{it.shortName}
+		}
 		def vocabList = [:]
 		def attList = [""]
 		def results = []
@@ -41,9 +81,27 @@ class QuickStartService implements ApplicationContextAware{
 						if(study.content){
 							StudyContext.setStudy(study.schemaName)
 							def result = queryStudyData(study,allDataTypes)
-							if(result){
-								println "result -> $result"
+							if(result){	
 								results << result
+								if(result["STUDY"] && result["CANCER"]){
+										result.each{ key,value ->
+											if(key != "STUDY" && key != "CANCER"){
+												def exists = DataAvailable.findByStudyNameAndDataType(result["STUDY"],key)
+												if(!exists){
+													def da = new DataAvailable(studyName:result["STUDY"],diseaseType:result["CANCER"],dataType:key,count:value)
+													if(da.save(flush:true)){
+														println "saved $key data for " + result["STUDY"]
+													}
+												}else{
+													exists.count = value
+													if(exists.save(flush:true)){
+														println "updated $key data for " + result["STUDY"]
+													}
+												}
+											}
+										}			
+								}
+									
 							}
 						}
 					}
@@ -51,7 +109,7 @@ class QuickStartService implements ApplicationContextAware{
 			}
 			vocabList["dataAvailability"] = results
 		}
-		log.debug "DA: $vocabList"
+		//log.debug "DA: $vocabList"
 		return vocabList
 	}
 	
@@ -104,9 +162,7 @@ class QuickStartService implements ApplicationContextAware{
 				//log.debug "find if $type data in $study.shortName"
 				//get specimens
 				def samples = []
-				def reductionAnalyses = []
 				samples = Sample.findAllByDesignType(type)
-				reductionAnalyses = ReductionAnalysis.findAllByDesignType(type)
 				//get biospecs
 				def pw = []
 				if(samples){
@@ -139,33 +195,7 @@ class QuickStartService implements ApplicationContextAware{
 						//log.debug "all patients with $type: " + pw.size() + " " + pw
 					}
 				}
-				if(reductionAnalyses){
-					def bsWithRA = []
-					def rids = []
-					rids = reductionAnalyses.collect{it.id}
-					def ridsString = rids.toString().replace("[","")
-					ridsString = ridsString.replace("]","")
-					def rquery = "select s.biospecimen_id from " + study.schemaName + ".REDUCTION_ANALYSIS s where s.id in ("+ridsString+")"
-					bsWithRA = jdbcTemplate.queryForList(rquery)
-					//log.debug "biospecimens with RA $bsWithRA"
-					def bsRids = bsWithRA.collect { id ->
-						return id["BIOSPECIMEN_ID"]
-					}
-					//log.debug bsRids
-					def biospecimensWithRA = []
-					biospecimensWithRA = Biospecimen.getAll(bsRids)
-					//get patients
-					def patientWithRA = []
-					patientWithRA = biospecimensWithRA.collect{
-						if(it)
-							return it.patient.id
-					}
-					//log.debug patientWithRA
-					if(patientWithRA){
-						pw = Patient.getAll(patientWithRA) as Set
-						//log.debug "all patients with $type: " + pw.size() + " " + pw
-					}
-				}
+				
 				def stats = [:]
 				result[type] = pw.size()
 			}

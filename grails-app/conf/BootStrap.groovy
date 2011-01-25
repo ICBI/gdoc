@@ -10,7 +10,7 @@ class BootStrap {
      def init = { servletContext ->
 		
 		switch (GrailsUtil.environment) {
-	       case "development":
+	       case ["development","sandbox"]:
 				def da = quickStartService.getDataAvailability()
 				servletContext.setAttribute("dataAvailability", da)
 				
