@@ -63,4 +63,10 @@ class StudyDataSource {
 			it.type == "METABOLOMICS"
 		}
 	}
+	
+	def hasMicroRNAData() {
+		return content.find {
+			it.type == "MICRORNA"
+		}
+	}
 }

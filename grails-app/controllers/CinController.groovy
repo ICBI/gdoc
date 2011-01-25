@@ -92,4 +92,33 @@ class CinController {
 		}
 	}
 	
+	def saveHeatmap = {
+		def result = session.results
+		try{
+			if(params.name){
+				byte[] fileBytes
+				String fileName
+				if(params.name.indexOf('chr') >= 0 ) {
+					String chr = params.name.substring(11)
+					fileBytes = result.cinFiles.get(chr)
+					fileName = "CHR" + chr + "_CytobandsCINheatmap.png"
+				}
+				if(params.name.indexOf('heatmap') >= 0) {
+					fileBytes = result.cinFiles.get('heatmap')
+					fileName="CINheatmap.png"
+				}
+				response.setHeader("Content-disposition", "attachment; filename=$fileName")
+				response.contentType = "application/png" 
+				response.outputStream << fileBytes
+				response.outputStream.flush()
+				response.outputStream.close()
+			}
+		}catch(java.io.FileNotFoundException fnf){
+				log.debug fnf.toString()
+				render "File ($params.name) was not found...is the file name correct?"
+		} catch (Exception e) {
+				e.printStackTrace()
+		}
+	}
+	
 }

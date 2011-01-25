@@ -32,6 +32,18 @@ class AnnotationService {
 		return platformReporters
 	}
 	
+	def findReportersForGeneListAndFile(listName, file) { 
+		def reporters = findReportersForGeneList(listName)
+		log.debug "GOT REPORTERS FOR GENE LIST $reporters"
+		def platform = findPlatformForFile(file)
+		log.debug "PLATFORM: $platform"
+		def platformReporters = findReportersByPlatform(platform)
+		log.debug "GOT REPORTERS FOR PLATFORM $platformReporters"
+		platformReporters.retainAll(reporters)
+		log.debug "GOT REPORTERS FOR PLATFORM INTERSECT $platformReporters"
+		return platformReporters
+	}
+	
 	def findGeneForReporter(reporterId) {
 		def reporter = Reporter.findByName(reporterId)
 		if(reporter)
@@ -106,7 +118,7 @@ class AnnotationService {
 			}
 		}
 		def results = QueryUtils.paginateResults(genes, queryClosure)
-		log.debug "GOT ${results.size} reporters"
+		log.debug "GOT ${results.size} reporters $results"
 		return results
 	}
 	

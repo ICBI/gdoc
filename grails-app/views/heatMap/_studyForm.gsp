@@ -37,7 +37,7 @@ $(document).ready( function () {
 		}
 	}
 </g:javascript>
-<g:if test="${(session.study.hasGenomicData() && session.dataSetType.contains('GENE EXPRESSION')) || (session.study.hasCopyNumberData() && session.dataSetType.contains('COPY_NUMBER')) || (session.study.hasMetabolomicsData() && session.dataSetType.contains('METABOLOMICS'))}">
+<g:if test="${(session.study.hasGenomicData() && session.dataSetType.contains('GENE EXPRESSION')) || (session.study.hasMicroRNAData() && session.dataSetType.contains('microRNA')) || (session.study.hasCopyNumberData() && session.dataSetType.contains('COPY_NUMBER')) || (session.study.hasMetabolomicsData() && session.dataSetType.contains('METABOLOMICS'))}">
 <div id="searchForm">
 		<div class="clinicalSearch">	
 			<g:form name="reporterForm" action="drawHeatMap">
@@ -116,7 +116,7 @@ $(document).ready( function () {
 								  from="${session.reporterLists}"
 								noSelection="${['':'-Select a Reporter List']}"
 								optionKey="name" optionValue="name" />
-								<img class="info" title="Please select an appropriate list for the data-type and dataset of interest: gene reporters for GENE EXPRESSION, peaks for METABOLOMICS, cytobands for COPY_NUMBER - cytoband-level CIN and, chromosomes for COPY_NUMBER - chromosome-level CIN" src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />
+								<img class="info" title="Please select an appropriate list for the data-type and dataset of interest: gene reporters for GENE EXPRESSION, miRNA reporters for microRNA, peaks for METABOLOMICS, cytobands for COPY_NUMBER - cytoband-level CIN and, chromosomes for COPY_NUMBER - chromosome-level CIN" src="${createLinkTo(dir:'images',file:'information.png')}" border="0" />
 					<div class="errorDetail">
 						<g:renderErrors bean="${flash.cmd?.errors}" field="reporterList" />
 					</div>
@@ -164,6 +164,6 @@ $(document).ready( function () {
 </div>
 </g:if>
 <g:else>
-	No expression, copy number or metabolomics data available for ${session.study.shortName}
+	No expression, miRNA, copy number or metabolomics data available for ${session.study.shortName}
 </g:else>
 </g:if>

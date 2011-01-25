@@ -91,7 +91,14 @@ class AnalysisService {
 			request.sampleGroup = group1
 			if(cmd.reporterList) {
 				def reporterGroup = new ReporterGroup()
-				reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
+				//reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
+				def reporters = idService.reportersForListName(cmd.reporterList)
+				if (cmd.dataSetType == "GENE_EXPRESSION") {
+					def platformReporters = annotationService.findReportersForFile(cmd.dataFile)
+					platformReporters.retainAll(reporters)
+					reporters = platformReporters
+				}	
+				reporterGroup.addAll(reporters)
 				log.debug "REPORTERS: $reporterGroup"
 				request.reporterGroup = reporterGroup
 			}
@@ -123,13 +130,21 @@ class AnalysisService {
 			request.sampleGroup = group1
 			if(cmd.geneList) {
 				def reporterGroup = new ReporterGroup()
-				reporterGroup.addAll(annotationService.findReportersForGeneList(cmd.geneList))
-				log.debug "REPORTERS: $reporterGroup"
+				//reporterGroup.addAll(annotationService.findReportersForGeneList(cmd.geneList))
+				reporterGroup.addAll(annotationService.findReportersForGeneListAndFile(cmd.geneList,cmd.dataFile))
+				log.debug "REPORTERS genes: $reporterGroup"
 				request.reporterGroup = reporterGroup
 			} else if(cmd.reporterList) {
 				def reporterGroup = new ReporterGroup()
-				reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
-				log.debug "REPORTERS: $reporterGroup"
+				//reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
+				def reporters = idService.reportersForListName(cmd.reporterList)
+				if (cmd.dataSetType == "GENE_EXPRESSION") {
+					def platformReporters = annotationService.findReportersForFile(cmd.dataFile)
+					platformReporters.retainAll(reporters)
+					reporters = platformReporters
+				}	
+				reporterGroup.addAll(reporters)
+				log.debug "REPORTERS replist: $reporterGroup"
 				request.reporterGroup = reporterGroup
 			}
 			if(cmd.fromComparison) {

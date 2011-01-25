@@ -7,7 +7,7 @@
 
     </head>
     <body>
-	<p style="font-size:14pt">Heatmap Viewer: Search Gene Expression, Copy Number, Metabolomics Data</p>
+	<p style="font-size:14pt">Heatmap Viewer: Search Gene Expression, microRNA, Copy Number, Metabolomics Data</p>
 	
 	<div id="studyPicker">
 		<g:render template="/studyDataSource/studyPicker"/>

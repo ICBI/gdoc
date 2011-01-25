@@ -404,11 +404,12 @@ p
 
 #cin-heatmap-container {
 	float: left;
-	height:480px;
+	height:520px;
 }
 
 #cin-heatmap-view-container img.map {
 	position: relative;
+	top:0px;
 	z-index: 100;
 }
 
@@ -423,7 +424,7 @@ p
 #cin-heatmap-view-container img.chrBg {
 	left: 0px;
 	position: absolute;
-	top: 0px;
+	top: 40px;
 	z-index: 19;
 }
 

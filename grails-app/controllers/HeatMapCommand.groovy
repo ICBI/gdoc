@@ -29,7 +29,8 @@ class HeatMapCommand {
 						if ("COPY_NUMBER"== obj.dataSetType || "METABOLOMICS" == obj.dataSetType) {
 							return "custom.datatype"
 						}
-						def reporters = obj.annotationService.findReportersForGeneList(val)
+						//def reporters = obj.annotationService.findReportersForGeneList(val).unique()
+						def reporters = obj.annotationService.findReportersForGeneListAndFile(val, obj.dataFile)
 						if(!reporters || reporters.size() <=2 || reporters.size() > MAX_REPORTERS) {
 							return "custom.reporters"
 						}
