@@ -108,7 +108,7 @@ class HtDataService {
 				}
 			}
 		types.each{
-			htTypes << it[0]
+			htTypes << it
 		}
 		def mstypes = MSDesign.createCriteria().list()
 			{
@@ -117,7 +117,7 @@ class HtDataService {
 				}
 			}
 		mstypes.each{
-			htTypes << it[0]
+			htTypes << it
 		}
 		return htTypes
 	}

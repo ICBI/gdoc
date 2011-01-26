@@ -125,7 +125,7 @@ class UserListController {
 		else if(sortedLists.size() == 4){
 			results = vennService.createIntersection4ListDictionary(sortedLists)
 		}
-	
+		session.results = null
 		def names = results.dictionary["names"]
 		[dictionary:results.dictionary as JSON,compartments:names as JSON,vennNumbers:results.vennData,graphData:results.graphData,allListsNames:allListsNames as JSON,tags: tagsString]
 	}
@@ -152,6 +152,16 @@ class UserListController {
 		if(params.listAction == 'intersect' ||
 			params.listAction == 'join' || 
 				params.listAction == 'diff'){
+			def author = GDOCUser.findByLoginName(session.userId)
+			def listDup = author.lists.find {
+						it.name == listName
+			}
+			if(listDup) {
+				log.debug "List did  not save, $listName already exists as a list"
+				flash.error = "List did  not save, $listName already exists in your lists"
+				redirect(action:list)
+				return
+			}
 			if(!userListService.validListName(listName)){
 				log.debug "List did  not save, invalid characters were found in name, $listName"
 				flash.error = "List did  not save, invalid characters were found in name, $listName. Please try again."
@@ -178,6 +188,7 @@ class UserListController {
 			if(userListInstance){
 				flash.message = "UserList ${listName} created"
 				session.listFilter = "hideShared"
+				session.results = null
 				redirect(action:list)
 			}else{
 				flash.error = "List not created. No items found"
@@ -312,9 +323,9 @@ class UserListController {
 			return
 		}
 		log.debug "save list"
-		def ids = []
+		def ids = new HashSet();
 		if(params.selectAll == "true") {
-			log.debug "save all ids"
+			log.debug "save all ids as Set"
 			//if patient list, save all gdocIds straight from result
 			if(params["tags"].indexOf("patient") > -1) {
 				session.results.each {
@@ -322,6 +333,7 @@ class UserListController {
 				}
 				
 			}
+			
 			//if gene symbol list, look up gene symbols from reporters straight from result
 			else if(params["tags"].indexOf("gene") > -1){
 				if(session.results){
@@ -341,12 +353,12 @@ class UserListController {
 					}
 				}
 			}
-			if(ids.size > MAX_LIST_SIZE) {
+			if(ids.size() > MAX_LIST_SIZE) {
 				render "List cannot be larger than ${MAX_LIST_SIZE} items. Please select a subset and try again."
 				return
 			}
 		} else if(params['ids']){
-			log.debug "just save selected ids"
+			log.debug "just save selected ids as Set"
 			params['ids'].tokenize(",").each{
 				it = it.replace('[','');
 				it = it.replace(']','');
@@ -405,7 +417,7 @@ class UserListController {
 			render "List did  not save, invalid characters were found in name, $params.name. Please try again."
 			return
 		}
-		def ids = []
+		def ids = new HashSet();
 		if(params['ids']){
 			params['ids'].tokenize(",").each{
 				it = it.replace('[','');
@@ -439,13 +451,13 @@ class UserListController {
 	}
 
 	def save = {
-		def ids = []
+		def ids = new HashSet();
 		if(params["ids"]){
 			params['ids'].each{
 				ids << it.trim()
 			}
 		}
-		if(ids.size > MAX_LIST_SIZE) {
+		if(ids.size() > MAX_LIST_SIZE) {
 			flash.message = "List cannot be larger than ${MAX_LIST_SIZE} items."
 			return
 		}
@@ -523,6 +535,7 @@ class UserListController {
 		}
 		
 		if(request.getFile("file").inputStream.text) {
+			log.debug "upload list: $params.listName"
 			def author = GDOCUser.findByLoginName(session.userId)
 			def listDup = author.lists.find {
 				it.name == params["listName"]
@@ -549,10 +562,14 @@ class UserListController {
 				def userList = new UserList()
 				userList.name = params["listName"]
 				userList.author = author 
+				def items = new HashSet();
 				request.getFile("file").inputStream.eachLine { value ->
 					//log.debug value
 					if(value.trim())
-						userList.addToListItems(new UserListItem(value:value.trim()))
+						items << value.trim()
+				}
+				items.each{ item->
+					userList.addToListItems(new UserListItem(value:item))
 				}
 				if(userList.listItems.size() > MAX_LIST_SIZE) {
 					flash.error = "List cannot be larger than ${MAX_LIST_SIZE} items."
