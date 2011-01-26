@@ -101,26 +101,27 @@ class HtDataService {
 		def htTypes = []
 		def arrayTypes = []
 		htTypes << "CLINICAL"
-		arrayTypes = ArrayDesign.findAll()
-		if(arrayTypes){
-			if(arrayTypes.metaClass.respondsTo(arrayTypes,"max")){
-				htTypes.addAll(arrayTypes.collect{it.arrayType} as Set)
-			}else{
-				htTypes << arrayTypes.arrayType
+		def types = ArrayDesign.createCriteria().list()
+			{
+				projections{
+					distinct('arrayType')
+				}
 			}
+		types.each{
+			htTypes << it[0]
 		}
-		def msTypes = []
-		msTypes = MSDesign.findAll()
-		if(msTypes){
-			if(msTypes.metaClass.respondsTo(msTypes,"max")){
-				htTypes.addAll(msTypes.collect{it.msType} as Set)
-			}else{
-				htTypes << msTypes.msType
+		def mstypes = MSDesign.createCriteria().list()
+			{
+				projections{
+					distinct('msType')
+				}
 			}
+		mstypes.each{
+			htTypes << it[0]
 		}
-		log.debug htTypes
 		return htTypes
 	}
+	
 	
 	def getHTDataMap() {
 		//def files = Sample.executeQuery("select distinct s.file, s.designType from Sample s where s.designType != 'COPY_NUMBER'")

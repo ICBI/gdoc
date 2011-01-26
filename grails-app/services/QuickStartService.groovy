@@ -37,20 +37,22 @@ class QuickStartService implements ApplicationContextAware{
 			vocabList["allDataTypes"] = allDataTypes as Set
 			vocabList["dataAvailability"] = results
 			studies.each{ study ->
-				def result = [:]
-				result['STUDY'] = study.shortName
-				result['CANCER'] = study.cancerSite
-				log.debug "find data available for $study.shortName"
-				def studyDA = []
-				studyDA = DataAvailable.findAllByStudyName(study.shortName)
-				studyDA.each{ da->
-					result[da.dataType] = da.count
+				if(study.shortName != 'DRUG'){
+					def result = [:]
+					result['STUDY'] = study.shortName
+					result['CANCER'] = study.cancerSite
+					log.debug "find data available for $study.shortName"
+					def studyDA = []
+					studyDA = DataAvailable.findAllByStudyName(study.shortName)
+					studyDA.each{ da->
+						result[da.dataType] = da.count
+					}
+					results << result
 				}
-				results << result
 			}
 			vocabList["dataAvailability"] = results
 		}
-		println "data available " + vocabList["dataAvailability"]
+		println "data available " + vocabList
 		return vocabList
 	}
 	
@@ -266,75 +268,7 @@ class QuickStartService implements ApplicationContextAware{
 			
 		}
 	
-		/**
-		REFACTORED to use canned queries
-		outcomeCriteria = SemanticHelper.resolveAttributesForStudy(outcomeParams,study.shortName)
-		if(outcomeCriteria){
-			//create my 2 groups of outcome
-			def patientsLess5 = []
-			def patientsMore5 = []
-
-		    //set criteria for lessThan5
-			def criteriaL5 = [:]
-			outcomeCriteria[0].each() { key, value -> criteriaL5[key]=value };
-			
-			//set criteria for moreThan5
-			def criteriaM5 = [:]
-			outcomeCriteria[1].each() { key, value -> criteriaM5[key]=value };
-			
-			def biospecimenIds
-			if(dataTypes.collect { it.target }.contains("BIOSPECIMEN")) {
-				def biospecimenCriteria = [:]
-				outcomeCriteria[2].each() { key, value -> biospecimenCriteria[key]=value };
-				if(biospecimenCriteria) {
-					biospecimenIds = biospecimenService.queryByCriteria(biospecimenCriteria).collect { it.id }
-					//log.debug "GOT IDS ${biospecimenIds}"
-				}
-			}
-			
-		    //get lessThanPatients
-			def patLTIds = []
-			patLTIds = clinicalService.getPatientIdsForCriteria(criteriaL5,biospecimenIds)
-			//log.debug "get gdocIds for less = " + patLTIds
-			def patLT = []
-			if(patLTIds){
-				patLT = Patient.getAll(patLTIds)
-			}
-		 	
-			if(patLT){
-				patientsLess5 = patLT.collect{it.gdocId}
-			}
-			//log.debug "patients with Less in $patientsLess5"
-			
-			//get moreThanPatients
-			def patMTIds = []
-			patMTIds= clinicalService.getPatientIdsForCriteria(criteriaM5, biospecimenIds)
-			//log.debug "get gdocIds for more than = " + patMTIds
-			def patMT = []
-			if(patMTIds){
-				patMT = Patient.getAll(patMTIds)
-			}
-			
-			if(patMT){
-				patientsMore5 = patMT.collect{it.gdocId}
-			}
-			//log.debug "patients with more in $patientsMore5"
-			
-			
-			//organize results
-			def outcomeLabels = SemanticHelper.determineStudyDataLabel(outcomeParams.outcome,study.shortName)
-			result["study"] = study.shortName
-			result["patients_lessThan"]	= patientsLess5
-			result["patients_lessThanSize"] = patientsLess5.size().toString()
-			result["patients_lessThanLabel"] = " " + patientsLess5.size().toString() + " patients :" + outcomeLabels[0]
-			result["patients_moreThan"] = patientsMore5
-			result["patients_moreThanSize"] = patientsMore5.size().toString()
-			result["patients_moreThanLabel"] = " " + patientsMore5.size().toString() + " patients :" + outcomeLabels[1]
-			//results << result
-		}else {
-			log.debug "no semantic match of $outcomeParams.outcome for $study.shortName"
-		}
-		**/
+		
 		return results
 	}
 	
