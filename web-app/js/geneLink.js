@@ -45,6 +45,9 @@
 						<li><a href='#' class='contextItem' id='ENTREZ'>Search in Entrez</a></li>	\
 						<li><a href='#' class='contextItem' id='IHOP'>Search in iHOP</a></li></ul>";
 					break;
+				case 'copynumber':
+					menu += "<li><a href='#' class='contextItem' id='UCSCGenomeBrowser'>View in UCSC Genome Browser</a></li></ul>";
+					break;
 				default:
 					break;
 			}
@@ -89,6 +92,12 @@
 				break;
 			case "MIRBASE":
 				window.open("http://www.mirbase.org/cgi-bin/query.pl?terms=" + id);
+				break;
+			case "UCSCGenomeBrowser":
+				if (id.indexOf('p') == -1 && id.indexOf('q') == -1) {
+					id = "chr"+id
+				}
+				window.open('http://genome.ucsc.edu/cgi-bin/hgTracks?clade=mammal&org=Human&db=hg18&position=' + id + '&hgt.suggest=&pix=800&Submit=submit');
 				break;
 			case "KM":
 				if(settings.spinner) {

@@ -97,7 +97,12 @@ class AnalysisController {
 			def annotation = "Gene Symbol"
 			if(session.analysis.tags.contains('microrna')) {
 				annotation = "microRNA"
-			}
+			} else if (session.analysis.tags.contains('copy_number')) {
+				if (session.results?.resultEntries[0]?.reporterId =~ /^(\d+)$/)
+					annotation = "Chromosome"
+				else
+					annotation = "Cytoband"
+			} 
 			def colNames = ["Reporter ID", annotation, "p-value", "Fold Change", "Mean Baseline", "Mean Group", "Std Baseline", "Std Group", "Target Data"]
 			session.columnJson = columns as JSON
 			session.columnNames = colNames as JSON
@@ -132,9 +137,9 @@ class AnalysisController {
 				def tempItem = [:]
 				def geneName = genes[item.reporterId]
 				tempItem.reporterId = item.reporterId
-				if(!geneName)
+				if(!geneName) 
 					tempItem.geneName = ""
-				else 
+				else
 					tempItem.geneName = geneName
 				tempItem.pvalue = item.pvalue
 				tempItem.foldChange = item.foldChange

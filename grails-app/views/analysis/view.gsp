@@ -91,6 +91,8 @@
 									}
 									if(${session.analysis?.tags?.contains('microrna')}){
 										$('a[href*="geneLink"]').geneLink({'menuType': 'microrna','advancedMenu': false, 'kmData': kmData, 'spinner': $('#GEspinner')});
+									} else if(${session.analysis?.tags?.contains('copy_number')}){
+										$('a[href*="geneLink"]').geneLink({'menuType': 'copynumber','advancedMenu': false, 'kmData': kmData, 'spinner': $('#GEspinner')});
 									} else {
 										$('a[href*="geneLink"]').geneLink({'advancedMenu': true, 'kmData': kmData, 'spinner': $('#GEspinner')});
 									}
