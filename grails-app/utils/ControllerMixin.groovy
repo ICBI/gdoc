@@ -91,8 +91,22 @@ class ControllerMixin {
 				distinct(["type.id", "value"])
 			}
 		}
+		
+		def biospecimenCriteria = BiospecimenValue.createCriteria()
+		def bioResults = biospecimenCriteria {
+			projections {
+				distinct(["commonType.id", "value"])
+			}
+		}
 		def usedVocabMap = [:]
 		results.each {
+			if(!usedVocabMap[it[0]])
+				usedVocabMap[it[0]] = []
+			usedVocabMap[it[0]] << it[1]
+				
+		}
+		
+		bioResults.each {
 			if(!usedVocabMap[it[0]])
 				usedVocabMap[it[0]] = []
 			usedVocabMap[it[0]] << it[1]
