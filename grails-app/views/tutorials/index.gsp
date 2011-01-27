@@ -28,7 +28,7 @@
 				<p style="font-size:12pt">Example Analysis</p>
 			   	<ul>
 					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/exampleAnalysis1.mp4" />Example Analysis Part #1</a></li>
-					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/exampleAnalysis2.mp4" />Example Analysis Part #2</li>
+					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/exampleAnalysis2.mp4" />Example Analysis Part #2</a></li>
 					<li style="list-style-type:square;margin-left:25px"><a href="${grailsApplication.config.videosPath}/exampleAnalysis3.mp4" />Example Analysis Part #3</a></li>
 				</ul>
 				
