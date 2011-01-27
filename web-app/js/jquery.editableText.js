@@ -89,6 +89,11 @@
                 editEl.hide();
 				                
 	            editable.attr('contentEditable', true);
+				editable.keypress(function(e) {
+					if(e.which != 8 && (window.getSelection() == "") && editable.text().length >= 15) {
+						e.preventDefault();
+					}
+				});
 			}
 			/**
 			 * Makes element non-editable
