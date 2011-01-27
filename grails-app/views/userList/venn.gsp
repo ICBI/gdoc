@@ -59,7 +59,7 @@
 	$(document).ready( function () {
 			$('.example8DOMWindow').click(function(){ 
 			    $.openDOMWindow({ 
-				    height:380,
+				    height:400,
 			        loader:1, 
 			        loaderImagePath:'animationProcessing.gif', 
 			        loaderHeight:16,

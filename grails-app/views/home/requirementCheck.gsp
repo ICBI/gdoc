@@ -3,7 +3,7 @@
         <title>Georgetown Database of Cancer</title>
 		<g:render template="/common/flex_header"/>
 		<g:javascript src="swfobject.js"/>
-		<g:javascript src="deployJava.js" base="http://java.com/js/"/>
+		<g:javascript src="deployJava.js"/>
 		<g:javascript src="BrowserDetect.js"/>
 		<g:javascript src="detect.js"/>
 		<meta name="layout" content="splash" />
