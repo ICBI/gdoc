@@ -90,7 +90,13 @@
 				                
 	            editable.attr('contentEditable', true);
 				editable.keypress(function(e) {
-					if(e.which != 8 && (window.getSelection() == "") && editable.text().length >= 15) {
+					var sel;
+					if(window.getSelection) {
+						sel = window.getSelection();
+					} else if (document.selection) {
+						sel = document.selection.createRange().text;
+					}
+					if(e.which != 8 && (sel == "") && editable.text().length >= 15) {
 						e.preventDefault();
 					}
 				});

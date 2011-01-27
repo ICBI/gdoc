@@ -71,7 +71,7 @@
 				});
 				
 				$("[class*='_name']").change(function(){
-				         var newValue = $(this).text().trim();
+				         var newValue = jQuery.trim($(this).text());
 						 var id = $(this).attr("id").split("_name")[0];
 				         // do something
 				         // For example, you could place an AJAX call here:
@@ -88,6 +88,7 @@
 							}else{
 								makeEditable(id);
 							}
+							
 							window.setTimeout(function() {
 							  $('.message').remove();
 							}, 10000);
