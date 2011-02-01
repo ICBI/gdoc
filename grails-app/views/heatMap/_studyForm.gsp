@@ -3,6 +3,7 @@
 <jq:plugin name="flydisk" />
 <g:javascript>
 $(document).ready( function () {
+	$('input[type=submit]', this).attr('disabled', false);
 	jQuery().flydisk({ selectedColor:"#eee",                       //BgColor of selected items(Default: white) 
 		left_disk:'left',                 //Id of left drop down list (Mandatory)
 		right_disk:'right',               //Id of right drop down list(Mandatory)
@@ -28,6 +29,7 @@ $(document).ready( function () {
 			$('#right :option').attr("selected", "selected");
  		});
 	});
+
 	function showGroups() {
 		var selected = $("#patientList:checked").val();
 		if(selected == 'ALL') {

@@ -132,7 +132,7 @@ class AnalysisController {
 			def reporterIds = analysisResults.resultEntries.collect {
 				it.reporterId
 			}
-			def genes = annotationService.findAllGenesForReporters(reporterIds)
+			def genes = annotationService.findAllGenesForReporters(reporterIds, session.analysis.query.dataFile)
 			analysisResults.resultEntries.each { item ->
 				def tempItem = [:]
 				def geneName = genes[item.reporterId]

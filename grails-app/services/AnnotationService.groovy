@@ -122,12 +122,16 @@ class AnnotationService {
 		return results
 	}
 	
-	def findAllGenesForReporters(reporters) {
+	def findAllGenesForReporters(reporters, dataFile) {
+		def platform = findPlatformForFile(dataFile)
 		def queryClosure = { tempIds -> 
 			def c = Reporter.createCriteria()
 			return c {
 				projections {
 					distinct(["name", "geneSymbol"])
+				}
+				arrayDesigns {
+					eq('platform', platform)
 				}
 				'in'("name", tempIds)
 			}

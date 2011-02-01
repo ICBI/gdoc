@@ -337,11 +337,8 @@ class UserListController {
 			//if gene symbol list, look up gene symbols from reporters straight from result
 			else if(params["tags"].indexOf("gene") > -1){
 				if(session.results){
-						session.results.resultEntries.each{ ccEntry ->
-							def geneSymbol = annotationService.findGeneForReporter(ccEntry.reporterId)
-							if(geneSymbol){
-								ids << geneSymbol
-							}
+						session.resultTable.each{ row ->
+							ids << row.geneName
 						}
 				}
 			}
