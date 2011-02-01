@@ -124,6 +124,13 @@
 					tags.push("analysis");
 					var selectedItem = this.title;
 					tags.push(selectedItem);
+					var dataType = '${session.analysis?.tags}';
+					dataType = dataType.replace("[", "");
+					dataType = dataType.replace("]", "");
+					var dataTypes = dataType.split(",");
+					for(var i = 0; i < dataTypes.length; i++) {
+						tags.push(dataTypes[i]);
+					}
 					var listName = jQuery('#list_name').val();
 					listName = encodeURIComponent(listName);
 					${remoteFunction(action:'saveFromQuery',controller:'userList', update:'message', onLoading:'showSaveSpinner(true)', onComplete: 'showSaveSpinner(false)', params:'\'ids=\'+ s+\'&author.username=\'+author+\'&tags=\'+tags+\'&selectAll=\'+ selectAll+\'&name=\'+listName')}
