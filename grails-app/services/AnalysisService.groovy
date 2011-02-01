@@ -93,7 +93,7 @@ class AnalysisService {
 				def reporterGroup = new ReporterGroup()
 				//reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
 				def reporters = idService.reportersForListName(cmd.reporterList)
-				if (cmd.dataSetType == "GENE_EXPRESSION") {
+				if (cmd.dataSetType == DataType.GENE_EXPRESSION) {
 					def platformReporters = annotationService.findReportersForFile(cmd.dataFile)
 					platformReporters.retainAll(reporters)
 					reporters = platformReporters
@@ -138,7 +138,7 @@ class AnalysisService {
 				def reporterGroup = new ReporterGroup()
 				//reporterGroup.addAll(idService.reportersForListName(cmd.reporterList))
 				def reporters = idService.reportersForListName(cmd.reporterList)
-				if (cmd.dataSetType == "GENE_EXPRESSION") {
+				if (cmd.dataSetType == DataType.GENE_EXPRESSION) {
 					def platformReporters = annotationService.findReportersForFile(cmd.dataFile)
 					platformReporters.retainAll(reporters)
 					reporters = platformReporters

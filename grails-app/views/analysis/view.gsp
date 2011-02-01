@@ -89,9 +89,9 @@
 											jQuery("#cb_jqg").attr('checked', true);
 										}
 									}
-									if(${session.analysis?.tags?.contains('microrna')}){
+									if(${session.analysis?.tags?.contains(DataType.MICRORNA.tag())}){
 										$('a[href*="geneLink"]').geneLink({'menuType': 'microrna','advancedMenu': false, 'kmData': kmData, 'spinner': $('#GEspinner')});
-									} else if(${session.analysis?.tags?.contains('copy_number')}){
+									} else if(${session.analysis?.tags?.contains(DataType.COPY_NUMBER.tag())}){
 										$('a[href*="geneLink"]').geneLink({'menuType': 'copynumber','advancedMenu': false, 'kmData': kmData, 'spinner': $('#GEspinner')});
 									} else {
 										$('a[href*="geneLink"]').geneLink({'advancedMenu': true, 'kmData': kmData, 'spinner': $('#GEspinner')});
