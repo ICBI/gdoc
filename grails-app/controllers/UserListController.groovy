@@ -326,8 +326,9 @@ class UserListController {
 		def ids = new HashSet();
 		if(params.selectAll == "true") {
 			log.debug "save all ids as Set"
+			def tags = params.tags.split(",").toList()
 			//if patient list, save all gdocIds straight from result
-			if(params["tags"].indexOf("patient") > -1) {
+			if(tags.contains("patient")) {
 				session.results.each {
 					ids << it.gdocId
 				}
@@ -335,7 +336,7 @@ class UserListController {
 			}
 			
 			//if gene symbol list, look up gene symbols from reporters straight from result
-			else if(params["tags"].indexOf("gene") > -1){
+			else if(tags.indexOf("gene") > -1){
 				if(session.results){
 						session.resultTable.each{ row ->
 							ids << row.geneName

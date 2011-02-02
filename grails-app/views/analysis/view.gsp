@@ -197,7 +197,9 @@
 						<span class="bla" id="listAdd">Save Selected ⇣
 								<ul>
 									<li title="reporter">Reporters</li>
-									<li title="gene">Gene Symbols</li>
+									<g:if test="${session.analysis?.tags?.contains(DataType.GENE_EXPRESSION.tag())}">
+										<li title="gene">Gene Symbols</li>
+									</g:if>
 								</ul>
 							</span>
 							</div>	
