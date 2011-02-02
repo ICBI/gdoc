@@ -725,7 +725,7 @@ hsa-miR-770-5p	hsa-miR-770-5p
 hsa-miR-801	hsa-miR-801
 hsa-miR-802	hsa-miR-802
 hsa-miR-9	hsa-miR-9
-hsa-miR-93	hsa-miR-93
+hsa-miR-9*	hsa-miR-9*
 hsa-miR-92	hsa-miR-92
 hsa-miR-92b	hsa-miR-92b
 hsa-miR-93	hsa-miR-93
