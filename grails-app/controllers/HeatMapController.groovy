@@ -161,10 +161,10 @@ class HeatMapController {
 							reporters = annotationService.getReportersForGeneList(session.analysis.query.geneList)
 						}
 					}
-					def reporterMap = [:]
-					reporters.each {
-						reporterMap[it.name] = it.geneSymbol
+					def repIds = reporters.collect {
+						it.name
 					}
+					def reporterMap = annotationService.findAllGenesForReporters(repIds, session.analysis.query.dataFile)
 					log.debug "REPORTERS ${reporterMap}"
 					byte[] bytes  = result.cdtFile
 					InputStream inputStream = new ByteArrayInputStream(bytes);
