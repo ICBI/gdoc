@@ -16,6 +16,8 @@
 		}else{
 			$("#"+pageSpinner).css("visibility","hidden");
 			$('.geneLink').geneLink({'advancedMenu': false, 'multiple': true});
+			$('.micrornaLink').geneLink({'menuType': 'microrna', 'advancedMenu': false, 'multiple': true});
+			$('.copynumberLink').geneLink({'menuType': 'copynumber', 'advancedMenu': false, 'multiple': true});
 		}
 	}
 	

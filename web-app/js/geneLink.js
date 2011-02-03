@@ -12,9 +12,10 @@
 			if ( options ) { 
 				$.extend( settings, options );
 			}
-			if(options.multiple)
-				$('#contextmenu').remove();
-			var menu = "<ul id='contextmenu' class='jqcontextmenu'>";
+			if(options.multiple) {
+				$('#contextmenu' + settings.menuType).remove();
+			}
+			var menu = "<ul id='contextmenu" + settings.menuType + "' class='jqcontextmenu'>";
 			switch(settings.menuType) {
 				case 'gene':
 					if(settings.advancedMenu) {
@@ -135,7 +136,10 @@
 
     return this.each(function() {     
 		var $this = $(this)   
-		$(this).addcontextmenu('contextmenu');
+		if(!options.menuType)
+			$(this).addcontextmenu('contextmenugene');
+		else 
+			$(this).addcontextmenu('contextmenu' + options.menuType);
 	});
 
   };
