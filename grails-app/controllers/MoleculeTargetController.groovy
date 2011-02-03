@@ -231,8 +231,9 @@ class MoleculeTargetController {
 			def moleculeTarget
 			def similarTargets = []
 			def molTarId 
-			if(params.id){
-				moleculeTarget = MoleculeTarget.get(params.id)
+			if(params.id && params.id != "JmolApplet"){
+				def id = new Long(params.id)
+				moleculeTarget = MoleculeTarget.get(id)
 				molTarId = moleculeTarget.id
 			}
 			if(moleculeTarget){

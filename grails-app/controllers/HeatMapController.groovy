@@ -53,6 +53,7 @@ class HeatMapController {
 				}
 				session.groupLegend = groupLegend
 			}
+			[tags:analysisResult.tags]
 		}
 		else{
 			log.debug "user CANNOT access analysis $params.id"
@@ -67,11 +68,19 @@ class HeatMapController {
 		log.debug "geneList : " + cmd.geneList
 		log.debug "reporterList : " + cmd.reporterList
 		log.debug "study:" + cmd.study 
+		log.debug "dataSetType" + cmd.dataSetType
 		log.debug cmd.errors
 		if(!session.study)
 			StudyContext.setStudy(cmd.study)
 		def tags = []
 		tags << "heatMap"
+			if(cmd.dataSetType){
+				cmd.dataSetType.tokenize(",").each{
+					it = it.replace('[','');
+					it = it.replace(']','');
+					tags << it.trim()
+				}
+			}		
 		
 		def author = GDOCUser.findByLoginName(session.userId)
 		def list1IsTemp = userListService.listIsTemporary(cmd.patientList,author)
@@ -182,8 +191,12 @@ class HeatMapController {
 						}
 						if(number >= dataRow) {
 							def tempLine = line.split("\t")
-							if(reporterMap[tempLine[1]])
+							if(reporterMap[tempLine[1]] && (reporterMap[tempLine[1]]!=tempLine[1])){
 								tempLine[2] = reporterMap[tempLine[1]]
+							}
+							else{
+								tempLine[2] = ""
+							}
 							line = tempLine.join("\t")
 						}
 						def temp = line + "\n"

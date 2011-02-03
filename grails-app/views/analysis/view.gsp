@@ -52,6 +52,7 @@
 		var currPage = 1;
 		var kmData = ${session.endpoints};
 		$(document).ready(function(){
+			getCleanedTags();
 			jQuery("#searchResults").jqGrid({ 
 				url:'<%= createLink(action:"results",controller:"analysis") %>', 
 				datatype: "json", 
@@ -121,12 +122,13 @@
 					}, 10000);
 				} else {
 					var tags = new Array();
-					tags.push("analysis");
+					tags.push("analysis");	
 					var selectedItem = this.title;
 					tags.push(selectedItem);
-					var dataType = '${session.analysis?.tags}';
-					dataType = dataType.replace("[", "");
-					dataType = dataType.replace("]", "");
+					var typetags = '${session.analysis?.tags?.minus('_temporary')}';
+					typetags = typetags.replace("[", "");
+					typetags = typetags.replace("]", "");
+					var dataType = typetags;
 					var dataTypes = dataType.split(",");
 					for(var i = 0; i < dataTypes.length; i++) {
 						tags.push(dataTypes[i]);
@@ -168,6 +170,14 @@
 			}, 10000);
 		}
 		
+		function getCleanedTags(){
+			var tags = '${session.analysis?.tags}';
+			tags = tags.replace("[", "");
+			tags = tags.replace("]", "");
+			jQuery('#repdataSetType').val(tags);
+			return tags;
+		}
+		
 	</g:javascript>
 	<br/>
 	
@@ -204,6 +214,7 @@
 							</span>
 							</div>	
 							<br/>
+							
 							<g:form name="reporterForm" action="drawHeatMap" controller="heatMap">
 								<g:hiddenField name="groups" value="${session.analysis.query.baselineGroup + ',' + session.analysis.query.groups}"/>
 								<g:hiddenField name="dataFile" value="${session.analysis.query.dataFile}" />
@@ -211,6 +222,7 @@
 								<g:hiddenField name="fromComparison" value="true"/>
 								<g:hiddenField name="selectAll" value="false"/>
 								<g:hiddenField name="study" value="${session.analysis.studySchemas()[0]}"/>
+ 								<g:hiddenField id="repdataSetType" name="dataSetType" />
 								<g:submitButton name="search" value="View HeatMap for selected reporters" />
 							</g:form>
 							<g:form name="geneExpressionKm" action="submitGEPlot" controller="km">

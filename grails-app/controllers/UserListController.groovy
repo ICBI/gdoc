@@ -336,7 +336,7 @@ class UserListController {
 			}
 			
 			//if gene symbol list, look up gene symbols from reporters straight from result
-			else if(tags.indexOf("gene") > -1){
+			else if(tags.contains("gene")){
 				if(session.results){
 						session.resultTable.each{ row ->
 							ids << row.geneName
@@ -361,7 +361,9 @@ class UserListController {
 				it = it.replace('[','');
 				it = it.replace(']','');
 				//if gene symbols list, look up gene symbols from reporters (ids)
-				if(params["tags"] && params["tags"].indexOf("gene") > -1){
+				def tags = params.tags.split(",").toList()
+				if(tags && tags.contains("gene")){
+					log.debug "contains gene"
 					if(session.results && session.results.resultEntries){
 						session.results.resultEntries.each{ ccEntry ->
 							if(it.trim() == ccEntry.reporterId){

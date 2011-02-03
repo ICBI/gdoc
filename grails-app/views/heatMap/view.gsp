@@ -29,6 +29,7 @@
 				<br/>
 			</g:if>
 			<div style="margin-left:100px">
+				
 			<APPLET CODE="edu/stanford/genetics/treeview/applet/ButtonApplet.class"
 			  archive="/gdoc/applets/treeview/TreeViewApplet.jar,/gdoc/applets/treeview/nanoxml-2.2.2.jar,/gdoc/applets/treeview/Dendrogram.jar" width=150 height=40
 			    alt="Your browser understands the &lt;APPLET&gt; tag but isn't running the applet, for some reason.">
@@ -36,6 +37,7 @@
 			    <param name="cdtFile" value="${grailsApplication.config.grails.serverURL}/gdoc/heatMap/file?name=cluster.cdt" />
 			    <param name="cdtName" value="${grailsApplication.config.grails.serverURL}/gdoc/heatMap/file?name=cluster" />
 				<param name="plugins" value="edu.stanford.genetics.treeview.plugin.dendroview.DendrogramFactory" />
+				<param name="analysisType" value="${tags.minus(['heatmap','_temporary'])}" />
 			  </applet>
 			</div>
 		</div>

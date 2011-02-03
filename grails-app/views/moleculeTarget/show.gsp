@@ -23,9 +23,7 @@
         <title>Molecule Target</title>         
     </head>
     <body>
-		<%
-		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() +  request.getContextPath();
-		%>
+	
 	<p style="font-size:14pt">Molecule-Target Viewer | <g:link action="index">target search</g:link>
 		<span style="float:right;font-size:.7em;padding:5px">
 			<g:form name="selectorForm" action="loadSimilar">
@@ -49,6 +47,7 @@
 					${target.symbol}
 		</td>
 			<td valign="top" rowspan="4">
+			
 				<g:javascript>
 					  jmolInitialize("/gdoc/applets/jmol","JmolAppletSigned0.jar");
 				      jmolApplet([400,400], "load ${grailsApplication.config.molecule3DstructuresPath}/${moleculeTargetPath};spacefill 0; wireframe 0.01;cartoon;color cartoon chain;select ligand;color yellow;");
