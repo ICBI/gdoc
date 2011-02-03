@@ -146,6 +146,7 @@ class CollaborationGroupsController {
 						if(securityService.deleteCollaborationGroup(session.userId,groupName)){
 							log.debug "collaboration group, $groupName has been deleted"
 							flash.message = "collaboration group, $groupName has been deleted"
+							reloadMembershipAndStudyData()
 							redirect(action:index)
 							return
 						}

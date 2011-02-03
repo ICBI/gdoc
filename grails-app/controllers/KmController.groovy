@@ -208,6 +208,22 @@ class KmController {
 		if(isAccessible(params.id)){
 			log.debug "IN REPOPULATE"
 			session.savedKM = params.id
+			def analysis = savedAnalysisService.getSavedAnalysis(session.savedKM)
+			if(analysis.studies){
+				def kmStudies =[]
+				kmStudies = analysis.studies
+				if(kmStudies){
+					def kmstudy = kmStudies.find{
+						if(it)
+							return it
+					}
+					if(kmstudy){
+						StudyContext.setStudy(kmstudy.schemaName)
+						loadCurrentStudy()
+					}
+					
+				}
+			}
 		}else{
 			log.debug "user CANNOT access analysis $params.id"
 			redirect(controller:'policies', action:'deniedAccess')
