@@ -96,7 +96,7 @@ class AnalysisController {
 			columns << [index: "target", name: "Target Data", sortable: false, width: '100']
 			def annotation = "Gene Symbol"
 			if(session.analysis.tags.contains(DataType.MICRORNA.tag())) {
-				annotation = DataType.MICRORNA
+				annotation = 'microRNA'
 			} else if (session.analysis.tags.contains(DataType.COPY_NUMBER.tag())) {
 				if (session.results?.resultEntries[0]?.reporterId =~ /^(\d+)$/)
 					annotation = "Chromosome"
