@@ -140,8 +140,10 @@ class CollaborationGroupsController {
 					log.debug "requesting deletion of group $params.group"
 					def id = params.group.toLong()
 					def group = CollaborationGroup.get(id)
-					def groupName = group.name
-					def manager = securityService.findCollaborationManager(groupName)
+					def groupName = group?.name
+					def manager
+					if (groupName) 
+						manager = securityService.findCollaborationManager(groupName)
 					if(manager && (manager.loginName == session.userId)){
 						if(securityService.deleteCollaborationGroup(session.userId,groupName)){
 							log.debug "collaboration group, $groupName has been deleted"

@@ -74,6 +74,11 @@ class AnalysisController {
 		if(isAccessible(params.id)){
 			log.debug "user can access analysis $params.id"
 			def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+			log.debug "cct1: " + analysisResult.type
+			if (analysisResult.type != AnalysisType.CLASS_COMPARISON) {
+				log.debug "user CANNOT access analysis $params.id because is not a CLASS_COMPARISON analysis but a $analysisResult.type analysis"
+				redirect(controller:'policies', action:'deniedAccess')
+			}
 			StudyContext.setStudy(analysisResult.query["study"])
 			loadCurrentStudy()
 			def endpoints = KmAttribute.findAll()

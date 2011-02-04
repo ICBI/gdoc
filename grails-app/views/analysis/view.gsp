@@ -192,7 +192,7 @@
 		<br/>
 			<g:render template="analysis_details" bean="${session.analysis}" />
 			<br/>
-			<g:if test="${!session.results || (session.results.resultEntries.size() == 0)}">
+			<g:if test="${!session.results || (session.results.resultEntries?.size() == 0)}">
 				<br /><br />
 				No results found for this analysis. <br /><br />
 			</g:if>

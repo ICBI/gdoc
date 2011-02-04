@@ -90,7 +90,7 @@ class StudyDataSourceController {
 	def show = {
 		def currStudy = StudyDataSource.get(params.id)
 		def allowAccess = false
-		if(currStudy.hasClinicalData()){
+		if(currStudy?.hasClinicalData()){
 			StudyContext.setStudy(currStudy.schemaName)
 			clinicalElements = AttributeType.findAll()
 			//log.debug clinicalElements
@@ -104,6 +104,10 @@ class StudyDataSourceController {
 				}
 			}
 				
+		}
+		if (!allowAccess){
+			log.debug "user is NOT permitted to access this study"
+			redirect(controller:'policies',action:'deniedAccess')
 		}
 		[currStudy:currStudy,clinicalElements:clinicalElements,allowAccess:allowAccess]
 	}

@@ -97,11 +97,13 @@ def share = {
 	def item
 	if(params.id && params.type){
 		item = getItem(params.id, params.type)
-		def alreadySharedGroups = []
-		alreadySharedGroups = securityService.groupsShared(item)
-		if(alreadySharedGroups){
-			flash.message = alreadySharedGroups
-			[groups:alreadySharedGroups]
+		if(item) {
+			def alreadySharedGroups = []
+			alreadySharedGroups = securityService.groupsShared(item)
+			if(alreadySharedGroups){
+				flash.message = alreadySharedGroups
+				[groups:alreadySharedGroups]
+			}
 		}
 	}
 }

@@ -35,6 +35,11 @@ class CinController {
 	def view = {
 		if(isAccessible(params.id)){
 			def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
+			log.debug "cint1: " + analysisResult.type
+			if (analysisResult.type != AnalysisType.CIN) {
+				log.debug "user CANNOT access analysis $params.id because is not a CIN analysis but a $analysisResult.type analysis"
+				redirect(controller:'policies', action:'deniedAccess')
+			}
 			StudyContext.setStudy(analysisResult.query["study"])
 			loadCurrentStudy()
 			session.results = analysisResult.analysis.item
