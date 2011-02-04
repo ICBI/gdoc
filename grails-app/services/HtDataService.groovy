@@ -100,7 +100,7 @@ class HtDataService {
 	def getAllHTDataTypes(){
 		def htTypes = []
 		def arrayTypes = []
-		htTypes << DataType.CLINICAL
+		htTypes << DataType.CLINICAL.value()
 		def types = ArrayDesign.createCriteria().list()
 			{
 				projections{
