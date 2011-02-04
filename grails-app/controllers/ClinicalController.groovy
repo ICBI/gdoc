@@ -209,7 +209,8 @@ class ClinicalController {
 		def results = clinicalService.getPatientsForGdocIds(cleanedIds)
 		log.debug "RESULTS: $results"
 		processResults(results)
-		returnVal['url'] = '/gdoc/clinical/viewPatientReport'
+		def timestamp = System.currentTimeMillis()
+		returnVal['url'] = "/gdoc/clinical/viewPatientReport?timestamp=${timestamp}"
 		//render(view:"search")
 		render returnVal as JSON
 		
