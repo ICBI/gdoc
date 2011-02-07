@@ -1,6 +1,7 @@
 class AnnotationService {
 	
-	
+	def jdbcTemplate
+
 	def findReportersForGene(gene) {
 		def reporters = searchForReportersByGene(gene)
 		if(!reporters) {
@@ -167,12 +168,15 @@ class AnnotationService {
 		log.debug "GOT ${results.size} reporters"
 		return results
 	}
-	
+
 	def searchForReportersByGene(gene) {
-		def criteria = Reporter.createCriteria()
-		def reporters = criteria.list{
-			eq("geneSymbol", gene.toUpperCase())
-		}
+		//to do use criteria sqlRestriction when we upgrade grails to 1.2 
+		def reporterSQL = "SELECT DISTINCT NAME FROM COMMON.HTARRAY_REPORTER r, COMMON.HTARRAY_DESIGN d, COMMON.HTARRAY_REPORTER_LIST rl " + 
+			"WHERE d.HTARRAY_DESIGN_ID = rl.HTARRAY_DESIGN_ID (+) " +
+			"AND rl.HTARRAY_REPORTER_ID = r.HTARRAY_REPORTER_ID (+) " +
+			"AND REGEXP_LIKE(gene_symbol, ?,'i')"
+		def reporters = jdbcTemplate.queryForList(reporterSQL, gene.toUpperCase())
+		log.debug "got reporters $reporters"
 		return reporters
 	}
 	

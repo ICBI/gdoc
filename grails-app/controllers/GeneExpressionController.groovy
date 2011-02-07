@@ -9,8 +9,14 @@ class GeneExpressionController {
 	def idService
 	def userListService
 	def fileBasedAnnotationService
+	def htDataService
 	
     def index = { 
+		if(session.study) {
+			session.files = htDataService.getGEDataMap()
+			session.dataSetType = session.files.keySet()
+			log.debug "my ht files for $session.study = $session.files"
+		}
 		loadPatientLists()
 		[diseases:getDiseases(),myStudies:session.myStudies, params:params]
 	}
