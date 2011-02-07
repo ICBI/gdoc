@@ -15,7 +15,7 @@
 	<g:javascript>
 	$(document).ready( function () {
 		$('input[type=submit]', this).attr('disabled', false);
-		
+		$.jgrid.formatter.integer.thousandsSeparator=',';
 		 // this is unfortunately needed due to a race condition in safari
 		 // limit the selector to only what you know will be buttons :)
 		$("span.bla").css({
