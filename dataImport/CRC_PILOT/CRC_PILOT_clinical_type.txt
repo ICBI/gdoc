@@ -25,7 +25,7 @@ classification PTNM_V	ATTRIBUTE_TYPE_ID=235	PTNM_V	Invasion into vein (pTNM-V)	D
 classification Stage	ATTRIBUTE_TYPE_ID=236	TUMOR_STAGE	The extent of the spread of a malignant tumor from its site of origin.	Tumor staging is the process of defining at what point in the natural history of the malignant disease the patient is when the diagnosis is made. The organ and cell type in which the malignancy has developed defines the type of malignancy.	PATHOLOGY					1	0	1	VARCHAR2(5)			
 classification Radicality	new	RADICALITY	The radicality of the surgery	The radicality of the surgery indicating how much tissue was removed	PATHOLOGY					1	0	1	VARCHAR(1)			
 classification Tumor grade	ATTRIBUTE_TYPE_ID=198	ELSTON-ELLIS_GRADE	Elston-Ellis grade category	The histologic grade (Elston-Ellis) category	PATHOLOGY					1	0	1	VARCHAR(1)			
-classification Dignity	ATTRIBUTE_TYPE_ID=237	TUMOR_DIGNITY	Benign or Malignant classification	Classification or grading of tumor as benign or Malignant	PATHOLOGY					1	0	1	VARCHAR2(10)			
+classification Dignity	ATTRIBUTE_TYPE_ID=237	TUMOR_DIGNITY	Tumor Dignity	Classification or grading of tumor as benign or Malignant	PATHOLOGY					1	0	1	VARCHAR2(10)			
 FUP Metastases-Metastatis	new	METASTASIS_LOCATION	Metastatis Location	Location of metastasis	PATHOLOGY					1	0	1	VARCHAR2(10)			
 FUP radiation	ATTRIBUTE_TYPE_ID=242	RADIATION	Radiation received	The patient received radiation	CLINICAL					1	0	1	VARCHAR2(3)			
 FUP general patient data-Surgery to relapse or last follow up	ATTRIBUTE_TYPE_ID=193	SURGERY_TO_RECUR/FU_DAYS	Days between Surgery and Recurrence or Last Followup	The number of days between a patient's surgery and Recurrence or Last Followup.  Time of relapse free survival.	CLINICAL					0	0	0	NUMBER(4,1)   	years	0	18250
