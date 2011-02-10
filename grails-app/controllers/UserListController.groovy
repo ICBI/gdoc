@@ -569,9 +569,15 @@ class UserListController {
 						items << value.trim()
 				}
 				items.each{ item->
-					userList.addToListItems(new UserListItem(value:item))
+					if (item =~ /^\w+$/ && item.length() <= 255) 
+						userList.addToListItems(new UserListItem(value:item))
 				}
-				if(userList.listItems.size() > MAX_LIST_SIZE) {
+				if(!userList.listItems) {
+					flash.error = "List cannot be empty."
+					redirect(action:upload,params:[failure:true])
+					return
+				}
+				if(userList.listItems?.size() > MAX_LIST_SIZE) {
 					flash.error = "List cannot be larger than ${MAX_LIST_SIZE} items."
 					redirect(action:upload,params:[failure:true])
 					return
