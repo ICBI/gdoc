@@ -569,9 +569,11 @@ class UserListController {
 						items << value.trim()
 				}
 				items.each{ item->
-					if (item =~ /^\w+$/ && item.length() <= 255) 
+					if (item =~ /^(\w|@|\'|:|\.|\(|\)|\/|-)+$/ && item.length() <= 255)
 						userList.addToListItems(new UserListItem(value:item))
 				}
+				log.debug "size: " + userList.listItems?.size()
+				log.debug "listItems: " + userList.listItems
 				if(!userList.listItems) {
 					flash.error = "List cannot be empty."
 					redirect(action:upload,params:[failure:true])
