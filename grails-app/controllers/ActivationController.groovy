@@ -4,7 +4,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 class ActivationController {
 	def securityService
 	
-    def newAccount = {
+    /**def newAccount = {
 		log.debug "preparing to create a new account"
 		if(params.token) {
 			String token = new String(params.token.getBytes(), "UTF-8");
@@ -141,6 +141,6 @@ class ActivationController {
 				return
 			}
 		}
-	}
+	}**/
 	
 }

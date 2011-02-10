@@ -54,14 +54,14 @@
 <div align="right" id="success" style="color:white">${flash.message}</div>
 </g:if>
 <g:form name="loginForm" url="[controller:'login',action:'login']" update="[success:'message',failure:'error']">
-       <input name="loginName" id="loginName" type="text" style="color:gray" size="20" onclick="clear()" value="email or net-Id"></input>
+       <input name="loginName" id="loginName" type="text" style="color:gray" size="20" onclick="clear()" value="net-Id"></input>
 		<g:hiddenField name="desiredPage" value="${params.desiredPage}" />
        <input name="password" id="password" type="password" size="15"></input>
        <input type="submit" value="login" />
 </g:form >
 <span style="color:white;padding-top:8px;font-size:.9em">
-	<g:link controller="registration" style="color:white">register now</g:link>&nbsp;|&nbsp;
-	<g:link controller="registration" action="passwordReset" style="color:white">forgot password</g:link>
+	<g:link controller="registration" style="color:white">register now</g:link><%--&nbsp;|&nbsp;
+	<g:link controller="registration" action="passwordReset" style="color:white">forgot password</g:link--%>
 </span>
 </g:if>
 <g:else>
@@ -82,8 +82,8 @@
 		<g:link style="color:#f2f2f2" controller="admin">Admin</g:link>
 		<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span>
 		</g:if>
-			<g:link controller="registration" action="passwordReset" style="color:#f2f2f2">change password</g:link>
-			<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span>
+			<%--g:link controller="registration" action="passwordReset" style="color:#f2f2f2">change password</g:link>
+			<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span--%>
 			<g:link style="color:#f2f2f2" action="logout" controller="login" update="success">Logout</g:link>
 	
 	</div>

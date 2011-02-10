@@ -27,8 +27,8 @@
 		<g:link style="color:#f2f2f2" controller="admin">Admin</g:link>
 		<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span>
 		</g:if>
-		<g:link controller="registration" action="passwordReset" style="color:#f2f2f2">change password</g:link>
-		<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span>
+		<%--g:link controller="registration" action="passwordReset" style="color:#f2f2f2">change password</g:link>
+		<span style="font-weight:bold;color:#fff;padding-left:5px;padding-right:5px">|</span--%>
 		<g:link style="color:#f2f2f2" action="logout" controller="login" update="success">Logout</g:link>
 	</div>
 </div>

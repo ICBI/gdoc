@@ -2,7 +2,7 @@
 <head>
 	<meta name="layout" content="splash" />
 	<title>G-DOC Registration</title>
-	<g:javascript>
+	<%--g:javascript>
 	$(document).ready( function () {
 				$('#userCat').change(function() {
 					if($('#userCat').val() == 'Georgetown User') {
@@ -14,20 +14,12 @@
 					}
 		 		});
 	});
-	</g:javascript>
+	</g:javascript--%>
 </head>
 
-<div id="userCatDiv" align="center" style="padding:10px">
+<%--div id="userCatDiv" align="center" style="padding:10px">
 <span style="font-size:13pt;">Select your user category</span><br />
 <g:select id="userCat" from="${categoryList}" noSelection="${['null':'Select One...']}" />
-</div>
-
-
-<%--div style="margin:0px auto;text-align:center;width:50%;border:1px solid gray">
-	<p style="font-size:14pt">Registration Form</p><br />
-	<span>
-		G-DOC registration has been restricted to beta-testers for the G-DOC application as of July 26, 2010. It will reopen when G-DOC formally released. 
-	</span>
 </div--%>
 
 
@@ -46,7 +38,7 @@
 
 
 
-<div class="clinicalSearch" id="netIdReg" style="width:85%;margin:0 auto;display:none">
+<div class="clinicalSearch" id="netIdReg" style="width:85%;margin:0 auto;display:block">
 	
 <fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
     <legend style="padding:7px">Georgetown NET ID required:</legend>
@@ -67,7 +59,7 @@
 </fieldset>
 </div>
 
-<div class="clinicalSearch" id="publicReg" style="width:85%;margin:0 auto;display:none">
+<%--div class="clinicalSearch" id="publicReg" style="width:85%;margin:0 auto;display:none">
 
 
 	<fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
@@ -90,4 +82,4 @@
 		</div>
 		
 	</fieldset>
-</div>
+</div--%>
