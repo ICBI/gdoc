@@ -19,7 +19,7 @@ class AnalysisController {
 				cmd.baselineGroup = params.baselineGroup 
 				cmd.groups = params.groups
 				flash.cmd = cmd
-				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups have been prepopulated below for group comparison"
+				flash.message = " Your 2 lists, $cmd.baselineGroup and $cmd.groups have been prepopulated below for group comparison"	
 			}
 			StudyContext.setStudy(session.study.schemaName)
 
@@ -32,7 +32,7 @@ class AnalysisController {
 		session.statisticalMethods = methods
 		def adjustments = ['NONE':'None', 'FWER':'Family-Wise Error Rate(FWER): Bonferroni', 'FDR':'False Discovery Rate(FDR): Benjamini-Hochberg']
 		session.adjustments = adjustments
-		
+
 		loadPatientLists()
 		[diseases:getDiseases(),myStudies:session.myStudies, params:params]
 	}
@@ -74,7 +74,6 @@ class AnalysisController {
 		if(isAccessible(params.id)){
 			log.debug "user can access analysis $params.id"
 			def analysisResult = savedAnalysisService.getSavedAnalysis(params.id)
-			log.debug "cct1: " + analysisResult.type
 			if (analysisResult.type != AnalysisType.CLASS_COMPARISON) {
 				log.debug "user CANNOT access analysis $params.id because is not a CLASS_COMPARISON analysis but a $analysisResult.type analysis"
 				redirect(controller:'policies', action:'deniedAccess')

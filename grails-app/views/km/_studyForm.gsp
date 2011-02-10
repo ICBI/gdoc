@@ -200,7 +200,7 @@ if(geneExpression) {
 										</td>
 									</tr>
 									<tr>
-										<td>Select Datatype: is</td>
+										<td>Select Datatype:</td>
 										<td colspan="2">
 											<g:select name="dataSetType" 
 													noSelection="${['':'Select Data Type']}"
