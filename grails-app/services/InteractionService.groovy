@@ -2,7 +2,7 @@ class InteractionService {
 	
 	def getInteractions(geneSymbol) {
 		def relationships = GeneRelationship.findAllByGeneSymbol(geneSymbol)
-		def sifItems = []
+		def sifItems = new HashSet()
 		def edgeItems = []
 		def nodeItems = []
 		def geneItems = []

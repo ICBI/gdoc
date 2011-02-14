@@ -15,6 +15,9 @@ class PoliciesController {
 		
 	}
 	
+	def licenses = {
+		
+	}
 	
 	
 }

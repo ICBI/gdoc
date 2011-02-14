@@ -20,16 +20,16 @@ class ExportService {
 		def list = UserList.get(listId)
 		def cytoscapeFiles = [:]
 		//name all files needed
-		def sifName = "${listId}-network.sif"
-		def edgeAttributeFileName = "${listId}-edgeAttr.EA"
-		def nodeAttributeFileName = "${listId}-nodeAttr.NA"
-		def geneAttributeFileName = "${listId}-geneNodeAttr.NA"
+		def sifName = "${listId}-network"+System.currentTimeMillis()+".sif"
+		def edgeAttributeFileName = "${listId}-edgeAttr"+System.currentTimeMillis()+".EA"
+		def nodeAttributeFileName = "${listId}-nodeAttr"+System.currentTimeMillis()+".NA"
+		def geneAttributeFileName = "${listId}-geneNodeAttr"+System.currentTimeMillis()+".NA"
 		//create files
 		log.debug  "all files going to " + System.getProperty("java.io.tmpdir")
-		def sifFile = new File(System.getProperty("java.io.tmpdir")+"/"+sifName)
-		def edgeAttributeFile = new File(System.getProperty("java.io.tmpdir")+"/"+edgeAttributeFileName)
-		def nodeAttributeFile = new File(System.getProperty("java.io.tmpdir")+"/"+nodeAttributeFileName)
-		def geneAttributeFile = new File(System.getProperty("java.io.tmpdir")+"/"+geneAttributeFileName)
+		def sifFile = new File(System.getProperty("java.io.tmpdir")+File.separator+sifName)
+		def edgeAttributeFile = new File(System.getProperty("java.io.tmpdir")+File.separator+edgeAttributeFileName)
+		def nodeAttributeFile = new File(System.getProperty("java.io.tmpdir")+File.separator+nodeAttributeFileName)
+		def geneAttributeFile = new File(System.getProperty("java.io.tmpdir")+File.separator+geneAttributeFileName)
 		def items = []
 		def strategy = { return [it] }
 		if(list.tags.contains("gene")) {
@@ -42,15 +42,14 @@ class ExportService {
 			infoMap.each{map ->
 				items.add(map)
 			}
-			
 		}
 		def output = ""
 		edgeAttributeFile.write("PubMedLink (class=java.lang.String)"+"\n")
 		nodeAttributeFile.write("Type (class=java.lang.String)"+"\n")
 		geneAttributeFile.write("Annotation (class=java.lang.String)"+"\n")
-		log.debug "wote edge header"
+		//log.debug "wote edge header"
 		items.each { item ->
-			log.debug "process $item.key"
+			//log.debug "process $item.key"
 			if(item.value.metaClass.respondsTo(item.value, 'join')) {
 				item.value.each{ terms ->
 					if(terms.metaClass.respondsTo(terms, 'join')) {
