@@ -54,6 +54,7 @@
 		<li><a href="#q27c">What microarray formats are supported by G-DOC?</a></li>
 		<li><a href="#q25">What is Cytoscape, and how can I use it to help me?</a></li>
 		<li><a href="#q29">What if my Cytoscape graph contains no nodes - is something wrong?</a></li>
+		<li><a href="#q29a">The Cytoscape viewer never finishes loading and the graph never full renders. What is wrong?</a></li>
 		<li><a href="#q12">I'm not familiar with something I see in the G-DOC analysis section; can you help me understand it?</a></li>
 		<li><a href="#q13">How do I save my searches and analyses? </a></li>
 		<li><a href="#q30">I am having trouble saving large lists - the site is slow - what can I do to make things better?</a></li>
@@ -386,6 +387,15 @@
 		
 		<p class="answerText"><span>A: </span>
 		The most likely cause is that the list of genes you have input do not have any entries in the cancer gene index data set that underlies the G-DOC implementation of Cytoscape.  The gene “PTGES3” is a good test case, as it produces a good graph – upload it via a text file and see if you get good results.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q29a">
+		<span>Q: </span>What if my Cytoscape graph contains no nodes – is something wrong?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+		This occurrence is rare but is related to the Cytoscape plugin limitations. We have chosen, by default, to render the graph with a Cytoscape layout plugin that utilizes an algorithm to arrange the nodes in a circular pattern. At times, this layout plugin causes unexpected behavior. In the future, this issue will be addressed either by upgrading the version of Cytoscape, or using a different layout renderer. 
+		  </p>
 	</div>
 	
 	<div class="answer">
