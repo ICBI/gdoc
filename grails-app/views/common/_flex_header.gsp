@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="${createLinkTo(dir: 'js/history',  file: 'history.css')}"/>
 <!--  END Browser History required section -->
 
-<title></title>
 <script src="${createLinkTo(dir:'js',file:'AC_OETags.js')}" language="javascript"></script>
 
 <!--  BEGIN Browser History required section -->
