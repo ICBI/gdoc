@@ -54,9 +54,6 @@ jQuery(document).ready(function()
 			<g:link controller="help">Help</g:link>
 		</li>		
 	</ul>
-	<form id="gpForm" action="${grailsApplication.config.genePatternUrl}/gp/pages/index.jsf" method="POST" target="genepattern">
-		<input type="hidden" name="workspaceId" value="${genePatternId()}" />
-	</form>
 </div>
 
 <div id="navigation-block">

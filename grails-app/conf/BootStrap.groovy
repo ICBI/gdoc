@@ -51,9 +51,6 @@ class BootStrap {
 			return displayValue
 		}
 		
-		// Initialize custom json converter
-		grails.converters.JSON.registerObjectMarshaller(new ExpressionLookupResultMarshaller())
-		
 		// Domain class fix
 		UserList.get(-1)
      }

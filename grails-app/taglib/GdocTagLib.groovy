@@ -1,4 +1,3 @@
-import edu.georgetown.lombardi.gdoc.genepattern.EncryptionUtil
 import org.apache.commons.lang.StringUtils
 
 class GdocTagLib {
@@ -24,13 +23,6 @@ class GdocTagLib {
 	
 	def flex = { attrs, body ->
 		out << render(template: '/common/flex_content', bean: [body: body, attrs: attrs])
-	}
-	
-	def genePatternId = { attrs ->
-		if(session.userId) {
-			def encryptedId = EncryptionUtil.encrypt(session.userId)
-			out << encryptedId
-		}
 	}
 	
 	def managedCheckBox = { attrs ->

@@ -66,7 +66,7 @@ class SavedAnalysisService {
 		log.debug notification.item.taskId
 		def params = command.properties
 		log.debug "PARAMS: " + params
-		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType', 'idService', 'userListService'] as Set )
+		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'annotationService', 'requestType', 'idService', 'userListService', 'constraints'] as Set )
 		def json = params as JSON
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysis: notification , author:user, status: notification.status, taskId: notification.item.taskId)
 		def study = StudyDataSource.findBySchemaName(command.study)
@@ -90,7 +90,7 @@ class SavedAnalysisService {
 		//log.debug result
 		//log.debug ("THE COMMAND PARAMS:")
 		def params = command.properties
-		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'requestType', 'annotationService', 'userListService'] as Set )
+		params.keySet().removeAll( ['errors', 'class', 'metaClass', 'requestType', 'annotationService', 'userListService', 'constraints'] as Set )
 		log.debug "going to send: " + command.requestType + ", " + params + ", " + result + ", " + user
 		def newAnalysis = new SavedAnalysis(type: command.requestType, query: params,  analysisData: result , author:user, status: "Complete")
 		def study = StudyDataSource.findBySchemaName(command.study)
