@@ -60,8 +60,8 @@
        <input type="submit" value="login" />
 </g:form >
 <span style="color:white;padding-top:8px;font-size:.9em">
-	<g:link controller="registration" style="color:white">register now</g:link><%--&nbsp;|&nbsp;
-	<g:link controller="registration" action="passwordReset" style="color:white">forgot password</g:link--%>
+	<g:link controller="registration" style="color:white">register now</g:link>&nbsp;|&nbsp;
+	<g:link controller="registration" action="passwordReset" style="color:white">forgot password</g:link>
 </span>
 </g:if>
 <g:else>

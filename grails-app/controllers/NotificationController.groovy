@@ -4,7 +4,6 @@ class NotificationController {
 
 	def savedAnalysisService
 	def securityService
-	def genePatternService
 	def invitationService
 	
     def index = { 

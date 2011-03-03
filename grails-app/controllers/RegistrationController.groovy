@@ -16,7 +16,7 @@ class RegistrationController {
 		[departmentList:departmentList,categoryList:categoryList]
 	}
 	
-	/**def publicRegistration = {
+	def publicRegistration = {
 		
 	}
 	
@@ -125,7 +125,7 @@ class RegistrationController {
 					return
 				}
 			}
-	}**/
+	}
 	
 	def confirmation = {
 		

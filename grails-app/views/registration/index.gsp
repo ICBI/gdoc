@@ -2,7 +2,7 @@
 <head>
 	<meta name="layout" content="splash" />
 	<title>G-DOC Registration</title>
-	<%--g:javascript>
+	<g:javascript>
 	$(document).ready( function () {
 				$('#userCat').change(function() {
 					if($('#userCat').val() == 'Georgetown User') {
@@ -14,13 +14,13 @@
 					}
 		 		});
 	});
-	</g:javascript--%>
+	</g:javascript>
 </head>
 
-<%--div id="userCatDiv" align="center" style="padding:10px">
+<div id="userCatDiv" align="center" style="padding:10px">
 <span style="font-size:13pt;">Select your user category</span><br />
 <g:select id="userCat" from="${categoryList}" noSelection="${['null':'Select One...']}" />
-</div--%>
+</div>
 
 
 <g:if test="${flash.cmd instanceof RegistrationCommand && flash.message}">
@@ -38,7 +38,7 @@
 
 
 
-<div class="clinicalSearch" id="netIdReg" style="width:85%;margin:0 auto;display:block">
+<div class="clinicalSearch" id="netIdReg" style="width:85%;margin:0 auto;display:none">
 	
 <fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
     <legend style="padding:7px">Georgetown NET ID required:</legend>
@@ -59,7 +59,7 @@
 </fieldset>
 </div>
 
-<%--div class="clinicalSearch" id="publicReg" style="width:85%;margin:0 auto;display:none">
+<div class="clinicalSearch" id="publicReg" style="width:85%;margin:0 auto;display:none">
 
 
 	<fieldset style="background-color:#fff;border:1px solid #334477;margin:10px 5px 5px 5px">
@@ -82,4 +82,4 @@
 		</div>
 		
 	</fieldset>
-</div--%>
+</div>

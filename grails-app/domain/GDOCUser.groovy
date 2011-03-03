@@ -8,6 +8,7 @@ class GDOCUser {
 		lastName column: "last_name"
 		email column: "email_id"
 		lastLogin column: "end_date"
+		options column: 'user_id'
 	}
 	
 	static searchable = [except: 'lastLogin']
@@ -26,7 +27,6 @@ class GDOCUser {
 	}
 	
 	static mappedBy = [invitations:'invitee',requestorInvites:'requestor']	
-	static hasMany = [memberships:Membership,comments:Comments, analysis:SavedAnalysis, invitations:Invitation, requestorInvites:Invitation, lists:UserList]
-	
+	static hasMany = [memberships:Membership,comments:Comments, analysis:SavedAnalysis, invitations:Invitation, requestorInvites:Invitation, lists:UserList, options: UserOption]
     
 }

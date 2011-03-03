@@ -172,7 +172,7 @@ class SecurityService {
 		return true
 	}
 	
-	def populateNewUserAttributes(loginName, password, firstName,lastName,emailId,organization){
+	def populateNewUserAttributes(loginName, password, firstName,lastName,emailId,organization, title){
 		def newUser = new User()
 		if(loginName && firstName &&
 			lastName && organization && emailId){
@@ -182,6 +182,7 @@ class SecurityService {
 			newUser.setLastName(lastName)
 			newUser.setOrganization(organization)
 			newUser.setEmailId(emailId)
+			newUser.setTitle(title)
 		}
 		else {
 			throw new SecurityException("one or more required user attributes were not included");
