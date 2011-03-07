@@ -10,7 +10,6 @@ class ReductionAnalysis {
 	String algorithmType
 	static belongsTo = Biospecimen
 	Biospecimen biospecimen
-	static hasMany = [locationValues: LocationValue]
 	Date dateCreated
 	String designType
 }

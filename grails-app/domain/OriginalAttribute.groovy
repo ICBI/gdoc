@@ -1,5 +1,0 @@
-class OriginalAttribute {
-
-    static constraints = {
-    }
-}

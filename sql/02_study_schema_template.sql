@@ -1,12 +1,3 @@
-CREATE SEQUENCE ${projectName}.PAV_GROUP_SEQUENCE
-  START WITH 100
-  MAXVALUE 999999999999999999999999999
-  MINVALUE 1
-  NOCYCLE
-  CACHE 20
-  NOORDER;
-
-
 CREATE SEQUENCE ${projectName}.PATIENT_ATTRIB_VAL_SEQUENCE
   START WITH 2460
   MAXVALUE 999999999999999999999999999
@@ -31,15 +22,6 @@ CREATE SEQUENCE ${projectName}.BIOSPECIMEN_VALUE_SEQUENCE
   CACHE 20
   NOORDER;
 
-
-CREATE SEQUENCE ${projectName}.MARRAY_FILE_COLUMN_SEQUENCE
-  START WITH 1140
-  MAXVALUE 999999999999999999999999999
-  MINVALUE 1
-  NOCYCLE
-  CACHE 20
-  NOORDER;
-
 CREATE SEQUENCE ${projectName}.HT_FILE_SEQUENCE
   START WITH 1000
   MAXVALUE 999999999999999999999999999
@@ -58,32 +40,6 @@ CREATE SEQUENCE ${projectName}.HT_RUN_SEQUENCE
 
 CREATE SEQUENCE ${projectName}.HT_RUN_BIOSPECIMEN_SEQUENCE
   START WITH 1000
-  MAXVALUE 999999999999999999999999999
-  MINVALUE 1
-  NOCYCLE
-  CACHE 20
-  NOORDER;
-
-CREATE SEQUENCE ${projectName}.MARRAY_FILE_ROW_SEQUENCE
-  START WITH 1000
-  MAXVALUE 999999999999999999999999999
-  MINVALUE 1
-  NOCYCLE
-  CACHE 20
-  NOORDER;
-
-
-CREATE SEQUENCE ${projectName}.HT_COLUMN_LINK_SEQ
-  START WITH 141
-  MAXVALUE 999999999999999999999999999
-  MINVALUE 1
-  NOCYCLE
-  CACHE 20
-  NOORDER;
-
-
-CREATE SEQUENCE ${projectName}.location_value_SEQUENCE
-  START WITH 100
   MAXVALUE 999999999999999999999999999
   MINVALUE 1
   NOCYCLE
@@ -160,19 +116,6 @@ CREATE TABLE ${projectName}.HT_FILE_COLUMN
   INSERT_USER        VARCHAR2(10 BYTE)          NOT NULL,
   INSERT_DATE        DATE                       NOT NULL,
   INSERT_METHOD      VARCHAR2(20 BYTE)          NOT NULL
-)
-LOGGING 
-NOCOMPRESS 
-NOCACHE
-NOPARALLEL
-MONITORING;
-
-
-CREATE TABLE ${projectName}.HT_COLUMN_LINK
-(
-  HT_COLUMN_LINK_ID      NUMBER(10)             NOT NULL,
-  HT_RUN_BIOSPECIMEN_ID  NUMBER(10)             NOT NULL,
-  HT_FILE_COLUMN_ID      NUMBER(10)             NOT NULL
 )
 LOGGING 
 NOCOMPRESS 
@@ -275,45 +218,6 @@ NOCACHE
 NOPARALLEL
 MONITORING;
 
-
-CREATE TABLE ${projectName}.ATTRIBUTE_STATS
-(
-  ATTRIBUTE_TYPE_ID  NUMBER(10)                 NOT NULL,
-  NULLABLE           NUMBER(1)                  NOT NULL,
-  SINGLE_VALUE       NUMBER(1)                  NOT NULL,
-  NOTES              VARCHAR2(255 BYTE),
-  COVERAGE           NUMBER(4,1),
-  USABLE_COVERAGE    NUMBER(4,1),
-  USABLE_SQL         VARCHAR2(255 BYTE),
-  TABLE_NAME         VARCHAR2(30 BYTE)          NOT NULL,
-  INSERT_USER        VARCHAR2(10 BYTE)          NOT NULL,
-  INSERT_DATE        DATE                       NOT NULL,
-  INSERT_METHOD      VARCHAR2(20 BYTE)          NOT NULL
-)
-LOGGING 
-NOCOMPRESS 
-NOCACHE
-NOPARALLEL
-MONITORING;
-
-
-CREATE TABLE ${projectName}.ATTRIBUTE_TIMEPOINT
-(
-  ATTRIBUTE_TIMEPOINT_ID  NUMBER(10)            NOT NULL,
-  SERIES_ID               NUMBER(5)             NOT NULL,
-  TIMEPOINT               NUMBER(3)             NOT NULL,
-  TAG                     VARCHAR2(25 BYTE),
-  INSERT_USER             VARCHAR2(10 BYTE)     NOT NULL,
-  INSERT_DATE             DATE                  NOT NULL,
-  INSERT_METHOD           VARCHAR2(20 BYTE)     NOT NULL
-)
-LOGGING 
-NOCOMPRESS 
-NOCACHE
-NOPARALLEL
-MONITORING;
-
-
 CREATE TABLE ${projectName}.PATIENT
 (
   PATIENT_ID               NUMBER(10)           NOT NULL,
@@ -329,19 +233,6 @@ NOPARALLEL
 MONITORING;
 
 
-CREATE TABLE ${projectName}.ORIGINAL_ATTRIBUTE
-(
-  ATTRIBUTE_TYPE_ID  NUMBER(10)                 NOT NULL,
-  NAME               VARCHAR2(200 BYTE)         NOT NULL,
-  CONVERSION_NOTE    VARCHAR2(255 BYTE)
-)
-LOGGING 
-NOCOMPRESS 
-NOCACHE
-NOPARALLEL
-MONITORING;
-
-
 CREATE TABLE ${projectName}.PATIENT_ATTRIBUTE_VALUE
 (
   PATIENT_ATTRIBUTE_VALUE_ID  NUMBER(10)        NOT NULL,
@@ -349,7 +240,6 @@ CREATE TABLE ${projectName}.PATIENT_ATTRIBUTE_VALUE
   ATTRIBUTE_TYPE_ID           NUMBER(10)        NOT NULL,
   VALUE                       VARCHAR2(100 BYTE) NOT NULL,
   GROUP_NUMBER                NUMBER(8),
-  ATTRIBUTE_TIMEPOINT_ID      NUMBER(10),
   AGE_AT_EVENT                NUMBER(3,1),
   INSERT_USER                 VARCHAR2(10 BYTE) NOT NULL,
   INSERT_DATE                 DATE              NOT NULL,
@@ -374,7 +264,6 @@ CREATE TABLE ${projectName}.BIOSPECIMEN
   INSERT_USER             VARCHAR2(20 BYTE)     NOT NULL,
   INSERT_DATE             DATE                  NOT NULL,
   INSERT_METHOD           VARCHAR2(20 BYTE)     NOT NULL,
-  ATTRIBUTE_TIMEPOINT_ID  NUMBER(10)            DEFAULT 0                     NOT NULL,
   AGE_AT_EVENT            NUMBER(3,1)
 )
 LOGGING 
@@ -383,18 +272,6 @@ NOCACHE
 NOPARALLEL
 MONITORING;
 
-
-CREATE TABLE ${projectName}.SCHEMA_CONFIGURATION
-(
-  SCHEMA_VERSION  NUMBER(3)                     NOT NULL,
-  SCHEMA_DATE     DATE                          NOT NULL,
-  SCHEMA_NOTES    VARCHAR2(2000 BYTE)
-)
-LOGGING 
-NOCOMPRESS 
-NOCACHE
-NOPARALLEL
-MONITORING;
 
 create table  ${projectName}.reduction_analysis 
   (
@@ -413,35 +290,8 @@ NOCACHE
 NOPARALLEL
 MONITORING;
 
-create table  ${projectName}.location_value 
-  (id number(19,0) not null, 
-  version number(19,0), 
-  chromosome varchar2(255) not null,
-  start_position double precision not null,
-  end_position double precision not null, 
-  reduction_analysis_id number(19,0) not null,  
-  value double precision not null
- )
-LOGGING 
-NOCOMPRESS 
-NOCACHE
-NOPARALLEL
-MONITORING;
-
-
 CREATE UNIQUE INDEX  ${projectName}.reduction_analysis_PK ON ${projectName}.reduction_analysis
 (ID)
-LOGGING
-NOPARALLEL;
-
-CREATE UNIQUE INDEX  ${projectName}.location_value_PK ON ${projectName}.location_value
-(ID)
-LOGGING
-NOPARALLEL;
-
-
-CREATE UNIQUE INDEX ${projectName}.SCHEMA_CONFIGURATION_PK ON ${projectName}.SCHEMA_CONFIGURATION
-(SCHEMA_VERSION)
 LOGGING
 NOPARALLEL;
 
@@ -458,32 +308,14 @@ LOGGING
 NOPARALLEL;
 
 
-CREATE UNIQUE INDEX ${projectName}.ORIGINAL_ATTRIBUTE_PK ON ${projectName}.ORIGINAL_ATTRIBUTE
-(ATTRIBUTE_TYPE_ID)
-LOGGING
-NOPARALLEL;
-
-
 CREATE UNIQUE INDEX ${projectName}.PATIENT_PK ON ${projectName}.PATIENT
 (PATIENT_ID)
 LOGGING
 NOPARALLEL;
 
 
-CREATE UNIQUE INDEX ${projectName}.ATTRIBUTE_TIMEPOINT_PK ON ${projectName}.ATTRIBUTE_TIMEPOINT
-(ATTRIBUTE_TIMEPOINT_ID)
-LOGGING
-NOPARALLEL;
-
-
 CREATE UNIQUE INDEX ${projectName}.BIOSPECIMEN_NAME_AK ON ${projectName}.BIOSPECIMEN
 (NAME)
-LOGGING
-NOPARALLEL;
-
-
-CREATE UNIQUE INDEX ${projectName}.PAV_VALUE_AK1 ON ${projectName}.PATIENT_ATTRIBUTE_VALUE
-(PATIENT_ID, ATTRIBUTE_TYPE_ID, ATTRIBUTE_TIMEPOINT_ID)
 LOGGING
 NOPARALLEL;
 
@@ -502,12 +334,6 @@ NOPARALLEL;
 
 CREATE INDEX ${projectName}.PAV_TYPE_VALUE_IDX ON ${projectName}.PATIENT_ATTRIBUTE_VALUE
 (ATTRIBUTE_TYPE_ID, VALUE)
-LOGGING
-NOPARALLEL;
-
-
-CREATE UNIQUE INDEX ${projectName}.ATT_STATS_PK ON ${projectName}.ATTRIBUTE_STATS
-(ATTRIBUTE_TYPE_ID)
 LOGGING
 NOPARALLEL;
 
@@ -574,18 +400,6 @@ NOPARALLEL;
 
 CREATE UNIQUE INDEX ${projectName}.HT_RUN_BIOSPEC_AK ON ${projectName}.HT_RUN_BIOSPECIMEN
 (BIOSPECIMEN_ID, HT_RUN_ID)
-LOGGING
-NOPARALLEL;
-
-
-CREATE UNIQUE INDEX ${projectName}.HT_COLUMN_LINK_PK ON ${projectName}.HT_COLUMN_LINK
-(HT_COLUMN_LINK_ID)
-LOGGING
-NOPARALLEL;
-
-
-CREATE UNIQUE INDEX ${projectName}.HT_COLUMN_LINK_AK ON ${projectName}.HT_COLUMN_LINK
-(HT_RUN_BIOSPECIMEN_ID, HT_FILE_COLUMN_ID)
 LOGGING
 NOPARALLEL;
 
@@ -663,19 +477,13 @@ where s.patient_id = c.patient_id;
 
 CREATE OR REPLACE VIEW ${projectName}.USED_ATTRIBUTES
 AS 
-SELECT distinct c.attribute_type_id, o.name as original_name, o.conversion_note, c.short_name, c.long_name, c.definition, c.class, c.semantic_group, c.gdoc_preferred, c.cadsr_id, c.evs_id, c.qualitative, c.continuous, c.vocabulary, c.oracle_datatype, c.unit, c.upper_range, c.lower_range, 'PATIENT' as target
-FROM (common.attribute_type c
-       left outer join ${projectName}.original_attribute o
-       on o.attribute_type_id = c.attribute_type_id
-     ) inner join ${projectName}.patient_attribute_value v
+SELECT distinct c.attribute_type_id, c.short_name, c.long_name, c.definition, c.class, c.semantic_group, c.gdoc_preferred, c.cadsr_id, c.evs_id, c.qualitative, c.continuous, c.vocabulary, c.oracle_datatype, c.unit, c.upper_range, c.lower_range, 'PATIENT' as target
+FROM common.attribute_type c inner join ${projectName}.patient_attribute_value v
        on v.attribute_type_id = c.attribute_type_id
 UNION
-SELECT distinct c.attribute_type_id, o.name as original_name, o.conversion_note, c.short_name, c.long_name, c.definition, c.class, c.semantic_group, c.gdoc_preferred, c.cadsr_id, c.evs_id, c.qualitative, c.continuous, c.vocabulary, c.oracle_datatype, c.unit, c.upper_range, c.lower_range, 'BIOSPECIMEN' as target
-FROM (common.attribute_type c
-	       left outer join ${projectName}.original_attribute o
-	       on o.attribute_type_id = c.attribute_type_id
-	     ) inner join ${projectName}.biospecimen_attribute_value v
-	       on v.attribute_type_id = c.attribute_type_id
+SELECT distinct c.attribute_type_id, c.short_name, c.long_name, c.definition, c.class, c.semantic_group, c.gdoc_preferred, c.cadsr_id, c.evs_id, c.qualitative, c.continuous, c.vocabulary, c.oracle_datatype, c.unit, c.upper_range, c.lower_range, 'BIOSPECIMEN' as target
+FROM common.attribute_type c inner join ${projectName}.biospecimen_attribute_value v
+	   on v.attribute_type_id = c.attribute_type_id
 WITH READ ONLY;
 
 
@@ -726,11 +534,6 @@ ALTER TABLE ${projectName}.HT_FILE_COLUMN ADD (
  PRIMARY KEY
  (HT_FILE_COLUMN_ID));
 
-ALTER TABLE ${projectName}.HT_COLUMN_LINK ADD (
-  CONSTRAINT HT_COLUMN_LINK_PK
- PRIMARY KEY
- (HT_COLUMN_LINK_ID));
-
 ALTER TABLE ${projectName}.HT_RUN_BIOSPECIMEN ADD (
   CONSTRAINT MARRAY_RUN_BIOSPECIMEN_PK
  PRIMARY KEY
@@ -765,35 +568,10 @@ ALTER TABLE ${projectName}.BIOSPECIMEN_ATTRIBUTE_VALUE ADD (
  PRIMARY KEY
  (BIOSPEC_ATTRIBUTE_VALUE_ID));
 
-ALTER TABLE ${projectName}.ATTRIBUTE_STATS ADD (
-  CONSTRAINT ATT_STATS_COVERAGE_CC
- CHECK (coverage between 0 and 100),
-  CONSTRAINT ATT_STATS_NULLABLE_CC
- CHECK (nullable in (0,1)),
-  CONSTRAINT ATT_STATS_SINGLE_VALUE_CC
- CHECK (single_value in (0,1)),
-  CONSTRAINT ATT_STATS_TABLE_CC
- CHECK (table_name in ('PATIENT_ATTRIBUTE_VALUE','BIOSPECIMEN_ATTRIBUTE_VALUE')),
-  CONSTRAINT ATT_STATS_U_COVERAGE_CC
- CHECK (usable_coverage between 0 and 100),
-  CONSTRAINT ATT_STATS_PK
- PRIMARY KEY
- (ATTRIBUTE_TYPE_ID));
-
-ALTER TABLE ${projectName}.ATTRIBUTE_TIMEPOINT ADD (
-  CONSTRAINT ATTRIBUTE_TIMEPOINT_PK
- PRIMARY KEY
- (ATTRIBUTE_TIMEPOINT_ID));
-
 ALTER TABLE ${projectName}.PATIENT ADD (
   CONSTRAINT PATIENT_PK
  PRIMARY KEY
  (PATIENT_ID));
-
-ALTER TABLE ${projectName}.ORIGINAL_ATTRIBUTE ADD (
-  CONSTRAINT ORIGINAL_ATTRIBUTE_PK
- PRIMARY KEY
- (ATTRIBUTE_TYPE_ID));
 
 ALTER TABLE ${projectName}.PATIENT_ATTRIBUTE_VALUE ADD (
   CONSTRAINT PATIENT_ATTRIBUTE_VALUE_PK
@@ -807,20 +585,10 @@ ALTER TABLE ${projectName}.BIOSPECIMEN ADD (
  PRIMARY KEY
  (BIOSPECIMEN_ID));
 
-ALTER TABLE ${projectName}.SCHEMA_CONFIGURATION ADD (
-  CONSTRAINT SCHEMA_CONFIGURATION_PK
- PRIMARY KEY
- (SCHEMA_VERSION));
-
 ALTER TABLE ${projectName}.reduction_analysis add (
  	CONSTRAINT reduction_analysis_pk
 	PRIMARY KEY
 	(ID)); 
-
-ALTER TABLE ${projectName}.location_value add (
-	 CONSTRAINT location_value_pk
-	PRIMARY KEY
-	(ID));
 
 ALTER TABLE ${projectName}.MS_PEAK_EVIDENCE_LINK ADD (
   CONSTRAINT MPEL_PEAK_FK 
@@ -847,14 +615,6 @@ ALTER TABLE ${projectName}.HT_FILE_COLUMN ADD (
   CONSTRAINT HT_FILE_COLUMN_FILE_FK 
  FOREIGN KEY (HT_FILE_ID) 
  REFERENCES ${projectName}.HT_FILE (HT_FILE_ID));
-
-ALTER TABLE ${projectName}.HT_COLUMN_LINK ADD (
-  CONSTRAINT HCL_RUN_BIOSPEC_FK 
- FOREIGN KEY (HT_RUN_BIOSPECIMEN_ID) 
- REFERENCES ${projectName}.HT_RUN_BIOSPECIMEN (HT_RUN_BIOSPECIMEN_ID),
-  CONSTRAINT HCL_FILE_COL_FK 
- FOREIGN KEY (HT_FILE_COLUMN_ID) 
- REFERENCES ${projectName}.HT_FILE_COLUMN (HT_FILE_COLUMN_ID));
 
 ALTER TABLE ${projectName}.HT_RUN_BIOSPECIMEN ADD (
   CONSTRAINT HRB_BIOSPECIMEN_FK 
@@ -904,31 +664,15 @@ ALTER TABLE ${projectName}.BIOSPECIMEN_ATTRIBUTE_VALUE ADD (
  FOREIGN KEY (ATTRIBUTE_TYPE_ID) 
  REFERENCES COMMON.ATTRIBUTE_TYPE (ATTRIBUTE_TYPE_ID));
 
-ALTER TABLE ${projectName}.ATTRIBUTE_STATS ADD (
-  CONSTRAINT ATT_STATS_ATT_TYPE_FK 
- FOREIGN KEY (ATTRIBUTE_TYPE_ID) 
- REFERENCES COMMON.ATTRIBUTE_TYPE (ATTRIBUTE_TYPE_ID));
-
-ALTER TABLE ${projectName}.ORIGINAL_ATTRIBUTE ADD (
-  CONSTRAINT OA_ATTRIBUTE_TYPE_FK 
- FOREIGN KEY (ATTRIBUTE_TYPE_ID) 
- REFERENCES COMMON.ATTRIBUTE_TYPE (ATTRIBUTE_TYPE_ID));
-
 ALTER TABLE ${projectName}.PATIENT_ATTRIBUTE_VALUE ADD (
   CONSTRAINT PAV_PATIENT_FK 
  FOREIGN KEY (PATIENT_ID) 
  REFERENCES ${projectName}.PATIENT (PATIENT_ID),
   CONSTRAINT PAV_ATTRIBUTE_TYPE_FK 
  FOREIGN KEY (ATTRIBUTE_TYPE_ID) 
- REFERENCES COMMON.ATTRIBUTE_TYPE (ATTRIBUTE_TYPE_ID),
-  CONSTRAINT PAV_TIMEPOINT_FK 
- FOREIGN KEY (ATTRIBUTE_TIMEPOINT_ID) 
- REFERENCES ${projectName}.ATTRIBUTE_TIMEPOINT (ATTRIBUTE_TIMEPOINT_ID));
+ REFERENCES COMMON.ATTRIBUTE_TYPE (ATTRIBUTE_TYPE_ID));
 
 ALTER TABLE ${projectName}.BIOSPECIMEN ADD (
-  CONSTRAINT BIOSPECIMEN_TIMPOINT_FK 
- FOREIGN KEY (ATTRIBUTE_TIMEPOINT_ID) 
- REFERENCES ${projectName}.ATTRIBUTE_TIMEPOINT (ATTRIBUTE_TIMEPOINT_ID),
   CONSTRAINT BIOSPECIMEN_PATIENT_FK 
  FOREIGN KEY (PATIENT_ID) 
  REFERENCES ${projectName}.PATIENT (PATIENT_ID),
@@ -938,12 +682,5 @@ ALTER TABLE ${projectName}.BIOSPECIMEN ADD (
   CONSTRAINT BIOSPECIMEN_PROTOCOL_FK 
  FOREIGN KEY (PROTOCOL_ID) 
  REFERENCES COMMON.PROTOCOL (PROTOCOL_ID));
-
-alter table ${projectName}.location_value add (
-	constraint lv_reduction_analysis_link_fk 
-	foreign key (reduction_analysis_id) 
-  	references ${projectName}.reduction_analysis);
-
-Insert into ${projectName}.ATTRIBUTE_TIMEPOINT (ATTRIBUTE_TIMEPOINT_ID,SERIES_ID,TIMEPOINT,TAG,INSERT_USER,INSERT_DATE,INSERT_METHOD) values (0,0,0,'DEFAULT TIMEPOINT','USER',(SELECT SYSDATE FROM dual) ,'manual');
 
 commit;

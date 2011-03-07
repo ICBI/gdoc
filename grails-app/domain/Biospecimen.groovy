@@ -10,7 +10,6 @@ class Biospecimen {
 		insertUser column: 'INSERT_USER'
 		insertMethod column: 'INSERT_METHOD'
 		insertDate column: 'INSERT_DATE'
-		attributeTimepointId column: 'ATTRIBUTE_TIMEPOINT_ID'
 	}
 	static transients = ['biospecimenData']
 	
@@ -23,7 +22,6 @@ class Biospecimen {
 	Date insertDate
 	Patient patient
 	Boolean diseased
-	Integer attributeTimepointId
 	Map biospecimenData
 	
 	public Map getBiospecimenData() {

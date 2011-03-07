@@ -53,7 +53,6 @@ GRANT ALL ON COMMON.attribute_type to ${projectName} with grant option;
 GRANT ALL ON COMMON.attribute_vocabulary to ${projectName} with grant option;
 GRANT SELECT ON COMMON.ATTRIBUTE_VOCAB_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.ATTRIBUTE_TYPE_SEQUENCE to ${projectName} with grant option;
-GRANT SELECT ON COMMON.ATTRIBUTE_TIMEPOINT_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.PATIENT_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.DATA_SOURCE_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.CONTACT_SEQUENCE to ${projectName} with grant option;

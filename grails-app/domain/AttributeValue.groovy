@@ -7,19 +7,13 @@ class AttributeValue {
 		studyPatient column: 'patient_id'
 		type column:'attribute_type_id', insertable: false, updateable: false
 		commonType column:'attribute_type_id'
-		timepoint column:'attribute_timepoint_id'
 	}
 
-	static constraints = {
-		timepoint nullable: true
-	}
-	
 	String value
 	Patient patient
 	StudyPatient studyPatient
 	AttributeType type
 	CommonAttributeType commonType
-	Timepoint timepoint
 	String insertUser
 	String insertMethod
 	Date insertDate

@@ -116,7 +116,6 @@ class BiospecimenService {
 		biospecimen.patient = patient
 		biospecimen.type = "SAMPLE"
 		biospecimen.diseased = true
-		biospecimen.attributeTimepointId = 0
 		if(!biospecimen.save())
 			log.debug biospecimen.errors
 		return biospecimen
