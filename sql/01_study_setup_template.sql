@@ -36,7 +36,6 @@ GRANT insert_${projectName} to mcgdoc;
 GRANT read_common to ${projectName};
 GRANT READ_${projectName} to guidoc;
 
-GRANT REFERENCES ON COMMON.PROTOCOL to ${projectName}; 
 GRANT REFERENCES ON COMMON.ATTRIBUTE_TYPE to ${projectName};
 GRANT REFERENCES ON COMMON.ATTRIBUTE_VOCABULARY to ${projectName};
 GRANT REFERENCES ON COMMON.PATIENT_DATA_SOURCE to ${projectName};
@@ -60,7 +59,6 @@ GRANT SELECT ON COMMON.HTARRAY_DESIGN_SEQUENCE to ${projectName} with grant opti
 GRANT SELECT ON COMMON.HTARRAY_REPORTER_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.BIOSPECIMEN_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.DATA_FILE_SEQUENCE to ${projectName} with grant option;
-GRANT SELECT ON COMMON.PROTOCOL_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.FILE_TYPE_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.FILE_FORMAT_SEQUENCE to ${projectName} with grant option;
 GRANT SELECT ON COMMON.ALL_DESIGNS to ${projectName} with grant option;
