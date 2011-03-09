@@ -27,26 +27,14 @@ beans = {
 	jmsConnectionFactory(org.springframework.jndi.JndiObjectFactoryBean) {
 		jndiName = "ConnectionFactory"
 		jndiTemplate = ref('jndiTemplate')
-		if(GrailsUtil.environment == GrailsApplication.ENV_TEST) {
-			lookupOnStartup = false
-			proxyInterface = javax.jms.QueueConnectionFactory
-		}
 	}
 	receiveQueue(org.springframework.jndi.JndiObjectFactoryBean) {
 		jndiName = "queue/${CH.config.responseQueue}"
 		jndiTemplate = ref('jndiTemplate')
-		if(GrailsUtil.environment == GrailsApplication.ENV_TEST) {
-			lookupOnStartup = false
-			proxyInterface = javax.jms.Queue
-		}
 	}
 	sendQueue(org.springframework.jndi.JndiObjectFactoryBean) {
 		jndiName = "queue/SharedAnalysisRequest"
 		jndiTemplate = ref('jndiTemplate')
-		if(GrailsUtil.environment == GrailsApplication.ENV_TEST) {
-			lookupOnStartup = false
-			proxyInterface = javax.jms.Queue
-		}
 	}	
 	securityServiceProxy(SecurityService) {bean ->
 	  	bean.scope = 'session'
