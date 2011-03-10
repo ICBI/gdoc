@@ -45,75 +45,39 @@ target(main: "Load High Throughput Data") {
 		return
 	}
 	
-	def sessionFactory = appCtx.getBean("sessionFactory")
-
-	def session = sessionFactory.getCurrentSession()
-	def trans = session.beginTransaction()
-	loadRawFiles(projectName, mappingFile)
-	trans.commit()
+	loadFileAndSubjects(projectName, mappingFile)
 	
 	println "High throughput data loading for $projectName was successful"
 }
 
-def loadRawFiles(schemaName, mappingFile) {
-	def allFiles = []
-	def loadedFiles = []
-	def rdaFile = null
-	def description = null
+def loadFileAndSubjects(schemaName, mappingFile) {
+	def htDataService =  appCtx.getBean('htDataService')
+	def subjects = []
+	def htFile = [:]
+	htFile.schemaName = schemaName
 	mappingFile.eachLine { line, number ->
 		if(number != 1) {
 			def data = line.split('\t')
-			if(!rdaFile || rdaFile != data[4]) {
-				if(allFiles.size > 0) {
-					loadedFiles << loadNormFile(schemaName, rdaFile, description, allFiles)
-					allFiles = []
+			if(!htFile.name || htFile.name != data[4]) {
+				// if this is a new file, load the previous file
+				if(htFile.name) {
+					htDataService.loadFileAndSubjects(subjects, htFile)
+					subjects = []
 				}
-				rdaFile = data[4]
-				description = data[5].replace("\"", "")
+				htFile.name = data[4]
+				htFile.description = data[5].replace("\"", "")
+				htFile.design = data[3]
 			}
 			def params = [:]
-			params.schemaName = schemaName
-			params.fileName = data[2]
 			params.patientId = data[0]
 			params.name = data[1]
-			params.design = data[3]
-			params.relativePath = "RAW"
-			params.fileSize = 0
-			params.fileType = "CEL"
-			params.fileFormat = "BINARY"
-			params.dataLevel = "RAW"
-			params.description = ""
-			params.insertUser = "acs224"
-			params.insertMethod = "load-ht-data"
-			params.insertDate = new Date()
-			params.designTable = "HTARRAY_DESIGN"
-			allFiles << params
+			subjects << params
 		}
+		
 	}
-	if(allFiles.size > 0) {
-		loadedFiles << loadNormFile(schemaName, rdaFile, description, allFiles)
-		allFiles = []
-	}
-	return loadedFiles
+	htDataService.loadFileAndSubjects(subjects, htFile)
+	return 
 	
-}
-
-def loadNormFile(schemaName, fileName, description, priorFiles) {
-	def htDataService =  appCtx.getBean('htDataService')
-	
-	def norm = [:]
-	norm.schemaName = schemaName
-	norm.name = fileName
-	norm.description = description
-	norm.relativePath = "NORMALIZED"
-	norm.fileSize = 10000
-	norm.fileType = "PLIER_NORMALIZED"
-	norm.fileFormat = "RBINARY"
-	norm.dataLevel = "NORMALIZED"
-	norm.insertUser = "acs224"
-	norm.insertMethod = "load-ht-data"
-	norm.insertDate = new Date()
-	return htDataService.loadNormalizedFileWithPriors(priorFiles, norm)
 }
 
 setDefaultTarget(main)
