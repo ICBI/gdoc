@@ -13,7 +13,7 @@
 <div align="right" id="success" style="color:white">${flash.message}</div>
 </g:if>
 <g:form name="loginForm" url="[controller:'login',action:'login']" update="[success:'message',failure:'error']">
-       <input name="loginName" type="text" size="10"></input>
+       <input name="username" type="text" size="10"></input>
        <input name="password" type="password" size="10"></input>
        <input type="submit" value="login" />
 </g:form >

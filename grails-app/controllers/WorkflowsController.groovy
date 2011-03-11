@@ -8,7 +8,7 @@ class WorkflowsController {
 	def invitationService
 	
     def index = { 
-		def thisUser = GDOCUser.findByLoginName(session.userId)
+		def thisUser = GDOCUser.findByUsername(session.userId)
 		//last login
 		Date lastLogin = thisUser.lastLogin
 		if(!session.profileLoaded){
@@ -81,13 +81,13 @@ class WorkflowsController {
 			log.debug "done with profile loading, user has requested another view"
 			redirect(controller:params.desiredPage)
 		}
-		
+		println "User has " + session.myCollaborationGroups.size() + " collab groups, " + session.sharedListIds.size() + " lists " + session.sharedAnalysisIds.size() + " analyses and " + pendingInvites + " invites"
 		[inviteMessage:pendingInvites["inviteMessage"],requestMessage:pendingInvites["requestMessage"]]
 	}
 	
 	
 	def cleanup(userId){
-		def user = GDOCUser.findByLoginName(userId)
+		def user = GDOCUser.findByUsername(userId)
 		def myLists = []
 		def listsTBD = []
 		def analysesTBD = []

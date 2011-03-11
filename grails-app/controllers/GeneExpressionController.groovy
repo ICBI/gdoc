@@ -39,7 +39,7 @@ class GeneExpressionController {
 				}		
 			}
 			cmd.groups = cleanedGroups
-			def author = GDOCUser.findByLoginName(session.userId)
+			def author = GDOCUser.findByUsername(session.userId)
 			def tempListFound = cleanedGroups.find{ group ->
 				if(userListService.listIsTemporary(group,author)){
 					return true

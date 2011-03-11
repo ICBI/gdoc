@@ -57,39 +57,39 @@ def drugDiscoveryService
 			log.debug "search by term $term"
 			def listHQL = "SELECT distinct list FROM UserList list,UserListItem item JOIN list.author author " + 
 			"WHERE list = item.list " +
-			"AND (author.loginName = :loginName " +
+			"AND (author.username = :username " +
 			"OR list.id IN (:ids)) " + 
 			"AND (item.value like :term " +
 			"OR list.name like :term)"
 			"ORDER BY list.dateCreated desc"
-			results = UserList.executeQuery(listHQL, [term:"%"+term+"%", ids:ids, loginName: userName,max:10, offset:offset])
+			results = UserList.executeQuery(listHQL, [term:"%"+term+"%", ids:ids, username: userName,max:10, offset:offset])
 			pagedLists["results"] = results
 			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,UserListItem item JOIN list.author author " + 
 			"WHERE list = item.list " +
-			"AND (author.loginName = :loginName " +
+			"AND (author.username = :username " +
 			"OR list.id IN (:ids)) " + 
 			"AND (item.value like :term " +
 			"OR list.name like :term)"
 			"AND item.value like :term "
-			count = UserList.executeQuery(listCountHQL,[term:"%"+term+"%", ids:ids, loginName: userName])
+			count = UserList.executeQuery(listCountHQL,[term:"%"+term+"%", ids:ids, username: userName])
 			pagedLists["count"] = count
 			log.debug "paged lists $pagedLists"
 		}
 		else{
 			def listHQL = "SELECT distinct list FROM UserList list,UserListItem item JOIN list.author author " + 
 			"WHERE list = item.list " +
-			"AND author.loginName = :loginName " +
+			"AND author.username = :username " +
 			"AND (item.value like :term " +
 			"OR list.name like :term)"
 			"ORDER BY list.dateCreated desc"
-			results = UserList.executeQuery(listHQL, [term:'%'+term+'%', loginName: userName,max:10, offset:offset])
+			results = UserList.executeQuery(listHQL, [term:'%'+term+'%', username: userName,max:10, offset:offset])
 			pagedLists["results"] = results
 			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,UserListItem item JOIN list.author author " + 
 			"WHERE list = item.list " +
-			"AND author.loginName = :loginName " + 
+			"AND author.username = :username " + 
 			"AND (item.value like :term " +
 			"OR list.name like :term)"
-			count = UserList.executeQuery(listCountHQL,[term:'%'+term+'%', loginName: userName])
+			count = UserList.executeQuery(listCountHQL,[term:'%'+term+'%', username: userName])
 			pagedLists["count"] = count
 		}
 		//add query to populate tools list with non-paginated snap-shot
@@ -155,19 +155,19 @@ def drugDiscoveryService
 		def snapshots = []
 		def snapshotMaps = [] 
 		String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
-		"WHERE author.loginName = :loginName " +
+		"WHERE author.username = :username " +
 		"ORDER BY list.dateCreated desc"
-		results = UserList.executeQuery(listHQL,[loginName:user, max:10, offset:offset])
+		results = UserList.executeQuery(listHQL,[username:user, max:10, offset:offset])
 		pagedLists["results"] = results
 		String listHQL2 = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
-		"WHERE author.loginName = :loginName " 
-		count = UserList.executeQuery(listHQL2,[loginName:user])
+		"WHERE author.username = :username " 
+		count = UserList.executeQuery(listHQL2,[username:user])
 		pagedLists["count"] = count
 		//add query to populate tools list with non-paginated snap-shot
 		String listHQL3 = "SELECT distinct list.id, list.name, list.dateCreated FROM UserList list JOIN list.author author " + 
-		"WHERE author.loginName = :loginName " +
+		"WHERE author.username = :username " +
 		"ORDER BY list.dateCreated desc"
-		snapshots = UserList.executeQuery(listHQL3,[loginName:user])
+		snapshots = UserList.executeQuery(listHQL3,[username:user])
 		if(snapshots){
 			snapshots.each{
 				def snapMap = [:]
@@ -189,12 +189,12 @@ def drugDiscoveryService
 				ids << new Long(it)
 			}
 			listHQL = "SELECT distinct list.id FROM UserList list JOIN list.author author " + 
-			"WHERE author.loginName = :loginName OR list.id IN (:ids) "
-			listIds = UserList.executeQuery(listHQL,[loginName:userId, ids:ids])
+			"WHERE author.username = :username OR list.id IN (:ids) "
+			listIds = UserList.executeQuery(listHQL,[username:userId, ids:ids])
 		}else{
 			listHQL = "SELECT distinct list.id FROM UserList list JOIN list.author author " + 
-			"WHERE author.loginName = :loginName "
-			listIds = UserList.executeQuery(listHQL,[loginName:userId])
+			"WHERE author.username = :username "
+			listIds = UserList.executeQuery(listHQL,[username:userId])
 		}
 		log.debug "got list ids $listIds"
 		return listIds
@@ -212,24 +212,24 @@ def drugDiscoveryService
 				ids << new Long(it)
 			}
 			String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
-			"WHERE author.loginName = :loginName OR list.id IN (:ids) " +
+			"WHERE author.username = :username OR list.id IN (:ids) " +
 			"ORDER BY list.dateCreated desc"
-			results = UserList.executeQuery(listHQL,[loginName:user, ids:ids, max:10, offset:offset])
+			results = UserList.executeQuery(listHQL,[username:user, ids:ids, max:10, offset:offset])
 			pagedLists["results"] = results
 			String listHQL2 = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
-			"WHERE author.loginName = :loginName OR list.id IN (:ids) "
-			count = UserList.executeQuery(listHQL2,[loginName:user,ids:ids])
+			"WHERE author.username = :username OR list.id IN (:ids) "
+			count = UserList.executeQuery(listHQL2,[username:user,ids:ids])
 			pagedLists["count"] = count
 			log.debug "all lists -> $pagedLists as Paged set"
 		}else{
 			String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
-			"WHERE author.loginName = :loginName " +
+			"WHERE author.username = :username " +
 			"ORDER BY list.dateCreated desc"
-			results = UserList.executeQuery(listHQL,[loginName:user, max:10, offset:offset])
+			results = UserList.executeQuery(listHQL,[username:user, max:10, offset:offset])
 			pagedLists["results"] = results
 			String listHQL2 = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
-			"WHERE author.loginName = :loginName "
-			count = UserList.executeQuery(listHQL2,[loginName:user])
+			"WHERE author.username = :username "
+			count = UserList.executeQuery(listHQL2,[username:user])
 			pagedLists["count"] = count
 			log.debug "all lists -> $pagedLists as Paged set"
 		}
@@ -240,7 +240,7 @@ def drugDiscoveryService
 	}
 	
 	def getAllListsNoPagination(userId,sharedIds){
-		def user = GDOCUser.findByLoginName(userId)
+		def user = GDOCUser.findByUsername(userId)
 		def pagedLists = []
 		def pagedListsMaps = []
 		if(sharedIds){
@@ -298,22 +298,22 @@ def drugDiscoveryService
 		def tp = Integer.parseInt(timePeriod)
 		def range = now-tp
 		String listHQL = "SELECT distinct list FROM UserList list JOIN list.author author " + 
-		"WHERE author.loginName = :loginName " +
+		"WHERE author.username = :username " +
 		"AND list.dateCreated BETWEEN :range and :now " + 
 		"ORDER BY list.dateCreated desc"
-		results = UserList.executeQuery(listHQL,[loginName:user, now:now, range:range, max:10, offset:offset])
+		results = UserList.executeQuery(listHQL,[username:user, now:now, range:range, max:10, offset:offset])
 		pagedLists["results"] = results
 		String listHQL2 = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
-		"WHERE author.loginName = :loginName " +
+		"WHERE author.username = :username " +
 		"AND list.dateCreated BETWEEN :range and :now "
-		count = UserList.executeQuery(listHQL2,[loginName:user, now:now, range:range])
+		count = UserList.executeQuery(listHQL2,[username:user, now:now, range:range])
 		pagedLists["count"] = count
 		//add query to populate tools list with non-paginated snap-shot
 		String listHQL3 = "SELECT distinct list.id, list.name, list.dateCreated FROM UserList list JOIN list.author author " + 
-		"WHERE author.loginName = :loginName " +
+		"WHERE author.username = :username " +
 		"AND list.dateCreated BETWEEN :range and :now " +
 		"ORDER BY list.dateCreated desc"
-		snapshots = UserList.executeQuery(listHQL3,[loginName:user, now:now, range:range])
+		snapshots = UserList.executeQuery(listHQL3,[username:user, now:now, range:range])
 		if(snapshots){
 			snapshots.each{
 				def snapMap = [:]
@@ -342,27 +342,27 @@ def drugDiscoveryService
 		if(ids){
 			def listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
-			"AND (author.loginName = :loginName " +
+			"AND (author.username = :username " +
 			"OR list.id IN (:ids)) " + 
 			"AND tagLink.tag.name = :tag " +
 			"ORDER BY list.dateCreated desc"
-			results = UserList.executeQuery(listHQL, [tag: tag, ids:ids, loginName: userName,max:10, offset:offset])
+			results = UserList.executeQuery(listHQL, [tag: tag, ids:ids, username: userName,max:10, offset:offset])
 			pagedLists["results"] = results
 			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
-			"AND (author.loginName = :loginName " +
+			"AND (author.username = :username " +
 			"OR list.id IN (:ids)) " + 
 			"AND tagLink.tag.name = :tag "
-			count = UserList.executeQuery(listCountHQL,[tag: tag, ids:ids, loginName: userName])
+			count = UserList.executeQuery(listCountHQL,[tag: tag, ids:ids, username: userName])
 			pagedLists["count"] = count
 			//add query to populate tools list with non-paginated snap-shot
 			def listHQL3 = "SELECT distinct list.id, list.name, list.dateCreated FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
-			"AND (author.loginName = :loginName " +
+			"AND (author.username = :username " +
 			"OR list.id IN (:ids)) " + 
 			"AND tagLink.tag.name = :tag "+
 			"ORDER BY list.dateCreated desc"
-			snapshots = UserList.executeQuery(listHQL3,[tag: tag, ids:ids,loginName:userName])
+			snapshots = UserList.executeQuery(listHQL3,[tag: tag, ids:ids,username:userName])
 			if(snapshots){
 				snapshots.each{
 					def snapMap = [:]
@@ -378,23 +378,23 @@ def drugDiscoveryService
 			def listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
 			"AND tagLink.tag.name = :tag " +
-			"AND author.loginName = :loginName " +
+			"AND author.username = :username " +
 			"ORDER BY list.dateCreated desc"
-			results = UserList.executeQuery(listHQL, [tag: tag, loginName: userName,max:10, offset:offset])
+			results = UserList.executeQuery(listHQL, [tag: tag, username: userName,max:10, offset:offset])
 			pagedLists["results"] = results
 			def listCountHQL = "SELECT count(distinct list.id) FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
-			"AND author.loginName = :loginName " + 
+			"AND author.username = :username " + 
 			"AND tagLink.tag.name = :tag"
-			count = UserList.executeQuery(listCountHQL,[tag: tag, loginName: userName])
+			count = UserList.executeQuery(listCountHQL,[tag: tag, username: userName])
 			pagedLists["count"] = count
 			//add query to populate tools list with non-paginated snap-shot
 			def listHQL3 = "SELECT distinct list.id, list.name, list.dateCreated FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
-			"AND author.loginName = :loginName " + 
+			"AND author.username = :username " + 
 			"AND tagLink.tag.name = :tag "+
 			"ORDER BY list.dateCreated desc"
-			snapshots = UserList.executeQuery(listHQL3,[tag: tag, loginName:userName])
+			snapshots = UserList.executeQuery(listHQL3,[tag: tag, username:userName])
 			if(snapshots){
 				snapshots.each{
 					def snapMap = [:]
@@ -419,9 +419,9 @@ def drugDiscoveryService
 			if(ids){
 				listHQL = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author  " + 
 				"WHERE list.dateCreated >= :lastLogin " +
-				"AND author.loginName != :loginName " +
+				"AND author.username != :username " +
 				"AND list.id IN (:ids) "
-				count = UserList.executeQuery(listHQL,[ids:ids, lastLogin: lastLogin,loginName: userName])
+				count = UserList.executeQuery(listHQL,[ids:ids, lastLogin: lastLogin,username: userName])
 				return count[0]
 			}
 		}
@@ -445,19 +445,19 @@ def drugDiscoveryService
 		if(ids){
 			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
-			"AND (author.loginName = :loginName " +
+			"AND (author.username = :username " +
 			"OR list.id IN (:ids)) " + 
 			"AND tagLink.tag.name = :tag " +
 			"ORDER BY list.dateCreated desc"
-			taggedLists = UserList.executeQuery(listHQL, [tag: tag, ids:ids, loginName: userName])
+			taggedLists = UserList.executeQuery(listHQL, [tag: tag, ids:ids, username: userName])
 		}
 		else{
 			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.author author " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
 			"AND tagLink.tag.name = :tag " +
-			"AND author.loginName = :loginName " +
+			"AND author.username = :username " +
 			"ORDER BY list.dateCreated desc"
-			taggedLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName])
+			taggedLists = UserList.executeQuery(listHQL, [tag: tag, username: userName])
 		}
 		return taggedLists
 	}
@@ -477,19 +477,19 @@ def drugDiscoveryService
 			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.studies studies " + 
 			"WHERE list.id = tagLink.tagRef AND tagLink.type = 'userList' " +
 			"AND tagLink.tag.name = :tag " +
-			"AND (list.author.loginName = :loginName " +
+			"AND (list.author.username = :username " +
 			"OR list.id IN (:ids)) " + 
 			"AND studies IN (:sids) " + 
 			"ORDER BY list.dateCreated desc"
-			patientLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName, ids:ids, sids:sids])
+			patientLists = UserList.executeQuery(listHQL, [tag: tag, username: userName, ids:ids, sids:sids])
 		}else{
 			listHQL = "SELECT distinct list FROM UserList list,TagLink tagLink JOIN list.studies studies " + 
 			"WHERE list.id = tagLink.tagRef	AND tagLink.type = 'userList' " +
 			"AND tagLink.tag.name = :tag " +
-			"AND list.author.loginName = :loginName " +
+			"AND list.author.username = :username " +
 			"AND studies IN (:sids) " + 
 			"ORDER BY list.dateCreated desc"
-			patientLists = UserList.executeQuery(listHQL, [tag: tag, loginName: userName, sids:sids])
+			patientLists = UserList.executeQuery(listHQL, [tag: tag, username: userName, sids:sids])
 		}
 		return patientLists
 		
@@ -501,12 +501,12 @@ def drugDiscoveryService
 		   FROM UserList list, TagLink tagLink
 		   JOIN list.author author
 		   WHERE list.id = tagLink.tagRef
-		   AND author.loginName = :loginName
+		   AND author.username = :username
 		   AND tagLink.type = 'userList'
 		   AND tagLink.tag.name = :tag
 		"""
 		
-		def listIds = UserList.executeQuery(findByTagHQL, [tag: Constants.TEMPORARY, loginName: userId])
+		def listIds = UserList.executeQuery(findByTagHQL, [tag: Constants.TEMPORARY, username: userId])
 		return listIds	
 	}
 	
@@ -602,7 +602,7 @@ def validListName(listName){
 
 
 def createList(userName, listName, listItems, studies, tags) {
-		def author = GDOCUser.findByLoginName(userName)
+		def author = GDOCUser.findByUsername(userName)
 		def listDup = author.lists.find {
 			it.name == listName
 		}
@@ -638,7 +638,7 @@ def createList(userName, listName, listItems, studies, tags) {
 	
 	
 	def createAndReturnList(userName, listName, listItems, studies, tags) {
-			def author = GDOCUser.findByLoginName(userName)
+			def author = GDOCUser.findByUsername(userName)
 			def listDup = author.lists.find {
 				it.name == listName
 			}

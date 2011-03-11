@@ -12,9 +12,9 @@
 			<g:set var="availableInvites" value="true" />
 			<div class="inviteDiv" style="border:1px solid red">${inInvite.requestor.firstName} ${inInvite.requestor.lastName} (${inInvite.requestor.email}) has requested access to ${inInvite.group.name}
 				&nbsp;&nbsp;&nbsp; 
-				<g:link action="grantAccess" controller="collaborationGroups" id="${inInvite.id}" params="[user:inInvite.requestor.loginName,group:inInvite.group.name]">grant access</g:link>
+				<g:link action="grantAccess" controller="collaborationGroups" id="${inInvite.id}" params="[user:inInvite.requestor.username,group:inInvite.group.name]">grant access</g:link>
 				&nbsp;&nbsp;&nbsp;
-				<g:link action="rejectInvite" controller="collaborationGroups" id="${inInvite.id}" params="[user:inInvite.requestor.loginName,group:inInvite.group.name]">reject</g:link>
+				<g:link action="rejectInvite" controller="collaborationGroups" id="${inInvite.id}" params="[user:inInvite.requestor.username,group:inInvite.group.name]">reject</g:link>
 				</div>
 			</g:if>
 			</g:each>
@@ -52,7 +52,7 @@
 	  	<g:if test="${session.invitations['reqAndMan']}">
 			<g:set var="availableInvites" value="true" />
 			<g:each in="${session.invitations['reqAndMan']}" var="reqInvite">
-			<div class="inviteDiv">your invitation for ${reqInvite.invitee.loginName} to join ${reqInvite.group.name} is: ${reqInvite.status}<br />
+			<div class="inviteDiv">your invitation for ${reqInvite.invitee.username} to join ${reqInvite.group.name} is: ${reqInvite.status}<br />
 			sent:<g:formatDate format="EEE MMM d, yyyy" date="${reqInvite.dateCreated}"/> | updated:<g:formatDate format="EEE MMM d, yyyy" date="${reqInvite.lastUpdated}"/>
 			</div>
 			</g:each>

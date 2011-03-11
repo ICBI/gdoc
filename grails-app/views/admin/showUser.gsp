@@ -7,7 +7,7 @@
     <body>
 		
 		<div id="centerContent">
-			<p style="font-size:14pt">GDOC Admin Panel - User ${user.loginName} Details</p><br />
+			<p style="font-size:14pt">GDOC Admin Panel - User ${user.username} Details</p><br />
 			<g:if test="${!user}">
 				No results found.
 			</g:if>
@@ -26,7 +26,7 @@
 						<td>${user.id}</td>
 						<td>${user.firstName}</td>
 						<td>${user.lastName}</td>
-						<td>${user.loginName}</td>
+						<td>${user.username}</td>
 						<td>${user.email}</td>
 						<td>${user.organization}</td>
 					</tr>

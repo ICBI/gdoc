@@ -35,7 +35,7 @@ $(document).ready(function(){
 <g:if test="${managedMemberships}">
 <div style="padding:5px;background-color:#f2f2f2;">
  <g:form action="showUsers" autocomplete="off">
-	Enter user last name or loginName: <g:textField name="userId" id="q" /><br /><br />
+	Enter user last name or username: <g:textField name="userId" id="q" /><br /><br />
 	<g:submitButton name="search" value="Search Users" />
 </g:form>
 </div>

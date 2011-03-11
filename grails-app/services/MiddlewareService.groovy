@@ -22,9 +22,9 @@ class MiddlewareService {
 			HttpClientParams params = client.getParams()
 			params.setAuthenticationPreemptive( true )
 			HttpState state = client.getState()
-			def user = GDOCUser.findByLoginName("gdocUser")
+			def user = GDOCUser.findByUsername("gdocUser")
 			def credentials =
-		     	new UsernamePasswordCredentials(user.loginName, user.password)
+		     	new UsernamePasswordCredentials(user.username, user.password)
 			state.setCredentials( null, null, credentials )
 			def queryString = 
 			    		"PREFIX nci: <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#>" +
@@ -69,12 +69,12 @@ class MiddlewareService {
 			HttpState state = client.getState()
 			def user
 			if(userName) {
-				user = GDOCUser.findByLoginName(userName)
+				user = GDOCUser.findByUsername(userName)
 			} else {
-				user = GDOCUser.findByLoginName("gdocUser")
+				user = GDOCUser.findByUsername("gdocUser")
 			}
 			def credentials =
-		     	new UsernamePasswordCredentials(user.loginName, user.password)
+		     	new UsernamePasswordCredentials(user.username, user.password)
 			state.setCredentials( null, null, credentials )
 			def get = new GetMethod(url)
 			log.debug "URL is: $url"
@@ -104,9 +104,9 @@ class MiddlewareService {
 			jsonData = urlParams as JSON
 		} 
 		
-		def user = GDOCUser.findByLoginName(userName)
+		def user = GDOCUser.findByUsername(userName)
 		def credentials =
-		     new UsernamePasswordCredentials(user.loginName, user.password)
+		     new UsernamePasswordCredentials(user.username, user.password)
 		try {
 			def client = new HttpClient()
 			HttpClientParams params = client.getParams()

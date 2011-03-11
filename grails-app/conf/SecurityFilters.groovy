@@ -19,7 +19,7 @@ class SecurityFilters {
 							redirect(controller:'home')
 			                return false
 						}
-						def user = GDOCUser.findByLoginName(username)
+						def user = GDOCUser.findByUsername(username)
 						if(!user) {
 							log.debug "no valid user" 
 							redirect(controller:'home')

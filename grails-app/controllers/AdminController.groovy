@@ -40,18 +40,18 @@ class AdminController {
 				{
 					projections{
 						property('id')
-						property('loginName')
+						property('username')
 						property('firstName')
 						property('lastName')
 						property('email')
 						property('organization')
 					}
 					and{
-						'order'("loginName", "asc")
-						ne("loginName","CSM")
+						'order'("username", "asc")
+						ne("username","CSM")
 					}
 					or {
-						eq("loginName", params.userId)
+						eq("username", params.userId)
 					}
 				}
 		}else{
@@ -59,27 +59,27 @@ class AdminController {
 				{
 					projections{
 						property('id')
-						property('loginName')
+						property('username')
 						property('firstName')
 						property('lastName')
 						property('email')
 						property('organization')
 					}
 					and{
-						'order'("loginName", "asc")
-						ne("loginName","CSM")
+						'order'("username", "asc")
+						ne("username","CSM")
 					}
 				}
 		}
 		def columns = []
 		columns << [index: "id", name: "User ID", sortable: true, width: '70']
 		//columns << [index: "dataSourceInternalId", name: "PATIENT ID", sortable: true, width: '70']
-		def columnNames = ["loginName","firstName","lastName","email","organization"]
+		def columnNames = ["username","firstName","lastName","email","organization"]
 		def userListings = []
 		users.each{
 			def userMap = [:]
 			userMap["id"] = it[0]
-			userMap["loginName"] = it[1]
+			userMap["username"] = it[1]
 			userMap["firstName"] = it[2]
 			userMap["lastName"] = it[3]
 			userMap["email"] = it[4]
@@ -144,7 +144,7 @@ class AdminController {
 		sortedResults.getAt(startIndex..<endIndex).each { user ->
 			def cells = []
 			cells << user.id
-			cells << user.loginName
+			cells << user.username
 			cells << user.firstName
 			cells << user.lastName
 			cells << user.email
@@ -264,10 +264,10 @@ class AdminController {
 							property('status')
 							property('dateCreated')
 							requestor {
-								property('loginName')
+								property('username')
 							}
 							invitee {
-								property('loginName')
+								property('username')
 							}
 						}
 						and{
@@ -370,7 +370,7 @@ class AdminController {
 					log.debug "find group $params.group"
 					def id = params.group.toLong()
 					def group = CollaborationGroup.get(id)
-					def members = group.users?.collect{it.loginName}
+					def members = group.users?.collect{it.username}
 					[group:group,members:members]
 				}
 	}
@@ -383,7 +383,7 @@ class AdminController {
 					def groupName = group.name
 					def manager = securityService.findCollaborationManager(groupName)
 					if(manager){
-						if(securityService.deleteCollaborationGroup(manager.loginName,groupName)){
+						if(securityService.deleteCollaborationGroup(manager.username,groupName)){
 							log.debug "collaboration group, $groupName has been deleted"
 							flash.message = "collaboration group, $groupName has been deleted"
 							redirect(action:index)
@@ -413,12 +413,12 @@ class AdminController {
 			def id = params.user.toLong()
 			def user = GDOCUser.get(id)
 			String listHQL = "SELECT count(distinct list.id) FROM UserList list JOIN list.author author " + 
-			"WHERE author.loginName = :loginName "
-			def listCount = UserList.executeQuery(listHQL,[loginName:user.loginName])
+			"WHERE author.username = :username "
+			def listCount = UserList.executeQuery(listHQL,[username:user.username])
 			String analysisHQL = "SELECT count(distinct analysis.id) FROM SavedAnalysis analysis JOIN analysis.author author " + 
-			"WHERE author.loginName = :loginName "
-			def analysisCount = SavedAnalysis.executeQuery(analysisHQL,[loginName:user.loginName])
-			def isGdocAdmin = securityService.isUserGDOCAdmin(user.loginName)
+			"WHERE author.username = :username "
+			def analysisCount = SavedAnalysis.executeQuery(analysisHQL,[username:user.username])
+			def isGdocAdmin = securityService.isUserGDOCAdmin(user.username)
 			[user:user,listCount:listCount,analysisCount:analysisCount,isGdocAdmin:isGdocAdmin]
 		}
 	}

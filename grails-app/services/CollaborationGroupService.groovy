@@ -11,7 +11,7 @@ class CollaborationGroupService{
 		//println allMemberships.size()
 		def managedMemberships =  []
 		def otherMemberships =  []
-		def user = GDOCUser.findByLoginName(loginId)
+		def user = GDOCUser.findByUsername(loginId)
 		def userMemberships = user.memberships
 		allMemberships.removeAll(userMemberships)
 		def dontShow = []
@@ -42,10 +42,10 @@ class CollaborationGroupService{
 	}
 	
 	
-	def getExistingUsers(loginNames, groupName){
+	def getExistingUsers(usernames, groupName){
 		def names = []
 		def existingUsers = []
-		loginNames.each{
+		usernames.each{
 			names << it
 		}
 		names.each{ name ->

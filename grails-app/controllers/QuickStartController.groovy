@@ -133,7 +133,7 @@ class QuickStartController {
 	def analysis = {
 		log.debug params
 		def study = StudyDataSource.findByShortName(params.study)
-		def author = GDOCUser.findByLoginName(session.userId)
+		def author = GDOCUser.findByUsername(session.userId)
 		session.study = study
 		StudyContext.setStudy(study.schemaName)
 		def studies = []

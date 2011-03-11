@@ -47,7 +47,7 @@ class CollaborationGroupsController {
 		gdocUsers = GDOCUser.list()
 		if (gdocUsers){
 			def myself = gdocUsers.find{
-					it.loginName == session.userId
+					it.username == session.userId
 			}
 			if(myself){
 					//log.debug "remove $myself"
@@ -103,7 +103,6 @@ class CollaborationGroupsController {
 		}
 			
 		otherMem.sort{it.name}
-		log.debug otherMem
 		[gdocUsers:gdocUsers,managedMemberships:manMem,otherMemberships:otherMem,allMemberships:allMem]
 	}
 	
@@ -117,12 +116,12 @@ class CollaborationGroupsController {
 				def pg = securityService.createCollaborationGroup(session.userId, cmd.collaborationGroupName, cmd.description)
 				if(pg){
 					flash.message = cmd.collaborationGroupName + " has been created. To invite users, select the invite users tab."
-					session.myCollaborationGroups << cmd.collaborationGroupName
+					session.myCollaborationGroups << pg.name
 					if(session.managedMemberships)
-					 	session.managedMemberships << cmd.collaborationGroupName
+					 	session.managedMemberships << pg.name
 					else{
 						session.managedMemberships = []
-						session.managedMemberships << cmd.collaborationGroupName
+						session.managedMemberships << pg.name
 					}
 						
 					redirect(action:"index")
@@ -144,7 +143,7 @@ class CollaborationGroupsController {
 					def manager
 					if (groupName) 
 						manager = securityService.findCollaborationManager(groupName)
-					if(manager && (manager.loginName == session.userId)){
+					if(manager && (manager.username == session.userId)){
 						if(securityService.deleteCollaborationGroup(session.userId,groupName)){
 							log.debug "collaboration group, $groupName has been deleted"
 							flash.message = "collaboration group, $groupName has been deleted"
@@ -173,7 +172,7 @@ class CollaborationGroupsController {
 			return user.firstName + " " + user.lastName
 		}
 		else{
-			return user.loginName
+			return user.username
 		}
 	}
 	
@@ -212,15 +211,15 @@ class CollaborationGroupsController {
 				}
 				log.debug "$session.userId attempting to invite $usrs"
 				def gdocUsers = []
-				def loginNames = []
+				def usernames = []
 				usrs.each{ 
 					def id = it.toLong()
 					def gu = GDOCUser.get(id)
 					gdocUsers << gu
-					loginNames << gu.loginName
+					usernames << gu.username
 				}
 				def existingUsers = []
-				existingUsers = collaborationGroupService.getExistingUsers(loginNames,cmd.collaborationGroupName)
+				existingUsers = collaborationGroupService.getExistingUsers(usernames,cmd.collaborationGroupName)
 				if(existingUsers){
 					def exUserString = ""
 					existingUsers.each{ u ->
@@ -235,9 +234,9 @@ class CollaborationGroupsController {
 					def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
 					def inv
 					def exists = false
-					if(manager && (manager.loginName == session.userId)){
-						loginNames.each{ u ->
-							inv = invitationService.findSimilarRequest(manager.loginName,u,cmd.collaborationGroupName)
+					if(manager && (manager.username == session.userId)){
+						usernames.each{ u ->
+							inv = invitationService.findSimilarRequest(manager.username,u,cmd.collaborationGroupName)
 							if(inv){
 								flash.error = "A similar invitation exists for $u invited. No invitations sent... please try again."
 								log.debug "A similar invitation exists for $u invited, do not send invites."
@@ -246,8 +245,8 @@ class CollaborationGroupsController {
 						}
 						if(!exists){
 							gdocUsers.each{ user ->
-								if(invitationService.requestAccess(manager.loginName,user.loginName,cmd.collaborationGroupName))
-								log.debug session.userId + " invited user $user.loginName to " + cmd.collaborationGroupName
+								if(invitationService.requestAccess(manager.username,user.username,cmd.collaborationGroupName))
+								log.debug session.userId + " invited user $user.username to " + cmd.collaborationGroupName
 								flash.message = session.userId + " invited user(s) to " + cmd.collaborationGroupName
 								def managerName = buildUserNameForInvite(manager)
 								def th = Thread.start {
@@ -291,11 +290,11 @@ class CollaborationGroupsController {
 						property('organization')
 					}
 					and{
-						'order'("loginName", "asc")
-						ne("loginName","CSM")
+						'order'("username", "asc")
+						ne("username","CSM")
 					}
 					or {
-						ilike("loginName", "%"+params.userId+"%")
+						ilike("username", "%"+params.userId+"%")
 						ilike("lastName", params.userId)
 					}
 				}
@@ -310,7 +309,7 @@ class CollaborationGroupsController {
 					}
 					and{
 						'order'("lastName", "asc")
-						ne("loginName","CSM")
+						ne("username","CSM")
 					}
 				}
 		}
@@ -403,9 +402,9 @@ class CollaborationGroupsController {
 	def requestAccess = {
 		if(params.collaborationGroupName){
 			def manager = securityService.findCollaborationManager(params.collaborationGroupName)
-			if(invitationService.requestAccess(session.userId,manager.loginName,params.collaborationGroupName)){
+			if(invitationService.requestAccess(session.userId,manager.username,params.collaborationGroupName)){
 				log.debug session.userId + " is requesting access to " + params.collaborationGroupName 
-				def sessUser = GDOCUser.findByLoginName(session.userId)
+				def sessUser = GDOCUser.findByUsername(session.userId)
 				def userName = buildUserNameForInvite(sessUser)
 				if(manager.email){
 					def subject = "$userName has requested access to join your group, $params.collaborationGroupName"
@@ -424,7 +423,7 @@ class CollaborationGroupsController {
 	
 	def sendEmail(sendTo,subjectText){
 		def baseUrl = CH.config.grails.serverURL
-		def token = sendTo.loginName + "||" + System.currentTimeMillis()
+		def token = sendTo.username + "||" + System.currentTimeMillis()
 		def collabUrl = baseUrl+"/gdoc/collaborationGroups?token=" + URLEncoder.encode(EncryptionUtil.encrypt(token), "UTF-8")
 		mailService.sendMail{
 			to sendTo.email
@@ -458,7 +457,7 @@ class CollaborationGroupsController {
 				def manager = securityService.findCollaborationManager(cmd.collaborationGroupName)
 				def delString = ""
 				cmd.users.each{ user ->
-					invitationService.revokeAccess(manager.loginName, user, cmd.collaborationGroupName)
+					invitationService.revokeAccess(manager.username, user, cmd.collaborationGroupName)
 					log.debug "$user has been removed from " + cmd.collaborationGroupName 
 					delString += user + ", "
 				}

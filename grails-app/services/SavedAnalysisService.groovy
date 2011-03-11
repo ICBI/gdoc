@@ -5,7 +5,7 @@ class SavedAnalysisService {
 	def securityService
 	
 	def getAllSavedAnalysis(userId,sharedIds){
-		def user = GDOCUser.findByLoginName(userId)
+		def user = GDOCUser.findByUsername(userId)
 		user.refresh()
 		def analyses = user.analysis
 		def analysisIds = []
@@ -56,13 +56,13 @@ class SavedAnalysisService {
 					property('dateCreated')
 				}
 			}
-			eq("loginName", userId)
+			eq("username", userId)
 		}
 		return savedAnalysis
 	}
 	
 	def addSavedAnalysis(userId, notification, command, tags) {
-		def user = GDOCUser.findByLoginName(userId)
+		def user = GDOCUser.findByUsername(userId)
 		log.debug notification.item.taskId
 		def params = command.properties
 		log.debug "PARAMS: " + params
@@ -85,7 +85,7 @@ class SavedAnalysisService {
 	
 	
 	def saveAnalysisResult(userId, result, command, tags){
-		def user = GDOCUser.findByLoginName(userId)
+		def user = GDOCUser.findByUsername(userId)
 		//log.debug ("THE RESULT:")
 		//log.debug result
 		//log.debug ("THE COMMAND PARAMS:")
@@ -131,7 +131,7 @@ class SavedAnalysisService {
 	}
 	
 	def getAllSavedAnalysis(userId) {
-		def user = GDOCUser.findByLoginName(userId)
+		def user = GDOCUser.findByUsername(userId)
 		//def groupAnalysisIds = securityService.getSharedItemIds(userId, SavedAnalysis.class.name,false)
 		def notifications = user.analysis
 		return notifications
@@ -166,7 +166,7 @@ class SavedAnalysisService {
 			}
 			else if(timePeriod == "hideShared"){
 				log.debug "only show user's analyses"
-				def user = GDOCUser.findByLoginName(userId)
+				def user = GDOCUser.findByUsername(userId)
 				filteredAnalysis = user.analysis
 				return filteredAnalysis
 			}
@@ -174,7 +174,7 @@ class SavedAnalysisService {
 				def tp = Integer.parseInt(timePeriod)
 				def today = new Date()
 				def allAnalysis = []
-				def user = GDOCUser.findByLoginName(userId)
+				def user = GDOCUser.findByUsername(userId)
 				allAnalysis = user.analysis
 				allAnalysis.each{ analysis ->
 					if(today.minus(analysis.dateCreated) <= tp){
@@ -190,7 +190,7 @@ class SavedAnalysisService {
 	
 	def getPaginatedAnalyses(filter,sharedIds,offset,userId){
 		def pagedAnalyses = []
-		def user = GDOCUser.findByLoginName(userId)
+		def user = GDOCUser.findByUsername(userId)
 		if(filter == "all"){
 			pagedAnalyses = getAllAnalyses(sharedIds,offset,user)
 		}else if(filter == "hideShared"){
@@ -286,12 +286,12 @@ class SavedAnalysisService {
 				ids << new Long(it)
 			}
 			analysisHQL = "SELECT distinct analysis.id FROM SavedAnalysis analysis JOIN analysis.author author " + 
-			"WHERE author.loginName = :loginName OR analysis.id IN (:ids) "
-			savedAnalysisIds = UserList.executeQuery(analysisHQL,[loginName:userId, ids:ids])
+			"WHERE author.username = :username OR analysis.id IN (:ids) "
+			savedAnalysisIds = UserList.executeQuery(analysisHQL,[username:userId, ids:ids])
 		}else{
 			analysisHQL = "SELECT distinct analysis.id FROM SavedAnalysis analysis JOIN analysis.author author " + 
-			"WHERE author.loginName = :loginName "
-			savedAnalysisIds = SavedAnalysis.executeQuery(analysisHQL,[loginName:userId])
+			"WHERE author.username = :username "
+			savedAnalysisIds = SavedAnalysis.executeQuery(analysisHQL,[username:userId])
 		}
 		log.debug "got savedAnalysis ids $savedAnalysisIds"
 		return savedAnalysisIds
@@ -308,7 +308,7 @@ class SavedAnalysisService {
 			else if(timePeriod == "hideShared"){
 				log.debug "hide all shared lists"
 				allAnalysis.each{ analysis ->
-					if(analysis.author.loginName == userId){
+					if(analysis.author.username == userId){
 						filteredAnalysis << analysis
 					}
 				}
@@ -349,12 +349,12 @@ class SavedAnalysisService {
 		   FROM SavedAnalysis analysis, TagLink tagLink
 		   JOIN analysis.author author
 		   WHERE analysis.id = tagLink.tagRef
-		   AND author.loginName = :loginName
+		   AND author.username = :username
 		   AND tagLink.type = 'savedAnalysis'
 		   AND tagLink.tag.name = :tag
 		"""
 		
-		def savedAnalysisIds = SavedAnalysis.executeQuery(findByTagHQL, [tag: Constants.TEMPORARY, loginName: userId])
+		def savedAnalysisIds = SavedAnalysis.executeQuery(findByTagHQL, [tag: Constants.TEMPORARY, username: userId])
 		return savedAnalysisIds	
 	}
 	

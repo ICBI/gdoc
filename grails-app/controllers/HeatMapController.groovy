@@ -82,7 +82,7 @@ class HeatMapController {
 				}
 			}		
 		
-		def author = GDOCUser.findByLoginName(session.userId)
+		def author = GDOCUser.findByUsername(session.userId)
 		def list1IsTemp = userListService.listIsTemporary(cmd.patientList,author)
 		if(list1IsTemp){
 			tags << Constants.TEMPORARY

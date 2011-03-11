@@ -1,8 +1,8 @@
 class CommentsTests extends BaseIntegrationTest {
 
     void testComment() {
-		def appUser = GDOCUser.findByLoginName('acs224')
-		def appCommentUser = GDOCUser.findByLoginName('kmr75')
+		def appUser = GDOCUser.findByUsername('acs224')
+		def appCommentUser = GDOCUser.findByUsername('kmr75')
 		def intGeneList = new UserList(name:'studyGeneList',author:appUser)
 		saveObject(intGeneList)
 		intGeneList.addToListItems(new UserListItem(value:'ER2'))

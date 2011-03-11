@@ -19,7 +19,7 @@ def shareItem = {
 	
 	if(params.groups instanceof String[]){
 		params.groups.each{
-			groups << it.toUpperCase()
+			groups << it 
 		}
 	}else if (params.groups instanceof String){
 		groups << params.groups

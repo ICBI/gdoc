@@ -63,7 +63,7 @@ class ActivationController {
     			flash['cmd'] = cmd
     			log.debug "resetting password"
     			if(securityService.changeUserPassword(cmd.userId,cmd.password)){
-    				def u = GDOCUser.findByLoginName(cmd.userId)
+    				def u = GDOCUser.findByUsername(cmd.userId)
     				if(session.userId){
     					flash.message = "You have successfully changed your password."
     					log.debug "$cmd.userId successfully changed password."
@@ -99,7 +99,7 @@ class ActivationController {
     		else{
     			flash['cmd'] = cmd
     			def newUser
-    			def existingUser = GDOCUser.findByLoginName(cmd.userId)
+    			def existingUser = GDOCUser.findByUsername(cmd.userId)
     			if(existingUser){
     				log.debug "user already exists"
     				flash.message = "This user already exists in the system"
@@ -118,12 +118,12 @@ class ActivationController {
     			if(securityService.createUser(newUser)){
     				//add to PUBLIC collab group
     				def managerPublic = securityService.findCollaborationManager("PUBLIC")
-    				securityService.addUserToCollaborationGroup(managerPublic.loginName, newUser.getLoginName(), "PUBLIC")
+    				securityService.addUserToCollaborationGroup(managerPublic.username, newUser.getUsername(), "PUBLIC")
 					saveUserOptions(cmd)
     			}
     			try{
     				def params = [:]
-    				params["loginName"] = cmd.userId
+    				params["username"] = cmd.userId
     				params["password"] = cmd.password
     				def user = securityService.login(params)
     				if (user) {
@@ -147,7 +147,7 @@ class ActivationController {
     	}
 
 		private def saveUserOptions(command) {
-			def gdocUser = GDOCUser.findByLoginName(command.userId)
+			def gdocUser = GDOCUser.findByUsername(command.userId)
 			def options = [:]
 			options[UserOptionType.REASON] = command.reason
 			options.each { key, value ->

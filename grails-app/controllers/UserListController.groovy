@@ -85,7 +85,7 @@ class UserListController {
 	
 	def venn = {
 		log.debug params
-		def author = GDOCUser.findByLoginName(session.userId)
+		def author = GDOCUser.findByUsername(session.userId)
 		def sortedLists = []
 		def unitedStudies = []
 		def allListsNames = []
@@ -132,7 +132,7 @@ class UserListController {
 	
 	def vennDiagram = {
 		log.debug params
-		def author = GDOCUser.findByLoginName(params.author)
+		def author = GDOCUser.findByUsername(params.author)
 		def vennJSON = vennService.vennDiagram(params.listName,author,params.ids);
 		def tags = userListService.gatherTags(params.ids)
 		def tagsString = tags.toString()
@@ -152,7 +152,7 @@ class UserListController {
 		if(params.listAction == 'intersect' ||
 			params.listAction == 'join' || 
 				params.listAction == 'diff'){
-			def author = GDOCUser.findByLoginName(session.userId)
+			def author = GDOCUser.findByUsername(session.userId)
 			def listDup = author.lists.find {
 						it.name == listName
 			}
@@ -228,7 +228,7 @@ class UserListController {
 							log.debug "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
 							message += " $userListInstance.name could not be deleted because it represents a piece of evidence in a G-DOC finding."
 						}
-						else if(userListInstance.author.loginName != session.userId){
+						else if(userListInstance.author.username != session.userId){
 							log.debug "did not delete " + userListInstance + ", you are not the author."
 							message += "did not delete $userListInstance.id , you are not the author."
 						}
@@ -246,7 +246,7 @@ class UserListController {
 						log.debug "could not delete " + userListInstance + ", this link represents a piece of evidence in a G-DOC finding"
 						message = "$userListInstance.name could not be deleted because it represents a piece of evidence in a G-DOC finding."
 					}
-					else if(userListInstance.author.loginName != session.userId){
+					else if(userListInstance.author.username != session.userId){
 						log.debug "did not delete " + userListInstance + ", you are not the author."
 						message += "did not delete $userListInstance.id , you are not the author."
 					}
@@ -273,7 +273,7 @@ class UserListController {
         def userListItemInstance = UserListItem.findById(params["id"])
         if(userListItemInstance) {
 			def list = UserList.findById(userListItemInstance.list.id)
-			if(list.author.loginName == session.userId){
+			if(list.author.username == session.userId){
 				list.listItems.remove(userListItemInstance);
 				userListItemInstance.delete(flush:true)	
 	            list.save();
@@ -305,9 +305,9 @@ class UserListController {
 
     def saveFromQuery = {
 		log.debug params
-		def author = GDOCUser.findByLoginName(session.userId)
+		def author = GDOCUser.findByUsername(session.userId)
 		if(!params["name"]){
-			params["name"] = author.loginName + new Date().getTime();
+			params["name"] = author.username + new Date().getTime();
 		}
 		
 		params["author.id"] = author.id
@@ -400,9 +400,9 @@ class UserListController {
 
 	def saveListFromExistingLists = {
 		log.debug params
-		def author = GDOCUser.findByLoginName(session.userId)
+		def author = GDOCUser.findByUsername(session.userId)
 		if(!params["name"]){
-			params["name"] = author.loginName + new Date().getTime();
+			params["name"] = author.username + new Date().getTime();
 		}
 		
 		params["author.id"] = author.id
@@ -494,7 +494,7 @@ class UserListController {
 		log.debug params
 		def message = ""
 		if(params.newNameValue && params.id){
-			def author = GDOCUser.findByLoginName(session.userId)
+			def author = GDOCUser.findByUsername(session.userId)
 			def listDup = author.lists.find {
 				it.name == params.newNameValue.trim()
 			}
@@ -536,7 +536,7 @@ class UserListController {
 		
 		if(request.getFile("file").inputStream.text) {
 			log.debug "upload list: $params.listName"
-			def author = GDOCUser.findByLoginName(session.userId)
+			def author = GDOCUser.findByUsername(session.userId)
 			def listDup = author.lists.find {
 				it.name == params["listName"]
 			}

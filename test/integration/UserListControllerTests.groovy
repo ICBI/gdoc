@@ -10,7 +10,7 @@ class UserListControllerTests extends GroovyTestCase {
 	
     void testSave() {
 	
-	def user = GDOCUser.findByLoginName("gdocUser");
+	def user = GDOCUser.findByUsername("gdocUser");
 	
 	list_controller.params.name = "test"
 	list_controller.params."author.id" = user.id
@@ -23,10 +23,10 @@ class UserListControllerTests extends GroovyTestCase {
 
 	void testSaveFromQuery() {
 	
-	def my_user = GDOCUser.findByLoginName("gdocUser");
+	def my_user = GDOCUser.findByUsername("gdocUser");
 	
 	//list_controller2.params.name = "testFromQuery"
-	list_controller.params."author.username" = my_user.loginName
+	list_controller.params."author.username" = my_user.username
 	list_controller.saveFromQuery();
 	def userList = UserList.findByAuthor(my_user);
 	

@@ -4,7 +4,7 @@ class MembershipTests extends GroovyTestCase {
 		def user = GDOCUser.get(10)
 		def memberships = user.memberships
 		memberships.each{ membership ->
-			println "MY USER: " + membership.user.loginName
+			println "MY USER: " + membership.user.username
 			println "Collaboration GROUP: " + membership.collaborationGroup.name
 			if(membership.collaborationGroup.users){
 				println "GROUP: " + membership.collaborationGroup.name + "has the following users: "

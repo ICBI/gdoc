@@ -16,7 +16,7 @@
 <g:if test="${evidence.userList}">
 	<div>
 	<span> 
-	<%--g:if test="${(session.sharedListIds.contains(evidence.userList.id)) || evidence.userList.author.loginName == session.userId}"--%>
+	<%--g:if test="${(session.sharedListIds.contains(evidence.userList.id)) || evidence.userList.author.username == session.userId}"--%>
 		<g:set var="listItems" value="${evidence.userList.listItems.collect{it.value}}" />
 		<div style="float:middle"><b>User List:</b>
 		<a href="#" onclick="toggle('${uiId}');return false;" style="cursor: pointer;">${evidence.userList.name}
@@ -43,7 +43,7 @@
 <g:if test="${evidence.savedAnalysis}">
 	<div>
 		<span><b>Saved Analysis</b>: 
-		<%--g:if test="${(session.sharedAnalysisIds.contains(evidence.savedAnalysis.id)) || evidence.savedAnalysis.author.loginName == session.userId}"--%>
+		<%--g:if test="${(session.sharedAnalysisIds.contains(evidence.savedAnalysis.id)) || evidence.savedAnalysis.author.username == session.userId}"--%>
 		<g:if test="${evidence.savedAnalysis.type == AnalysisType.CLASS_COMPARISON}">
 			<g:link controller="analysis" action="view"  id="${evidence.savedAnalysis.id}">${evidence.savedAnalysis.type}</g:link>
 		</g:if>

@@ -24,9 +24,9 @@
 			<g:hiddenField name="collaborationGroupName" value="${manMembership.name}" />
 			<ul>
 				<g:each in="${manMembership.users}" var="user">
-						<g:if test="${user.loginName != session.userId}">
+						<g:if test="${user.username != session.userId}">
 							<li style="padding:3px 3px 3px 3px">
-								<g:checkBox name="users" value="${user.loginName}" checked="false" />
+								<g:checkBox name="users" value="${user.username}" checked="false" />
 								&nbsp;${user.firstName}&nbsp;${user.lastName}
 							</li>
 						</g:if>
@@ -81,7 +81,7 @@ You do not manage any groups
 			<g:if test="${otherMembership.users}">
 			<ul>
 				<g:each in="${otherMembership.users}" var="user">
-					<g:if test="${user.loginName != session.userId}">
+					<g:if test="${user.username != session.userId}">
 						<li style="padding:3px 3px 3px 3px">${user.firstName}&nbsp;${user.lastName}</li>
 					</g:if>
 				</g:each>

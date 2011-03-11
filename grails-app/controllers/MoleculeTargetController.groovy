@@ -212,7 +212,7 @@ class MoleculeTargetController {
 	
 	def filterLigands(ligandResults){
 			//log.debug "unfiltered: $ligandResults"
-			//def user = GDOCUser.findByLoginName(session.userId)
+			//def user = GDOCUser.findByUsername(session.userId)
 			def userMemberships = session.myCollaborationGroups
 			
 			def results = []

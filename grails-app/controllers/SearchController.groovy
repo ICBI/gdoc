@@ -91,7 +91,7 @@ class SearchController {
 				def terms = []
 				terms << GDOCUser.termFreqs("firstName")
 				terms << GDOCUser.termFreqs("lastName")
-				terms << GDOCUser.termFreqs("loginName")
+				terms << GDOCUser.termFreqs("username")
 				terms.flatten().each{
 					if(it.term.contains(params.q.trim()))
 						searchResult << it.term

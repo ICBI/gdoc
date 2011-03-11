@@ -71,7 +71,7 @@
 				
 				<div id="${userListInstance.id}_div" style="collapse:true;border:0px solid red;margin-bottom:5px;padding:3px 3px 3px 3px">
 					
-					<g:if test="${session.userId.equals(userListInstance.author.loginName)}">
+					<g:if test="${session.userId.equals(userListInstance.author.username)}">
 					<div style="border:0px solid black;width:2%;float:left;padding-right:10px"><g:checkBox class="the_checkbox" name="deleteList"
 						 value="${userListInstance.id}" checked="false"/></div>
 					</g:if>
@@ -108,7 +108,7 @@
 						<g:formatDate date="${userListInstance.dateCreated}" format="h:mm M/dd/yyyy"/>
 					</span>
 					</div>
-					<g:if test="${session.userId.equals(userListInstance.author.loginName)}">
+					<g:if test="${session.userId.equals(userListInstance.author.username)}">
 					<div style="border:0px solid black;width:20%;float:right">	
 						<a href="javascript:void(0)" style="padding-right:5px">
 						<img alt="edit list" title="Rename list" src="${createLinkTo(dir: 'images', file: 'pencil.png')}" onclick="makeEditable(${userListInstance.id});" border="0" /></a>

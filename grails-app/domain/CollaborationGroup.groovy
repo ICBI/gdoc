@@ -1,36 +1,39 @@
 class CollaborationGroup {
-	def jdbcTemplate
 	static mapping = {
-			table 'CSM_PROTECTION_GROUP'
+			table 'COLLABORATION_GROUP'
 			version false
-			id column:'PROTECTION_GROUP_ID'
-			name column:'PROTECTION_GROUP_NAME'
-			description column: 'PROTECTION_GROUP_DESCRIPTION'
+			id column:'COLLABORATION_GROUP_ID'
+			name column:'NAME'
+			description column: 'DESCRIPTION'
+			artifacts joinTable: [name: 'GROUP_ARTIFACT', column: 'PROTECTED_ARTIFACT_ID', key: 'COLLABORATION_GROUP_ID']
 	}
 	
 	String name
 	String description
-	static transients = ['users']
-	static hasMany = [invitations:Invitation]
-	
-	
-	public Object getUsers() {
-		if(this.@id) {
-			def pgId = this.@id
-			def users = []
-			def userIds = []
-			users = jdbcTemplate.queryForList("select USER_ID from CSM.CSM_USER_GROUP_ROLE_PG where PROTECTION_GROUP_ID = '$pgId'")
-			users.each{
-				userIds << it.get("USER_ID")
-			}
-			def protGroupUsers = []
-			protGroupUsers = GDOCUser.getAll(userIds)
-			return protGroupUsers as Set
-		}
+	static hasMany = [artifacts:ProtectedArtifact,memberships:Membership,invitations:Invitation]
+	static constraints = {
+		name(nullable:false)
 	}
 	
 	static searchable = {
 		alias "collaborationGroup"
+	}
+	static transients = ['users']
+	
+	public Object getUsers() {
+		if(this.@memberships) {
+			def users = []
+			users = this.@memberships.collect{it.user}
+			return users as Set
+		}
+	}
+	
+	public void setName(String s){ 
+	        name = s?.toUpperCase() 
+ 	}
+	
+	public String getName(){
+		return name.toUpperCase() 
 	}
 	
 }

@@ -31,10 +31,10 @@ class SecurityService {
 	
 	def login(params) throws LoginException{
 		
-		def user = GDOCUser.findByLoginName(params.loginName)
+		def user = GDOCUser.findByUsername(params.username)
 		try{
 			//print authenticationManager.getApplicationContextName();
-			boolean loginOK = this.getAuthenticationManager().login(params.loginName, params.password);
+			boolean loginOK = this.getAuthenticationManager().login(params.username, params.password);
 			if (loginOK){
 				log.debug("SUCESSFUL LOGIN");
 			}
@@ -114,7 +114,7 @@ class SecurityService {
 					def user = new User()
 					if(attr.get("uid")){
 						log.debug "found user id " + attr.get("uid").get()
-						user.setLoginName(attr.get("uid").get())
+						user.setUsername(attr.get("uid").get())
 					}
 					if(attr.get("givenname")){
 						log.debug "found givenname " + attr.get("givenname").get()
@@ -168,15 +168,15 @@ class SecurityService {
 			log.debug cste
 			return false
 		}
-		log.debug "added user " + user.getLoginName()
+		log.debug "added user " + user.getUsername()
 		return true
 	}
 	
-	def populateNewUserAttributes(loginName, password, firstName,lastName,emailId,organization, title){
+	def populateNewUserAttributes(username, password, firstName,lastName,emailId,organization, title){
 		def newUser = new User()
-		if(loginName && firstName &&
+		if(username && firstName &&
 			lastName && organization && emailId){
-			newUser.setLoginName(loginName)
+			newUser.setUsername(username)
 			newUser.setPassword(password)
 			newUser.setFirstName(firstName)
 			newUser.setLastName(lastName)
@@ -220,13 +220,13 @@ class SecurityService {
 		try{
 			if(!user.lastLogin){
 				log.debug "set lastLoginFor this user before deletion"
-				setLastLogin(user.loginName)
+				setLastLogin(user.username)
 			}
 			if(user.memberships){
-				log.debug "delete all groups $user.loginName is a member of..." + user.memberships
+				log.debug "delete all groups $user.username is a member of..." + user.memberships
 				user.memberships.each{
 					if(it.collaborationGroup){
-						if(isUserGroupManager(user.loginName, it.collaborationGroup.name)) {
+						if(isUserGroupManager(user.username, it.collaborationGroup.name)) {
 							log.debug "user is manager of $it.collaborationGroup.name, mark it for deletion"
 							managedGroups << it.collaborationGroup.name
 						}
@@ -234,9 +234,9 @@ class SecurityService {
 				}		
 			}
 			Invitation.executeUpdate("delete Invitation invitation where invitation.invitee = :user", [user:user])
-			log.debug "deleted requestee invitations of " + user.loginName
+			log.debug "deleted requestee invitations of " + user.username
 			managedGroups.each{ groupName ->
-				deleteCollaborationGroup(user.loginName,groupName)
+				deleteCollaborationGroup(user.username,groupName)
 			}
 			user.delete()
 			log.debug "deleted all other objects held by $userId"
@@ -253,21 +253,40 @@ class SecurityService {
 	* Share an item with collaboration group(s)
 	*/
 	def share(item, groups) {
-		def authManager = this.getAuthorizationManager()
-		
-		ProtectionElement pe = authManager.getProtectionElement(item.id.toString(), item.class.name)
-		if(!pe) {
-			pe = new ProtectionElement()
-			pe.protectionElementName = item.class.name + '_' + item.id.toString()
-			
-			pe.objectId = item.id.toString()
-			pe.attribute = item.class.name
-			authManager.createProtectionElement(pe)
+		ProtectedArtifact protectedArtifact = ProtectedArtifact.findByObjectId(item.id)
+		if(!protectedArtifact){
+			println "create protected artifact"
+			def name =  item.class.name + '_' + item.id.toString()
+			def objectId = item.id.toString()
+			def type = item.class.name
+			protectedArtifact = createProtectedArtifact(name,objectId,type)
 		}
-		groups.each{
-			authManager.assignProtectionElement(it, item.id.toString(), item.class.name)
+		if(protectedArtifact){
+			println "completed creating protected artifact, $protectedArtifact.name"
+			groups.each{
+				println "group, $it"
+				def group = CollaborationGroup.findByName(it.toUpperCase())
+				println "found group, $group"
+				if(group){
+					protectedArtifact.addToGroups(group)
+					println "groups now" + protectedArtifact.groups
+				}
+			}
 		}
+		return true
 	}
+	
+	def createProtectedArtifact(name, objectId, type){
+		def protectedArtifact = new ProtectedArtifact()
+		protectedArtifact.name =  name
+		protectedArtifact.objectId = objectId
+		protectedArtifact.type = type
+		if(protectedArtifact.save(flush:true)){
+			return protectedArtifact
+		}else
+		return null
+	}
+	
 	
 	/**
 	Checks if the protection element has already been shared with any of the groups passed.
@@ -275,16 +294,15 @@ class SecurityService {
 	**/
 	def groupsShared(item){
 			log.debug "is $item already shared?"
-			def authManager = this.getAuthorizationManager()
 			def groupNames = []
 		try{
-				ProtectionElement pe = authManager.getProtectionElement(item.id.toString(), item.class.name)
-				if(pe){
-					def groups = authManager.getProtectionGroups(pe.protectionElementId.toString())
+				ProtectedArtifact protectedArtifact = ProtectedArtifact.findByObjectId(item.id)
+				if(protectedArtifact){
+					def groups = protectedArtifact.groups
 					if(groups){
-						log.debug "item $item hs already been shared to "
+						println "item $item hs already been shared to "
 							groups.each{
-								groupNames << it.getProtectionGroupName()
+								groupNames << it.name
 							}
 					}
 				}
@@ -298,115 +316,153 @@ class SecurityService {
 	/**
 	* Creates a new collaboration group
 	**/
-	def createCollaborationGroup(loginName, groupName, description) throws DuplicateCollaborationGroupException{
-		groupName = groupName.toUpperCase()
-		def authManager = this.getAuthorizationManager()
-		def groups = authManager.getProtectionGroups()
-		def currentProtectionGroup = findProtectionGroup(groupName)
-		if(currentProtectionGroup != null)
+	def createCollaborationGroup(username, groupName, description) throws DuplicateCollaborationGroupException{
+		def currentProtectionGroup = CollaborationGroup.findByName(groupName.toUpperCase())
+		if(currentProtectionGroup)
 			throw new DuplicateCollaborationGroupException()
-		def pg = new ProtectionGroup()
-		pg.protectionGroupName = groupName
+		def collabGroup = new CollaborationGroup()
+		collabGroup.name = groupName
 		if(description){
-			pg.protectionGroupDescription = description
+			collabGroup.description = description
 		}else{
-			pg.protectionGroupDescription = "Protection group created by $loginName"
+			collabGroup.description = "Collaboration group created by $username"
 		}
-		authManager.createProtectionGroup(pg)
-		addUserRoleToProtectionGroup(loginName, pg, GROUP_MANAGER)
-		return pg
+		if(collabGroup.save(flush:true)){
+			createMembership(username, collabGroup.name, GROUP_MANAGER)
+		}
+		
+		return collabGroup
 	}
 	
-	/**
-	* Adds a user to a collaboration group (including a study group)
-	**/
-	def addUserToCollaborationGroup(loginName, targetUser, groupName) {
-		groupName = groupName.toUpperCase()
-		if(isUserGroupManager(loginName, groupName)) {
-			def pg = findProtectionGroup(groupName)
-			addUserRoleToProtectionGroup(targetUser, pg, USER)
-		} else {
-			throw new Exception("User $loginName is not a Collaboration Group Manager.")
-		}
-	}
 	
-	def removeUserFromCollaborationGroup(loginName, targetUser, groupName) {
-		groupName = groupName.toUpperCase()
-		if(isUserGroupManager(loginName, groupName)) {
-			def pg = findProtectionGroup(groupName)
-			def user = this.getAuthorizationManager().getUser(targetUser)
-			this.getAuthorizationManager().removeUserFromProtectionGroup(pg.protectionGroupId.toString(), user.userId.toString())
-		} else {
-			throw new Exception("User $loginName is not a Collaboration Group Manager.")
-		}
-	}
-	
-	def deleteCollaborationGroup(loginName, groupName) {
-		groupName = groupName.toUpperCase()
+	def deleteCollaborationGroup(username, groupName) {
 		def invites = []
-		def cg = CollaborationGroup.findByName(groupName)
-		invites= Invitation.findAllByGroup(cg)
-		if(invites){
-			def ids = []
-			ids = invites.collect{it.id}
-			log.debug "delete all invitations for group $groupName, $ids"
-			ids.each{
-				def i = Invitation.get(it)
-				i.delete(flush:true)
+		def cg = CollaborationGroup.findByName(groupName.toUpperCase())
+		
+			def sinvites= Invitation.count()
+			println "invites? $sinvites"
+			invites= cg.invitations
+			println "invites $invites"
+			/**def ids = []
+			invites.each{
+				ids << new Long(it.id)
+				cg.invitations.remove(it)
 			}
-		}
-		if(isUserGroupManager(loginName, groupName)) {
-			def pg = findProtectionGroup(groupName)
-			this.getAuthorizationManager().removeProtectionGroup(pg.protectionGroupId.toString())
-			return true
-		} else {
-			throw new Exception("User $loginName does not have permission to delete this group")
-		}
+			println "removed invitations from group, now delete actual objects"
+			Invitation.executeUpdate("delete Invitation i WHERE i.id IN (:ids)", [ids: ids])
+			if(invites){
+				def ids = []
+				ids = invites.collect{it.id}
+				
+				ids.each{
+					def i = Invitation.get(it)
+					i.delete(flush:true)
+				}
+			}**/
+			if(isUserGroupManager(username, cg.name)) {
+				println "delete user from group then delete group"
+				removeUserFromCollaborationGroup(username,username,cg.name)
+				println "trying to delete the group"
+				cg.delete(flush:true)
+				println "deleted group, still invites?"
+				def oinvites= Invitation.count()
+				println "invites? $oinvites"
+				return true
+			} else {
+				throw new Exception("User $username does not have permission to delete this group")
+			}
+
 		return false
 	}
 	
-	private addUserRoleToProtectionGroup(loginName, protectionGroup, roleName) {
-		String[] roles = new String[1]
-		roles[0] = getRoleIdForName(roleName).toString()
-		def user = this.getAuthorizationManager().getUser(loginName)
-		this.getAuthorizationManager().addUserRoleToProtectionGroup(user.userId.toString(), roles, protectionGroup.protectionGroupId.toString())
-		
-	}
-	
-	def isUserGroupManager(loginName, groupName) {
-		def pg = findProtectionGroup(groupName)
+	def isUserGroupManager(username, groupName) {
+		def collabGroup = CollaborationGroup.findByName(groupName.toUpperCase())
 		def isCollaborationManager
-		if(!pg)
+		if(!collabGroup)
 			throw new Exception("Collaboration group does not exist.")
-		def authManager = this.getAuthorizationManager()
-		def user = authManager.getUser(loginName)
-		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString())
-		def toDelete = groups.find {
-			log.debug "${it.protectionGroup.protectionGroupName} and ${groupName}"
-			it.protectionGroup.protectionGroupName == groupName
+		def user = GDOCUser.findByUsername(username)
+		def memberships = user.memberships
+		def desiredMemberships = memberships.find {
+			println "${it.collaborationGroup.name} and ${it.role.name}"
+			it.collaborationGroup.name == groupName
 		}
-		if(!toDelete){
-			log.debug("user, $loginName does is not member of $groupName")
+		if(!desiredMemberships){
+			 println "user, $username does is not member of $groupName"
 			return false
 		}
 		else{
-			isCollaborationManager = toDelete.roles.find {
-				it.name == GROUP_MANAGER
+			isCollaborationManager = desiredMemberships.find {
+				it.role.name == GROUP_MANAGER
 			}
 			if(isCollaborationManager){
-				log.debug("user, $loginName is THE manager of $groupName")
+				println "user, $username is THE manager of $groupName"
 				return true
 			}
 			else{
-				log.debug("user, $loginName is not manager of $groupName")
+				println "user, $username is not manager of $groupName"
 				return false
 			}
 		}	
 			
 	}
 	
+	private createMembership(username, groupName, roleName){
+		def collabGroup = CollaborationGroup.findByName(groupName.toUpperCase())
+		def role = Role.findByName(roleName)
+		def user = GDOCUser.findByUsername(username)
+		println "$username, $groupName, $roleName"
+		if(user && collabGroup && role){
+			def membership = new Membership(user:user,collaborationGroup:collabGroup,role:role)
+			if(membership.save(flush:true)){
+				println "membership created $membership"
+			}
+		}
+	}
+	
+	/**
+	* Adds a user to a collaboration group (including a study group)
+	**/
+	def addUserToCollaborationGroup(username, targetUser, groupName) {
+		if(isUserGroupManager(username, groupName)) {
+			def collabGroup = CollaborationGroup.findByName(groupName.toUpperCase())
+			def role = Role.findByName(USER)
+			def user = GDOCUser.findByUsername(targetUser)
+			def membership = new Membership(user:user, collaborationGroup:collabGroup,role:role)
+			if(membership.save(flush:true)){
+				return true
+			}
+		} else {
+			throw new Exception("User $username is not a Collaboration Group Manager.")
+		}
+	}
+	
+	def removeUserFromCollaborationGroup(username, targetUser, groupName) {
+		if(isUserGroupManager(username, groupName)) {
+			def user =  GDOCUser.findByUsername(targetUser)
+			def collabGroup = CollaborationGroup.findByName(groupName.toUpperCase())
+			def memberships = Membership.findAllByUserAndCollaborationGroup(user,collabGroup)
+			println "delete all memberships $memberships"
+			if(memberships){
+				def ids = []
+				memberships.each{
+					ids << new Long(it.id)
+					user.memberships.remove(it)
+				}
+				Membership.executeUpdate("delete Membership m WHERE m.id IN (:ids)", [ids: ids])
+			}
+			println "deleted membership, can it still be found?"
+			def membershipf = Membership.findAllByUserAndCollaborationGroup(user,collabGroup)
+			println "found? " + membershipf
+		} else {
+			throw new Exception("User $username is not a Collaboration Group Manager.")
+		}
+	}
+	
+	
+	
+	
 	def findCollaborationManager(groupName){
-		def collabGroup = CollaborationGroup.findByName(groupName)
+		def collabGroup = CollaborationGroup.findByName(groupName.toUpperCase())
 		def memberships = []
 		memberships = Membership.findAllByCollaborationGroup(collabGroup)
 		if(!memberships)
@@ -432,7 +488,7 @@ class SecurityService {
 	
 	def isUserGDOCAdmin(userId){
 		def isUserGDOCAdmin = false
-		def user = GDOCUser.findByLoginName(userId)
+		def user = GDOCUser.findByUsername(userId)
 		def userMemberships = user.memberships
 		userMemberships.each{ membership->
 			if(membership.collaborationGroup &&
@@ -448,81 +504,99 @@ class SecurityService {
 		return isUserGDOCAdmin
 	}
 	
-	private findProtectionGroup(groupName) {
-		def authManager = this.getAuthorizationManager()
-		def groups = authManager.getProtectionGroups()
-		def currentProtectionGroup = groups.find {
-			it.protectionGroupName == groupName
-		}
-		return currentProtectionGroup
-	}
 	
-	def getCollaborationGroups(loginName){
-		def authManager = this.getAuthorizationManager()
-		def user = authManager.getUser(loginName)
-		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
-		def groupNames = []
-		groups.each{
-			groupNames << it.getProtectionGroupName()
+	def getCollaborationGroups(username){
+		def user = GDOCUser.findByUsername(username)
+		def groups = new HashSet()
+		def groupNames = new HashSet()
+		if(user.memberships){
+			groups = user.memberships.collect{it.collaborationGroup}
+		}
+		if(groups){
+			groups.each{
+						groupNames << it.name
+			}
 		}
 		return groupNames
 	}
 	
-	def getSharedItemIds(loginName, itemType, refresh) {
-		if(sharedItems[itemType] != null && !refresh) {
-			return sharedItems[itemType]
-		}
-		def authManager = this.getAuthorizationManager()
-		def user = authManager.getUser(loginName)
-		def groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
-		def elements = groups.collect {
-			return authManager.getProtectionElements(it.protectionGroupId.toString())
-		
-		}
-		elements = elements.flatten()
-		def ids = []
-		elements.each {
-			if (itemType.equals(it.attribute)) {
-				if(ids!=null && !ids.contains(it.objectId)){
-					// check to make sure user has access to study
-					if(isStudy(it) || userCanAccess(user, it.objectId, itemType)) {
-						ids << it.objectId
+	def getSharedItemIds(username, itemType,refresh) {
+			println "find all artifacts for type $itemType"
+			if(sharedItems[itemType] != null && !refresh) {
+				return sharedItems[itemType]
+			}
+			def user = GDOCUser.findByUsername(username)
+			def groups = new HashSet()
+			def groupIds = new HashSet()
+			if(user.memberships){
+				groups = user.memberships.collect{it.collaborationGroup}
+				if(groups){
+					groups.each{
+						groupIds << new Long(it.id)
 					}
 				}
 			}
+			def artifacts = []
+			println "look for collab groups $groupIds"
+			def artifactHQL = "SELECT distinct artifact FROM ProtectedArtifact artifact JOIN artifact.groups groups " + 
+			"WHERE artifact.type = :type " + 
+			"AND groups IN (:groups) "
+			artifacts = ProtectedArtifact.executeQuery(artifactHQL, [type: itemType, groups: groups])
+			artifacts.flatten()
+			def ids = []
+			if(itemType == StudyDataSource.class.name){
+				artifacts.each {
+					ids << it.objectId
+				}
+			}
+
+			else{
+				def aIds
+				if(artifacts){
+					aIds = artifacts.collect{it.objectId}.unique()
+				}
+				println "found unique $itemType artifacts numbering "+ aIds.size()
+				ids = getAccessibleIds(user,itemType,aIds)
+			}
+
+			if(sharedItems[itemType] == null) {
+				log.debug "CACHING ${itemType} $ids"
+				sharedItems[itemType] = ids
+			}
+
+			return ids
 		}
-		if(sharedItems[itemType] == null) {
-			log.debug "CACHING ${itemType} $ids"
-			sharedItems[itemType] = ids
-		}
-		
-		return ids
-	}
+
+		private getAccessibleIds(user, type,ids) {
+				def accessibleIds = []
+				def studyNames = this.getSharedItemIds(user.username, StudyDataSource.class.name,null)
+				println "my shared studies are $studyNames"
+				def studyHQL = "SELECT distinct study FROM StudyDataSource study " + 
+				"WHERE study.shortName IN (:studyNames) "
+				def studies = []
+				studies = StudyDataSource.executeQuery(studyHQL, [studyNames: studyNames])
+				if(type == UserList.class.name){
+					def artifactHQL = "SELECT distinct list.id FROM UserList list JOIN list.studies studies " + 
+					"WHERE studies IN (:studies) "
+					accessibleIds = UserList.executeQuery(artifactHQL, [studies: studies])
+				}
+				if(type == SavedAnalysis.class.name){
+					println "sa " + ids
+					def artifactHQL = "SELECT distinct analysis.id FROM SavedAnalysis analysis JOIN analysis.studies studies " + 
+					"WHERE studies IN (:studies) "
+					accessibleIds = SavedAnalysis.executeQuery(artifactHQL, [studies: studies])
+				}
+				println "found $type accessibleIds " + accessibleIds.size()
+				println "retain"
+				println accessibleIds.retainAll(ids)
+				println "ids " + ids.size()
+				return ids
+			}
 	
-	/**
-	* This uses reflection to instantiate the object type and then check if the
-	* user has access to the associated studies.
-	*/
-	private userCanAccess(user, objectId, type) {
-		def studyNames = this.getSharedItemIds(user.loginName, StudyDataSource.class.name,null)
-		def klazz = Thread.currentThread().contextClassLoader.loadClass(type)
-		log.debug "LOOKING UP $objectId for $type"
-		def item = klazz.get(objectId)
-		if(!item)
-			return false
-		def access = item.studies.collectAll {
-			studyNames.contains(it.shortName)
-		}
-		//log.debug "ACCESS FOR $objectId is $access $studyNames"
-		return !access.contains(false)
-	}
-	private isStudy(pe) {
-		return pe.attribute == 'StudyDataSource'
-	}
 	
-	private getProtectionGroupsForUser(loginName){
+	private getProtectionGroupsForUser(username){
 		def authManager = this.getAuthorizationManager()
-		def user = authManager.getUser(loginName)
+		def user = authManager.getUser(username)
 		def groups = []
 		groups = authManager.getProtectionGroupRoleContextForUser(user.userId.toString()).collect { it.protectionGroup }
 		return groups

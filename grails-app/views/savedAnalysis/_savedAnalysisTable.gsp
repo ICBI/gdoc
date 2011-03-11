@@ -15,7 +15,7 @@
 <div class="notificationContainer" style="height: 10px">
 		<div style="float: left;">
 			
-			<g:if test="${(session.userId.equals(analysis.author.loginName)) && (analysis.query?.geAnalysisId?.toString() != 'null')}">
+			<g:if test="${(session.userId.equals(analysis.author.username)) && (analysis.query?.geAnalysisId?.toString() != 'null')}">
 			<div style="border:0px solid black;width:2%;float:left;padding-right:20px"><g:checkBox class="the_checkbox" name="deleteAnalyses"
 				 value="${analysis.id}" checked="false"/></div>
 			</g:if>
@@ -55,7 +55,7 @@
 				&nbsp;&nbsp;<span><g:formatDate date="${analysis.dateCreated}" format="h:mm M/dd/yyyy"/></span>
 			
 			</div>
-				<g:if test="${session.userId.equals(analysis.author.loginName)}">
+				<g:if test="${session.userId.equals(analysis.author.username)}">
 				<div style="border:0px solid black;width:20%;float:right">	
 					<g:if test="${(!analysis.tags.contains('_temporary')) && (analysis.query?.geAnalysisId?.toString() != 'null')}">
 					<g:link class="thickbox" name="Share &nbsp; analysis &nbsp; with collaboration groups?" action="share" controller="share" 

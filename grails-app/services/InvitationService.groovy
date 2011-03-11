@@ -69,9 +69,9 @@ class InvitationService {
 	 * to invite a user to the group.
 	 */
 	def requestAccess(requestor, invitee, groupName) {
-		def userRequested = GDOCUser.findByLoginName(requestor)
-		def userInvited = GDOCUser.findByLoginName(invitee)
-		def collabGroup = CollaborationGroup.findByName(groupName)
+		def userRequested = GDOCUser.findByUsername(requestor)
+		def userInvited = GDOCUser.findByUsername(invitee)
+		def collabGroup = CollaborationGroup.findByName(groupName.toUpperCase())
 		def invite = findRequest(requestor,invitee,groupName)
 		if(invite){
 			log.debug "found invite, do not create new invitation"
@@ -91,14 +91,14 @@ class InvitationService {
 			and {
 				requestor {
 					or{
-						eq("loginName", requestorName)
-						eq("loginName", inviteeName)
+						eq("username", requestorName)
+						eq("username", inviteeName)
 					}
 				}
 				invitee {
 					or{
-						eq("loginName", requestorName)
-						eq("loginName", inviteeName)
+						eq("username", requestorName)
+						eq("username", inviteeName)
 					}
 				}
 				group {
@@ -119,7 +119,7 @@ class InvitationService {
 		if(!invitation)
 			throw new RuntimeException("Invitation does not exist")
 		def requestedGroup = invitation.group
-		securityService.addUserToCollaborationGroup(groupManager, invitation.requestor.loginName, requestedGroup.name)
+		securityService.addUserToCollaborationGroup(groupManager, invitation.requestor.username, requestedGroup.name)
 		invitation.status = InviteStatus.ACCEPTED
 		invitation.save()
 		return invitation
@@ -133,9 +133,9 @@ class InvitationService {
 		def invitation = Invitation.get(invitationId)
 		if(!invitation)
 			throw new RuntimeException("Invitation does not exist")
-		if(invitee != invitation.invitee.loginName)
+		if(invitee != invitation.invitee.username)
 			throw new RuntimeException("User is not the invitee for this invitation.")
-		securityService.addUserToCollaborationGroup(invitation.requestor.loginName, invitation.invitee.loginName, invitation.group.name)
+		securityService.addUserToCollaborationGroup(invitation.requestor.username, invitation.invitee.username, invitation.group.name)
 		invitation.status = InviteStatus.ACCEPTED
 		invitation.save()
 		return invitation
@@ -145,9 +145,9 @@ class InvitationService {
 	 * This allows either the user to leave a group, or a collaboration 
 	 * group manager to remove a user.
 	 */
-	def revokeAccess(loginName, targetUser, groupName) {
-		securityService.removeUserFromCollaborationGroup(loginName, targetUser, groupName)
-		def request = findRequest(loginName, targetUser, groupName)
+	def revokeAccess(username, targetUser, groupName) {
+		securityService.removeUserFromCollaborationGroup(username, targetUser, groupName)
+		def request = findRequest(username, targetUser, groupName)
 		if(request) {
 			log.debug "found original invite, now withdraw"
 			request.status = InviteStatus.WITHDRAWN
@@ -165,12 +165,12 @@ class InvitationService {
 	}
 	
 	
-	def userAlreadyInGroup(loginName, groupName){
-		def collabGroup = CollaborationGroup.findByName(groupName)
+	def userAlreadyInGroup(username, groupName){
+		def collabGroup = CollaborationGroup.findByName(groupName.toUpperCase())
 		def memberships = []
 		memberships = Membership.findAllByCollaborationGroup(collabGroup)
 		def userExists = memberships.find{
-			it.user.loginName == loginName
+			it.user.username == username
 		}
 		return userExists
 	}
@@ -178,8 +178,8 @@ class InvitationService {
 	/**
 	 retrieves all invitation pertaining to user and organizes based on possible roles in each invite
 	**/
-	def findAllInvitationsForUser(loginName){
-		def user = GDOCUser.findByLoginName(loginName)
+	def findAllInvitationsForUser(username){
+		def user = GDOCUser.findByUsername(username)
 		def invitations = [:]
 		invitations["req"] = []
 		invitations["reqAndMan"] = []
@@ -189,7 +189,7 @@ class InvitationService {
 		invitations["req"] = Invitation.findAllByRequestor(user)
 		//def allInvitations = []
 		invitations["req"].each { invite ->
-			if(securityService.findCollaborationManager(invite.group.name).loginName == loginName){
+			if(securityService.findCollaborationManager(invite.group.name).username == username){
 				invitations["reqAndMan"] << invite
 			}
 		}
@@ -201,7 +201,7 @@ class InvitationService {
 			invitations["req"] = sortAndFilterInvites(invitations["req"])
 		}
 		invitations["inv"].each { invite ->
-			if(securityService.findCollaborationManager(invite.group.name).loginName != loginName){
+			if(securityService.findCollaborationManager(invite.group.name).username != username){
 				invitations["invNotMan"] << invite
 			}
 		}
@@ -247,10 +247,10 @@ class InvitationService {
 		def results = c {
 			and {
 				requestor {
-					eq("loginName", requestorName)
+					eq("username", requestorName)
 				}
 				invitee {
-					eq("loginName", inviteeName)
+					eq("username", inviteeName)
 				}
 				group {
 					eq("name", groupName)

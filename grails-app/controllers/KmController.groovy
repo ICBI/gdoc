@@ -137,7 +137,7 @@ class KmController {
 					def tags = []
 					tags << "KM"
 					tags << "GENE_EXPRESSION"
-					def author = GDOCUser.findByLoginName(session.userId)
+					def author = GDOCUser.findByUsername(session.userId)
 					def list1IsTemp = userListService.listIsTemporary(cmd.groups,author)
 					if(list1IsTemp){
 						tags << Constants.TEMPORARY
@@ -258,7 +258,7 @@ class KmController {
 			}
 			log.debug "TEMPLIST $tempList"
 			if(cmd instanceof KmCommand){
-				def author = GDOCUser.findByLoginName(session.userId)
+				def author = GDOCUser.findByUsername(session.userId)
 				def list1IsTemp = userListService.listIsTemporary(tempList.name,author)
 				if(list1IsTemp){
 					tags << Constants.TEMPORARY

@@ -4,7 +4,7 @@ class UserListItemTests extends GroovyTestCase {
 		
 	}
 /*    void testUserListItem() {
-			def user = GDOCUser.findByLoginName("gdocUser");
+			def user = GDOCUser.findByUsername("gdocUser");
 			user.save();
 			def list = new UserList(name:'myNewPatientList',author:user);
 			def list_items = []

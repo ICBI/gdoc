@@ -29,8 +29,8 @@
 					}
 	});
 	
-	if(jQuery('#loginName')) {
-		jQuery("#loginName").click(function(){
+	if(jQuery('#username')) {
+		jQuery("#username").click(function(){
 			$(this).val("");
 			$(this).css("color","black");
 		})
@@ -54,7 +54,7 @@
 <div align="right" id="success" style="color:white">${flash.message}</div>
 </g:if>
 <g:form name="loginForm" url="[controller:'login',action:'login']" update="[success:'message',failure:'error']">
-       <input name="loginName" id="loginName" type="text" style="color:gray" size="20" onclick="clear()" value="net-Id"></input>
+       <input name="username" id="username" type="text" style="color:gray" size="20" onclick="clear()" value="net-Id"></input>
 		<g:hiddenField name="desiredPage" value="${params.desiredPage}" />
        <input name="password" id="password" type="password" size="15"></input>
        <input type="submit" value="login" />

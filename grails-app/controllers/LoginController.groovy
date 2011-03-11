@@ -19,7 +19,7 @@ class LoginController {
 						try{
 							def user = securityService.login(params)
 							if (user) {
-								session.userId = user.loginName
+								session.userId = user.username
 								if(cmd.desiredPage){
 									log.debug "user wished to go to $cmd.desiredPage view"
 									redirect(controller:'workflows',params:[desiredPage:cmd.desiredPage])

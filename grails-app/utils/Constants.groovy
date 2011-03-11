@@ -5,4 +5,5 @@ class Constants{
 	def static final PATIENT_LIST = "patient"
 	def static final GENE_LIST = "gene"
 	def static final REPORTER_LIST = "reporter"
+	
 }

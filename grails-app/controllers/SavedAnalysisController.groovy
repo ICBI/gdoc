@@ -58,7 +58,7 @@ class SavedAnalysisController{
 							log.debug "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
 							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
 						}
-						else if(analysis.author.loginName != session.userId){
+						else if(analysis.author.username != session.userId){
 							log.debug "did not delete " + analysis + ", you are not the author."
 							message += "did not delete $analysis.id , you are not the author."
 						}
@@ -76,7 +76,7 @@ class SavedAnalysisController{
 							log.debug "could not delete " + analysis + ", this link represents a piece of evidence in a G-DOC finding"
 							message += "analysis $analysis.id could not be deleted because represented as a piece of evidence in a G-DOC finding."
 						}
-						else if(analysis.author.loginName != session.userId){
+						else if(analysis.author.username != session.userId){
 							log.debug "did not delete " + analysis + ", you are not the author."
 							message += "did not delete $analysis.id , you are not the author."
 						}

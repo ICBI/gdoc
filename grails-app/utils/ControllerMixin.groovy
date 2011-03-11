@@ -22,7 +22,7 @@ class ControllerMixin {
 		def isAuthor = false
 		self.log.debug "LOOKING UP author of analysis $id"
 		def item = SavedAnalysis.get(id)
-		if(self.session.userId == item?.author?.loginName){
+		if(self.session.userId == item?.author?.username){
 			isAuthor = true
 		}
 		return isAuthor
@@ -32,7 +32,7 @@ class ControllerMixin {
 		def isAuthor = false
 		self.log.debug "LOOKING UP author of list $id"
 		def item = UserList.get(id)
-		if(self.session.userId == item?.author?.loginName){
+		if(self.session.userId == item?.author?.username){
 			isAuthor = true
 		}
 		return isAuthor

@@ -54,7 +54,7 @@ class RegistrationController {
 					return
 				}
 				recaptchaService.cleanUp(session)
-				def existingUser = GDOCUser.findByLoginName(cmd.userId)
+				def existingUser = GDOCUser.findByUsername(cmd.userId)
 				if(!existingUser){
 					log.debug cmd.userId + " user was not found in the G-DOC system."
 					flash.error = cmd.userId + " user was not found in the G-DOC system."
@@ -103,7 +103,7 @@ class RegistrationController {
 					return
 				}
 				recaptchaService.cleanUp(session)
-				def existingUser = GDOCUser.findByLoginName(cmd.userId)
+				def existingUser = GDOCUser.findByUsername(cmd.userId)
 				if(existingUser){
 					log.debug cmd.userId + " already exists as a user in the G-DOC system."
 					flash.error = cmd.userId + " already exists as a user in the G-DOC system."
@@ -144,7 +144,7 @@ class RegistrationController {
 			log.debug "no errors, begin registration"
 			flash['cmd'] = cmd
 			//check if user already exists
-			def existingUser = GDOCUser.findByLoginName(cmd.netId)
+			def existingUser = GDOCUser.findByUsername(cmd.netId)
 			if(existingUser){
 				log.debug cmd.netId + " already exists as a user in the G-DOC system. Use Net-Id credentials to login above"
 				flash.message = cmd.netId + " already exists as a user in the G-DOC system. Use Net-Id credentials to login above"
@@ -155,12 +155,12 @@ class RegistrationController {
 				def newUser = securityService.validateNetId(cmd.netId.trim(), cmd.department)
 				if(newUser){
 					//check to make sure user has required fields
-					if(newUser.getLoginName() && newUser.getFirstName() && newUser.getLastName()){
+					if(newUser.getUsername() && newUser.getFirstName() && newUser.getLastName()){
 						//if user's netId is valid, add user to G-DOC system
 						if(securityService.createUser(newUser)){
 							//add to PUBLIC collab group
 							def managerPublic = securityService.findCollaborationManager("PUBLIC")
-							securityService.addUserToCollaborationGroup(managerPublic.loginName, newUser.getLoginName(), "PUBLIC")
+							securityService.addUserToCollaborationGroup(managerPublic.username, newUser.getUsername(), "PUBLIC")
 							session.profileLoaded = false
 							session.userId = cmd.netId
 							redirect(controller:'workflows',params:[firstLogin:true])
@@ -172,7 +172,7 @@ class RegistrationController {
 							return
 						}
 					}else{
-						log.debug "user has NET ID, but missing a required field (loginName, firstName or lastName)"
+						log.debug "user has NET ID, but missing a required field (username, firstName or lastName)"
 						flash.message = "There was a system error adding the user to G-DOC. The user may be missing a first and/or last name in the system."
 						redirect(action:'index')
 						return
