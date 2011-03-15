@@ -1,4 +1,0 @@
-class GDOCUserController {
-
-    def index = { }
-}

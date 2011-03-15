@@ -10,7 +10,7 @@
 	<p style="font-size:14pt">Create KM Plot </p>
 		
 		<div id="studyPicker">
-			<g:render template="/studyDataSource/studyPicker"/>
+			<g:render template="/studyDataSource/studyPicker" plugin="gcore"/>
 		</div>
 
 		<div id="searchDiv">

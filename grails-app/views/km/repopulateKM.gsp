@@ -2,7 +2,7 @@
     <head>
         <meta name="layout" content="report" />
         <title>KM Plot Results</title>     
-				<g:render template="/common/flex_header"/>
+				<g:render template="/common/flex_header" plugin="gcore"/>
     </head>
     <body>
 	<br/>

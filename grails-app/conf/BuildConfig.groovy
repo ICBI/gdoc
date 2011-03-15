@@ -7,3 +7,4 @@ grails.war.resources = {stagingDir ->
 	delete(file: "$stagingDir/WEB-INF/lib/jboss-jca.jar")
 	delete(file: "$stagingDir/WEB-INF/lib/ojdbc14.jar")
 }
+grails.plugin.location.'gcore' = "../gcore"

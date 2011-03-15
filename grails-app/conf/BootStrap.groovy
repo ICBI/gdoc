@@ -11,9 +11,6 @@ class BootStrap {
 		
 		switch (GrailsUtil.environment) {
 	       case ["development","sandbox"]:
-				def da = quickStartService.getDataAvailability()
-				servletContext.setAttribute("dataAvailability", da)
-				
 				//load the properties file and put props into system properties
 		     	//Load the the application properties and set them as system properties
 		  		def config = ConfigurationHolder.config
@@ -38,10 +35,6 @@ class BootStrap {
 	           break;
 			case "test":
 				break;	
-			default:
-				def da = quickStartService.getDataAvailability()
-				servletContext.setAttribute("dataAvailability", da)
-				break;
 	   	}
 		
 		// Setup metaclass methods for string 
@@ -51,8 +44,6 @@ class BootStrap {
 			return displayValue
 		}
 		
-		// Domain class fix
-		UserList.get(-1)
      }
      def destroy = {
      }

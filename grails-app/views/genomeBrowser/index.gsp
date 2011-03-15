@@ -114,7 +114,7 @@
 		
 		<div class="clinicalSearch" id="omicsDiv" style="height: 200px">
 			<div id="studyPicker">
-				<g:render template="/studyDataSource/studyPicker" model="[remote:true]"/>
+				<g:render template="/studyDataSource/studyPicker" model="[remote:true]"  plugin="gcore"/>
 			</div>
 			<div class="errorDetail">
 				<g:renderErrors bean="${flash.cmd?.errors}" field="omicsTypes" />

@@ -129,13 +129,13 @@
 	<div id="doc3" class="yui-t1">
 	<div id="hd" style="overflow:hidden;">
 	    <!-- Header start -->
-	    <g:render template="/common/header"/>
+	    <g:render template="/common/header" plugin="gcore"/>
 		
 	    <!-- Header end -->
 	</div>
 	<div class="c" style="background:#fff;border:.5px solid #000;">
 		<div>
-		<g:render template="/common/nav_top" />
+		<g:render template="/common/nav_top" plugin="gcore"/>
 		<br/>
 		<br/>
 	<br/>
