@@ -1,0 +1,105 @@
+				<div style="float:left;width:45%;padding-right:5px">
+						<table border="0">
+							<tr>
+								<td colspan="2" style="height:29px;background: url('/gdoc/images/bgTitles.png') repeat;">
+									<p style="margin-top:4px;color:#336699">Getting Started with G-DOC</p>
+								</td>
+							</tr>
+								<tr>
+									
+									<td valign="top" colspan="2" style="color:#336699;">
+										<p style="font-size:.8em">
+										Most users prefer to start using G-DOC to compare and analyze how groups of patients within a cancer study differ, either clinically or via various 'omics' characteristics. The typical process of searching for unique patient lists before analysis is done for you in the Quick Start feature below. 
+										<!--p style="font-size:1em;text-decoration:none;padding-top:7px">
+												<span style="color:#336699;">Example Workflow</span></p>
+										<ul style="font-size:.8em;padding-left:25px">
+											<li>Select the Search > Clinical Data link to the right.
+											<li>Enter criteria that will define a cohort of patients.
+											<li>Save these results and repeat this procedure for another cohort.
+											<li>Once you have stratified several groups, analyze them with Analyze > Group Comparison link.
+										</ul>
+										</p-->
+									</td>
+								</tr>
+								<tr>
+									<td valign="top">
+										<img src="${createLinkTo(dir:'images',file:'quickStart.png')}" border="0" />
+									</td>
+									<td valign="top" style="color:#336699;">
+										<p style="font-size:1.1em;text-decoration:underline;padding-top:7px">
+											<g:link controller="quickStart" style="color:#336699;">Quick Start</g:link></p>
+										<p style="font-size:.8em">Let G-DOC organize patients by cancer type (diseases) enabling you to stratify 2 groups by outcome (e.g Relapse) and quickly take you to the next step of performing an analysis.</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<img src="${createLinkTo(dir:'images',file:'tutorialsIcon.png')}" border="0" />
+									</td>
+									<td style="color:#336699">
+										<p style="font-size:1.1em;text-decoration:underline;padding-top:0px">
+											<g:link controller="tutorials" style="color:#336699;">Tutorials</g:link></p>
+										<p style="font-size:.8em">Watch step-by-step movies of workflows that are available within the G-DOC application. More instruction is also available in the <g:link controller="help" style="color:#336699;">help section.</g:link></p>
+									</td>
+								</tr>
+						</table>
+				</div>
+				<div style="float:right;width:45%">
+						<table border="0">
+							<tr>
+								<td colspan="2" style="height:29px;background: url('/gdoc/images/bgTitles.png') repeat;">
+									<p style="margin-top:4px;color:#336699">Features</p>
+								</td>
+							</tr>
+								<tr style="color:#336699;border-bottom:1px solid #336699;" valign="top">
+									<td>
+										<p class="info" title="Query G-DOC clinial data and save patient lists for use in later analyses (click 'Clinical Data' to the left). Explore data in the genome browser. View details of recent findings." style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:25px;cursor:pointer;">Search</p>
+										<img src="${createLinkTo(dir:'images',file:'searchIcon.png')}" border="0" />
+									</td>
+									<td>
+										
+											<p style="font-size:.8em;margin-top:20px">
+											<g:link controller="clinical" style="color:#336699;">Clinical Data</g:link><br /><br />
+											<g:link controller="genomeBrowser" style="color:#336699;">Browse Genome</g:link><br /><br />
+											<g:link controller="moleculeTarget" style="color:#336699;">Compounds/Drug Targets</g:link> <br /><br />
+											<g:link controller="geneExpression" style="color:#336699;">Gene Expression</g:link><br /><br />
+											<g:link controller="studyDataSource" style="color:#336699;">Studies</g:link> <br /><br />
+											<g:link controller="finding" style="color:#336699;">Findings</g:link> <br />
+											<!--span style="color:gray;text-decoration:underline">Biospecimens (future feature)</span><br /-->
+											</p><br />
+									</td>
+								</tr>
+								<tr style="color:#336699;border-bottom:1px solid #336699;" valign="top">
+									<td>
+										<p class="info" title="Perform high-throughput analyses on cohorts of patients to discover differences among patients in regard to 'omics' data" style="font-size:1.1em;text-decoration:underline;padding-top:0px;padding-left:22px;cursor:pointer">Analyze</p>
+										<img src="${createLinkTo(dir:'images',file:'analysisIcon.png')}" border="0" />
+									</td>
+									<td style="padding-bottom:5px">
+											<p style="font-size:.8em;margin-top:10px">
+											<g:link controller="analysis" style="color:#336699;">Group Comparison</g:link><br /><br />
+											<g:link controller="km" style="color:#336699;">KM Plots</g:link><br /><br />
+											<g:link controller="heatMap" style="color:#336699;">HeatMap Viewer</g:link><br /><br />
+											<g:link controller="pca" style="color:#336699;">Classification</g:link><br /><br />
+											<g:link controller="cin" style="color:#336699;">Chromosomal Instability Index</g:link><br />
+											<!--span style="color:gray;text-decoration:underline">Correlations/Multi-Omics (future feature)</span><br /><br />
+											<span style="color:gray;text-decoration:underline">Pathways/Networks (future feature)</span><br /-->
+											
+											</p>
+									</td>
+								</tr>
+								<tr style="color:#336699" valign="top">
+									<td>
+										<p class="info" title="Manage your lists, analyses and memberships. Share data you've collected and discovered via this collaboration feature." style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:15px;cursor:pointer">My G-DOC</p>
+										
+										<img src="${createLinkTo(dir:'images',file:'myGdoc.png')}" border="0" />
+									</td>
+									<td>
+										<p style="font-size:.8em;margin-top:20px">
+<g:link controller="notification" style="color:#336699;">Notifications</g:link><br /><br />
+<g:link name="View My Saved Lists" controller="userList" style="color:#336699;">Saved Lists</g:link><br /><br />
+<g:link name="View My Saved Analysis" controller="savedAnalysis" style="color:#336699;">Saved Analysis</g:link><br /><br />
+<g:link name="Collaboration Groups" controller="collaborationGroups" style="color:#336699;x">Manage my groups / Request access</g:link>
+		</p>
+									</td>
+								</tr>
+						</table>
+				</div>		
