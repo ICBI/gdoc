@@ -2,6 +2,7 @@ import grails.converters.*
 import org.apache.commons.math.stat.descriptive.rank.Median
 
 @Mixin(ControllerMixin)
+@Extension(type=ExtensionType.SEARCH, menu="Gene Expression")
 class GeneExpressionController {
 
 	def analysisService

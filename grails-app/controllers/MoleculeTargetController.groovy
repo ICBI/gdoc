@@ -1,6 +1,7 @@
 import org.compass.core.engine.SearchEngineQueryParseException
 import grails.converters.*
 
+@Extension(type=ExtensionType.SEARCH, menu="Compounds/Drug Targets")
 class MoleculeTargetController {
 	def drugDiscoveryService
 	def annotationService

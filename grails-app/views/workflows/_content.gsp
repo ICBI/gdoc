@@ -10,15 +10,6 @@
 									<td valign="top" colspan="2" style="color:#336699;">
 										<p style="font-size:.8em">
 										Most users prefer to start using G-DOC to compare and analyze how groups of patients within a cancer study differ, either clinically or via various 'omics' characteristics. The typical process of searching for unique patient lists before analysis is done for you in the Quick Start feature below. 
-										<!--p style="font-size:1em;text-decoration:none;padding-top:7px">
-												<span style="color:#336699;">Example Workflow</span></p>
-										<ul style="font-size:.8em;padding-left:25px">
-											<li>Select the Search > Clinical Data link to the right.
-											<li>Enter criteria that will define a cohort of patients.
-											<li>Save these results and repeat this procedure for another cohort.
-											<li>Once you have stratified several groups, analyze them with Analyze > Group Comparison link.
-										</ul>
-										</p-->
 									</td>
 								</tr>
 								<tr>
@@ -58,13 +49,7 @@
 									<td>
 										
 											<p style="font-size:.8em;margin-top:20px">
-											<g:link controller="clinical" style="color:#336699;">Clinical Data</g:link><br /><br />
-											<g:link controller="genomeBrowser" style="color:#336699;">Browse Genome</g:link><br /><br />
-											<g:link controller="moleculeTarget" style="color:#336699;">Compounds/Drug Targets</g:link> <br /><br />
-											<g:link controller="geneExpression" style="color:#336699;">Gene Expression</g:link><br /><br />
-											<g:link controller="studyDataSource" style="color:#336699;">Studies</g:link> <br /><br />
-											<g:link controller="finding" style="color:#336699;">Findings</g:link> <br />
-											<!--span style="color:gray;text-decoration:underline">Biospecimens (future feature)</span><br /-->
+												<g:searchLinks/>
 											</p><br />
 									</td>
 								</tr>
@@ -75,14 +60,7 @@
 									</td>
 									<td style="padding-bottom:5px">
 											<p style="font-size:.8em;margin-top:10px">
-											<g:link controller="analysis" style="color:#336699;">Group Comparison</g:link><br /><br />
-											<g:link controller="km" style="color:#336699;">KM Plots</g:link><br /><br />
-											<g:link controller="heatMap" style="color:#336699;">HeatMap Viewer</g:link><br /><br />
-											<g:link controller="pca" style="color:#336699;">Classification</g:link><br /><br />
-											<g:link controller="cin" style="color:#336699;">Chromosomal Instability Index</g:link><br />
-											<!--span style="color:gray;text-decoration:underline">Correlations/Multi-Omics (future feature)</span><br /><br />
-											<span style="color:gray;text-decoration:underline">Pathways/Networks (future feature)</span><br /-->
-											
+												<g:analysisLinks/>
 											</p>
 									</td>
 								</tr>

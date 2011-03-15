@@ -1,6 +1,7 @@
 import grails.converters.*
 
 @Mixin(ControllerMixin)
+@Extension(type=ExtensionType.SEARCH, menu="Browse Genome")
 class GenomeBrowserController {
 
 	def index = {

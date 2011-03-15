@@ -5,6 +5,7 @@ import gov.nih.nci.caintegrator.analysis.messaging.HeatMapResult
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 @Mixin(ControllerMixin)
+@Extension(type=ExtensionType.ANALYSIS, menu="HeatMap Viewer")
 class HeatMapController {
 
 	def analysisService

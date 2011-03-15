@@ -2,6 +2,7 @@ import grails.converters.*
 import org.json.simple.*
 
 @Mixin(ControllerMixin)
+@Extension(type=ExtensionType.ANALYSIS, menu="KM Plots")
 class KmController {
 
 	def kmService 

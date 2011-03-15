@@ -3,6 +3,7 @@ import java.text.*
 import java.math.*
 
 @Mixin(ControllerMixin)
+@Extension(type=ExtensionType.ANALYSIS, menu="Group Comparison")
 class AnalysisController {
 
 	def analysisService
