@@ -63,7 +63,7 @@ class CinController {
 			log.debug cmd.errors
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
-			def study = StudyDataSource.findBySchemaName(cmd.study)
+			def study = Study.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
 			def tags = []

@@ -40,7 +40,7 @@ class PcaController {
 	def submit = { PcaCommand cmd ->
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
-			def study = StudyDataSource.findBySchemaName(cmd.study)
+			def study = Study.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
 			def datasetType = params.dataSetType.replace(" ","_")
@@ -78,7 +78,7 @@ class PcaController {
 			analysisResult.studySchemas().each { study ->
 				log.debug "STUDY $study"
 				StudyContext.setStudy(study)
-				def sds = StudyDataSource.findBySchemaName(study)
+				def sds = Study.findBySchemaName(study)
 				session.study = sds
 			}
 			StudyContext.setStudy(analysisResult.query["study"])
@@ -139,7 +139,7 @@ class PcaController {
 		analysisResult.studySchemas().each { study ->
 			log.debug "STUDY $study"
 			StudyContext.setStudy(study)
-			def sds = StudyDataSource.findBySchemaName(study)
+			def sds = Study.findBySchemaName(study)
 			session.study = sds
 			dataTypes.addAll(AttributeType.findAll())
 		}
@@ -164,7 +164,7 @@ class PcaController {
 			}
 		}
 		def schemName = StudyContext.getStudy()
-		def study = StudyDataSource.findBySchemaName(schemName)
+		def study = Study.findBySchemaName(schemName)
 		clinicalTypes.sort { it.longName }
 		pcaResults["study"] = study.shortName
 		pcaResults["clinicalTypes"] = []

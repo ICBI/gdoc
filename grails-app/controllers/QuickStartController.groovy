@@ -132,7 +132,7 @@ class QuickStartController {
 	
 	def analysis = {
 		log.debug params
-		def study = StudyDataSource.findByShortName(params.study)
+		def study = Study.findByShortName(params.study)
 		def author = GDOCUser.findByUsername(session.userId)
 		session.study = study
 		StudyContext.setStudy(study.schemaName)
@@ -226,7 +226,7 @@ class QuickStartController {
 	
 	def clinical = {
 		log.debug params
-		def study = StudyDataSource.findByShortName(params.study)
+		def study = Study.findByShortName(params.study)
 		StudyContext.setStudy(study.schemaName)
 		session.study = study
 		redirect(controller:"clinical") 

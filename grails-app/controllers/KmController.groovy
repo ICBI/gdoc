@@ -50,7 +50,7 @@ class KmController {
 	def search = { KmCommand cmd ->
 		if(cmd.hasErrors()) {
 			flash['cmd'] = cmd
-			def study = StudyDataSource.findBySchemaName(cmd.study)
+			def study = Study.findBySchemaName(cmd.study)
 			redirect(action:'index',id:study.id)
 		} else {
 			def selectedLists
@@ -132,7 +132,7 @@ class KmController {
 			KmGeneExpCommand cmd ->
 				if(cmd.hasErrors()) {
 					flash['cmd'] = cmd
-					def study = StudyDataSource.findBySchemaName(cmd.study)
+					def study = Study.findBySchemaName(cmd.study)
 					redirect(action:'index',id:study.id)
 				} else {
 					def tags = []
