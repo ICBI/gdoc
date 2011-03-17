@@ -262,3 +262,22 @@ environments {
 // Jquery configuration
 jquery.sources="jquery" 
 jquery.version="1.3.2" 
+
+// Jquery configuration
+jquery.sources="jquery" 
+jquery.version="1.3.2" 
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'GDOCUser'
+//grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.gdoc.demo.UserRole'
+grails.plugins.springsecurity.authority.className = 'Role'
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = "/workflows"
+
+grails.exceptionresolver.params.exclude = ['password']
+//grails.plugins.springsecurity.providerNames=['ldapAuthProvider','myAuthenticationProvider','anonymousAuthenticationProvider']
+
+grails.plugins.springsecurity.ldap.context.managerDn = 'uid=gdocdevUIDWebMapping,ou=Specials,dc=georgetown,dc=edu'
+grails.plugins.springsecurity.ldap.context.managerPassword = 'gTQ8me5dGjjJ783guu'
+grails.plugins.springsecurity.ldap.context.server = 'ldaps://directory.georgetown.edu:636'
+grails.plugins.springsecurity.ldap.authorities.groupSearchBase = 'ou=People,dc=georgetown,dc=edu'
+grails.plugins.springsecurity.ldap.search.base = 'dc=georgetown,dc=edu'

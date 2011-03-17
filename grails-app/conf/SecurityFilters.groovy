@@ -1,5 +1,6 @@
 class SecurityFilters {
    def securityService
+   def springSecurityService
 	
    def filters = {
         loginCheck(controller:'*', action:'*') {
@@ -36,7 +37,7 @@ class SecurityFilters {
 			                return false
 						}
 			  } 
-              else if(!session.userId && !controllerName.equals('home') 
+              else if(!springSecurityService.isLoggedIn() && !controllerName.equals('home') 
 						&& !controllerName.equals('login') && !controllerName.equals('public')
 						 && !controllerName.equals('registration') && !controllerName.equals('activation')
 							&& !controllerName.equals('contact')
@@ -44,7 +45,7 @@ class SecurityFilters {
 				  redirect(controller:'home', action:'index')
                   return false
               }
-			else if(session.userId && controllerName.equals('admin')){
+			else if(springSecurityService.isLoggedIn() && controllerName.equals('admin')){
 				if(!session.isGdocAdmin){
 					redirect(controller:'home', action:'index')
 					log.debug "$session.userId tried to access the admin panel but is not a GDOC Administrator" 
