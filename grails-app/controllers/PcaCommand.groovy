@@ -10,7 +10,7 @@ class PcaCommand {
 	String reporterCriteria
 	String study
 	String patientCriteria
-	AnalysisType requestType = (AnalysisType.PCA)
+	static AnalysisType requestType = (AnalysisType.PCA)
 	def annotationService
 	def idService
 	

@@ -6,7 +6,7 @@ class CinCommand {
 	String cytobandsAnnotationFile = "hg18_annot.Rda"
 	String baselineGroup
 	String groups
-	AnalysisType requestType = (AnalysisType.CIN)
+	static AnalysisType requestType = (AnalysisType.CIN)
 	def userListService
 	def idService
 	

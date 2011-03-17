@@ -4,7 +4,7 @@ class GeneExpressionCommand {
 	String geneName
 	String dataFile
 	List reporters
-	AnalysisType requestType = (AnalysisType.GENE_EXPRESSION)
+	static AnalysisType requestType = (AnalysisType.GENE_EXPRESSION)
 	def annotationService
 	String study
 	

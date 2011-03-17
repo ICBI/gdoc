@@ -12,7 +12,7 @@ class HeatMapCommand {
 	Boolean selectAll
 	String reporterIds
 	String[] groups
-	AnalysisType requestType = (AnalysisType.HEATMAP)
+	static AnalysisType requestType = (AnalysisType.HEATMAP)
 	def annotationService
 	def idService
 	

@@ -8,7 +8,7 @@ class AnalysisCommand {
 	String study
 	String statisticalMethod
 	String adjustment
-	AnalysisType requestType = (AnalysisType.CLASS_COMPARISON)
+	static AnalysisType requestType = (AnalysisType.CLASS_COMPARISON)
 	def userListService
 	
 	static constraints = {
