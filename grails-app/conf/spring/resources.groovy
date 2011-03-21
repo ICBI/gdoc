@@ -7,7 +7,7 @@ import javax.jms.Queue
 import javax.jms.QueueConnectionFactory
 
 beans = {
-    entityInterceptor(StudyContextInterceptor)
+    /*entityInterceptor(StudyContextInterceptor)
 
 	jndiTemplate(org.springframework.jndi.JndiTemplate) {
 		environment = ["java.naming.factory.initial":"org.jnp.interfaces.NamingContextFactory",
@@ -42,7 +42,7 @@ beans = {
 	securityService(org.springframework.aop.scope.ScopedProxyFactoryBean){
 		targetBeanName="securityServiceProxy"
 		proxyTargetClass=true
-	} 
+	} */
 	switch(GrailsUtil.environment) { 
 		case GrailsApplication.ENV_TEST: 
 			testDataSource(BasicDataSource) { 
