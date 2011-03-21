@@ -8,3 +8,4 @@ grails.war.resources = {stagingDir ->
 	delete(file: "$stagingDir/WEB-INF/lib/ojdbc14.jar")
 }
 grails.plugin.location.'gcore' = "../gcore"
+grails.plugin.location.'group-comparison' = "../group-comparison"

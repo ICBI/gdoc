@@ -1,7 +1,7 @@
 				<div style="float:left;width:45%;padding-right:5px">
 						<table border="0">
 							<tr>
-								<td colspan="2" style="height:29px;background: url('/gdoc/images/bgTitles.png') repeat;">
+								<td colspan="2" class="titleBar">
 									<p style="margin-top:4px;color:#336699">Getting Started with G-DOC</p>
 								</td>
 							</tr>
@@ -37,7 +37,7 @@
 				<div style="float:right;width:45%">
 						<table border="0">
 							<tr>
-								<td colspan="2" style="height:29px;background: url('/gdoc/images/bgTitles.png') repeat;">
+								<td colspan="2" class="titleBar">
 									<p style="margin-top:4px;color:#336699">Features</p>
 								</td>
 							</tr>

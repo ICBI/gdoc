@@ -1,5 +1,7 @@
+@DataExtension(type=DataExtensionType.GENE, label="Target Data")
 class DrugDiscoveryService {
 	def annotationService
+	def grailsApplication
 	
 	/**
 	Currently finds all molecule targets for a gene alias
@@ -26,6 +28,18 @@ class DrugDiscoveryService {
 		
     }
 
-	
+	def createLink(item) {
+		def targets = findTargetsFromAlias(item)
+		def targetLinks = []
+		if(targets){
+			targets.each{ target ->
+				def link = "<a href='/${grailsApplication.metadata['app.name']}/moleculeTarget/show/"+target.id+"'>"+target+"</a>"
+				targetLinks << link
+			}
+		}
+		if(!targetLinks)
+			return ""
+		return targetLinks.toString()
+	}
 	
 }
