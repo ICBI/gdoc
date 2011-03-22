@@ -9,3 +9,4 @@ grails.war.resources = {stagingDir ->
 }
 grails.plugin.location.'gcore' = "../gcore"
 grails.plugin.location.'group-comparison' = "../group-comparison"
+grails.plugin.location.'heatmap' = "../heatmap"
