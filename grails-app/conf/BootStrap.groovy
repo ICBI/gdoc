@@ -8,14 +8,6 @@ class BootStrap {
 	def quickStartService
 	
      def init = { servletContext ->
-		
-		// Setup metaclass methods for string 
-		String.metaClass.decamelize = {
-			def displayValue = StringUtils.capitalize(delegate)
-			displayValue = displayValue.replaceAll(/([^A-Z])([A-Z])/, '$1 $2').trim()
-			return displayValue
-		}
-		
      }
      def destroy = {
      }
