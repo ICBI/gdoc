@@ -5,8 +5,6 @@ import grails.util.GrailsUtil
 import org.apache.commons.lang.StringUtils
 
 class BootStrap {
-	def quickStartService
-	
      def init = { servletContext ->
      }
      def destroy = {
