@@ -1,4 +1,0 @@
-class GenomicController {
-
-    def index = { }
-}
