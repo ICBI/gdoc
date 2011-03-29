@@ -42,6 +42,7 @@ environments {
 			debug "grails.app", "listener"
 			debug 'org.codehaus.groovy.grails.plugins.springsecurity'
 		}
+		responseQueue = "AnalysisResponseAndrew"
 	}
 	sandbox {
 		log4j = {
