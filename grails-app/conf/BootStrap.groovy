@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils
 class BootStrap {
      def init = { servletContext ->
 		// Initialize custom json converter
-		grails.converters.JSON.registerObjectMarshaller(new ExpressionLookupResultMarshaller())
+		//grails.converters.JSON.registerObjectMarshaller(new ExpressionLookupResultMarshaller())
      }
      def destroy = {
      }
