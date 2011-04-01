@@ -3,11 +3,12 @@ import org.springframework.context.ApplicationContext
 import org.codehaus.groovy.grails.commons.*
 import grails.util.GrailsUtil
 import org.apache.commons.lang.StringUtils
+import grails.converters.*
 
 class BootStrap {
      def init = { servletContext ->
 		// Initialize custom json converter
-		//grails.converters.JSON.registerObjectMarshaller(new ExpressionLookupResultMarshaller())
+		JSON.registerObjectMarshaller(new ExpressionLookupResultMarshaller())
      }
      def destroy = {
      }

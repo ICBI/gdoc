@@ -6,7 +6,11 @@ import grails.converters.*
 import gov.nih.nci.caintegrator.analysis.messaging.ExpressionLookupResult
 
 public class ExpressionLookupResultMarshaller extends DomainClassMarshaller {
-
+	
+	ExpressionLookupResultMarshaller(){
+	    super(false) //a constructor can call its superclass's constructor if it's
+	  }
+	
 	public boolean supports(Object object) {
 		return (object instanceof ExpressionLookupResult)
 	}
