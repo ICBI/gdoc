@@ -7,8 +7,6 @@ import grails.converters.*
 
 class BootStrap {
      def init = { servletContext ->
-		// Initialize custom json converter
-		JSON.registerObjectMarshaller(new ExpressionLookupResultMarshaller())
      }
      def destroy = {
      }
