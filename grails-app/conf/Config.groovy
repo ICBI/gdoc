@@ -1,3 +1,4 @@
+grails.json.legacy.builder = false
 // set per-environment serverURL stem for creating absolute links
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'GDOCUser'
@@ -22,7 +23,9 @@ environments {
 			    additivity = true
 			}
 			debug "grails.app", "listener"
+			debug 'org.codehaus.groovy.grails.plugins.springsecurity'
 		}
+		responseQueue = "AnalysisResponse"
     }
     demo {
 		log4j = {
@@ -42,7 +45,18 @@ environments {
 			debug "grails.app", "listener"
 			debug 'org.codehaus.groovy.grails.plugins.springsecurity'
 		}
-		responseQueue = "AnalysisResponseAndrew"
+		mail {
+		     host = "smtp.gmail.com"
+		     port = 465
+		     username = "rossokr@gmail.com"
+		     password = "Positano2006!"
+		     props = ["mail.smtp.auth":"true", 					   
+		              "mail.smtp.socketFactory.port":"465",
+		              "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+		              "mail.smtp.socketFactory.fallback":"false"]
+
+		}
+		responseQueue = "AnalysisResponseKevin"
 	}
 	sandbox {
 		log4j = {

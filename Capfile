@@ -23,7 +23,7 @@ set :repository do
   fetch(:deploy_from)
 end
 
-set :war, "gdoc.war"
+set :war, "target/gdoc.war"
 # TOMCAT SERVERS
 set :jboss_home, "/opt/jboss-4.2.3.GA"
 set :jboss_start, "/sbin/service jboss start"
