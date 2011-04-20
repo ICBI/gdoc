@@ -59,7 +59,7 @@ class SearchableTests extends GroovyTestCase {
 			
 			//terms << searchableService.termFreqs("longName")
 			//terms << searchableService.termFreqs("shortName")
-			//terms << searchableService.termFreqs("cancerSite")
+			//terms << searchableService.termFreqs("disease")
 			//terms << Finding.termFreqs("title")
 			//terms << StudyDataSource.termFreqs("abstractText")
 			//terms << searchableService.termFreqs("name")
@@ -72,7 +72,7 @@ class SearchableTests extends GroovyTestCase {
 			
 			/**def comp = searchableService.compass
 			def lastResult =""
-			QueryParser parser = new QueryParser("cancerSite", new StandardAnalyzer()); 
+			QueryParser parser = new QueryParser("disease", new StandardAnalyzer()); 
 			IndexSearcher indexSearcher = new IndexSearcher("/Users/kmr75/.grails/projects/gdoc/searchable-index/test/index/studydatasource");
 			Query query = parser.parse("b*");
 			Hits hits = indexSearcher.search(query);

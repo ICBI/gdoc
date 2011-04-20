@@ -25,11 +25,11 @@ class QuickStartController {
 			if(params.diseases && session.myStudies){
 				if(params.diseases.metaClass.respondsTo(params.diseases,"max")){
 					diseases = params.diseases as List
-					studiesToSearch = session.myStudies.findAll{diseases.contains(it.cancerSite)}
+					studiesToSearch = session.myStudies.findAll{diseases.contains(it.disease)}
 				}else{
 					log.debug "one disease "
 					diseases << params.diseases
-					studiesToSearch = session.myStudies.findAll{ diseases.contains(it.cancerSite)}
+					studiesToSearch = session.myStudies.findAll{ diseases.contains(it.disease)}
 				}
 			log.debug "studies, " + studiesToSearch.collect{it.shortName} + "  and diseases = $diseases"	
 			}

@@ -22,7 +22,7 @@ class QuickStartService implements ApplicationContextAware{
 		def patients = []
 		patients = Patient.findAll()
 		result['STUDY'] = study.shortName
-		result['CANCER'] = study.cancerSite
+		result['DISEASE'] = study.disease
 		log.debug "find data for $study.shortName -> total patients in study: " + patients.size()
 		result['CLINICAL'] = patients.size()
 		
