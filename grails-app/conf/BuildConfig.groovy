@@ -28,6 +28,19 @@ grails.project.dependency.resolution = {
 		grailsRepo "https://svn-bccfr.uis.georgetown.edu/svn/gdoc/gcore-plugins"
 		grailsCentral()
 	}
+	plugins {
+		runtime 'edu.georgetown.gcore:cin:latest.integration'
+		runtime 'edu.georgetown.gcore:cytoscape:latest.integration'
+		runtime 'edu.georgetown.gcore:gcore:latest.integration'
+		runtime 'edu.georgetown.gcore:gene-expression-search:latest.integration'
+		runtime 'edu.georgetown.gcore:genome-browser:latest.integration'
+		runtime 'edu.georgetown.gcore:group-comparison:latest.integration'
+		runtime 'edu.georgetown.gcore:heatmap:latest.integration'
+		runtime 'edu.georgetown.gcore:km:latest.integration'
+		runtime 'edu.georgetown.gcore:molecule-target:latest.integration'
+		runtime 'edu.georgetown.gcore:pca:latest.integration'
+		runtime 'edu.georgetown.gcore:quick-start:latest.integration'
+	}
 }
 //grails.plugin.location.'gcore' = "../gcore"
 //grails.plugin.location.'group-comparison' = "../group-comparison"
