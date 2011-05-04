@@ -15,6 +15,9 @@ grails.plugins.springsecurity.ldap.context.server = 'ldaps://directory.georgetow
 grails.plugins.springsecurity.ldap.authorities.groupSearchBase = 'ou=People,dc=georgetown,dc=edu'
 grails.plugins.springsecurity.ldap.search.base = 'dc=georgetown,dc=edu'
 
+appTitle="G-DOC"
+appLongName="Georgetown Database of Cancer"
+
 environments {
     devserver {
 		log4j = {
