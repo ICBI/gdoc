@@ -18,6 +18,7 @@ grails.plugins.springsecurity.ldap.search.base = 'dc=georgetown,dc=edu'
 appTitle="G-DOC &reg;"
 appLongName="Georgetown Database of Cancer"
 appVersion="1.3"
+appLogo="gdocHeader.png"
 environments {
     devserver {
 		log4j = {
