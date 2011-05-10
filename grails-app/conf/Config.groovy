@@ -19,6 +19,7 @@ appTitle="G-DOC &reg;"
 appLongName="Georgetown Database of Cancer"
 appVersion="1.3"
 appLogo="gdocHeader.png"
+appContactEmail="gdoc-help@georgetown.edu"
 environments {
     devserver {
 		log4j = {
