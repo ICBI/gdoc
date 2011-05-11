@@ -1,4 +1,4 @@
-grails.config.defaults.locations=["classpath:conf/GcoreConfig.groovy", "file:/Users/kmr75/dev/gdoc-refactor/grails-app/conf/GcoreConfig.groovy"]
+grails.config.defaults.locations=["classpath:GcoreConfig.groovy", "file:${basedir}/grails-app/conf/GcoreConfig.groovy"]
 
 grails.json.legacy.builder = false
 
