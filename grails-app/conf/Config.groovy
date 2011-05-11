@@ -1,5 +1,4 @@
-grails.config.defaults.locations = [ "classpath:conf/GcoreConfig.groovy",
-									 "file:${ basedir }/grails-app/conf/GcoreConfig.groovy"]
+grails.config.defaults.locations=["classpath:conf/GcoreConfig.groovy", "file:/Users/kmr75/dev/gdoc-refactor/grails-app/conf/GcoreConfig.groovy"]
 
 grails.json.legacy.builder = false
 
@@ -34,6 +33,10 @@ environments {
 	development {
 		grails.serverURL = "http://localhost:8080"
 		responseQueue = "AnalysisResponseKevin"
+		molecule3DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule3D"
+		molecule2DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule2D"
+		documentsPath = "https://demo.gdoc.georgetown.edu/content/documents"
+		videosPath = "https://demo.gdoc.georgetown.edu/content/video"
 		log4j = {
 			root {
 			    error 'stdout'
