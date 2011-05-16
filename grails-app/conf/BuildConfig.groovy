@@ -36,9 +36,12 @@ grails.project.dependency.resolution = {
 		runtime 'edu.georgetown.gcore:molecule-target:latest.integration'
 		runtime 'edu.georgetown.gcore:pca:latest.integration'
 		runtime 'edu.georgetown.gcore:quick-start:latest.integration'
+		runtime 'edu.georgetown.gcore:analysis-core:latest.integration'
+		
 	}
 }
 //grails.plugin.location.'gcore' = "../grails-gcore"
+//grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
 //grails.plugin.location.'heatmap' = "../grails-heatmap"
 //grails.plugin.location.'cin' = "../cin"
