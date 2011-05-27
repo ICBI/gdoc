@@ -1,0 +1,6 @@
+original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
+SAMPLE_TYPE		SAMPLE_TYPE	Sample Type	Indicates from which neoplastic stage the tissue sample was taken	PATHOLOGY					1	0	1	VARCHAR2(24)			
+TYPE		TYPE	Type of data set	The type of data and samples in this dataset	CLINICAL					1	0	1	VARCHAR2(15)			
+TIMEPOINT		TIMEPOINT	Timepoint	Timepoint during which biospecimen was obtained	CLINICAL					1	0	1	VARCHAR2(10)			
+DRUG		DRUG	Drug	Name of the drug given to the sample	CLINICAL					1	0	1	VARCHAR2(10)			
+DOSAGE		DOSAGE	Dosage	Dosage of drug given to the sample	CLINICAL					1	0	1	VARCHAR2(10)			
