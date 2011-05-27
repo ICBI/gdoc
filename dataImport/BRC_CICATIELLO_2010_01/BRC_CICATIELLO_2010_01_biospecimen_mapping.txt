@@ -52,14 +52,3 @@ MCF-7_28h	1842761042_C	Illumina HumanWG-6 v2.0 BeadChip	BRC_CICATIELLO_2010_01.R
 MCF-7_32h	1842761042_D	Illumina HumanWG-6 v2.0 BeadChip	BRC_CICATIELLO_2010_01.Rda	Quantile Normalization
 MCF-7_0h	1842761042_E	Illumina HumanWG-6 v2.0 BeadChip	BRC_CICATIELLO_2010_01.Rda	Quantile Normalization
 ZR-75.1_0h	1842761042_F	Illumina HumanWG-6 v2.0 BeadChip	BRC_CICATIELLO_2010_01.Rda	Quantile Normalization
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
