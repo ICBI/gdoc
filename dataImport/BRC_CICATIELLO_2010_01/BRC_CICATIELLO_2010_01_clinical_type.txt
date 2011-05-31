@@ -4,3 +4,4 @@ TYPE		TYPE	Type of data set	The type of data and samples in this dataset	CLINICA
 TIMEPOINT		TIMEPOINT	Timepoint	Timepoint during which biospecimen was obtained	CLINICAL					1	0	1	VARCHAR2(10)			
 DRUG		DRUG	Drug	Name of the drug given to the sample	CLINICAL					1	0	1	VARCHAR2(10)			
 DOSAGE		DOSAGE	Dosage	Dosage of drug given to the sample	CLINICAL					1	0	1	VARCHAR2(10)			
+PARENT_CELL_LINE		PARENT_CELL_LINE	Parent Cell Line	Name of the parent cell line	CLINICAL					1	0	1	VARCHAR2(10)			
