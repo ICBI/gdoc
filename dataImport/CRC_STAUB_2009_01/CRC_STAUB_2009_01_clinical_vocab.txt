@@ -43,6 +43,3 @@ DISEASE_LOCALIZATION	RECTUM_RECTOSIGMOID	Rectum Rectosigmoid		Rectum Rectosigmoi
 DISEASE_LOCALIZATION	RECTUM_UPPER_THIRD	Rectum Upper Third		Rectum Upper Third		
 DISEASE_LOCALIZATION	RIGHT_FLEXURE	Right Flexure		Right Flexure		
 DISEASE_LOCALIZATION	RECTUM_MIDDLE_TO_LOWER_THIRD	Rectum Middle to Lower Third		Rectum Middle to Lower Third		
-						
-						
-						
