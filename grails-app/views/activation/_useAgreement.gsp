@@ -152,7 +152,7 @@
 			</tr>
 			<tr>
 				<td>Java Treeview</td>
-				<td><a href="${grailsApplication.config.documentsPath}/gnuLGPL3.pdf" target="_blank">GNU Lesser General Public License 3</a>,<a href="${grailsApplication.config.documentsPath}/gpl-3.0.txt" target="_blank">GNU General Public License 3</a></td>
+				<td><a href="${grailsApplication.config.documentsPath}/gnuLGPL3.pdf" target="_blank">GNU Lesser General Public License 3</a>*,<a href="${grailsApplication.config.documentsPath}/gpl-3.0.txt" target="_blank">GNU General Public License 3</a></td>
 				<td>Yes</td>
 				<td><a href="${grailsApplication.config.contentPath}/TreeViewApplet.jar" target="_blank">${grailsApplication.config.contentPath}/TreeViewApplet.jar</a></td>
 			</tr>
