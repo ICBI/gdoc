@@ -1,0 +1,108 @@
+PATIENT_ID	SAMPLE_ID	FILE	ARRAY_DESIGN	RDA_FILE	RDA_DESCRIPTION
+B13	GSM517193	GSM517193.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B17	GSM517194	GSM517194.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B19	GSM517195	GSM517195.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B25	GSM517196	GSM517196.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B29	GSM517197	GSM517197.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B31	GSM517198	GSM517198.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B33	GSM517199	GSM517199.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B35	GSM517200	GSM517200.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B39	GSM517201	GSM517201.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B66	GSM517202	GSM517202.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B68	GSM517203	GSM517203.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B70	GSM517204	GSM517204.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B72	GSM517205	GSM517205.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B74	GSM517206	GSM517206.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B76	GSM517207	GSM517207.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B78	GSM517208	GSM517208.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B80	GSM517209	GSM517209.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B82	GSM517210	GSM517210.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B84	GSM517211	GSM517211.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B86	GSM517212	GSM517212.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B88	GSM517213	GSM517213.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B90	GSM517214	GSM517214.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B94	GSM517215	GSM517215.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B96	GSM517216	GSM517216.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+B98	GSM517217	GSM517217.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M100	GSM517218	GSM517218.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M102	GSM517219	GSM517219.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M104	GSM517220	GSM517220.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M106	GSM517221	GSM517221.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M11	GSM517222	GSM517222.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M13	GSM517223	GSM517223.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M15	GSM517224	GSM517224.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M17	GSM517225	GSM517225.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M31	GSM517226	GSM517226.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M35	GSM517227	GSM517227.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M43	GSM517228	GSM517228.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M53	GSM517229	GSM517229.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M67	GSM517230	GSM517230.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M69	GSM517231	GSM517231.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M71	GSM517232	GSM517232.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M73	GSM517233	GSM517233.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M79	GSM517234	GSM517234.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M81	GSM517235	GSM517235.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M88	GSM517236	GSM517236.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M90	GSM517237	GSM517237.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M92	GSM517238	GSM517238.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M94	GSM517239	GSM517239.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M96	GSM517240	GSM517240.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+M98	GSM517241	GSM517241.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY16	GSM517242	GSM517242.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY18	GSM517243	GSM517243.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY2	GSM517244	GSM517244.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY204	GSM517245	GSM517245.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY206	GSM517246	GSM517246.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY208	GSM517247	GSM517247.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY216	GSM517248	GSM517248.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY218	GSM517249	GSM517249.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY222	GSM517250	GSM517250.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY224	GSM517251	GSM517251.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY226	GSM517252	GSM517252.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY228	GSM517253	GSM517253.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY232	GSM517254	GSM517254.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY26	GSM517255	GSM517255.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY307	GSM517256	GSM517256.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY309	GSM517257	GSM517257.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY311	GSM517258	GSM517258.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY313	GSM517259	GSM517259.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY317	GSM517260	GSM517260.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY319	GSM517261	GSM517261.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY321	GSM517262	GSM517262.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY323	GSM517263	GSM517263.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY325	GSM517264	GSM517264.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY327	GSM517265	GSM517265.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY329	GSM517266	GSM517266.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY331	GSM517267	GSM517267.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY333	GSM517268	GSM517268.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY34	GSM517269	GSM517269.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY36	GSM517270	GSM517270.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY39	GSM517271	GSM517271.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY41	GSM517272	GSM517272.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY44	GSM517273	GSM517273.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY6	GSM517274	GSM517274.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY65	GSM517275	GSM517275.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY7	GSM517276	GSM517276.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY70	GSM517277	GSM517277.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY79	GSM517278	GSM517278.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY82	GSM517279	GSM517279.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY96	GSM517280	GSM517280.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+NY99	GSM517281	GSM517281.txt	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+X98	X98	X98.txt	Illumina Human v1 MicroRNA expression beadchip	CRC_SARVER_2009_01_microRNA.Rda	Median normalization
