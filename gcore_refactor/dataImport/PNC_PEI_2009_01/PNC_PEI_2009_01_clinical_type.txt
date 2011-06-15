@@ -1,4 +1,0 @@
-original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-SAMPLE_TYPE		SAMPLE_TYPE	Sample Type	Indicates from which neoplastic stage the tissue sample was taken	PATHOLOGY					1	0	1	VARCHAR2(24)			
-GENDER		GENDER	Gender	The classification of the sex or gender role of the patient.	DEMOGRAPHICAL		1	62	 C17357	1	0	1	VARCHAR2(6)			
-AGE		AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	NUMBER(4, 1)	years	0	120

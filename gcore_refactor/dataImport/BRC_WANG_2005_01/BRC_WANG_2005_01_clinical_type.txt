@@ -1,6 +1,0 @@
-original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-lymph node status	ATTRIBUTE_TYPE_ID=202	NODAL_STATUS	Lymph Node Status	Lymph Node positivity for tumor cells	PATHOLOGY					1	0	1	VARCHAR			
-time to relapse or last follow-up (months)	new	TIME_TO_RELAPSE/FU_MONTHS	Time to relapse or last follow-up in months	Time to relapse or last follow-up in months	CLINICAL					0	0	0	NUMBER(4,1)	Months	0	600
-relapse (1=True)	ATTRIBUTE_TYPE_ID=238	RELAPSE	Relapse	The return of a disease after its apparent cessation.	CLINICAL					1	0	1	VARCHAR			
-ER Status	ATTRIBUTE_TYPE_ID=200	ER_STATUS	ER Status	Estrogen Receptor Status	PATHOLOGY					0	0	1	VARCHAR			
-Brain relapses (1=yes, 0=no)	new	BRAIN_RELAPSE	Brain Relapse	Brain Relapse	CLINICAL					0	0	1	VARCHAR			

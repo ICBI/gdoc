@@ -1,6 +1,0 @@
-original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-lymph node status	ATTRIBUTE_TYPE_ID=202	NODAL_STATUS	Lymph Node Status	Lymph Node positivity for tumor cells	PATHOLOGY					1	0	1	VARCHAR2(8)			
-tumor grade	ATTRIBUTE_TYPE_ID=433	HIST_TUMOR_GRADE	Histological tumor grade	Histological tumor grade	PATHOLOGY					1	0	1	VARCHAR(1)			
-tumor size in cm	ATTRIBUTE_TYPE_ID=349	TUMOR_SIZE	Tumor size	The tumor size in centimeters	PATHOLOGY					0	0	0	NUMBER(3,1)	cm	0	99.9
-t.dmfs	ATTRIBUTE_TYPE_ID=415	DMFS_MONTHS	Distant metastasis free survival in months	Tracks the distant metastasis free survival time from diagnosis or surgery of the patient till the event or last follow up 	CLINICAL					0	0	0	NUMBER(4,1)	months	0	600
-e.dmfs	ATTRIBUTE_TYPE_ID=376	EVENT_DMFS	Event indicator for Distant Metastasis Free Survival	Indicates that distant metastasis occurred and was recorded OR no distant metastasis was recorded	CLINICAL					0	0	1	NUMBER(1)			

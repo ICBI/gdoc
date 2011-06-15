@@ -1,5 +1,0 @@
-TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
-SAMPLE_TYPE	TUMOR	Tumor		The sample is from Tumor Tissue
-SAMPLE_TYPE	NORMAL	Normal		The sample is from Normal Tissue
-GENDER	MALE	MALE		An individual who reports belonging to the cultural gender role distinction of male. 
-GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.

@@ -1,3 +1,0 @@
-NETID	LAST_NAME	FIRST_NAME	SUFFIX	EMAIL	NOTES	TYPE
-private	data	Private			PI	PI
-rbr7	Riggins	Rebecca	PHD	rbr7@georgetown.edu	POINT_OF_CONTACT	POINT_OF_CONTACT

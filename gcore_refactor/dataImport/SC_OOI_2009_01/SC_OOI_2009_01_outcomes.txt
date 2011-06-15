@@ -1,3 +1,0 @@
-Outcome	Query	Description
-Tumor	"(select /*+ index(v,PATIENT_ATTRIBUTE_VALUE_INDEX1) */ distinct (p.patient_id) from sc_ooi_2009_01.patient p, common.attribute_type c, sc_ooi_2009_01.patient_attribute_value v where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id and ((c.short_name = 'HIST_TUMOR_TYPE' and v.value != 0)))"	Has significant tumor
-Non-Tumor	"(select /*+ index(v,PATIENT_ATTRIBUTE_VALUE_INDEX1) */ distinct (p.patient_id) from sc_ooi_2009_01.patient p, common.attribute_type c, sc_ooi_2009_01.patient_attribute_value v where p.patient_id = v.patient_id and v.attribute_type_id = c.attribute_type_id and ((c.short_name = 'HIST_TUMOR_TYPE' and v.value = 0)))"	No significant tumor

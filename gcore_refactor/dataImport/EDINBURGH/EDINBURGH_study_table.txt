@@ -1,2 +1,0 @@
-SHORT_NAME	LONG_NAME	ABSTRACT	CANCER_SITE	PATIENT_ID_NAME	INTEGRATED	OVERALL_ACCESS	SCHEMA_NAME	USE_IN_GUI	CONTENT_TYPES	SHOW_CONTENT_IN_GUI
-EDINBURGH	Data from the Impact study and the Exemestane study	Pathological and clinical data from the Impact study(2004) and the Neoadjuvant Exmestane Study (received in 2006) study	BREAST	Sample iid	1	PRIVATE	EDINBURGH	1	CLINIC, MICROARRAY	1, 1

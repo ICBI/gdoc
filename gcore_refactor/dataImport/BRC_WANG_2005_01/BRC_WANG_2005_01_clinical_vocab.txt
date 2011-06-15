@@ -1,9 +1,0 @@
-TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
-NODAL_STATUS	NEGATIVE	NEGATIVE		Lymph Node negative for tumor cells
-NODAL_STATUS	POSITIVE	POSITIVE		Lymph Nodes positive for tumor cells
-RELAPSE	NO	NO		The patient has not had relapse
-RELAPSE	YES	YES		The patient has had relapse
-ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
-ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
-BRAIN_RELAPSE	NO	NO		Patient did not have brain relapse
-BRAIN_RELAPSE	YES	YES		Patient had brain relapse

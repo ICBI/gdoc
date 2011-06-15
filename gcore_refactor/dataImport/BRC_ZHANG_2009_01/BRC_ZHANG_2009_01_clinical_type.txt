@@ -1,4 +1,0 @@
-original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range	
-DFS.time in Months	ATTRIBUTE_TYPE_ID=352	DISEASE_FREE_SURVIVAL_MON	Disease free survival in months	Disease free survival in months	CLINICAL					0	0	0	NUMBER(4,1)	months	0	600	acs224
-DFS status	ATTRIBUTE_TYPE_ID=364	EVENT_DFS	Event indicator for Disease Free Survival	Indicates recurrence OR that no recurrence was recorded	CLINICAL					1	0	1	VARCHAR				
-Metastasis within 5 years	ATTRIBUTE_TYPE_ID=360	METASTASIS_WITHIN_5YRS	Metastasis within 5 years	Patient showed evidence of metastasis within 5 years	CLINICAL					1	0	1	VARCHAR				

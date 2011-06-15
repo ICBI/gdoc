@@ -1,1 +1,0 @@
-list1=Edinburgh_1063_SEL	Edinburgh_1004_SEL	Edinburgh_1023_SEL	Edinburgh_1065_SEL	

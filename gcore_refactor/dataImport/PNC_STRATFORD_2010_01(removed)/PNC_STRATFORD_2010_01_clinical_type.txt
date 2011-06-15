@@ -1,6 +1,0 @@
-original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-type		PTNM_T	Primary Tumor Site (pTNM-T)	Primary Tumor Site in pTNM Classification	PATHOLOGY					1	0	1	VARCHAR2(5)			
-node		PTNM_N	Lymph Node Involvement (pTNM-N)	Degree of lymph node involvement in pTNM Classification. N staging determines whether or not the cancer has spread into nearby lymph nodes 	PATHOLOGY					1	0	1	VARCHAR2(5)			
-OVERALL_SURVIVAL_MONTHS	staging attribute type=505	OVERALL_SURVIVAL_MONTHS	Overall survival in months	Tracks the time from diagnosis or surgery to event(death) or last follow up in months	CLINICAL					0	0	0	"NUMBER(4,1)"	months	0	600
-OS_EVENT	staging attribute type=374	EVENT_OS	Event indicator for overall survival	Indicates death OR no record of death	CLINICAL					0	0	1	NUMBER(1)			
-RISK_GROUP	new	RISK_GROUP	Risk Group of the patient	Risk Group of the patient	CLINICAL					1	0	1	VARCHAR2(5)			

@@ -1,6 +1,0 @@
-original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-SAMPLE_TYPE	new 	SAMPLE_TYPE	Sample Type	Indicates from which neoplastic stage the tissue sample was taken	PATHOLOGY					1	0	1	VARCHAR2(24)			
-size	ATTRIBUTE_TYPE_ID=199	TUMOR_SIZE	Tumor size	The tumor size in centimeters	PATHOLOGY					0	0	0	"NUMBER(2,1)"	cm	0	99.9
-Hist grade	staging attribute type=433	HIST_TUMOR_GRADE	Histological tumor grade	Histological tumor grade	PATHOLOGY					1	0	1	VARCHAR(1)			
-VASCULAR_INVASION	new 	VASCULAR_INVASION	Vascular Invasion	Indicates whether vascular invasion occurred or not and its type	PATHOLOGY					1	0	1	VARCHAR2(15)			
-SATELLITE_TUMOR	new 	SATELLITE_TUMOR	Satellite Tumor	Indicates if satellite tumor was found or not	PATHOLOGY					1	0	1	VARCHAR2(15)			

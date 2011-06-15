@@ -1,8 +1,0 @@
-TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
-NODAL_STATUS	NEGATIVE	NEGATIVE		Lymph Node negative for tumor cells
-NODAL_STATUS	POSITIVE	POSITIVE		Lymph Nodes positive for tumor cells
-HIST_TUMOR_GRADE	MODERATELY_DIFF	Moderately differentiated		Moderately differentiated
-HIST_TUMOR_GRADE	POORLY_DIFF	Poorly differentiated		Poorly differentiated
-HIST_TUMOR_GRADE	WELL_DIFF	Well differentiated		Well differentiated
-EVENT_DMFS	0	CENSORING		0 stands for CENSORING meaning no record of distant metastasis
-EVENT_DMFS	1	EVENT		1 stands for EVENT indicating distant metastasis   
