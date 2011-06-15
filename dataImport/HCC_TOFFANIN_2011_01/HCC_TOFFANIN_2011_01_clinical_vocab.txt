@@ -1,0 +1,59 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+GENDER	MALE	MALE		An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
+VASCULAR_INVASION	NO	NO		No vascular invasion
+VASCULAR_INVASION	YES	YES		Vascular invasion in association with tumor
+BCLC_STAGE	0	Stage 0: Very Early HCC		Stage 0: Very Early HCC
+BCLC_STAGE	A	Stage A: Early HCC		Early stage (A) includes patients with asymptomatic early tumors suitable for radical therapies--resection, transplantation or percutaneous treatments.
+BCLC_STAGE	B	Stage B: Intermediate HCC		Intermediate stage (B) comprises patients with asymptomatic multinodular HCC. 
+BCLC_STAGE	C	Stage C: Advanced HCC		Advanced stage (C) includes patients with symptomatic tumors and/or an invasive tumoral pattern (vascular invasion/extrahepatic spread).
+RESECTION	YES	YES		Indicates that patient underwent surgical removal of the organ
+LIVER_TRANSPLANT	YES	YES		Indicates that the patient had a liver transplant
+HCC_SUBCLASS	Polysomy chr7	Polysomy of chr7		Polysomy of chromosome 7 class
+HCC_SUBCLASS	Inflammation	Inflammation		Inflammation class
+HCC_SUBCLASS	Proliferation	Proliferation		Proliferation class that enriches IGF1R and RPS6 phosphorylation
+HCC_SUBCLASS	CTNNB1	CTNNB1		CTNNB1 class that enriches CTNNB1 mutations
+HCC_SUBCLASS	Unannotated	Unannotated		Unannotated class
+TP53_MUTATION	WT	Wild Type		Wild Type
+TP53_MUTATION	256G>GT | R249R/S	195G>GT | E271E/X		195G>GT | E271E/X
+TP53_MUTATION	284G>GT | D259D/Y	249_250het_insGAATC		249_250het_insGAATC
+TP53_MUTATION	440G>GA | C176C/Y	256G>GT | R249R/S		256G>GT | R249R/S
+TP53_MUTATION	344A>AC | Q144Q/P	284G>GT | D259D/Y		284G>GT | D259D/Y
+TP53_MUTATION	366A>AG,Y205Y/C	344A>AC | Q144Q/P		344A>AC | Q144Q/P
+TP53_MUTATION	195G>GT | E271E/X	364C>CA | P151P/T		364C>CA | P151P/T
+TP53_MUTATION	386G>GT | R158R/L	366A>AG,Y205Y/C		366A>AG,Y205Y/C
+TP53_MUTATION	249_250het_insGAATC	386G>GT | R158R/L		386G>GT | R158R/L
+TP53_MUTATION	364C>CA | P151P/T	440G>GA | C176C/Y		440G>GA | C176C/Y
+TP53_MUTATION	201C>CT | R273R/C	201C>CT | R273R/C		201C>CT | R273R/C
+CTNNB1_MUTATION	WT	Wild Type		Wild Type
+CTNNB1_MUTATION	233A>AG,p.D32D/G	232G>GA | D32D/N		232G>GA | D32D/N
+CTNNB1_MUTATION	239G>GA,p.G34G/E	232G>GA,p.D32D/N		232G>GA,p.D32D/N
+CTNNB1_MUTATION	239G>GT,p.G34G/V	232G>GT | D32D/Y		232G>GT | D32D/Y
+CTNNB1_MUTATION	259A>AG,p.T41T/A	233A>AG,p.D32D/G		233A>AG,p.D32D/G
+CTNNB1_MUTATION	236C>CT | S33S/F	233A>AT | D32D/V		233A>AT | D32D/V
+CTNNB1_MUTATION	271T>TG,p.S45S/A	234_245het_delCTCTGGAATCCA		234_245het_delCTCTGGAATCCA
+CTNNB1_MUTATION	232G>GA | D32D/N	235T>TC | S33S/P		235T>TC | S33S/P
+CTNNB1_MUTATION	247T>TG | S37S/A	236C>CG | S33S/C		236C>CG | S33S/C
+CTNNB1_MUTATION	272C>T | S45F	236C>CT | S33S/F		236C>CT | S33S/F
+CTNNB1_MUTATION	248C>CG | S37S/C	236C>CT,p.S33S/F		236C>CT,p.S33S/F
+CTNNB1_MUTATION	236C>CG | S33S/C	239G>GA,p.G34G/E		239G>GA,p.G34G/E
+CTNNB1_MUTATION	233A>AT | D32D/V	239G>GT | G34G/V		239G>GT | G34G/V
+CTNNB1_MUTATION	236C>CT,p.S33S/F	239G>GT,p.G34G/V		239G>GT,p.G34G/V
+CTNNB1_MUTATION	260C>CT | T41T/I	247T>TG | S37S/A		247T>TG | S37S/A
+CTNNB1_MUTATION	232G>GA,p.D32D/N	248C>CG | S37S/C		248C>CG | S37S/C
+CTNNB1_MUTATION	235T>TC | S33S/P	248C>CT | S37S/F		248C>CT | S37S/F
+CTNNB1_MUTATION	232G>GT | D32D/Y	259A>AG,p.T41T/A		259A>AG,p.T41T/A
+CTNNB1_MUTATION	248C>CT | S37S/F	260C>CT | T41T/I		260C>CT | T41T/I
+CTNNB1_MUTATION	234_245het_delCTCTGGAATCCA	271T>TG,p.S45S/A		271T>TG,p.S45S/A
+CTNNB1_MUTATION	239G>GT | G34G/V	272C>T | S45F		272C>T | S45F
+CTNNB1_MUTATION	238G>GA,p.G34G/R	238G>GA,p.G34G/R		238G>GA,p.G34G/R
+RPS6_IHC_STATUS	POSITIVE	POSITIVE		Protein RPS6 tested by immunochemistry shows positivity
+RPS6_IHC_STATUS	NEGATIVE	NEGATIVE		Protein RPS6 tested by immunochemistry shows negativity
+IGF1R_IHC_STATUS	POSITIVE	POSITIVE		Protein IGF1R tested by immunochemistry shows positivity
+IGF1R_IHC_STATUS	NEGATIVE	NEGATIVE		Protein IGF1R tested by immunochemistry shows negativity
+AKT_IHC_STATUS	POSITIVE	POSITIVE		Protein AKT tested by immunochemistry shows positivity
+AKT_IHC_STATUS	NEGATIVE	NEGATIVE		Protein AKT tested by immunochemistry shows negativity
+CTNNB1_IHC_STATUS	POSITIVE	POSITIVE		Protein CTNNB1 tested by immunochemistry shows positivity
+CTNNB1_IHC_STATUS	NEGATIVE	NEGATIVE		Protein CTNNB1 tested by immunochemistry shows negativity
+SAMPLE_TYPE	HEPATOCELLULAR_CARCINOMA	Hepatocellular Carcinoma		Hepatocellular Carcinoma
+SAMPLE_TYPE	NON_TUMOR_CIRRHOTIC	Non tumor Cirrhotic		Non tumor Cirrhotic
