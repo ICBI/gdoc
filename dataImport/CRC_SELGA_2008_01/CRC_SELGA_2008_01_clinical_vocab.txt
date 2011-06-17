@@ -3,16 +3,16 @@ PARENT_CELL_LINE	HT29	HT29		HT29 cell line
 TYPE	CELL_LINE	Cell Line		Experiment has been done on cell lines	
 METHOTREXATE_SENSITIVITY	SENSITIVE	SENSITIVE		Indictes whether the sample is sensitive or resistant to 	
 METHOTREXATE_SENSITIVITY	RESISTANT	RESISTANT			
-CL_ATCC_LINK	http://www.atcc.org/ATCCAdvancedCatalogSearch/ProductDetails/tabid/452/Default.aspx?ATCCNum=HTB-38&Template=cellBiology	"<a href=""http://www.atcc.org/ATCCAdvancedCatalogSearch/ProductDetails/tabid/452/Default.aspx?ATCCNum=HTB-38&Template=cellBiology"">http://www.atcc.org/ATCCAdvancedCatalogSearch/ProductDetails/tabid/452/Default.aspx?ATCCNum=HTB-38&Template=cellBiology</a> "		Link to ATCC website for HT29 cell line	
-CL_ALTERNATE_NAME	HTB-38	HTB-38		"The alternate name for HT29 cell line is HTB-38
-"	
+CL_ATCC_LINK	http://www.atcc.org/ATCCAdvancedCatalogSearch/ProductDetails/tabid/452/Default.aspx?ATCCNum=HTB-38&Template=cellBiology	"<a href="http://www.atcc.org/ATCCAdvancedCatalogSearch/ProductDetails/tabid/452/Default.aspx?ATCCNum=HTB-38&Template=cellBiology">http://www.atcc.org/ATCCAdvancedCatalogSearch/ProductDetails/tabid/452/Default.aspx?ATCCNum=HTB-38&Template=cellBiology</a> "		Link to ATCC website for HT29 cell line	
+CL_ALTERNATE_NAME	HTB-38	HTB-38		The alternate name for HT29 cell line is HTB-38
+	
 CL_CELL TYPE _OR_SOURCE	COLON CANCER	COLON CANCER		This cell line has been isolated from a colon cancer cell	
-CL_GROWTH_PROPERTIES	ADHERENT	ADHERENT		"This cell line has an adherent growth property. Adherent cells require a surface, such as tissue culture plastic or microcarrier, which may be coated with extracellular matrix components to increase adhesion properties and provide other signals needed for growth and differentiation. Most cells derived from solid tissues are adherent. "	
+CL_GROWTH_PROPERTIES	ADHERENT	ADHERENT		This cell line has an adherent growth property. Adherent cells require a surface, such as tissue culture plastic or microcarrier, which may be coated with extracellular matrix components to increase adhesion properties and provide other signals needed for growth and differentiation. Most cells derived from solid tissues are adherent. 	
 CL_ORGANISM	HUMAN	HUMAN		This cell line has been isolated from the human species	
-CL_MORPHOLOGY	EPITHELIAL	EPITHELIAL		"This cell line has cells with Epithelial-like morphology. Epithelial-like cells are polygonal in shape with more regular dimensions, and grow attached to a substrate in discrete patches."	
+CL_MORPHOLOGY	EPITHELIAL	EPITHELIAL		This cell line has cells with Epithelial-like morphology. Epithelial-like cells are polygonal in shape with more regular dimensions, and grow attached to a substrate in discrete patches.	
 CL_GENDER	FEMALE	FEMALE		This cell line has been isolated from an organism whose gender is female	
 CL_ETHNICITY	CAUCASIAN	CAUCASIAN		This cell line has been isolated from an organism whose ethnicity is caucasian	
-CL_PROPERTIES_CELLULAR PRODUCTS	PRODUCING CARCINOEMBRYONIC ANTIGEN||RELEASING SECRETORY COMPONENT OF IGA	PRODUCING CARCINOEMBRYONIC ANTIGEN||RELEASING SECRETORY COMPONENT OF IGA		"Properties of this cell line include producing cacinoembryonic antigens, releasing secretory component of IgA."	
+CL_PROPERTIES_CELLULAR PRODUCTS	PRODUCING CARCINOEMBRYONIC ANTIGEN||RELEASING SECRETORY COMPONENT OF IGA	PRODUCING CARCINOEMBRYONIC ANTIGEN||RELEASING SECRETORY COMPONENT OF IGA		Properties of this cell line include producing cacinoembryonic antigens, releasing secretory component of IgA.	
 CL_BLOOD_TYPE	A	A		Indicates that this cell line is of blood type A	
 CL_RH_TYPE	RH+	RH+		Indicates that this cell line is Rh positive	
 CL_HLA_PROFILE	A1||A3||B12||B17||CW5	A1||A3||B12||B17||CW5		A1||A3||B12||B17||CW5	
