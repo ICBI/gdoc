@@ -6,34 +6,3 @@ HT29_SENSITIVE_3	HT29	REPLICATE		SENSITIVE
 HT29_RESISTANT_1	HT29	REPLICATE		RESISTANT																														
 HT29_RESISTANT_2	HT29	REPLICATE		RESISTANT																														
 HT29_RESISTANT_3	HT29	REPLICATE		RESISTANT																														
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
-																																		
