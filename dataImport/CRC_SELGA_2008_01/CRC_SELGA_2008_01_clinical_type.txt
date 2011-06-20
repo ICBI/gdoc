@@ -1,49 +1,32 @@
 original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-age	staging attribute type=368	AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	NUMBER(3,1)	years	0	120
-gender	staging attribute type=421	GENDER	Gender	The classification of the sex or gender role of the patient.	DEMOGRAPHICAL		1	62	 C17357	1	0	1	VARCHAR2(6)			
-race	new	RACE	Race	Race (not ethnicity)	DEMOGRAPHICAL					1	0	1	VARCHAR2(50)			
-tumor stage	staging attribute type=387	TUMOR_STAGE	The extent of the spread of a malignant tumor from its site of origin.	Tumor staging is the process of defining at what point in the natural history of the malignant disease the patient is when the diagnosis is made. The organ and cell type in which the malignancy has developed defines the type of malignancy.	PATHOLOGY					1	0	1	VARCHAR2(15)			
-Hist grade	staging attribute type=433	HIST_TUMOR_GRADE	Histological tumor grade	Histological tumor grade	PATHOLOGY					1	0	1	VARCHAR(1)			
-e.os	staging attribute type=374	EVENT_OS	Event indicator for overall survival	Indicates death OR no record of death	CLINICAL					0	0	1	NUMBER(1)		0	1
-e.dss	new	EVENT_DSS	Event indicator for Disease Specific Survival	Indicates death due to cancer OR no record of death	CLINICAL					0	0	1	NUMBER(1)		0	1
-e.rfs	staging attribute type=365	EVENT_DFS	Event indicator for Disease Free Survival	Indicates recurrence OR that no recurrence was recorded	CLINICAL					0	0	1	NUMBER(1)		0	1
-t.os	new	OVERALL_SURVIVAL_MONTHS	Overall survival in months	Tracks the time from diagnosis or surgery to event(death) or last follow up in months	CLINICAL					0	0	0	 NUMBER(4,1) 	months	0	600
-t.dss	new	DISEASE_SPECIFIC_SURVIVAL_MON	Disease specific survival in months	Tracks the time from diagnosis/surgery to event (death caused by cancer) or last follow up in months	CLINICAL					0	0	0	 NUMBER(4,1) 	months	0	600
-t.dfs	364	DISEASE_FREE_SURVIVAL_MON	Disease free survival in months	Disease free survival in months	CLINICAL					0	0	0	 NUMBER(4,1) 	months	0	600
-																
-PARENT_ID		PARENT_ID														
-PARENT_CELL_LINE		PARENT_CELL_LINE														
-TYPE		TYPE														
-TIMEPOINT		TIMEPOINT														
-METHOTREXATE_SENSITIVITY		METHOTREXATE_SENSITIVITY														
-CL_ATCC_LINK		CL_ATCC_LINK														
-CL_ALTERNATE_NAME		CL_ALTERNATE_NAME														
-CL_CELL TYPE _OR_SOURCE		CL_CELL TYPE _OR_SOURCE														
-CL_GROWTH_PROPERTIES		CL_GROWTH_PROPERTIES														
-CL_ORGANISM		CL_ORGANISM														
-CL_MORPHOLOGY		CL_MORPHOLOGY														
-CL_AGE		CL_AGE														
-CL_GENDER		CL_GENDER														
-CL_ETHNICITY		CL_ETHNICITY														
-CL_DESCRIPTION		CL_DESCRIPTION														
-CL_PROPERTIES (CELLULAR PRODUCTS)		CL_PROPERTIES (CELLULAR PRODUCTS)														
-CL_BLOOD_TYPE		CL_BLOOD_TYPE														
-CL_RH_TYPE		CL_RH_TYPE														
-CL_HLA(HUMAN LEUKOCYTE ANTIGEN)_PROFILE		CL_HLA(HUMAN LEUKOCYTE ANTIGEN)_PROFILE														
-CL_ISOLATION_DATE		CL_ISOLATION_DATE														
-CL_TUMORIGENIC		CL_TUMORIGENIC														
-CL_ER_STATUS		CL_ER_STATUS														
-CL_PR_STATUS		CL_PR_STATUS														
-CL_MYC_STATUS		CL_MYC_STATUS														
-CL_RAS_STATUS		CL_RAS_STATUS														
-CL_MTB_STATUS		CL_MTB_STATUS														
-CL_FOS_STATUS		CL_FOS_STATUS														
-CL_SIS_STATUS		CL_SIS_STATUS														
-CL_P53_STATUS		CL_P53_STATUS														
-CL_ABL_STATUS		CL_ABL_STATUS														
-CL_ROS_STATUS		CL_ROS_STATUS														
-CL_SRC_STATUS		CL_SRC_STATUS														
-CL_CYTOGENETIC_ANALYSIS		CL_CYTOGENETIC_ANALYSIS														
-MICROARRAY_DETAILS		MICROARRAY_DETAILS														
-CELL_CULTURE_DETAILS		CELL_CULTURE_DETAILS														
-DRUG_OR_AGENT_DETAILS		DRUG_OR_AGENT_DETAILS														
+METHOTREXATE_SENSITIVITY		METHOTREXATE_SENSITIVITY	Methotrexate Sensitivity	Indictes whether the sample is sensitive or resistant to Methotrexate	CLINICAL					1	0	1	VARCHAR2(15)			
+ATCC_LINK		ATCC_LINK	ATCC Link	Indicates the link to ATCC (American Type Culture Collection) web site	CLINICAL					1	0	1	VARCHAR2(25)			
+ALTERNATE_NAME		ALTERNATE_NAME	Alternate Name	Indicates the alternate names for the sample	CLINICAL					1	0	1	VARCHAR2(15)			
+CELL TYPE _OR_SOURCE		SOURCE	Source	Source of biospecimen	CLINICAL				C70713  	1	0	1	VARCHAR2(30)			
+GROWTH_PROPERTIES		GROWTH_PROPERTIES	Growth Properties	Indicates the growth properties of the sample	CLINICAL					1	0	1	VARCHAR2(15)			
+ORGANISM		ORGANISM	Organism	Indicates the organism from which the sample was isolated. 	CLINICAL					1	0	1	VARCHAR2(15)			
+MORPHOLOGY		MORPHOLOGY	Morphology 	Indicates the morphology of the sample	CLINICAL					1	0	1	VARCHAR2(15)			
+AGE		AGE	Patient's  Age	Patient's age at diagnosis or start of case study	CLINICAL				C1828181	0	0	0	NUMBER(4, 1)	years	0	120
+GENDER		GENDER	Gender	The classification of the sex or gender role of the patient.	DEMOGRAPHICAL				C0079399	1	0	1	VARCHAR2(6)			
+ETHNICITY		RACE	Race	Race (not ethnicity)	DEMOGRAPHICAL				C0034510	1	0	1	VARCHAR2(50)			
+PROPERTIES_CELLULAR_PRODUCTS		PROPERTIES_CELLULAR_PRODUCTS	Properties (Cellular Products)	Indicates the cellular properties of this sample	CLINICAL					1	0	1	VARCHAR2(15)			
+BLOOD_TYPE		BLOOD_TYPE	Blood type	Indicates the blood type of this sample	CLINICAL					1	0	1	VARCHAR2(15)			
+RH_TYPE		RH_TYPE	Rh type	Indicates the Rh blood type of this sample	CLINICAL					1	0	1	VARCHAR2(15)			
+HLA_PROFILE		HLA_PROFILE	HLA(Human Leukocyte Antigen) Profile	Indicates the HLA profile of this sample. The human leukocyte antigen system (HLA) is the name of the major histocompatibility complex (MHC) in humans. The super locus contains a large number of genes related to immune system function in humans. This group of genes resides on chromosome 6, and encodes cell-surface antigen-presenting proteins and many other genes. The proteins encoded by certain genes are also known as antigens. The major HLA antigens are essential elements for immune function. Different classes have different functions	CLINICAL					1	0	1	VARCHAR2(15)			
+ISOLATION_DATE		ISOLATION_DATE	Isolation date	Date at which the sample was isolated from the organism	CLINICAL					1	0	1	VARCHAR2(15)			
+TUMORIGENIC		TUMORIGENIC	Tumorigenic	Indicates whether the sample is capable of forming tumors or not.	CLINICAL					1	0	1	VARCHAR2(15)			
+ER_STATUS		ER_STATUS	ER Status	Estrogen Receptor Status	PATHOLOGY					0	0	1	VARCHAR			
+PR_STATUS		PGR_STATUS	Progestrone receptor status	Progestrogen receptor status	PATHOLOGY				C1514471	1	0	1	VARCHAR2(8)			
+MYC_STATUS		MYC_STATUS	MYC status	Indicates Protein MYC positivity	CLINICAL					1	0	1	VARCHAR2(15)			
+RAS_STATUS		RAS_STATUS	RAS status	Indicates Protein RAS positivity	CLINICAL					1	0	1	VARCHAR2(15)			
+MTB_STATUS		MTB_STATUS	MTB status	Indicates Protein MTB positivity	CLINICAL					1	0	1	VARCHAR2(15)			
+FOS_STATUS		FOS_STATUS	FOS status	Indicates Protein FOS positivity	CLINICAL					1	0	1	VARCHAR2(15)			
+SIS_STATUS		SIS_STATUS	SIS status	Indicates Protein SIS positivity 	CLINICAL					1	0	1	VARCHAR2(15)			
+P53_IHC_STATUS		P53_IHC_STATUS	P53 status	Indicates Protein P53 positivity	CLINICAL					1	0	1	VARCHAR2(15)			
+ABL_STATUS		ABL_STATUS	ABL status	Indicates Protein ABL positivity	CLINICAL					1	0	1	VARCHAR2(15)			
+ROS_STATUS		ROS_STATUS	ROS status	Indicates Protein ROS positivity	CLINICAL					1	0	1	VARCHAR2(15)			
+SRC_STATUS		SRC_STATUS	SRC status	Indicates Protein SRC positivity	CLINICAL					1	0	1	VARCHAR2(15)			
+CYTOGENETIC_ANALYSIS		CYTOGENETIC_ANALYSIS	Cytogenic Analysis	Cytogenetic analysis allows researchers to profile chromosomal aberrations such as amplifications, deletions, rearrangements, point mutations, copy number changes, and copy-neutral loss of heterozygosity (LOH) events. Modal umber is the typical chromosome number of a taxonomic group. The common chromosome number of a tumor cell population.	CLINICAL					1	0	1	VARCHAR2(25)			
+MICROARRAY_DETAILS		MICROARRAY_DETAILS	Microarray Details of the experiment	Microarray Details of the experiment	CLINICAL					1	0	1	VARCHAR2(30)			
+CELL_CULTURE_DETAILS		CELL_CULTURE_DETAILS	Cell culture details of the experiment	Cell culture details of the experiment	CLINICAL					1	0	1	VARCHAR2(30)			
+DRUG_OR_AGENT_DETAILS		DRUG_OR_AGENT_DETAILS	Drug or Agent details in the experiment	Drug or Agent details in the experiment	CLINICAL					1	0	1	VARCHAR2(30)			
