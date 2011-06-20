@@ -1,0 +1,2 @@
+original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
+METHOTREXATE_SENSITIVITY		METHOTREXATE_SENSITIVITY	Methotrexate Sensitivity	Indicates whether the sample is sensitive or resistant to Methotrexate	CLINICAL					1	0	1	VARCHAR2(15)			 

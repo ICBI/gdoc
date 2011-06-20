@@ -1,0 +1,3 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+METHOTREXATE_SENSITIVITY	SENSITIVE	SENSITIVE		Indicates that the sample is sensitive to Methotrexate  
+METHOTREXATE_SENSITIVITY	RESISTANT	RESISTANT		Indicates that the sample is resistant to Methotrexate  
