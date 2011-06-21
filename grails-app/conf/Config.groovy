@@ -5,7 +5,7 @@ grails.json.legacy.builder = false
 
 appTitle="G-DOC &reg;"
 appLongName="Georgetown Database of Cancer"
-appVersion="1.3"
+appVersion="1.4"
 appLogo="gdocHeader.png"
 appContactEmail="gdoc-help@georgetown.edu"
 environments {

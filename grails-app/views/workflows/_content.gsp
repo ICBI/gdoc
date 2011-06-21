@@ -9,7 +9,7 @@
 									
 									<td valign="top" colspan="2" style="color:#336699;">
 										<p style="font-size:.8em">
-										Most users prefer to start using G-DOC to compare and analyze how groups of patients within a cancer study differ, either clinically or via various 'omics' characteristics. The typical process of searching for unique patient lists before analysis is done for you in the Quick Start feature below. 
+										Most users prefer to start using G-DOC to compare and analyze how groups of subjects within a cancer study differ, either by attributes or via various 'omics' characteristics. The typical process of searching for unique  lists before analysis is done for you in the Quick Start feature below. 
 									</td>
 								</tr>
 								<tr>
@@ -19,7 +19,7 @@
 									<td valign="top" style="color:#336699;">
 										<p style="font-size:1.1em;text-decoration:underline;padding-top:7px">
 											<g:link controller="quickStart" style="color:#336699;">Quick Start</g:link></p>
-										<p style="font-size:.8em">Let G-DOC organize patients by cancer type (diseases) enabling you to stratify 2 groups by outcome (e.g Relapse) and quickly take you to the next step of performing an analysis.</p>
+										<p style="font-size:.8em">Let G-DOC organize subjects (patients, cell line, animal models) by cancer type, enabling you to stratify 2 groups by outcome or experimental design (e.g Relapse, Treated vs. Non-treated) and quickly take you to the next step of performing an analysis.</p>
 									</td>
 								</tr>
 								<tr>
@@ -43,7 +43,7 @@
 							</tr>
 								<tr style="color:#336699;border-bottom:1px solid #336699;" valign="top">
 									<td>
-										<p class="info" title="Query G-DOC clinial data and save patient lists for use in later analyses (click 'Clinical Data' to the left). Explore data in the genome browser. View details of recent findings." style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:25px;cursor:pointer;">Search</p>
+										<p class="info" title="Query G-DOC study data (Patient, Cell Line and Animal Model) and save lists for use in later analyses (click 'Studies' to the left). Explore data in the genome browser. View details of recent findings." style="font-size:1.1em;text-decoration:underline;padding-top:7px;padding-left:25px;cursor:pointer;">Search</p>
 										<img src="${createLinkTo(dir:'images',file:'searchIcon.png')}" border="0" />
 									</td>
 									<td>
