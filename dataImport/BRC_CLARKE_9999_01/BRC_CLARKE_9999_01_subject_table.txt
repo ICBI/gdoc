@@ -1,0 +1,17 @@
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	PARENT_CELL_LINE	ER_STATUS	PGR_STATUS	TAMOXIFEN_SENSITIVITY	FASLODEX_SENSITIVITY																MTB_STATUS	FOS_STATUS	SIS_STATUS	P53_IHC_STATUS	ABL_STATUS	ROS_STATUS	SRC_STATUS	CYTOGENETIC_ANALYSIS	MICROARRAY_DETAILS	CELL_CULTURE_DETAILS	DRUG_OR_AGENT_DETAILS
+MCF-7		CELL_LINE			POSITIVE	POSITIVE	SENSITIVE	SENSITIVE																POSITIVE	POSITIVE	POSITIVE	POSITIVE	NEGATIVE	NEGATIVE	NEGATIVE	MODAL NUMBER = 71||RANGE = 68 TO 72.	Method of RNA isolation:  RNeasy Mini Kit from Qiagen|| Method of labeling: Biotin||GeneChip Method of hybridization:Human Genome U133 PLUS 2.0 from Affymetrix	Media and Supplements: Human colon adenocarcinoma cell line HT29 was routinely grown in Ham's F12 medium supplemented with 7% fetal bovine serum (FBS) at 37°C in a 5% CO2 humidified atmosphere.	
+MCF-7-RR		CELL_LINE			POSITIVE	POSITIVE	RESISTANT	SENSITIVE																										
+LCC-1		CELL_LINE			POSITIVE	POSITIVE	SENSITIVE	SENSITIVE																										
+LCC-9		CELL_LINE			POSITIVE	POSITIVE	RESISTANT	RESISTANT																										
+1-MCF-7-2-P46	MCF7	REPLICATE		MCF7																														
+2-MCF-7-2-P47	MCF7	REPLICATE		MCF7																														
+3-MCF-7-2-P48	MCF7	REPLICATE		MCF7																														
+4-RR-P8	MCF7-RR	REPLICATE		MCF7-RR																														
+5-RR-P9	MCF7-RR	REPLICATE		MCF7-RR																														
+6-RR-P10	MCF7-RR	REPLICATE		MCF7-RR																														
+7-LCC-1-P34	LCC-1	REPLICATE		LCC-1																														
+8-LCC-1-P35	LCC-1	REPLICATE		LCC-1																														
+9-LCC-1-P36	LCC-1	REPLICATE		LCC-1																														
+10-LCC9-P10	LCC-9	REPLICATE		LCC-9																														
+11-LCC9-P11	LCC-9	REPLICATE		LCC-9																														
+12-LCC9-P12	LCC-9	REPLICATE		LCC-9																														

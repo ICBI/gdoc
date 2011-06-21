@@ -1,0 +1,12 @@
+original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
+ER_STATUS		ER_STATUS	ER Status	Estrogen Receptor Status	PATHOLOGY					0	0	1	VARCHAR			 
+PGR_STATUS		PGR_STATUS	Progestrone receptor status	Progestrogen receptor status	PATHOLOGY				C1514471	1	0	1	VARCHAR2(8)			 
+PARENT_CELL_LINE		PARENT_CELL_LINE	Parent Cell Line	Name of the parent cell line	CLINICAL					1	0	1	VARCHAR2(10)			
+TAMOXIFEN_SENSITIVITY		TAMOXIFEN_SENSITIVITY	Tamoxifen Sensitivity	Indicates whether the sample is sensitive or resistant to Tamoxifen. Tamoxifen is an antagonist of the estrogen receptor in breast tissue via its active metabolite, hydroxytamoxifen. It is sold under the trade names Nolvadex, Istubal, and Valodex.	CLINICAL					1	0	1	VARCHAR2(15)			
+FASLODEX_SENSITIVITY		FASLODEX_SENSITIVITY	Faslodex Sensitivity	Indicates whether the sample is sensitive or resistant to Faslodex. Faslodex (Fulvestrant) is used to treat hormone receptor positive breast cancer in women who have experienced menopause and whose breast cancer has worsened after they were treated with antiestrogen medications	CLINICAL					1	0	1	VARCHAR2(15)			
+																
+																
+																
+																
+																
+																
