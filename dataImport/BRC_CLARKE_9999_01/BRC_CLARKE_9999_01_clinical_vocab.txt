@@ -1,11 +1,1 @@
-TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
-ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
-ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
-PGR_STATUS	NEGATIVE	NEGATIVE		Progesteron Receptor negative
-PGR_STATUS	POSITIVE	POSITIVE		Progesteron Receptor positive
-PARENT_CELL_LINE	MCF7	MCF7		MCF7 cell line
-PARENT_CELL_LINE	MCF7-RR	MCF7-RR		Derived from MCF7, resisitant to tamoxifen
-TAMOXIFEN_SENSITIVITY	SENSITIVE	SENSITIVE		Indicates that the sample is sensitive to Tamoxifen  
-TAMOXIFEN_SENSITIVITY	RESISTANT	RESISTANT		Indicates that the sample is resistant to Tamoxifen  
-FASLODEX_SENSITIVITY	SENSITIVE	SENSITIVE		Indicates that the sample is sensitive to Faslodex  
-FASLODEX_SENSITIVITY	RESISTANT	RESISTANT		Indicates that the sample is resistant to Faslodex  
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITIONER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negativeER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positivePGR_STATUS	NEGATIVE	NEGATIVE		Progesteron Receptor negativePGR_STATUS	POSITIVE	POSITIVE		Progesteron Receptor positivePARENT_CELL_LINE	MCF7	MCF7		MCF7 cell linePARENT_CELL_LINE	MCF7-RR	MCF7-RR		"Derived from MCF7, resisitant to tamoxifen"PARENT_CELL_LINE	LCC-1	LCC-1		LCC-1PARENT_CELL_LINE	LCC-9	LCC-9		LCC-9TAMOXIFEN_SENSITIVITY	SENSITIVE	SENSITIVE		Indicates that the sample is sensitive to Tamoxifen  TAMOXIFEN_SENSITIVITY	RESISTANT	RESISTANT		Indicates that the sample is resistant to Tamoxifen  FASLODEX_SENSITIVITY	SENSITIVE	SENSITIVE		Indicates that the sample is sensitive to Faslodex  FASLODEX_SENSITIVITY	RESISTANT	RESISTANT		Indicates that the sample is resistant to Faslodex  
