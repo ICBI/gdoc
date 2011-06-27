@@ -2,4 +2,4 @@ TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
 METHOTREXATE_SENSITIVITY	SENSITIVE	SENSITIVE		Indictes that the sample is sensitive to Methotrexate  
 METHOTREXATE_SENSITIVITY	RESISTANT	RESISTANT		Indictes that the sample is resistant to Methotrexate  
 PARENT_CELL_LINE	HT29_SENSITIVE_MTX	HT29 cells sensitive to MTX		HT29 cells sensitive to Methotrexate  (MTX)
-PARENT_CELL_LINE	HT29_RESISTANT_MTX	HT29 cells sensitive to MTX		HT29 cells sensitive to Methotrexate  (MTX)
+PARENT_CELL_LINE	HT29_RESISTANT_MTX	HT29 cells resistant to MTX		HT29 cells resistant to Methotrexate  (MTX)
