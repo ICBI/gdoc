@@ -1,0 +1,19 @@
+SUBJECT_ID	BIOSPECIMEN_ID	ARRAY_DESIGN	RDA_FILE	RDA_DESCRIPTION
+12hr timepoint_Untreated control_biological rep1	GSM286756	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+12hr timepoint_Untreated control_biological rep2	GSM286757	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+12hr timepoint_Untreated control_biological rep3	GSM286758	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+12hr timepoint_E2 treated_biological rep1	GSM286759	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+12hr timepoint_E2 treated_biological rep2	GSM286760	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+12hr timepoint_E2 treated_biological rep3	GSM286761	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+24hr timepoint_Untreated control_biological rep1	GSM286762	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+24hr timepoint_Untreated control_biological rep2	GSM286763	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+24hr timepoint_Untreated control_biological rep3	GSM286764	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+24hr timepoint_E2 treated_biological rep1	GSM286765	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+24hr timepoint_E2 treated_biological rep2	GSM286766	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+24hr timepoint_E2 treated_biological rep3	GSM286767	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+48hr timepoint_Untreated control_biological rep1	GSM286768	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+48hr timepoint_Untreated control_biological rep2	GSM286769	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+48hr timepoint_Untreated control_biological rep3	GSM286770	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+48hr timepoint_E2 treated_biological rep1	GSM286771	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+48hr timepoint_E2 treated_biological rep2	GSM286772	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization
+48hr timepoint_E2 treated_biological rep3	GSM286773	U133 Plus 2.0	BRC_LIN_2007_01.Rda	RMA Normalization

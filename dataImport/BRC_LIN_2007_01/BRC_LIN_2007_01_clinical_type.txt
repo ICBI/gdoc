@@ -1,0 +1,5 @@
+original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
+PARENT_CELL_LINE		PARENT_CELL_LINE	Parent Cell Line	Name of the parent cell line	CLINICAL					1	0	1	VARCHAR2(10)			
+SAMPLE_TYPE		SAMPLE_TYPE	Sample Type	Indicates from which neoplastic stage the tissue sample was taken	PATHOLOGY					1	0	1	VARCHAR2(24)			
+CASE_OR_CONTROL		CASE_OR_CONTROL	Case or Control	Case or control	OTHER					1	0	1	VARCHAR2(10)			
+DRUG_17BETA_ESTRADIOL		DRUG_17BETA_ESTRADIOL	Treated with 17BetaEstradiol	Indicates whether the sample was treated with 17BetaEstradiol or not	CLINICAL					1	0	1	VARCHAR2(15)																			
