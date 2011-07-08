@@ -1,0 +1,26 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION			
+GENDER	MALE	MALE	C46109	An individual who reports belonging to the cultural gender role distinction of male. 			
+GENDER	FEMALE	FEMALE	C46110	An individual who reports belonging to the cultural gender role distinction of female.			
+SAMPLE_TYPE	Hepatocytes	Hepatocytes		The sample is from Hepatocytes			
+CASE_OR_CONTROL	CONTROL	CONTROL		Used as control in the experiment as it is normal			
+CASE_OR_CONTROL	CASE	CASE		Used as case in the experiment			
+DRUG_DOXORUBICIN	YES	YES		Sample was treated with Doxorubicin			
+DRUG_DOXORUBICIN	NO	NO		Sample was not treated with Doxorubicin			
+DRUG_TROVAFLOXACIN	YES	YES		Sample was treated with Trovafloxacin			
+DRUG_TROVAFLOXACIN	NO	NO		Sample was not treated with Trovafloxacin			
+RESECTION	LIVER_RESECTION	Liver Resection		Indicates that patient underwent surgical removal of the liver			
+REASON_RESECTION	GASTROINTESTINAL_STROMAL_TUMOR	Gastrointestinal Stromal Tumor		Resection was done due to Gastrointestinal Stromal Tumor			
+REASON_RESECTION	COLORECTAL_LIVER_METASTASIS	Colorectal Liver Metastasis		Resection was done due to Colorectal Liver Metastasis			
+REASON_RESECTION	HEPATOCELLULAR_CARCINOMA	Hepatocellular Carcinoma		Resection was done due to Hepatocellular Carcinoma			
+REASON_RESECTION	EPITHELOIDAL_ANGIOLIPOMA	Epitheloidal Angiolipoma		Resection was done due to Epitheloidal Angiolipoma			
+REASON_RESECTION	KIDNEY_CARCINOMA	Kidney Carcinoma		Resection was done due to Kidney Carcinoma			
+REASON_RESECTION	MAMMA_CARCINOMA	Mamma Carcinoma		Resection was done due to Mamma Carcinoma			
+REASON_RESECTION	LIVER_ADENOMA	Liver Adenoma		Resection was done due to Liver Adenoma			
+REASON_RESECTION	LIVER_METASTASIS	Liver Metastasis		Resection was done due to Liver Metastasis			
+REASON_RESECTION	STOMACH_CANCER	Stomach Cancer		Resection was done due to Stomach Cancer			
+							
+							
+							
+							
+							
+							
