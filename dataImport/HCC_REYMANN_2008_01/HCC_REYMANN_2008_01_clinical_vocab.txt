@@ -18,9 +18,3 @@ REASON_RESECTION	MAMMA_CARCINOMA	Mamma Carcinoma		Resection was done due to Mamm
 REASON_RESECTION	LIVER_ADENOMA	Liver Adenoma		Resection was done due to Liver Adenoma			
 REASON_RESECTION	LIVER_METASTASIS	Liver Metastasis		Resection was done due to Liver Metastasis			
 REASON_RESECTION	STOMACH_CANCER	Stomach Cancer		Resection was done due to Stomach Cancer			
-							
-							
-							
-							
-							
-							
