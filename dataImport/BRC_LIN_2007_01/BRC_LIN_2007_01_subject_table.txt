@@ -1,19 +1,19 @@
-SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	PARENT_CELL_LINE	SAMPLE_TYPE	CASE_OR_CONTROL	DRUG_17BETA_ESTRADIOL
-12hr timepoint_Untreated control_biological rep1		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-12hr timepoint_Untreated control_biological rep2		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-12hr timepoint_Untreated control_biological rep3		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-12hr timepoint_E2 treated_biological rep1		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
-12hr timepoint_E2 treated_biological rep2		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
-12hr timepoint_E2 treated_biological rep3		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
-24hr timepoint_Untreated control_biological rep1		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-24hr timepoint_Untreated control_biological rep2		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-24hr timepoint_Untreated control_biological rep3		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-24hr timepoint_E2 treated_biological rep1		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
-24hr timepoint_E2 treated_biological rep2		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
-24hr timepoint_E2 treated_biological rep3		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
-48hr timepoint_Untreated control_biological rep1		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-48hr timepoint_Untreated control_biological rep2		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-48hr timepoint_Untreated control_biological rep3		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO
-48hr timepoint_E2 treated_biological rep1		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
-48hr timepoint_E2 treated_biological rep2		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
-48hr timepoint_E2 treated_biological rep3		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	PARENT_CELL_LINE	SAMPLE_TYPE	CASE_OR_CONTROL	DRUG_17BETA_ESTRADIOL	DOSAGE
+12hr timepoint_Untreated control_biological rep1		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+12hr timepoint_Untreated control_biological rep2		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+12hr timepoint_Untreated control_biological rep3		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+12hr timepoint_E2 treated_biological rep1		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM
+12hr timepoint_E2 treated_biological rep2		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM
+12hr timepoint_E2 treated_biological rep3		REPLICATE	12hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM
+24hr timepoint_Untreated control_biological rep1		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+24hr timepoint_Untreated control_biological rep2		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+24hr timepoint_Untreated control_biological rep3		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+24hr timepoint_E2 treated_biological rep1		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM
+24hr timepoint_E2 treated_biological rep2		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM
+24hr timepoint_E2 treated_biological rep3		REPLICATE	24hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM
+48hr timepoint_Untreated control_biological rep1		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+48hr timepoint_Untreated control_biological rep2		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+48hr timepoint_Untreated control_biological rep3		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CONTROL	NO	10_nM
+48hr timepoint_E2 treated_biological rep1		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM
+48hr timepoint_E2 treated_biological rep2		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM
+48hr timepoint_E2 treated_biological rep3		REPLICATE	48hr timepoint 	MCF7	BREAST_CARCINOMA	CASE	YES	10_nM

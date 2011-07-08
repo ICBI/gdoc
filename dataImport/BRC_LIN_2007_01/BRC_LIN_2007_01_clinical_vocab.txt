@@ -5,3 +5,4 @@ DRUG_17BETA_ESTRADIOL	YES	YES		Treated with 17Beta Estradiol
 DRUG_17BETA_ESTRADIOL	NO	NO		Not treated with 17Beta Estradiol
 CASE_OR_CONTROL	CASE	CASE		Case
 CASE_OR_CONTROL	CONTROL	CONTROL		Control
+DOSAGE	10_nM	10 nM (nanoMolar)		The sample was treated with 10 nM of the drug
