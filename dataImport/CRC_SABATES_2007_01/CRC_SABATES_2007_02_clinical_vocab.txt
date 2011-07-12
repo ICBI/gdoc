@@ -1,0 +1,20 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+GENDER	MALE	MALE	C46109	An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE	C46110	An individual who reports belonging to the cultural gender role distinction of female.
+SAMPLE_LOCATION	SIGMOID_COLON	Sigmoid colon		Sigmoid colon
+SAMPLE_LOCATION	TRANSVERSE_COLON	Transverse colon		Transverse colon
+SAMPLE_LOCATION	ASCENDING_COLON	Ascending colon		Ascending colon
+SAMPLE_LOCATION	RECTUM	Rectum		Rectum
+SAMPLE_LOCATION	COLON_DESC	Descending Colon		Descending Colon
+DYSPLASIA	LOW-GRADE	Low grade		Low grade
+DYSPLASIA	HIGH-GRADE	High grade		High grade
+HIGHEST_DEG_DYSPLASIA	HIGH-GRADE	High grade		High grade
+HIGHEST_DEG_DYSPLASIA	T1	Superficial Submucosal Invasion		Superficial Submucosal Invasion
+HIGHEST_DEG_DYSPLASIA	LOW-GRADE	Low grade		Low grade
+SAMPLE_TYPE	ADENOMA_TUBULOVILLOUS	Adenoma Tubulovillous		adenoma tubulovillous
+SAMPLE_TYPE	ADENOMA_TUBULAR	Adenoma Tubular		Adenoma Tubular
+RELATIONSHIP	SISTER	Sister		Sister of the patient
+RELATIONSHIP	FATHER	Father		Father of the patient
+RELATIONSHIP	BROTHER	Brother		Brother of the patient
+RELATIONSHIP	MOTHER	Mother		Mother of the patient
+RELATIONSHIP	UNCLE_FATHER	Uncle on the father's side		Uncle on the father's side of the patient
