@@ -1,4 +1,4 @@
-SUBJECT_ID	SAMPLE_ID	POLARITY	RDA_FILE	RDA_DESCRIPTION
+PARENT_ID	SAMPLE_ID	POLARITY	RDA_FILE	RDA_DESCRIPTION
 LCC-1	LCC1_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
 LCC-1	LCC1_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
 LCC-1	LCC1_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
