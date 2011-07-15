@@ -1,13 +1,13 @@
-PATIENT_ID	SAMPLE_ID	POLARITY	RDA_FILE	RDA_DESCRIPTION
-LCC-1	LCC1_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Positive polarity, Lcc9 vs Lcc1
-LCC-1	LCC1_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Positive polarity, Lcc9 vs Lcc1
-LCC-1	LCC1_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Positive polarity, Lcc9 vs Lcc1
-LCC-9	LCC9_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Positive polarity, Lcc9 vs Lcc1
-LCC-9	LCC9_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Positive polarity, Lcc9 vs Lcc1
-LCC-9	LCC9_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Positive polarity, Lcc9 vs Lcc1
-LCC-1	LCC1_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Positive polarity, Lcc9 vs Lcc1, Pareto scaling
-LCC-1	LCC1_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Positive polarity, Lcc9 vs Lcc1, Pareto scaling
-LCC-1	LCC1_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Positive polarity, Lcc9 vs Lcc1, Pareto scaling
-LCC-9	LCC9_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Positive polarity, Lcc9 vs Lcc1, Pareto scaling
-LCC-9	LCC9_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Positive polarity, Lcc9 vs Lcc1, Pareto scaling
-LCC-9	LCC9_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Positive polarity, Lcc9 vs Lcc1, Pareto scaling
+SUBJECT_ID	SAMPLE_ID	POLARITY	RDA_FILE	RDA_DESCRIPTION
+LCC1_A-pos	LCC1_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
+LCC1_B-pos	LCC1_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
+LCC1_C-pos	LCC1_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
+LCC9_A-pos	LCC9_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
+LCC9_B-pos	LCC9_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
+LCC9_C-pos	LCC9_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Log 2 transformed file for Lcc9 vs Lcc1
+LCC1_A-pos-pareto	LCC1_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Pareto scaling before log transformation for Lcc9 vs Lcc1
+LCC1_B-pos-pareto	LCC1_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Pareto scaling before log transformation for Lcc9 vs Lcc1
+LCC1_C-pos-pareto	LCC1_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Pareto scaling before log transformation for Lcc9 vs Lcc1
+LCC9_A-pos-pareto	LCC9_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Pareto scaling before log transformation for Lcc9 vs Lcc1
+LCC9_B-pos-pareto	LCC9_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Pareto scaling before log transformation for Lcc9 vs Lcc1
+LCC9_C-pos-pareto	LCC9_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos_Pareto.Rda	Pareto scaling before log transformation for Lcc9 vs Lcc1
