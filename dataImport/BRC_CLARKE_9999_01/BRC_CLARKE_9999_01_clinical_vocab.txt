@@ -4,7 +4,7 @@ ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
 PGR_STATUS	NEGATIVE	NEGATIVE		Progesteron Receptor negative
 PGR_STATUS	POSITIVE	POSITIVE		Progesteron Receptor positive
 PARENT_CELL_LINE	MCF-7	MCF-7		MCF7 cell line
-PARENT_CELL_LINE	MCF-7-RR	MCF-7-RR		Derived from MCF7, resisitant to tamoxifen
+PARENT_CELL_LINE	MCF-7-RR	MCF-7-RR		"Derived from MCF7, resisitant to tamoxifen"
 PARENT_CELL_LINE	LCC-1	LCC-1		LCC-1
 PARENT_CELL_LINE	LCC-9	LCC-9		LCC-9
 TAMOXIFEN_SENSITIVITY	SENSITIVE	SENSITIVE		Indicates that the sample is sensitive to Tamoxifen  
@@ -15,3 +15,5 @@ DRUG_17BETA_ESTRADIOL	YES	YES		Treated with 17Beta Estradiol
 DRUG_17BETA_ESTRADIOL	NO	NO		Not treated with 17Beta Estradiol
 MEDIA	WHITE	WHITE		White media. Does not contain Estrogen
 MEDIA	RED	RED(Phenoyl Red)		Phenoyl Red is the media. It contains Estrogen which is a contaminant
+BIOSPECIMEN_TYPE	GENE_EXP	Gene Expression		Gene Expression
+BIOSPECIMEN_TYPE	METABOLOMICS	Metabolomics		Metabolomics
