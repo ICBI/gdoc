@@ -17,3 +17,5 @@ MEDIA	WHITE	WHITE		White media. Does not contain Estrogen
 MEDIA	RED	RED(Phenoyl Red)		Phenoyl Red is the media. It contains Estrogen which is a contaminant
 BIOSPECIMEN_TYPE	GENE_EXP	Gene Expression		Gene Expression
 BIOSPECIMEN_TYPE	METABOLOMICS	Metabolomics		Metabolomics
+IONIZATION	NEGATIVE	NEGATIVE		Negative ionization
+IONIZATION	POSITIVE	POSITIVE		Positive ionization
