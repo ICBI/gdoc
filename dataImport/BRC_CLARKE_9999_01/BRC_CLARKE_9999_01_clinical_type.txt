@@ -6,5 +6,5 @@ TAMOXIFEN_SENSITIVITY		TAMOXIFEN_SENSITIVITY	Tamoxifen Sensitivity	"Indicates wh
 FASLODEX_SENSITIVITY		FASLODEX_SENSITIVITY	Faslodex Sensitivity	Indicates whether the sample is sensitive or resistant to Faslodex. Faslodex (Fulvestrant) is used to treat hormone receptor positive breast cancer in women who have experienced menopause and whose breast cancer has worsened after they were treated with antiestrogen medications	CLINICAL					1	0	1	VARCHAR2(15)			
 DRUG_17BETA_ESTRADIOL		DRUG_17BETA_ESTRADIOL	Treated with 17BetaEstradiol	Indicates whether the sample was treated with 17BetaEstradiol or not	CLINICAL					1	0	1	VARCHAR2(15)			
 MEDIA		MEDIA	Media	Media used in the experiment	CLINICAL					1	0	1	VARCHAR2(15)			
-BIOSPECIMEN_TYPE		BIOSPECIMEN_TYPE	Biospecimen Type	Type of biospecimen	CLINICAL					1	0	1	VARCHAR2(15)			
+BIOSPECIMEN_TYPE		BIOSPECIMEN_TYPE	Biospecimen Type	Indicates the type of biospecimen	CLINICAL					1	0	1	VARCHAR2(15)			
 IONIZATION		IONIZATION	Ionization of Mass Spectrometer	Indicates chemical ionization of Mass Spectrometer	CLINICAL					1	0	1	VARCHAR2(15)			
