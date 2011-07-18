@@ -1,4 +1,4 @@
-SUBJECT_ID	SAMPLE_ID	POLARITY	RDA_FILE	RDA_DESCRIPTION
+PATIENT_ID	SAMPLE_ID	POLARITY	RDA_FILE	RDA_DESCRIPTION
 LCC1_A-pos	LCC1_A	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Lcc9 vs Lcc1, Positive Polarity
 LCC1_B-pos	LCC1_B	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Lcc9 vs Lcc1, Positive Polarity
 LCC1_C-pos	LCC1_C	POSITIVE	Brc_Clarke_metab_Lcc9_Lcc1_pos.Rda	Lcc9 vs Lcc1, Positive Polarity
