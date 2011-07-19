@@ -1,0 +1,279 @@
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	AGE	RACE	ER_STATUS	POST_TRE_RESPONSE	PGR_STATUS	PTNM_T	PTNM_N	BMN_GRADE	ER_LEVEL	HER2_STATUS	HER2_IHC	HER2_FISH	HIST_TUMOR_TYPE	TREATMENT
+M106		PATIENT		57	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	100	NEGATIVE	1	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M107		PATIENT		47	AFRICAN-AMERICAN	POSITIVE	RD	NEGATIVE	T3	N1	3	90	NEGATIVE	2	1.27	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M108		PATIENT		39	CAUCASIAN	POSITIVE	RD	POSITIVE	T4	N0	3	90	POSITIVE	3	4.8	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M111		PATIENT		50	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T3	N1	3	0	NEGATIVE	1	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M113		PATIENT		75	AFRICAN-AMERICAN	NEGATIVE	RD	NEGATIVE	T2	N0	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M116		PATIENT		49	HISPANIC	NEGATIVE	PCR	NEGATIVE	T4	N2	3	0	POSITIVE		10.7	1||17	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M117		PATIENT		34	CAUCASIAN	POSITIVE	RD	POSITIVE	T4	N1	2	75	NEGATIVE	2	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M120		PATIENT		52	ASIAN	NEGATIVE	RD	POSITIVE	T2	N0	3	0	NEGATIVE	0	1.1	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M121		PATIENT		65	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T1	N0	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M123		PATIENT		52	CAUCASIAN	POSITIVE	PCR	NEGATIVE	T3	N1	1	95	NEGATIVE	1	1.95	2||1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M126		PATIENT		59	CAUCASIAN	NEGATIVE	RD	POSITIVE	T4	N0	3	0	NEGATIVE	2	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M128		PATIENT		67	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	90	NEGATIVE	1	1.95	2||1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M129		PATIENT		61	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N0	2	0	NEGATIVE	2	1.11	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M130		PATIENT		66	ASIAN	NEGATIVE	RD	POSITIVE	T2	N1	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M133		PATIENT		38	HISPANIC	NEGATIVE	RD	NEGATIVE	T2	N0	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M135		PATIENT		51	CAUCASIAN	POSITIVE	RD	NEGATIVE	T3	N0	3	95	POSITIVE	2	6.1	2||1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M136		PATIENT		38	HISPANIC	NEGATIVE	PCR	POSITIVE	T1	N0	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M139		PATIENT		51	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	85	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M141		PATIENT		70	HISPANIC	POSITIVE	PCR	NEGATIVE	T0	N1	2	50	POSITIVE		10.56	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M145		PATIENT		45	HISPANIC	POSITIVE	RD	POSITIVE	T3	N2	2	80	POSITIVE	3	3.49	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M146		PATIENT		40	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T1	N0	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M153		PATIENT		61	CAUCASIAN	NEGATIVE	PCR	POSITIVE	T1	N1	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M154		PATIENT		29	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N2	3	0	NEGATIVE	0	1.95	1||17	Taxol
+M155		PATIENT		62	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	3	80	NEGATIVE	0	1.2	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M156		PATIENT		67	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N2	2	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M157		PATIENT		57	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	90	NEGATIVE	2	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M158		PATIENT		38	ASIAN	POSITIVE	RD	POSITIVE	T2	N2	2	50	NEGATIVE	1	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M159		PATIENT		59	ASIAN	NEGATIVE	PCR	NEGATIVE	T2	N0	3	0	POSITIVE		5.5	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M161		PATIENT		44	CAUCASIAN	NEGATIVE	PCR	POSITIVE	T2	N1	3	0	POSITIVE	3	6	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M165		PATIENT		50	AFRICAN-AMERICAN	POSITIVE	RD	NEGATIVE	T2	N1	2	90	NEGATIVE	0	1.95	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M176		PATIENT		77	MIXED	POSITIVE	RD	NEGATIVE	T4	N1	2	10	POSITIVE	2	3.6	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M177		PATIENT		42	AFRICAN-AMERICAN	POSITIVE	PCR	NEGATIVE	T3	N0	3	80	NEGATIVE	1	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M179		PATIENT		54	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	5	POSITIVE	2	4.8	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M180		PATIENT		44	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	NEGATIVE	1	1.95	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M181		PATIENT		75	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N1	2	20	NEGATIVE	0	1.95	2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M182		PATIENT		46	HISPANIC	POSITIVE	RD	POSITIVE	T1	N0	2	100	NEGATIVE	0	1.95	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M186		PATIENT		54	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N0	3	0	POSITIVE	3	7	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M188		PATIENT		68	AFRICAN-AMERICAN	POSITIVE	RD	POSITIVE	T2	N1	1	100	NEGATIVE		1.21	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M189		PATIENT		47	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	3	80	NEGATIVE	1	1.12	18	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M195		PATIENT		42	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	80	NEGATIVE		1.17	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M196		PATIENT		69	ASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	90	NEGATIVE	0	1.95	18||1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M199		PATIENT		46	AFRICAN-AMERICAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	POSITIVE	3	1.09	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M201		PATIENT		75	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	2	90	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M205		PATIENT		35	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T1	N1	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M206		PATIENT		48	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N0	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M211		PATIENT		52	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T3	N2	3	0	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M212		PATIENT		42	ASIAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	POSITIVE		20	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M214		PATIENT		54	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	2	80	NEGATIVE		1.15	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M215		PATIENT		44	AFRICAN-AMERICAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	NEGATIVE	2	1.7	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M216		PATIENT		59	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	2	95	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M217		PATIENT		52	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	50	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M220		PATIENT		38	CAUCASIAN	POSITIVE	RD	NEGATIVE	T3	N1	3	70	NEGATIVE	0	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M226		PATIENT		31	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	40	NEGATIVE	1	0.98	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M227		PATIENT		38	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N1	3	30	NEGATIVE	1	1.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M228		PATIENT		53	AFRICAN-AMERICAN	POSITIVE	RD	NEGATIVE	T4	N1	2	80	NEGATIVE	0	0.81	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M230		PATIENT		58	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N2	3	0	POSITIVE	3	4.26	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M230R1		PATIENT		58	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N2	3	0	POSITIVE	3	4.26	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M231		PATIENT		52	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	95	NEGATIVE	0	0.98	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M231R1		PATIENT		52	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	95	NEGATIVE	0	0.98	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M232		PATIENT		49	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T1	N1	3	1	POSITIVE	3	8	1	
+M233		PATIENT		60	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N3	3	0	NEGATIVE	0	1	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M233R1		PATIENT		60	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N3	3	0	NEGATIVE	0	1	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M234		PATIENT		58	CAUCASIAN	POSITIVE	RD	NEGATIVE	T3	N1	2	85	NEGATIVE	1	1.02	1||2||16	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M235		PATIENT		53	AFRICAN-AMERICAN	NEGATIVE	RD	NEGATIVE	T3	N1	3	0	POSITIVE	3	2.98	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M235R1		PATIENT		53	AFRICAN-AMERICAN	NEGATIVE	RD	NEGATIVE	T3	N1	3	0	POSITIVE	3	2.98	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M236		PATIENT		53	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	90	NEGATIVE	1	1	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M236R1		PATIENT		53	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	90	NEGATIVE	1	1	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M237		PATIENT		51	HISPANIC	POSITIVE	RD	NEGATIVE	T2	N3	3	50	POSITIVE	3	9.52	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M237R1		PATIENT		51	HISPANIC	POSITIVE	RD	NEGATIVE	T2	N3	3	50	POSITIVE	3	9.52	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M238		PATIENT		56	ASIAN	POSITIVE	PCR	POSITIVE	T2	N0	2	91	POSITIVE	3	3.64	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M238R1		PATIENT		56	ASIAN	POSITIVE	PCR	POSITIVE	T2	N0	2	91	POSITIVE	3	3.64	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M239		PATIENT		55	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N0	3	0	POSITIVE	3	7.55	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M239R1		PATIENT		55	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N0	3	0	POSITIVE	3	7.55	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M245		PATIENT		52	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N3	3	90	POSITIVE	2	4.5	1||15	Taxol||Herceptin||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M245R1		PATIENT		52	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N3	3	90	POSITIVE	2	4.5	1||15	Taxol||Herceptin||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M246		PATIENT		42	HISPANIC	POSITIVE	RD	NEGATIVE	T1	N1	3	70	NEGATIVE	0	1.05	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M246R1		PATIENT		42	HISPANIC	POSITIVE	RD	NEGATIVE	T1	N1	3	70	NEGATIVE	0	1.05	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M247		PATIENT		54	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N0	2	80	NEGATIVE	0	1.02	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M247R1		PATIENT		54	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N0	2	80	NEGATIVE	0	1.02	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M251		PATIENT		79	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N1	3	100	POSITIVE	3	5.23	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M255		PATIENT		48	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N3	2	0	NEGATIVE	1	0.98	1||2||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M256		PATIENT		79	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N3	3	90	NEGATIVE	2	1.19	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M256R1		PATIENT		79	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N3	3	90	NEGATIVE	2	1.19	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M257		PATIENT		73	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	90	POSITIVE	3	7.81	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M257R1		PATIENT		73	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	90	POSITIVE	3	7.81	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M258		PATIENT		39	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N1	3	0	POSITIVE	3	4.8	1	Taxol||Herceptin||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M258R1		PATIENT		39	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N1	3	0	POSITIVE	3	4.8	1	Taxol||Herceptin||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M259		PATIENT		39	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	3	20	POSITIVE	3	1.2	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M260		PATIENT		50	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N1	3	50	NEGATIVE	0		1||2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M261		PATIENT		56	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	85	NEGATIVE		1.01	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M263		PATIENT		72	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	1		NEGATIVE		1.06	2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M264		PATIENT		62	AFRICAN-AMERICAN	POSITIVE	RD	POSITIVE	T4	N3	3	95	POSITIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M264R1		PATIENT		62	AFRICAN-AMERICAN	POSITIVE	RD	POSITIVE	T4	N3	3	95	POSITIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M266		PATIENT		45	ASIAN	POSITIVE	RD	NEGATIVE	T2	N3	3	80	NEGATIVE	1	0.7	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M266R1		PATIENT		45	ASIAN	POSITIVE	RD	NEGATIVE	T2	N3	3	80	NEGATIVE	1	0.7	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M270		PATIENT		67	CAUCASIAN	POSITIVE	RD	NEGATIVE	T4	N0	3	90	NEGATIVE	0	0.69	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M270R1		PATIENT		67	CAUCASIAN	POSITIVE	RD	NEGATIVE	T4	N0	3	90	NEGATIVE	0	0.69	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M280		PATIENT		71	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N3	3	95	NEGATIVE	2	1.07	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M280R1		PATIENT		71	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N3	3	95	NEGATIVE	2	1.07	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M281		PATIENT		45	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	100	NEGATIVE	0	1.02	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M282		PATIENT		44	CAUCASIAN	POSITIVE	RD	NEGATIVE	T1	N1	2	90	NEGATIVE	0		IC||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M283		PATIENT		46	CAUCASIAN	POSITIVE	RD	NEGATIVE	T4	N1	3	95	NEGATIVE		0.71	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M286		PATIENT		51	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T3	N1	3	0	POSITIVE	2	2.71	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M286R1		PATIENT		51	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T3	N1	3	0	POSITIVE	2	2.71	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M287		PATIENT		55	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N2	3	0	POSITIVE		9.01	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M294		PATIENT		53	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T1	N1	2	0	POSITIVE		8.9	1	
+M295		PATIENT		48	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	2	NEGATIVE	0	1.55	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M297		PATIENT		65	AFRICAN-AMERICAN	POSITIVE	RD	NEGATIVE	T4	N2	2	90	NEGATIVE		1.39	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M301		PATIENT		46	AFRICAN-AMERICAN	NEGATIVE	PCR	NEGATIVE	T3	N1	3	5	NEGATIVE	0	0.986	1||20	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M302		PATIENT		50	MIXED	NEGATIVE	RD	POSITIVE	T2	N3	3	0	POSITIVE		9.09	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M302R1		PATIENT		50	MIXED	NEGATIVE	RD	POSITIVE	T2	N3	3	0	POSITIVE		9.09	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M304		PATIENT		46	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	90	NEGATIVE		1.1	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M309		PATIENT		62	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	POSITIVE		8.77	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M310		PATIENT		51	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	2	0	NEGATIVE		1.07	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M314		PATIENT		46	AFRICAN-AMERICAN	NEGATIVE	RD	NEGATIVE	T3	N3	3	0	NEGATIVE		1.06	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M315		PATIENT		36	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2		NEGATIVE		1.02	1||2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M316		PATIENT		45	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T4	N3	3	0	POSITIVE	3	4.59	1||15	Taxol||Herceptin||
+M316R1		PATIENT		45	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T4	N3	3	0	POSITIVE	3	4.59	1||15	Taxol||Herceptin||5-fluorouracil||Epirubicin||Cyclophosphamide
+M319		PATIENT		26	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	95	NEGATIVE		0.92	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M322		PATIENT		65	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N0	3	50	POSITIVE		2.5	1||2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M322R1		PATIENT		65	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N0	3	50	POSITIVE		2.5	1||2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M323		PATIENT		40	HISPANIC	POSITIVE	RD	POSITIVE	T1	N2	3	90	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M330		PATIENT		35	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N3	2	10	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M330R1		PATIENT		35	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N3	2	10	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M331		PATIENT		71	HISPANIC	NEGATIVE	PCR	NEGATIVE	T1	N1	2	0	POSITIVE	3	9.26	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M331R1		PATIENT		71	HISPANIC	NEGATIVE	PCR	NEGATIVE	T1	N1	2	0	POSITIVE	3	9.26	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M332		PATIENT		42	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N1	3	50	NEGATIVE		1.09	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M333		PATIENT		67	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	3	100	NEGATIVE		1.88	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M333R1		PATIENT		67	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	3	100	NEGATIVE		1.88	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M334		PATIENT		63	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T1	N1	3	0	NEGATIVE	1	1.05	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M339		PATIENT		44	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	3	0	NEGATIVE	0	0.99	1||19	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M340		PATIENT		54	HISPANIC	POSITIVE	RD	NEGATIVE	T4	N1	2	100	NEGATIVE		0.88	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M341		PATIENT		41	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	2	80	NEGATIVE		0.96	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M343		PATIENT		50	ASIAN	POSITIVE	RD	POSITIVE	T2	N3	2	90	NEGATIVE	2	0.86	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M345		PATIENT		39	AFRICAN-AMERICAN	NEGATIVE	RD	NEGATIVE	T4	N2	3	0	NEGATIVE	0	1.06	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M353		PATIENT		51	HISPANIC	POSITIVE	PCR	NEGATIVE	T3	N2	3	100	NEGATIVE		1.19	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M355		PATIENT		59	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N2	1	90	NEGATIVE		1.11	2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M356		PATIENT		55	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	100	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M357		PATIENT		52	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	100	NEGATIVE		0.95	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M360		PATIENT		56	CAUCASIAN	POSITIVE	RD	POSITIVE	T0	N3	3	90	NEGATIVE		1.22	2	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M363		PATIENT		58	ASIAN	POSITIVE	RD	POSITIVE	T3	N0	3	100	NEGATIVE		0.78	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M365		PATIENT		42	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	1	90	NEGATIVE		1.02	2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M367		PATIENT		62	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T4	N1	3	0	NEGATIVE			1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M371		PATIENT		51	HISPANIC	NEGATIVE	PCR	NEGATIVE	T4	N3	3	0	POSITIVE	3	6.25	1	Taxol||Herceptin||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M371R1		PATIENT		51	HISPANIC	NEGATIVE	PCR	NEGATIVE	T4	N3	3	0	POSITIVE	3	6.25	1	Taxol||Herceptin||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M373		PATIENT		46	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N1	2	0	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M375		PATIENT		64	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	3	0	NEGATIVE	1	0.99	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M375R1		PATIENT		64	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	3	0	NEGATIVE	1	0.99	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M382		PATIENT		55	AFRICAN-AMERICAN	NEGATIVE	PCR	NEGATIVE	T2	N3	3	0	POSITIVE		10.36	1	
+M384		PATIENT		60	HISPANIC	POSITIVE	RD	POSITIVE	T3	N0	2	50	NEGATIVE		1.05	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M385		PATIENT		65	CAUCASIAN	POSITIVE	RD	POSITIVE	T1	N1	2	100	POSITIVE	2	2.67	1	
+M386		PATIENT		42	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N0	2	100	NEGATIVE		1.67	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M386R1		PATIENT		42	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N0	2	100	NEGATIVE		1.67	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M387		PATIENT		28	CAUCASIAN	POSITIVE	RD	POSITIVE	T4	N0	3	90	POSITIVE	3	5.75	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M387R1		PATIENT		28	CAUCASIAN	POSITIVE	RD	POSITIVE	T4	N0	3	90	POSITIVE	3	5.75	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M396		PATIENT		35	HISPANIC	POSITIVE	RD	NEGATIVE	T2	N2	1	90	NEGATIVE	1	1.11	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M399		PATIENT		40	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	90	NEGATIVE		1	1||15	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M402		PATIENT		38	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T4	N1	3	5	NEGATIVE		0.68	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M402R1		PATIENT		38	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T4	N1	3	5	NEGATIVE		0.68	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M411		PATIENT		44	ASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	70	NEGATIVE	1	1	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M417		PATIENT		63	HISPANIC	POSITIVE	RD	POSITIVE	T2	N1	2	100	NEGATIVE		1.11	2	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M421		PATIENT		48	CAUCASIAN	POSITIVE	RD	NEGATIVE	T3	N1	2	70	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M423		PATIENT		68	AFRICAN-AMERICAN	POSITIVE	RD	POSITIVE	T0	N3	2	10	NEGATIVE	0		1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M425		PATIENT		60	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N1	2	0	NEGATIVE		1.04	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M430		PATIENT		52	AFRICAN-AMERICAN	NEGATIVE	RD	NEGATIVE	T3	N1	3	0	NEGATIVE		1.01	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M431		PATIENT		50	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	25	NEGATIVE	1	0.94	1||2	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M433		PATIENT		47	HISPANIC	POSITIVE	RD	POSITIVE	T2	N0	3	70	NEGATIVE	0		1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M434		PATIENT		50	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	40	NEGATIVE	1	1.07	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M442		PATIENT		41	CAUCASIAN	POSITIVE	PCR	POSITIVE	T3	N1	3	80	NEGATIVE	0	1.08	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M443		PATIENT		46	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T3	N2	3	0	POSITIVE	3	6	1	
+M447		PATIENT		44	AFRICAN-AMERICAN	POSITIVE	RD	NEGATIVE	T2	N0	2	95	NEGATIVE		1.63	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M463		PATIENT		60	HISPANIC	POSITIVE	RD	NEGATIVE	T4	N1	3	100	NEGATIVE		0.71	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M469		PATIENT		57	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N3	2	90	NEGATIVE		1.08	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M482		PATIENT		47	HISPANIC	POSITIVE	RD	NEGATIVE	T2	N3	3	80	POSITIVE		9.43	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M484		PATIENT		55	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N0	2		NEGATIVE		0.94	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M485		PATIENT		50	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T4	N2	3	1	NEGATIVE		1.04	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M486		PATIENT		44	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	3	80	NEGATIVE			1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M497		PATIENT		62	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N3	3	20	NEGATIVE	1	1.36	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M502		PATIENT		50	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N0	2	0	NEGATIVE		1.6	1||2	5-fluorouracil||Epirubicin||Cyclophosphamide||Taxol
+M503		PATIENT		38	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T1	N0	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M506		PATIENT		46	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	3	95	NEGATIVE		1.04	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M507		PATIENT		66	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	95	NEGATIVE	1	0.91	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M513		PATIENT		59	AFRICAN-AMERICAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	NEGATIVE	1	0.96	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M523		PATIENT		47	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	100	NEGATIVE		1	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M524		PATIENT		31	HISPANIC	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M525		PATIENT		46	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N0	3	40	NEGATIVE	1	0.83	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M531		PATIENT		53	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N3	3	0	NEGATIVE	1	1.2	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M534		PATIENT		46	CAUCASIAN	POSITIVE	RD	POSITIVE	T4	N3	2	100	NEGATIVE		1.14	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M545		PATIENT		58	AFRICAN-AMERICAN	NEGATIVE	RD	NEGATIVE	T2	N1	3	0	NEGATIVE	2	1.08	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M549		PATIENT		40	HISPANIC	POSITIVE	RD	POSITIVE	T2	N1	2	100	NEGATIVE		1.17	1||2	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M556		PATIENT		47	CAUCASIAN	POSITIVE	RD	POSITIVE	T1	N1	2	90	NEGATIVE	1	1.06	1||2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide||Hormone Therapy
+M557		PATIENT		57	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N3	3	1	NEGATIVE		1.17	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M558		PATIENT		62	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N3	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M559		PATIENT		55	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	2	70	NEGATIVE		1.14	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M564		PATIENT		68	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N2	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M566		PATIENT		39	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N3	2	90	NEGATIVE		1.22	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M571		PATIENT		32	AFRICAN-AMERICAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	NEGATIVE	0		1	5-fluorouracil||Doxorubicin||Cyclophosphamide||Taxol
+M576		PATIENT		70	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	3	0	POSITIVE		7.25	1	
+M578		PATIENT		45	AFRICAN-AMERICAN	POSITIVE	RD	POSITIVE	T4	N1	3	100	NEGATIVE	2	1.55	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M583		PATIENT		51	CAUCASIAN	NEGATIVE	RD	POSITIVE	T2	N3	2	0	NEGATIVE	0	0.97	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M599		PATIENT		50	CAUCASIAN	POSITIVE	RD	POSITIVE	T1	N1	1	80	NEGATIVE	2	1.47	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M607		PATIENT		67	CAUCASIAN	POSITIVE	RD	NEGATIVE	T1	N1	2	90	NEGATIVE		1.21	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M610		PATIENT		47	HISPANIC	POSITIVE	RD	POSITIVE	T3	N2	2	80	NEGATIVE	1	1.32	1||LDC	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M612		PATIENT		40	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N2	3	1	NEGATIVE		1.23	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M617		PATIENT		50	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	3	0	NEGATIVE		1.2	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M619		PATIENT		52	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T4	N2	3	0	NEGATIVE		1.05	1	5-fluorouracil||Doxorubicin||Cyclophosphamide||Taxol||XRT||Xeloda
+M626		PATIENT		45	HISPANIC	NEGATIVE	RD	NEGATIVE	T2	N1	3		POSITIVE	3	1.1	1	
+M642		PATIENT		45	HISPANIC	POSITIVE	RD	POSITIVE	T4	N2	2	95	NEGATIVE		1.09	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M643		PATIENT		41	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	90	NEGATIVE	1	1.08	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M647		PATIENT		65	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T3	N1	3	0	NEGATIVE	2	0.93	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M651		PATIENT		61	CAUCASIAN	POSITIVE	PCR	POSITIVE	T2	N1	3	90	NEGATIVE		1.3	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M652		PATIENT		66	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	2	20	NEGATIVE	0		1||2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M657		PATIENT		48	HISPANIC	NEGATIVE	RD	POSITIVE	T1	N0	2	0	NEGATIVE	1	0.96	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M658		PATIENT		61	HISPANIC	NEGATIVE	PCR	NEGATIVE	T3	N3	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M659		PATIENT		51	ASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	3	0	NEGATIVE	1	1.05	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M661		PATIENT		49	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	NEGATIVE	2	0.79	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M662		PATIENT		46	ASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	90	NEGATIVE	0	0.89	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M665		PATIENT		57	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M666		PATIENT		58	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	100	NEGATIVE		0.91	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M668		PATIENT		50	ASIAN	POSITIVE	RD	POSITIVE	T3	N2	3	80	NEGATIVE		2	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M669		PATIENT		47	ASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	90	NEGATIVE	2	0.86	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M670		PATIENT		43	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	2	0	NEGATIVE		1.06	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M671		PATIENT		30	CAUCASIAN	POSITIVE	RD	POSITIVE	T1	N1	3	90	NEGATIVE		1.07	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M673		PATIENT		58	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N3	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M675		PATIENT		64	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N1	2	1	NEGATIVE	1		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M679		PATIENT		72	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N0	3	0	NEGATIVE	2	1.42	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M681		PATIENT		33	HISPANIC	NEGATIVE	RD	NEGATIVE	T3	N0	3	0	NEGATIVE	2	1.27	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M682		PATIENT		50	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2		NEGATIVE	2	1.2	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M683		PATIENT		59	CAUCASIAN	NEGATIVE	RD	POSITIVE	T2	N0	3	5	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M685		PATIENT		53	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	1	90	NEGATIVE		0	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M690		PATIENT		73	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	1	95	NEGATIVE	1	0.86	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M692		PATIENT		46	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T2	N3	2	0	NEGATIVE	1		1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M693		PATIENT		47	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N0	2	90	NEGATIVE		0.82	1||2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M695		PATIENT		43	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N0	3	80	NEGATIVE		1.21	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M713		PATIENT		50	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T1	N1	3	0	NEGATIVE		1.1	1	5-fluorouracil||Epirubicin||Cyclophosphamide
+ML20		PATIENT		48	AFRICAN-AMERICAN	POSITIVE	PCR	POSITIVE	T4	N1	3		NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU01		PATIENT		73	HISPANIC	POSITIVE	RD	NEGATIVE	T4	N1	2	100	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU07		PATIENT		71	HISPANIC	POSITIVE	RD	NEGATIVE	T4	N1	3	30	NEGATIVE	1		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU08		PATIENT		40	HISPANIC	NEGATIVE	RD	NEGATIVE	T3	N1		0	NEGATIVE	0		1	5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU09		PATIENT		47	HISPANIC	POSITIVE	RD	POSITIVE	T4	N1	2	50	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU11		PATIENT		50	HISPANIC	NEGATIVE	RD	NEGATIVE	T4	N1	2	0	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU12-14		PATIENT		65	HISPANIC	POSITIVE	RD	POSITIVE	T2	N2	3	95	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU14-16		PATIENT		58	HISPANIC	NEGATIVE	RD	NEGATIVE	T4	N2	3	0	NEGATIVE			1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU53		PATIENT		35	HISPANIC	NEGATIVE	RD	NEGATIVE	T3	N1		0	NEGATIVE	0		1	5-fluorouracil||Doxorubicin||Cyclophosphamide
+PERU55		PATIENT		42	HISPANIC	NEGATIVE	RD	NEGATIVE	T4	N1		0	NEGATIVE	0		1	5-fluorouracil||Doxorubicin||Cyclophosphamide
+US002		PATIENT		36		NEGATIVE	RD	NEGATIVE	T3	N2	3		NEGATIVE	1	1.5	1	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+US031		PATIENT		50		NEGATIVE	RD	NEGATIVE	T3	N1	3		POSITIVE		3	1	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+US092		PATIENT		61		POSITIVE	RD	POSITIVE	T3	N0			NEGATIVE		1.5	2	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+US097		PATIENT		46		POSITIVE	RD	POSITIVE	T3	N0			NEGATIVE	0	1.3	2	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+US120		PATIENT		52		NEGATIVE	RD	NEGATIVE		N2			POSITIVE	2		1	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+US123		PATIENT				NEGATIVE	RD	NEGATIVE		N			NEGATIVE				
+US125		PATIENT		41		NEGATIVE	RD	NEGATIVE	T3	N2			NEGATIVE	0		1	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+US129		PATIENT		64		NEGATIVE	PCR	NEGATIVE	T3	N1			NEGATIVE	0		1	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+US134		PATIENT		46		POSITIVE	RD	POSITIVE	T3	N0			POSITIVE		3	1	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+US147		PATIENT		46		NEGATIVE	RD	NEGATIVE	T3	N1			NEGATIVE	2	1.5	1	Taxol||Xeloda||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M696		PATIENT		53	AFRICAN-AMERICAN	NEGATIVE	PCR	NEGATIVE	T2	N1	3	0	NEGATIVE	2	0.98	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M709		PATIENT		51	CAUCASIAN	NEGATIVE	PCR	NEGATIVE	T4	N2	3		NEGATIVE		1.9	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M710		PATIENT		53	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	100	NEGATIVE	0		2||1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M714		PATIENT		64	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	3	30	NEGATIVE		0.96	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M717		PATIENT		52	ASIAN	POSITIVE	RD	POSITIVE	T2	N0	1	100	NEGATIVE		0.94	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M718		PATIENT		36	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N0	3	0	NEGATIVE	2	1.32	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M723		PATIENT		63	HISPANIC	POSITIVE	RD	POSITIVE	T2	N1	2	95	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M725		PATIENT		46	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N3	1	91	NEGATIVE	1	1.25	1	5-fluorouracil||Epirubicin||Cyclophosphamide||Taxol
+M728		PATIENT		49	AFRICAN-AMERICAN	POSITIVE	RD	POSITIVE	T3	N1	3	100	NEGATIVE	0		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M732		PATIENT		50	CAUCASIAN	NEGATIVE	RD	NEGATIVE	T2	N2	3	0	NEGATIVE	0		1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M734		PATIENT		36	AFRICAN-AMERICAN	POSITIVE	RD	POSITIVE	T2	N0	2	90	NEGATIVE		1.18	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M744		PATIENT		44	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	2	95	NEGATIVE		0.87	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M746		PATIENT		56	AFRICAN-AMERICAN	POSITIVE	RD	POSITIVE	T3	N0	1	10	NEGATIVE	0		2	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M753		PATIENT		49	CAUCASIAN	POSITIVE	RD	POSITIVE	T4	N0	2	100	NEGATIVE		1.18	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M765		PATIENT		62	CAUCASIAN	POSITIVE	RD	POSITIVE	T4	N1	3	95	NEGATIVE		0.93	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M767		PATIENT		51	CAUCASIAN	POSITIVE	PCR	POSITIVE	T2	N0	2	91	NEGATIVE	1		1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M774		PATIENT		49	CAUCASIAN	POSITIVE	RD	POSITIVE	T2	N1	2	95	NEGATIVE	1	0.83	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M781		PATIENT		40	CAUCASIAN	POSITIVE	RD	POSITIVE	T3	N0	2	90	NEGATIVE	0	1.17	1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M782		PATIENT		53	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N3	1	90	NEGATIVE	0	0.54	2	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M784		PATIENT		58	CAUCASIAN	POSITIVE	RD	POSITIVE	T4	N0	3	100	NEGATIVE		1.29	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M795		PATIENT		64	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N0	2	85	NEGATIVE		0.86	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
+M801		PATIENT		45	CAUCASIAN	POSITIVE	RD	NEGATIVE	T2	N1	2	91	NEGATIVE	1		1	Taxol||5-fluorouracil||Epirubicin||Cyclophosphamide
+M806		PATIENT		49	HISPANIC	POSITIVE	RD	POSITIVE	T4	N2	3	100	NEGATIVE	1	1.16	1	Taxol||5-fluorouracil||Doxorubicin||Cyclophosphamide
