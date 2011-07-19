@@ -41,5 +41,4 @@ BMN_GRADE	1	1-Poorly Differentiated		1-Poorly Differentiated
 BMN_GRADE	2	2-Moderately Differentiated		2-Moderately Differentiated
 BMN_GRADE	3	3-Well Differentiated		3-Well Differentiated
 HER2_STATUS	NEGATIVE	NEGATIVE		The patient is HER2 Negative
-HER2_STATUS	POSITIVE	POSITIVE		The patient is HER2 Positive
-				
+HER2_STATUS	POSITIVE	POSITIVE		The patient is HER2 Positive				
