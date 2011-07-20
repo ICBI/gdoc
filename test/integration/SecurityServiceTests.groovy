@@ -7,7 +7,7 @@ import javax.naming.ldap.*
 import javax.net.ssl.*
 import org.springframework.jndi.*
 import javax.naming.spi.*
-import gov.nih.nci.security.authorization.domainobjects.User
+
 
 class SecurityServiceTests extends BaseSecurityTest {
 

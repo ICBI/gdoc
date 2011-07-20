@@ -7,11 +7,12 @@ class UserListTests extends GroovyTestCase {
 	def userListService
 	def vennService
 	
-	void testSnapshot(){
-		def pagedLists = userListService.getUsersLists(10,"kmr75")
-		println pagedLists["results"]
-		println pagedLists["count"]
-		println pagedLists["snapshot"]
+	void testGetFindingsLists(){
+		def listHQL = "SELECT distinct list FROM UserList list,Evidence evidence " + 
+		"WHERE list.id = evidence.userList " +
+		"ORDER BY list.dateCreated desc"
+		def results = UserList.executeQuery(listHQL, [max:10, offset:0])
+		println results
 	}
 	
 	/**void testSearch(){
