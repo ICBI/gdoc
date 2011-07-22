@@ -87,22 +87,4 @@ NY70	GSM517277	Homo sapiens microRNA profiling platform version 4 by Luminex xMa
 NY79	GSM517278	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
 NY82	GSM517279	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
 NY96	GSM517280	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
-NY99	GSM517281	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-X98	X98	Illumina Human v1 MicroRNA expression beadchip	CRC_SARVER_2009_01_microRNA.Rda	Median normalization
+NY99	GSM517281	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median normalization		
