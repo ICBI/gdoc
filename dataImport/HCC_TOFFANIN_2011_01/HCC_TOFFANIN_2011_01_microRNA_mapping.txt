@@ -1,90 +1,90 @@
 SUBJECT_ID	BIOSPECIMEN_ID	ARRAY_DESIGN	RDA_FILE	RDA_DESCRIPTION
-B13	GSM517193	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B17	GSM517194	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B19	GSM517195	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B25	GSM517196	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B29	GSM517197	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B31	GSM517198	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B33	GSM517199	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B35	GSM517200	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B39	GSM517201	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B66	GSM517202	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B68	GSM517203	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B70	GSM517204	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B72	GSM517205	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B74	GSM517206	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B76	GSM517207	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B78	GSM517208	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B80	GSM517209	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B82	GSM517210	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B84	GSM517211	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B86	GSM517212	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B88	GSM517213	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B90	GSM517214	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B94	GSM517215	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B96	GSM517216	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-B98	GSM517217	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M100	GSM517218	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M102	GSM517219	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M104	GSM517220	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M106	GSM517221	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M11	GSM517222	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M13	GSM517223	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M15	GSM517224	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M17	GSM517225	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M31	GSM517226	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M35	GSM517227	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M43	GSM517228	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M53	GSM517229	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M67	GSM517230	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M69	GSM517231	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M71	GSM517232	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M73	GSM517233	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M79	GSM517234	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M81	GSM517235	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M88	GSM517236	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M90	GSM517237	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M92	GSM517238	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M94	GSM517239	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M96	GSM517240	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-M98	GSM517241	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY16	GSM517242	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY18	GSM517243	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY2	GSM517244	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY204	GSM517245	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY206	GSM517246	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY208	GSM517247	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY216	GSM517248	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY218	GSM517249	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY222	GSM517250	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY224	GSM517251	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY226	GSM517252	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY228	GSM517253	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY232	GSM517254	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY26	GSM517255	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY307	GSM517256	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY309	GSM517257	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY311	GSM517258	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY313	GSM517259	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY317	GSM517260	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY319	GSM517261	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY321	GSM517262	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY323	GSM517263	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY325	GSM517264	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY327	GSM517265	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY329	GSM517266	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY331	GSM517267	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY333	GSM517268	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY34	GSM517269	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY36	GSM517270	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY39	GSM517271	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY41	GSM517272	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY44	GSM517273	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY6	GSM517274	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY65	GSM517275	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY7	GSM517276	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY70	GSM517277	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY79	GSM517278	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY82	GSM517279	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY96	GSM517280	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
-NY99	GSM517281	Homo sapiens microRNA profiling platform version 4 by Luminex xMap	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling		
+B13	GSM517193	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B17	GSM517194	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B19	GSM517195	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B25	GSM517196	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B29	GSM517197	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B31	GSM517198	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B33	GSM517199	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B35	GSM517200	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B39	GSM517201	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B66	GSM517202	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B68	GSM517203	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B70	GSM517204	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B72	GSM517205	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B74	GSM517206	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B76	GSM517207	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B78	GSM517208	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B80	GSM517209	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B82	GSM517210	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B84	GSM517211	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B86	GSM517212	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B88	GSM517213	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B90	GSM517214	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B94	GSM517215	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B96	GSM517216	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+B98	GSM517217	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M100	GSM517218	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M102	GSM517219	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M104	GSM517220	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M106	GSM517221	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M11	GSM517222	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M13	GSM517223	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M15	GSM517224	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M17	GSM517225	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M31	GSM517226	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M35	GSM517227	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M43	GSM517228	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M53	GSM517229	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M67	GSM517230	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M69	GSM517231	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M71	GSM517232	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M73	GSM517233	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M79	GSM517234	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M81	GSM517235	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M88	GSM517236	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M90	GSM517237	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M92	GSM517238	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M94	GSM517239	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M96	GSM517240	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+M98	GSM517241	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY16	GSM517242	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY18	GSM517243	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY2	GSM517244	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY204	GSM517245	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY206	GSM517246	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY208	GSM517247	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY216	GSM517248	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY218	GSM517249	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY222	GSM517250	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY224	GSM517251	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY226	GSM517252	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY228	GSM517253	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY232	GSM517254	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY26	GSM517255	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY307	GSM517256	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY309	GSM517257	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY311	GSM517258	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY313	GSM517259	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY317	GSM517260	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY319	GSM517261	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY321	GSM517262	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY323	GSM517263	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY325	GSM517264	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY327	GSM517265	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY329	GSM517266	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY331	GSM517267	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY333	GSM517268	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY34	GSM517269	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY36	GSM517270	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY39	GSM517271	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY41	GSM517272	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY44	GSM517273	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY6	GSM517274	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY65	GSM517275	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY7	GSM517276	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY70	GSM517277	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY79	GSM517278	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY82	GSM517279	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY96	GSM517280	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling
+NY99	GSM517281	Homo sapiens microRNA profiling platform version 4	HCC_TOFFANIN_2011_01_microRNA.Rda	Median scaling		
