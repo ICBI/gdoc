@@ -1,15 +1,15 @@
-original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-ER_STATUS		ER_STATUS	ER Status	Estrogen Receptor Status	PATHOLOGY					0	0	1	VARCHAR			
-PGR_STATUS		PGR_STATUS	Progestrone receptor status	Progestrogen receptor status	PATHOLOGY					1	0	1	VARCHAR2(8)			
-AGE		AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	NUMBER(3,1)	years	0	120
-RACE		RACE	Race	Race (not ethnicity)	DEMOGRAPHICAL					1	0	1	VARCHAR2(50)			
-POST_TRE_RESPONSE		POST_TRE_RESPONSE	Post treatment response	Post treatment response determined clinically	CLINICAL					1	0	1	VARCHAR2(35)			
-PTNM_T		PTNM_T	Primary Tumor Site (pTNM-T)	Primary Tumor Site in pTNM Classification	PATHOLOGY					1	0	1	VARCHAR2(5)			
-PTNM_N		PTNM_N	Lymph Node Involvement (pTNM-N)	Degree of lymph node involvement in pTNM Classification. N staging determines whether or not the cancer has spread into nearby lymph nodes 	PATHOLOGY					1	0	1	VARCHAR2(5)			
-BMN_GRADE		BMN_GRADE	BMN Grade	Black's Nuclear Grading System: Nuclear grade refers to the growth rate of the cell and how odd-looking the nucleus of the cell is. When talking about grade alone they are looking at different features of a cell (such as size, shape, activity of the cell) that are combined together to give an overall score that is then translated into a grade. 	CLINICAL					1	0	1	VARCHAR2(5)			
-ER_LEVEL		ER_LEVEL	ER Level	Original ER Value	CLINICAL					0	0	0	NUMBER(4,1)		0	100
-HER2_STATUS		HER2_STATUS	HER2 Status	Human Epidermal growth factor Receptor 2 status	PATHOLOGY					1	0	1	VARCHAR2(15)			
-HER2_IHC		HER2_IHC	HER2 IHC Value	Original HER2 immunochemistry (IHC) value	CLINICAL					0	0	0	NUMBER(4,1)		0	4
-HER2_FISH		HER2_FISH	HER2 FISH Value	Original HER2 FISH ( in situ hybridization) value	CLINICAL					0	0	0	NUMBER(4,1)		0	10
-HIST_TUMOR_TYPE		HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	CLINICAL					1	0	1	VARCHAR2(15)			
-TREATMENT		TREATMENT	Treatment	Treatment given to the sample	CLINICAL					1	0	1	VARCHAR2(25)			
+original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range			
+ER_STATUS		ER_STATUS	ER Status	Estrogen Receptor Status	PATHOLOGY					0	0	1	VARCHAR						
+PGR_STATUS		PGR_STATUS	Progestrone receptor status	Progestrogen receptor status	PATHOLOGY					1	0	1	VARCHAR2(8)						
+AGE		AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	NUMBER(3,1)	years	0	120			
+RACE		RACE	Race	Race (not ethnicity)	DEMOGRAPHICAL					1	0	1	VARCHAR2(50)						
+PTNM_T		PTNM_T	Primary Tumor Site (pTNM-T)	Primary Tumor Site in pTNM Classification	PATHOLOGY					1	0	1	VARCHAR2(5)						
+PTNM_N		PTNM_N	Lymph Node Involvement (pTNM-N)	Degree of lymph node involvement in pTNM Classification. N staging determines whether or not the cancer has spread into nearby lymph nodes 	PATHOLOGY					1	0	1	VARCHAR2(5)						
+BMN_GRADE		BMN_GRADE	BMN Grade	Black's Nuclear Grading System: Nuclear grade refers to the growth rate of the cell and how odd-looking the nucleus of the cell is. When talking about grade alone they are looking at different features of a cell (such as size, shape, activity of the cell) that are combined together to give an overall score that is then translated into a grade. 	CLINICAL					1	0	1	VARCHAR2(5)						
+ER_LEVEL		ER_LEVEL	ER Level	Original ER Value	CLINICAL					0	0	0	NUMBER(4,1)		0	100			
+HER2_STATUS		HER2_STATUS	HER2 Status	Human Epidermal growth factor Receptor 2 status	PATHOLOGY					1	0	1	VARCHAR2(15)						
+HER2_IHC		HER2_IHC	HER2 IHC Value	Original HER2 immunochemistry (IHC) value	CLINICAL					0	0	0	NUMBER(4,1)		0	4			
+HER2_FISH		HER2_FISH	HER2 FISH Value	Original HER2 FISH ( in situ hybridization) value	CLINICAL					0	0	0	NUMBER(4,1)		0	10			
+HIST_TUMOR_TYPE		HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	CLINICAL					1	0	1	VARCHAR2(15)						
+TREATMENT		TREATMENT	Treatment	Treatment given to the sample	CLINICAL					1	0	1	VARCHAR2(25)						
+Best Clinical Response Assessment		BEST_RESPONSE	Best Response	Best Clinical Response Assessment	CLINICAL					1	0	1	VARCHAR2(50)						

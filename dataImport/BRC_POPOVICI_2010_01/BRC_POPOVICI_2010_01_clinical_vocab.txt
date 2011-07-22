@@ -9,8 +9,8 @@ RACE	HISPANIC	HISPANIC		HISPANIC
 RACE	OTHER	OTHER		OTHER
 RACE	ASIAN	ASIAN		ASIAN
 RACE	MIXED	MIXED		MIXED
-POST_TRE_RESPONSE	PCR	Pathological complete Response		The absence of any residual tumor cells in a histologic evaluation of a tumor specimen is defined as a complete pathologic response
-POST_TRE_RESPONSE	RD	Residual Disease		Residual Disease
+BEST_RESPONSE	PCR	Pathological complete Response		The absence of any residual tumor cells in a histologic evaluation of a tumor specimen is defined as a complete pathologic response
+BEST_RESPONSE	RD	Residual Disease		Residual Disease
 HIST_TUMOR_TYPE	1	1 - IDC- Invasive Ductal Carcinoma		1 - IDC- Invasive Ductal Carcinoma
 HIST_TUMOR_TYPE	2	2 - ILC -Invasive lobular Carcinoma		2 - ILC -Invasive lobular Carcinoma
 HIST_TUMOR_TYPE	15	15 - DCIS		15 - DCIS
@@ -41,4 +41,4 @@ BMN_GRADE	1	1-Poorly Differentiated		1-Poorly Differentiated
 BMN_GRADE	2	2-Moderately Differentiated		2-Moderately Differentiated
 BMN_GRADE	3	3-Well Differentiated		3-Well Differentiated
 HER2_STATUS	NEGATIVE	NEGATIVE		The patient is HER2 Negative
-HER2_STATUS	POSITIVE	POSITIVE		The patient is HER2 Positive				
+HER2_STATUS	POSITIVE	POSITIVE		The patient is HER2 Positive
