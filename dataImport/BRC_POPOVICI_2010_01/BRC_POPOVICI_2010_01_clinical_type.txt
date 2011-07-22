@@ -12,4 +12,4 @@ HER2_IHC		HER2_IHC	HER2 IHC Value	Original HER2 immunochemistry (IHC) value	CLIN
 HER2_FISH		HER2_FISH	HER2 FISH Value	Original HER2 FISH ( in situ hybridization) value	CLINICAL					0	0	0	NUMBER(4,1)		0	10			
 HIST_TUMOR_TYPE		HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	CLINICAL					1	0	1	VARCHAR2(15)						
 TREATMENT		TREATMENT	Treatment	Treatment given to the sample	CLINICAL					1	0	1	VARCHAR2(25)						
-Best Clinical Response Assessment		BEST_RESPONSE	Best Response	Best Clinical Response Assessment	CLINICAL					1	0	1	VARCHAR2(50)						
+POST_TRE_RESPONSE	Post treatment response	Post treatment response determined clinically	CLINICAL					1	0	1	VARCHAR2(35)
