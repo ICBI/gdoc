@@ -1,2 +1,2 @@
-PLATFORM          	PROVIDER 	ARRAY TYPE
-Homo sapiens microRNA profiling platform version 4 by Luminex xMap	LUMINEX	microRNA
+PLATFORM	PROVIDER	ARRAY TYPE
+Homo sapiens microRNA profiling platform version 4	LUMINEX	microRNA
