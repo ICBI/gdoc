@@ -3,9 +3,27 @@
 	<tr>
 		<td>
 			<br />
-			<b>Version 1.3</b><br/>
+			<b>Version 1.4 - 8.26.2011</b><br/>
+			<ul style="list-style-type:square">
+				<li>Support for cell line data, including modified workflows (preclinical model support, phase 1)</li>
+				<li>Support for time course experiments</li>
+				<li>Data set tally now 27 public studies, 5 private studies</li>
+				<li>Updated FAQ</li>
+				<li>Seven additional sets of "findings"</li>
+				<li>G-DOC publication in press in <i>Neoplasia</i></li>
+				<li>Thirteen additional protein-drug structures</li>
+				<li>More than 500 new active chemical compounds</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<br />
+			<b>Version 1.3 - 6.10.2011</b><br/>
 			<ul style="list-style-type:square">
 				<li>Support for FireFox 4</li>
+				<li>Improved link out functionality</li>
+				<li>Refactored for improved modularity and performance</li>
 			</ul>
 		</td>
 	</tr>
