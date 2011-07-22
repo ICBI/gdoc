@@ -2,22 +2,22 @@ REPORTER ID	GENE SYMBOL
 EAM312	hsa-miR-105
 EAM186	hsa-miR-106a
 EAM190	hsa-mmu-miR-10b
-JLA138	hsa-miR-146b-5p, mmu-miR-146b
+JLA138	hsa-miR-146b-5p
 EAM316	hsa-miR-147
 EAM403	hsa-miR-151-3p
-JLA199	hairpin-hsa-mir-154, hairpin-mmu-mir-154
+JLA199	hairpin-hsa-mir-154
 EAM317	hsa-miR-155
 EAM318	hairpin-hsa-mir-17
 JLA148	hsa-mmu-miR-181d
-EAM319	hairpin-hsa-mir-182, hairpin-mmu-mir-182
+EAM319	hairpin-hsa-mir-182
 JLA124	hsa-miR-18b
 JLA198	hairpin-hsa-mir-191
 JLA146	hsa-miR-193b
 EAM300	hsa-mmu-miR-197
 EAM301	hsa-miR-198
 EAM235	hsa-miR-199b-5p
-JLA195	hairpin-hsa-mir-200a, hairpin-mmu-mir-200a
-JLA139	mmu-miR-202-5p, hairpin-hsa-mir-202
+JLA195	hairpin-hsa-mir-200a
+JLA139	mmu-miR-202-5p
 JLA140	hsa-miR-202
 JLA125	hsa-mmu-miR-20b
 EAM246	hsa-miR-211
@@ -53,25 +53,25 @@ JLA121	hsa-miR-380
 JLA113	hsa-miR-383
 JLA129	hsa-mmu-miR-409-5p
 JLA122	hairpin-hsa-mir-422a
-JLA120	hairpin-hsa-mir-378, hairpin-mmu-mir-378
+JLA120	hairpin-hsa-mir-378
 JLA123	hsa-mmu-miR-423-3p
 JLA97	hsa-miR-429
 JLA143	hairpin-hsa-mir-432
 JLA128	hairpin-hsa-mir-452
 JLA127	hairpin-hsa-mir-453
-JLA132	hsa-miR-485-3p, hairpin-mmu-mir-485
-JLA131	hsa-miR-485-5p, mmu-miR-485
+JLA132	hsa-miR-485-3p
+JLA131	hsa-miR-485-5p
 JLA133	hairpin-hsa-mir-488
 JLA134	hsa-miR-489
-JLA135	hsa-miR-490-3p, mmu-miR-490
-JLA136	hsa-miR-491-5p, mmu-miR-491
+JLA135	hsa-miR-490-3p
+JLA136	hsa-miR-491-5p
 JLA141	hsa-miR-492
-JLA142	hairpin-hsa-mir-493, hairpin-mmu-mir-493
+JLA142	hairpin-hsa-mir-493
 JLA144	hsa-mmu-miR-494
-JLA145	hairpin-hsa-mir-496, hairpin-mmu-mir-496
+JLA145	hairpin-hsa-mir-496
 JLA147	hsa-mmu-miR-497
 JLA151	hsa-miR-498
-JLA182	hsa-miR-499-5p, mmu-miR-499
+JLA182	hsa-miR-499-5p
 JLA183	hairpin-hsa-mir-500
 JLA184	hsa-miR-501-5p
 JLA185	hsa-miR-502-5p
@@ -87,7 +87,7 @@ JLA150	hsa-miR-512-3p
 JLA149	hsa-miR-512-5p
 JLA188	hsa-miR-513a-5p
 JLA194	hsa-miR-514
-JLA177	hsa-miR-516a-3p, hairpin-hsa-mir-516b
+JLA177	hsa-miR-516a-3p
 JLA172	hairpin-hsa-mir-517c
 JLA180	hsa-miR-517c
 JLA179	hairpin-hsa-mir-518a
@@ -104,7 +104,7 @@ JLA158	hsa-miR-520a-3p
 JLA173	hsa-miR-520d-5p
 JLA174	hsa-miR-520d-3p
 JLA152	hsa-miR-520e
-JLA176	hsa-miR-520g, hsa-miR-520h
+JLA176	hsa-miR-520g
 JLA170	hsa-miR-524-5p
 JLA171	hsa-miR-524-3p
 JLA163	hsa-miR-525-3p
@@ -121,27 +121,27 @@ EAM216	hsa-mmu-miR-149
 EAM222	hsa-mmu-miR-15a
 EAM229	hsa-mmu-miR-182
 EAM293	hsa-mmu-miR-188-5p
-EAM320	hairpin-hsa-mir-24, hairpin-mmu-mir-24
-EAM303	hairpin-hsa-mir-199b, hairpin-mmu-mir-199b
+EAM320	hairpin-hsa-mir-24
+EAM303	hairpin-hsa-mir-199b
 EAM329	hsa-mmu-miR-302a
-JLA118	hairpin-hsa-mir-30e, hairpin-mmu-mir-30e
-JLA105	hsa-miR-361-5p, mmu-miR-361
+JLA118	hairpin-hsa-mir-30e
+JLA105	hsa-miR-361-5p
 JLA14	hsa-mmu-miR-363
 EAM418	hsa-mmu-miR-370
 JLA106	hsa-mmu-miR-375
 JLA107	hsa-mmu-miR-377
-JLA108	hairpin-hsa-mir-378, hairpin-mmu-mir-378
+JLA108	hairpin-hsa-mir-378
 JLA109	hsa-mmu-miR-379
-JLA110	hairpin-hsa-mir-380, hairpin-mmu-mir-380
+JLA110	hairpin-hsa-mir-380
 JLA111	hsa-mmu-miR-381
 JLA112	hsa-mmu-miR-382
 JLA115	hsa-miR-384
 EAM427	hsa-mmu-miR-409-3p
 EAM428	hsa-mmu-miR-410
-EAM433	hsa-miR-412, hairpin-mmu-mir-412
-JLA116	hairpin-hsa-mir-425, hairpin-mmu-mir-425
-JLA117	mmu-miR-452, hairpin-hsa-mir-452
-EAM152	hairpin-hsa-mir-9, hairpin-mmu-mir-9
+EAM433	hsa-miR-412
+JLA116	hairpin-hsa-mir-425
+JLA117	mmu-miR-452
+EAM152	hairpin-hsa-mir-9
 EAM153	hsa-mmu-let-7a
 EAM147	hsa-mmu-let-7b
 EAM145	hsa-mmu-let-7c
@@ -150,7 +150,7 @@ EAM168	hsa-mmu-let-7e
 EAM181	hsa-mmu-let-7f
 JLA215	hsa-mmu-let-7i
 EAM184	hsa-mmu-miR-100
-EAM311	hsa-miR-101, mmu-miR-101a
+EAM311	hsa-miR-101
 EAM185	hsa-mmu-miR-103
 EAM313	hsa-mmu-miR-106b
 EAM187	hsa-mmu-miR-107
@@ -158,26 +158,26 @@ EAM189	hsa-mmu-miR-10a
 EAM191	hsa-mmu-miR-122
 EAM103	hsa-mmu-miR-124
 EAM193	hsa-mmu-miR-125a-5p
-EAM105	hsa-miR-125b, mmu-miR-125b-5p
-EAM192	mmu-miR-126-5p, hairpin-hsa-mir-126
-EAM314	hsa-miR-126, mmu-miR-126-3p
-EAM315	hsa-miR-127-3p, mmu-miR-127
+EAM105	hsa-miR-125b
+EAM192	mmu-miR-126-5p
+EAM314	hsa-miR-126
+EAM315	hsa-miR-127-3p
 EAM194	hsa-mmu-miR-128
 EAM195	hsa-mmu-miR-128
 JLA214	hsa-mmu-miR-129-5p
 EAM159	hsa-mmu-miR-130a
 EAM198	hsa-mmu-miR-130b
 EAM137	hsa-mmu-miR-132
-EAM200	hairpin-hsa-mir-133a, hairpin-mmu-mir-133a
+EAM200	hairpin-hsa-mir-133a
 EAM202	
 EAM203	hsa-mmu-miR-135a
 EAM342	hsa-mmu-miR-135b
 EAM155	hsa-mmu-miR-136
 EAM171	hsa-mmu-miR-137
-JLA220	hairpin-hsa-mir-138, hairpin-mmu-mir-138
+JLA220	hairpin-hsa-mir-138
 JLA222	hsa-mmu-miR-139-5p
-JLA72	hairpin-hsa-mir-140, hairpin-mmu-mir-140
-EAM207	hsa-miR-140-5p, mmu-miR-140
+JLA72	hairpin-hsa-mir-140
+EAM207	hsa-miR-140-5p
 EAM208	hsa-mmu-miR-141
 EAM163	hsa-mmu-miR-142-3p
 EAM209	hsa-mmu-miR-142-5p
@@ -198,14 +198,14 @@ EAM227	hsa-mmu-miR-181b
 EAM228	hsa-mmu-miR-181c
 EAM230	hsa-mmu-miR-183
 EAM290	hsa-mmu-miR-184
-JLA219	hairpin-hsa-mir-185, hairpin-mmu-mir-185
+JLA219	hairpin-hsa-mir-185
 EAM292	hsa-mmu-miR-186
 EAM231	hsa-mmu-miR-187
 EAM225	hsa-mmu-miR-18a
 EAM295	hsa-mmu-miR-190
 JLA221	
 EAM232	hsa-mmu-miR-192
-EAM297	hsa-miR-193a-3p, mmu-miR-193
+EAM297	hsa-miR-193a-3p
 EAM298	hsa-mmu-miR-194
 EAM299	hsa-mmu-miR-195
 EAM233	hsa-mmu-miR-196a
@@ -225,11 +225,11 @@ EAM240	hsa-mmu-miR-20a
 EAM244	hsa-mmu-miR-21
 EAM245	hsa-mmu-miR-210
 EAM247	hsa-mmu-miR-212
-EAM248	hairpin-hsa-mir-181a, hairpin-mmu-mir-181a
+EAM248	hairpin-hsa-mir-181a
 EAM249	hsa-mmu-miR-214
 EAM251	hsa-mmu-miR-216a
 EAM253	hsa-mmu-miR-218
-EAM254	hsa-miR-219-5p, mmu-miR-219
+EAM254	hsa-miR-219-5p
 EAM255	hsa-mmu-miR-22
 EAM257	hsa-mmu-miR-221
 EAM258	hsa-mmu-miR-222
@@ -242,14 +242,14 @@ EAM263	hsa-mmu-miR-26a
 EAM160	hsa-mmu-miR-26b
 EAM325	hsa-mmu-miR-27a
 EAM264	hsa-mmu-miR-27b
-EAM161	hsa-miR-28-5p, mmu-miR-28
+EAM161	hsa-miR-28-5p
 EAM326	hsa-mmu-miR-296-5p
-EAM327	hsa-miR-299-5p, hairpin-mmu-mir-299
-EAM268	hairpin-hsa-mir-29a, hairpin-mmu-mir-29a
+EAM327	hsa-miR-299-5p
+EAM268	hairpin-hsa-mir-29a
 EAM119	hsa-mmu-miR-29b
 EAM279	hsa-mmu-miR-29c
 EAM328	hsa-mmu-miR-301a
-EAM280	hairpin-hsa-mir-30a, hairpin-mmu-mir-30a
+EAM280	hairpin-hsa-mir-30a
 EAM330	hsa-mmu-miR-30a
 EAM270	hsa-mmu-miR-30b
 EAM271	hsa-mmu-miR-30c
@@ -257,30 +257,30 @@ EAM272	hsa-mmu-miR-30d
 EAM331	hsa-mmu-miR-30e
 EAM332	hsa-mmu-miR-31
 EAM333	hsa-mmu-miR-32
-EAM175	hsa-miR-320a, mmu-miR-320
+EAM175	hsa-miR-320a
 EAM358	hsa-mmu-miR-323-3p
-EAM359	hsa-miR-324-3p, hairpin-mmu-mir-324
+EAM359	hsa-miR-324-3p
 EAM133	hsa-mmu-miR-324-5p
 EAM361	hsa-mmu-miR-326
 EAM362	hsa-mmu-miR-328
-JLA223	hsa-miR-33a, mmu-miR-33
+JLA223	hsa-miR-33a
 EAM365	hsa-mmu-miR-331-3p
-EAM385	hsa-miR-335, mmu-miR-335-5p
+EAM385	hsa-miR-335
 EAM367	hsa-mmu-miR-338-3p
 EAM368	hsa-mmu-miR-339-5p
-EAM369	mmu-miR-340-3p, hairpin-hsa-mir-340
+EAM369	mmu-miR-340-3p
 EAM371	hsa-mmu-miR-342-3p
 EAM275	hsa-mmu-miR-34a
-EAM336	hsa-miR-34c-5p, mmu-miR-34c
+EAM336	hsa-miR-34c-5p
 JLA94	hsa-mmu-miR-365
 JLA103	hsa-miR-424
 JLA93	hsa-mmu-miR-431
 JLA92	hsa-mmu-miR-433
 JLA99	hsa-mmu-miR-448
 JLA96	hsa-mmu-miR-449a
-JLA95	hairpin-hsa-mir-450a, hairpin-mmu-mir-450a
+JLA95	hairpin-hsa-mir-450a
 JLA5	hsa-mmu-miR-451
-EAM109	hsa-miR-7, mmu-miR-7a
+EAM109	hsa-miR-7
 EAM276	hsa-mmu-miR-9
 EAM131	hsa-mmu-miR-92a
 EAM337	hsa-mmu-miR-93
@@ -289,18 +289,18 @@ EAM278	hsa-mmu-miR-98
 EAM121	hsa-mmu-miR-99a
 JLA91	hsa-mmu-miR-99b
 JLA73	hsa-mmu-miR-151-5p
-JLA39	hairpin-hsa-let-7g, hairpin-mmu-let-7g
-JLA74	hairpin-hsa-mir-18a, hairpin-mmu-mir-18a
+JLA39	hairpin-hsa-let-7g
+JLA74	hairpin-hsa-mir-18a
 JLA69	hsa-miR-193a-5p
-JLA24	hairpin-hsa-mir-19a, hairpin-mmu-mir-19a
-JLA77	hairpin-hsa-mir-19b, hairpin-mmu-mir-19b
-JLA49	hairpin-hsa-mir-222, hairpin-mmu-mir-222
-JLA79	hairpin-hsa-mir-23a, hairpin-mmu-mir-23a
+JLA24	hairpin-hsa-mir-19a
+JLA77	hairpin-hsa-mir-19b
+JLA49	hairpin-hsa-mir-222
+JLA79	hairpin-hsa-mir-23a
 JLA53	hairpin-hsa-mir-24
-JLA34	hairpin-hsa-mir-26b, hairpin-mmu-mir-26b
+JLA34	hairpin-hsa-mir-26b
 JLA31	hsa-miR-28-3p
-JLA38	hairpin-hsa-mir-29b, hairpin-mmu-mir-29b
-JLA85	hairpin-hsa-mir-30d, hairpin-mmu-mir-30d
+JLA38	hairpin-hsa-mir-29b
+JLA85	hairpin-hsa-mir-30d
 JLA81	hsa-miR-339-3p
 JLA23	hsa-mmu-miR-342-5p
 JLA12	hsa-miR-362-5p
@@ -314,7 +314,7 @@ JLA57	hairpin-hsa-mir-505
 JLA44	hsa-miR-515-3p
 JLA70	hsa-miR-515-5p
 JLA27	hsa-miR-516b
-JLA26	hsa-miR-517a, hairpin-hsa-mir-517b
+JLA26	hsa-miR-517a
 JLA40	hsa-miR-518a-3p
 JLA28	hsa-miR-518b
 JLA6	hairpin-hsa-mir-518e
@@ -324,7 +324,7 @@ JLA17	hairpin-hsa-mir-520c
 JLA10	hsa-miR-521
 JLA2	hsa-miR-522
 JLA41	hsa-miR-523
-JLA35	hsa-miR-519c-5p, hsa-miR-519b-5p, hairpin-hsa-mir-522
+JLA35	hsa-miR-519c-5p
 JLA36	hairpin-hsa-mir-527
 JLA84	hairpin-hsa-mir-92a
 JLA65	hsa-miR-942
@@ -352,8 +352,8 @@ JLA33	hairpin-hsa-mir-519a
 JLA48	
 JLA32	
 JLA51	hsa-mmu-miR-877
-JLA63	hsa-miR-542-5p, hairpin-mmu-mir-542
+JLA63	hsa-miR-542-5p
 JLA42	
 JLA43	hsa-mmu-miR-590-5p
-JLA22	hairpin-hsa-mir-671, hairpin-mmu-mir-671
-JLA60	hsa-miR-486-5p, mmu-miR-486
+JLA22	hairpin-hsa-mir-671
+JLA60	hsa-miR-486-5p
