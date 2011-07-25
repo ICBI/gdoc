@@ -14,3 +14,4 @@ IGF1R_IHC_STATUS		IGF1R_IHC_STATUS	IGF1R IHC Status	Protein IGF1R positivity tes
 AKT_IHC_STATUS		AKT_IHC_STATUS	AKT IHC Status	Protein AKT positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR(15)			
 CTNNB1_IHC_STATUS		CTNNB1_IHC_STATUS	CTNNB1 IHC Status	Protein CTNNB1 positivity tested by immunochemistry	CLINICAL					1	0	1	VARCHAR(15)			
 SAMPLE_TYPE		SAMPLE_TYPE	Sample Type	Indicates from which neoplastic stage the tissue sample was taken	PATHOLOGY				C2713035	1	0	1	VARCHAR2(24)			
+BIOSPECIMEN_TYPE		BIOSPECIMEN_TYPE	Biospecimen Type	Indicates the type of biospecimen	CLINICAL					1	0	1	VARCHAR2(15)			

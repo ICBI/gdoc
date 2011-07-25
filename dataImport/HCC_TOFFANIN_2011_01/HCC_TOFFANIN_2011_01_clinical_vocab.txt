@@ -58,3 +58,6 @@ CTNNB1_IHC_STATUS	POSITIVE	POSITIVE		Protein CTNNB1 tested by immunochemistry sh
 CTNNB1_IHC_STATUS	NEGATIVE	NEGATIVE		Protein CTNNB1 tested by immunochemistry shows negativity
 SAMPLE_TYPE	HEPATOCELLULAR_CARCINOMA	Hepatocellular Carcinoma		Hepatocellular Carcinoma
 SAMPLE_TYPE	NON_TUMOR_CIRRHOTIC	Non tumor Cirrhotic		Non tumor Cirrhotic
+BIOSPECIMEN_TYPE	GENE_EXP	Gene Expression		Gene Expression
+BIOSPECIMEN_TYPE	COPY_NUMBER	Copy Number		Copy Number
+BIOSPECIMEN_TYPE	MICRORNA	microRNA		microRNA
