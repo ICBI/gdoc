@@ -28,7 +28,7 @@ PTNM_N	N3	N3 - Involvement of regional lymph nodes		N3 - Involvement of regional
 PTNM_N	N2	N2 - Involvement of regional lymph nodes		N2 - Involvement of regional lymph nodes (number and/or extent of spread)
 PTNM_N	N1	N1 - Involvement of regional lymph nodes		N1 - Involvement of regional lymph nodes (number and/or extent of spread)
 PTNM_N	N0	N0 - No regional lymph node involvement		N0 - No regional lymph node involvement
-TREATMENT	5-fluorouracil||||	5-fluorouracil||||		5-fluorouracil||||
+TREATMENT	5-fluorouracil	5-fluorouracil		5-fluorouracil
 TREATMENT	Epirubicin	Epirubicin		Epirubicin
 TREATMENT	Cyclophosphamide	Cyclophosphamide		Cyclophosphamide
 TREATMENT	Doxorubicin	Doxorubicin		Doxorubicin
