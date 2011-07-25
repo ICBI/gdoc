@@ -1,0 +1,14 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+EVENT_DFS	1	EVENT		1 stands for EVENT indicating recurrence of disease  
+EVENT_DFS	0	CENSORING		0 stands for CENSORING meaning no recurrence was recorded
+EVENT_OS	0	CENSORING		0 stands for CENSORING meaning there was no record of death
+EVENT_OS	1	EVENT		1 stands for EVENT indicating death of patient
+BREASTCANCER_DEATH	YES	Death due to Breast Cancer		Death due to Breast Cancer
+BREASTCANCER_DEATH	NO	Death not due to Breast Cancer		Death not due to Breast Cancer
+BC_MOLECULAR_SUBTYPE	ERBB2	ERBB2		Breast cancer sub type is : EBB2 over-expressing
+BC_MOLECULAR_SUBTYPE	Basal	Basal		Breast cancer sub type is : Basal
+BC_MOLECULAR_SUBTYPE	Normal	Normal		Breast cancer sub type is : Normal breast like
+BC_MOLECULAR_SUBTYPE	LuminalA	LuminalA		Breast cancer sub type is : LuminalA
+BC_MOLECULAR_SUBTYPE	LuminalB	LuminalB		Breast cancer sub type is : Luminal B
+BC_MOLECULAR_SUBTYPE	No_Subtype	No Subtype		No specific Breast cancer sub type
+				
