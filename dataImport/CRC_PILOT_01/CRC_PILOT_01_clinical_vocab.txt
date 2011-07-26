@@ -123,3 +123,6 @@ FUP_CT_AGENT	5-Fluorouracil	5-Fluorouracil		Patient had 5-Fluorouracil as his fo
 FUP_CT_AGENT	Irinotecan	Irinotecan		Patient had Irinotecan as his follow up chemotherapy agent
 FUP_CT_AGENT	Xelodan	Xelodan		Patient had Xelodan as his follow up chemotherapy agent
 FUP_CT_AGENT	Oxaliplatin	Oxaliplatin		Patient had Oxaliplatin as his follow up chemotherapy agent
+ELSTON-ELLIS_GRADE	1	1 - Low grade		Elston-Ellis grade 1 - low grade
+ELSTON-ELLIS_GRADE	2	2 - Intermediate grade		Elston-Ellis grade 2 - intermediate grade
+ELSTON-ELLIS_GRADE	3	3 - High grade		Elston-Ellis grade 3 - high grade

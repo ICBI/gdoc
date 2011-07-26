@@ -10,4 +10,7 @@ BC_MOLECULAR_SUBTYPE	Basal	Basal		Breast cancer sub type is : Basal
 BC_MOLECULAR_SUBTYPE	Normal	Normal		Breast cancer sub type is : Normal breast like
 BC_MOLECULAR_SUBTYPE	LuminalA	LuminalA		Breast cancer sub type is : LuminalA
 BC_MOLECULAR_SUBTYPE	LuminalB	LuminalB		Breast cancer sub type is : Luminal B
-BC_MOLECULAR_SUBTYPE	No_Subtype	No Subtype		No specific Breast cancer sub type				
+BC_MOLECULAR_SUBTYPE	No_Subtype	No Subtype		No specific Breast cancer sub type
+ELSTON-ELLIS_GRADE	1	1 - Low grade		Elston-Ellis grade 1 - low grade
+ELSTON-ELLIS_GRADE	2	2 - Intermediate grade		Elston-Ellis grade 2 - intermediate grade
+ELSTON-ELLIS_GRADE	3	3 - High grade		Elston-Ellis grade 3 - high grade 				

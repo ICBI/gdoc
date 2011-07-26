@@ -13,3 +13,6 @@ NODAL_STATUS	POSITIVE	POSITIVE		Lymph Nodes positive for tumor cells
 NODAL_STATUS	NEGATIVE	NEGATIVE		Lymph Node negative for tumor cells
 EVENT_DSS	1	EVENT		1 stands for EVENT indicating death of patient due to the disease (cancer)
 EVENT_DSS	0	CENSORING		0 stands for CENSORING meaning there was no record of death
+ELSTON-ELLIS_GRADE	1	1 - Low grade		Elston-Ellis grade 1 - low grade
+ELSTON-ELLIS_GRADE	2	2 - Intermediate grade		Elston-Ellis grade 2 - intermediate grade
+ELSTON-ELLIS_GRADE	3	3 - High grade		Elston-Ellis grade 3 - high grade 

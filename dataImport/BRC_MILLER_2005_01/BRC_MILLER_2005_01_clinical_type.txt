@@ -2,7 +2,7 @@ original_name	conversion_note	short_name	long_name	definition	cdep	semantic_grou
 TP53_MUTATION		TP53_MUTATION	P53 Mutation analysis	Mutation analysis of gene P53 performed using DNA from isolated tumor specimen	CLINICAL					1	0	1	VARCHAR(25)			
 DLDA_CLASSIFIER_RESULT_P53_STATUS		DLDA_CLASSIFIER_RESULT_P53_STATUS	DLDA Classification Result of P53 Status	Diagonal Linear Discriminant Analysis (DLDA) is a method used to separate two classes. Here it is used to classify the samples into p53 wild type like or p53 mutant like classes.	CLINICAL					1	0	1	VARCHAR(25)			
 DLDA_CLASSIFIER_ERROR		DLDA_CLASSIFIER_ERROR	DLDA Classifier Error	Indicates a misclassification in the DLDA classifier or not	CLINICAL					1	0	1	VARCHAR(25)			
-ELSTON-ELLIS_GRADE		ELSTON-ELLIS_GRADE	Elston-Ellis grade category	The histologic grade (Elston-Ellis) category	PATHOLOGY					0	0	0	NUMBER(1)		1	3
+grade	198	ELSTON-ELLIS_GRADE	Elston-Ellis grade category	The histologic grade (Elston-Ellis) category	PATHOLOGY					1	0	1	VARCHAR2(8)			
 ER_STATUS		ER_STATUS	ER Status	Estrogen Receptor Status	PATHOLOGY					0	0	1	VARCHAR			
 PGR_STATUS		PGR_STATUS	Progestrone receptor status	Progestrogen receptor status	PATHOLOGY					1	0	1	VARCHAR2(8)			
 AGE		AGE	Patient's  Age	Patient's current age or age at death	DEMOGRAPHICAL					0	0	0	NUMBER(3,1)	years	0	120
