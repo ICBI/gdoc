@@ -7,7 +7,7 @@
 			<ul style="list-style-type:square">
 				<li>Support for cell line data, including modified workflows (preclinical model support, phase 1)</li>
 				<li>Support for time course experiments</li>
-				<li>Data set tally now 27 public studies, 5 private studies</li>
+				<li>Data set tally now 28 public studies, 5 private studies</li>
 				<li>Updated FAQ</li>
 				<li>Seven additional sets of "findings"</li>
 				<li>G-DOC publication in press in <i>Neoplasia</i></li>
