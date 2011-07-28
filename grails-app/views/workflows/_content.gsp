@@ -58,8 +58,8 @@
 										<p class="info" title="Perform high-throughput analyses on cohorts of patients to discover differences among patients in regard to 'omics' data" style="font-size:1.1em;text-decoration:underline;padding-top:0px;padding-left:22px;cursor:pointer">Analyze</p>
 										<img src="${createLinkTo(dir:'images',file:'analysisIcon.png')}" border="0" />
 									</td>
-									<td style="padding-bottom:5px">
-											<p style="font-size:.8em;margin-top:10px">
+									<td style="padding-bottom:5px;">
+											<p style="font-size:.8em;margin-top:10px;">
 												<g:analysisLinks/>
 											</p>
 									</td>
@@ -72,10 +72,10 @@
 									</td>
 									<td>
 										<p style="font-size:.8em;margin-top:20px">
-<g:link controller="notification" style="color:#336699;">Notifications</g:link><br /><br />
-<g:link name="View My Saved Lists" controller="userList" style="color:#336699;">Saved Lists</g:link><br /><br />
-<g:link name="View My Saved Analysis" controller="savedAnalysis" style="color:#336699;">Saved Analysis</g:link><br /><br />
-<g:link name="Collaboration Groups" controller="collaborationGroups" style="color:#336699;x">Manage my groups / Request access</g:link>
+<g:link controller="notification">Notifications</g:link><br /><br />
+<g:link name="View My Saved Lists" controller="userList">Saved Lists</g:link><br /><br />
+<g:link name="View My Saved Analysis" controller="savedAnalysis">Saved Analysis</g:link><br /><br />
+<g:link name="Collaboration Groups" controller="collaborationGroups">Manage my groups / Request access</g:link>
 		</p>
 									</td>
 								</tr>
