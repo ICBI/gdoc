@@ -383,7 +383,7 @@
 	
 	<div class="answer">
 		<a name="q29a">
-		<span>Q: </span>What if my Cytoscape graph contains no nodes – is something wrong?</a><br />
+		<span>Q: </span>The Cytoscape viewer never finishes loading and the graph never full renders. What is wrong?</a><br />
 		
 		<p class="answerText"><span>A: </span>
 		This occurrence is rare but is related to the Cytoscape plugin limitations. We have chosen, by default, to render the graph with a Cytoscape layout plugin that utilizes an algorithm to arrange the nodes in a circular pattern. At times, this layout plugin causes unexpected behavior. In the future, this issue will be addressed either by upgrading the version of Cytoscape, or using a different layout renderer. 
