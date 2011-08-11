@@ -51,6 +51,8 @@
 		<li><a href="#q13">How do I save my searches and analyses? </a></li>
 		<li><a href="#q30">I am having trouble saving large lists - the site is slow - what can I do to make things better?</a></li>
 		<li><a href="#q15">Help! I can't find my last search /data analysis!  What should I do?</a></li>
+		<li><a href="#q46">Why do I not see a statistical significance value being calculated when I plot more than 2 cohorts of patients using the Clinical KM Plot feature in G-DOC?</a></li>
+		
 		
 		</ul>
 		<p style="font-size:1.1em;text-align:left;padding-bottom:10px;font-weight:bold">G-DOC Data & Privacy</p>
@@ -427,6 +429,14 @@
 		After pulling up the results of your query or data analysis, did you save them with easily identifiable names? If so, they’ll be saved under My G-DOC under "Saved lists" or "Saved analysis", respectively.</p>
 		<p>From G-DOC homepage, go to My G-DOC and click on "Saved lists" or "Saved analysis" to display the complete list.</p>
 		<p>You can also access them from the left sidebar on G-DOC.</p>
+	</div>
+	
+	<div class="answer">
+		<a name="q46">
+		<span>Q: </span>Why do I not see a statistical significance value being calculated when I plot more than 2 cohorts of patients using the Clinical KM Plot feature in G-DOC? </a><br />
+		
+		<p class="answerText"><span>A: </span>
+		Since a p-value in this case is calculated between pairs of cohorts, it is most applicable for plots with just 2 cohorts. Otherwise, it would need to be calculated for each pair (so 2 p-values if 3 cohorts are input), and this would lead to a complicated diagram. We recommend that if you want to see the p-value calculation, just input 2 cohorts at a time. 
 	</div>
 	
 	<div class="answer">
