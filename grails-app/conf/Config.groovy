@@ -38,10 +38,14 @@ environments {
 		//documentsPath = "https://demo.gdoc.georgetown.edu/content/documents"
 		//videosPath = "https://demo.gdoc.georgetown.edu/content/video"
 		log4j = {
+			appenders {
+				file name:'file', file:'dataLoad.log', append: true
+			}
 			root {
-			    error 'stdout'
+			    error 'stdout', 'file'
 			    additivity = true
 			}
+			
 			debug "grails.app", "listener"
 			debug 'org.codehaus.groovy.grails.plugins.springsecurity'
 		}
@@ -60,7 +64,7 @@ environments {
 		jmsserver = "jnp://gdoc-stage.georgetown.edu:1099"
 		grails {
 		   mail {
-		     host = "nitrogen.uis.georgetown.edu"
+		     host = "localhost"
 		     port = 25
 		   }
 		}
@@ -91,7 +95,7 @@ environments {
 		jmsserver = "jnp://gdoc.georgetown.edu:1099"
 		grails {
 		   mail {
-		     host = "neon.uis.georgetown.edu"
+		     host = "localhost"
 		     port = 25
 		   }
 		}
