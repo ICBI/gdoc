@@ -66,7 +66,7 @@ B312	GDOC64_B312_Normal	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalizati
 A584	GDOC65_A584_Normal	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalization
 A651	GDOC66_A651_Normal	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalization
 B296	GDOC67_B296_Normal	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalization
-A584	GDOC68_A584_Tumor	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalization
+A548	GDOC68_A548_Tumor	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalization
 A584	GDOC69_A584_Tumor	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalization
 A734	GDOC70_A734_Normal	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalization
 A651	GDOC71_A651_Tumor	Human Exon 1.0 ST Array	CRC_PILOT_01.Rda	RMA Normalization
