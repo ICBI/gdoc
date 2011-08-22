@@ -52,6 +52,8 @@
 		<li><a href="#q30">I am having trouble saving large lists - the site is slow - what can I do to make things better?</a></li>
 		<li><a href="#q15">Help! I can't find my last search /data analysis!  What should I do?</a></li>
 		<li><a href="#q46">Why do I not see a statistical significance value being calculated when I plot more than 2 cohorts of patients using the Clinical KM Plot feature in G-DOC?</a></li>
+		<li><a href="#q47">Why is the representation of numbers shown by the Venn Diagram different than traditional Venn diagrams I have used before?</li>
+		<li><a href="#q48">I am receiving an error on my analysis page that states 'group have less than three samples. Please select different group.' Why is this?</li>
 		
 		
 		</ul>
@@ -412,6 +414,17 @@
 		.</p>
 	</div>
 	
+	<div class="answer">
+		<a name="q48">
+		<span>Q: </span>I am receiving an error on my analysis page that states 'group have less than three samples. Please select different group.' Why is this?</a><br />
+		
+		<p class="answerText"><span>A: </span>
+	This error is usually a result of one of two scenarios, both related to the analysis data. The first scenario may be that the subjects from the selected list did not map to enough representative samples from which to perform an analysis. Unfortunately, subjects-to-sample is not a one-to-one mapping. The second scenario may be that the analysis data that G-DOC uses was performed on a certain subject group (e.g. patient data and NOT sample data), and therefore trying to use a subject group for which there is no representative data will produce this error.
+		.</p>
+	</div>
+	
+	
+	
 	
 	<div class="answer">
 		<a name="q30">
@@ -438,6 +451,18 @@
 		<p class="answerText"><span>A: </span>
 		Since a p-value in this case is calculated between pairs of cohorts, it is most applicable for plots with just 2 cohorts. Otherwise, it would need to be calculated for each pair (so 2 p-values if 3 cohorts are input), and this would lead to a complicated diagram. We recommend that if you want to see the p-value calculation, just input 2 cohorts at a time. 
 	</div>
+	
+	<div class="answer">
+		<a name="q47">
+		<span>Q: Why is the representation of numbers shown by the Venn Diagram different than traditional Venn diagrams I have used before?</span>
+		
+		</a><br />
+		
+		<p class="answerText"><span>A: </span>
+			The Venn diagram presents the user with the intersection values for all lists selected. The numbers listed in the intersection areas represent how many items are contained between the lists overlapping in that area. One caveat for this current view, is that although the number represents overlapping items between 'X' number of lists, that representation may also contain items that are found in another intersection area as well. For example, if list A and B (AB) have 95 overlapping items and groups A, B and C (ABC) have a total of 30 overlapping items...30 of those items are contained within the AB group of 95. This differs in the way traditional Venn diagrams represent this situation. Traditionally, the AB specific-section would only show 65 items and the ABC specific-section would still show 30. This possible confusion will be addressed in an upcoming release of G-DOC.
+		</p>
+	</div>
+			
 	
 	<div class="answer">
 		<a name="q34">
