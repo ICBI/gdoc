@@ -1,5 +1,5 @@
 <div align="center">
-	<div id="reqMessage" class="errorBox" style="display: block;">
+	<div id="reqMessage" class="errorBox" style="display: none;">
 		<g:message code="home.notMeetRequirements"  />
 	</div>
 	<br/>
