@@ -1,12 +1,2 @@
 SHORT_NAME	LONG_NAME	ABSTRACT	CANCER SITE	PATEINT_ID_NAME	INTEGRATED	OVERALL ACCESS	SCHEMA_NAME	USE_IN_GUI	CONTENT TYPES	SHOW_CONTENT_IN GUI 
-BRC_BUFFA_2011_01	Analysis of early primary breast cancer to identify prognostic markers and associated pathways: mRNA and miRNA profiling	microRNA expression profiling plays an emerging role in cancer classification and identification of therapeutic strategies. In this study, we have evaluated the benefits of a joint microRNA-mRNA analysis in breast cancer.Matched mRNA and microRNA global expression profiling was performed in a well-annotated cohort of 207 cases with complete 10-year follow-up. This SuperSeries is composed of the following subset Series: GSE22216: microRNA expression profiling of early primary breast cancer to identify prognostic markers and associated pathways GSE22219: Gene expression profiling of early primary breast cancer to identify prognostic markers and associated pathways. <br><br>Link to GEO: <a href= "http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=GSE22220">http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=GSE22220 </a>  <br>Link to Pubmed: <a href= "http://www.ncbi.nlm.nih.gov/pubmed/21737487">http://www.ncbi.nlm.nih.gov/pubmed/21737487 </a>	BREAST CANCER	Sample ID	1	Public	BRC_BUFFA_2011_01	1	CLINIC, MICROARRAY,MICRORNA	1,1,1
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
+BRC_BUFFA_2011_01	Analysis of early primary breast cancer to identify prognostic markers and associated pathways: mRNA and miRNA profiling	microRNA expression profiling plays an emerging role in cancer classification and identification of therapeutic strategies. In this study, we have evaluated the benefits of a joint microRNA-mRNA analysis in breast cancer.Matched mRNA and microRNA global expression profiling was performed in a well-annotated cohort of 207 cases with complete 10-year follow-up. This SuperSeries is composed of the following subset Series: GSE22216: microRNA expression profiling of early primary breast cancer to identify prognostic markers and associated pathways GSE22219: Gene expression profiling of early primary breast cancer to identify prognostic markers and associated pathways. <br><br>Link to GEO: <a href= "http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=GSE22220">http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=GSE22220 </a>  <br>Link to Pubmed: <a href= "http://www.ncbi.nlm.nih.gov/pubmed/21737487">http://www.ncbi.nlm.nih.gov/pubmed/21737487 </a>	BREAST CANCER	Sample ID	1	PUBLIC	BRC_BUFFA_2011_01	1	CLINIC, MICROARRAY,MICRORNA	1,1,1
