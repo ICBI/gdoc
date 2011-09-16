@@ -1,0 +1,83 @@
+span.tag {
+				float: left;
+				font-family: "Lucida Grande","Verdana";
+			}
+			span.tag label {
+				background: #FFFFE5;
+				border: 1px solid #FFBF80;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				margin: 3px 0 3px 5px;
+				padding-right: 20px;
+				position: relative;
+				display: inline-block;
+				min-width: 20px;
+				height: 20px;
+			}
+			span.tag label abbr:hover {
+				cursor: pointer;
+			}
+			span.tag label abbr {
+				color: #000;
+				border: none;
+				font-size: 8px;
+				font-weight: bold;
+				line-height: 12px;
+				position: absolute;
+				right: 3px;
+				z-index: 9999;
+				height: 100%;
+				line-height: 22px;
+			}
+			span.tag input {
+				border: none;
+				background: transparent;
+				color: #000;
+				position: absolute;
+				left:0;
+				width: 100%;
+				height: 15px;
+				z-index: 0;
+/*				line-height: 20px;*/
+				text-align: center;
+				padding: 0;
+				top: 3px;
+			}
+			span.tag input, span.tag label span {
+				font-family: "Lucida Grande","Verdana";
+				font-size: 11px;
+			}
+			span.tag label span {
+				display: inline-block;
+				visibility: hidden;
+				margin-left: 5px;
+			}
+			
+			.clearfix {
+				_height:1%;
+				zoom:1;
+				background-color:#fff;
+				border: 1px solid silver;
+				margin-top:10px;
+			}
+			.clearfix:after {
+				content:".";
+				visibility:hidden;
+				display:block;
+				clear:both;
+				height:0;
+			}
+
+			.tag_box * {
+				margin: 0;
+				padding: 0;
+				outline: none;
+			}
+
+			.tag_box {
+				border: 1px solid silver;
+				margin: 10px 0;
+				min-height: 30px;
+				cursor: text;
+
+			}

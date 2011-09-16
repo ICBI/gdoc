@@ -1,0 +1,123 @@
+/* 
+	root element for the scrollable. 
+	when scrolling occurs this element stays still. 
+*/
+div.scrollable {
+	
+	/* required settings */
+	position:relative;
+	overflow:hidden;	 	
+	width: 400px;	
+	height:50px;	
+	
+	
+	/* custom decorations */
+	padding:10px 0;	
+	border:1px outset #ccc;
+	background-color:#efefef;				
+}
+
+/* 
+	root element for scrollable items. Must be absolutely positioned
+	and it should have a super large width to accomodate scrollable items.
+	it's enough that you set width and height for the root element and
+	not for this element.
+*/
+div.scrollable div.items {	
+	/* this cannot be too large */
+	width:20000em;	
+	position:absolute;
+	clear:both;		
+	
+	/* decoration */
+	margin-left:10px;
+}
+
+/* single scrollable item */
+div.scrollable div.items div {
+	float:left;
+	
+	/* custom decoration */
+	text-align:center;
+	padding:5px 0px;
+	font-size:14px;
+	font-family: 'bitstream vera sans';
+	border:1px outset #ccc;
+	background-color: #ddd;
+	margin-right: 10px;	
+	-moz-border-radius:5px;
+}
+
+/* active item */
+div.scrollable div.items div.active {
+	border:1px inset #ccc;		
+	background-color:#fff;
+}
+
+/* this makes it possible to add next button beside scrollable */
+div.scrollable {
+	float:left;	
+}
+
+/* prev, next, prevPage and nextPage buttons */
+a.prev, a.next, a.prevPage, a.nextPage {
+	display:block;
+	width:18px;
+	height:18px;
+	background:url(../images/left.png) no-repeat;
+	float:left;
+	margin:43px 10px;
+	cursor:pointer;
+	font-size:1px;
+}
+
+/* mouseover state */
+a.prev:hover, a.next:hover, a.prevPage:hover, a.nextPage:hover {
+	background-position:0px -18px;		
+}
+
+/* disabled navigational button */
+a.disabled {
+	visibility:hidden !important;		
+}
+
+/* next button uses another background image */
+a.next, a.nextPage {
+	background-image:url(../images/right.png);
+	clear:right;	
+}
+
+
+
+/*********** navigator ***********/
+
+
+/* position and dimensions of the navigator */
+div.navi {
+	margin-left:328px;
+	width:200px;
+	height:20px;
+}
+
+
+/* items inside navigator */
+div.navi a {
+	width:8px;
+	height:8px;
+	float:left;
+	margin:3px;
+	background:url(../img/scrollable/arrow/navigator.png) 0 0 no-repeat;
+	display:block;
+	font-size:1px;
+}
+
+/* mouseover state */
+div.navi a:hover {
+	background-position:0 -8px;      
+}
+
+/* active state (current page state) */
+div.navi a.active {
+	background-position:0 -16px;     
+} 	
+

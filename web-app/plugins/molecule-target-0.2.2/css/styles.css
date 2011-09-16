@@ -1,0 +1,533 @@
+body {
+	font-size:90%;
+  	font-family:Lucida Grande,Lucida Sans,Arial,sans-serif;
+}
+.tabDiv {
+	font-size: 75.5%;
+}
+#hd {
+		background-color: #334477;
+}
+#doc3 {
+	margin: 0px;
+}
+
+#navigation {
+	background: #E7EEF3;
+}
+
+ul#gdocNavigation {
+	color:#000000;
+	line-height:1.3;
+	list-style: none;
+	font-size: .75em;
+	background: #E7EEF3;
+}
+ul#gdocNavigation li a {
+	background: #E6E6E6;
+	border: 1px solid #CCCCCC;
+	text-decoration: none;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+	color:#000000;
+}
+ul#gdocNavigation li a:hover { 
+	background-color: #336699; 
+}
+ul#gdocNavigation li h3
+{
+	background: #99C2FF;
+	border: 1px solid #CCCCCC;
+	font-weight: normal;
+	padding: 0.75em 1em;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+}
+
+ul#mygdocNavigation {
+	color:#000000;
+	line-height:1.3;
+	list-style: none;
+	font-size: .75em;
+	background: #FFFFE5;
+}
+ul#mygdocNavigation li a {
+	background: #FFFFE5;
+	border: 1px solid #CCCCCC;
+	text-decoration: none;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+	color:#000000;
+}
+ul#mygdocNavigation li a:hover { 
+	background-color: #FFBE5C; 
+}
+ul#mygdocNavigation li h3
+{
+	background: #FFD28F;
+	border: 1px solid #CCCCCC;
+	font-weight: normal;
+	padding: 0.75em 1em;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+}
+
+
+ul#adminNavigation {
+	color:#000000;
+	line-height:1.3;
+	list-style: none;
+	font-size: .75em;
+	background: #CDD4EA;
+}
+ul#adminNavigation li a {
+	background: #CDD4EA;
+	border: 1px solid #CCCCCC;
+	text-decoration: none;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+	color:#000000;
+}
+ul#adminNavigation li a:hover { 
+	background-color: #F1F3F9; 
+}
+ul#adminNavigation li h3
+{
+	background: #F1F3F9;
+	border: 1px solid #CCCCCC;
+	font-weight: normal;
+	padding: 0.75em 1em;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+}
+
+
+h2 	
+{ 
+	margin-bottom: 0; 
+	margin-left:13px;
+	height:40px;
+}
+
+h2 span
+{
+	display: none;
+}
+
+p	
+{ 
+	margin-top: .5em;
+	font-size: 1em;
+	padding-left:15px;	
+}
+
+.panel {
+	border: 1px solid #CCCCCC;
+	text-align: left;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-bottomleft:3px;
+}
+
+.panelTitle {
+	background: #99C2FF;
+	padding:5px;
+	background:#99C2FF url(cupertino/images/ui-bg_glass_50_99c2ff_1x400.png) repeat-x scroll 50% 50%;
+}
+
+.userLogPanelTitle {
+	background: #FFBE5C;
+	padding:5px;
+	background:#FFBE5C;
+}
+
+.welcome {
+	width: 100%;
+}
+
+.welcomeTitle {
+	border-top:1px solid black;
+	padding-top:5px
+}
+
+.news {
+	width: 250px;
+	font-size:12px;
+}
+
+.notifications {
+	width: 92%;
+	font-size:12px;
+}
+
+.invitations {
+	width: 92%;
+	font-size:12px;
+}
+.inviteDiv {
+	padding:4px 4px 4px 4px;
+	border-bottom:1px solid gray;
+}
+
+
+.user {
+	width: 350px;
+	font-size:12px;
+}
+.pageHeading{
+	font-size:14pt; 
+}
+
+.prefs {
+	width: 200px;
+
+}
+.prefsData {
+	width: 250px;
+
+}
+.intData {
+	width: 300px;
+
+}
+
+.clinicalSearch {
+	background: #f2f2f2 none repeat scroll 0 0;
+	border: 1px solid #CCCCCC;
+	padding:5px;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-bottomleft:3px;
+}
+
+.adminForm {
+	background: #f2f2f2 none repeat scroll 0 0;
+	border: 1px solid #CCCCCC;
+	padding:5px;
+	margin:10px;
+	width:65%;
+	-moz-border-radius-topright:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-bottomleft:3px;
+}
+
+.formTable {
+	border: 1px solid #ccc;
+	padding: 5px 5px 5px 5px;
+}
+
+.formTable td{
+	border: 0px solid #ccc;
+	padding: 5px 5px 5px 5px;
+}
+
+.studyTable {
+	font-size: .8em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+	
+}
+.label {
+	font-weight: bold;
+}
+.studyTable th {
+	padding: 5px;
+	border: 1px solid #CCCCCC;
+	font-weight: bold;
+}
+.studyTable td {
+	padding: 5px;
+	border: 1px solid #CCCCCC;
+}
+.resultTable {
+	font-size: 1em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+	width:500px;
+}
+.resultTable th {
+	padding: 5px;
+	border-bottom: 1px solid #CCCCCC;
+	font-weight: bold;
+}
+.resultTable td {
+	padding: 5px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.listTable {
+	font-size: .8em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+}
+.listTable td {
+	padding: 5px;
+	border: 0px solid #CCCCCC;
+}
+
+.sumTable {
+	font-size: .8em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+}
+.sumTable td {
+	padding: 5px;
+	border: 1px solid #CCCCCC;
+}
+
+.sumTable thead {
+	font-size: 1em;
+	font-weight:bold;
+	padding: 3px;
+	background:#f2f2f2;
+}
+
+.checkTable {
+	font-size: .8em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+}
+.checkTable td {
+	padding: 5px;
+	border: 1px solid #CCCCCC;
+}
+.sourceTable{
+	font-size: .8em;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+}
+.sourceTable td, th {
+			border: 1px solid #E6E6E6;
+		}
+
+
+.myPanelContent {
+	padding: 5px;
+}
+.reportBody {
+	margin-left: 25px;
+}
+.errors {
+	border: 2px solid red;
+}
+.errorDetail {
+	color: red;
+}
+
+.taskMessage {
+    background: #FFFFE5 url(../images/skin/exclamation.png) 8px 50% no-repeat;
+    border: 1px solid #FFB3B3;
+	border-collapse: collapse;
+    color: #FF6633;
+	width: 50%;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px;
+	font-size:12px;
+}
+.taskMessage a  {
+	color: #FF6633;
+}
+.message {
+    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    border: 1px solid #b2d1ff;
+	border-collapse: collapse;
+    color: #006dba;
+	width: 50%;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px;
+	font-size:12px
+}
+
+.summaryTable {
+	border: 1px solid #DDDDDD;
+	border-collapse: collapse;
+	width: 100%;
+}
+.summaryTable td {
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+	
+}
+.summaryTable th {
+	font-weight: bold;
+	background: #E7EEF3;
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+}
+	
+.viewerTable {
+	border: 1px solid #DDDDDD;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 15px;
+}
+.viewerTable td {
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+	
+}
+.viewerTable th {
+	font-weight: bold;
+	background: #E7EEF3;
+	border: 1px solid #DDDDDD;
+	padding: 5px;
+}
+
+	
+.actionButton
+	{
+		padding: 3px 10px;
+		width:100px;
+		border: 1px solid #a0a0a0;
+		margin: 10px 3px 1px 3px;
+		background-color:#f2f2f2;
+	}
+	<style type="text/css">
+      
+
+
+      #header form input {
+        padding: .1em;
+      }
+
+      #header .hint {
+        color: gray;
+      }
+
+      #header h1 a {
+        text-decoration: none;
+        
+          color: dimgray;
+      }
+
+      #header h1 {
+          
+          float: left;
+      }
+
+      
+
+      .title {
+        margin: 1em 0;
+        padding: .3em .5em;
+        text-align: right;
+        background-color: seashell;
+        border-top: 1px solid lightblue;
+      }
+
+      .result {
+        margin-bottom: 1em;
+      }
+
+      .result .displayLink {
+        color: green;
+      }
+
+      .result .name {
+        font-size: larger;
+      }
+
+      .paging a.step {
+        padding: 0 .3em;
+      }
+
+      .paging span.currentStep {
+          font-weight: bold;
+      }
+
+.partDiv{
+	padding: 3px;
+	background-color:#FFF9EB;
+	border:1px solid #EBF1FF;
+}
+
+.partDiv a{
+	color:#1A5EFF;
+}
+
+.step {
+	padding: 2px 3px;
+}
+
+.c {
+	-moz-border-radius:12px; 
+	-webkit-border-radius:12px;
+}
+
+#cin-heatmap-view-container {
+	position: relative;
+}
+
+#cin-heatmap-container {
+	float: left;
+	height:535px;
+}
+
+#cin-heatmap-view-container img.map {
+	position: relative;
+	top:0px;
+	z-index: 100;
+}
+
+#cin-heatmap-view-container img.chr {
+	display: none;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	z-index: 20;
+}		
+
+#cin-heatmap-view-container img.chrBg {
+	left: 0px;
+	position: absolute;
+	top: 55px;
+	z-index: 19;
+}
+
+#cin-cytobands-container {
+	float: left;
+}
+
+#cin-cytobands-container ul {
+	display: none;
+}
+
+#cin-cytobands-container ul.selected {
+	display: inline;
+}
+
+#cin-cytobands-container ul li {
+	list-style-type: none;
+}
+
+#cin-cytobands-container .selected-list ul li {
+	list-style-type: none;
+}
+
+#cin-chr-selector{
+position:absolute;
+top:0;
+left:0;
+border:#FBB917 solid 5px;
+display:none;
+z-index:21;
+}
+
+.errorBox {
+	border: 2px solid red;
+	background-color: #E77471;
+	text-align: center;
+	width: 60%;
+}
+
+.titleBar {
+	height:29px;
+	background: url('../images/bgTitles.png') repeat;
+}
+
+.annotationTooltip {
+	text-align: left;
+}
