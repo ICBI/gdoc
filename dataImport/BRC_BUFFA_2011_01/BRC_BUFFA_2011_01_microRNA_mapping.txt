@@ -1,211 +1,211 @@
 SUBJECT_ID	BIOSPECIMEN_ID	ARRAY DESIGN 	RDA_FILE	RDA_DESCRIPTION
-P_1	GSM553110		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_2	GSM552975		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_3	GSM553038		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_4	GSM553149		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_5	GSM553022		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_6	GSM553053		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_7	GSM553105		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_8	GSM553111		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_9	GSM553030		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_10	GSM553161		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_11	GSM553028		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_12	GSM553033		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_13	GSM553060		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_14	GSM553100		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_16	GSM553112		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_17	GSM553126		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_18	GSM553133		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_19	GSM553167		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_20	GSM552985		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_21	GSM553008		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_22	GSM553017		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_23	GSM553050		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_24	GSM553051		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_25	GSM553098		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_26	GSM553116		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_27	GSM553166		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_28	GSM552976		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_29	GSM552973		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_30	GSM553049		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_31	GSM553103		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_32	GSM553137		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_33	GSM553159		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_34	GSM553027		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_35	GSM553117		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_36	GSM553127		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_37	GSM553018		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_38	GSM553079		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_39	GSM553101		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_40	GSM553148		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_41	GSM553151		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_42	GSM553160		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_43	GSM553005		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_44	GSM553009		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_45	GSM553048		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_46	GSM553143		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_47	GSM553146		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_48	GSM553147		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_49	GSM553152		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_50	GSM553016		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_51	GSM553023		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_52	GSM553032		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_53	GSM553036		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_54	GSM553062		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_55	GSM553087		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_56	GSM553107		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_57	GSM553114		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_58	GSM553121		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_59	GSM553125		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_60	GSM553139		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_61	GSM552979		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_62	GSM553010		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_63	GSM553035		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_64	GSM553040		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_65	GSM553034		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_66	GSM553055		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_67	GSM553057		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_68	GSM553064		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_69	GSM553072		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_70	GSM553113		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_71	GSM553118		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_72	GSM553131		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_73	GSM553158		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_74	GSM553165		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_75	GSM552983		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_76	GSM553024		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_77	GSM553046		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_78	GSM553081		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_79	GSM553163		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_80	GSM552965		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_83	GSM553076		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_84	GSM553104		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_85	GSM553109		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_86	GSM553128		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_87	GSM553135		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_88	GSM553153		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_89	GSM553025		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_90	GSM553047		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_91	GSM553074		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_92	GSM553115		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_93	GSM553119		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_94	GSM553123		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_95	GSM553138		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_96	GSM553142		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_97	GSM553150		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_98	GSM553015		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_99	GSM553154		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_101	GSM553020		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_102	GSM553045		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_103	GSM553077		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_104	GSM553091		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_105	GSM553145		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_106	GSM552969		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_107	GSM552990		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_109	GSM553004		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_110	GSM553089		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_111	GSM553093		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_112	GSM553095		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_113	GSM553120		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_114	GSM552989		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_115	GSM553031		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_116	GSM553037		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_117	GSM553066		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_118	GSM553071		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_119	GSM553092		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_120	GSM553102		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_121	GSM553144		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_122	GSM552971		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_123	GSM552996		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_124	GSM553075		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_125	GSM553108		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_126	GSM553164		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_128	GSM553006		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_129	GSM553080		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_130	GSM553156		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_131	GSM553052		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_132	GSM553083		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_133	GSM553084		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_134	GSM553096		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_135	GSM553140		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_136	GSM553157		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_137	GSM553054		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_138	GSM553068		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_139	GSM553088		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_140	GSM553122		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_141	GSM553141		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_142	GSM552964		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_143	GSM552970		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_144	GSM552974		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_145	GSM553041		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_146	GSM553069		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_147	GSM553082		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_148	GSM553097		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_149	GSM553099		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_150	GSM553043		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_151	GSM553132		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_152	GSM553136		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_153	GSM553168		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_154	GSM552966		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_155	GSM553026		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_156	GSM553058		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_157	GSM553059		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_158	GSM553106		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_159	GSM553011		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_160	GSM553065		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_161	GSM553073		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_162	GSM552994		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_163	GSM553169		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_164	GSM553170		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_165	GSM552962		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_166	GSM552967		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_167	GSM552968		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_168	GSM553003		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_169	GSM553067		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_170	GSM553129		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_171	GSM552980		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_172	GSM553014		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_173	GSM553021		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_174	GSM552982		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_175	GSM553012		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_176	GSM553039		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_177	GSM553056		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_178	GSM553090		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_180	GSM552998		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_181	GSM552999		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_183	GSM553086		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_184	GSM553130		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_185	GSM553002		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_186	GSM553007		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_187	GSM553085		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_188	GSM553061		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_189	GSM553094		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_190	GSM552993		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_191	GSM552995		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_192	GSM552997		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_193	GSM553155		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_195	GSM553063		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_196	GSM552961		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_197	GSM552963		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_198	GSM552972		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_199	GSM552984		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_200	GSM552987		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_201	GSM553013		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_202	GSM553019		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_203	GSM552977		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_204	GSM552978		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_205	GSM552981		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_206	GSM552986		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_207	GSM552988		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_208	GSM552991		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_209	GSM553000		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_210	GSM553029		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_211	GSM552992		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_212	GSM553001		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_213	GSM553070		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_214	GSM553124		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_215	GSM553134		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_216	GSM553162		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_217	GSM553078		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_218	GSM553042		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
-P_219	GSM553044		BRC_BUFFA_2011_01_microRNA.Rda	Median Normalization
+P_1	GSM553110	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_2	GSM552975	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_3	GSM553038	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_4	GSM553149	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_5	GSM553022	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_6	GSM553053	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_7	GSM553105	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_8	GSM553111	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_9	GSM553030	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_10	GSM553161	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_11	GSM553028	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_12	GSM553033	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_13	GSM553060	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_14	GSM553100	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_16	GSM553112	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_17	GSM553126	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_18	GSM553133	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_19	GSM553167	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_20	GSM552985	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_21	GSM553008	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_22	GSM553017	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_23	GSM553050	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_24	GSM553051	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_25	GSM553098	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_26	GSM553116	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_27	GSM553166	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_28	GSM552976	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_29	GSM552973	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_30	GSM553049	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_31	GSM553103	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_32	GSM553137	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_33	GSM553159	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_34	GSM553027	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_35	GSM553117	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_36	GSM553127	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_37	GSM553018	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_38	GSM553079	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_39	GSM553101	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_40	GSM553148	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_41	GSM553151	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_42	GSM553160	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_43	GSM553005	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_44	GSM553009	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_45	GSM553048	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_46	GSM553143	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_47	GSM553146	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_48	GSM553147	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_49	GSM553152	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_50	GSM553016	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_51	GSM553023	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_52	GSM553032	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_53	GSM553036	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_54	GSM553062	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_55	GSM553087	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_56	GSM553107	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_57	GSM553114	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_58	GSM553121	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_59	GSM553125	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_60	GSM553139	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_61	GSM552979	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_62	GSM553010	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_63	GSM553035	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_64	GSM553040	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_65	GSM553034	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_66	GSM553055	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_67	GSM553057	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_68	GSM553064	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_69	GSM553072	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_70	GSM553113	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_71	GSM553118	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_72	GSM553131	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_73	GSM553158	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_74	GSM553165	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_75	GSM552983	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_76	GSM553024	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_77	GSM553046	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_78	GSM553081	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_79	GSM553163	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_80	GSM552965	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_83	GSM553076	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_84	GSM553104	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_85	GSM553109	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_86	GSM553128	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_87	GSM553135	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_88	GSM553153	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_89	GSM553025	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_90	GSM553047	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_91	GSM553074	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_92	GSM553115	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_93	GSM553119	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_94	GSM553123	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_95	GSM553138	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_96	GSM553142	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_97	GSM553150	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_98	GSM553015	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_99	GSM553154	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_101	GSM553020	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_102	GSM553045	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_103	GSM553077	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_104	GSM553091	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_105	GSM553145	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_106	GSM552969	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_107	GSM552990	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_109	GSM553004	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_110	GSM553089	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_111	GSM553093	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_112	GSM553095	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_113	GSM553120	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_114	GSM552989	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_115	GSM553031	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_116	GSM553037	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_117	GSM553066	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_118	GSM553071	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_119	GSM553092	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_120	GSM553102	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_121	GSM553144	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_122	GSM552971	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_123	GSM552996	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_124	GSM553075	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_125	GSM553108	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_126	GSM553164	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_128	GSM553006	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_129	GSM553080	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_130	GSM553156	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_131	GSM553052	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_132	GSM553083	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_133	GSM553084	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_134	GSM553096	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_135	GSM553140	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_136	GSM553157	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_137	GSM553054	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_138	GSM553068	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_139	GSM553088	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_140	GSM553122	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_141	GSM553141	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_142	GSM552964	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_143	GSM552970	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_144	GSM552974	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_145	GSM553041	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_146	GSM553069	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_147	GSM553082	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_148	GSM553097	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_149	GSM553099	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_150	GSM553043	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_151	GSM553132	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_152	GSM553136	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_153	GSM553168	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_154	GSM552966	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_155	GSM553026	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_156	GSM553058	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_157	GSM553059	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_158	GSM553106	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_159	GSM553011	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_160	GSM553065	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_161	GSM553073	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_162	GSM552994	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_163	GSM553169	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_164	GSM553170	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_165	GSM552962	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_166	GSM552967	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_167	GSM552968	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_168	GSM553003	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_169	GSM553067	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_170	GSM553129	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_171	GSM552980	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_172	GSM553014	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_173	GSM553021	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_174	GSM552982	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_175	GSM553012	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_176	GSM553039	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_177	GSM553056	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_178	GSM553090	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_180	GSM552998	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_181	GSM552999	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_183	GSM553086	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_184	GSM553130	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_185	GSM553002	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_186	GSM553007	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_187	GSM553085	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_188	GSM553061	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_189	GSM553094	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_190	GSM552993	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_191	GSM552995	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_192	GSM552997	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_193	GSM553155	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_195	GSM553063	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_196	GSM552961	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_197	GSM552963	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_198	GSM552972	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_199	GSM552984	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_200	GSM552987	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_201	GSM553013	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_202	GSM553019	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_203	GSM552977	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_204	GSM552978	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_205	GSM552981	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_206	GSM552986	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_207	GSM552988	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_208	GSM552991	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_209	GSM553000	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_210	GSM553029	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_211	GSM552992	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_212	GSM553001	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_213	GSM553070	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_214	GSM553124	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_215	GSM553134	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_216	GSM553162	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_217	GSM553078	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_218	GSM553042	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
+P_219	GSM553044	Illumina Human v1 MicroRNA expression beadchip	BRC_BUFFA_2011_01_microRNA.Rda	Quantile Normalization
