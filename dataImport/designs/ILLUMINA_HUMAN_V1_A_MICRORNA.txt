@@ -1,0 +1,2 @@
+PLATFORM	PROVIDER	ARRAY TYPE
+Illumina Human v1 MicroRNA expression beadchip (A)	ILLUMINA	microRNA
