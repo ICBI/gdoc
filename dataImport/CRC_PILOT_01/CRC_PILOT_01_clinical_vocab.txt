@@ -52,8 +52,8 @@ TUMOR_STAGE	I	Stage I		Stage I  as determined by the AJCC TNM System for the Can
 TUMOR_STAGE	II	Stage II		Stage II as determined by the AJCC TNM System for the Cancer Type
 TUMOR_STAGE	III	Stage III		Stage III as determined by the AJCC TNM System for the Cancer Type
 TUMOR_STAGE	IV	Stage IV		Stage IV as determined by the AJCC TNM System for the Cancer Type
-RADICALITY	R0	R0		Microscopically radical
-RADICALITY	R1	R1		Microscopically non-radical
+RADICALITY	R0	R0		Microscopically non-radical
+RADICALITY	R1	R1		Microscopically radical
 RADICALITY	R2	R2		Macroscopically radical
 TUMOR_DIGNITY	MALIGNANT	MALIGNANT		Malignant Tumor
 METASTASIS_LOCATION	LUNG	LUNG		Metastasis occurred in the Lung
