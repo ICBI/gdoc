@@ -1,3 +1,3 @@
 NETID	LAST_NAME	FIRST_NAME	SUFFIX	EMAIL	NOTES	TYPE
-N/A	Data Source	Public		gdoc-help@georgetown.edu	Generic contact for public data sources	PI
-N/A	Data Source	Public		gdoc-help@georgetown.edu	Generic contact for public data sources	POINT_OF_CONTACT
+N/A	Data Source	PUBLIC		gdoc-help@georgetown.edu	Generic contact for public data sources	PI
+N/A	Data Source	PUBLIC		gdoc-help@georgetown.edu	Generic contact for public data sources	POINT_OF_CONTACT
