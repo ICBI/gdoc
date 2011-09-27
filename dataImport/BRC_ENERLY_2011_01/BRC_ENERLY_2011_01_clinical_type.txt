@@ -4,6 +4,6 @@ BC_MOLECULAR_SUBTYPE		BC_MOLECULAR_SUBTYPE	 Breast Cancer Molecular Subtype	 Bre
 TP53_MUTATION		TP53_MUTATION	P53 Mutation analysis	 Mutation analysis of gene P53 performed using DNA from isolated tumor specimen	CLINICAL 					1	0	1	 VARCHAR(25)			
 EVENT_OS		EVENT_OS	 Event indicator for overall survival	Indicates death OR no record of death	CLINICAL 					0	0	1	NUMBER(1) 		0	1
 BREASTCANCER_DEATH		BREASTCANCER_DEATH	 Death Caused by Breast Cancer	 Whether or not the patient died due to breast cancer.	CLINICAL					1	0	1	 VARCHAR2(7)			
-DISEASE_FREE_SURVIVAL_MON		DISEASE_FREE_SURVIVAL_MON	Disease free survival in months	 Disease free survival in months 	CLINICAL 					0	0	0	"NUMBER(4,1)"	months	0	600
+DISEASE_FREE_SURVIVAL_MON		DISEASE_FREE_SURVIVAL_MON	Disease free survival in months	 Disease free survival in months 	CLINICAL 					0	0	0	NUMBER(4,1)	months	0	600
 ER_STATUS		ER_STATUS	Estrogen receptor status	Estrogen receptor status	PATHOLOGY					1	0	1	VARCHAR2(8)			
 HER2_STATUS		HER2_STATUS	HER2 Status	 Human Epidermal growth factor Receptor 2 status 	 PATHOLOGY 					1	0	1	varchar			
