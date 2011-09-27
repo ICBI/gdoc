@@ -1,0 +1,15 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+SAMPLE_TYPE	Breast_Primary_Tumor	Breast Primary Tumor		The sample was taken from primary breast tumor
+SAMPLE_TYPE	Lymph_node_metastasis 	Lymph Node Metastasis		The sample was taken from metastasized lymph node
+BC_MOLECULAR_SUBTYPE	LuminalA	LuminalA		Breast cancer subtype is : LuminalA
+BC_MOLECULAR_SUBTYPE	LuminalB	LuminalB		Breast cancer sub type is : Luminal B
+BC_MOLECULAR_SUBTYPE	Basal	Basal		Breast cancer sub type is : Basal
+BC_MOLECULAR_SUBTYPE	Normal	Normal		Breast cancer sub type is : Normal breast like
+TP53_MUTATION	MUTANT	Mutant		Mutant
+TP53_MUTATION	WT	Wild Type		Wild Type
+EVENT_OS	0	CENSORING		0 stands for CENSORING meaning there was no record of death
+EVENT_OS	1	EVENT 		1 stands for EVENT indicating death of patient
+ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
+ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
+HER2_STATUS	NEGATIVE	Negative		The patient is HER2 Negative
+HER2_STATUS	POSITIVE	Positive		The patient is HER2 Positive
