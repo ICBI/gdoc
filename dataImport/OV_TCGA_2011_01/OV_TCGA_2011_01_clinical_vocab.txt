@@ -1,0 +1,155 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+GENDER	MALE	MALE		An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
+PERFORMANCE_STATUS_SCORE_ECOG	0	0 - Asymptomatic		0 - Asymptomatic
+PERFORMANCE_STATUS_SCORE_ECOG	1	1 - Symptomatic but completely ambulatory		1 - Symptomatic but completely ambulatory
+PERFORMANCE_STATUS_SCORE_ECOG	2	"2 - Symptomatic, <50% in bed during the day"		"2 - Symptomatic, <50% in bed during the day"
+PERFORMANCE_STATUS_SCORE_ECOG	3	"3 - Symptomatic, >50% in bed, but not bedbound"		"3 - Symptomatic, >50% in bed, but not bedbound"
+PERFORMANCE_STATUS_SCORE_ECOG	4	4 - Bedbound (Completely disabled)		4 - Bedbound (Completely disabled)
+PERFORMANCE_STATUS_SCORE_ECOG	5	5 - Death		5 - Death
+PERFORMANCE_STATUS_SCORE_KARNOFSKY	100	"100% - normal, no complaints, no signs of disease"		"100% - normal, no complaints, no signs of disease"
+PERFORMANCE_STATUS_SCORE_KARNOFSKY	0	0% - death		0% - death
+ADDITIONAL_CHEMO_THERAPY	NO	No		The patient has not had additonal chemotherapy
+ADDITIONAL_CHEMO_THERAPY	YES	Yes		The patient has had additonal chemotherapy
+ADDITIONAL_DRUG_THERAPY	NO	No		The patient has not had additional drug therapy
+ADDITIONAL_DRUG_THERAPY	YES	Yes		The patient has had additional drug therapy
+ADDITIONAL_IMMUNO_THERAPY	NO	No		The patient has not had additional immuno therapy
+ADDITIONAL_IMMUNO_THERAPY	YES	Yes		The patient has had additional immuno therapy
+ADDITIONAL_PHARMA_THERAPY	NO	No		The patient has not had additional pharma therapy
+ADDITIONAL_PHARMA_THERAPY	YES	Yes		The patient has had additional pharma therapy
+ADDITIONAL_RADIATION_THERAPY	NO	No		The patient has not had additional radiation therapy
+ADDITIONAL_RADIATION_THERAPY	YES	Yes		The patient has had additional radiation therapy
+CHEMOTHERAPY	NO	No		The patient has not had chemotherapy
+CHEMOTHERAPY	YES	Yes		The patient has had chemotherapy
+HIST_TUMOR_TYPE	21	21-Serous Cystadenocarcinoma		21-Serous Cystadenocarcinoma
+HORMONE_THERAPY	NO	NO		Patient did not recieve Hormone Therapy
+HORMONE_THERAPY	YES	YES		Patient did recieve Hormone Therapy
+IMMUNO_THERAPY	NO	NO		Patient did not recieve Immuno Therapy
+IMMUNO_THERAPY	YES	YES		Patient did recieve Immuno Therapy
+INITIAL_PATHOLOGIC_DIAGNOSIS_METHOD	TUMOR_RESECTION	Tumor Resection		Tumor Resection
+INITIAL_PATHOLOGIC_DIAGNOSIS_METHOD	CYTOLOGY	Cytology		Cytology
+INITIAL_PATHOLOGIC_DIAGNOSIS_METHOD	EXCISIONAL_BIOPSY	Excisional Biopsy		Excisional Biopsy
+INITIAL_PATHOLOGIC_DIAGNOSIS_METHOD	FNAB	Fine Needle Aspiration Biopsy		Fine Needle Aspiration Biopsy
+INITIAL_PATHOLOGIC_DIAGNOSIS_METHOD	INCISION_BIOPSY	Incision Biopsy		Incision Biopsy
+TUMOR_STATUS	WITH_TUMOR	With Tumor		With Tumor
+TUMOR_STATUS	TUMOR_FREE	Tumor Free		Tumor Free
+BEST_RESPONSE	CR	Complete Response		Complete Response
+BEST_RESPONSE	PD	Progressive Disease		Progressive Disease
+BEST_RESPONSE	PR	Partial Response		Partial Response
+BEST_RESPONSE	SD	Stable Disease		Stable Disease
+RADIOTHERAPY	YES	YES		Patient recieved Radiotherapy
+RADIOTHERAPY	NO	NO		Patient did not recieve Radiotherapy
+RESIDUAL_TUMOR	R1	R1 - Microscopic residual tumor		R1 - microscopic residual tumor
+RESIDUAL_TUMOR	R2	R2 - Macroscopic residual tumor		R2 - macroscopic residual tumor
+SITE_OF_FIRST_TUMOR_RECURRENCE	LOCO-REGIONAL	Loco-Regional		Loco-Regional
+SITE_OF_FIRST_TUMOR_RECURRENCE	METASTASIS	Metastasis		Metastasis
+TARGETED_MOLECULAR_THERAPY	NO	NO		Patient did not recieve Targeted Molecular Therapy
+TARGETED_MOLECULAR_THERAPY	YES	YES		Patient did recieve Targeted Molecular Therapy
+SIZE_RESIDUAL_TUMOR	No Macroscopic disease	No Macroscopic disease		No Macroscopic disease
+SIZE_RESIDUAL_TUMOR	>20 mm	>20 mm		>20 mm
+SIZE_RESIDUAL_TUMOR	1-10 mm	1-10 mm		1-10 mm
+SIZE_RESIDUAL_TUMOR	11-20 mm	11-20 mm		11-20 mm
+TUMOR_STAGE_FIGO	IIIC	IIIC		IIIC
+TUMOR_STAGE_FIGO	IV	IV		IV
+TUMOR_STAGE_FIGO	IIIB	IIIB		IIIB
+TUMOR_STAGE_FIGO	IIC	IIC		IIC
+TUMOR_STAGE_FIGO	IIIA	IIIA		IIIA
+TUMOR_STAGE_FIGO	IIA	IIA		IIA
+DISEASE_LOCALIZATION	OVARY	OVARY		OVARY
+DISEASE_LOCALIZATION	OMENTUM	OMENTUM		OMENTUM
+DISEASE_LOCALIZATION	PERITONEUM (OVARY)	PERITONEUM (OVARY)		PERITONEUM (OVARY)
+VITAL_STATUS	ALIVE	ALIVE		Patient was alive at last follow-up
+VITAL_STATUS	DEAD	DEAD		Patient is dead
+PLATINUM_STATUS	RESISTANT	RESISTANT		Patient is resistant to platinum based therapy
+PLATINUM_STATUS	SENSITIVE	SENSITIVE		Patient is sensitive to platinum based therapy
+DRUG_CATEGORY	CHEMO	CHEMO		Patient was given Chemo therapy
+DRUG_CATEGORY	TARGETED	TARGETED		Patient was given Targeted therapy
+DRUG_CATEGORY	IMMUNO	IMMUNO		Patient was given Immuno therapy
+DRUG_CATEGORY	HORMONAL	HORMONAL		Patient was given Hormonal therapy
+DRUG	TAXOL	TAXOL		Patient was treated with drug - TAXOL
+DRUG	CARBOPLATIN	CARBOPLATIN		Patient was treated with drug - CARBOPLATIN
+DRUG	VELCADE	VELCADE		Patient was treated with drug - VELCADE
+DRUG	GEMCITABINE	GEMCITABINE		Patient was treated with drug - GEMCITABINE
+DRUG	PACLITAXEL	PACLITAXEL		Patient was treated with drug - PACLITAXEL
+DRUG	DOXIL	DOXIL		Patient was treated with drug - DOXIL
+DRUG	TAXOTERE	TAXOTERE		Patient was treated with drug - TAXOTERE
+DRUG	CISPLATIN	CISPLATIN		Patient was treated with drug - CISPLATIN
+DRUG	TOPOTECAN/CARBOPLATIN	TOPOTECAN/CARBOPLATIN		Patient was treated with drug - TOPOTECAN/CARBOPLATIN
+DRUG	TAXOL/CARBOPLATIN	TAXOL/CARBOPLATIN		Patient was treated with drug - TAXOL/CARBOPLATIN
+DRUG	DOCETAXEL	DOCETAXEL		Patient was treated with drug - DOCETAXEL
+DRUG	TAMOXIFEN	TAMOXIFEN		Patient was treated with drug - TAMOXIFEN
+DRUG	TOPOTECAN	TOPOTECAN		Patient was treated with drug - TOPOTECAN
+DRUG	CISPLATIN/GEMZAR	CISPLATIN/GEMZAR		Patient was treated with drug - CISPLATIN/GEMZAR
+DRUG	GEMZAR	GEMZAR		Patient was treated with drug - GEMZAR
+DRUG	CYTOXAN	CYTOXAN		Patient was treated with drug - CYTOXAN
+DRUG	AVASTIN	AVASTIN		Patient was treated with drug - AVASTIN
+DRUG	GEMCITIBINE	GEMCITIBINE		Patient was treated with drug - GEMCITIBINE
+DRUG	ETOPOSIDE	ETOPOSIDE		Patient was treated with drug - ETOPOSIDE
+DRUG	5F4 LEUCOVORIN	5F4 LEUCOVORIN		Patient was treated with drug - 5F4 LEUCOVORIN
+DRUG	RBBX 01	RBBX 01		Patient was treated with drug - RBBX 01
+DRUG	NAVELBINE	NAVELBINE		Patient was treated with drug - NAVELBINE
+DRUG	HEXLALEN	HEXLALEN		Patient was treated with drug - HEXLALEN
+DRUG	CARBPLATIN	CARBPLATIN		Patient was treated with drug - CARBPLATIN
+DRUG	PATUPILONE	PATUPILONE		Patient was treated with drug - PATUPILONE
+DRUG	IROLFLUVIN	IROLFLUVIN		Patient was treated with drug - IROLFLUVIN
+DRUG	PACILTAXEL	PACILTAXEL		Patient was treated with drug - PACILTAXEL
+DRUG	GEMICITABINE	GEMICITABINE		Patient was treated with drug - GEMICITABINE
+DRUG	ILIZ	ILIZ		Patient was treated with drug - ILIZ
+DRUG	ARIMIDEX	ARIMIDEX		Patient was treated with drug - ARIMIDEX
+DRUG	CARBO	CARBO		Patient was treated with drug - CARBO
+DRUG	HERCEPTIN	HERCEPTIN		Patient was treated with drug - HERCEPTIN
+DRUG	IRRESSA	IRRESSA		Patient was treated with drug - IRRESSA
+DRUG	LETROZOLE	LETROZOLE		Patient was treated with drug - LETROZOLE
+DRUG	LUPRON	LUPRON		Patient was treated with drug - LUPRON
+DRUG	FEMARA	FEMARA		Patient was treated with drug - FEMARA
+DRUG	PACILTAXAL	PACILTAXAL		Patient was treated with drug - PACILTAXAL
+DRUG	CETUXIMAB	CETUXIMAB		Patient was treated with drug - CETUXIMAB
+DRUG	BEVACIZUMAB	BEVACIZUMAB		Patient was treated with drug - BEVACIZUMAB
+DRUG	PACLITAXIL	PACLITAXIL		Patient was treated with drug - PACLITAXIL
+DRUG	LIPOSOMAL DOXORUBICAN	LIPOSOMAL DOXORUBICAN		Patient was treated with drug - LIPOSOMAL DOXORUBICAN
+DRUG	CYCLOPHOSPHAMIDE	CYCLOPHOSPHAMIDE		Patient was treated with drug - CYCLOPHOSPHAMIDE
+DRUG	OVAREX/PLACEBO	OVAREX/PLACEBO		Patient was treated with drug - OVAREX/PLACEBO
+DRUG	DOXORUBICIN	DOXORUBICIN		Patient was treated with drug - DOXORUBICIN
+DRUG	IFOSFAMIDE	IFOSFAMIDE		Patient was treated with drug - IFOSFAMIDE
+DRUG	VINORELBINE	VINORELBINE		Patient was treated with drug - VINORELBINE
+DRUG	ETOPOSIDE (VP16)	ETOPOSIDE (VP16)		Patient was treated with drug - ETOPOSIDE (VP16)
+DRUG	RHUMAB/IND	RHUMAB/IND		Patient was treated with drug - RHUMAB/IND
+DRUG	GOG182	GOG182		Patient was treated with drug - GOG182
+DRUG	HEXALEN	HEXALEN		Patient was treated with drug - HEXALEN
+DRUG	HEXAMETHYMELAMINE	HEXAMETHYMELAMINE		Patient was treated with drug - HEXAMETHYMELAMINE
+DRUG	AMITOSTIN	AMITOSTIN		Patient was treated with drug - AMITOSTIN
+DRUG	CARBOPLATIN 6TH	CARBOPLATIN 6TH		Patient was treated with drug - CARBOPLATIN 6TH
+DRUG	CHLORAMBUCIL	CHLORAMBUCIL		Patient was treated with drug - CHLORAMBUCIL
+DRUG	VAMYDEX	VAMYDEX		Patient was treated with drug - VAMYDEX
+DRUG	TOPETECAN	TOPETECAN		Patient was treated with drug - TOPETECAN
+DRUG	A202171 PROTOCOL	A202171 PROTOCOL		Patient was treated with drug - A202171 PROTOCOL
+DRUG	TOPTECAN	TOPTECAN		Patient was treated with drug - TOPTECAN
+TREATMENT_REGIMEN_REASON	ADJUVANT	ADJUVANT		Patient was given treatment regimen because of Adjuvant Therapy
+TREATMENT_REGIMEN_REASON	RECURRENCE	RECURRENCE		Patient was given treatment regimen because of Recurrence
+TREATMENT_REGIMEN_REASON	PROGRESSION	PROGRESSION		Patient was given treatment regimen because of Progression
+TREATMENT_REGIMEN_REASON	OTHER	OTHER		Patient was given treatment regimen because of other reasons
+DRUG_THERAPY_ADMIN_ROUTE	INTRAVENOUS (IV)	INTRAVENOUS (IV)		Patient was administered the drug intravenously
+PERFORMANCE_STATUS_SCORE_TIMEPOINT	PREOPERATIVE	PREOPERATIVE		The performance status scoring was conducted before surgical operation
+PERFORMANCE_STATUS_SCORE_TIMEPOINT	PRE-ADJUVANT THERAPY	PRE-ADJUVANT THERAPY		The performance status scoring was conducted before adjuvant therapy was administered
+PROGRESSION_DIAGNOSIS_METHOD	IMAGING STUDY	IMAGING STUDY		Progression/recurrence was diagnosed using Imaging Study
+PROGRESSION_DIAGNOSIS_METHOD	MOLECULAR MARKER(S)	MOLECULAR MARKER(S)		Progression/recurrence was diagnosed using Molecular markers
+PROGRESSION_DIAGNOSIS_METHOD	FIRST SEEN AT FURTHER SURGERY	FIRST SEEN AT FURTHER SURGERY		Progression/recurrence was first seen at further surgery
+PROGRESSION_DIAGNOSIS_METHOD	OTHER	OTHER		Progression/recurrence was diagnosed using Other methods
+PROGRESSION_DIAGNOSIS_METHOD	PHYSICAL EXAMINATION	PHYSICAL EXAMINATION		Progression/recurrence was diagnosed using Physical examincation
+RADIATION_SITE	Local Recurrence	Local Recurrence		The site of radiation treatment is Local Recurrence
+RADIATION_SITE	Distant Recurrence	Distant Recurrence		The site of radiation treatment is Distant Recurrence
+RADIATION_SITE	Primary Tumor Field	Primary Tumor Field		The site of radiation treatment is Primary Tumor Field
+RADIATION_TYPE	EXTERNAL BEAM	External Beam		The form of radiation therapy administered is External Beam
+RADIATION_TX_INTENT	ADJUVANT	ADJUVANT		Patient was given radiation treatment regimen because of Adjuvant Therapy
+RADIATION_TX_INTENT	RECURRENCE	RECURRENCE		Patient was given radiation treatment regimen because of Recurrence
+RADIATION_TX_INTENT	PROGRESSION	PROGRESSION		Patient was given radiation treatment regimen because of Progression
+RADIATION_TX_INTENT	OTHER	OTHER		Patient was given radiation treatment regimen because of other reasons
+RADIATION_TX_INTENT	PALLIATIVE	PALLIATIVE		Patient was given radiation treatment regimen because of Palliative care
+SAMPLE_TYPE	Primary Tumor	Primary Tumor		The sample has been derived from Primary Tumor tissue
+SAMPLE_TYPE	Blood Derived Normal	Blood Derived Normal		The sample has been derived from Blood Derived Normal tissue
+SAMPLE_TYPE	Solid Tissue Normal	Solid Tissue Normal		The sample has been derived from Solid Tissue Normal tissue
+SAMPLE_TYPE	Recurrent Tumor	Recurrent Tumor		The sample has been derived from Recurrent Tumor tissue
+ AJCC_TUMOR_GRADE	G2	G2 - Moderately differentiated		Cells look somewhat abnormal
+ AJCC_TUMOR_GRADE	G3	G3- Poorly differentiated (High grade)		Cells are very quickly growing and look very abnormal
+ AJCC_TUMOR_GRADE	G4	G4 - Undifferentiated (High grade)		Cells are very quickly growing and look very abnormal
+ AJCC_TUMOR_GRADE	GX	GX - Grade cannot be assessed (Undetermined grade)		Grade cannot be assessed (Undetermined grade)
