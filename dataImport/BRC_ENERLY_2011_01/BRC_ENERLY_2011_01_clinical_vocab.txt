@@ -13,6 +13,6 @@ ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
 ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
 HER2_STATUS	NEGATIVE	Negative		The patient is HER2 Negative
 HER2_STATUS	POSITIVE	Positive		The patient is HER2 Positive
-BREASTCANCER_DEATH	YES	YES		 Death due to Breast Cancer 
-BREASTCANCER_DEATH	 NO	 NO		 Death not due to Breast Cancer
+BREASTCANCER_DEATH	YES	YES		Death due to Breast Cancer 
+BREASTCANCER_DEATH	NO	NO		Death not due to Breast Cancer
 BREASTCANCER_DEATH	UNKNOWN	UNKNOWN		Death cause unknown
