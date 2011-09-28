@@ -3,11 +3,11 @@ GENDER	MALE	MALE		An individual who reports belonging to the cultural gender rol
 GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
 PERFORMANCE_STATUS_SCORE_ECOG	0	0 - Asymptomatic		0 - Asymptomatic
 PERFORMANCE_STATUS_SCORE_ECOG	1	1 - Symptomatic but completely ambulatory		1 - Symptomatic but completely ambulatory
-PERFORMANCE_STATUS_SCORE_ECOG	2	"2 - Symptomatic, <50% in bed during the day"		"2 - Symptomatic, <50% in bed during the day"
-PERFORMANCE_STATUS_SCORE_ECOG	3	"3 - Symptomatic, >50% in bed, but not bedbound"		"3 - Symptomatic, >50% in bed, but not bedbound"
+PERFORMANCE_STATUS_SCORE_ECOG	2	2 - Symptomatic, <50% in bed during the day		2 - Symptomatic, <50% in bed during the day
+PERFORMANCE_STATUS_SCORE_ECOG	3	3 - Symptomatic, >50% in bed, but not bedbound		3 - Symptomatic, >50% in bed, but not bedbound
 PERFORMANCE_STATUS_SCORE_ECOG	4	4 - Bedbound (Completely disabled)		4 - Bedbound (Completely disabled)
 PERFORMANCE_STATUS_SCORE_ECOG	5	5 - Death		5 - Death
-PERFORMANCE_STATUS_SCORE_KARNOFSKY	100	"100% - normal, no complaints, no signs of disease"		"100% - normal, no complaints, no signs of disease"
+PERFORMANCE_STATUS_SCORE_KARNOFSKY	100	100% - normal, no complaints, no signs of disease		100% - normal, no complaints, no signs of disease
 PERFORMANCE_STATUS_SCORE_KARNOFSKY	0	0% - death		0% - death
 ADDITIONAL_CHEMO_THERAPY	NO	No		The patient has not had additonal chemotherapy
 ADDITIONAL_CHEMO_THERAPY	YES	Yes		The patient has had additonal chemotherapy
@@ -21,6 +21,8 @@ ADDITIONAL_RADIATION_THERAPY	NO	No		The patient has not had additional radiation
 ADDITIONAL_RADIATION_THERAPY	YES	Yes		The patient has had additional radiation therapy
 CHEMOTHERAPY	NO	No		The patient has not had chemotherapy
 CHEMOTHERAPY	YES	Yes		The patient has had chemotherapy
+PROGRESSION	YES	YES		Indicates that the disease has progressed
+PROGRESSION	NO	NO		Indicates that the disease did not progress
 HIST_TUMOR_TYPE	21	21-Serous Cystadenocarcinoma		21-Serous Cystadenocarcinoma
 HORMONE_THERAPY	NO	NO		Patient did not recieve Hormone Therapy
 HORMONE_THERAPY	YES	YES		Patient did recieve Hormone Therapy
