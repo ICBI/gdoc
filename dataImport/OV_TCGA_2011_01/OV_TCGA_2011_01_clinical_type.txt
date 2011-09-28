@@ -1,14 +1,14 @@
 original_name	conversion_note	short_name	long_name	definition	cdep	semantic_group	gdoc_preferred	caDSR_id	EVS_id	qualitative	continuous	vocabulary	oracle_datatype	unit	lower_range	upper_range
-ADDITIONAL_CHEMO_THERAPY		ADDITIONAL_CHEMO_THERAPY	Additional Chemotherapy	The yes/no indicator related to the additional administration of chemotherapy after the return of a disease after a period of remission.	CLINICAL					1	0	0	VARCHAR2(5)			
-ADDITIONAL_DRUG_THERAPY		ADDITIONAL_DRUG_THERAPY	Additonal Drug Therapy	Yes/no indicator to signify the treatment of an individual with recurrent or progression disease with additional targeted molecular therapy	CLINICAL					1	0	0	VARCHAR2(5)			
-ADDITIONAL_IMMUNO_THERAPY		ADDITIONAL_IMMUNO_THERAPY	Additional Immuno Therapy	The yes/No indicator for the administration of additional immunotherapy to an individual after the recurrence or progression of disease	CLINICAL					1	0	0	VARCHAR2(5)			
-ADDITIONAL_PHARMA_THERAPY		ADDITIONAL_PHARMA_THERAPY	Additional Pharmaceutical Therapy	The yes/No indicator for the administration of additional pharmaceutical therapy to an individual after the recurrence or progression of disease	CLINICAL					1	0	0	VARCHAR2(5)			
-ADDITIONAL_RADIATION_THERAPY		ADDITIONAL_RADIATION_THERAPY	Additional Radiation Therapy	The yes/no indicator related to the additional administration of the use of radiation therapy to an individual after the recurrence or progression of disease	CLINICAL					1	0	0	VARCHAR2(5)			
-AGE	staging attribute type=368	AGE	Patient's  Age	Patient's age at diagnosis	DEMOGRAPHICAL					0	0	0	"NUMBER(3,1)"	years	0	120
+ADDITIONAL_CHEMO_THERAPY		ADDITIONAL_CHEMO_THERAPY	Additional Chemotherapy	The yes/no indicator related to the additional administration of chemotherapy after the return of a disease after a period of remission.	CLINICAL					1	0	1	VARCHAR2(5)			
+ADDITIONAL_DRUG_THERAPY		ADDITIONAL_DRUG_THERAPY	Additonal Drug Therapy	Yes/no indicator to signify the treatment of an individual with recurrent or progression disease with additional targeted molecular therapy	CLINICAL					1	0	1	VARCHAR2(5)			
+ADDITIONAL_IMMUNO_THERAPY		ADDITIONAL_IMMUNO_THERAPY	Additional Immuno Therapy	The yes/No indicator for the administration of additional immunotherapy to an individual after the recurrence or progression of disease	CLINICAL					1	0	1	VARCHAR2(5)			
+ADDITIONAL_PHARMA_THERAPY		ADDITIONAL_PHARMA_THERAPY	Additional Pharmaceutical Therapy	The yes/No indicator for the administration of additional pharmaceutical therapy to an individual after the recurrence or progression of disease	CLINICAL					1	0	1	VARCHAR2(5)			
+ADDITIONAL_RADIATION_THERAPY		ADDITIONAL_RADIATION_THERAPY	Additional Radiation Therapy	The yes/no indicator related to the additional administration of the use of radiation therapy to an individual after the recurrence or progression of disease	CLINICAL					1	0	1	VARCHAR2(5)			
+AGE	staging attribute type=368	AGE	Patient's  Age	Patient's age at diagnosis	DEMOGRAPHICAL					0	0	0	NUMBER(3,1)	years	0	120
 CHEMOTHERAPY		CHEMOTHERAPY	Chemotherapy received	The patient received chemotherapy	CLINICAL					1	0	1	VARCHAR2(3)			
-OVERALL_SURVIVAL_DAYS		OVERALL_SURVIVAL_DAYS	Overall survival in days	Tracks the time from diagnosis or surgery to event(death) or last follow up	CLINICAL					0	0	0	"NUMBER(4,1)"	days	0	18250
-PROGRESSION_FREE_SURVIVAL_DAYS		PROGRESSION_FREE_SURVIVAL_DAYS	Progression free survival in days	Progression free survival refers to the length of time during and after treatment in which a patient is living with a disease that does not get worse. Progression-free survival may be used in a clinical study or trial to help find out how well a new treatment works.	CLINICAL					0	0	0	"NUMBER(4,1)"	days	0	18250
-PROGRESSION		PROGRESSION	Progression Status	Yes/no indicator to signify whether the disease has progressed	CLINICAL					1	0	0	VARCHAR2(5)			
+OVERALL_SURVIVAL_DAYS		OVERALL_SURVIVAL_DAYS	Overall survival in days	Tracks the time from diagnosis or surgery to event(death) or last follow up	CLINICAL					0	0	0	NUMBER(4,1)	days	0	18250
+PROGRESSION_FREE_SURVIVAL_DAYS		PROGRESSION_FREE_SURVIVAL_DAYS	Progression free survival in days	Progression free survival refers to the length of time during and after treatment in which a patient is living with a disease that does not get worse. Progression-free survival may be used in a clinical study or trial to help find out how well a new treatment works.	CLINICAL					0	0	0	NUMBER(4,1)	days	0	18250
+PROGRESSION		PROGRESSION	Progression Status	Yes/no indicator to signify whether the disease has progressed	CLINICAL					1	0	1	VARCHAR2(5)			
 GENDER		GENDER	Gender	The classification of the sex or gender role of the patient.	DEMOGRAPHICAL					1	0	1	VARCHAR2(6)			
 HIST_TUMOR_TYPE		HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	CLINICAL					1	0	1	VARCHAR			
 HORMONE_THERAPY		HORMONE_THERAPY	Hormone Therapy received	The patient received hormone therapy	CLINICAL					1	0	1	VARCHAR2(3)			
@@ -21,35 +21,35 @@ RESIDUAL_TUMOR		RESIDUAL_TUMOR	Residual Tumor	Term to describe the status of a t
 SITE_OF_FIRST_TUMOR_RECURRENCE		SITE_OF_FIRST_TUMOR_RECURRENCE	Site of First Tumor Recurrence	Description of tumor first recurrence in reference to extent of disease	CLINICAL					1	0	1	VARCHAR2(20)			
 TARGETED_MOLECULAR_THERAPY		TARGETED_MOLECULAR_THERAPY	Targeted Molecular Therapy	Targeted Molecular Therapy	CLINICAL					1	0	1	VARCHAR2(3)			
 SIZE_RESIDUAL_TUMOR		SIZE_RESIDUAL_TUMOR	Size of residual tumor	Represent the size in millimeters of the largest remaining nodule of carcinoma	CLINICAL					1	0	1	VARCHAR2(20)			
-TUMOR_STAGE_FIGO		TUMOR_STAGE_FIGO	Tumor Stage determined by FIGO system	"The FIGO staging criteria based on the assignment of TNM categories (AJCC 6th Ed) into groups used to select and evaluate therapy, estimate prognosis and calculate end results"	CLINICAL					1	0	1	VARCHAR2(5)			
+TUMOR_STAGE_FIGO		TUMOR_STAGE_FIGO	Tumor Stage determined by FIGO system	The FIGO staging criteria based on the assignment of TNM categories (AJCC 6th Ed) into groups used to select and evaluate therapy, estimate prognosis and calculate end results	CLINICAL					1	0	1	VARCHAR2(5)			
 DISEASE_LOCALIZATION		DISEASE_LOCALIZATION	The locale of the disease/tumor	The locale of the disease/tumor	CLINICAL					1	0	1	VARCHAR2(20)			
-VITAL_STATUS		VITAL_STATUS	Vital Status	"  Vital Status: ALIVE, DEAD, UNKNOWN  "	CLINICAL		0			1	0	1	VARCHAR2(7)			
-PLATINUM_FREE_SURVIVAL_MONTHS		PLATINUM_FREE_SURVIVAL_MONTHS	Platinum Free Sruvival in Months	Time in months after date of last platinum treatmenttill the date of progression/recurrence or date of last follow-up	CLINICAL					0	0	0	"NUMBER(4,1)"	months	0	600
+VITAL_STATUS		VITAL_STATUS	Vital Status	  Vital Status: ALIVE, DEAD, UNKNOWN  	CLINICAL		0			1	0	1	VARCHAR2(7)			
+PLATINUM_FREE_SURVIVAL_MONTHS		PLATINUM_FREE_SURVIVAL_MONTHS	Platinum Free Sruvival in Months	Time in months after date of last platinum treatmenttill the date of progression/recurrence or date of last follow-up	CLINICAL					0	0	0	NUMBER(4,1)	months	0	600
 PLATINUM_STATUS		PLATINUM_STATUS	Platinum Status	Indicates whether patient is senstive or resistant to treatment with platinum-based chemotherapy drugs	CLINICAL					1	0	1	VARCHAR2(10)			
-DAYS_TO_DRUG_THERAPY_END		DAYS_TO_DRUG_THERAPY_END	Days to end of Drug Therapy	Days to end of Drug Therapy	CLINICAL					0	0	0	"NUMBER(6,1)"	days	0	18250
-DAYS_TO_DRUG_THERAPY_START		DAYS_TO_DRUG_THERAPY_START	Days to start of Drug Therapy	Days to start of Drug Therapy	CLINICAL					0	0	0	"NUMBER(6,1)"	days	0	18250
+DAYS_TO_DRUG_THERAPY_END		DAYS_TO_DRUG_THERAPY_END	Days to end of Drug Therapy	Days to end of Drug Therapy	CLINICAL					0	0	0	NUMBER(6,1)	days	0	18250
+DAYS_TO_DRUG_THERAPY_START		DAYS_TO_DRUG_THERAPY_START	Days to start of Drug Therapy	Days to start of Drug Therapy	CLINICAL					0	0	0	NUMBER(6,1)	days	0	18250
 DRUG_CATEGORY		DRUG_CATEGORY	Drug Category	Category of drug given to patient	CLINICAL					1	0	1	VARCHAR2(15)			
 DRUG		DRUG	Drug Name	Name of agent(s) used as part of treatment regimen	CLINICAL					1	0	1	VARCHAR2(15)			
-DRUG_COURSE_COUNT		DRUG_COURSE_COUNT	Number of courses of drug received	The total number of cycles administered to the patient of a protocol specified drug or therapy agent as of the current report	CLINICAL					0	0	0	"NUMBER(3,1)"		0	20
+DRUG_COURSE_COUNT		DRUG_COURSE_COUNT	Number of courses of drug received	The total number of cycles administered to the patient of a protocol specified drug or therapy agent as of the current report	CLINICAL					0	0	0	NUMBER(3,1)		0	20
 TREATMENT_REGIMEN		TREATMENT_REGIMEN_REASON	Reason for Treatment Regimen	Term to identify the reason for the administration of a treatment regimen	CLINICAL					1	0	1	VARCHAR2(15)			
 DRUG_THERAPY_ADMIN_ROUTE		DRUG_THERAPY_ADMIN_ROUTE	Drug Therapy: Route of Administration	The specified route of administration of a medication	CLINICAL					1	0	1	VARCHAR2(25)			
-DOSAGE_MG		DOSAGE_MG	Drug: Dosage in mg	The total cumulative dose administered to a patient (in mg)	CLINICAL					0	0	0	"NUMBER(6,1)"		0	25000
-DOSAGE_MG/DAY		DOSAGE_MG/DAY	Drug: Dosage in mg/day	The total cumulative dose administered to a patient (in mg/day)	CLINICAL					0	0	0	"NUMBER(3,1)"		0	60
-DOSAGE_MG/M2		DOSAGE_MG/M2	Drug: Dosage in mg/m2	The total cumulative dose administered to a patient (in mg/m2)	CLINICAL					0	0	0	"NUMBER(7,2)"		0	15000
-DOSAGE_MG/KG		DOSAGE_MG/KG	Drug: Dosage in mg/kg	The total cumulative dose administered to a patient (in mg/kg)	CLINICAL					0	0	0	"NUMBER(3,1)"		0	20
-DOSAGE_AUC		DOSAGE_AUC	Drug: Dosage in AUC	The total cumulative dose administered to a patient (in AUC)	CLINICAL					0	0	0	"NUMBER(3,1)"		0	10
+DOSAGE_MG		DOSAGE_MG	Drug: Dosage in mg	The total cumulative dose administered to a patient (in mg)	CLINICAL					0	0	0	NUMBER(6,1)		0	25000
+DOSAGE_MG/DAY		DOSAGE_MG/DAY	Drug: Dosage in mg/day	The total cumulative dose administered to a patient (in mg/day)	CLINICAL					0	0	0	NUMBER(3,1)		0	60
+DOSAGE_MG/M2		DOSAGE_MG/M2	Drug: Dosage in mg/m2	The total cumulative dose administered to a patient (in mg/m2)	CLINICAL					0	0	0	NUMBER(7,2)		0	15000
+DOSAGE_MG/KG		DOSAGE_MG/KG	Drug: Dosage in mg/kg	The total cumulative dose administered to a patient (in mg/kg)	CLINICAL					0	0	0	NUMBER(3,1)		0	20
+DOSAGE_AUC		DOSAGE_AUC	Drug: Dosage in AUC	The total cumulative dose administered to a patient (in AUC)	CLINICAL					0	0	0	NUMBER(3,1)		0	10
 PERFORMANCE_STATUS_SCORE_ECOG		PERFORMANCE_STATUS_SCORE_ECOG	Performance Status Score: ECOG (Eastern Cooperative Oncology Group)	The ECOG functional performance status of the patient	CLINICAL					1	0	1	VARCHAR2(25)			
-PERFORMANCE_STATUS_SCORE_KARNOFSKY		PERFORMANCE_STATUS_SCORE_KARNOFSKY	Performance Status Score: Karnofsky	"Score from the Karnofsky Performance status scale, representing the functional capabilities of a person"	CLINICAL					1	0	1	VARCHAR2(25)			
+PERFORMANCE_STATUS_SCORE_KARNOFSKY		PERFORMANCE_STATUS_SCORE_KARNOFSKY	Performance Status Score: Karnofsky	Score from the Karnofsky Performance status scale, representing the functional capabilities of a person	CLINICAL					1	0	1	VARCHAR2(25)			
 PERFORMANCE_STATUS_SCORE_TIMEPOINT		PERFORMANCE_STATUS_SCORE_TIMEPOINT	Performance Status Score: timepoint	A time point in reference to a patient's therapy in which a performance status assessment is conducted	CLINICAL					1	0	1	VARCHAR2(25)			
 PROGRESSION_DIAGNOSIS_METHOD		PROGRESSION_DIAGNOSIS_METHOD	Progression Diagnosis Method	The name of the procedure or testing method used to diagnose tumor recurrence	CLINICAL					1	0	1	VARCHAR2(25)			
 RADIATION_SITE		RADIATION_SITE	Radiation treatment site	The term to describe radiation therapy administration in reference to location of the disease	CLINICAL					1	0	1	VARCHAR2(25)			
-DAYS_TO_RADIATION_TX_END		DAYS_TO_RADIATION_TX_END	Days to end of Radiation Therapy	Days to end of Radiation Therapy	CLINICAL					0	0	0	"NUMBER(6,1)"	days	0	18250
-DAYS_TO_RADIATION_TX_START		DAYS_TO_RADIATION_TX_START	Days to start of Radiation Therapy	Days to start of Radiation Therapy	CLINICAL					0	0	0	"NUMBER(6,1)"	days	0	18250
-RADIATION_NUM_FRACTIONS		RADIATION_NUM_FRACTIONS	Radiation Num Fractions	The number of fractions of radiation received	CLINICAL					0	0	0	"NUMBER(5,1)"	fractions	0	5000
-RADIATION_DOSAGE_CGY		RADIATION_DOSAGE_CGY	Radiation Dosage in Cgy units	The total dose of radiation therapy administered to an individual expressed as a dosage amount	CLINICAL					0	0	0	"NUMBER(6,1)"		0	15000
+DAYS_TO_RADIATION_TX_END		DAYS_TO_RADIATION_TX_END	Days to end of Radiation Therapy	Days to end of Radiation Therapy	CLINICAL					0	0	0	NUMBER(6,1)	days	0	18250
+DAYS_TO_RADIATION_TX_START		DAYS_TO_RADIATION_TX_START	Days to start of Radiation Therapy	Days to start of Radiation Therapy	CLINICAL					0	0	0	NUMBER(6,1)	days	0	18250
+RADIATION_NUM_FRACTIONS		RADIATION_NUM_FRACTIONS	Radiation Num Fractions	The number of fractions of radiation received	CLINICAL					0	0	0	NUMBER(5,1)	fractions	0	5000
+RADIATION_DOSAGE_CGY		RADIATION_DOSAGE_CGY	Radiation Dosage in Cgy units	The total dose of radiation therapy administered to an individual expressed as a dosage amount	CLINICAL					0	0	0	NUMBER(6,1)		0	15000
 RADIATION_TYPE		RADIATION_TYPE	Radiation Type	Classification for the form of radiation therapy administered to a subject.	CLINICAL					1	0	1	VARCHAR2(25)			
 RADIATION_TX_INTENT		RADIATION_TX_INTENT	Radiation Treatment Intent	Term to identify the reason for the administration of a treatment regimen	CLINICAL					1	0	1	VARCHAR2(25)			
-SAMPLE_SIZE_INTERMEDIATE_DIMN		SAMPLE_SIZE_INTERMEDIATE_DIMN	Sample Size: Intermediate Dimension	"The second longest dimension, in cm, of the sample"	PATHOLOGY					0	0	0	"NUMBER(3,1)"	cm	0	5
-SAMPLE_SIZE_LONGEST_DIMN		SAMPLE_SIZE_LONGEST_DIMN	Sample Size: Longest Dimension	"The second longest dimension, in cm, of sample"	PATHOLOGY					0	0	0	"NUMBER(3,1)"	cm	0	10
+SAMPLE_SIZE_INTERMEDIATE_DIMN		SAMPLE_SIZE_INTERMEDIATE_DIMN	Sample Size: Intermediate Dimension	The second longest dimension, in cm, of the sample	PATHOLOGY					0	0	0	NUMBER(3,1)	cm	0	5
+SAMPLE_SIZE_LONGEST_DIMN		SAMPLE_SIZE_LONGEST_DIMN	Sample Size: Longest Dimension	The second longest dimension, in cm, of sample	PATHOLOGY					0	0	0	NUMBER(3,1)	cm	0	10
 SAMPLE_TYPE		SAMPLE_TYPE	Sample Type	Indicates from which neoplastic stage the tissue sample was taken	PATHOLOGY					1	0	1	VARCHAR2(24)			
-SAMPLE_TYPE_SHORTEST_DIMN		SAMPLE_SIZE_SHORTEST_DIMN	Sample Size: Shortest Dimension	"The shortest dimension, in cm, of the sample"	PATHOLOGY					0	0	0	"NUMBER(3,1)"	cm	0	2
+SAMPLE_TYPE_SHORTEST_DIMN		SAMPLE_SIZE_SHORTEST_DIMN	Sample Size: Shortest Dimension	The shortest dimension, in cm, of the sample	PATHOLOGY					0	0	0	NUMBER(3,1)	cm	0	2
