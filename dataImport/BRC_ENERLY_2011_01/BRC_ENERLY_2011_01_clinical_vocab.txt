@@ -9,10 +9,10 @@ TP53_MUTATION	MUTANT	Mutant		Mutant
 TP53_MUTATION	WT	Wild Type		Wild Type
 EVENT_OS	0	CENSORING		0 stands for CENSORING meaning there was no record of death
 EVENT_OS	1	EVENT 		1 stands for EVENT indicating death of patient
+BREASTCANCER_DEATH	YES	YES		Death due to Breast Cancer 
+BREASTCANCER_DEATH	NO	NO		Death not due to Breast Cancer
+BREASTCANCER_DEATH	UNKNOWN	UNKNOWN		Death cause unknown
 ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
 ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
 HER2_STATUS	NEGATIVE	Negative		The patient is HER2 Negative
 HER2_STATUS	POSITIVE	Positive		The patient is HER2 Positive
-BREASTCANCER_DEATH	YES	YES		Death due to Breast Cancer 
-BREASTCANCER_DEATH	NO	NO		Death not due to Breast Cancer
-BREASTCANCER_DEATH	UNKNOWN	UNKNOWN		Death cause unknown
