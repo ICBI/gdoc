@@ -1,6 +1,6 @@
 TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
 SAMPLE_TYPE	Breast_Primary_Tumor	Breast Primary Tumor		The sample was taken from primary breast tumor
-SAMPLE_TYPE	Lymph_node_metastasis 	Lymph Node Metastasis(not primary breast tumor)		The sample was taken from metastasized lymph node
+SAMPLE_TYPE	Lymph_node_metastasis	Lymph Node Metastasis(not primary breast tumor)		The sample was taken from metastasized lymph node
 BC_MOLECULAR_SUBTYPE	LuminalA	LuminalA		Breast cancer subtype is : LuminalA
 BC_MOLECULAR_SUBTYPE	LuminalB	LuminalB		Breast cancer sub type is : Luminal B
 BC_MOLECULAR_SUBTYPE	Basal	Basal		Breast cancer sub type is : Basal
