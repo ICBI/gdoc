@@ -151,7 +151,7 @@ SAMPLE_TYPE	Primary Tumor	Primary Tumor		The sample has been derived from Primar
 SAMPLE_TYPE	Blood Derived Normal	Blood Derived Normal		The sample has been derived from Blood Derived Normal tissue
 SAMPLE_TYPE	Solid Tissue Normal	Solid Tissue Normal		The sample has been derived from Solid Tissue Normal tissue
 SAMPLE_TYPE	Recurrent Tumor	Recurrent Tumor		The sample has been derived from Recurrent Tumor tissue
- AJCC_TUMOR_GRADE	G2	G2 - Moderately differentiated		Cells look somewhat abnormal
- AJCC_TUMOR_GRADE	G3	G3- Poorly differentiated (High grade)		Cells are very quickly growing and look very abnormal
- AJCC_TUMOR_GRADE	G4	G4 - Undifferentiated (High grade)		Cells are very quickly growing and look very abnormal
- AJCC_TUMOR_GRADE	GX	GX - Grade cannot be assessed (Undetermined grade)		Grade cannot be assessed (Undetermined grade)
+AJCC_TUMOR_GRADE	G2	G2 - Moderately differentiated		Cells look somewhat abnormal
+AJCC_TUMOR_GRADE	G3	G3- Poorly differentiated (High grade)		Cells are very quickly growing and look very abnormal
+AJCC_TUMOR_GRADE	G4	G4 - Undifferentiated (High grade)		Cells are very quickly growing and look very abnormal
+AJCC_TUMOR_GRADE	GX	GX - Grade cannot be assessed (Undetermined grade)		Grade cannot be assessed (Undetermined grade)
