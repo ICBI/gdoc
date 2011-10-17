@@ -59,6 +59,8 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'GDOCUser'
 //grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.gdoc.demo.UserRole'
 grails.plugins.springsecurity.authority.className = 'Role'
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = "/workflows"
+grails.plugins.springsecurity.successHandler.alwaysUseDefault = false
+grails.plugins.springsecurity.successHandler.targetUrlParameter = "desiredPage"
 
 grails.exceptionresolver.params.exclude = ['password']
 //grails.plugins.springsecurity.providerNames=['ldapAuthProvider','myAuthenticationProvider','anonymousAuthenticationProvider']
