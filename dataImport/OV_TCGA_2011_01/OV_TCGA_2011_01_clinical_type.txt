@@ -24,7 +24,7 @@ SIZE_RESIDUAL_TUMOR		SIZE_RESIDUAL_TUMOR	Size of residual tumor	Represent the si
 TUMOR_STAGE_FIGO		TUMOR_STAGE_FIGO	Tumor Stage determined by FIGO system	The FIGO staging criteria based on the assignment of TNM categories (AJCC 6th Ed) into groups used to select and evaluate therapy, estimate prognosis and calculate end results	CLINICAL					1	0	1	VARCHAR2(5)			
 DISEASE_LOCALIZATION		DISEASE_LOCALIZATION	The locale of the disease/tumor	The locale of the disease/tumor	CLINICAL					1	0	1	VARCHAR2(20)			
 VITAL_STATUS		VITAL_STATUS	Vital Status	  Vital Status: ALIVE, DEAD, UNKNOWN  	CLINICAL		0			1	0	1	VARCHAR2(7)			
-PLATINUM_FREE_SURVIVAL_MONTHS		PLATINUM_FREE_SURVIVAL_MONTHS	Platinum Free Sruvival in Months	Time in months after date of last platinum treatmenttill the date of progression/recurrence or date of last follow-up	CLINICAL					0	0	0	NUMBER(4,1)	months	0	600
+PLATINUM_FREE_INTERVAL_MONTHS		PLATINUM_FREE_INTERVAL_MONTHS	Platinum Free Interval in Months	Time in months after date of last platinum treatment till the date of progression/recurrence or last follow-up	CLINICAL					0	0	0	NUMBER(4,1)	months	0	600
 PLATINUM_STATUS		PLATINUM_STATUS	Platinum Status	Indicates whether patient is senstive or resistant to treatment with platinum-based chemotherapy drugs	CLINICAL					1	0	1	VARCHAR2(10)			
 DAYS_TO_DRUG_THERAPY_END		DAYS_TO_DRUG_THERAPY_END	Days to end of Drug Therapy	Days to end of Drug Therapy	CLINICAL					0	0	0	NUMBER(6,1)	days	0	18250
 DAYS_TO_DRUG_THERAPY_START		DAYS_TO_DRUG_THERAPY_START	Days to start of Drug Therapy	Days to start of Drug Therapy	CLINICAL					0	0	0	NUMBER(6,1)	days	0	18250
