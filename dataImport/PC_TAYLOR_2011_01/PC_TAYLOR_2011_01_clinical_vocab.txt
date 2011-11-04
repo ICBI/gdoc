@@ -71,3 +71,5 @@ RECURRENCE_ANY	YES	YES		Recurrence occurred
 RECURRENCE_ANY	NO	NO		Recurrence did not occur
 METASTASIS	YES	YES		Metastasis occurred
 METASTASIS	NO	NO		Metastasis did not occur
+EVENT_OS	0	CENSORING		0 stands for CENSORING meaning there was no record of death
+EVENT_OS	1	EVENT		1 stands for EVENT indicating death of patient
