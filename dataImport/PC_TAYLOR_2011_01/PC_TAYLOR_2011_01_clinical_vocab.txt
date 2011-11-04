@@ -6,27 +6,27 @@ SAMPLE_TYPE	NORMAL ADJACENT BENIGN	Normal adjacent benign prostate		Normal adjac
 SAMPLE_TYPE	PRIMARY TUMOR	Primary tumor		Primary tumor
 SAMPLE_TYPE	METASTASIS	Metastasis		Metastasis
 CTNM_T_PROSTRATE	T2A	T2A		Tumor affects one-half of one lobe or less
-CTNM_T_PROSTRATE	T1C	T1C		"Tumor identified by needle biopsy, PSA elevated"
+CTNM_T_PROSTRATE	T1C	T1C		Tumor identified by needle biopsy, PSA elevated
 CTNM_T_PROSTRATE	T2B	T2B		Tumor affects more than one-half of one lobe but not both lobes
 CTNM_T_PROSTRATE	T2C	T2C		Tumor affects both lobes
 CTNM_T_PROSTRATE	T3A	T3A		Tumor extends beyond prostate capsule on one side only.
 CTNM_T_PROSTRATE	T3B	T3B		Tumor extends beyond prostate capsule on both sides
 CTNM_T_PROSTRATE	T2	T2		Tumor confined within prostate
 CTNM_T_PROSTRATE	T3	T3		Tumor extends through the prostate capsule
-CTNM_T_PROSTRATE	T4	T4		"Tumor is fixed or invades surrounding areas, such as the bladder neck, external sphincter, rectum, levator muscles, and/or pelvic wall"
+CTNM_T_PROSTRATE	T4	T4		Tumor is fixed or invades surrounding areas, such as the bladder neck, external sphincter, rectum, levator muscles, and/or pelvic wall
 CTNM_T_PROSTRATE	T3C	T3C		Tumor extends into one or both seminal vesicles
 PTNM_T	T3C	T3C		Tumor extends into one or both seminal vesicles
 PTNM_T	T2A	T2A		Tumor affects one-half of one lobe or less
 PTNM_T	T3A	T3A		Tumor extends beyond prostate capsule on one side only.
 PTNM_T	T2C	T2C		Tumor affects both lobes
-PTNM_T	T4	T4		"Tumor invades the bladder, rectum"
+PTNM_T	T4	T4		Tumor invades the bladder, rectum
 PTNM_T	T2B	T2B		Tumor affects more than one-half of one lobe but not both lobes
 PTNM_T	T3B	T3B		Tumor extends beyond prostate capsule on both sides
 RACE	BLACK	BLACK		BLACK
 RACE	WHITE	WHITE		WHITE
 RACE	ASIAN	ASIAN		ASIAN
-ETHNICITY	HISPANIC	HISPANIC		"People with origins in spanish-speaking countries like Mexico, Costa Rica"
-ETHNICITY	NON HISPANIC	NON HISPANIC		"People who do not have origins in spanish-speaking countries like Mexico, Costa Rica"
+ETHNICITY	HISPANIC	HISPANIC		People with origins in spanish-speaking countries like Mexico, Costa Rica
+ETHNICITY	NON HISPANIC	NON HISPANIC		People who do not have origins in spanish-speaking countries like Mexico, Costa Rica
 DEATH_CAUSE	OTHER CANCER	OTHER CANCER		People who died due to other cancer other than prostate cancer
 DEATH_CAUSE	OTHER	OTHER		People who died due to other cause and not cancer
 DEATH_CAUSE	PROSTATE	PROSTATE		People who died due to prostate cancer
@@ -47,20 +47,20 @@ DRUG	NAVELBINE	NAVELBINE		Patient was treated with drug - NAVELBINE
 DRUG	MDX 010	MDX 010		Patient was treated with drug - MDX 010
 HORMONE_THERAPY_TYPE	POST HORMONE	Adjuvant Hormone therapy		Hormone therapy that is given after primary treatment.
 HORMONE_THERAPY_TYPE	NEO ADJUVANT HORMONE	Neoadjuvant Hormone Therapy		Hormone therapy that is given before a primary treatment. The hormone therapy is being used to shrink the size of the prostate gland and thereby make the primary treatment more effective.
-HORMONE_THERAPY_TYPE	HORMONE	"Hormone therapy, also operated for mets"		"These patients on hormonal therapy were operated on for metastatic disease and met sample was analyzed, they are not primary prostate cancers although they may have had an RP. "
+HORMONE_THERAPY_TYPE	HORMONE	Hormone therapy, also operated for mets		These patients on hormonal therapy were operated on for metastatic disease and met sample was analyzed, they are not primary prostate cancers although they may have had an RP. 
 RADIATION_TYPE	EXTERNAL BEAM	EXTERNAL BEAM		Patient was given external beam radiotherapy in salvage or adjuvant setting after RP 
 RADIATION_TYPE	PRIMARY EXTERNAL BEAM	PRIMARY EXTERNAL BEAM		Patient was given external beam radiotherapy as primary treatment 
 RADIATION_TYPE	PRIMARY BRACHY	PRIMARY BRACHYTHERAPY		Patient was given brachytherapy as primary treatment
-RADICAL_PROSTATECTOMY_TYPE	RP	RADICAL RETROPUBIC PROSTECTOMY		"Procedure where an incision is made in the lower abdomen, and the prostate is removed, by going behind the pubic bone (retropubic)."
+RADICAL_PROSTATECTOMY_TYPE	RP	RADICAL RETROPUBIC PROSTECTOMY		Procedure where an incision is made in the lower abdomen, and the prostate is removed, by going behind the pubic bone (retropubic).
 RADICAL_PROSTATECTOMY_TYPE	LP	LAPAROSCOPIC RADICAL PROSTECTOMY		Laparoscopic procedure involving four small incisions made in the abdomen used to remove the entire prostate for treatment of prostate cancer.
 RADICAL_PROSTATECTOMY_TYPE	SALVRP	SALVAGE RADICAL PROSTECTOMY		Procedure which refers to treatment after failure of radiation therapy. This treatment option vary widely for men with local recurrence of prostate cancer after radiation therapy
-RADICAL_PROSTATECTOMY_TYPE	CYSTOPROSTATECTOMY	CYSTOPROSTATECTOMY		"Procedure for surgical removal of the bladder, prostate gland, and seminal vesicle"
+RADICAL_PROSTATECTOMY_TYPE	CYSTOPROSTATECTOMY	CYSTOPROSTATECTOMY		Procedure for surgical removal of the bladder, prostate gland, and seminal vesicle
 RADICAL_PROSTATECTOMY_TYPE	ABORTED	ABORTED		Radical prostectomy procedure is aborted
 SURGICAL_MARGIN_STATUS	NEGATIVE	NEGATIVE		No presence of cancerous cells on surgical margin
 SURGICAL_MARGIN_STATUS	POSITIVE	POSITIVE		Presence of cancerous cells on surgical margin
 EXTRA_CAPSULAR_EXTENSION	NO	NO		Cancer did not extend beyond Prostate
 EXTRA_CAPSULAR_EXTENSION	EXTENSIVE	EXTENSIVE		Cancer extend beyond Prostate gland
-EXTRA_CAPSULAR_EXTENSION	INVADED 	"Cancer invades, but not through capsule"		Cancer invades but not through prostate capsule
+EXTRA_CAPSULAR_EXTENSION	INVADED 	Cancer invades, but not through capsule		Cancer invades but not through prostate capsule
 EXTRA_CAPSULAR_EXTENSION	FOCAL	FOCAL		Extension of tumor outside prostate gland but less than 0.1 mm
 SEMINAL_VESICAL_INVASION_STATUS	NEGATIVE	NEGATIVE		No presence of seminal vesicle invasion
 SEMINAL_VESICAL_INVASION_STATUS	POSITIVE	POSITIVE		Presence of seminal vesicle invasion
