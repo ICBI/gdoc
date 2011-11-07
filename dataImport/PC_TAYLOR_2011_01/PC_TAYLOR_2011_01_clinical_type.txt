@@ -2,7 +2,7 @@ original_name	conversion_note	short_name	long_name	definition	cdep	semantic_grou
 BIOSPECIMEN_TYPE		BIOSPECIMEN_TYPE	Biospecimen Type	Type of biospecimen	CLINICAL					1	0	1	VARCHAR2(15)			
 SAMPLE_TYPE		SAMPLE_TYPE	Sample Type	Indicates from which neoplastic stage the tissue sample was taken	PATHOLOGY					1	0	1	VARCHAR2(24)			
 GLEASON_SCORE_BIOPSY		GLEASON_SCORE_BIOPSY	Combined Gleason score from biopsy	The biopsy Gleason score is a sum of the primary grade (representing the majority of tumor) and a secondary grade (assigned to the minority of the tumor), and is a number ranging from 2 to 10. The score of 10 indicates aggressive tumor and worse prognosis.	PATHOLOGY					0	0	0	NUMBER(4,1)		2	10
-CTNM_T_PROSTRATE		CTNM_T_PROSTRATE	Clinical stage in TNM classification	Represents the clinical tumor stage in the TNM staging. Clinical stage is based on all of the available information obtained before a surgery to remove the tumor . Specifically in prostrate cancer, it represents the extent of cancer in prostrate from the DRE (digital rectal exam).	CLINICAL					1	0	1	VARCHAR(25)			
+CTNM_T_PROSTRATE		CTNM_T_PROSTRATE	Clinical stage in TNM classification	Represents the clinical tumor stage in the TNM staging. Clinical stage is based on all of the available information obtained before a surgery to remove the tumor. Specifically in prostrate cancer, it represents the extent of cancer in prostrate from the DRE (digital rectal exam).	CLINICAL					1	0	1	VARCHAR(25)			
 PTNM_T		PTNM_T	Primary Tumor Size (pTNM-T)	Primary Tumor Size in pTNM Classification	PATHOLOGY					1	0	1	VARCHAR2(5)			
 AGE		AGE	Patient's  Age 	Age of patient at diagnosis or start of case study	DEMOGRAPHICAL					0	0	0	NUMBER(4, 1) 	years  	0	120
 RACE		RACE	Race	Race (not ethnicity)	DEMOGRAPHICAL					1	1	1	VARCHAR2(50)			
@@ -32,7 +32,7 @@ GLEASON_SCORE_PATH		GLEASON_SCORE_PATH	Combined Gleason score in the radical pro
 TIME_TO_RELAPSE/FU_MONTHS		TIME_TO_RELAPSE/FU_MONTHS	Time to relapse or last follow-up in months	Time to relapse or last follow-up in months	CLINICAL					0	0	0	NUMBER(4,1)	Months	0	600
 RECURRENCE_ANY		RECURRENCE_ANY	Recurrence/Relapse	The appearance of the signs and symptoms of malignancy after treatment and response to therapy 	CLINICAL					1	0	1	VARCHAR2(3) 			
 METASTASIS		METASTASIS	Metastasis	Indicates whether the disease spread from one organ or part to another non-adjacent organ or part.	CLINICAL					1	0	1	VARCHAR(25) 			
-PROB_PFP_POSTRP		PROB_PFP_POSTRP	5 -year probability of freedom from biochemical recurrence after radical prostatectomy	5 -year probability of freedom from biochemical recurrence after radical prostatectomy	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
+PROB_PFP_POSTRP		PROB_PFP_POSTRP	Probability of freedom from recurrence 	5 -year probability of freedom from biochemical recurrence after radical prostatectomy	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
 PROB_ECE		PROB_ECE	Probability of having extra-capsular extension	probability of having extra-capsular extension	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
 PROB_PTNM_N		PROB_PTNM_N	Probability of having lymph node metastases	probability of having lymph node metastases	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
 PROB_OCD		PROB_OCD	Probability of having organ confined disease	probability of having organ confined disease	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
