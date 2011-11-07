@@ -32,7 +32,7 @@ GLEASON_SCORE_PATH		GLEASON_SCORE_PATH	Combined Gleason score in the radical pro
 TIME_TO_RELAPSE/FU_MONTHS		TIME_TO_RELAPSE/FU_MONTHS	Time to relapse or last follow-up in months	Time to relapse or last follow-up in months	CLINICAL					0	0	0	NUMBER(4,1)	Months	0	600
 RECURRENCE_ANY		RECURRENCE_ANY	Recurrence/Relapse	The appearance of the signs and symptoms of malignancy after treatment and response to therapy 	CLINICAL					1	0	1	VARCHAR2(3) 			
 METASTASIS		METASTASIS	Metastasis	Indicates whether the disease spread from one organ or part to another non-adjacent organ or part.	CLINICAL					1	0	1	VARCHAR(25) 			
-PROB_PFP_POSTRP		PROB_PFP_POSTRP	Probability of freedom from recurrence 	5 -year probability of freedom from biochemical recurrence after radical prostatectomy	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
+PROB_PFP_POSTRP		PROB_PFP_POSTRP	Probability of freedom from recurrence 	5 -year probability of freedom from biochemical recurrence after radical prostatectomy	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
 PROB_ECE		PROB_ECE	Probability of having extra-capsular extension	probability of having extra-capsular extension	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
 PROB_PTNM_N		PROB_PTNM_N	Probability of having lymph node metastases	probability of having lymph node metastases	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
 PROB_OCD		PROB_OCD	Probability of having organ confined disease	probability of having organ confined disease	CLINICAL					0	0	0	NUMBER(4,4) 		0	100
