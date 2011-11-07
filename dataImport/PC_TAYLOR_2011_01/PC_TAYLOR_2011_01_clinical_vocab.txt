@@ -29,9 +29,9 @@ ETHNICITY	HISPANIC	HISPANIC		People with origins in spanish-speaking countries l
 ETHNICITY	NON HISPANIC	NON HISPANIC		People who do not have origins in spanish-speaking countries like Mexico, Costa Rica
 DEATH_CAUSE	OTHER CANCER	OTHER CANCER		People who died due to other cancer other than prostate cancer
 DEATH_CAUSE	OTHER	OTHER		People who died due to other cause and not cancer
-DEATH_CAUSE	PROSTATE	PROSTATE		People who died due to prostate cancer
+DEATH_CAUSE	PROSTATE CANCER	PROSTATE CANCER		People who died due to prostate cancer
 DEATH_CAUSE	UNKNOWN	UNKNOWN		People who died due to unknown cause
-DEATH_CAUSE	BLADDER	BLADDER		People who died due to bladder cancer
+DEATH_CAUSE	BLADDER CANCER	BLADDER CANCER		People who died due to bladder cancer
 NEOADJ_RADIATION_THERAPY_TYPE	EXTERNAL BEAM BRACHY	EXTERNAL BEAM BRACHY		Combination therapy involving external beam radiation therapy and brachytherapy
 NEOADJ_RADIATION_THERAPY_TYPE	EXTERNAL BEAM	EXTERNAL BEAM		External beam radiation involves the use of precisely focused photon radiation that is produced by a linear accelerator (treatment machine).  External beam radiotherapy is the only completely non-invasive potentially curative treatment for Prostate Cancer. 
 NEOADJ_RADIATION_THERAPY_TYPE	BRACHY	BRACHYTHERAPY		Intraoperative procedure that places radioactive materials within the tumor
@@ -48,9 +48,9 @@ DRUG	MDX 010	MDX 010		Patient was treated with drug - MDX 010
 HORMONE_THERAPY_TYPE	POST HORMONE	Adjuvant Hormone therapy		Hormone therapy that is given after primary treatment.
 HORMONE_THERAPY_TYPE	NEO ADJUVANT HORMONE	Neoadjuvant Hormone Therapy		Hormone therapy that is given before a primary treatment. The hormone therapy is being used to shrink the size of the prostate gland and thereby make the primary treatment more effective.
 HORMONE_THERAPY_TYPE	HORMONE	Hormone therapy, also operated for mets		These patients on hormonal therapy were operated on for metastatic disease and met sample was analyzed, they are not primary prostate cancers although they may have had an RP. 
-RADIATION_TYPE	EXTERNAL BEAM	EXTERNAL BEAM		Patient was given external beam radiotherapy in salvage or adjuvant setting after RP 
-RADIATION_TYPE	PRIMARY EXTERNAL BEAM	PRIMARY EXTERNAL BEAM		Patient was given external beam radiotherapy as primary treatment 
-RADIATION_TYPE	PRIMARY BRACHY	PRIMARY BRACHYTHERAPY		Patient was given brachytherapy as primary treatment
+RADIATION_TYPE	EXTERNAL BEAM	External beam		Patient was given external beam radiotherapy in salvage or adjuvant setting after RP 
+RADIATION_TYPE	PRIMARY EXTERNAL BEAM	External beam given to primary tumor		Patient was given external beam radiotherapy as primary treatment 
+RADIATION_TYPE	PRIMARY BRACHY	Brachytherapy given to primary tumor		Patient was given brachytherapy as primary treatment
 RADICAL_PROSTATECTOMY_TYPE	RP	RADICAL RETROPUBIC PROSTECTOMY		Procedure where an incision is made in the lower abdomen, and the prostate is removed, by going behind the pubic bone (retropubic).
 RADICAL_PROSTATECTOMY_TYPE	LP	LAPAROSCOPIC RADICAL PROSTECTOMY		Laparoscopic procedure involving four small incisions made in the abdomen used to remove the entire prostate for treatment of prostate cancer.
 RADICAL_PROSTATECTOMY_TYPE	SALVRP	SALVAGE RADICAL PROSTECTOMY		Procedure which refers to treatment after failure of radiation therapy. This treatment option vary widely for men with local recurrence of prostate cancer after radiation therapy
