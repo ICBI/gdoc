@@ -19,7 +19,7 @@ PTNM_T	T3C	T3C		Tumor extends into one or both seminal vesicles
 PTNM_T	T2A	T2A		Tumor affects one-half of one lobe or less
 PTNM_T	T3A	T3A		Tumor extends beyond prostate capsule on one side only.
 PTNM_T	T2C	T2C		Tumor affects both lobes
-PTNM_T	T4	T4		Tumor invades the bladder, rectum
+PTNM_T	T4	T4  	Tumor invades the bladder, rectum
 PTNM_T	T2B	T2B		Tumor affects more than one-half of one lobe but not both lobes
 PTNM_T	T3B	T3B		Tumor extends beyond prostate capsule on both sides
 RACE	BLACK	BLACK		BLACK
