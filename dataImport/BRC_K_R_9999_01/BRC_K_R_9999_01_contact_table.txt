@@ -1,4 +1,4 @@
 NETID	LAST_NAME	FIRST_NAME	SUFFIX	EMAIL	NOTES	TYPE
-N/A	Kumar	Deepak	PHD	dkumar@udc.edu	PI	PI
+dkumar	Kumar	Deepak	PHD	dkumar@udc.edu	PI	PI
 rbr7	Riggins	Rebecca	PHD	rbr7@georgetown.edu	PI	PI
 rbr7	Riggins	Rebecca	PHD	rbr7@georgetown.edu	POINT_OF_CONTACT	POINT_OF_CONTACT
