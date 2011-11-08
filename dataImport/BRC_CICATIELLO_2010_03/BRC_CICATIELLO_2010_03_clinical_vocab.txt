@@ -1,7 +1,0 @@
-TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
-SAMPLE_TYPE	BREAST_CARCINOMA	Breast Carcinoma		Breast Carcinoma
-DRUG	17BETA_ESTRADIOL	17 Beta Estradiol		The samples were administered 17 Beta Estradiol
-DOSAGE	0_nM	0 nM (nanoMolar)		The sample was treated with 0 nM of the drug
-DOSAGE	10_nM	10 nM (nanoMolar)		The sample was treated with 10 nM of the drug
-PARENT_CELL_LINE	MCF7	MCF7		MCF7 cell line
-PARENT_CELL_LINE	ZR-75.1	ZR-75.1		ZR-75.1 cell line
