@@ -1,0 +1,5 @@
+NETID	LAST_NAME	FIRST_NAME	SUFFIX	EMAIL	NOTES	TYPE
+byerss	Byers	Stephen	PHD	byerss@georgetown.edu	PI	PI
+marshalj	Marshall	John	MD	marshalj@georgetown.edu	PI	PI
+weinerl	Weiner	Louis	MD	weinerl@georgetown.edu	PI	PI
+mah253	Harris	Michael		mah253@georgetown.edu	POINT_OF_CONTACT	POINT_OF_CONTACT
