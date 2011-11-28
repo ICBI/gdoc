@@ -1,2 +1,2 @@
 PLATFORM	PROVIDER	ARRAY TYPE
-Human miRNA Microarray 2.0 G4470B(processed) 	AGILENT	microRNA
+Human miRNA Microarray 2.0 G4470B(A) 	AGILENT	microRNA
