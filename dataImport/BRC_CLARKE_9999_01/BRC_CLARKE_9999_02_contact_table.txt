@@ -1,3 +1,0 @@
-NETID	LAST_NAME	FIRST_NAME	SUFFIX	EMAIL	NOTES	TYPE
-clarker	Clarke	Robert	PHD,DSC	clarker@georgetown.edu	PI	PI
-ans33	Shajahan	Ayesha	PHD	ans33@georgetown.edu	POINT_OF_CONTACT	POINT_OF_CONTACT
