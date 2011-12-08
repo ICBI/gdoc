@@ -1,0 +1,13 @@
+SUBJECT_ID	BIOSPECIMEN_ID	ARRAY_DESIGN	RDA_FILE	RDA_DESCRIPTION
+S10_RR_P8_microRNA	S10_RR_P8_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S11_RR_P9_microRNA	S11_RR_P9_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S12_RR_P10_microRNA	S12_RR_P10_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S1_LCC_1_P34_microRNA	S1_LCC_1_P34_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S2_LCC_1_P35_microRNA	S2_LCC_1_P35_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S3_LCC_1_P36_microRNA	S3_LCC_1_P36_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S4_LCC_9_P10_microRNA	S4_LCC_9_P10_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S5_LCC_9_P11_microRNA	S5_LCC_9_P11_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S6_LCC_9_P12_microRNA	S6_LCC_9_P12_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S7_MCF7_P46_microRNA	S7_MCF7_P46_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S8_MCF7_P47_microRNA	S8_MCF7_P47_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
+S9_MCF7_P48_microRNA	S9_MCF7_P48_microRNA	Human Taqman MicroRNA Array v3.0	BRC_CLARKE_9999_01_microRNA.Rda	Normalized and filtered based on delta Ct
