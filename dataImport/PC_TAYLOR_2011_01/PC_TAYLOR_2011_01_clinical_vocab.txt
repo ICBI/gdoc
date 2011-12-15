@@ -40,7 +40,7 @@ CHEMOTHERAPY_TYPE	POST CHEMO	POST CHEMOTHERAPY		Type of chemotherapy prescribed 
 CHEMOTHERAPY_TYPE	NEO ADJUVANT CHEMO	NEO ADJUVANT CHEMOTHERAPY		Type of chemotherapy prescribed to patients in order to shrink a cancer prior to surgery
 CHEMOTHERAPY_TYPE	CHEMO	CHEMOTHERAPY		Use of drugs to treat cancer before surgery
 DRUG	TAXOL	TAXOL		Patient was treated with drug - TAXOL
-DRUG	TAXOTERE 	TAXOTERE 		Patient was treated with drug - TAXOTERE
+DRUG	TAXOTERE	TAXOTERE		Patient was treated with drug - TAXOTERE
 DRUG	QS-21	QS-21		Patient was treated with drug - QS-21
 DRUG	DOCETAXEL	DOCETAXEL		Patient was treated with drug - DOCETAXEL
 DRUG	NAVELBINE	NAVELBINE		Patient was treated with drug - NAVELBINE
