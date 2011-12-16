@@ -11,7 +11,7 @@ PERFORMANCE_STATUS_SCORE_KARNOFSKY	100	100% - normal, no complaints, no signs of
 PERFORMANCE_STATUS_SCORE_KARNOFSKY	0	0% - death		0% - death
 PERFORMANCE_STATUS_SCORE_KARNOFSKY	40	40% - Disabled		40% - Disabled; requires special care and assistance
 PERFORMANCE_STATUS_SCORE_KARNOFSKY	60	60% - Requires occasional assistance		60% - Requires occasional assistance, but is able to care for most of his needs
-PERFORMANCE_STATUS_SCORE_KARNOFSKY	80	80% - Normal activity with effort	80% - Normal activity with effort; some signs of symptoms of disease	
+PERFORMANCE_STATUS_SCORE_KARNOFSKY	80	80% - Normal activity with effort		80% - Normal activity with effort; some signs of symptoms of disease
 ADDITIONAL_CHEMO_THERAPY	NO	No		The patient has not had additonal chemotherapy
 ADDITIONAL_CHEMO_THERAPY	YES	Yes		The patient has had additonal chemotherapy
 ADDITIONAL_DRUG_THERAPY	NO	No		The patient has not had additional drug therapy
