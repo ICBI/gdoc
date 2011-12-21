@@ -3,14 +3,14 @@ GENDER	MALE	MALE		An individual who reports belonging to the cultural gender rol
 GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
 PERFORMANCE_STATUS_SCORE_ECOG	0	0 - Asymptomatic		0 - Asymptomatic
 PERFORMANCE_STATUS_SCORE_ECOG	1	1 - Symptomatic but completely ambulatory		1 - Symptomatic but completely ambulatory
-PERFORMANCE_STATUS_SCORE_ECOG	2	"2 - Symptomatic, <50% in bed during the day"		"2 - Symptomatic, <50% in bed during the day"
-PERFORMANCE_STATUS_SCORE_ECOG	3	"3 - Symptomatic, >50% in bed, but not bedbound"		"3 - Symptomatic, >50% in bed, but not bedbound"
+PERFORMANCE_STATUS_SCORE_ECOG	2	2 - Symptomatic, <50% in bed during the day		2 - Symptomatic, <50% in bed during the day
+PERFORMANCE_STATUS_SCORE_ECOG	3	3 - Symptomatic, >50% in bed, but not bedbound		3 - Symptomatic, >50% in bed, but not bedbound
 PERFORMANCE_STATUS_SCORE_ECOG	4	4 - Bedbound (Completely disabled)		4 - Bedbound (Completely disabled)
 PERFORMANCE_STATUS_SCORE_ECOG	5	5 - Death		5 - Death
-PERFORMANCE_STATUS_SCORE_KARNOFSKY	100	"100% - normal, no complaints, no signs of disease"		"100% - normal, no complaints, no signs of disease"
+PERFORMANCE_STATUS_SCORE_KARNOFSKY	100	100% - normal, no complaints, no signs of disease		100% - normal, no complaints, no signs of disease
 PERFORMANCE_STATUS_SCORE_KARNOFSKY	0	0% - death		0% - death
 PERFORMANCE_STATUS_SCORE_KARNOFSKY	40	40% - Disabled		40% - Disabled; requires special care and assistance
-PERFORMANCE_STATUS_SCORE_KARNOFSKY	60	60% - Requires occasional assistance		"60% - Requires occasional assistance, but is able to care for most of his needs"
+PERFORMANCE_STATUS_SCORE_KARNOFSKY	60	60% - Requires occasional assistance		60% - Requires occasional assistance, but is able to care for most of his needs
 PERFORMANCE_STATUS_SCORE_KARNOFSKY	80	80% - Normal activity with effort		80% - Normal activity with effort; some signs of symptoms of disease
 ADDITIONAL_CHEMO_THERAPY	NO	No		The patient has not had additonal chemotherapy
 ADDITIONAL_CHEMO_THERAPY	YES	Yes		The patient has had additonal chemotherapy
