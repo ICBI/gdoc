@@ -5,9 +5,10 @@ grails.json.legacy.builder = false
 
 appTitle="G-DOC &reg;"
 appLongName="Georgetown Database of Cancer"
-appVersion="1.4.1"
+appVersion="1.4.2"
 appLogo="gdocHeader.png"
 appContactEmail="gdoc-help@georgetown.edu"
+
 environments {
     devserver {
 		grails.serverURL = "https://dev.gdoc.georgetown.edu"
