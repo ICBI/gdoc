@@ -2,7 +2,6 @@
 	<tr>
 		<td>
 			<b>Software and Database Development</b><br/>
-			Lavinia Carabet<br/>
 			Kevin Rosso<br/>
 			Andrew Shinohara<br/>
 			<br/>
@@ -23,7 +22,7 @@
 			Yuriy Gusev, PhD<br/>
 			Michael Harris<br/>
 			Subha Madhavan, PhD<br/>
-			David M. Tanenbaum, PhD<br/>
+			Laura Sheahan, PhD<br/>
 			<br/>
 			<b>Program Advisory Committee</b><br/>
 			Steve Byers, PhD<br/>
