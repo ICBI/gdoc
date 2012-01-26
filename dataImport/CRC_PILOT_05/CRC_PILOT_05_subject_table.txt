@@ -331,163 +331,163 @@ B645_TP2_tissue_miRNA	B645	SAMPLE		MICRORNA	TUMOR	Tissue
 B777_TP2_tissue_miRNA	B777	SAMPLE		MICRORNA	TUMOR	Tissue																																																																
 B972_TP1_tissue_miRNA	B972	SAMPLE		MICRORNA	TUMOR	Tissue																																																																
 R43_TP1_tissue_miRNA	R43	SAMPLE		MICRORNA	TUMOR	Tissue																																																																
-S1_A548_0_S4_serummiRNA_Relapse	A548	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S2_A632_0_S2_serummiRNA_Relapse	A632	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S3_B20_0_S1_serummiRNA_Relapse	B20	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S4_B155_0_S1_serummiRNA_Relapse	B155	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S5_B309_0_S1_serummiRNA_Relapse	B309	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S6_A584_0_S2_serummiRNA_Relapse_free	A584	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S7_A651_0_S1_serummiRNA_Relapse_free	A651	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S8_B312_0_S1_serummiRNA_Relapse_free	B312	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S9_A734_0_S1_serummiRNA_Relapse_free	A734	SAMPLE		SERUM_MICRORNA		Serum																																																																
-S10_B296_0_S1_serummiRNA_Relapse_free	B296	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A154_0_S1_serummiRNA_Relapse_Free	A154	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A155_0_s1_serummiRNA_Relapse_Free	A155	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A1717_0_S1_serummiRNA_Relapse	A1717	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A196_0_S1_serummiRNA_Relapse	A196	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A208_0_S1_serummiRNA_Relapse_Free	A208	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A2184_0_S1_serummiRNA_Relapse	A2184	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A226_0_S2_serummiRNA_Relapse_Free	A226	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A251_0_S2_serummiRNA_Relapse_Free	A251	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A278_0_S2_serummiRNA_Relapse_Free	A278	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A290_0_S2_serummiRNA_Relapse_Free	A290	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A522_0_S4_serummiRNA_Relapse	A522	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A540_0_S1_serummiRNA_Relapse_Free	A540	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A557_0_S2_serummiRNA_Relapse_Free	A557	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A579_0_S2_serummiRNA_Relapse_Free	A579	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A591_0_S1_serummiRNA_Relapse_Free	A591	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A611_0_S2_serummiRNA_Relapse_Free	A611	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A628_0_S1_serummiRNA_Relapse_Free	A628	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A665_0_S1_serummiRNA_Relapse_Free	A665	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A671_0_S1_serummiRNA_Relapse_Free	A671	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A748_0_S_1_serummiRNA_Relapse	A748	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B1244_0_S1_serummiRNA_Relapse	B1244	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B189_0_S1_serummiRNA_Relapse	B189	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B264_0_S1_serummiRNA_Relapse	B264	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B349_0_S5_serummiRNA_Relapse	B349	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B35_0_S1_serummiRNA_Relapse	B35	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B396_0_S1_serummiRNA_Relapse	B396	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B645_0_S1_serummiRNA_Relapse	B645	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B777_0_S1_serummiRNA_Relapse	B777	SAMPLE		SERUM_MICRORNA		Serum																																																																
-B972_0_S1_serummiRNA_Relapse	B972	SAMPLE		SERUM_MICRORNA		Serum																																																																
-R43_0_S1_serummiRNA_Relapse	R43	SAMPLE		SERUM_MICRORNA		Serum																																																																
-A196-0-U1	A196	SAMPLE		METAB_URINE		Urine																																																																
-A522-0-U1	A522	SAMPLE		METAB_URINE		Urine																																																																
-A748-0-U-1	A748	SAMPLE		METAB_URINE		Urine																																																																
-A1717-0-U1	A1717	SAMPLE		METAB_URINE		Urine																																																																
-A2184-0-U1	A2184	SAMPLE		METAB_URINE		Urine																																																																
-B35-0-U1	B35	SAMPLE		METAB_URINE		Urine																																																																
-B189-0-U1	B189	SAMPLE		METAB_URINE		Urine																																																																
-B264-0-U1	B264	SAMPLE		METAB_URINE		Urine																																																																
-B349-0-U1	B349	SAMPLE		METAB_URINE		Urine																																																																
-B396-0-U1	B396	SAMPLE		METAB_URINE		Urine																																																																
-B645-0-U1	B645	SAMPLE		METAB_URINE		Urine																																																																
-B777-0-U1	B777	SAMPLE		METAB_URINE		Urine																																																																
-B972-0-U1	B972	SAMPLE		METAB_URINE		Urine																																																																
-B1244-0-U1	B1244	SAMPLE		METAB_URINE		Urine																																																																
-R43-0-U1	R43	SAMPLE		METAB_URINE		Urine																																																																
-A154-0-U-1	A154	SAMPLE		METAB_URINE		Urine																																																																
-A155-0-U-1	A155	SAMPLE		METAB_URINE		Urine																																																																
-A208-0-U-1	A208	SAMPLE		METAB_URINE		Urine																																																																
-A226-0-U-1	A226	SAMPLE		METAB_URINE		Urine																																																																
-A251-0-U1	A251	SAMPLE		METAB_URINE		Urine																																																																
-A278-0-U1	A278	SAMPLE		METAB_URINE		Urine																																																																
-A290-0-U1	A290	SAMPLE		METAB_URINE		Urine																																																																
-A540-0-U2	A540	SAMPLE		METAB_URINE		Urine																																																																
-A557-0-U4	A557	SAMPLE		METAB_URINE		Urine																																																																
-A579-0-U4	A579	SAMPLE		METAB_URINE		Urine																																																																
-A591-0-U1	A591	SAMPLE		METAB_URINE		Urine																																																																
-A611-0-U4	A611	SAMPLE		METAB_URINE		Urine																																																																
-A628-0-U1	A628	SAMPLE		METAB_URINE		Urine																																																																
-A665-0-U1	A665	SAMPLE		METAB_URINE		Urine																																																																
-A671-0-U1	A671	SAMPLE		METAB_URINE		Urine																																																																
-A548-0-U4	A548	SAMPLE		METAB_URINE		Urine																																																																
-A632-0-U4	A632	SAMPLE		METAB_URINE		Urine																																																																
-B20-0-U1	B20	SAMPLE		METAB_URINE		Urine																																																																
-B155-0-U1	B155	SAMPLE		METAB_URINE		Urine																																																																
-B309-0-U1	B309	SAMPLE		METAB_URINE		Urine																																																																
-A584-0-U4	A584	SAMPLE		METAB_URINE		Urine																																																																
-A651-0-U1	A651	SAMPLE		METAB_URINE		Urine																																																																
-B312-0-U1	B312	SAMPLE		METAB_URINE		Urine																																																																
-A734-0-U1	A734	SAMPLE		METAB_URINE		Urine																																																																
-B296-0-U1	B296	SAMPLE		METAB_URINE		Urine																																																																
-A584-0-S2	A584	SAMPLE		METAB_SERUM		Serum																																																																
-A651-0-S1	A651	SAMPLE		METAB_SERUM		Serum																																																																
-B312-0-S1	B312	SAMPLE		METAB_SERUM		Serum																																																																
-A734-0-S1	A734	SAMPLE		METAB_SERUM		Serum																																																																
-B296-0-S1	B296	SAMPLE		METAB_SERUM		Serum																																																																
-A548-0-S4	A548	SAMPLE		METAB_SERUM		Serum																																																																
-A632-0-S2	A632	SAMPLE		METAB_SERUM		Serum																																																																
-B20-0-S1	B20	SAMPLE		METAB_SERUM		Serum																																																																
-B155-0-S1	B155	SAMPLE		METAB_SERUM		Serum																																																																
-B309-0-S1	B309	SAMPLE		METAB_SERUM		Serum																																																																
-A196-0-S1	A196	SAMPLE		METAB_SERUM		Serum																																																																
-A522-0-S4	A522	SAMPLE		METAB_SERUM		Serum																																																																
-A748-0-S-1	A748	SAMPLE		METAB_SERUM		Serum																																																																
-A1717-0-S1	A1717	SAMPLE		METAB_SERUM		Serum																																																																
-A2184-0-S1	A2184	SAMPLE		METAB_SERUM		Serum																																																																
-B35-0-S1	B35	SAMPLE		METAB_SERUM		Serum																																																																
-B189-0-S1	B189	SAMPLE		METAB_SERUM		Serum																																																																
-B264-0-S1	B264	SAMPLE		METAB_SERUM		Serum																																																																
-B349-0-S5	B349	SAMPLE		METAB_SERUM		Serum																																																																
-B396-0-S1	B396	SAMPLE		METAB_SERUM		Serum																																																																
-B645-0-S1	B645	SAMPLE		METAB_SERUM		Serum																																																																
-B777-0-S1	B777	SAMPLE		METAB_SERUM		Serum																																																																
-B972-0-S1	B972	SAMPLE		METAB_SERUM		Serum																																																																
-B1244-0-S1	B1244	SAMPLE		METAB_SERUM		Serum																																																																
-R43-0-S1	R43	SAMPLE		METAB_SERUM		Serum																																																																
-A154-0-S-1	A154	SAMPLE		METAB_SERUM		Serum																																																																
-A155-0-S-1	A155	SAMPLE		METAB_SERUM		Serum																																																																
-A208-0-S-1	A208	SAMPLE		METAB_SERUM		Serum																																																																
-A226-0-S-2	A226	SAMPLE		METAB_SERUM		Serum																																																																
-A251-0-S2	A251	SAMPLE		METAB_SERUM		Serum																																																																
-A278-0-S2	A278	SAMPLE		METAB_SERUM		Serum																																																																
-A290-0-S2	A290	SAMPLE		METAB_SERUM		Serum																																																																
-A540-0-S1	A540	SAMPLE		METAB_SERUM		Serum																																																																
-A557-0-S2	A557	SAMPLE		METAB_SERUM		Serum																																																																
-A579-0-S2	A579	SAMPLE		METAB_SERUM		Serum																																																																
-A591-0-S1	A591	SAMPLE		METAB_SERUM		Serum																																																																
-A611-0-S2	A611	SAMPLE		METAB_SERUM		Serum																																																																
-A628-0-S1	A628	SAMPLE		METAB_SERUM		Serum																																																																
-A665-0-S1	A665	SAMPLE		METAB_SERUM		Serum																																																																
-A671-0-S1	A671	SAMPLE		METAB_SERUM		Serum																																																																
-a154	A154	SAMPLE		COPY_NUMBER																																																																		
-a155	A155	SAMPLE		COPY_NUMBER																																																																		
-a1717	A1717	SAMPLE		COPY_NUMBER																																																																		
-a196	A196	SAMPLE		COPY_NUMBER																																																																		
-a208	A208	SAMPLE		COPY_NUMBER																																																																		
-a2184	A2184	SAMPLE		COPY_NUMBER																																																																		
-a226	A226	SAMPLE		COPY_NUMBER																																																																		
-a251	A251	SAMPLE		COPY_NUMBER																																																																		
-a278	A278	SAMPLE		COPY_NUMBER																																																																		
-a290	A290	SAMPLE		COPY_NUMBER																																																																		
-a522	A522	SAMPLE		COPY_NUMBER																																																																		
-a540	A540	SAMPLE		COPY_NUMBER																																																																		
-a548	A548	SAMPLE		COPY_NUMBER																																																																		
-a557	A557	SAMPLE		COPY_NUMBER																																																																		
-a579	A579	SAMPLE		COPY_NUMBER																																																																		
-a584	A584	SAMPLE		COPY_NUMBER																																																																		
-a591	A591	SAMPLE		COPY_NUMBER																																																																		
-a611	A611	SAMPLE		COPY_NUMBER																																																																		
-a628	A628	SAMPLE		COPY_NUMBER																																																																		
-a632	A632	SAMPLE		COPY_NUMBER																																																																		
-a651	A651	SAMPLE		COPY_NUMBER																																																																		
-a665	A665	SAMPLE		COPY_NUMBER																																																																		
-a671	A671	SAMPLE		COPY_NUMBER																																																																		
-a734	A734	SAMPLE		COPY_NUMBER																																																																		
-a748	A748	SAMPLE		COPY_NUMBER																																																																		
-b1244	B1244	SAMPLE		COPY_NUMBER																																																																		
-b155	B155	SAMPLE		COPY_NUMBER																																																																		
-b189	B189	SAMPLE		COPY_NUMBER																																																																		
-b20	B20	SAMPLE		COPY_NUMBER																																																																		
-b264	B264	SAMPLE		COPY_NUMBER																																																																		
-b296	B296	SAMPLE		COPY_NUMBER																																																																		
-b309	B309	SAMPLE		COPY_NUMBER																																																																		
-b312	B312	SAMPLE		COPY_NUMBER																																																																		
-b349	B349	SAMPLE		COPY_NUMBER																																																																		
-b35	B35	SAMPLE		COPY_NUMBER																																																																		
-b396	B396	SAMPLE		COPY_NUMBER																																																																		
-b645	B645	SAMPLE		COPY_NUMBER																																																																		
-b777	B777	SAMPLE		COPY_NUMBER																																																																		
-b972	B972	SAMPLE		COPY_NUMBER																																																																		
-r43	R43	SAMPLE		COPY_NUMBER																																																																		
+S1_A548_0_S4_serummiRNA_Relapse	A548	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S2_A632_0_S2_serummiRNA_Relapse	A632	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S3_B20_0_S1_serummiRNA_Relapse	B20	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S4_B155_0_S1_serummiRNA_Relapse	B155	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S5_B309_0_S1_serummiRNA_Relapse	B309	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S6_A584_0_S2_serummiRNA_Relapse_free	A584	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S7_A651_0_S1_serummiRNA_Relapse_free	A651	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S8_B312_0_S1_serummiRNA_Relapse_free	B312	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S9_A734_0_S1_serummiRNA_Relapse_free	A734	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+S10_B296_0_S1_serummiRNA_Relapse_free	B296	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A154_0_S1_serummiRNA_Relapse_Free	A154	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A155_0_s1_serummiRNA_Relapse_Free	A155	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A1717_0_S1_serummiRNA_Relapse	A1717	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A196_0_S1_serummiRNA_Relapse	A196	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A208_0_S1_serummiRNA_Relapse_Free	A208	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A2184_0_S1_serummiRNA_Relapse	A2184	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A226_0_S2_serummiRNA_Relapse_Free	A226	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A251_0_S2_serummiRNA_Relapse_Free	A251	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A278_0_S2_serummiRNA_Relapse_Free	A278	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A290_0_S2_serummiRNA_Relapse_Free	A290	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A522_0_S4_serummiRNA_Relapse	A522	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A540_0_S1_serummiRNA_Relapse_Free	A540	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A557_0_S2_serummiRNA_Relapse_Free	A557	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A579_0_S2_serummiRNA_Relapse_Free	A579	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A591_0_S1_serummiRNA_Relapse_Free	A591	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A611_0_S2_serummiRNA_Relapse_Free	A611	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A628_0_S1_serummiRNA_Relapse_Free	A628	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A665_0_S1_serummiRNA_Relapse_Free	A665	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A671_0_S1_serummiRNA_Relapse_Free	A671	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A748_0_S_1_serummiRNA_Relapse	A748	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B1244_0_S1_serummiRNA_Relapse	B1244	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B189_0_S1_serummiRNA_Relapse	B189	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B264_0_S1_serummiRNA_Relapse	B264	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B349_0_S5_serummiRNA_Relapse	B349	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B35_0_S1_serummiRNA_Relapse	B35	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B396_0_S1_serummiRNA_Relapse	B396	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B645_0_S1_serummiRNA_Relapse	B645	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B777_0_S1_serummiRNA_Relapse	B777	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+B972_0_S1_serummiRNA_Relapse	B972	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+R43_0_S1_serummiRNA_Relapse	R43	SAMPLE		SERUM_MICRORNA	TUMOR	Serum																																																																
+A196-0-U1	A196	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A522-0-U1	A522	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A748-0-U-1	A748	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A1717-0-U1	A1717	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A2184-0-U1	A2184	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B35-0-U1	B35	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B189-0-U1	B189	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B264-0-U1	B264	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B349-0-U1	B349	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B396-0-U1	B396	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B645-0-U1	B645	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B777-0-U1	B777	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B972-0-U1	B972	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B1244-0-U1	B1244	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+R43-0-U1	R43	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A154-0-U-1	A154	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A155-0-U-1	A155	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A208-0-U-1	A208	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A226-0-U-1	A226	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A251-0-U1	A251	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A278-0-U1	A278	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A290-0-U1	A290	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A540-0-U2	A540	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A557-0-U4	A557	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A579-0-U4	A579	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A591-0-U1	A591	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A611-0-U4	A611	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A628-0-U1	A628	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A665-0-U1	A665	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A671-0-U1	A671	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A548-0-U4	A548	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A632-0-U4	A632	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B20-0-U1	B20	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B155-0-U1	B155	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B309-0-U1	B309	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A584-0-U4	A584	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A651-0-U1	A651	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B312-0-U1	B312	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A734-0-U1	A734	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+B296-0-U1	B296	SAMPLE		METAB_URINE	TUMOR	Urine																																																																
+A584-0-S2	A584	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A651-0-S1	A651	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B312-0-S1	B312	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A734-0-S1	A734	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B296-0-S1	B296	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A548-0-S4	A548	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A632-0-S2	A632	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B20-0-S1	B20	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B155-0-S1	B155	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B309-0-S1	B309	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A196-0-S1	A196	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A522-0-S4	A522	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A748-0-S-1	A748	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A1717-0-S1	A1717	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A2184-0-S1	A2184	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B35-0-S1	B35	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B189-0-S1	B189	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B264-0-S1	B264	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B349-0-S5	B349	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B396-0-S1	B396	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B645-0-S1	B645	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B777-0-S1	B777	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B972-0-S1	B972	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+B1244-0-S1	B1244	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+R43-0-S1	R43	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A154-0-S-1	A154	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A155-0-S-1	A155	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A208-0-S-1	A208	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A226-0-S-2	A226	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A251-0-S2	A251	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A278-0-S2	A278	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A290-0-S2	A290	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A540-0-S1	A540	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A557-0-S2	A557	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A579-0-S2	A579	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A591-0-S1	A591	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A611-0-S2	A611	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A628-0-S1	A628	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A665-0-S1	A665	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+A671-0-S1	A671	SAMPLE		METAB_SERUM	TUMOR	Serum																																																																
+a154	A154	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a155	A155	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a1717	A1717	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a196	A196	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a208	A208	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a2184	A2184	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a226	A226	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a251	A251	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a278	A278	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a290	A290	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a522	A522	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a540	A540	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a548	A548	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a557	A557	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a579	A579	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a584	A584	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a591	A591	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a611	A611	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a628	A628	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a632	A632	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a651	A651	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a665	A665	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a671	A671	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a734	A734	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+a748	A748	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b1244	B1244	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b155	B155	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b189	B189	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b20	B20	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b264	B264	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b296	B296	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b309	B309	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b312	B312	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b349	B349	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b35	B35	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b396	B396	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b645	B645	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b777	B777	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+b972	B972	SAMPLE		COPY_NUMBER	TUMOR																																																																	
+r43	R43	SAMPLE		COPY_NUMBER	TUMOR																																																																	
