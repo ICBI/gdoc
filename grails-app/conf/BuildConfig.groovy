@@ -19,25 +19,34 @@ grails.project.dependency.resolution = {
 	repositories {
 		grailsPlugins()
 		grailsHome()
-		grailsRepo "https://svn-bccfr.uis.georgetown.edu/svn/gdoc/gcore-plugins"
+		mavenRepo "https://gdoc-stage.georgetown.edu/artifactory/plugins-release-local/"
 		grailsCentral()
 		mavenCentral()
 		
 	}
+	dependencies {
+		compile("org.tmatesoft.svnkit:svnkit:1.3.5") {
+            excludes "jna", "trilead-ssh2", "sqljet"
+			export = false
+        }
+	}
 	plugins {
-		runtime 'edu.georgetown.gcore:cin:latest.integration'
-		runtime 'edu.georgetown.gcore:cytoscape:latest.integration'
-		runtime 'edu.georgetown.gcore:gcore:latest.integration'
-		runtime 'edu.georgetown.gcore:gene-expression-search:latest.integration'
-		runtime 'edu.georgetown.gcore:genome-browser:latest.integration'
-		runtime 'edu.georgetown.gcore:group-comparison:latest.integration'
-		runtime 'edu.georgetown.gcore:heatmap:latest.integration'
-		runtime 'edu.georgetown.gcore:km:latest.integration'
-		runtime 'edu.georgetown.gcore:molecule-target:latest.integration'
-		runtime 'edu.georgetown.gcore:pca:latest.integration'
-		runtime 'edu.georgetown.gcore:quick-start:latest.integration'
-		runtime 'edu.georgetown.gcore:analysis-core:latest.integration'
+		build 'edu.georgetown.gcore:gcore:latest.integration'
+		build 'edu.georgetown.gcore:analysis-core:latest.integration'
+		build 'edu.georgetown.gcore:cin:latest.integration'
+		build 'edu.georgetown.gcore:cytoscape:latest.integration'
+		build 'edu.georgetown.gcore:gene-expression-search:latest.integration'
+		build 'edu.georgetown.gcore:genome-browser:latest.integration'
+		build 'edu.georgetown.gcore:group-comparison:latest.integration'
+		build 'edu.georgetown.gcore:heatmap:latest.integration'
+		build 'edu.georgetown.gcore:km:latest.integration'
+		build 'edu.georgetown.gcore:molecule-target:latest.integration'
+		build 'edu.georgetown.gcore:pca:latest.integration'
+		build 'edu.georgetown.gcore:quick-start:latest.integration'
 		
+		build(':svn:1.0.2') {
+			export = false
+		}
 	}
 }
 //grails.plugin.location.'gcore' = "../grails-gcore"
