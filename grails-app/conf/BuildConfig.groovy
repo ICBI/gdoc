@@ -31,25 +31,27 @@ grails.project.dependency.resolution = {
         }
 	}
 	plugins {
-		//build 'edu.georgetown.gcore:gcore:latest.integration'
-		build 'edu.georgetown.gcore:analysis-core:latest.integration'
-		build 'edu.georgetown.gcore:cin:latest.integration'
-		build 'edu.georgetown.gcore:cytoscape:latest.integration'
-		build 'edu.georgetown.gcore:gene-expression-search:latest.integration'
-		build 'edu.georgetown.gcore:genome-browser:latest.integration'
-		build 'edu.georgetown.gcore:group-comparison:latest.integration'
-		build 'edu.georgetown.gcore:heatmap:latest.integration'
-		build 'edu.georgetown.gcore:km:latest.integration'
-		build 'edu.georgetown.gcore:molecule-target:latest.integration'
-		build 'edu.georgetown.gcore:pca:latest.integration'
-		build 'edu.georgetown.gcore:quick-start:latest.integration'
+		compile 'edu.georgetown.gcore:gcore:latest.integration'
+		compile 'edu.georgetown.gcore:analysis-core:latest.integration'
+/*		compile 'edu.georgetown.gcore:cin:latest.integration'
+		compile 'edu.georgetown.gcore:cytoscape:latest.integration'
+		compile 'edu.georgetown.gcore:gene-expression-search:latest.integration'
+		compile 'edu.georgetown.gcore:genome-browser:latest.integration'
+		compile 'edu.georgetown.gcore:group-comparison:latest.integration'
+		compile 'edu.georgetown.gcore:heatmap:latest.integration'
+		compile 'edu.georgetown.gcore:km:latest.integration'
+		compile 'edu.georgetown.gcore:molecule-target:latest.integration'
+		compile 'edu.georgetown.gcore:pca:latest.integration'
+		compile 'edu.georgetown.gcore:quick-start:latest.integration'*/
+		compile ':spring-security-core:1.2.7.3'
+		compile ':spring-security-ldap:1.0.5'
 		
 		build(':svn:1.0.2') {
 			export = false
 		}
 	}
 }
-grails.plugin.location.'gcore' = "../grails-gcore"
+//grails.plugin.location.'gcore' = "../grails-gcore"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
 //grails.plugin.location.'heatmap' = "../grails-heatmap"
