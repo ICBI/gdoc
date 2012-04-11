@@ -31,7 +31,7 @@ grails.project.dependency.resolution = {
         }
 	}
 	plugins {
-		build 'edu.georgetown.gcore:gcore:latest.integration'
+		//build 'edu.georgetown.gcore:gcore:latest.integration'
 		build 'edu.georgetown.gcore:analysis-core:latest.integration'
 		build 'edu.georgetown.gcore:cin:latest.integration'
 		build 'edu.georgetown.gcore:cytoscape:latest.integration'
@@ -49,7 +49,7 @@ grails.project.dependency.resolution = {
 		}
 	}
 }
-//grails.plugin.location.'gcore' = "../grails-gcore"
+grails.plugin.location.'gcore' = "../grails-gcore"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
 //grails.plugin.location.'heatmap' = "../grails-heatmap"
