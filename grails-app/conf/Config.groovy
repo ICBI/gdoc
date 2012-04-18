@@ -14,7 +14,7 @@ grails.pubFeedURL="https://wiki.uis.georgetown.edu/createrssfeed.action?types=bl
 
 environments {
     devserver {
-		grails.serverURL = "https://dev.gdoc.georgetown.edu"
+		grails.serverURL = "https://dev.gdoc.georgetown.edu/gdoc"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -25,7 +25,7 @@ environments {
 		}
     }
     demo {
-		grails.serverURL = "https://demo.gdoc.georgetown.edu"
+		grails.serverURL = "https://demo.gdoc.georgetown.edu/gdoc"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -35,7 +35,7 @@ environments {
 		}
     }
 	development {
-		grails.serverURL = "http://localhost:8080"
+		grails.serverURL = "http://localhost:8080/gdoc"
 		responseQueue = "AnalysisResponseKevin"
 		//molecule3DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule3D"
 		//molecule2DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule2D"
@@ -64,7 +64,7 @@ environments {
 		}
 	}
 	stage {
-		grails.serverURL = "https://gdoc-stage.georgetown.edu"
+		grails.serverURL = "https://gdoc-stage.georgetown.edu/gdoc"
 		jmsserver = "jnp://gdoc-stage.georgetown.edu:1099"
 		grails {
 		   mail {
@@ -80,7 +80,7 @@ environments {
 		}
     }
 	stage_load {
-		grails.serverURL = "https://gdoc-stage.georgetown.edu"
+		grails.serverURL = "https://gdoc-stage.georgetown.edu/gdoc"
 		jmsserver = "jnp://gdoc-stage.georgetown.edu:1099"
 		log4j = {
 			appenders {
@@ -95,7 +95,7 @@ environments {
 		}
     }
 	production {
-		grails.serverURL = "https://gdoc.georgetown.edu"
+		grails.serverURL = "https://gdoc.georgetown.edu/gdoc"
 		jmsserver = "jnp://gdoc.georgetown.edu:1099"
 		grails {
 		   mail {
@@ -111,7 +111,7 @@ environments {
 		}
     }
 	prod_load {
-		grails.serverURL = "https://gdoc.georgetown.edu"
+		grails.serverURL = "https://gdoc.georgetown.edu/gdoc"
 		jmsserver = "jnp://gdoc.georgetown.edu:1099"
 		log4j = {
 			appenders {
