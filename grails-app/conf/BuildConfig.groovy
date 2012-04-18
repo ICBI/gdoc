@@ -33,7 +33,6 @@ grails.project.dependency.resolution = {
 	plugins {
 		compile 'edu.georgetown.gcore:gcore:latest.integration'
 		compile 'edu.georgetown.gcore:analysis-core:latest.integration'
-
 		compile 'edu.georgetown.gcore:cin:latest.integration'
 		compile 'edu.georgetown.gcore:cytoscape:latest.integration'
 		compile 'edu.georgetown.gcore:gene-expression-search:latest.integration'
