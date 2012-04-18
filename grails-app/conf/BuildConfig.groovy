@@ -43,8 +43,7 @@ grails.project.dependency.resolution = {
 		compile 'edu.georgetown.gcore:km:latest.integration'
 		compile 'edu.georgetown.gcore:molecule-target:latest.integration'
 		compile 'edu.georgetown.gcore:pca:latest.integration'
-<<<<<<< HEAD
-		compile 'edu.georgetown.gcore:quick-start:latest.integration' */
+		compile 'edu.georgetown.gcore:quick-start:latest.integration' 
 		compile	':taggable:0.6.1'
 		compile	':spring-security-core:1.2.7.3'
 		compile	':spring-security-ldap:1.0.5'
@@ -55,17 +54,6 @@ grails.project.dependency.resolution = {
 			export = false
 		}
 		runtime ':tomcat:2.0.3'
-=======
-		compile 'edu.georgetown.gcore:quick-start:latest.integration'
-		compile ':spring-security-core:1.2.7.3'
-		compile ':spring-security-ldap:1.0.5'
-		
-		build(':svn:1.0.2') {
-			export = false
-		}
-		compile ':spring-security-core:1.2.7.3'
-		compile ':spring-security-ldap:1.0.5'
->>>>>>> 18f3d9e802512401608df9730a86764d3f0d4377
 	}
 }
 //grails.plugin.location.'gcore' = "../grails-gcore"
