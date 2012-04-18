@@ -33,7 +33,8 @@ grails.project.dependency.resolution = {
 	plugins {
 		compile 'edu.georgetown.gcore:gcore:latest.integration'
 		compile 'edu.georgetown.gcore:analysis-core:latest.integration'
-/*		compile 'edu.georgetown.gcore:cin:latest.integration'
+
+		compile 'edu.georgetown.gcore:cin:latest.integration'
 		compile 'edu.georgetown.gcore:cytoscape:latest.integration'
 		compile 'edu.georgetown.gcore:gene-expression-search:latest.integration'
 		compile 'edu.georgetown.gcore:genome-browser:latest.integration'
@@ -42,13 +43,15 @@ grails.project.dependency.resolution = {
 		compile 'edu.georgetown.gcore:km:latest.integration'
 		compile 'edu.georgetown.gcore:molecule-target:latest.integration'
 		compile 'edu.georgetown.gcore:pca:latest.integration'
-		compile 'edu.georgetown.gcore:quick-start:latest.integration'*/
+		compile 'edu.georgetown.gcore:quick-start:latest.integration'
 		compile ':spring-security-core:1.2.7.3'
 		compile ':spring-security-ldap:1.0.5'
 		
 		build(':svn:1.0.2') {
 			export = false
 		}
+		compile ':spring-security-core:1.2.7.3'
+		compile ':spring-security-ldap:1.0.5'
 	}
 }
 //grails.plugin.location.'gcore' = "../grails-gcore"
