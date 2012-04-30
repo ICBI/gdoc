@@ -48,6 +48,7 @@ grails.project.dependency.resolution = {
 		compile	':spring-security-ldap:1.0.5'
 		compile	':recaptcha:0.5.2'
 		compile	':hibernate:2.0.3'
+		compile ':jms:1.2'
 		build ':release:2.0.0'
 		build(':svn:1.0.2') {
 			export = false
@@ -59,10 +60,10 @@ grails.project.dependency.resolution = {
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
 //grails.plugin.location.'heatmap' = "../grails-heatmap"
-//grails.plugin.location.'cin' = "../cin"
+//grails.plugin.location.'cin' = "../grails-cin"
 //grails.plugin.location.'genome-browser' = "../grails-genome-browser"
-//grails.plugin.location.'pca' = "../pca"
+//grails.plugin.location.'pca' = "../grails-pca"
 //grails.plugin.location.'km' = "../grails-km"
-//grails.plugin.location.'cytoscape' = "../cytoscape"
+//grails.plugin.location.'cytoscape' = "../grails-cytoscape"
 //grails.plugin.location.'molecule-target' = "../molecule-target"
 //grails.plugin.location.'quick-start' = "../grails-quick-start"
