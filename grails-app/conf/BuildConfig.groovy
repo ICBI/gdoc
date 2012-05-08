@@ -56,6 +56,7 @@ grails.project.dependency.resolution = {
 		runtime ':tomcat:2.0.3'
 	}
 }
+grails.plugin.location.'nextgen' = "../grails-nextgen"
 //grails.plugin.location.'gcore' = "../grails-gcore"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
