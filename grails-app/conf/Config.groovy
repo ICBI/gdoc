@@ -15,6 +15,7 @@ grails.pubFeedURL="https://wiki.uis.georgetown.edu/createrssfeed.action?types=bl
 environments {
     devserver {
 		grails.serverURL = "https://dev.gdoc.georgetown.edu"
+		grails.ngsUrl = "http://devcomp.gdoc.georgetown.edu:8000"
 		log4j = {
 			root {
 			    error 'stdout'
@@ -37,6 +38,7 @@ environments {
 	development {
 		grails.serverURL = "http://localhost:8080"
 		responseQueue = "AnalysisResponseKevin"
+		grails.ngsUrl = "http://devcomp.gdoc.georgetown.edu:8000"
 		//molecule3DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule3D"
 		//molecule2DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule2D"
 		//documentsPath = "https://demo.gdoc.georgetown.edu/content/documents"

@@ -43,12 +43,20 @@ grails.project.dependency.resolution = {
 		build 'edu.georgetown.gcore:molecule-target:latest.integration'
 		build 'edu.georgetown.gcore:pca:latest.integration'
 		build 'edu.georgetown.gcore:quick-start:latest.integration'
-		
+		compile	':taggable:0.6.1'
+		compile	':spring-security-core:1.2.7.3'
+		compile	':spring-security-ldap:1.0.5'
+		compile	':recaptcha:0.5.2'
+		compile	':hibernate:2.0.3'
+		compile ':jms:1.2'
+		build ':release:2.0.0'
 		build(':svn:1.0.2') {
 			export = false
 		}
+		runtime ':tomcat:2.0.3'
 	}
 }
+grails.plugin.location.'nextgen' = "../grails-nextgen"
 //grails.plugin.location.'gcore' = "../grails-gcore"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
