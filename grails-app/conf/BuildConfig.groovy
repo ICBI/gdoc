@@ -31,18 +31,18 @@ grails.project.dependency.resolution = {
         }
 	}
 	plugins {
-		build 'edu.georgetown.gcore:gcore:latest.integration'
-		build 'edu.georgetown.gcore:analysis-core:latest.integration'
-		build 'edu.georgetown.gcore:cin:latest.integration'
-		build 'edu.georgetown.gcore:cytoscape:latest.integration'
-		build 'edu.georgetown.gcore:gene-expression-search:latest.integration'
-		build 'edu.georgetown.gcore:genome-browser:latest.integration'
-		build 'edu.georgetown.gcore:group-comparison:latest.integration'
-		build 'edu.georgetown.gcore:heatmap:latest.integration'
-		build 'edu.georgetown.gcore:km:latest.integration'
-		build 'edu.georgetown.gcore:molecule-target:latest.integration'
-		build 'edu.georgetown.gcore:pca:latest.integration'
-		build 'edu.georgetown.gcore:quick-start:latest.integration'
+		compile 'edu.georgetown.gcore:gcore:latest.integration'
+		compile 'edu.georgetown.gcore:analysis-core:latest.integration'
+		compile 'edu.georgetown.gcore:cin:latest.integration'
+		compile 'edu.georgetown.gcore:cytoscape:latest.integration'
+		compile 'edu.georgetown.gcore:gene-expression-search:latest.integration'
+		compile 'edu.georgetown.gcore:genome-browser:latest.integration'
+		compile 'edu.georgetown.gcore:group-comparison:latest.integration'
+		compile 'edu.georgetown.gcore:heatmap:latest.integration'
+		compile 'edu.georgetown.gcore:km:latest.integration'
+		compile 'edu.georgetown.gcore:molecule-target:latest.integration'
+		compile 'edu.georgetown.gcore:pca:latest.integration'
+		compile 'edu.georgetown.gcore:quick-start:latest.integration' 
 		compile	':taggable:0.6.1'
 		compile	':spring-security-core:1.2.7.3'
 		compile	':spring-security-ldap:1.0.5'
@@ -61,10 +61,10 @@ grails.plugin.location.'nextgen' = "../grails-nextgen"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
 //grails.plugin.location.'heatmap' = "../grails-heatmap"
-//grails.plugin.location.'cin' = "../cin"
+//grails.plugin.location.'cin' = "../grails-cin"
 //grails.plugin.location.'genome-browser' = "../grails-genome-browser"
-//grails.plugin.location.'pca' = "../pca"
+//grails.plugin.location.'pca' = "../grails-pca"
 //grails.plugin.location.'km' = "../grails-km"
-//grails.plugin.location.'cytoscape' = "../cytoscape"
+//grails.plugin.location.'cytoscape' = "../grails-cytoscape"
 //grails.plugin.location.'molecule-target' = "../molecule-target"
 //grails.plugin.location.'quick-start' = "../grails-quick-start"

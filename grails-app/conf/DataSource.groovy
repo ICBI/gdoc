@@ -7,6 +7,8 @@ hibernate {
     cache.use_second_level_cache=true
     cache.use_query_cache=true
     cache.provider_class='net.sf.ehcache.hibernate.EhCacheProvider'
+    validator.apply_to_ddl = false 
+    validator.autoregister_listeners = false
 }
 // environment specific settings
 environments {
