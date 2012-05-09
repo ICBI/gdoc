@@ -16,7 +16,7 @@ environments {
     devserver {
 		grails.serverURL = "https://dev.gdoc.georgetown.edu/gdoc"
 		grails.ngsUrl = "http://devcomp.gdoc.georgetown.edu:8000"
-		
+
 		log4j = {
 			root {
 			    error 'stdout'
