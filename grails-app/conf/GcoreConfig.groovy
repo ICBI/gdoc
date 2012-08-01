@@ -34,12 +34,6 @@ grails.converters.encoding="UTF-8"
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 
-
-// Jquery configuration
-jquery.sources="jquery" 
-jquery.version="1.3.2"
-grails.views.javascript.library="jquery"
-
 appTitle="G-CORE"
 appLongName="GCORE"
 appVersion="1.0"
