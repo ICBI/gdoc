@@ -39,7 +39,7 @@ environments {
 	development {
 		grails.serverURL = "http://localhost:8080/gdoc"
 		responseQueue = "AnalysisResponseKevin"
-		grails.ngsUrl = "http://devcomp.gdoc.georgetown.edu:8000"
+		grails.ngsUrl = "http://localhost:8000"
 		//molecule3DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule3D"
 		//molecule2DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule2D"
 		//documentsPath = "https://demo.gdoc.georgetown.edu/content/documents"
@@ -128,6 +128,23 @@ environments {
 			debug "org.hibernate.SQL"
 		}
     }
+	dev_load {
+		grails.serverURL = "http://localhost:8080/gdoc"
+		responseQueue = "AnalysisResponseKevin"
+		grails.ngsUrl = "http://localhost:8000"
+/*		log4j = {
+			appenders {
+				file name:'file', file:'dataLoad.log', append: true
+			}
+			root {
+			    error 'stdout', 'file'
+			    additivity = true
+			}
+			debug "grails.app", "listener"
+			debug 'org.codehaus.groovy.grails.plugins.springsecurity'
+			debug "org.hibernate.SQL"
+		}*/
+	}
 	test {
 	}
 }

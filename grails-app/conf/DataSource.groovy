@@ -79,4 +79,13 @@ environments {
 			logSql = true
 		}
 	}
+	
+	dev_load {
+		dataSource {
+			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
+			username = "mcgdoc"
+			password = "change_me"
+			logSql = true
+		}
+	}
 }

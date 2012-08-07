@@ -22,6 +22,7 @@ grails.project.dependency.resolution = {
 		mavenRepo "https://gdoc-stage.georgetown.edu/artifactory/plugins-release-local/"
 		grailsCentral()
 		mavenCentral()
+		ebr()
 		
 	}
 	dependencies {
@@ -57,8 +58,9 @@ grails.project.dependency.resolution = {
 		runtime ':tomcat:2.0.3'
 	}
 }
-//grails.plugin.location.'nextgen' = "../grails-nextgen"
-//grails.plugin.location.'gcore' = "../grails-gcore"
+/*grails.plugin.location.'nextgen' = "../grails-nextgen"
+grails.plugin.location.'gcore' = "../grails-gcore"*/
+//grails.plugin.location.'gene-expression-search' = "../grails-gene-expression-search"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
 //grails.plugin.location.'heatmap' = "../grails-heatmap"
@@ -67,5 +69,5 @@ grails.project.dependency.resolution = {
 //grails.plugin.location.'pca' = "../grails-pca"
 //grails.plugin.location.'km' = "../grails-km"
 //grails.plugin.location.'cytoscape' = "../grails-cytoscape"
-//grails.plugin.location.'molecule-target' = "../molecule-target"
+//grails.plugin.location.'molecule-target' = "../grails-molecule-target"
 //grails.plugin.location.'quick-start' = "../grails-quick-start"

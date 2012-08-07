@@ -201,6 +201,11 @@ environments {
 			bulkIndexOnStartup = false
 		}
 	}
+	dev_load {
+		searchable {
+			bulkIndexOnStartup = false
+		}
+	}
     production {
         searchable {
 			bulkIndexOnStartup = false
