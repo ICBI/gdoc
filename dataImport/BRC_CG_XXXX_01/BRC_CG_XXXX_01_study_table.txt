@@ -1,0 +1,2 @@
+SHORT_NAME	LONG_NAME	ABSTRACT	CANCER_SITE	PATIENT_ID_NAME	INTEGRATED	OVERALL_ACCESS	SCHEMA_NAME	USE_IN_GUI	CONTENT_TYPES	SHOW_CONTENT_IN_GUI
+BRC_CG_XXXX_01	Complete Genomics Breast Cancer dataset	"Sample dataset from Complete Genomics Cancer Sequencing Service. It contains matched tumor and normal cell line sequence data for two patients with breast cancer. Collections were drawn from ATCC. Samples were sequenced to an average genome-wide coverage of 123X for three of the samples, and 92X for HCC2218 BL."	BREAST CANCER	Sample id	1	PUBLIC	BRC_CG_XXXX_01	1	"CLINIC, WGS"	"1, 1"
