@@ -1,0 +1,2 @@
+PLATFORM	PROVIDER	ARRAY TYPE
+Complete Genomics Whole Genome Sequencing	COMPLETE GENOMICS	WGS
