@@ -1,0 +1,5 @@
+SUBJECT_ID	BIOSPECIMEN_ID	ARRAY_DESIGN	RDA_FILE	RDA_DESCRIPTION
+HCC1187_BL	HCC1187-H-200-37-ASM-N1	Complete Genomics Whole Genome Sequencing	BRC_CG_XXXX_01.vcf	Multi-sample VCF
+HCC2218_BL	HCC2218-H-200-37-ASM-N1	Complete Genomics Whole Genome Sequencing	BRC_CG_XXXX_01.vcf	Multi-sample VCF
+HCC2218_T	HCC2218-H-200-37-ASM-T1	Complete Genomics Whole Genome Sequencing	BRC_CG_XXXX_01.vcf	Multi-sample VCF
+HCC1187_T	HCC1187-H-200-37-ASM-T1	Complete Genomics Whole Genome Sequencing	BRC_CG_XXXX_01.vcf	Multi-sample VCF
