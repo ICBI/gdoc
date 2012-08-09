@@ -51,6 +51,7 @@ grails.project.dependency.resolution = {
 		compile	':recaptcha:0.5.2'
 		compile	':hibernate:2.0.3'
 		compile ':jms:1.2'
+		compile	':jquery:1.7.2'
 		build ':release:2.0.0'
 		build(':svn:1.0.2') {
 			export = false
