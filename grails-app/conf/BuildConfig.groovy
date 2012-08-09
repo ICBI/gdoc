@@ -43,7 +43,7 @@ grails.project.dependency.resolution = {
 		compile 'edu.georgetown.gcore:molecule-target:latest.integration'
 		compile 'edu.georgetown.gcore:pca:latest.integration'
 		compile 'edu.georgetown.gcore:quick-start:latest.integration' 
-		compile 'edu.georgetown.gcore:next-gen:latest.integration'
+		compile 'edu.georgetown.gcore:nextgen:latest.integration'
 		compile	':taggable:0.6.1'
 		compile	':spring-security-core:1.2.7.3'
 		compile	':spring-security-ldap:1.0.5'
