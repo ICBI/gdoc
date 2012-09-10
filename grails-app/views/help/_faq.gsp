@@ -552,7 +552,8 @@
 		<p class="answerText"><span>A: </span>
 	If results from the Georgetown Database of Cancer (G-DOC) are used in a scientific publication or presentation, we request that researchers include the following acknowledgment:</p>
 	<p>"The data/analytic tools utilized in this study were provided by the Georgetown Database of Cancer (G-DOC), an internally funded project of the Georgetown Lombardi Comprehensive Cancer Center designed to provide advanced translational research tools to the scientific community."</p>
-	<p>This statement maybe modified upon publication of the first G-DOC paper in 2011.</p>
+	<p> To cite G-DOC software and/or data in your publication:<br />
+	Madhavan S, Gusev Y, Harris M, Tanenbaum DM, Gauba R, Bhuvaneshwar K,Shinohara A, Rosso K, Carabet L, Song L, Riggins RB, Dakshanamurthy S, Wang Y, Byers SW, Clarke R, Weiner LM. “G-DOC®: A Systems Medicine Platform for Personalized Oncology”, Neoplasia 13:9. (2011)</p>
 	<p>For tracking purposes, we ask that you submit copies of all publications and presentations using G-DOC tools and/or data to the G-DOC team by emailing gdoc-help@georgetown.edu.   G-DOC will issue periodic updates to users on successful research projects that utilize G-DOC tools and/or data.</p>
 	<p>This statement can be found in the “Publication Policy” link in the footer of any G-DOC page.</p>
 	</div>
