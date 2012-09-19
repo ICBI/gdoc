@@ -5,7 +5,7 @@ grails.json.legacy.builder = false
 
 appTitle="G-DOC &reg;"
 appLongName="Georgetown Database of Cancer"
-appVersion="1.5"
+appVersion="2.0"
 appLogo="gdocHeader.png"
 appContactEmail="gdoc-help@georgetown.edu"
 grails.newsFeedURL="https://wiki.uis.georgetown.edu/createrssfeed.action?types=blogpost&spaces=informatics&title=UIS+Wiki+RSS+Feedddd&labelString=news&excludedSpaceKeys%3D&sort=modified&maxResults=10&timeSpan=365&confirm=Create+RSS+Feed&showContent=false&showDiff=false"
