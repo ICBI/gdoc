@@ -28,6 +28,8 @@ environments {
     }
     demo {
 		grails.serverURL = "https://demo.gdoc.georgetown.edu/gdoc"
+		grails.ngsUrl = "http://democomp.gdoc.georgetown.edu:8000"
+		
 		log4j = {
 			root {
 			    error 'stdout'
