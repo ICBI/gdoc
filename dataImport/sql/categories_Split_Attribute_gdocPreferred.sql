@@ -603,7 +603,56 @@ update  COMMON.attribute_type set SPLIT_ATTRIBUTE= 1 where short_name = 'Gestati
 update  COMMON.attribute_type set SPLIT_ATTRIBUTE= 1 where short_name like 'BEST_RESPONSE' ;
 
 
+------------------------
+update  COMMON.attribute_type set Semantic_Group='Tumor details' where short_name =  'TUMOR_NO';
+update  COMMON.attribute_type set Semantic_Group='Tumor details' where short_name =  'TUMOR_SIZE_LGST';
+update  COMMON.attribute_type set Semantic_Group='Tumor details' where short_name =  'SURGERY_TO_RELAPSE/FU';
+update  COMMON.attribute_type set Semantic_Group='Tumor details' where short_name =  'TUMOR_SIZE_2CM';
+update  COMMON.attribute_type set Semantic_Group='Tumor details' where short_name =  'BREAST_CANCER';
+update  COMMON.attribute_type set Semantic_Group='Tumor details' where short_name =  'OVARIAN_CANCER';
+update  COMMON.attribute_type set Semantic_Group='Tumor details' where short_name =  'HCC';
 
+
+update  COMMON.attribute_type set Semantic_Group='Tumor details' where short_name =  'TUMOR_SIZE_LGST';
+update  COMMON.attribute_type set Semantic_Group='Family history' where short_name =  'FAMILY_HISTORY_CANCER';
+
+update  COMMON.attribute_type set Semantic_Group='Family history' where short_name =  'FAMILY_HISTORY_CANCER';
+
+update  COMMON.attribute_type set Semantic_Group='Demographics' where short_name =  'DIAGNOSIS_AGE';
+update  COMMON.attribute_type set Semantic_Group='Demographics' where short_name =  'DIABETES';
+update  COMMON.attribute_type set Semantic_Group='Demographics' where short_name =  'AGE_CASE_START';
+update  COMMON.attribute_type set Semantic_Group='Demographics' where short_name =  'AGE_AT_DEATH/FU';
+
+
+
+update  COMMON.attribute_type set Semantic_Group='Biomarker tests' where short_name like 'ER_IHC_STATUS' ;
+update  COMMON.attribute_type set Semantic_Group='Biomarker tests' where short_name like 'BRCA_POSITIVE' ;
+
+update  COMMON.attribute_type set Semantic_Group='Biomarker tests' where short_name like 'BRCA1_POSITIVE' ;
+
+update  COMMON.attribute_type set Semantic_Group='Biomarker tests' where short_name like 'BRCA2_POSITIVE' ;
+
+update  COMMON.attribute_type set Semantic_Group='Outcome' where short_name =  'DISEASE_SPECIFIC_SURVIVAL_MON';
+
+update  COMMON.attribute_type set Semantic_Group='Outcome' where short_name =  'PLATINUM_FREE_SURVIVAL_MONTHS';
+update  COMMON.attribute_type set Semantic_Group='Outcome' where short_name =  'DISEASE_FREE_SURVIVAL_YEARS';
+update  COMMON.attribute_type set Semantic_Group='Outcome' where short_name =  'SURGERY_TO_RECUR/FU_DAYS';
+update  COMMON.attribute_type set Semantic_Group='Outcome' where short_name =  'SURGERY_TO_DR/FU_DAYS';
+update  COMMON.attribute_type set Semantic_Group='Outcome' where short_name =  'SURGERY_TO_RECUR/FU';
+
+update  COMMON.attribute_type set Semantic_Group='Treatment details' where short_name =  'CHEMO_REGIMENT';
+update  COMMON.attribute_type set Semantic_Group='Treatment details' where short_name =  'DAYS_AFTER_SURGERY';
+
+update  COMMON.attribute_type set Semantic_Group='Sample details' where short_name =  'SOURCE';
+
+update  COMMON.attribute_type set Semantic_Group='Screening and diagnostics' where short_name =  'DIAGNOSIS';
+update  COMMON.attribute_type set Semantic_Group='Screening and diagnostics' where short_name =  'SECONDARY_DIAGNOSIS';
+
+update  COMMON.attribute_type set Semantic_Group='Addictive Drugs' where short_name like 'SMOKING_STATUS' ;
+update  COMMON.attribute_type set Semantic_Group='Addictive Drugs' where short_name like 'ALCOHOL' ;
+
+update  COMMON.attribute_type set Semantic_Group='Biomarker tests' where short_name like 'ER_STATUS_PATIENT' ;
+update  COMMON.attribute_type set Semantic_Group='Biomarker tests' where short_name like 'PGR_STATUS_PATIENT' ;
 
 
 
