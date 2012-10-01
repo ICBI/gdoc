@@ -32,7 +32,7 @@ grails.project.dependency.resolution = {
         }
 	}
 	plugins {
-		//compile 'edu.georgetown.gcore:gcore:latest.integration'
+		compile 'edu.georgetown.gcore:gcore:latest.integration'
 		compile 'edu.georgetown.gcore:analysis-core:latest.integration'
 		compile 'edu.georgetown.gcore:cin:latest.integration'
 		compile 'edu.georgetown.gcore:cytoscape:latest.integration'
@@ -52,6 +52,7 @@ grails.project.dependency.resolution = {
 		compile	':hibernate:2.1.1'
 		compile ':jms:1.2'
 		compile	':jquery:1.7.2'
+		compile ':searchable:0.5.5'
 		build ':release:2.0.4'
 		build(':svn:1.0.2') {
 			export = false
