@@ -32,7 +32,7 @@ grails.project.dependency.resolution = {
         }
 	}
 	plugins {
-		compile 'edu.georgetown.gcore:gcore:latest.integration'
+		//compile 'edu.georgetown.gcore:gcore:latest.integration'
 		compile 'edu.georgetown.gcore:analysis-core:latest.integration'
 		compile 'edu.georgetown.gcore:cin:latest.integration'
 		compile 'edu.georgetown.gcore:cytoscape:latest.integration'
@@ -49,18 +49,18 @@ grails.project.dependency.resolution = {
 		compile	':spring-security-core:1.2.7.3'
 		compile	':spring-security-ldap:1.0.5'
 		compile	':recaptcha:0.5.2'
-		compile	':hibernate:2.0.3'
+		compile	':hibernate:2.1.1'
 		compile ':jms:1.2'
 		compile	':jquery:1.7.2'
-		build ':release:2.0.0'
+		build ':release:2.0.4'
 		build(':svn:1.0.2') {
 			export = false
 		}
-		runtime ':tomcat:2.0.3'
+		runtime	':tomcat:2.1.1'
 	}
 }
-/*grails.plugin.location.'nextgen' = "../grails-nextgen"
-grails.plugin.location.'gcore' = "../grails-gcore"*/
+//grails.plugin.location.'nextgen' = "../grails-nextgen"
+//grails.plugin.location.'gcore' = "../grails-gcore"
 //grails.plugin.location.'gene-expression-search' = "../grails-gene-expression-search"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
