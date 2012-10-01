@@ -57,7 +57,7 @@ grails.project.dependency.resolution = {
 		build(':svn:1.0.2') {
 			export = false
 		}
-		runtime	':tomcat:2.1.1'
+		build ':tomcat:2.1.1'
 	}
 }
 //grails.plugin.location.'nextgen' = "../grails-nextgen"
