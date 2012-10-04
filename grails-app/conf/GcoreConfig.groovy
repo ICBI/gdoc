@@ -65,6 +65,12 @@ grails.plugins.springsecurity.ldap.context.server = 'ldaps://directory.georgetow
 grails.plugins.springsecurity.ldap.authorities.groupSearchBase = 'ou=People,dc=georgetown,dc=edu'
 grails.plugins.springsecurity.ldap.search.base = 'dc=georgetown,dc=edu'
 
+grails.plugins.springsecurity.errors.login.disabled = "Sorry, your account is disabled."
+grails.plugins.springsecurity.errors.login.expired = "Sorry, your account has expired."
+grails.plugins.springsecurity.errors.login.passwordExpired = "Sorry, your password has expired."
+grails.plugins.springsecurity.errors.login.locked = "Sorry, your account is locked."
+grails.plugins.springsecurity.errors.login.fail = "Sorry, we were unable to find a user with that username and password."
+
 // GCORE Configuration URLs (Must go after env definitions due to templating)
 molecule3DstructuresPath = "/content/targets/molecule3D"
 molecule2DstructuresPath = "/content/targets/molecule2D"
