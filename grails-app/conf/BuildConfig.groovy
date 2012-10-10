@@ -8,7 +8,6 @@ grails.war.resources = {stagingDir ->
 	delete(file: "$stagingDir/WEB-INF/lib/ojdbc14.jar")
 	delete(file: "$stagingDir/WEB-INF/lib/geronimo-jms_1.1_spec-1.1.1.jar")
 	delete(file: "$stagingDir/WEB-INF/lib/geronimo-spec-jta-1.0.1B-rc4.jar")
-	delete(file: "$stagingDir/WEB-INF/lib/cglib-2.2.jar")
 	copy(file: "grails-app/conf/GcoreConfig.groovy", tofile: "${stagingDir}/WEB-INF/classes/GcoreConfig.groovy")
 }
 
