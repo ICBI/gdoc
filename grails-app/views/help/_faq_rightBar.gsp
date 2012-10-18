@@ -2,6 +2,7 @@
 <ul>
 	<li style="list-style-type:square;margin-left:15px"><a href="${grailsApplication.config.documentsPath}/G-DOC.introduction.pdf" />G-DOC Introduction</a></li><br />
 	<li style="list-style-type:square;margin-left:15px"><a href="${grailsApplication.config.documentsPath}/GDOC_endToEndWF.pdf" />Example Search/Analysis Workflow</a></li><br />
+	<li style="list-style-type:square;margin-left:15px"><a href="${grailsApplication.config.documentsPath}/VariantSearchWorkflow.pdf" />Variant Search Workflow</a></li><br />
 	<li style="list-style-type:square;margin-left:15px"><a href="${grailsApplication.config.documentsPath}/GDOC_quickStartWF.pdf" />Quick Start Workflow</a></li><br />
 	<li style="list-style-type:square;margin-left:15px"><g:link controller="tutorials">Video Tutorials</g:link></li><br />
 	<li style="list-style-type:square;margin-left:15px"><a href="${grailsApplication.config.documentsPath}/GDOC_data_SOP.pdf" />Data Loading SOP</a></li><br />

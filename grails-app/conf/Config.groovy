@@ -71,6 +71,7 @@ environments {
 	stage {
 		grails.serverURL = "https://gdoc-stage.georgetown.edu/gdoc"
 		jmsserver = "jnp://gdoc-stage.georgetown.edu:1099"
+		grails.ngsUrl = "http://oxygen.uis.georgetown.edu"
 		grails {
 		   mail {
 		     host = "localhost"
@@ -102,6 +103,7 @@ environments {
 	production {
 		grails.serverURL = "https://gdoc.georgetown.edu/gdoc"
 		jmsserver = "jnp://gdoc.georgetown.edu:1099"
+		grails.ngsUrl = "http://sodium.uis.georgetown.edu"
 		grails {
 		   mail {
 		     host = "localhost"
