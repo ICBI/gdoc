@@ -1,0 +1,4 @@
+short_name	long_name	definition	semantic_group	rank	split_attribute
+PARENT_CELL_LINE	Parent Cell Line	Name of the parent cell line	Sample Details		
+TAMOXIFEN_SENSITIVITY	Tamoxifen Sensitivity	Indicates whether the sample is sensitive or resistant to Tamoxifen. Tamoxifen is an antagonist of the estrogen receptor in breast tissue via its active metabolite, hydroxytamoxifen. It is sold under the trade names Nolvadex, Istubal, and Valodex.	Sample Details	1	1
+TREATMENT	TREATMENT	Treatment given to the sample	Treatment details	2	2
