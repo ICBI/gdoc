@@ -32,35 +32,36 @@ grails.project.dependency.resolution = {
         }
 	}
 	plugins {
-		compile 'edu.georgetown.gcore:gcore:latest.integration'
-		compile 'edu.georgetown.gcore:analysis-core:latest.integration'
-		compile 'edu.georgetown.gcore:cin:latest.integration'
-		compile 'edu.georgetown.gcore:cytoscape:latest.integration'
-		compile 'edu.georgetown.gcore:gene-expression-search:latest.integration'
-		compile 'edu.georgetown.gcore:genome-browser:latest.integration'
-		compile 'edu.georgetown.gcore:group-comparison:latest.integration'
-		compile 'edu.georgetown.gcore:heatmap:latest.integration'
-		compile 'edu.georgetown.gcore:km:latest.integration'
-		compile 'edu.georgetown.gcore:molecule-target:latest.integration'
-		compile 'edu.georgetown.gcore:pca:latest.integration'
-		compile 'edu.georgetown.gcore:quick-start:latest.integration' 
-		compile 'edu.georgetown.gcore:next-gen:latest.integration'
+		compile 'edu.georgetown.gcore:gcore:2.0.2'
+		compile 'edu.georgetown.gcore:analysis-core:2.0.0'
+		compile 'edu.georgetown.gcore:cin:2.0.0'
+		compile 'edu.georgetown.gcore:cytoscape:2.0.0'
+		compile 'edu.georgetown.gcore:gene-expression-search:2.0.0'
+		compile 'edu.georgetown.gcore:genome-browser:2.0.0'
+		compile 'edu.georgetown.gcore:group-comparison:2.0.0'
+		compile 'edu.georgetown.gcore:heatmap:2.0.0'
+		compile 'edu.georgetown.gcore:km:2.0.0'
+		compile 'edu.georgetown.gcore:molecule-target:2.0.0'
+		compile 'edu.georgetown.gcore:pca:2.0.0'
+		compile 'edu.georgetown.gcore:quick-start:2.0.0' 
+		compile 'edu.georgetown.gcore:next-gen:2.0.0'
 		compile	':taggable:0.6.1'
 		compile	':spring-security-core:1.2.7.3'
 		compile	':spring-security-ldap:1.0.5'
 		compile	':recaptcha:0.5.2'
-		compile	':hibernate:2.0.3'
+		compile	':hibernate:2.1.1'
 		compile ':jms:1.2'
 		compile	':jquery:1.7.2'
-		build ':release:2.0.0'
+		compile ':searchable:0.5.5'
+		build ':release:2.0.4'
 		build(':svn:1.0.2') {
 			export = false
 		}
-		runtime ':tomcat:2.0.3'
+		build ':tomcat:2.1.1'
 	}
 }
-/*grails.plugin.location.'nextgen' = "../grails-nextgen"
-grails.plugin.location.'gcore' = "../grails-gcore"*/
+//grails.plugin.location.'nextgen' = "../grails-nextgen"
+//grails.plugin.location.'gcore' = "../grails-gcore"
 //grails.plugin.location.'gene-expression-search' = "../grails-gene-expression-search"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"

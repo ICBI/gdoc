@@ -3,6 +3,18 @@
 	<tr>
 		<td>
 			<br />
+			<b>Version 2.0 - 10.26.2012</b><br/>
+			<ul style="list-style-type:square">
+				<li>Support for a new clinical search and workflow</li>
+				<li>Support for variation search in whole genome/whole exome data</li>
+				<li>Support for enrichment of gene lists with Reactome pathways</li>
+				<li>Added BRC_CG_XXXX_01 a breast cancer cell line study with whole genome sequencing data</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<br />
 			<b>Version 1.4 - 8.26.2011</b><br/>
 			<ul style="list-style-type:square">
 				<li>Support for cell line data, including modified workflows (preclinical model support, phase 1)</li>
