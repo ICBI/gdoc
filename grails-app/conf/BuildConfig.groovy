@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
 		compile 'edu.georgetown.gcore:molecule-target:2.0.0'
 		compile 'edu.georgetown.gcore:pca:2.0.0'
 		compile 'edu.georgetown.gcore:quick-start:2.0.0' 
-		//compile 'edu.georgetown.gcore:next-gen:2.0.0'
+		compile 'edu.georgetown.gcore:next-gen:2.0.0'
 		compile	':taggable:0.6.1'
 		compile	':spring-security-core:1.2.7.3'
 		compile	':spring-security-ldap:1.0.5'
@@ -60,7 +60,7 @@ grails.project.dependency.resolution = {
 		build ':tomcat:2.1.1'
 	}
 }
-grails.plugin.location.'nextgen' = "../grails-nextgen"
+//grails.plugin.location.'nextgen' = "../grails-nextgen"
 //grails.plugin.location.'gcore' = "../grails-gcore"
 //grails.plugin.location.'gene-expression-search' = "../grails-gene-expression-search"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
