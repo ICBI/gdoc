@@ -150,6 +150,12 @@ environments {
 			bulkIndexOnStartup = false
         }
     }
+    dev_load {
+        searchable {
+            // development is default; inherits from above
+			bulkIndexOnStartup = false
+        }
+    }
 	local {
         searchable {
             // development is default; inherits from above
