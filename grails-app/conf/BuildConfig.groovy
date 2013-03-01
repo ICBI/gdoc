@@ -32,7 +32,7 @@ grails.project.dependency.resolution = {
         }
 	}
 	plugins {
-		compile 'edu.georgetown.gcore:gcore:2.0.2'
+		compile 'edu.georgetown.gcore:gcore:latest.integration'
 		compile 'edu.georgetown.gcore:analysis-core:2.0.0'
 		compile 'edu.georgetown.gcore:cin:2.0.0'
 		compile 'edu.georgetown.gcore:cytoscape:2.0.0'

@@ -161,6 +161,11 @@ environments {
 			bulkIndexOnStartup = false
         }
     }
+    dev_load {
+        searchable {
+            bulkIndexOnStartup = false
+        }
+    }
 	
 	devserver {
 		searchable {
