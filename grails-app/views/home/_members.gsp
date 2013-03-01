@@ -1,7 +1,7 @@
 <table>
 	<tr>
 		<td>
-			<b>Software and Database Development</b><br/>
+			<b>Team Members</b><br/>
 			Kevin Rosso<br/>
 			Andrew Shinohara<br/>
 			<br/>
