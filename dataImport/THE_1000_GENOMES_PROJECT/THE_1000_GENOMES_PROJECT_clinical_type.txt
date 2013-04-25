@@ -1,0 +1,7 @@
+short_name	long_name	definition	semantic_group	rank	split_attribute
+POPULATION	Population	Indicates the population from this the sample is from	Sample Details		
+FAMILY_ID	Famliy ID	Family ID	Sample details		
+GENDER	Gender	The classification of the sex or gender role of the patient.	Demographics	1	2
+RELATIONSHIP	Family history - Relationship with patient	Family history - Relationship with patient 	Family history		
+FAMILY_TYPE	Family type	Indicates whether this is a trio, duo or unrelated	Sample Details		
+SUPER_POPULATION	Super population	Indicates the super population this sample is from	Sample Details	2	3
