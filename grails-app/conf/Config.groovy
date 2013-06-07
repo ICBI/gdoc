@@ -41,7 +41,7 @@ environments {
 	development {
 		grails.serverURL = "http://localhost:8080/gdoc"
 		responseQueue = "AnalysisResponseKevin"
-		grails.ngsUrl = "http://localhost:8000"
+		grails.ngsUrl = "http://devcomp.gdoc.georgetown.edu:8000"
 		//molecule3DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule3D"
 		//molecule2DstructuresPath = "https://demo.gdoc.georgetown.edu/content/targets/molecule2D"
 		//documentsPath = "https://demo.gdoc.georgetown.edu/content/documents"
