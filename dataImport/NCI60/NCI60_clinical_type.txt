@@ -3,7 +3,7 @@ CANCER_TYPE	Cancer type	Type of cancer 	Cancer details	2	2
 AGE	Patient's  Age	Age of patient at diagnosis or start of case study	Demographics	1	0
 GENDER	Gender	The classification of the sex or gender role of the patient.	Demographics	1	2
 MORPHOLOGY	Morphology 	Indicates the morphology of the sample	Sample details	3	0
-HISTOLOGY	Histology	The study of the structure of the cells and their arrangement to constitute tissues and, finally, the association among these to form organs. In pathology, the microscopic process of identifying normal and abnormal morphologic characteristics in tissues, by employing various cytochemical and immunocytochemical stains.	Sample details	4	0
+DISEASE	Disease	Name of disease	Sample details	2	0
 SOURCE	Source	Source of biospecimen	Sample details	4	0
-CYTOGENETIC_ANALYSIS	Cytogenic Analysis	Cytogenetic analysis allows researchers to profile chromosomal aberrations such as amplifications, deletions, rearrangements, point mutations, copy number changes, and copy-neutral loss of heterozygosity (LOH) events. Modal umber is the typical chromosome number of a taxonomic group. The common chromosome number of a tumor cell population.	Mutation details	4	0
+CYTOGENETIC_ANALYSIS	Cytogenic Analysis	"Cytogenetic analysis allows researchers to profile chromosomal aberrations such as amplifications, deletions, rearrangements, point mutations, copy number changes, and copy-neutral loss of heterozygosity (LOH) events. Modal umber is the typical chromosome number of a taxonomic group. The common chromosome number of a tumor cell population."	Mutation details	4	0
 TP53_MUTATION	P53 Mutation analysis	Mutation analysis of gene P53 performed using DNA from isolated tumor specimen	Mutation details	4	0
