@@ -1,0 +1,159 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+ALTERNATE_NAME	HTB-122	HTB-122		Alternate name for the BT_549 cell line. 
+ALTERNATE_NAME	HTB-126	HTB-126		Alternate name for the HS578T cell line. 
+ALTERNATE_NAME	HTB-22	HTB-22		Alternate name for the MCF7 cell line. 
+ALTERNATE_NAME	HTB-26	HTB-26		Alternate name for the MDA_MB_231 cell line. 
+ALTERNATE_NAME	CRL-2865	CRL-2865		Alternate name for the T47D cell line. 
+ALTERNATE_NAME	CCL-247	CCL-247		Alternate name for the HCT_116 cell line. 
+ALTERNATE_NAME	CCL-222	CCL-222		Alternate name for the COLO205 cell line. 
+ALTERNATE_NAME	CCL-225	CCL-225		Alternate name for the HCT_15 cell line. 
+ALTERNATE_NAME	HTB-38	HTB-38		Alternate name for the HT29 cell line. 
+ALTERNATE_NAME	CCL-227	CCL-227		Alternate name for the SW_620 cell line. 
+ALTERNATE_NAME	CCL-185	CCL-185		Alternate name for the A549 cell line. 
+ALTERNATE_NAME	CRL-5826	CRL-5826		Alternate name for the NCI_H226 cell line. 
+ALTERNATE_NAME	CRL-5800	CRL-5800		Alternate name for the NCI_H23 cell line. 
+ALTERNATE_NAME	HTB-177	HTB-177		Alternate name for the NCI_H460 cell line. 
+ALTERNATE_NAME	CRL-5810	CRL-5810		Alternate name for the NCI_H522 cell line. 
+ALTERNATE_NAME	CCL-119	CCL-119		Alternate name for the CCRF_CEM cell line. 
+ALTERNATE_NAME	CCL-240	CCL-240		Alternate name for the HL_60 cell line. 
+ALTERNATE_NAME	CCL-243	CCL-243		Alternate name for the K_562 cell line. 
+ALTERNATE_NAME	CRL-1582	CRL-1582		Alternate name for the MOLT_4 cell line. 
+ALTERNATE_NAME	CCL-155	CCL-155		Alternate name for the RPMI_8226 cell line. 
+ALTERNATE_NAME	CRL-2262	CRL-2262		Alternate name for the SR cell line. 
+ALTERNATE_NAME	HTB-64	HTB-64		Alternate name for the MALME_3M cell line. 
+ALTERNATE_NAME	HTB-68	HTB-68		Alternate name for the SK_MEL_2 cell line. 
+ALTERNATE_NAME	HTB-72	HTB-72		Alternate name for the SK_MEL_28 cell line. 
+ALTERNATE_NAME	HTB-70	HTB-70		Alternate name for the SK_MEL_5 cell line. 
+ALTERNATE_NAME	HTB-161	HTB-161		Alternate name for the OVCAR_3 cell line. 
+ALTERNATE_NAME	HTB-77	HTB-77		Alternate name for the SK_OV_3 cell line. 
+ALTERNATE_NAME	HTB-81	HTB-81		Alternate name for the DU_145 cell line. 
+ALTERNATE_NAME	CRL-1435	CRL-1435		Alternate name for the PC_3 cell line. 
+ALTERNATE_NAME	CRL-1932	CRL-1932		Alternate name for the 786_0 cell line. 
+ALTERNATE_NAME	CRL-1611	CRL-1611		Alternate name for the ACHN cell line. 
+ALTERNATE_NAME	HTB-46	HTB-46		Alternate name for the CAKI_1 cell line. 
+GENDER	M	MALE	C46109	An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	F	FEMALE	C46110	An individual who reports belonging to the cultural gender role distinction of female.
+RACE	CAUCASIAN	CAUCASIAN		CAUCASIAN
+RACE	BLACK	BLACK		BLACK
+CANCER_TYPE	Breast	Breast		Cancer of breast. 
+CANCER_TYPE	Central Nervous System	Central Nervous System		Cancer of central nervous system.
+CANCER_TYPE	Colon	Colon		Cancer of the colon. 
+CANCER_TYPE	Non-Small Cell Lung	Non-Small Cell Lung		Cancer of the non-small cell lung. 
+CANCER_TYPE	Leukemia	Leukemia		Cancer of blood originatin in the bone marrow.
+CANCER_TYPE	Melanoma	Melanoma		Type of cancer of skin. 
+CANCER_TYPE	Ovarian	Ovarian		Cancer of ovary.
+CANCER_TYPE	Prostate	Prostate		Cancer of the prostrate gland. 
+CANCER_TYPE	Renal	Renal		Type of cancer of kidney. 
+SAMPLE_LOCATION	MAMMARY GLAND	MAMMARY GLAND		Sample derived from the mammary gland. 
+SAMPLE_LOCATION	CENTRAL NERVOUS SYSTEM	CENTRAL NERVOUS SYSTEM		Sample derived from the central nervous system. 
+SAMPLE_LOCATION	COLON	COLON		Sample derived from the colon. 
+SAMPLE_LOCATION	LUNG	LUNG		Sample derived from the lung. 
+SAMPLE_LOCATION	PERIPHERAL BLOOD 	PERIPHERAL BLOOD 		Sample derived from the peripheral blood. 
+SAMPLE_LOCATION	PERIPHERAL BLOOD LEUKOCYTES	PERIPHERAL BLOOD LEUKOCYTES		Sample derived from the leukocytes of the peripheral blood. 
+SAMPLE_LOCATION	BONE MARROW	BONE MARROW		Sample derived from the bone marrow. 
+SAMPLE_LOCATION	T LYMPHOBLAST	T LYMPHOBLAST		Sample derived from the T lymphoblast.
+SAMPLE_LOCATION	LYMPHOBLAST	LYMPHOBLAST		Sample derived from the lymphoblast. 
+SAMPLE_LOCATION	MELANOMA	MELANOMA		Sample derived from the skin. 
+SAMPLE_LOCATION	SKIN	SKIN		Sample derived from the skin. 
+SAMPLE_LOCATION	OVARIAN	OVARIAN		Sample derived from the ovaries. 
+SAMPLE_LOCATION	OVARY	OVARY		Sample derived from the ascites from the peritoneal cavity. 
+SAMPLE_LOCATION	PROSTATE	PROSTATE		Sample derived from the prostate gland. 
+SAMPLE_LOCATION	RENAL	RENAL		Sample derived from the kidney. 
+SAMPLE_LOCATION	KIDNEY 	KIDNEY 		Sample derived from the kidney. 
+SOURCE	Metastasis	Metastasis		Sample derived from the metastatic stage.
+SOURCE	Primary	Primary		Sample derived from the primary stage. 
+SOURCE	Derived from metastatic site; Plueral Effusion	Derived from metastatic site; Plueral Effusion		Sample derived from the plueral effusion during the metastatic stage. 
+SOURCE	Pleural Effusion	Pleural Effusion		Sample derived from the buildup of fluid between the layers of tissue that line the lungs and chest cavity.
+SOURCE	Ascites	Ascites		Sample derived from the ascites from the peritoneal cavity. 
+SOURCE	Derived from metastatic site; lymph node	Derived from metastatic site; lymph node		Sample derived from the lymph node during the metastatic stage. 
+SOURCE	Peripheral blood leukocytes	Peripheral blood leukocytes		Sample derived from the peripheral blood leukocytes. 
+SOURCE	Peripheral blood	Peripheral blood		Samle derived from the peripheral blood. 
+SOURCE	"Metastasis, Axillary node"	"Metastasis, Axillary node"		Sample derived from the axillary node during the metastatic stage. 
+SOURCE	"Melanocytes, Plueral effusion"	"Melanocytes, Plueral effusion"		Sample derived from the melanocytes from plueral effusion . 
+CELL_CULTURE_PROPERTIES	ADHERENT	ADHERENT		Type of culture in which cells grow as a monolayer that is attached to the culture substrate.
+CELL_CULTURE_PROPERTIES	MIXED	MIXED		Mixed type of cell growing culture. 
+CELL_CULTURE_PROPERTIES	SINGLE CELLS AND LOOSELY ATTACHED CLUSTERS	SINGLE CELLS AND LOOSELY ATTACHED CLUSTERS		Adherent culture with single cells and loosely attached. 
+CELL_CULTURE_PROPERTIES	SUSPENSION	SUSPENSION		"Type of culture in which cells, or aggregates of cells, multiply while suspended in liquid medium."
+MORPHOLOGY	EPITHELIAL	EPITHELIAL		Type of mammalian cells in culture based on their morphology
+MORPHOLOGY	NOT EPITHELIAL	NOT EPITHELIAL		Not epithelial type of morphology. 
+BLOOD_TYPE	O	O		Classification of blood based on the presence/absence of inherited antigenic substances on RBCs
+BLOOD_TYPE	A	A		Classification of blood based on the presence/absence of inherited antigenic substances on RBCs
+BLOOD_TYPE	B	B		Classification of blood based on the presence/absence of inherited antigenic substances on RBCs
+RH_TYPE	POSITIVE	POSITIVE		RH factor positive (Antigen D)
+RH_TYPE	NEGATIVE	NEGATIVE		RH factor negative (Antigen D)
+TUMORIGENIC	NO	NO		Does not have a tendency or capabilty of developing tumor.
+TUMORIGENIC	YES	YES		Has a tendency or capabilty of developing tumor.
+ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
+ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
+PGR_STATUS	NEGATIVE	NEGATIVE		Progestrone receptor negative
+PGR_STATUS	POSITIVE	POSITIVE		Progestrone receptor positive
+PLOIDY	"3n+/-, Near-triploid 69+/- (58-80)"	"3n+/-, Near-triploid 69+/- (58-80)"		3n=3x23=69 chromosomes; +/- observed chromosome no. in cell was sometimes above avg (peak) val; 58-80:range of observed no. of chromosomes
+PLOIDY	"2n+, Hyperdiploid (47-57)"	"2n+, Hyperdiploid (47-57)"		"2n+, Hyperdiploid (47-57)"
+PLOIDY	"3n-, Hypotriploid (58-68)"	"3n-, Hypotriploid (58-68)"		"3n-, Hypotriploid (58-68)"
+PLOIDY	"2n+, Hyperdiploid (47-57)"	"2n+, Hyperdiploid (47-57)"		"2n+, Hyperdiploid (47-57)"
+PLOIDY	"5n+/-, Near-pentaploid 115+/- (104-126)"	"5n+/-, Near-pentaploid 115+/- (104-126)"		"5n+/-, Near-pentaploid 115+/- (104-126)"
+PLOIDY	"4n+/-, Near-tetraploid 92+/- (81-103)"	"4n+/-, Near-tetraploid 92+/- (81-103)"		"4n+/-, Near-tetraploid 92+/- (81-103)"
+PLOIDY	"2n-, Hypodiploid (35-45)"	"2n-, Hypodiploid (35-45)"		"2n-, Hypodiploid (35-45)"
+PLOIDY	"3n, Triploid (69)"	"3n, Triploid (69)"		"3n, Triploid (69)"
+PLOIDY	"2n+/-, Near-diploid 46+/- (35-57)"	"2n+/-, Near-diploid 46+/- (35-57)"		"2n+/-, Near-diploid 46+/- (35-57)"
+PLOIDY	"4n+, Hypertetraploid (93-103)"	"4n+, Hypertetraploid (93-103)"		"4n+, Hypertetraploid (93-103)"
+PLOIDY	"4n, Tetraploid (92)"	"4n, Tetraploid (92)"		"4n, Tetraploid (92)"
+PLOIDY	"4n-, Hypotetraploid (81-91)"	"4n-, Hypotetraploid (81-91)"		"4n-, Hypotetraploid (81-91)"
+PLOIDY	"3n+, Hypertriploid (70-80)"	"3n+, Hypertriploid (70-80)"		"3n+, Hypertriploid (70-80)"
+PRIOR_TREATMENT	Rad	Rad		Priorly treated with radiation. 
+PRIOR_TREATMENT	BCNU	BCNU		Priorly treated with Bis(chlorethyl)nitrosourea
+PRIOR_TREATMENT	5FU	5FU		Priorly treated with 5-fluorouracil
+PRIOR_TREATMENT	6MP	6MP		Priorly treated with 6-mercaptopurine
+PRIOR_TREATMENT	HU	HU		Priorly treated with hydroxyurea
+PRIOR_TREATMENT	None	None		Priorly treated with no drug. 
+PRIOR_TREATMENT	None (Non-Smoker)	None (Non-Smoker)		Priorly treated with no drug and a non-smoker. 
+PRIOR_TREATMENT	Mtx	Mtx		Priorly treated methotrexate.
+PRIOR_TREATMENT	Ctx	Ctx		Priorly treated with Cytoxan.
+PRIOR_TREATMENT	Bisulfan	Bisulfan		Priorly treated with bisulfan.
+PRIOR_TREATMENT	PiBr	PiBr		Priorly treated with piprobromine.
+PRIOR_TREATMENT	Pred	Pred		Priorly treated with prednisone. 
+PRIOR_TREATMENT	VB	VB		Priorly treated with vinblastine.
+PRIOR_TREATMENT	CyPh	CyPh		Priorly treated with cyclophosphamide  .
+PRIOR_TREATMENT	CsPt	CsPt		Priorly treated with cisplatin.
+PRIOR_TREATMENT	Adr	Adr		Priorly treated with Adriamycin.
+PRIOR_TREATMENT	Thiotepa	Thiotepa		Priorly trated with thiotepa. 
+PRIOR_TREATMENT	Androgen independent and unresposive to hormone therapy	Androgen independent and unresposive to hormone therapy		Androgen independent and unresposive to hormone therapy.
+PRIOR_TREATMENT	Mto	Mto		Priorly treated with Mitoxantrone.
+PRIOR_TREATMENT	CCNU	CCNU		Priorly treated with chloroethylecyclohexylnitrosourea.
+HIST_TUMOR_TYPE	Papillary infiltrating ductal carcinoma-mammary gland; breast	Papillary infiltrating ductal carcinoma-mammary gland; breast		Carcinoma type of cancer. 
+HIST_TUMOR_TYPE	Carcinosarcoma	Carcinosarcoma		A malignant tumor composed of a mixture of carcinomatous and sarcomatous elements.
+HIST_TUMOR_TYPE	Adenocarcinoma	Adenocarcinoma		Cancer of an epithelium that originates in glandular tissue
+HIST_TUMOR_TYPE	Infiltrating ductal carcinoma	Infiltrating ductal carcinoma		Also called 'invasive ductal carcinoma' refers to cancer that has broken through the wall of the milk duct and begun to invade the tissues of the breast.
+HIST_TUMOR_TYPE	Glioblastoma	Glioblastoma		A fast-growing type of CNS tumor forming from glial (supportive) tissue of the brain & spinal cord
+HIST_TUMOR_TYPE	Glial cell neoplasm	Glial cell neoplasm		"A tumor that grows from a glial cell, which is a supportive cell in the brain. "
+HIST_TUMOR_TYPE	Astrocytoma	Astrocytoma		"A tumor that begins in the brain or spinal cord in small, star-shaped cells called astrocytes."
+HIST_TUMOR_TYPE	Carcinoma-Vulvar Paget's Disease	Carcinoma-Vulvar Paget's Disease		
+HIST_TUMOR_TYPE	Carcinoma	Carcinoma		Cancer that begins in the skin or in tissues that line or cover internal organs.
+HIST_TUMOR_TYPE	Squamous cell carcinoma-Vulvar Paget's Disease	Squamous cell carcinoma-Vulvar Paget's Disease		A malignant neoplasm arising from squamous epithelial cells in association with the vulvar paget's disease
+HIST_TUMOR_TYPE	Small cell Bronchioalveolar Carcinoma	Small cell Bronchioalveolar Carcinoma		A neuroendocrine carcinoma composed of small malignant cells affecting the lungs.
+HIST_TUMOR_TYPE	Large Cell Carcinoma	Large Cell Carcinoma		"A malignant epithelial neoplasm composed of large, atypical cells."
+HIST_TUMOR_TYPE	Adenocarcinoma-Vulvar Paget's Disease	Adenocarcinoma-Vulvar Paget's Disease		Cancer of an epithelium that originates in glandular tissue in association with the vulvar paget's disease. 
+HIST_TUMOR_TYPE	Acute Lymphoblastic Leukemia	Acute Lymphoblastic Leukemia		"A progressive, proliferative disease of blood cells, originating from immature lymphoid cells"
+HIST_TUMOR_TYPE	Pro myelocytic leukemia	Pro myelocytic leukemia		Cancer of the blood and bone marrow. 
+HIST_TUMOR_TYPE	Chronic Myelogenous Leukemia	Chronic Myelogenous Leukemia		Chronic myelogenous leukemia (CML) is cancer that starts inside bone marrow.
+HIST_TUMOR_TYPE	Acute Lymphoblastic Leukemia (cells were taken when patient was in relapse)	Acute Lymphoblastic Leukemia (cells were taken when patient was in relapse)		"A progressive, proliferative disease of blood cells, originating from immature lymphoid cells"
+HIST_TUMOR_TYPE	Myeloma	Myeloma		Multiple myeloma is cancer that starts in the plasma cells in bone marrow.
+HIST_TUMOR_TYPE	Lymphoma	Lymphoma		A malignant neoplasm composed of lymphocytes of B- or T/NK-cell phenotype.
+HIST_TUMOR_TYPE	Malignant amelanotic melanoma	Malignant amelanotic melanoma		Amelanotic melanoma is a type of skin cancer in which the cells do not make melanin
+HIST_TUMOR_TYPE	Melanotic melanoma	Melanotic melanoma		Skin cancer with dark pigmentation
+HIST_TUMOR_TYPE	Malignant melanotic melanoma	Malignant melanotic melanoma		"Skin cancer is malignant, with dark pigmentation"
+HIST_TUMOR_TYPE	Ductal carcinoma	Ductal carcinoma		The most common type of breast cancer. It begins in the cells that line the milk ducts in the breast
+HIST_TUMOR_TYPE	Cystoadenocarcinoma	Cystoadenocarcinoma		A malignant cystic epithelial neoplasm arising from glandular epithelium
+HIST_TUMOR_TYPE	Prostate; metastatic site: brain; carcinoma (3 year history of lymphocytic leukemia.)	Prostate; metastatic site: brain; carcinoma (3 year history of lymphocytic leukemia.)		Cancer that forms in tissues of the prostate.
+HIST_TUMOR_TYPE	Renal cell carcinoma	Renal cell carcinoma		A malignant neoplasm arising from renal parenchyma.
+HIST_TUMOR_TYPE	Clear cell carcinoma	Clear cell carcinoma		The most common type of kidney cancer. It begins in the lining of the renal tubules in the kidney.
+HIST_TUMOR_TYPE	Hypernephroma	Hypernephroma		Also known as 'Renal Cell Carcinoma'; a malignant neoplasm arising from renal parenchyma.
+HIST_TUMOR_TYPE	Renal Spindle cell carcinoma	Renal Spindle cell carcinoma		Cancer arising in skin/tissues lining or covering internal organs and has long spindle-shaped cells
+HIST_TUMOR_TYPE	Renal cell carcinoma - Vulvar Paget's Disease	Renal cell carcinoma - Vulvar Paget's Disease		A malignant neoplasm arising from renal parenchyma in association with the vulvar paget's disease. 
+HIST_TUMOR_GRADE	UNDIFF	Undiffrentiated		Undiffrentiated
+HIST_TUMOR_GRADE	MODERATELY_DIFF	Moderately differentiated		Moderately differentiated
+HIST_TUMOR_GRADE	POORLY_DIFF	Poorly differentiated		Poorly differentiated
+HIST_TUMOR_GRADE	WELL_DIFF	Well differentiated		Well differentiated
+HIST_TUMOR_GRADE	MPD	Moderate to poorly differentiated		Moderate to poorly differentiated
+TP53_MUTATION	WT	Wild Type		Wild Type
+TP53_MUTATION	MUTANT	Mutant		Mutant
