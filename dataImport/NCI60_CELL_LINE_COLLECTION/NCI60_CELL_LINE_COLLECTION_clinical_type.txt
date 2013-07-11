@@ -1,0 +1,24 @@
+short_name	long_name	definition	semantic_group	rank	split_attribute
+ALT_NAME	Alternate Name	Alternate name for the cell line	Prognosis	1	2
+AGE	Patient's  Age	Age of patient at diagnosis or start of case study	Demographics	1	
+GENDER	Gender	The classification of the sex or gender role of the patient.	Demographics	1	2
+RACE	RACE	Race (not ethnicity)	Demographics		
+CANCER_TYPE	Cancer type	Type of cancer	Cancer details	1	1
+DISEASE_LOCALIZATION	The locale of the disease/tumor	The locale of the disease/tumor	Tumor details		
+SAMPLE_LOCATION	Location of sample tissue	Location of tissue from which the sample was taken	Sample details		
+SOURCE	Source	Source of biospceimen	Sample details		
+CELL_CULTURE_PROPERTIES	Cell culture properties	The type of culture in which cells have been grown. 	Laboratory Procedure		
+MORPHOLOGY	Morphology	"Indicates form and structure of organisms, or of their parts"	Sample details		
+BLOOD_TYPE	Type of blood	"The specific reaction pattern of erythrocytes of an individual to the antisera of one blood group; eg O, A, B, and AB"	Clinical Attribute		
+RH_TYPE	Rhesus Factor 	"A family of 45 different antigens on the surface of red cells that are controlled by 2 closely linked genes on chromosome 1.  Terms Rh factor, Rh positive and Rh negative refer to the D antigen only."	Immunologic Factor		
+YEAR_OF_ORIGIN	The year of origin of the cell line	Indicates the year in which the cell line was isolated. 	Sample details		
+TUMORIGENIC	Tumorigenic	Capable of forming or tending to form tumors.	Tumor details		
+ER_STATUS	ER Status	Estrogen Receptor Status	Biomarker Tests		
+PGR_STATUS	Progestrone receptor status	Progestrone receptor status	Biomarker Tests		
+PLOIDY	Ploidy	The number of sets of chromosomes in the nucleus of a biological cell.	Cell or Molecular Dysfunction		
+PRIOR_TREATMENT	Prior Treatment 	An indicator that a person has been previously treated for the same condition or with the same therapy.	Clinical Attribute		
+HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	Tumor details		
+HIST_TUMOR_GRADE	Histological tumor grade	Histological tumor grade	Tumor details		
+TP53_MUTATION	P53 Mutation analysis	Mutation analysis of gene P53 performed using DNA from isolated tumor specimen	Mutation details		
+MDR	MULTIPLE_DRUG_RESISTANCE	"Simultaneous resistance to a spectrum of unrelated drugs following exposure to a single agent. Mechanisms involve expression of multidrug efflux pumps (p-glycoprotein), altered glutathione metabolism, decreased topoisomerase II activity, and changes in various cellular proteins."	Organism Attribute		
+DOUBLING_TIME	Cell doubling time	The amount of time it takes for one cell to divide or for a group of cells (such as a tumor) to double in size. 	Temporal Concept		
