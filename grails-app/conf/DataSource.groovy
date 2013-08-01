@@ -1,7 +1,5 @@
 dataSource {
 	pooled = true
-	driverClassName = "oracle.jdbc.OracleDriver" 
-	dialect = org.hibernate.dialect.OracleDialect.class
 }
 hibernate {
     cache.use_second_level_cache=true
@@ -16,18 +14,39 @@ environments {
 	sandbox {
 		dataSource {
 			url = "jdbc:oracle:thin:@localhost:1521:gdoc_sb"
+			driverClassName = "oracle.jdbc.OracleDriver" 
+			dialect = org.hibernate.dialect.OracleDialect.class
 			username = "mcgdoc"
 			password = "change_me"
 			logSql = true
+		}
+		dataSource_lookup {
+			pooled = true
+			driverClassName = "com.mysql.jdbc.Driver"
+			dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+			url = "jdbc:mysql://10.129.21.105/pacsdb"
+			logSql = true
+			username = "root"
+			password = "isisdb"
 		}
 	}
 	
 	development {
 		dataSource {
 			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
+			driverClassName = "oracle.jdbc.OracleDriver" 
+			dialect = org.hibernate.dialect.OracleDialect.class
 			username = "guidoc"
 			password = "cure4cancer"
 			logSql = true
+		}
+		dataSource_lookup {
+			pooled = true
+			driverClassName = "org.h2.Driver" 
+			url = "jdbc:mysql://10.129.21.105/pacsdb"
+			logSql = true
+			username = "root"
+			password = "isisdb"
 		}
 	}
 	
@@ -46,6 +65,8 @@ environments {
 	test {
 		dataSource {
 			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
+			driverClassName = "oracle.jdbc.OracleDriver" 
+			dialect = org.hibernate.dialect.OracleDialect.class
 			username = "guidoc"
 			password = "cure4cancer"
 			logSql = true
@@ -60,6 +81,8 @@ environments {
 	stage_load {
 		dataSource {
 			url = "jdbc:oracle:thin:@//ohs-test-1.uis.georgetown.edu:1521/gdoct_portal.svcs.gu"
+			driverClassName = "oracle.jdbc.OracleDriver" 
+			dialect = org.hibernate.dialect.OracleDialect.class
 			username = "mcgdoc"
 			password = "m#gd0c!"
 			logSql = true
@@ -74,6 +97,8 @@ environments {
 	prod_load {
 		dataSource {
 			url = "jdbc:oracle:thin:@//ohs-prod-1.uis.georgetown.edu:1521/gdocp_portal.svcs.gu"
+			driverClassName = "oracle.jdbc.OracleDriver" 
+			dialect = org.hibernate.dialect.OracleDialect.class
 			username = "mcgdoc"
 			password = "m#gd0c!"
 			logSql = true
@@ -83,6 +108,8 @@ environments {
 	dev_load {
 		dataSource {
 			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
+			driverClassName = "oracle.jdbc.OracleDriver" 
+			dialect = org.hibernate.dialect.OracleDialect.class
 			username = "mcgdoc"
 			password = "change_me"
 			logSql = true
