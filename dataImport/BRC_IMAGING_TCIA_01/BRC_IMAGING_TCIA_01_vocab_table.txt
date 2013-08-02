@@ -1,69 +1,69 @@
-TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
-CASE_HISTORY	"History of left breast cancer (invasive ductal cancer), status post left partial mastectomy"	"History of left breast cancer (invasive ductal cancer), status post left partial mastectomy"		"History of left breast cancer (invasive ductal cancer), status post left partial mastectomy "
-CASE_HISTORY	Known left breast carcinoma with indeterminate microcalcification clusters in right breast	Known left breast carcinoma with indeterminate microcalcification clusters in right breast		Known left breast carcinoma with indeterminate microcalcification clusters in right breast
-CASE_HISTORY	Early 40s with left breast cancer. Low Malignant Potential unknown	Early 40s with left breast cancer. Low Malignant Potential unknown		Early 40s with left breast cancer. Low Malignant Potential unknown
-CASE_HISTORY	History of left breast cancer treated with lumpectomy and radiation therapy	History of left breast cancer treated with lumpectomy and radiation therapy		History of left breast cancer treated with lumpectomy and radiation therapy
-CASE_HISTORY	History of the left breast cancer and suspicious cluster of calcifications in the upper-outer quadrant of the right breast.	History of the left breast cancer and suspicious cluster of calcifications in the upper-outer quadrant of the right breast.		History of the left breast cancer and suspicious cluster of calcifications in the upper-outer quadrant of the right breast. 
-CASE_HISTORY	40s-year-old with newly engorged left nipple	40s-year-old with newly engorged left nipple		40s-year-old with newly engorged left nipple 
-CASE_HISTORY	"age: 50s with history of right breast Ductual Carcinoma in Situ CIS and new  left breast cancer, status post recent breast conserving therapy with left lumpectomy, and  status post right lumpectomy and radiation therapy last year."	"age: 50s with history of right breast Ductual Carcinoma in Situ CIS and new  left breast cancer, status post recent breast conserving therapy with left lumpectomy, and  status post right lumpectomy and radiation therapy last year."		"age: 50s with history of right breast Ductal Carcinoma in Situ and new  left breast cancer, status post recent breast conserving therapy with left lumpectomy, and  status post right lumpectomy and radiation therapy last year."
-CASE_HISTORY	70s year old with left breast cancer (biopsy proven infiltrating ductal carcinoma) and axillary metastases	70s year old with left breast cancer (biopsy proven infiltrating ductal carcinoma) and axillary metastases		70s year old with left breast cancer (biopsy proven infiltrating ductal carcinoma) and axillary metastases
-CASE_HISTORY	50s year old with history of right breast cancer s/p Breast Conserving Therapy now with newly diagnosed left breast cancer.  Low Malignant Potetial unknown	50s year old with history of right breast cancer s/p Breast Conserving Therapy now with newly diagnosed left breast cancer.  Low Malignant Potetial unknown		50s year old with history of right breast cancer s/p Breast Conserving Therapy now with newly diagnosed left breast cancer.  Low Malignant Potetial unknown
-CASE_HISTORY	Late 20's year old with bx-proven carcinoma	Late 20's year old with bx-proven carcinoma		Late 20's year old with bx-proven carcinoma
-CASE_HISTORY	50s year old with recent  diagnosed left breast carcinoma	50s year old with recent  diagnosed left breast carcinoma		50s year old with recent  diagnosed left breast carcinoma
-CASE_HISTORY	"History of right mastectomy for cancer presents for her first 6 month follow up for calcifications in her left breast and a left breast nodule."	"History of right mastectomy for cancer presents for her first 6 month follow up for calcifications in her left breast and a left breast nodule."		"History of right mastectomy for cancer presents for her first 6 month follow up for calcifications in her left breast and a left breast nodule."
-CASE_HISTORY	"Late 50's year old left nipple discharge and suspicious right breast mass"	Late 50's year old left nipple discharge and suspicious right breast mass		Late 50's year old left nipple discharge and suspicious right breast mass HIST_TUMOR_TYPE	Benign fibrosis	Benign fibrosis		Characterized by noncancerous breast lumps in the breast which can sometimes cause discomfort HIST_TUMOR_TYPE	Infiltrating lobular carcinoma	Infiltrating lobular carcinoma		An adenocarcinoma of the breast arising from the lobules
-HIST_TUMOR_TYPE	Invasive ductal carcinoma	Invasive ductal carcinoma		An adenocarcinoma of the breast arising from the lobules
-HIST_TUMOR_TYPE	Infiltrating ductal carcinoma	Infiltrating ductal carcinoma		Also called 'invasive ductal carcinoma' refers to cancer that has broken through the wall of the milk duct and begun to invade the tissues of the breast.
-HIST_TUMOR_TYPE	Benign fibroadenoma	Benign fibroadenoma		An adenoma containing fibrous tissue.
-HIST_TUMOR_TYPE	Invasive intraductal carcinoma	Invasive intraductal carcinoma		"An infiltrating, malignant and abnormal proliferation of neoplastic cells in the breast tissue"
-HIST_TUMOR_TYPE	Ductal carcinoma in situ	Ductal carcinoma in situ		"A noninvasive, potentially malignant, neoplasm that is still confined to the milk ducts "
-HIST_TUMOR_TYPE	Benign	Benign		Not cancerous. Benign tumors may grow larger but do not spread to other parts of the body.
-HIST_TUMOR_TYPE	Stromal hyperplasia no carcinoma	Stromal hyperplasia no carcinoma		"better known as pseudoangiomatous stromal hyperplasia (PASH), is a type of benign tumor arising from the supporting tissue of cells and usually occurring in the breast. "
-HIST_TUMOR_TYPE	Invasive lobular carcinoma	Invasive lobular carcinoma		An infiltrating lobular adenocarcinoma.
-HIST_TUMOR_TYPE	"Invasive ductal carcinoma, modified carcinoma RFF-Bloom-Richardson Grade-I/III. A less than 5% intraductal carcinoma component, nuclear grade-II/III, is also present."	"Invasive ductal carcinoma, modified carcinoma RFF-Bloom-Richardson Grade-I/III. A less than 5% intraductal carcinoma component, nuclear grade-II/III, is also present."		
-HIST_TUMOR_TYPE	Benign fibrocyst	Benign fibrocyst		Characterized by noncancerous breast lumps in the breast which can sometimes cause discomfort
-HIST_TUMOR_TYPE	"Ductal carcinoma in-situ , solid type, nuclear grade III/III."	"Ductal carcinoma in-situ , solid type, nuclear grade III/III."		
-HIST_TUMOR_TYPE	Intraductal carcinoma	Intraductal carcinoma		A noninvasive condition in which abnormal cells are found in the lining of a breast duct
-HIST_TUMOR_TYPE	Invasive lobular carcinoma. Size of invasive component: 4x4x2cm	Invasive lobular carcinoma. Size of invasive component: 4x4x2cm		
-HIST_TUMOR_TYPE	Invasive ductal carcinoma modified carcinoma RFF-Bloom-Richardson Grade: III/III.  No in situ carcinoma present	Invasive ductal carcinoma modified carcinoma RFF-Bloom-Richardson Grade: III/III.  No in situ carcinoma present		
-HIST_TUMOR_TYPE	Invasive ductal carcinoma	Invasive ductal carcinoma		
-HIST_TUMOR_TYPE	"Invasive ductal Carcinoma, modified carcinoma RFF-Bloom-Richardson grade II/III.  No intraductal Carcinoma rcinoma component seen."	"Invasive ductal Carcinoma, modified carcinoma RFF-Bloom-Richardson grade II/III.  No intraductal Carcinoma rcinoma component seen."		
-HIST_TUMOR_TYPE	Specimen: Invasive carcinoma. Lymph nodes reactive but negative.	Specimen: Invasive carcinoma. Lymph nodes reactive but negative.		
-WHICH_BREAST_PATH	LEFT	LEFT		Refers to left breast
-WHICH_BREAST_PATH	RIGHT	RIGHT		Refers to right breast
-ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative
-ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive
-ER_STATUS	STRONG_POSITIVE	STRONG_POSITIVE		Estrogen Receptor strongly positive
-ER_STATUS	WEAK_POSITIVE	WEAK_POSITIVE		Estrogen Receptor weakly positive
-PGR_STATUS	NEGATIVE	NEGATIVE		Progestrone receptor negative
-PGR_STATUS	POSITIVE	POSITIVE		Progestrone receptor positive
-PGR_STATUS	NEGATIVE (STAIN MODERATE)	NEGATIVE (STAIN MODERATE)		Progestrone receptor negative with moderate staining only
-PGR_STATUS	WEAK_POSITIVE	WEAK_POSITIVE		Progestrone receptor weakly positive
-PGR_STATUS	STRONG_POSITIVE	STRONG_POSITIVE		Progestrone receptor strongly positive
-HER2_STATUS	NEGATIVE	NEGATIVE		HER2 status is negative
-HER2_STATUS	MODERATE BY FISH	MODERATE BY FISH		HER2 status has been found moderate by FISH
-HER2_STATUS	POSITIVE	POSITIVE		HER2 status is positive
-HER2_STATUS	WEAK_NEGATIVE	WEAK_NEGATIVE		HER2 status is weak negative
-HER2_STATUS	POSITIVE (2+)	POSITIVE (2+)		HER2 status is positive
-E-CADHERIN	NEGATIVE	NEGATIVE		Aberrant expression indicates chances of developing cancer 
-E-CADHERIN	POSITIVE	POSITIVE		Normal expression indicating no cancer 
-KI67_IHC_Status	HIGH_PROLIF	HIGH_PROLIF		High Proliferation
-KI67_IHC_Status	INTERMED_PROLIF	INTERMED_PROLIF		Intermediate Proliferation
-KI67_IHC_Status	LOW_PROLIF	LOW_PROLIF		Low Proliferation
-KI67_IHC_Status	POSITIVE (HIGH_PROLIF)	POSITIVE (HIGH_PROLIF)		Ki67 Status is positive with high proliferation
-KI67_IHC_Status	POSITIVE (STRONG)	POSITIVE (STRONG)		Strong Positive Ki67 Status
-KI67_IHC_Status	POSITIVE HIGH_PROLIF (49% nucs)	POSITIVE HIGH_PROLIF (49% nucs)		Ki67 Status is positive with high proliferation; and nucs is the path grade for Ki presence. 
-NUCLEAR_GRADE	III/III	III/III		Breast cancer nuclear grade is 3. 
-NUCLEAR_GRADE	II/III	II/III		Breast cancer nuclear grade is 2-3. 
-MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	II/III	II/III		Breast cancer Scarff bloom richardson grade 2-3.
-MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	III/III	III/III		Breast cancer Scarff bloom richardson grade 3-3.
-MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	I/III	I/III		Breast cancer Scarff bloom richardson grade 1-3.
-MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	III	III		Breast cancer Scarff bloom richardson grade 3.
-WHICH_BREAST_MRI	LEFT	LEFT		Refers to left breast
-WHICH_BREAST_MRI	RIGHT	RIGHT		Refers to right breast
-WHICH_BREAST_MRI	"A 10% INTRADUCTAL CARCINOMA COMPONENT, NUCLEAR GRADE 3 OF 3, IS ALSO PRESENT."	"A 10% INTRADUCTAL CARCINOMA COMPONENT, NUCLEAR GRADE 3 OF 3, IS ALSO PRESENT."		"A 10% INTRADUCTAL CARCINOMA COMPONENT, NUCLEAR GRADE 3 OF 3, IS ALSO PRESENT."
-BI_RAD	6-Known biopsy-proven malignancy	6-Known biopsy-proven malignancy		6-Known biopsy-proven malignancy
-BI_RAD	5-Highly suggestive of malignancy	5-Highly suggestive of malignancy		5-Highly suggestive of malignancy
-BI_RAD	2-Benign finding(s)	2-Benign finding(s)		2-Benign finding(s)
-BI_RAD	3-Probably benign	3-Probably benign		3-Probably benign
-BI_RAD	4B-Intermediate suspicion of malignancy	4B-Intermediate suspicion of malignancy		4B-Intermediate suspicion of malignancy
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION								
+CASE_HISTORY	"History of left breast cancer (invasive ductal cancer), status post left partial mastectomy"	"History of left breast cancer (invasive ductal cancer), status post left partial mastectomy"		"History of left breast cancer (invasive ductal cancer), status post left partial mastectomy "								
+CASE_HISTORY	Known left breast carcinoma with indeterminate microcalcification clusters in right breast	Known left breast carcinoma with indeterminate microcalcification clusters in right breast		Known left breast carcinoma with indeterminate microcalcification clusters in right breast								
+CASE_HISTORY	Early 40s with left breast cancer. Low Malignant Potential unknown	Early 40s with left breast cancer. Low Malignant Potential unknown		Early 40s with left breast cancer. Low Malignant Potential unknown								
+CASE_HISTORY	History of left breast cancer treated with lumpectomy and radiation therapy	History of left breast cancer treated with lumpectomy and radiation therapy		History of left breast cancer treated with lumpectomy and radiation therapy								
+CASE_HISTORY	History of the left breast cancer and suspicious cluster of calcifications in the upper-outer quadrant of the right breast.	History of the left breast cancer and suspicious cluster of calcifications in the upper-outer quadrant of the right breast.		History of the left breast cancer and suspicious cluster of calcifications in the upper-outer quadrant of the right breast. 								
+CASE_HISTORY	40s-year-old with newly engorged left nipple	40s-year-old with newly engorged left nipple		40s-year-old with newly engorged left nipple 								
+CASE_HISTORY	"age: 50s with history of right breast DCIS and new  left BRC, status post recent breast conserving therapy with left lumpectomy, and  status post right lumpectomy and radiation therapy last year."	"age: 50s with history of right breast DCIS and new  left BRC, status post recent breast conserving therapy with left lumpectomy, and  status post right lumpectomy and radiation therapy last year."		"age: 50s with history of right breast DCIS and new  left BRC, status post recent breast conserving therapy with left lumpectomy, and  status post right lumpectomy and radiation therapy last year."								
+CASE_HISTORY	70s year old with left breast cancer (biopsy proven infiltrating ductal carcinoma) and axillary metastases	70s year old with left breast cancer (biopsy proven infiltrating ductal carcinoma) and axillary metastases		70s year old with left breast cancer (biopsy proven infiltrating ductal carcinoma) and axillary metastases								
+CASE_HISTORY	50s year old with history of right breast cancer s/p Breast Conserving Therapy now with newly diagnosed left breast cancer.  Low Malignant Potetial unknown	50s year old with history of right breast cancer s/p Breast Conserving Therapy now with newly diagnosed left breast cancer.  Low Malignant Potetial unknown		50s year old with history of right breast cancer s/p Breast Conserving Therapy now with newly diagnosed left breast cancer.  Low Malignant Potetial unknown								
+CASE_HISTORY	Late 20's year old with bx-proven carcinoma	Late 20's year old with bx-proven carcinoma		Late 20's year old with bx-proven carcinoma								
+CASE_HISTORY	50s year old with recent  diagnosed left breast carcinoma	50s year old with recent  diagnosed left breast carcinoma		50s year old with recent  diagnosed left breast carcinoma								
+CASE_HISTORY	History of right mastectomy for cancer presents for her first 6 month follow up for calcifications in her left breast and a left breast nodule.	History of right mastectomy for cancer presents for her first 6 month follow up for calcifications in her left breast and a left breast nodule.		History of right mastectomy for cancer presents for her first 6 month follow up for calcifications in her left breast and a left breast nodule.								
+CASE_HISTORY	Late 50's year old left nipple discharge and suspicious right breast mass	Late 50's year old left nipple discharge and suspicious right breast mass		Late 50's year old left nipple discharge and suspicious right breast mass HIST_TUMOR_TYPE	Benign fibrosis	Benign fibrosis		Characterized by noncancerous breast lumps in the breast which can sometimes cause discomfort HIST_TUMOR_TYPE	Infiltrating lobular carcinoma	Infiltrating lobular carcinoma		An adenocarcinoma of the breast arising from the lobules
+HIST_TUMOR_TYPE	Invasive ductal carcinoma	Invasive ductal carcinoma		An adenocarcinoma of the breast arising from the lobules								
+HIST_TUMOR_TYPE	Infiltrating ductal carcinoma	Infiltrating ductal carcinoma		Also called 'invasive ductal carcinoma' refers to cancer that has broken through the wall of the milk duct and begun to invade the tissues of the breast.								
+HIST_TUMOR_TYPE	Benign fibroadenoma	Benign fibroadenoma		An adenoma containing fibrous tissue.								
+HIST_TUMOR_TYPE	Invasive intraductal carcinoma	Invasive intraductal carcinoma		"An infiltrating, malignant and abnormal proliferation of neoplastic cells in the breast tissue"								
+HIST_TUMOR_TYPE	Ductal carcinoma in situ	Ductal carcinoma in situ		"A noninvasive, potentially malignant, neoplasm that is still confined to the milk ducts "								
+HIST_TUMOR_TYPE	Benign	Benign		Not cancerous. Benign tumors may grow larger but do not spread to other parts of the body.								
+HIST_TUMOR_TYPE	Stromal hyperplasia no carcinoma	Stromal hyperplasia no carcinoma		"better known as pseudoangiomatous stromal hyperplasia (PASH), is a type of benign tumor arising from the supporting tissue of cells and usually occurring in the breast. "								
+HIST_TUMOR_TYPE	Invasive lobular carcinoma	Invasive lobular carcinoma		An infiltrating lobular adenocarcinoma.								
+HIST_TUMOR_TYPE	"Invasive ductal carcinoma, modified carcinoma RFF-Bloom-Richardson Grade-I/III. A less than 5% intraductal carcinoma component, nuclear grade-II/III, is also present."	"Invasive ductal carcinoma, modified carcinoma RFF-Bloom-Richardson Grade-I/III. A less than 5% intraductal carcinoma component, nuclear grade-II/III, is also present."										
+HIST_TUMOR_TYPE	Benign fibrocyst	Benign fibrocyst		Characterized by noncancerous breast lumps in the breast which can sometimes cause discomfort								
+HIST_TUMOR_TYPE	"Ductal carcinoma in-situ , solid type, nuclear grade III/III."	"Ductal carcinoma in-situ , solid type, nuclear grade III/III."										
+HIST_TUMOR_TYPE	Intraductal carcinoma	Intraductal carcinoma		A noninvasive condition in which abnormal cells are found in the lining of a breast duct								
+HIST_TUMOR_TYPE	Invasive lobular carcinoma. Size of invasive component: 4x4x2cm	Invasive lobular carcinoma. Size of invasive component: 4x4x2cm										
+HIST_TUMOR_TYPE	Invasive ductal carcinoma modified carcinoma RFF-Bloom-Richardson Grade: III/III.  No in situ carcinoma present	Invasive ductal carcinoma modified carcinoma RFF-Bloom-Richardson Grade: III/III.  No in situ carcinoma present										
+HIST_TUMOR_TYPE	Invasive ductal carcinoma	Invasive ductal carcinoma										
+HIST_TUMOR_TYPE	"Invasive ductal Carcinoma, modified carcinoma RFF-Bloom-Richardson grade II/III.  No intraductal Carcinoma rcinoma component seen."	"Invasive ductal Carcinoma, modified carcinoma RFF-Bloom-Richardson grade II/III.  No intraductal Carcinoma rcinoma component seen."										
+HIST_TUMOR_TYPE	Specimen: Invasive carcinoma. Lymph nodes reactive but negative.	Specimen: Invasive carcinoma. Lymph nodes reactive but negative.										
+WHICH_BREAST_PATH	LEFT	LEFT		Refers to left breast								
+WHICH_BREAST_PATH	RIGHT	RIGHT		Refers to right breast								
+ER_STATUS	NEGATIVE	NEGATIVE		Estrogen Receptor negative								
+ER_STATUS	POSITIVE	POSITIVE		Estrogen Receptor positive								
+ER_STATUS	STRONG_POSITIVE	STRONG_POSITIVE		Estrogen Receptor strongly positive								
+ER_STATUS	WEAK_POSITIVE	WEAK_POSITIVE		Estrogen Receptor weakly positive								
+PGR_STATUS	NEGATIVE	NEGATIVE		Progestrone receptor negative								
+PGR_STATUS	POSITIVE	POSITIVE		Progestrone receptor positive								
+PGR_STATUS	NEGATIVE (STAIN MODERATE)	NEGATIVE (STAIN MODERATE)		Progestrone receptor negative with moderate staining only								
+PGR_STATUS	WEAK_POSITIVE	WEAK_POSITIVE		Progestrone receptor weakly positive								
+PGR_STATUS	STRONG_POSITIVE	STRONG_POSITIVE		Progestrone receptor strongly positive								
+HER2_STATUS	NEGATIVE	NEGATIVE		HER2 status is negative								
+HER2_STATUS	MODERATE BY FISH	MODERATE BY FISH		HER2 status has been found moderate by FISH								
+HER2_STATUS	POSITIVE	POSITIVE		HER2 status is positive								
+HER2_STATUS	WEAK_NEGATIVE	WEAK_NEGATIVE		HER2 status is weak negative								
+HER2_STATUS	POSITIVE (2+)	POSITIVE (2+)		HER2 status is positive								
+E-CADHERIN	NEGATIVE	NEGATIVE		Aberrant expression indicates chances of developing cancer 								
+E-CADHERIN	POSITIVE	POSITIVE		Normal expression indicating no cancer 								
+KI67_IHC_Status	HIGH_PROLIF	HIGH_PROLIF		High Proliferation								
+KI67_IHC_Status	INTERMED_PROLIF	INTERMED_PROLIF		Intermediate Proliferation								
+KI67_IHC_Status	LOW_PROLIF	LOW_PROLIF		Low Proliferation								
+KI67_IHC_Status	POSITIVE (HIGH_PROLIF)	POSITIVE (HIGH_PROLIF)		Ki67 Status is positive with high proliferation								
+KI67_IHC_Status	POSITIVE (STRONG)	POSITIVE (STRONG)		Strong Positive Ki67 Status								
+KI67_IHC_Status	POSITIVE HIGH_PROLIF (49% nucs)	POSITIVE HIGH_PROLIF (49% nucs)		Ki67 Status is positive with high proliferation; and nucs is the path grade for Ki presence. 								
+NUCLEAR_GRADE	III/III	III/III		Breast cancer nuclear grade is 3. 								
+NUCLEAR_GRADE	II/III	II/III		Breast cancer nuclear grade is 2-3. 								
+MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	II/III	II/III		Breast cancer Scarff bloom richardson grade 2-3.								
+MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	III/III	III/III		Breast cancer Scarff bloom richardson grade 3-3.								
+MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	I/III	I/III		Breast cancer Scarff bloom richardson grade 1-3.								
+MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	III	III		Breast cancer Scarff bloom richardson grade 3.								
+WHICH_BREAST_MRI	LEFT	LEFT		Refers to left breast								
+WHICH_BREAST_MRI	RIGHT	RIGHT		Refers to right breast								
+WHICH_BREAST_MRI	"A 10% INTRADUCTAL CARCINOMA COMPONENT, NUCLEAR GRADE 3 OF 3, IS ALSO PRESENT."	"A 10% INTRADUCTAL CARCINOMA COMPONENT, NUCLEAR GRADE 3 OF 3, IS ALSO PRESENT."		"A 10% INTRADUCTAL CARCINOMA COMPONENT, NUCLEAR GRADE 3 OF 3, IS ALSO PRESENT."								
+BI_RAD	6-Known biopsy-proven malignancy	6-Known biopsy-proven malignancy		6-Known biopsy-proven malignancy								
+BI_RAD	5-Highly suggestive of malignancy	5-Highly suggestive of malignancy		5-Highly suggestive of malignancy								
+BI_RAD	2-Benign finding(s)	2-Benign finding(s)		2-Benign finding(s)								
+BI_RAD	3-Probably benign	3-Probably benign		3-Probably benign								
+BI_RAD	4B-Intermediate suspicion of malignancy	4B-Intermediate suspicion of malignancy		4B-Intermediate suspicion of malignancy								
