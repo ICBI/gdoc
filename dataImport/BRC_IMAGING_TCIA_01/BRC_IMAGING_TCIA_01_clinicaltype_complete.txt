@@ -1,16 +1,18 @@
 short_name	long_name	definition	semantic_group	rank	split_attribute
-CASE_HISTORY	Case history	"Collected data concerning an individual, including family, environment, medical history and any other information that may be useful in analysis and diagnois of medical condition."	Sample details		
+CASE_HISTORY	Case history	Collected data concerning an individual, including family, environment, medical history and any other information that may be useful in analysis and diagnois of medical condition.	Sample details		
 HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	Tumor details	1	2
 WHICH_BREAST_PATH	Which breast path	Which breast underwent pathology - from which the cancer has been removed	Sample details		
 ER_STATUS	ER Status	Estrogen Receptor Status	Biomarker Tests		
 PGR_STATUS	Progestrone receptor status	Progestrone receptor status	Biomarker Tests		
 HER2_STATUS	HER2 Status	Human Epidermal Growth Factor Receptor 2	Biomarker Tests	1	
-E_CADHERIN	E-Cadherin	"An immunohistochemical technique to detect E-Cadherin, a transmembrane glycoprotein that is localized in the adherens junctions of epithelial cells, using antibody to E-Cadherin . The loss of expression or function of E-Cadherin appears to be an important step in tumorigenic progression."	Biomarker Tests		
+E_CADHERIN	E-Cadherin	An immunohistochemical technique to detect E-Cadherin, a transmembrane glycoprotein that is localized in the adherens junctions of epithelial cells, using antibody to E-Cadherin . The loss of expression or function of E-Cadherin appears to be an important step in tumorigenic progression.	Biomarker Tests		
 KI67_IHC_Status	KI67 IHC Status	Protein KI67 positivity tested by immunochemistry	Biomarker Tests		
 ONCOTYPE_SCORE	Oncotype score	The assay analyzes the expression of a panel of 21 genes and the results are provided as a Recurrence Score (0-100).	Diagnostic Tests		
 ONCOTYPE_RISK	Oncotype risk	Chances of recurrence of breast cancer in percentage depending upon the oncotype score.	Diagnostic Tests		
-AGE_DECADE	Age decade	"Refers to the decade of age of the patient during diagnosis; eg., 40s, 50's etc."	DEMOGRAPHICAL		
+AGE_DECADE	Age decade	Refers to the decade of age of the patient during diagnosis; eg., 40s, 50's etc.	DEMOGRAPHICAL		
 NUCLEAR_GRADE	Nuclear grade	An evaluation of the size and shape of the nucleus in tumor cells and the percentage of tumor cells that are in the process of dividing or growing	Tumor details		
 MODIFIED_SCARFF_BLOOM_RICHARDSON_GRADE	Modified Scarff Bloom Richarson Grade	Refers to a breast cancer classification system to grade breast cancers	Tumor details		
 WHICH_BREAST_MRI	Which breast MRI	Which breast underwent MRI for simultaneous check on cancer	Sample details		
 BI_RAD	BI-RAD (Breast Imaging Reporting and Data System)	Breast Imaging Reporting and Data System	Diagnostic Tests		
+CLINICAL_NOTES	Clinical notes	Clinical notes	Path report		
+IMPRESSION	Impression	The most important diagnoses or other clinical conclusions that can be made from the imaging observations and other clinical information. This section may include recommendations for additional imaging tests or other actions, as well as global assessments, such as BI-RADS Categories or the equivalent.	MRI report		
