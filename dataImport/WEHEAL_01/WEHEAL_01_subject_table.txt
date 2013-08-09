@@ -1,0 +1,57 @@
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	Outcome	RNAse 7	Beta-Defensin III 	Cathelicidin	Psoriasin	Matriptase	HAI-1 	Renal Disease	Renal Transplant? 	Dialysis Dependent? 	Glomerular Filtration Rate (GFR)	Dialysis Type	Diabetes	Diabetes Type	Duration of Diabetes (years)	Hemoglobin A1c	Hepatitis C	Hepatitis C duration (years)	Ever treated for Hepatitis C? 	Hepatitis B	HIV positive	Venous disease present? 	Arterial disease present? 	Lymphedema	Prothrombotic state	"Prior thrombosis (DVT, PE, or other)"	Illicit drug use	Smoking	Smoking Duration (years)	Time Since Cessation (years)	Intensity (Packs Per Day)	Number of alcoholic drinks per week	HTN (Hypertension)	Pulmonary Hypertension	Coronary Artery Disease	Sickle cell anemia	Polycythemia or myelodysplastic disease?	Polycythemia or myelodysplastic disease-Details	Cancer diagnosis	Location of primary	Location of primary-Details	Neurologic process 	Neurologic Disease	Neurologic disease other (specify): 	Hidradenitis suppurativa? 	Connective Tissue Disease (CTD)	CTD Diagnosis	Secondary CTD diagnosis	Secondary CTD diagnosis-Notes 	Scleroderma Type	Duration of CTD
+5		PATIENT		Recalcitrant							Yes	Yes	No	60		Yes	Type I	37.4	9.1	No			No	No	No	No	No	No	No	Never Used	Past Smoker	7	13	1		Yes	No	Yes	No	No		No			No			No	No					
+8		PATIENT		Healing	4	4	4	2	1	0	No					No				No			No	No	Yes	No	No	Yes	Yes	Never Used	Past Smoker		20		0	Yes	No	No	No	No		No			No			No	No		None	positive ANA		
+10		PATIENT		Healing	4	2	4	1	1	0	No					No				No			No	No	Not evaluated	Not evaluated	No	Unknown	No	Never Used	Never Smoked				0	Unknown	No	No	No	No		No			Yes	Spinal bifida		No	Not tested		None			
+19		PATIENT		Healing							No					Yes	Type II	5.9	5.6	No			No	No	No	No	No	No	No	Never Used	Never Smoked				0	Yes	No	No	No	No		No			Yes	Peripheral Neuropathy		No	Not tested		None			
+21		PATIENT		Recalcitrant							Yes	No	Yes		Hemodialysis	Yes	Type II	14.4	5.8	No			No	No	No	Yes	No	No	No	Never Used	Never Smoked				7	Yes	No	Yes	No	No		No			Yes	Peripheral Neuropathy		No	No		None			
+28		PATIENT		Recalcitrant	2	3	4	2	1	1	No					No				No			No	No	Yes	Not evaluated	No	Yes	Yes	Never Used	Past Smoker	3	31	1	1	Yes	No	No	No	No		No			No			No	Yes	RA				10.9
+34		PATIENT		Recalcitrant							No					No				No			No	No	Not evaluated	Not evaluated	No	No	No	Past User	Past Smoker		21		0	Yes	No	No	No	No		No			Yes	Peripheral Neuropathy		No	No		None	"Idiopathic neuropathy -- RF78 but no other signs of RA. Erosions of distal clavicles, no one knows what this is."		
+37		PATIENT		Recalcitrant	2	1	5	0	0	1	Yes	Yes	No	38		Yes	Type II	3.6	5	Yes	11.4	No	No	No	Yes	No	No	No	No	Past User	Past Smoker	10	12	1	0	Yes	No	No	No	No		No			No			No	Yes	Pyoderma Gangrenosum	Other	Pyoderma Gangrenosum		0.8
+42		PATIENT		Recalcitrant							No					Yes	Type II	16.4	10.6	No			No	No	Not evaluated	Not evaluated	No	No	No	Never Used	Never Smoked				0	Yes	No	No	No	No		No			Yes	Peripheral Neuropathy		No	Not tested		None			
+51		PATIENT		Recalcitrant							Yes	No	Yes		Hemodialysis	No				No			No	No	Not evaluated	Yes	No	No	No	Never Used	Current Smoker	40	0	4	0	Yes	No	Yes	No	No		No			No			No	No		None	Cholesterol emboli		
+54		PATIENT		Recalcitrant							No					Yes	Type II	22	5.8	No			No	No	No	No	No	No	No	Never Used	Never Smoked				0	No	No	Yes	No	No		No			Yes	Peripheral Neuropathy		No	No		None			
+59		PATIENT		Recalcitrant							No					No				No			No	No	No	Yes	No	No	No	Never Used	Current Smoker	10	0	0.5	0	No	No	No	No	No		No			No			No	Not tested		None			
+62		PATIENT		Recalcitrant							Yes	Yes	No	58		Yes	Type I	2.5	5.2	No			No	No	Yes	Not evaluated	No	No	No	Never Used	Never Smoked					Yes	No	Yes	No	No		No			Yes	Peripheral Neuropathy		No	No		None			
+65		PATIENT		Healing							No					Yes	Type II	4.5	6	No			No	No	Yes	Not evaluated	Yes	No	Yes	Never Used	Past Smoker	29	31	3	0	Yes	No	No	No	No		No			No			No	No		None			
+69		PATIENT		Healing	4	3	4	2	1	3	Yes	No	No	44		Yes	Type I	31.9	9	No			No	No	Not evaluated	Not evaluated	No	No	No	Never Used	Never Smoked				0	No	No	No	No	No		No			Yes	Peripheral Neuropathy		No	No		None			
+72		PATIENT		Recalcitrant	4	4	4	2	1	3	Yes	No	Yes		Hemodialysis	No				No			No	No	Not evaluated	Not evaluated	No	Yes	Yes	Never Used	Never Smoked				0	Yes	No	No	No	No		No			No			No	Yes	SLE	Antiphospholipid Syndrome			8.5
+81		PATIENT		Healing	4	3	4	2	1	1	No					Yes	Type II	15.5	6.9				No	No	Not evaluated	Not evaluated	No	No	No	Never Used	Never Smoked				0	Yes	No	No	No	No		No			No			No	No		None			
+86		PATIENT		Healing							No					No				No			No	No	No	No	No	No	No	Never Used	Past Smoker	5	6	1	3	No	No	No	No	No		No			No			No	Yes	RA				0.1
+103		PATIENT		Recalcitrant							No					Yes	Type II		5.5	No			No	No	No	No	No	No	No	Never Used	Never Smoked				0	Yes	No	No	No	No		No			No			No	No					
+128		PATIENT		Healing	2	2	2	2	1	0	No					Yes	Type I	40.7	7.8	No			No	No	No	No	No	No	No	Never Used	Never Smoked				5	No	No	No	No	No		No			Yes	Peripheral Neuropathy		No	No					
+129		PATIENT		Recalcitrant	4	3	4	2	1	1	Yes	No	No	60		Yes	Type II	11.7	10.7	No			No	No	No	No	No	No	No	Never Used	Past Smoker	32	0.5	1	2	Yes	No	No	No	No		No			Yes	Peripheral Neuropathy		No	No					
+131		PATIENT		Healing							No					No				No			No		No	No	No	No	No	Never Used	Never Smoked				0	Yes	No	No	No	No		No			No			Yes	No					
+137		PATIENT		Recalcitrant	3	3	3	4	3	1	Yes	No	No	60		Yes	Type II		7.3	No			No	No	Yes	No	No	No	No	Never Used	Never Smoked				0	Yes	No	No	No			No			Yes	Peripheral Neuropathy		No	No					
+144		PATIENT		Healing							No					No				No			No	No	No	No	No	No	No	Never Used	Past Smoker	20	16	1	0	Yes	No	No	No	No		Yes	lymphoma	NHL	No			No	Yes	RA				40.7
+154		PATIENT		Hidradenitis healing							No					No				No			No	No	No	No	No	No	No	Never Used	Never Smoked					No	No	No	No	No		No			No			Yes	No					
+168		PATIENT		Recalcitrant	2	0	2	0	0	0	No					Yes	Type II	11.8	6.7	No			No	No	No	No	No	No	No	Never Used	Never Smoked					Yes	No	No	No	No		No			Yes	Peripheral Neuropathy		No	No					
+170		PATIENT		Recalcitrant	2	2	4	1	1	1	No					No				No			No	No	No	No	No	No	No	Never Used	Never Smoked				0	No	No	No	No	No		No			No			No	Yes	Scleroderma			Diffuse	3.3
+174		PATIENT		Recalcitrant							Yes	No	No	29		Yes	Type II	21.8		No			No	No	No	Yes	No	No	No	Never Used	Never Smoked				1	Yes	No	No	No	No		No			Yes	Peripheral Neuropathy		No	No					
+176		PATIENT		Recalcitrant							No					No				No			No	No	Yes	No	Yes	No	No	Never Used	Never Smoked				0	No	No	Yes	No			Yes	skin	"squamous cell carcinoma, basal cell carcinoma"	Yes	Other	Parkinson's Disease	No	Yes	Other		Psoriasis since age 16		47.8
+218		PATIENT		Recalcitrant							No					No				No			No	No	No	Yes	No	No	No	Never Used	Never Smoked					No	No	No	No	No		No			No			No	No		None			
+228		PATIENT		Recalcitrant							Yes	No	No	60		Yes	Type II		10.2	No			No	No	No	Yes	No	No	No	Never Used	Past Smoker					Yes	No	No	No	No		No			No			No	No			'Temporal arteritis' but I dont think he has it!		
+233		PATIENT		Recalcitrant	1	1	0	4	1	1	No					Yes	Type II	0.1	6.2	No			No	No	No	No	No	No	No	Never Used	Current Smoker	20	0	0.5	0	Yes	No	No	No	No		Yes	other	vulva	Yes	Peripheral Neuropathy		No	No					
+246		PATIENT		Recalcitrant							Yes	No	No			No				No			No	No	Yes	No	Yes	No	No	Never Used	Current Smoker	40	0	1	0	Yes	No	No	No	No		No			No			No	No		None			
+251		PATIENT		Recalcitrant							No					No				No			No	No	No	No	Yes	No	Yes	Never Used	Never Smoked				0	Yes	No	Yes	No	No		No			No			No	No					
+252		PATIENT		Recalcitrant	1	2	2	2	1	3	Yes	No	Yes		Hemodialysis	Yes	Type II		5.6	No			No	No	Yes	Yes	No	No	No		Past Smoker				0	Yes	No	No	No	No					Yes	Peripheral Neuropathy		No	No					
+259		PATIENT		Hidradenitis healing							No					No				No			No	No	No	No		No	No	Never Used	Never Smoked				0	No	No	No	No	No		No			No			Yes	No			Pericardial effusion.. unclear etiology		
+262		PATIENT		Recalcitrant							No					Yes	Type II	28.3	8.6	No			No	No	No	No	No	No	No	Never Used	Never Smoked				1	Yes	No	No	No	No		No			No			No	No					
+263		PATIENT		Recalcitrant							No					Yes	Type II	22.3	9.2	No			No	No	No	No	No	No	No	Never Used	Past Smoker		13		0	Yes	Yes	Yes	No	No		No			Yes	Other	arthropathy w/ neuro manifestation	No	Yes	RA				1.4
+285		PATIENT		Recalcitrant							No					Yes	Type I	44.8	7	No			No	No	No	Yes		No	No	Never Used	Never Smoked				7.5	Yes	No	No	No	No		No			No			No	Not tested		None			
+286		PATIENT		Healing							No					No				No			No	No	No	Yes	No	No	No	Past User	Current Smoker	25	0	0.5	2	Yes	No	Yes	No	No		No			No			No	Yes	SLE	Antiphospholipid Syndrome	SLE- diagnosed in 1991 per pt this presented with lupus nephritis -- biopsy at Howard but she is not sure of the result. Thinks she was treated with prednisone. Does not recall cytoxan or other chemo.		21.5
+287		PATIENT		Recalcitrant	3	2	1	2	1	1	No					No				No			No	No	No	Yes	No	Yes	Yes	Never Used	Past Smoker	20	15	0.5	0	Yes	No	No	No	Yes	Polycythemia	No			No			No	No		None			
+294		PATIENT		Recalcitrant							Yes	No	No			Yes	Type II			No			No	No	Yes	No	Yes	No	No	Never Used	Past Smoker	22	25	1	0	Yes	No	Yes	No	No		No			Yes	Peripheral Neuropathy		No	No		None			
+302		PATIENT		Recalcitrant							No					No				No			No	No	Yes	No	No	No	No	Never Used	Never Smoked				0	Yes	No	Yes	No	No		Yes	skin	"squamous cell, radiation"	No			No	Yes	Other	None	Psoriasis but wound is at site of radiation therapy for skin cancer.		
+304		PATIENT		Recalcitrant							No					Yes	Type I	49.5	9.8	No			No	No	Yes	Yes	No	No	No	Never Used	Never Smoked				0	No	No	Yes	No	No		No			Yes	Peripheral Neuropathy		No	No		None			
+323		PATIENT		Recalcitrant	2	3	2	2	3	3	No					Yes	Type II	5.7	10.7	No			No	No	Yes	No	No	Yes	Yes	Never Used	Never Smoked				0	Yes	No	No	No	No		No			Yes	Peripheral Neuropathy		No	No					
+329		PATIENT		Recalcitrant							Yes	No	No	25		Yes	Type II	3.7	16.7	No			No	No	No	No	No	No	No	Never Used	Never Smoked					Yes	No	No	No	No		No			No			No	No					
+342		PATIENT		Healing							No					No				No			No	No	Yes	No	Yes	Yes	Yes	Never Used	Never Smoked				0	Yes	No	No	No	No		No			No			No	No					
+351		PATIENT		Healing							No					No				No			No	No	No	No	No	No	No	Never Used	Never Smoked				0	Yes	No	No	No	No		No			No			Yes	No		None			
+352		PATIENT		Recalcitrant							No					Yes	Type II	22		No			No	No	Yes	Yes	No	No	No	Never Used	Never Smoked				0	Yes	No	Yes	No	No		No			Yes	Peripheral Neuropathy		No	No		None			
+374		PATIENT		Graft harvest specimen							No					No				No			No	No	No	No	No	No	No	Never Used	Never Smoked				0	No	No	No	No	No		No			No			No	Yes	Myositis		Juvenile Dermatomyositis.		7.6
+384		PATIENT		Recalcitrant							No					Yes	Type II	6.3	6.5	No			No	No	No	No	No	No	No	Never Used	Never Smoked				0	Yes	No	No	No	No		No			No			No	No		None			
+N4		PATIENT		Fresh normal																																																		
+N5		PATIENT		Fresh normal																																																		
+N6		PATIENT		Fresh normal																																																		
+N7		PATIENT		Fresh normal																																																		
+																																																						
