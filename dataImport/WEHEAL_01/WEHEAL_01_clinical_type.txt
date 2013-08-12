@@ -1,10 +1,10 @@
 short_name	long_name	definition	semantic_group	rank	split_attribute
 Outcome	Outcome	Outcome	Baseline comorbidities	1	1
-Beta-Defensin III 	Beta-Defensin III 	Beta-Defensin III 	Baseline comorbidities		0
+Beta-Defensin III	Beta-Defensin III 	Beta-Defensin III 	Baseline comorbidities		0
 Cathelicidin	Cathelicidin	Cathelicidin	Baseline comorbidities		0
 Psoriasin	Psoriasin	Psoriasin	Baseline comorbidities		0
 Matriptase	Matriptase	Matriptase	Baseline comorbidities		0
-HAI-1 	HAI-1 	HAI-1 	Baseline comorbidities		0
+HAI-1	HAI-1 	HAI-1 	Baseline comorbidities		0
 Renal Disease	Renal Disease	Renal Disease	Baseline comorbidities		0
 Renal Transplant	Renal Transplant	Renal Transplant	Baseline comorbidities		0
 Dialysis Dependent	Dialysis Dependent	Dialysis Dependent	Baseline comorbidities		0
@@ -39,13 +39,13 @@ Polycythemia or myelodysplastic disease-Details	Polycythemia or myelodysplastic 
 Cancer diagnosis	Cancer diagnosis	Cancer diagnosis	Baseline comorbidities		0
 Location of primary	Location of primary	Location of primary	Baseline comorbidities		0
 Location of primary-Details	Location of primary-Details	Location of primary-Details	Baseline comorbidities		0
-Neurologic process 	Neurologic process 	Neurologic process 	Baseline comorbidities		0
+Neurologic process	Neurologic process 	Neurologic process 	Baseline comorbidities		0
 Neurologic Disease	Neurologic Disease	Neurologic Disease	Baseline comorbidities		0
-Neurologic disease other (specify): 	Neurologic disease other (specify): 	Neurologic disease other (specify): 	Baseline comorbidities		0
-Hidradenitis suppurativa? 	Hidradenitis suppurativa? 	Hidradenitis suppurativa? 	Baseline comorbidities		0
+Neurologic disease other (specify)	Neurologic disease other (specify): 	Neurologic disease other (specify): 	Baseline comorbidities		0
+Hidradenitis suppurativa	Hidradenitis suppurativa? 	Hidradenitis suppurativa? 	Baseline comorbidities		0
 Connective Tissue Disease (CTD)	Connective Tissue Disease (CTD)	Connective Tissue Disease (CTD)	Baseline comorbidities		0
 CTD Diagnosis	CTD Diagnosis	CTD Diagnosis	Baseline comorbidities		0
 Secondary CTD diagnosis	Secondary CTD diagnosis	Secondary CTD diagnosis	Baseline comorbidities		0
-Secondary CTD diagnosis-Notes 	Secondary CTD diagnosis-Notes 	Secondary CTD diagnosis-Notes 	Baseline comorbidities		0
+Secondary CTD diagnosis-Notes	Secondary CTD diagnosis-Notes 	Secondary CTD diagnosis-Notes 	Baseline comorbidities		0
 Scleroderma Type	Scleroderma Type	Scleroderma Type	Baseline comorbidities		0
 Duration of CTD	Duration of CTD	Duration of CTD	Baseline comorbidities		0
