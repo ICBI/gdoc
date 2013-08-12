@@ -1,5 +1,6 @@
 short_name	long_name	definition	semantic_group	rank	split_attribute
 Outcome	Outcome	Outcome	Baseline comorbidities	1	1
+RNAse_7	RNAse 7	RNAse 7			
 Beta-Defensin III	Beta-Defensin III 	Beta-Defensin III 	Baseline comorbidities		0
 Cathelicidin	Cathelicidin	Cathelicidin	Baseline comorbidities		0
 Psoriasin	Psoriasin	Psoriasin	Baseline comorbidities		0
