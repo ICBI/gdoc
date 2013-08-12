@@ -1,0 +1,51 @@
+short_name	long_name	definition	semantic_group	rank	split_attribute
+Outcome	Outcome	Outcome	Baseline comorbidities	1	1
+Beta-Defensin III 	Beta-Defensin III 	Beta-Defensin III 	Baseline comorbidities		0
+Cathelicidin	Cathelicidin	Cathelicidin	Baseline comorbidities		0
+Psoriasin	Psoriasin	Psoriasin	Baseline comorbidities		0
+Matriptase	Matriptase	Matriptase	Baseline comorbidities		0
+HAI-1 	HAI-1 	HAI-1 	Baseline comorbidities		0
+Renal Disease	Renal Disease	Renal Disease	Baseline comorbidities		0
+Renal Transplant	Renal Transplant	Renal Transplant	Baseline comorbidities		0
+Dialysis Dependent	Dialysis Dependent	Dialysis Dependent	Baseline comorbidities		0
+Glomerular Filtration Rate (GFR)	Glomerular Filtration Rate (GFR)	Glomerular Filtration Rate (GFR)	Baseline comorbidities		0
+Dialysis Type	Dialysis Type	Dialysis Type	Baseline comorbidities		0
+Diabetes	Diabetes	Diabetes	Baseline comorbidities		0
+Diabetes Type	Diabetes Type	Diabetes Type	Baseline comorbidities		0
+Duration of Diabetes (years)	Duration of Diabetes (years)	Duration of Diabetes (years)	Baseline comorbidities		0
+Hemoglobin A1c	Hemoglobin A1c	Hemoglobin A1c	Baseline comorbidities		0
+Hepatitis C	Hepatitis C	Hepatitis C	Baseline comorbidities		0
+Hepatitis C duration (years)	Hepatitis C duration (years)	Hepatitis C duration (years)	Baseline comorbidities		0
+Ever treated for Hepatitis C	Ever treated for Hepatitis C	Ever treated for Hepatitis C	Baseline comorbidities		0
+Hepatitis B	Hepatitis B	Hepatitis B	Baseline comorbidities		0
+HIV positive	HIV positive	HIV positive	Baseline comorbidities		0
+Venous disease present	Venous disease present	Venous disease present	Baseline comorbidities		0
+Arterial disease present	Arterial disease present	Arterial disease present	Baseline comorbidities		0
+Lymphedema	Lymphedema	Lymphedema	Baseline comorbidities		0
+Prothrombotic state	Prothrombotic state	Prothrombotic state	Baseline comorbidities		0
+"Prior thrombosis (DVT, PE, or other)"	"Prior thrombosis (DVT, PE, or other)"	"Prior thrombosis (DVT, PE, or other)"	Baseline comorbidities		0
+Illicit drug use	Illicit drug use	Illicit drug use	Baseline comorbidities		0
+Smoking	Smoking	Smoking	Baseline comorbidities		0
+Smoking Duration (years)	Smoking Duration (years)	Smoking Duration (years)	Baseline comorbidities		0
+Time Since Cessation (years)	Time Since Cessation (years)	Time Since Cessation (years)	Baseline comorbidities		0
+Intensity (Packs Per Day)	Intensity (Packs Per Day)	Intensity (Packs Per Day)	Baseline comorbidities		0
+Number of alcoholic drinks per week	Number of alcoholic drinks per week	Number of alcoholic drinks per week	Baseline comorbidities		0
+HTN (Hypertension)	HTN (Hypertension)	HTN (Hypertension)	Baseline comorbidities		0
+Pulmonary Hypertension	Pulmonary Hypertension	Pulmonary Hypertension	Baseline comorbidities		0
+Coronary Artery Disease	Coronary Artery Disease	Coronary Artery Disease	Baseline comorbidities		0
+Sickle cell anemia	Sickle cell anemia	Sickle cell anemia	Baseline comorbidities		0
+Polycythemia or myelodysplastic disease	Polycythemia or myelodysplastic disease	Polycythemia or myelodysplastic disease	Baseline comorbidities		0
+Polycythemia or myelodysplastic disease-Details	Polycythemia or myelodysplastic disease-Details	Polycythemia or myelodysplastic disease-Details	Baseline comorbidities		0
+Cancer diagnosis	Cancer diagnosis	Cancer diagnosis	Baseline comorbidities		0
+Location of primary	Location of primary	Location of primary	Baseline comorbidities		0
+Location of primary-Details	Location of primary-Details	Location of primary-Details	Baseline comorbidities		0
+Neurologic process 	Neurologic process 	Neurologic process 	Baseline comorbidities		0
+Neurologic Disease	Neurologic Disease	Neurologic Disease	Baseline comorbidities		0
+Neurologic disease other (specify): 	Neurologic disease other (specify): 	Neurologic disease other (specify): 	Baseline comorbidities		0
+Hidradenitis suppurativa? 	Hidradenitis suppurativa? 	Hidradenitis suppurativa? 	Baseline comorbidities		0
+Connective Tissue Disease (CTD)	Connective Tissue Disease (CTD)	Connective Tissue Disease (CTD)	Baseline comorbidities		0
+CTD Diagnosis	CTD Diagnosis	CTD Diagnosis	Baseline comorbidities		0
+Secondary CTD diagnosis	Secondary CTD diagnosis	Secondary CTD diagnosis	Baseline comorbidities		0
+Secondary CTD diagnosis-Notes 	Secondary CTD diagnosis-Notes 	Secondary CTD diagnosis-Notes 	Baseline comorbidities		0
+Scleroderma Type	Scleroderma Type	Scleroderma Type	Baseline comorbidities		0
+Duration of CTD	Duration of CTD	Duration of CTD	Baseline comorbidities		0

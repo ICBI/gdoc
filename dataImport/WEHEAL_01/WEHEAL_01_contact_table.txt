@@ -1,0 +1,3 @@
+NETID	LAST_NAME	FIRST_NAME	SUFFIX	EMAIL	NOTES	TYPE
+VKS4	Shanmugam	Victoria	MD	VKS4@gunet.georgetown.edu	PI	PI
+dw670	Wang	Difei	PhD	dw670@georgetown.edu	POINT_OF_CONTACT	POINT_OF_CONTACT
