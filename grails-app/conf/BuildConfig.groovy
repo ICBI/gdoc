@@ -2,6 +2,17 @@
 grails.project.war.file = "target/${appName}.war"
 grails.war.resources = {stagingDir ->
 	delete(file: "$stagingDir/WEB-INF/lib/jbossall-client.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/com.springsource.org.apache.commons.lang-2.4.0.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/com.springsource.org.apache.commons.logging-1.0.4.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/org.springframework.aop-3.0.3.RELEASE.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/org.springframework.asm-3.0.3.RELEASE.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/org.springframework.beans-3.0.3.RELEASE.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/org.springframework.context-3.0.3.RELEASE.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/org.springframework.core-3.0.3.RELEASE.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/org.springframework.expression-3.0.3.RELEASE.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/org.springframework.security.core-3.0.4.RELEASE.jar")
+    delete(file: "$stagingDir/WEB-INF/lib/org.springframework.transaction-2.5.6.SEC01.jar")
 	delete(file: "$stagingDir/WEB-INF/lib/javax.jms.jar")
 	delete(file: "$stagingDir/WEB-INF/lib/commons-collections-2.1.1.jar")
 	delete(file: "$stagingDir/WEB-INF/lib/jboss-jca.jar")
