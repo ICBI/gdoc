@@ -31,7 +31,7 @@ environments {
 			password = "cure4cancer"
 			logSql = true
 		}
-		dataSource_lookup {
+		/*dataSource_lookup {
 			pooled = true
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
@@ -39,7 +39,7 @@ environments {
             logSql = true
             username = "root"
             password = "isis6095"
-		}
+		}*/
 	}
 
 	devserver {
