@@ -50,41 +50,41 @@ BreastDX-01-0071		PATIENT		50s year old with recent  diagnosed left breast carci
 BreastDX-01-0072		PATIENT		History of right mastectomy for cancer presents for her first 6 month follow up for calcifications in her left breast and a left breast nodule.	Specimen: Invasive carcinoma. Lymph nodes reactive but negative.	LEFT	NEGATIVE	NEGATIVE	NEGATIVE		POSITIVE HIGH_PROLIF (49% nucs)	38	26%	50			LEFT	5-Highly suggestive of malignancy	"The tumor exhibits extensive mucinous features, however high nuclear grade is not a characteristic finding in cases of mucinous carcinoma, and therefore, the tumor is best classified as invasive ductal carcinoma with mucinous features."	"Increasing pleiomorphic calcifications in the upper, outer quadrant left breast,Highly suggestive of malignancy"
 BreastDX-01-0073		PATIENT		Late 50's year old left nipple discharge and suspicious right breast mass								15	9%	50						"LEFT BREAST: There is minimal background enhancement. No foci of suspicious enhancement, masses, or areas of architectural distortion seen within the left breast. There is no skin thickening, nipple inversion, or left axillary lymphadenopathy present. No MRI correlate or explanation for the left nipple discharge.    RIGHT BREAST: There is minimal background enhancement. At 10 o'clock mid-depth, there is a suspiciously enhancing (Mixed with Type 2 and 3), irregular, spiculated mass seen, measuring 1.9 x 1.7 x 1.8 cm. This is highly suspicious for malignancy. (series 601 and 401 slice location 68-88; images are annotated on PACS, tumor is circled). No additional foci of suspicious enhancement  or areas of architectural distortion seen within the right breast. There is no skin thickening, nipple inversion, or right axillary lymphadenopathy present.   IMPRESSION:    1) Highly suspicious 2 cm right breast mass at 10 o'clock - as seen on Ultrasound. No MRI evidence of satellite lesions or lymphadenopathy.  2) No evidence of malignancy of the left breast. No MRI correlate for the left nipple discharge. Final disposition of the left nipple discharge has to be based on clinical assessment.  3) Incidental note is made of displaced Colon portions into the right hemithorax. Further imaging (dedicated CT or MRI)  needed for complete assessment, if this in not clinically known already."
 BreastDX-01-0074		PATIENT				RIGHT	STRONG_POSITIVE	STRONG_POSITIVE	POSITIVE (2+)		INTERMED_PROLIF	12	8%	40		III	"A 10% INTRADUCTAL CARCINOMA COMPONENT, NUCLEAR GRADE 3 OF 3, IS ALSO PRESENT."		Specimen is serially sectioned revealing a mass along the localization wire measuring 2.1 x 1 x 1 cm.  The adjacent area is hemorrhagic and firm.. Her-2/neu FISH Result Ratio of Her-2neu/  Chromosome 17 signals  Amplification Present > 2.2  Borderline 1.8 - 2.2  Unamplified (negative) < 1.8	"Diagnostic mammogram: The right breast is predominantly fatty.  As seen on the prior screening mammogram, there is a circumscribed, round 9 mm nodule at approximately 8 o'clock, with a punctate calcification. Otherwise, no suspicious dominant or spiculated masses, suspicious clustered microcalcifications or areas of unexplained architectural distortion are seen."
-BreastDx-01-0048																				
-BreastDx-01-0063																				
-BreastDx-01-0064																				
-BreastDx-01-0076																				
-BreastDx-01-0086																				
-BreastDx-01-0027																				
-BreastDx-01-0051																				
-BreastDx-01-0053																				
-BreastDx-01-0075																				
-BreastDx-01-0082																				
-BreastDx-01-0087																				
-BreastDx-01-0088																				
-BreastDx-01-0089																				
-BreastDx-01-0047																				
-BreastDx-01-0049																				
-BreastDx-01-0050																				
-BreastDx-01-0057																				
-BreastDx-01-0060																				
-BreastDx-01-0077																				
-BreastDx-01-0042																				
-BreastDx-01-0044																				
-BreastDx-01-0058																				
-BreastDx-01-0059																				
-BreastDx-01-0083																				
-BreastDx-01-0054																				
-BreastDx-01-0056																				
-BreastDx-01-0079																				
-BreastDx-01-0081																				
-BreastDx-01-0043																				
-BreastDx-01-0061																				
-BreastDx-01-0078																				
-BreastDx-01-0085																				
-BreastDx-01-0045																				
-BreastDx-01-0052																				
-BreastDx-01-0055																				
-BreastDx-01-0062																				
-BreastDx-01-0080																				
-BreastDx-01-0084																				
+BreastDx-01-0048		PATIENT																		
+BreastDx-01-0063		PATIENT																		
+BreastDx-01-0064		PATIENT																		
+BreastDx-01-0076		PATIENT																		
+BreastDx-01-0086		PATIENT																		
+BreastDx-01-0027		PATIENT																		
+BreastDx-01-0051		PATIENT																		
+BreastDx-01-0053		PATIENT																		
+BreastDx-01-0075		PATIENT																		
+BreastDx-01-0082		PATIENT																		
+BreastDx-01-0087		PATIENT																		
+BreastDx-01-0088		PATIENT																		
+BreastDx-01-0089		PATIENT																		
+BreastDx-01-0047		PATIENT																		
+BreastDx-01-0049		PATIENT																		
+BreastDx-01-0050		PATIENT																		
+BreastDx-01-0057		PATIENT																		
+BreastDx-01-0060		PATIENT																		
+BreastDx-01-0077		PATIENT																		
+BreastDx-01-0042		PATIENT																		
+BreastDx-01-0044		PATIENT																		
+BreastDx-01-0058		PATIENT																		
+BreastDx-01-0059		PATIENT																		
+BreastDx-01-0083		PATIENT																		
+BreastDx-01-0054		PATIENT																		
+BreastDx-01-0056		PATIENT																		
+BreastDx-01-0079		PATIENT																		
+BreastDx-01-0081		PATIENT																		
+BreastDx-01-0043		PATIENT																		
+BreastDx-01-0061		PATIENT																		
+BreastDx-01-0078		PATIENT																		
+BreastDx-01-0085		PATIENT																		
+BreastDx-01-0045		PATIENT																		
+BreastDx-01-0052		PATIENT																		
+BreastDx-01-0055		PATIENT																		
+BreastDx-01-0062		PATIENT																		
+BreastDx-01-0080		PATIENT																		
+BreastDx-01-0084		PATIENT																		
