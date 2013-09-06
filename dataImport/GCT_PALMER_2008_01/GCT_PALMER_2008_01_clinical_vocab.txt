@@ -1,7 +1,7 @@
 TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
-HIST_TUMOR_TYPE	Seminoma (Dysgerminoma)	Seminoma (Dysgerminoma)		"It is a germ cell tumor of the testis or, more rarely, the mediastinum or other extra-gonadal locations; In the ovary, the tumor is called a dysgerminoma"
-HIST_TUMOR_TYPE	Seminoma (Germinoma)	Seminoma (Germinoma)		"It is a germ cell tumor of the testis or, more rarely, the mediastinum or other extra-gonadal locations; in non-gonadal sites, particularly the central nervous system, it is called a germinoma"
-HIST_TUMOR_TYPE	Yolk Sac Tumor (YST)	Yolk Sac Tumor (YST)		"Also known as Endodermal sinus tumor (EST) is a member of the germ cell tumor group of cancers. It is the most common testicular tumor in children under 3, and is also known as infantile embryonal carcinoma."
+HIST_TUMOR_TYPE	Seminoma (Dysgerminoma)	Seminoma (Dysgerminoma)		It is a germ cell tumor of the testis or, more rarely, the mediastinum or other extra-gonadal locations; In the ovary, the tumor is called a dysgerminoma
+HIST_TUMOR_TYPE	Seminoma (Germinoma)	Seminoma (Germinoma)		It is a germ cell tumor of the testis or, more rarely, the mediastinum or other extra-gonadal locations; in non-gonadal sites, particularly the central nervous system, it is called a germinoma
+HIST_TUMOR_TYPE	Yolk Sac Tumor (YST)	Yolk Sac Tumor (YST)		Also known as Endodermal sinus tumor (EST) is a member of the germ cell tumor group of cancers. It is the most common testicular tumor in children under 3, and is also known as infantile embryonal carcinoma.
 TUMOR_COMPOSITION	Pure	Pure		The tumor is pure
 TUMOR_COMPOSITION	Within teratoma	Within teratoma		The tumor is present with teratoma
 DISEASE_LOCALIZATION	Ovary	Ovary		The locale of the tumor is in ovary
