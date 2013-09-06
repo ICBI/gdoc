@@ -1,0 +1,18 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+HIST_TUMOR_TYPE	Seminoma (Dysgerminoma)	Seminoma (Dysgerminoma)		"It is a germ cell tumor of the testis or, more rarely, the mediastinum or other extra-gonadal locations; In the ovary, the tumor is called a dysgerminoma"
+HIST_TUMOR_TYPE	Seminoma (Germinoma)	Seminoma (Germinoma)		"It is a germ cell tumor of the testis or, more rarely, the mediastinum or other extra-gonadal locations; in non-gonadal sites, particularly the central nervous system, it is called a germinoma"
+HIST_TUMOR_TYPE	Yolk Sac Tumor (YST)	Yolk Sac Tumor (YST)		"Also known as Endodermal sinus tumor (EST) is a member of the germ cell tumor group of cancers. It is the most common testicular tumor in children under 3, and is also known as infantile embryonal carcinoma."
+TUMOR_COMPOSITION	Pure	Pure		The tumor is pure
+TUMOR_COMPOSITION	Within teratoma	Within teratoma		The tumor is present with teratoma
+DISEASE_LOCALIZATION	Ovary	Ovary		The locale of the tumor is in ovary
+DISEASE_LOCALIZATION	Brain	Brain		The locale of the tumor is in brain
+DISEASE_LOCALIZATION	Testis	Testis		The locale of the tumor is in testis
+DISEASE_LOCALIZATION	Sacrococcygeal teratoma	Sacrococcygeal teratoma		Sacrococcygeal teratoma (SCT) is a teratoma (a kind of tumor) located at the base of the coccyx (tailbone)
+GENDER	MALE	MALE		An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
+PTNM_T	T1	T1		Stage 1 of tumor
+PTNM_T	T3	T3		Stage 3 of tumor
+PTNM_T	T2	T2		Stage 2 of tumor
+PTNM_T	T4	T4		Stage 4 of tumor
+GENOMIC_12P_GAIN	YES	YES		There was a 12p gain
+GENOMIC_12P_GAIN	NO	NO		There was no 12p gain

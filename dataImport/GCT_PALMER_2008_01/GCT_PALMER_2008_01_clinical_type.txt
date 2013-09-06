@@ -1,0 +1,8 @@
+short_name	long_name	definition	semantic_group	rank	split_attribute
+HIST_TUMOR_TYPE	Histopathological Tumor type	Histopathological Tumor type	Tumor details		0
+TUMOR_COMPOSITION	Tumor composition	It defines whether the tumor is pure or comes with additional tumors such as teratoma	Tumor details		0
+DISEASE_LOCALIZATION	The locale of the disease/tumor	The locale of the disease/tumor	Tumor details		0
+AGE	Patient's  Age	Age of patient at diagnosis or start of case study	Demographics	1	0
+GENDER	Gender	The classification of the sex or gender role of the patient.	Demographics	1	2
+PTNM_T	Primary Tumor Size (pTNM-T)	Primary Tumor Size in pTNM Classification	Tumor details		0
+GENOMIC_12P_GAIN	Development of an extra chromosome arm 12p determined by CGH	Development of an extra chromosome arm 12p determined by CGH	Cell or Molecular Dysfunction		
