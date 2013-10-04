@@ -1,0 +1,27 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+GENDER	MALE	MALE		An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
+MUSCLE_TYPE	Quadriceps	Quadriceps		Large muscle group that includes the four prevailing muscles on the front of the thigh
+DYSTROPHIN_PROTEIN_EXPRESSION	Absent	Absent		Dystrophin protein expression is absent.
+DYSTROPHIN_PROTEIN_EXPRESSION	Normal	Normal		Dystrophin protein expression is present.
+DYSTROPHIN_MRNA_EXPRESSION_NONSENSE_MEDIATED_DECAY_STATUS	Normal	Normal		Nonsense mediated decay status is normal.
+DYSTROPHIN_MRNA_EXPRESSION_NONSENSE_MEDIATED_DECAY_STATUS	Reduced	Reduced		Nonsense mediated decay status is reduced.
+DYSTROPHIN_MRNA_EXPRESSION_NONSENSE_MEDIATED_DECAY_STATUS	Weakly reduced	Weakly reduced		Nonsense mediated decay status is weakly reduced.
+GENETIC_MUTATIONS	3-13 deletion	3-13 deletion		Deletion of 3-13 bp.
+GENETIC_MUTATIONS	12 deletion (1bp)	12 deletion (1bp)		Deletion of 12th bp
+GENETIC_MUTATIONS	50-54 deletion	50-54 deletion		Deletion of 50-54 bp
+GENETIC_MUTATIONS	No deletion	No deletion		No deletion.
+GENETIC_MUTATIONS	47-51 deletion	47-51 deletion		Deletion of 47-51
+GENETIC_MUTATIONS	6 deletion	6 deletion		Deletion of 6th bp
+GENETIC_MUTATIONS	46-52 deletion	46-52 deletion		Deletion of 46-52 bp.
+GENETIC_MUTATIONS	70 deletion (1bp)	70 deletion (1bp)		Deletion of 70th bp.
+GENETIC_MUTATIONS	51 deletion	51 deletion		Deletion of 51st bp.
+GENETIC_MUTATIONS	45 deletion	45 deletion		Deletion of 45th bp. 
+GENETIC_MUTATIONS	48-52 deletion	48-52 deletion		Deletion of 48-52.
+GENETIC_MUTATIONS	45-52 deletion	45-52 deletion		Deletion of 45-52 bp.
+GENETIC_MUTATIONS	47-52 deletion	47-52 deletion		Deletion of 47-52 bp.
+GENETIC_MUTATIONS	49-50 deletion	49-50 deletion		Deletion of 49-50 bp.
+GENETIC_MUTATIONS	65-67 deletion	65-67 deletion		Deletion of 65-67 bp.
+GENETIC_MUTATIONS	44 deletion	44 deletion		Deletion of 44th bp.
+DISEASE_STATUS	Duchenne Muscular Dystrophy	DMD (Duchenne Muscular Dystrophy)	DMD (Duchenne Muscular Dystrophy)	The patient's outcome was Duchenne Muscular Dystrophy skeletal muscle
+DISEASE_STATUS	Normal skeletal muscle	Normal	Normal	The patient's outcome was Normal skeletal muscle

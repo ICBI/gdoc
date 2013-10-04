@@ -1,0 +1,37 @@
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	GENDER	MUSCLE_TYPE	AGE_MONTHS	DYSTROPHIN_PROTEIN_EXPRESSION	DYSTROPHIN_MRNA_EXPRESSION_NONSENSE_MEDIATED_DECAY_STATUS	GENETIC_MUTATIONS	DISEASE_STATUS
+DMD1		PATIENT		MALE	Quadriceps	1.5	Absent	Normal	3-13 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD2		PATIENT		MALE	Quadriceps	2.5	Absent	Reduced	12 deletion (1bp)	DMD (Duchenne Muscular Dystrophy)
+DMD3		PATIENT		MALE	Quadriceps	3	Absent	Reduced	50-54 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD4		PATIENT		MALE	Quadriceps	5	Absent	Reduced	No deletion	DMD (Duchenne Muscular Dystrophy)
+DMD5		PATIENT		MALE	Quadriceps	5	Absent	Reduced	47-51 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD6		PATIENT		MALE	Quadriceps	6	Absent	Weakly reduced	6 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD7		PATIENT		MALE	Quadriceps	6	Absent	Reduced	46-52 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD8		PATIENT		MALE	Quadriceps	7	Absent	Reduced	No deletion	DMD (Duchenne Muscular Dystrophy)
+DMD9		PATIENT		MALE	Quadriceps	8	Absent	Reduced	70 deletion (1bp)	DMD (Duchenne Muscular Dystrophy)
+DMD10		PATIENT		MALE	Quadriceps	8	Absent	Reduced	51 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD11		PATIENT		MALE	Quadriceps	11	Absent	Normal	No deletion	DMD (Duchenne Muscular Dystrophy)
+DMD12		PATIENT		MALE	Quadriceps	12	Absent	Reduced	No deletion	DMD (Duchenne Muscular Dystrophy)
+DMD13		PATIENT		MALE	Quadriceps	12	Absent	Reduced	45 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD14		PATIENT		MALE	Quadriceps	14	Absent	Reduced	No deletion	DMD (Duchenne Muscular Dystrophy)
+DMD15		PATIENT		MALE	Quadriceps	14	Absent	Reduced	No deletion	DMD (Duchenne Muscular Dystrophy)
+DMD16		PATIENT		MALE	Quadriceps	15	Absent	Reduced	48-52 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD17		PATIENT		MALE	Quadriceps	20	Absent	Reduced	45-52 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD18		PATIENT		MALE	Quadriceps	20	Absent	Reduced	47-52 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD19		PATIENT		MALE	Quadriceps	22	Absent	Reduced	49-50 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD20		PATIENT		MALE	Quadriceps	28	Absent	Reduced	49-50 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD21		PATIENT		MALE	Quadriceps	47	Absent	Reduced	65-67 deletion	DMD (Duchenne Muscular Dystrophy)
+DMD22		PATIENT		MALE	Quadriceps	61	Absent	Reduced	44 deletion	DMD (Duchenne Muscular Dystrophy)
+C1		PATIENT		MALE	Quadriceps	5	Normal	Normal		Normal
+C2		PATIENT		FEMALE	Quadriceps	6	Normal	Normal		Normal
+C3		PATIENT		FEMALE	Quadriceps	6	Normal	Normal		Normal
+C4		PATIENT		MALE	Quadriceps	6	Normal	Normal		Normal
+C5		PATIENT		MALE	Quadriceps	6	Normal	Normal		Normal
+C6		PATIENT		MALE	Quadriceps	7	Normal	Normal		Normal
+C7		PATIENT		FEMALE	Quadriceps	8	Normal	Normal		Normal
+C8		PATIENT		MALE	Quadriceps	11	Normal	Normal		Normal
+C9		PATIENT		MALE	Quadriceps	18	Normal	Normal		Normal
+C10		PATIENT		MALE	Quadriceps	33	Normal	Normal		Normal
+C11		PATIENT		MALE	Quadriceps	36	Normal	Normal		Normal
+C12		PATIENT		MALE	Quadriceps	50	Normal	Normal		Normal
+C13		PATIENT		MALE	Quadriceps	60	Normal	Normal		Normal
+C14		PATIENT		MALE	Quadriceps	108	Normal	Normal		Normal

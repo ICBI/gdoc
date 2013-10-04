@@ -1,0 +1,7 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+GENDER	MALE	MALE		An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
+DISEASE_STATUS	Control	Control		Status of the disease is control.
+DISEASE_STATUS	Incipient	Incipient		Status of the disease is incipient.
+DISEASE_STATUS	Moderate	Moderate		Status of the disease is moderate.
+DISEASE_STATUS	Severe	Severe		Status of the disease is severe.
