@@ -4,5 +4,5 @@ MUSCLE_TYPE	Type of muscle	Type of muscle from which biopsy was taken	Biospecime
 AGE_MONTHS	Patient's age	Age of the patient at diagnosis or start of case study or at biopsy.	Demographics		0
 DYSTROPHIN_PROTEIN_EXPRESSION	Protein expression of Dystrophin	Levels of dystrophin protein expression in patient	Transcriptional profiling		0
 DYSTROPHIN_MRNA_EXPRESSION_NONSENSE_MEDIATED_DECAY_STATUS	mRNA expression of Dystrophin	mRNA expression of Dystrophin in the Nonsense Mediated Decay (NMD) pathway	Transcriptional profiling		0
-GENETIC_MUTATIONS	Genetics mutations	Genetic mutations from the reference sequence posted at the Leiden Muscular Dystrophy Database	Mutation details		0
+GENETIC_MUTATIONS	Genetic mutations	Genetic mutations from the reference sequence posted at the Leiden Muscular Dystrophy Database	Mutation details		0
 DISEASE_STATUS	Status of the disease	Status of the disease	Disease details	1	1
