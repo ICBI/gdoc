@@ -1,28 +1,28 @@
 SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	HIST_TUMOR_TYPE	TUMOR_COMPOSITION	DISEASE_LOCALIZATION	AGE	GENDER	PTNM_T	GENOMIC_12P_GAIN
-1		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	10	FEMALE	T1	NO
-2		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	12	FEMALE	T1	YES
-3		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	12	FEMALE	T1	YES
-4		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	12	FEMALE	T1	NO
-5		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	13	FEMALE	T1	YES
-6		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	13	FEMALE	T3	YES
-7		PATIENT		Seminoma (Germinoma)	Pure	Brain	10	FEMALE	T1	NO
-8		PATIENT		Seminoma (Germinoma)	Pure	Brain	16	MALE	T1	YES
-9		PATIENT		Seminoma (Dysgerminoma)	Within teratoma	Ovary	12	FEMALE	T2	NO
-10		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	0	MALE	T1	NO
-11		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	0	MALE	T1	NO
-12		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	1	MALE	T1	NO
-13		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	1	MALE	T1	YES
-14		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	1	MALE	T1	NO
-15		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	2	MALE	T1	YES
-16		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	4	MALE	T1	YES
-17		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	0	FEMALE	T2	NO
-18		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	9	FEMALE	T2	NO
-19		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	12	FEMALE	T1	NO
-20		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	12	FEMALE	T1	NO
-21		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	13	FEMALE	T2	YES
-22		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	13	FEMALE	T3	NO
-23		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	14	FEMALE	T1	YES
-24		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	14	FEMALE	T4	NO
-25		PATIENT		Yolk Sac Tumor (YST)	Within teratoma	Sacrococcygeal teratoma	2	FEMALE	T4	YES
-26		PATIENT		Yolk Sac Tumor (YST)	Within teratoma	Sacrococcygeal teratoma	3	FEMALE	T4	NO
-27		PATIENT		Yolk Sac Tumor (YST)	Within teratoma	Brain	12	MALE	T1	YES
+GSM267499		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	10	FEMALE	T1	NO
+GSM267500		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	12	FEMALE	T1	YES
+GSM267501		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	12	FEMALE	T1	YES
+GSM267502		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	12	FEMALE	T1	NO
+GSM267503		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	13	FEMALE	T1	YES
+GSM267504		PATIENT		Seminoma (Dysgerminoma)	Pure	Ovary	13	FEMALE	T3	YES
+GSM267505		PATIENT		Seminoma (Germinoma)	Pure	Brain	10	FEMALE	T1	NO
+GSM267506		PATIENT		Seminoma (Germinoma)	Pure	Brain	16	MALE	T1	YES
+GSM267507		PATIENT		Seminoma (Dysgerminoma)	Within teratoma	Ovary	12	FEMALE	T2	NO
+GSM267508		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	0	MALE	T1	NO
+GSM267509		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	0	MALE	T1	NO
+GSM267510		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	1	MALE	T1	NO
+GSM267511		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	1	MALE	T1	YES
+GSM267512		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	1	MALE	T1	NO
+GSM267513		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	4	MALE	T1	YES
+GSM267514		PATIENT		Yolk Sac Tumor (YST)	Pure	Testis	2	MALE	T2	YES
+GSM267515		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	0	FEMALE	T2	NO
+GSM267516		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	9	FEMALE	T2	NO
+GSM267517		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	12	FEMALE	T1	NO
+GSM267518		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	12	FEMALE	T1	NO
+GSM267519		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	13	FEMALE	T2	YES
+GSM267520		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	13	FEMALE	T3	NO
+GSM267521		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	14	FEMALE	T1	YES
+GSM267522		PATIENT		Yolk Sac Tumor (YST)	Pure	Ovary	14	FEMALE	T4	NO
+GSM267523		PATIENT		Yolk Sac Tumor (YST)	Within teratoma	Sacrococcygeal teratoma	2	FEMALE	T4	YES
+GSM267524		PATIENT		Yolk Sac Tumor (YST)	Within teratoma	Sacrococcygeal teratoma	3	FEMALE	T5	NO
+GSM267525		PATIENT		Yolk Sac Tumor (YST)	Within teratoma	Brain	12	MALE	T1	YES
