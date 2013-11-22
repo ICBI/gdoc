@@ -1,0 +1,6 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+SAMPLE_LOCATION	Bone marrow	Bone marrow		Location of sample tissue is bone marrow.
+SAMPLE_LOCATION	Lymphoma tissue	Lymphoma tissue		Location of sample tissue is lymphoma tissue.
+DISEASE_TYPE	T-cell LL	T-cell LL		Disease is T-cell lymphoblastic lymphoma.
+DISEASE_TYPE	T-cell ALL	T-cell ALL		Disease is T-cell acute lymphoblastic leukemia.
+DISEASE_TYPE	B-cell ALL	B-cell ALL		Disease is B-cell acute lymphoblastic leukemia.
