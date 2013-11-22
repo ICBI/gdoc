@@ -1,0 +1,109 @@
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	SAMPLE_LOCATION	DISEASE_TYPE	TUMOR_SUBTYPE
+ALL_ 775		PATIENT			Primary ALL	
+ALL_162		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_191		PATIENT		Bone marrow	B-cell Precursor ALL	11q23/MLL
+ALL_188		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_194		PATIENT		Peripheral blood	B-cell Precursor ALL	undefined
+ALL_168		PATIENT		Peripheral blood	B-cell Precursor ALL	t(9;22)
+ALL_165		PATIENT		Peripheral blood	T-cell ALL	T-ALL
+ALL_198		PATIENT		Peripheral blood	B-cell Precursor ALL	t(12;21)
+ALL_175		PATIENT		Bone marrow	B-cell Precursor ALL	dic(9;20)
+ALL_169		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_180		PATIENT		Bone marrow	B-cell Precursor ALL	11q23/MLL
+ALL_195		PATIENT		Bone marrow	B-cell Precursor ALL	t(1;19)
+ALL_187		PATIENT		Bone marrow	B-cell Precursor ALL	t(9;22)
+ALL_233		PATIENT		Peripheral blood	T-cell ALL	T-ALL
+ALL_ 776		PATIENT			Primary ALL	
+ALL_212		PATIENT		Peripheral blood	T-cell ALL	T-ALL
+ALL_234		PATIENT		Peripheral blood	B-cell Precursor ALL	undefined
+ALL_285		PATIENT		Peripheral blood	T-cell ALL	T-ALL
+ALL_283		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_266		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_250		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_244		PATIENT		Bone marrow	B-cell Precursor ALL	
+ALL_253		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_280		PATIENT		Peripheral blood	B-cell Precursor ALL	11q23/MLL
+ALL_269		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_258		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_331		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_311		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_294		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_293		PATIENT		Bone marrow	B-cell Precursor ALL	dic(9;20)
+ALL_292		PATIENT		Bone marrow	B-cell Precursor ALL	undefined
+ALL_323		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_309		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_357		PATIENT		Bone marrow	B-cell Precursor ALL	dic(9;20)
+ALL_325		PATIENT		Bone marrow	B-cell Precursor ALL	
+ALL_359		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_426		PATIENT		Bone marrow	B-cell Precursor ALL	t(1;19)
+ALL_369		PATIENT		Bone marrow	B-cell Precursor ALL	t(9;22)
+ALL_374		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_379		PATIENT		Bone marrow	B-cell Precursor ALL	dic(9;20)
+ALL_428		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_450		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_375		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_382		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_414		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_385		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_415		PATIENT		Bone marrow	B-cell Precursor ALL	undefined
+ALL_399		PATIENT		Bone marrow	B-cell Precursor ALL	
+ALL_419		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_402		PATIENT		Bone marrow	B-cell Precursor ALL	t(9;22)
+ALL_457		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_458		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_461		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_459		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_519		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_467		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_466		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_506		PATIENT		Bone marrow	B-cell Precursor ALL	t(1;19)
+ALL_530		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_472		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_488		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_476		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_484		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_477		PATIENT		Bone marrow	B-cell Precursor ALL	
+ALL_478		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_483		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_479		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_535		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ ALL patient ALL_522		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_492		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_494		PATIENT		Bone marrow	B-cell Precursor ALL	dic(9;20)
+ALL_497		PATIENT		Bone marrow	B-cell Precursor ALL	
+ALL_499		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_541		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_537		PATIENT		Bone marrow	B-cell Precursor ALL	dic(9;20)
+ALL_581		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_548		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_552		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_560		PATIENT		Bone marrow	B-cell Precursor ALL	t(1;19)
+ALL_ 777		PATIENT			Primary ALL	
+ALL_ 778		PATIENT			Primary ALL	
+ALL_ 779		PATIENT			Primary ALL	
+ALL_ 780		PATIENT			Primary ALL	
+ALL_5		PATIENT		Bone marrow	B-cell Precursor ALL	11q23/MLL
+ALL_6		PATIENT		Peripheral blood	T-cell ALL	T-ALL
+ALL_1		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_7		PATIENT		Bone marrow	B-cell Precursor ALL	t(9;22)
+ALL_16		PATIENT		Peripheral blood	B-cell Precursor ALL	11q23/MLL
+ALL_ 781		PATIENT			Primary ALL	
+ALL_ 782		PATIENT			Primary ALL	
+ALL_10		PATIENT		Bone marrow	Primary ALL	HeH
+ALL_27		PATIENT		Peripheral blood	Primary ALL	undefined
+ALL_20		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_ 783		PATIENT			Primary ALL	
+ALL_38		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_43		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
+ALL_42		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_88		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_47		PATIENT		Bone marrow	B-cell Precursor ALL	undefined
+ALL_50		PATIENT		Bone marrow	B-cell Precursor ALL	t(1;19)
+ALL_72		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_143		PATIENT		Peripheral blood	B-cell Precursor ALL	t(12;21)
+ALL_149		PATIENT		Bone marrow	B-cell Precursor ALL	t(12;21)
+ALL_144		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL_145		PATIENT		Peripheral blood	T-cell ALL	T-ALL
+ALL_140		PATIENT		Bone marrow	B-cell Precursor ALL	undefined
+ALL_130		PATIENT		Peripheral blood	B-cell Precursor ALL	
+ALL_148		PATIENT		Bone marrow	B-cell Precursor ALL	t(1;19)
