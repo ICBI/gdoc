@@ -1,0 +1,14 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+SAMPLE_LOCATION	Bone marrow	Bone marrow		Location of sample tissue is bone marrow.
+SAMPLE_LOCATION	Peripheral blood	Peripheral blood		Location of sample tissue is peripheral blood.
+DISEASE_TYPE	Primary ALL	Primary ALL		Type of disease is primary acute lymphoblastic leukemia
+DISEASE_TYPE	B-cell Precursor ALL	B-cell Precursor ALL		Type of disease is B-cell percursor acute lymphoblastic leukemia
+DISEASE_TYPE	T-cell ALL	T-cell ALL		Type of disease is T-cell percursor acute lymphoblastic leukemia
+TUMOR_SUBTYPE	HeH	HeH		HeH
+TUMOR_SUBTYPE	11q23/MLL	11q23/MLL		11q23/MLL
+TUMOR_SUBTYPE	t(12;21)	t(12;21)		t(12;21)
+TUMOR_SUBTYPE	undefined	undefined		undefined
+TUMOR_SUBTYPE	t(9;22)	t(9;22)		t(9;22)
+TUMOR_SUBTYPE	T-ALL	T-ALL		T-ALL
+TUMOR_SUBTYPE	dic(9;20)	dic(9;20)		dic(9;20)
+TUMOR_SUBTYPE	t(1;19)	t(1;19)		t(1;19)
