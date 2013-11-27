@@ -1,0 +1,24 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+RACE	CAUCASIAN	CAUCASIAN		CAUCASIAN
+RACE	AFRICAN-AMERICAN	AFRICAN-AMERICAN		AFRICAN-AMERICAN
+GENDER	MALE	MALE	C46109	An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE	C46110	An individual who reports belonging to the cultural gender role distinction of female.
+SOURCE	Fibroblast from indivual without keloid scar	Fibroblast from indivual without keloid scar		Fibroblast from indivual without keloid scar
+SOURCE	Keratinocyte from individual without keloid scar	Keratinocyte from individual without keloid scar		Keratinocyte from individual without keloid scar
+SOURCE	Fibroblast from keloid scar sample	Fibroblast from keloid scar sample		Fibroblast from keloid scar sample
+SOURCE	Fibroblast from non-lesional sample in individual with keloid scar	Fibroblast from non-lesional sample in individual with keloid scar		Fibroblast from non-lesional sample in individual with keloid scar
+SOURCE	Keratinocyte from non-lesion sample from individual with keloid scar	Keratinocyte from non-lesion sample from individual with keloid scar		Keratinocyte from non-lesion sample from individual with keloid scar
+SOURCE	Keratinocyte from keloid scar	Keratinocyte from keloid scar		Keratinocyte from keloid scar
+CELL_TYPE	Control fibroblast	Control fibroblast		Control fibroblast
+CELL_TYPE	Control keratinocyte	Control keratinocyte		Control keratinocyte
+CELL_TYPE	Keloid fibroblast	Keloid fibroblast		Keloid fibroblast
+CELL_TYPE	Non-lesional fibroblast	Non-lesional fibroblast		Non-lesional fibroblast
+CELL_TYPE	Non-lesional keratinocyte	Non-lesional keratinocyte		Non-lesional keratinocyte
+CELL_TYPE	Keloid keratinocyte	Keloid keratinocyte		Keloid keratinocyte
+SAMPLE_LOCATION	Breast	Breast		Breast
+SAMPLE_LOCATION	Ear	Ear		Ear
+SAMPLE_LOCATION	Neck	Neck		Neck
+SAMPLE_LOCATION	Torso	Torso		Torso
+SAMPLE_LOCATION	Face	Face		Face
+SAMPLE_LOCATION	Chin	Chin		Chin
+SAMPLE_LOCATION	Face-cheek	Face-cheek		Face-cheek

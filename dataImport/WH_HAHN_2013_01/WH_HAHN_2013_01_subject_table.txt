@@ -1,0 +1,33 @@
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	SOURCE	CELL_TYPE	GENDER	RACE	AGE	SAMPLE_LOCATION
+GSM1081608		PATIENT		Fibroblast from indivual without keloid scar	Control fibroblast	FEMALE	AFRICAN-AMERICAN	16	Breast
+GSM1081611		PATIENT		Keratinocyte from individual without keloid scar	Control keratinocyte	FEMALE	AFRICAN-AMERICAN	16	Breast
+GSM1081582		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	MALE	CAUCASIAN	10	Ear
+GSM1081600		PATIENT		Fibroblast from non-lesional sample in individual with keloid scar	Non-lesional fibroblast	FEMALE	AFRICAN-AMERICAN	20	Neck
+GSM1081604		PATIENT		Keratinocyte from non-lesion sample from individual with keloid scar	Non-lesional keratinocyte	FEMALE	AFRICAN-AMERICAN	20	Neck
+GSM1081609		PATIENT		Fibroblast from indivual without keloid scar	Control fibroblast	MALE	CAUCASIAN	23	Torso
+GSM1081612		PATIENT		Keratinocyte from individual without keloid scar	Control keratinocyte	MALE	CAUCASIAN	23	Torso
+GSM1081583		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	MALE	CAUCASIAN	17	Ear
+GSM1081601		PATIENT		Fibroblast from non-lesional sample in individual with keloid scar	Non-lesional fibroblast	MALE	AFRICAN-AMERICAN	15	Face
+GSM1081605		PATIENT		Keratinocyte from non-lesion sample from individual with keloid scar	Non-lesional keratinocyte	MALE	AFRICAN-AMERICAN	15	Face
+GSM1081610		PATIENT		Fibroblast from indivual without keloid scar	Control fibroblast	FEMALE	AFRICAN-AMERICAN	17	Breast
+GSM1081613		PATIENT		Keratinocyte from individual without keloid scar	Control keratinocyte	FEMALE	AFRICAN-AMERICAN	17	Breast
+GSM1081584		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	MALE	CAUCASIAN	8	Ear
+GSM1081602		PATIENT		Fibroblast from non-lesional sample in individual with keloid scar	Non-lesional fibroblast	MALE	CAUCASIAN	10	Ear
+GSM1081606		PATIENT		Keratinocyte from non-lesion sample from individual with keloid scar	Non-lesional keratinocyte	MALE	CAUCASIAN	10	Ear
+GSM1081585		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	MALE	CAUCASIAN	11	Chin
+GSM1081603		PATIENT		Fibroblast from non-lesional sample in individual with keloid scar	Non-lesional fibroblast	MALE	CAUCASIAN	11	Chin
+GSM1081607		PATIENT		Keratinocyte from non-lesion sample from individual with keloid scar	Non-lesional keratinocyte	MALE	CAUCASIAN	11	Chin
+GSM1081586		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	MALE	AFRICAN-AMERICAN	10	Face-cheek
+GSM1081587		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	MALE	AFRICAN-AMERICAN	10	Ear
+GSM1081588		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	FEMALE	AFRICAN-AMERICAN	20	Neck
+GSM1081589		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	FEMALE	AFRICAN-AMERICAN	17	Neck
+GSM1081590		PATIENT		Fibroblast from keloid scar sample	Keloid fibroblast	MALE	AFRICAN-AMERICAN	15	Face
+GSM1081591		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	MALE	CAUCASIAN	10	Ear
+GSM1081592		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	MALE	CAUCASIAN	17	Ear
+GSM1081593		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	MALE	CAUCASIAN	8	Ear
+GSM1081594		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	MALE	CAUCASIAN	11	Chin
+GSM1081595		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	MALE	AFRICAN-AMERICAN	10	Face-cheek
+GSM1081596		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	MALE	AFRICAN-AMERICAN	10	Ear
+GSM1081597		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	FEMALE	AFRICAN-AMERICAN	20	Neck
+GSM1081598		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	FEMALE	AFRICAN-AMERICAN	17	Neck
+GSM1081599		PATIENT		Keratinocyte from keloid scar	Keloid keratinocyte	MALE	AFRICAN-AMERICAN	15	Face
