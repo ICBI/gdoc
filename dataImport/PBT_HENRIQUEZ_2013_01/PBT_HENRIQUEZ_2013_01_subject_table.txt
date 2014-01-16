@@ -1,0 +1,74 @@
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	AGE	GENDER	SAMPLE_TYPE	CASE_OR_CONTROL	TUMOR_GRADE
+GSM1047395		PATIENT		16	FEMALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047396		PATIENT		12	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047397		PATIENT		14	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047398		PATIENT		14	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047399		PATIENT		3	FEMALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047400		PATIENT		8	FEMALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047401		PATIENT		1	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047402		PATIENT		1	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047403		PATIENT		2	FEMALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047404		PATIENT		2	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047405		PATIENT		6	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047406		PATIENT		11	FEMALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047407		PATIENT		4	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047408		PATIENT		6	FEMALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047409		PATIENT		9	MALE	Pilocytic astrocytoma	Pediatric brain tumor	1
+GSM1047410		PATIENT		12	FEMALE	Diffuse astrocytoma	Pediatric brain tumor	2
+GSM1047411		PATIENT		14	FEMALE	Diffuse astrocytoma	Pediatric brain tumor	2
+GSM1047412		PATIENT		4	MALE	Diffuse astrocytoma	Pediatric brain tumor	2
+GSM1047413		PATIENT		15	MALE	Anaplastic astrocytoma	Pediatric brain tumor	3
+GSM1047414		PATIENT		3	FEMALE	Anaplastic astrocytoma	Pediatric brain tumor	3
+GSM1047415		PATIENT		15	FEMALE	Glioblastoma	Pediatric brain tumor	4
+GSM1047416		PATIENT		10	MALE	Glioblastoma	Pediatric brain tumor	4
+GSM1047417		PATIENT		4	FEMALE	Glioblastoma	Pediatric brain tumor	4
+GSM1047418		PATIENT		10	FEMALE	Glioblastoma	Pediatric brain tumor	4
+GSM1047419		PATIENT		7	FEMALE	Glioblastoma	Pediatric brain tumor	4
+GSM1047420		PATIENT		4	MALE	Ependymoma	Pediatric brain tumor	3
+GSM1047421		PATIENT		6	FEMALE	Ependymoma	Pediatric brain tumor	3
+GSM1047422		PATIENT		2	FEMALE	Ependymoma	Pediatric brain tumor	2
+GSM1047423		PATIENT		2	FEMALE	Ependymoma	Pediatric brain tumor	3
+GSM1047424		PATIENT		12	MALE	Ependymoma	Pediatric brain tumor	2
+GSM1047425		PATIENT		6	MALE	Ependymoma	Pediatric brain tumor	3
+GSM1047426		PATIENT		2	MALE	Ependymoma	Pediatric brain tumor	3
+GSM1047427		PATIENT		14	MALE	Ependymoma	Pediatric brain tumor	2
+GSM1047428		PATIENT		3	MALE	Ependymoma	Pediatric brain tumor	2
+GSM1047429		PATIENT		4	MALE	Ependymoma	Pediatric brain tumor	2
+GSM1047430		PATIENT			FEMALE	Ependymoma	Pediatric brain tumor	
+GSM1047431		PATIENT		1	MALE	Ependymoma	Pediatric brain tumor	3
+GSM1047432		PATIENT		6	FEMALE	Ependymoma	Pediatric brain tumor	2
+GSM1047433		PATIENT		6	FEMALE	Ependymoma	Pediatric brain tumor	3
+GSM1047434		PATIENT		4	MALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047435		PATIENT		1	MALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047436		PATIENT		0.5	FEMALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047437		PATIENT		7	MALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047438		PATIENT		3	MALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047439		PATIENT		9	MALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047440		PATIENT		7	MALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047441		PATIENT		9	MALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047442		PATIENT		4	MALE	Medulloblastoma	Pediatric brain tumor	4
+GSM1047443		PATIENT		1	MALE	Atypical teratoid/rhabdoid tumour	Pediatric brain tumor	4
+GSM1047444		PATIENT		0.5	FEMALE	Atypical teratoid/rhabdoid tumour	Pediatric brain tumor	4
+GSM1047445		PATIENT		2	FEMALE	Atypical teratoid/rhabdoid tumour	Pediatric brain tumor	4
+GSM1047446		PATIENT		0.7	MALE	Atypical teratoid/rhabdoid tumour	Pediatric brain tumor	4
+GSM1047447		PATIENT		0.1	FEMALE	Atypical teratoid/rhabdoid tumour	Pediatric brain tumor	4
+GSM1047448		PATIENT		0.8	MALE	Choroid plexus papilloma	Pediatric brain tumor	1
+GSM1047449		PATIENT		1	MALE	Choroid plexus papilloma	Pediatric brain tumor	1
+GSM1047450		PATIENT		3	MALE	Choroid plexus papilloma	Pediatric brain tumor	1
+GSM1047451		PATIENT			FEMALE	Choroid plexus papilloma	Pediatric brain tumor	1
+GSM1047452		PATIENT		0.7	MALE	Foetal Cerebellum	Normal control	
+GSM1047453		PATIENT		0.6	FEMALE	Foetal Cerebellum	Normal control	
+GSM1047454		PATIENT		0.4	FEMALE	Foetal Cerebellum	Normal control	
+GSM1047455		PATIENT		0.4	FEMALE	Foetal Cerebellum	Normal control	
+GSM1047456		PATIENT		0.3	MALE	Foetal Frontal Lobe	Normal control	
+GSM1047457		PATIENT		0.6	FEMALE	Foetal Frontal Lobe	Normal control	
+GSM1047458		PATIENT		0.3	FEMALE	Foetal Frontal Lobe	Normal control	
+GSM1047459		PATIENT		0.7	MALE	Foetal Frontal Lobe	Normal control	
+GSM1047460		PATIENT		22	MALE	Adult control cerebellum	Normal control	
+GSM1047461		PATIENT		41	MALE	Adult control frontal lobe	Normal control	
+GSM1047462		PATIENT		21	MALE	Adult control cerebellum	Normal control	
+GSM1047463		PATIENT		26	MALE	Adult control cerebellum	Normal control	
+GSM1047464		PATIENT		82	MALE	Adult control frontal lobe	Normal control	
+GSM1047465		PATIENT		25	MALE	Adult control frontal lobe	Normal control	
+GSM1047466		PATIENT		27	MALE	Adult control frontal lobe	Normal control	
+GSM1047467		PATIENT		24	MALE	Adult control cerebellum	Normal control	

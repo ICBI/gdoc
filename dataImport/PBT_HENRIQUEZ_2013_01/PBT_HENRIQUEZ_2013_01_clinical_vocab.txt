@@ -1,0 +1,17 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+GENDER	MALE	MALE		An individual who reports belonging to the cultural gender role distinction of male. 
+GENDER	FEMALE	FEMALE		An individual who reports belonging to the cultural gender role distinction of female.
+SAMPLE_TYPE	Pilocytic astrocytoma	Pilocytic astrocytoma		Pilocytic astrocytoma neoplastic process
+SAMPLE_TYPE	Diffuse astrocytoma	Diffuse astrocytoma		Diffuse astrocytoma neoplastic process
+SAMPLE_TYPE	Anaplastic astrocytoma	Anaplastic astrocytoma		Anaplastic astrocytoma neoplastic process
+SAMPLE_TYPE	Glioblastoma	Glioblastoma		Glioblastoma neoplastic process
+SAMPLE_TYPE	Ependymoma	Ependymoma		Ependymoma neoplatic process
+SAMPLE_TYPE	Medulloblastoma	Medulloblastoma		Medulloblastoma neoplastic process
+SAMPLE_TYPE	Atypical teratoid/rhabdoid tumour	Atypical teratoid/rhabdoid tumour		Atypical teratoid/rhabdoid tumour neoplastic process
+SAMPLE_TYPE	Choroid plexus papilloma	Choroid plexus papilloma		Choroid plexus papilloma neoplastic process
+SAMPLE_TYPE	Foetal Cerebellum	Foetal Cerebellum		Neoplastic process from Foetal Cerebellum
+SAMPLE_TYPE	Foetal Frontal Lobe	Foetal Frontal Lobe		Neoplastic process from Foetal lobe
+SAMPLE_TYPE	Adult control cerebellum	Adult control cerebellum		Neoplastic process from adult control cerebellum
+SAMPLE_TYPE	Adult control frontal lobe	Adult control frontal lobe		Neoplastic process from frontal lobe
+CASE_OR_CONTROL	Pediatric brain tumor	Pediatric brain tumor		Case is pediatric brain tumor
+CASE_OR_CONTROL	Normal control	Normal control		Control is normal
