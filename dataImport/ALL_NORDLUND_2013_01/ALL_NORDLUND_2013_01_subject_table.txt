@@ -67,7 +67,7 @@ ALL_478		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
 ALL_483		PATIENT		Bone marrow	T-cell ALL	T-ALL
 ALL_479		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
 ALL_535		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
- ALL patient ALL_522		PATIENT		Bone marrow	T-cell ALL	T-ALL
+ALL patient ALL_522		PATIENT		Bone marrow	T-cell ALL	T-ALL
 ALL_492		PATIENT		Bone marrow	B-cell Precursor ALL	HeH
 ALL_494		PATIENT		Bone marrow	B-cell Precursor ALL	dic(9;20)
 ALL_497		PATIENT		Bone marrow	B-cell Precursor ALL	

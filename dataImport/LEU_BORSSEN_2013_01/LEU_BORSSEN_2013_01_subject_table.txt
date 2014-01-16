@@ -1,0 +1,20 @@
+SUBJECT_ID	PARENT_ID	TYPE	TIMEPOINT	CASE_OR_CONTROL	DISEASE_STATUS	CPG_ISLAND_METHYLATOR_PHENOTYPE_SUBGROUP
+GSM1020268		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020269		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020270		PATIENT		Tumor	Bone marrow T-cell ALL	High methylation
+GSM1020271		PATIENT		Tumor	Bone marrow T-cell ALL	High methylation
+GSM1020272		PATIENT		Tumor	Bone marrow T-cell ALL	High methylation
+GSM1020273		PATIENT		Tumor	Bone marrow T-cell ALL	High methylation
+GSM1020274		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020275		PATIENT		Tumor	Bone marrow T-cell ALL	High methylation
+GSM1020276		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+Sample_23		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020278		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020279		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020280		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020281		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020282		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020283		PATIENT		Tumor	Bone marrow T-cell ALL	High methylation
+GSM1020284		PATIENT		Tumor	Bone marrow T-cell ALL	Low methylation
+GSM1020286		PATIENT		Control	Stimulated T cells	Low methylation
+GSM1020287		PATIENT		Control	Stimulated T cells	Low methylation
