@@ -1,0 +1,7 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DEFINITION
+CASE_OR_CONTROL	Tumor	Tumor		Case is BM T-cell acute lymphoblastic leukemia
+CASE_OR_CONTROL	Normal Control	Normal Control		Control is normal
+DISEASE_STATUS	Bone marrow T-cell ALL	Bone marrow T-cell ALL		Bone marrow T-cell ALL
+DISEASE_STATUS	Stimulated T cells	Stimulated T cells		Stimulated T cells
+CPG_ISLAND_METHYLATOR_PHENOTYPE_SUBGROUP	Low methylation	Low methylation		CIMP- (low methylation)
+CPG_ISLAND_METHYLATOR_PHENOTYPE_SUBGROUP	High methylation	High methylation		CIMP+ (high methylation)

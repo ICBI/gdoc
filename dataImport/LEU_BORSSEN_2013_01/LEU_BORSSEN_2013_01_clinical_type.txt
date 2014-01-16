@@ -1,0 +1,4 @@
+short_name	long_name	definition	semantic_group	rank	split_attribute
+CASE_OR_CONTROL	Case or Control	Case or control	Sample details		1
+DISEASE_STATUS	Status of the disease	Status of the disease	Sample details	1	0
+CPG_ISLAND_METHYLATOR_PHENOTYPE_SUBGROUP	CpG island methylator phenotype (CIMP)	A phenotype whereby a subset of tumors are characterized by the simultaneous hypermethylation of multiple promoter-associated CpG islands.	Sample details	1	1
