@@ -3,4 +3,4 @@ AGE	Patient's  Age	Age of patient at diagnosis or start of case study	Demographi
 GENDER	Gender	The classification of the sex or gender role of the patient.	Demographics	1	2
 SAMPLE_TYPE	Sample Type	Indicates the type of sample	Sample details		1
 CASE_OR_CONTROL	Case or Control	Case or control	Sample details		1
-TUMOR_GRADE	Tumor grade 	Tumor grade 			0
+TUMOR_GRADE	Tumor grade 	Tumor grade 	Tumor details		0
