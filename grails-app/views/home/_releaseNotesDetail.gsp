@@ -1,5 +1,17 @@
 
 <table>
+    <tr>
+        <td>
+            <br />
+            <b>G-DOC Plus 1.0</b><br/>
+            <ul style="list-style-type:square">
+                <li>Workflows for precision  medicine, translational research and population genetics</li>
+                <li>Data for non cancer diseases including Duchenne Muscular Dystrophy, Dementia, Wound healing</li>
+                <li>Added 1000 whole genome data set</li>
+                <li>An improved variant search tool for whole exome/genome data</li>
+            </ul>
+        </td>
+    </tr>
 	<tr>
 		<td>
 			<br />
