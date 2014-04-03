@@ -7,7 +7,7 @@
             <ul style="list-style-type:square">
                 <li>Workflows for precision  medicine, translational research and population genetics</li>
                 <li>Data for non cancer diseases including Duchenne Muscular Dystrophy, Dementia, Wound healing</li>
-                <li>Added 1000 whole genome data set</li>
+                <li>Added whole genome data from the 1000 Genomes Project</li>
                 <li>An improved variant search tool for whole exome/genome data</li>
             </ul>
         </td>

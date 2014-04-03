@@ -20,7 +20,7 @@ environments {
       enabled = true
 
       // Communicate using HTTPS
-      useSecureAPI = false
+      useSecureAPI = true
     }
   }
   devserver {
@@ -29,7 +29,7 @@ environments {
       enabled = true
 
       // Communicate using HTTPS
-      useSecureAPI = false
+      useSecureAPI = true
     }
   }
   demo {
