@@ -1,3 +1,1 @@
-short_name	long_name	definition	semantic_group	rank	split_attribute
-SAMPLE_LOCATION	Location of Sample Tissue	Location of Sample Tissue	Sample details		0
-DISEASE_TYPE	Disease	Type of disease	Disease details	1	1
+short_name	long_name	definition	semantic_group	rank	split_attributeSAMPLE_LOCATION	Location of Sample Tissue	Location of Sample Tissue	Sample details	4	1DISEASE_TYPE	Disease	Type of disease	Disease details	1	1
