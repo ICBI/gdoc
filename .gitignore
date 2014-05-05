@@ -10,3 +10,5 @@ web-app/js/
 web-app/plugins/
 web-app/visualizations/
 plugins
+
+dataImport/WH_HAHN_2013_01/WH_HAHN_2013_01_biospecimen_mapping.txt
