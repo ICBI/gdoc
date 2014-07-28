@@ -136,7 +136,7 @@
 		<a class="anchor" name="q1.6">
 		<span>Q: </span>What publications exist for G-DOC Plus?</a><br />
 		<p class="answerText"><span>A: </span>Our first publication describing the G-DOC tool and its use can be found along with the publication policy at this link: <a class="anchor" href="${grailsApplication.config.grails.serverURL}/policies/publication">${grailsApplication.config.grails.serverURL}/policies/publication</a></p>
-        <p>Other publications that used G-DOC/G-DOC Plus can be found at the same page.</p>
+        <p>Other publications that used G-DOC/G-DOC Plus can be found at this page: <a class="anchor" href="${grailsApplication.config.grails.serverURL}/policies/citations">${grailsApplication.config.grails.serverURL}/policies/citations</a></p>
 	</div>
 
 	<div class="answer">
@@ -148,7 +148,7 @@
 	<div class="answer">
 		<a class="anchor" name="q1.8">
 		<span>Q: </span>What web browsers do you recommend for using G-DOC Plus?</a><br />
-		<p class="answerText"><span>A: </span> G-DOC Plus should be used with the most recent versions of either Chrome (version 6.0.472.62 or better), FireFox (version 3.5 or better), or Internet Explorer (version 8 or better).  We cannot guarantee proper functioning of all features with older versions of these three, or with any other browser (e.g., Safari).  Please update your browser, Java (to version 1.6 or better) and FLASH (to 10.0 or better) before starting to use G-DOC Plus.  Chrome is the preferred browser, as it comes bundled with FLASH.  Internet Explorer showed the largest number of peculiarities in testing among the three supported browsers. </p>
+		<p class="answerText"><span>A: </span> G-DOC Plus should be used with the most recent versions of either Chrome (version 6.0.472.62 or better), FireFox (version 3.5 or better).  We cannot guarantee proper functioning of all features with older versions of these three, or with any other browser (e.g., Safari).  Please update your browser, Java (to version 1.6 or better) and FLASH (to 10.0 or better) before starting to use G-DOC Plus.  Chrome is the preferred browser, as it comes bundled with FLASH. </p>
 	</div>
 	
 	<div class="answer">
@@ -173,7 +173,7 @@
 		<a class="anchor" name="q1.12">
 		<span>Q: </span>FLASH objects are giving me trouble (“look weird”) – what can I do?</a><br />
 		<p class="answerText"><span>A: </span>
-		Please use the most recent versions of Chrome, FireFox, or Internet Explorer, and use the most up to date version of FLASH (must be version 10.0 or better).  Chrome is preferred for first time users, as it comes bundled with FLASH.  Additionally, this looks best if in a full-screen window, rather than a smaller one.  Also, sometimes the FLASH object can be resized independently of the rest of the page – this can sometimes be remedied by adjusting the View menu – Zoom function on the web browser window</p>
+		Please use the most recent versions of Chrome, FireFox and use the most up to date version of FLASH (must be version 10.0 or better).  Chrome is preferred for first time users, as it comes bundled with FLASH.  Additionally, this looks best if in a full-screen window, rather than a smaller one.  Also, sometimes the FLASH object can be resized independently of the rest of the page – this can sometimes be remedied by adjusting the View menu – Zoom function on the web browser window</p>
 	</div>
 
 	<div class="answer">
@@ -293,9 +293,9 @@
 	
 	<div class="answer">
 		<a class="anchor" name="q2.12">
-		<span>Q: </span>What microarray formats are supported by G-DO?C</a><br />
+		<span>Q: </span>What microarray formats are supported by G-DOC Plus?</a><br />
 		<p class="answerText"><span>A: </span>
-	    We currently support modern versions of the Affymetrix and Aglient array platforms, and will soon support modern Illumina chip designs as well.  We are open to discussing other formats – please contact gdoc-help@georgetown.edu to initiate the conversation.</p>
+	    We currently support modern versions of the Affymetrix and Aglient array platforms, and modern Illumina chip designs as well.  We are open to discussing other formats – please contact gdoc-help@georgetown.edu to initiate the conversation.</p>
 	</div>
 	
 	<div class="answer">
@@ -431,7 +431,7 @@
 		<a class="anchor" name="q3.8">
 		<span>Q: </span>When will G-DOC Plus be available to the outside community?</a><br />
 		<p class="answerText"><span>A: </span>
-		The first release of G-DOC Plus is accessible to everyone with a Georgetown University netID, whether a member of the GU community or an “affiliate”.  The second release of G-DOC Plus is planned as the “public” release, wherein the tool will be made available to everyone.  The first release is scheduled for the Fall of 2010, while the second for the Winter of 2010/2011.</p>
+            The first release of G-DOC in Fall 2010 was accessible to everyone with a Georgetown University netID, whether a member of the GU community or an “affiliate”. Since the second release of G-DOC in 2011, all releases have been “public” and has been made available to everyone.</p>
 	</div>
 	
 	<div class="answer">
