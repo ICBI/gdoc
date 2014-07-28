@@ -1,0 +1,25 @@
+ALTER TABLE 
+   COMMON.DATA_SOURCE 
+ADD 
+   (
+      is_precision_medicine CHAR(1) NULL,
+      is_translational_research CHAR(1) NULL,
+      is_population_genetics CHAR(1) NULL
+   );
+
+
+
+alter table 
+   COMMON.DATA_SOURCE 
+modify 
+( 
+      is_precision_medicine CHAR(1) NULL,
+      is_translational_research CHAR(1) NULL,
+      is_population_genetics CHAR(1) NULL
+);
+
+
+alter table
+   COMMON.DATA_SOURCE
+drop
+   (is_precision_medicine, s_translational_research, is_population_genetics);  -- drop many columns
