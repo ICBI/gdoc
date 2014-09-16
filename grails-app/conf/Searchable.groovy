@@ -111,7 +111,7 @@ searchable {
      * http://grails.org/Searchable+Plugin
      */
     defaultMethodOptions = [
-        search: [reload: false, escape: false, offset: 0, max: 10, defaultOperator: "and"],
+        search: [reload: true, escape: false, offset: 0, max: 10, defaultOperator: "and"],
         suggestQuery: [userFriendly: true]
     ]
 
@@ -176,7 +176,7 @@ environments {
 	devserver {
 		searchable {
 			bulkIndexOnStartup = false
-		}
+        }
 	}
 
 	demo {
