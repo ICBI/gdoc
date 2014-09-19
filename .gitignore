@@ -30,3 +30,5 @@ sql/study_cleanup_template.sql
 grails-app/conf/DataSource.groovy
 
 grails-app/conf/DataSource.groovy
+
+grails-app/conf/DataSource.groovy
