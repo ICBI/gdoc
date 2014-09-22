@@ -1,5 +1,6 @@
 dataLoad.log
 grails-app/conf/SecurityFilters.groovy
+
 target/
 web-app/applets/
 web-app/css/
@@ -11,30 +12,18 @@ web-app/plugins/
 web-app/visualizations/
 plugins
 
-dataImport/WH_HAHN_2013_01/WH_HAHN_2013_01_biospecimen_mapping.txt
 
 sql/01_study_setup_template.sql
-
 sql/02_study_schema_template.sql
-
 sql/03_study_grants_template.sql
 
-grails-app/conf/DataSource.groovy
 
-grails-app/conf/DataSource.groovy
 
 sql/delete_study.sql
 
 sql/study_cleanup_template.sql
 
 grails-app/conf/DataSource.groovy
-<<<<<<< HEAD
 
-grails-app/conf/DataSource.groovy
-<<<<<<< HEAD
 
-grails-app/conf/DataSource.groovy
-=======
->>>>>>> parent of 92c37fe... kk
-=======
->>>>>>> parent of e8dbb3e... kkk
+
