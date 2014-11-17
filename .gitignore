@@ -27,3 +27,5 @@ grails-app/conf/DataSource.groovy
 
 
 
+
+*.groovy
