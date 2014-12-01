@@ -27,8 +27,8 @@ environments {
 			url = "jdbc:oracle:thin:@localhost:1521:gdoc"
 			driverClassName = "oracle.jdbc.OracleDriver"
 			dialect = org.hibernate.dialect.OracleDialect.class
-			username = "guidoc"
-			password = "cure4cancer"
+			username = "mcgdoc"
+			password = "change_me"
 			logSql = true
 		}
 		/*dataSource_lookup {

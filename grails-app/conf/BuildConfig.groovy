@@ -74,7 +74,7 @@ grails.project.dependency.resolution = {
 }
 //grails.plugin.location.'nextgen' = "../grails-nextgen"
 //grails.plugin.location.'dicom-viewer' = "../grails-dicom-viewer"
-//grails.plugin.location.'gcore' = "../grails-gcore"
+grails.plugin.location.'gcore' = "../grails-gcore"
 //grails.plugin.location.'gene-expression-search' = "../grails-gene-expression-search"
 //grails.plugin.location.'analysis-core' = "../grails-analysis-core"
 //grails.plugin.location.'group-comparison' = "../grails-group-comparison"
