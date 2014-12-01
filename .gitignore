@@ -31,5 +31,3 @@ grails-app/conf/DataSource.groovy
 *.groovy
 
 grails-app/conf/DataSource.groovy
-
-dataImport/REMBRANDT_LUNG/REMBRANDT_LUNG_study_table.txt
