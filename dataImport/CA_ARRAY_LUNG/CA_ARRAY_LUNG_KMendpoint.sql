@@ -10,7 +10,7 @@ values (
 
 --TIME: OVERALL_SURVIVAL_MNTHS
 --end point: VITAL_STATUS
-insert into BRC_DESMEDT_2007_01.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
+insert into CA_ARRAY_LUNG.km_attribute (KM_ATTRIBUTE_ID, CENSOR_ATTRIBUTE_ID, CENSOR_VALUE_ID) 
 values ( 
 (select attribute_type_id from common.attribute_type where short_name = 'OVERALL_SURVIVAL_MNTHS'), 
 (select attribute_type_id from common.attribute_type where short_name = 'VITAL_STATUS'), 
