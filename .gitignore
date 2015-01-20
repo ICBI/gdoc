@@ -31,3 +31,5 @@ grails-app/conf/DataSource.groovy
 *.groovy
 
 grails-app/conf/DataSource.groovy
+
+grails-app/conf/BuildConfig.groovy
