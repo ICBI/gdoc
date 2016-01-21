@@ -1,0 +1,27 @@
+TYPE	TERM	TERM_MEANING	EVS_ID	DFINITION
+POPULATION	CHB	CHB_Han Chinese in Bejing, China		CHB_Han Chinese in Bejing, China
+POPULATION	JPT	JPT_Japanese in Tokyo, Japan		JPT_Japanese in Tokyo, Japan
+POPULATION	CHS	CHS_Southern Han Chinese		CHS_Southern Han Chinese
+POPULATION	CDX	CDX_Chinese Dai in Xishuangbanna, China		CDX_Chinese Dai in Xishuangbanna, China
+POPULATION	KHV	KHV_Kinh in Ho Chi Minh City, Vietnam		KHV_Kinh in Ho Chi Minh City, Vietnam
+POPULATION	CEU	CEU_Utah Residents (CEPH) with Northern and Western European ancestry		CEU_Utah Residents (CEPH) with Northern and Western European ancestry
+POPULATION	TSI	TSI_Toscani in Italia		TSI_Toscani in Italia
+POPULATION	FIN	FIN_Finnish in Finland		FIN_Finnish in Finland
+POPULATION	GBR	GBR_British in England and Scotland		GBR_British in England and Scotland
+POPULATION	IBS	IBS_Iberian population in Spain		IBS_Iberian population in Spain
+POPULATION	YRI	YRI_Yoruba in Ibadan, Nigera		YRI_Yoruba in Ibadan, Nigera
+POPULATION	LWK	LWK_Luhya in Webuye, Kenya		LWK_Luhya in Webuye, Kenya
+POPULATION	ASW	ASW_Americans of African Ancestry in SW USA 		ASW_Americans of African Ancestry in SW USA 
+POPULATION	ACB	ACB_African Carribbeans in Barbados 		ACB_African Carribbeans in Barbados 
+POPULATION	MXL	MXL_Mexican Ancestry from Los Angeles USA		MXL_Mexican Ancestry from Los Angeles USA
+POPULATION	PUR	PUR_Puerto Ricans from Puerto Rico		PUR_Puerto Ricans from Puerto Rico
+POPULATION	CLM	CLM_Colombians from Medellin, Colombia		CLM_Colombians from Medellin, Colombia
+POPULATION	PEL	PEL_Peruvians from Lima, Peru 		PEL_Peruvians from Lima, Peru 
+POPULATION	GIH	GIH_Gujarati Indian from Houston, Texas 		GIH_Gujarati Indian from Houston, Texas 
+POPULATION	CHD	CHD_Chinese in Denver, Colorado		CHD_Chinese in Denver, Colorado
+POPULATION	MKK	MKK_Maasai in Kinyawa, Kenya		MKK_Maasai in Kinyawa, Kenya
+SUPER_POPULATION	European	European		European
+SUPER_POPULATION	East Asian	East Asian		East Asian
+SUPER_POPULATION	Ad Mixed American	Ad Mixed American		Ad Mixed American
+SUPER_POPULATION	African	African		African
+SUPER_POPULATION	South Asian	South Asian		South Asian
