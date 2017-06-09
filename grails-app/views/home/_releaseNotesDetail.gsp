@@ -1,5 +1,16 @@
 
 <table>
+	<tr>
+		<td>
+			<br />
+			<b>G-DOC 3.0</b><br/>
+			<ul style="list-style-type:square">
+				<li>Bug fixes and improvements</li>
+				<li>Data restructuring. All non-cancer datasets are now available under the topic: “OTHER”</li>
+				<li>Two infectious diseases studies added</li>
+			</ul>
+		</td>
+	</tr>
     <tr>
         <td>
             <br />
