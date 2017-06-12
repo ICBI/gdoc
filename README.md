@@ -13,4 +13,4 @@ The Precision Medicine workflow integrates molecular and clinical research data 
 Source code and documentation developed by the Georgetown Innovation Center For Biomedical Informatics (GU-ICBI) are freely available under Lesser GNU Public License GPL v3 (http://opensource.org/licenses/gpl-3.0.html).
 All uses of this software must cite this source and the publication:
 
-Krithika Bhuvaneshwar, Anas Belouali, Varun Singh, Robert M. Johnson, Lei Song, Adil Alaoui, Michael A. Harris, Robert Clarke, Louis M. Weiner, Yuriy Gusev and Subha Madhavan, **G-DOC Plus – an integrative bioinformatics platform for precision medicine**, *BMC Bioinformatics*, April 2016.
+Krithika Bhuvaneshwar, Anas Belouali, Varun Singh, Robert M. Johnson, Lei Song, Adil Alaoui, Michael A. Harris, Robert Clarke, Louis M. Weiner, Yuriy Gusev and Subha Madhavan, **G-DOC Plus – an integrative bioinformatics platform for precision medicine** , *BMC Bioinformatics*, April 2016.
